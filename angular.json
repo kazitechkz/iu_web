@@ -99,13 +99,6 @@
           }
         }
       },
-      "i18n": {
-        "sourceLocale": "ru",
-        "locales": {
-          "kk": "src/locale/messages.kk.xlf",
-          "en": "src/locale/messages.en.xlf"
-        }
-      }
     }
   }
 }

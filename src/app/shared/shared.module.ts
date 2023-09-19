@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 import {TranslateLoader, TranslateModule, TranslateStore} from "@ngx-translate/core";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-import { InputFieldComponent } from './component/input-field/input-field.component';
+import { InputFieldComponent } from './components/input-field/input-field.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -12,7 +14,9 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    InputFieldComponent
+    InputFieldComponent,
+    SidebarComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
@@ -27,9 +31,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers:[TranslateStore ],
-  exports: [
-    TranslateModule,
-    InputFieldComponent
-  ]
+    exports: [
+        TranslateModule,
+        InputFieldComponent,
+        SidebarComponent,
+        NavbarComponent
+    ]
 })
 export class SharedModule { }
