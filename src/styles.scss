@@ -2,6 +2,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+$main_green : #4DC591;
+$main_secondary : #9BA1FF;
+$main_tertiary : #FF7648;
+$Main_Text : #191B32;
+$Body_Text : #9295A3;
+
+
+
+
 @font-face {
   font-family: 'Montserrat';
   src: url('./assets/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
@@ -45,4 +55,36 @@
 body{
   font-family: 'Montserrat', sans-serif;
   font-weight: normal;
+}
+
+
+.main-green-bg{
+  background:$main_green;
+}
+
+.main-green-color{
+  color:$main_green;
+}
+.main-secondary-bg{
+  background:$main_secondary;
+}
+
+.main-secondary-color{
+  color:$main_secondary;
+}
+
+.main-tertiary-bg{
+  background:$main_tertiary;
+}
+
+.main-tertiary-color{
+  color:$main_tertiary;
+}
+
+.main-text{
+  color: $Main_Text;
+}
+
+.body-text{
+  color: $Body_Text;
 }

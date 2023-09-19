@@ -6,36 +6,37 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { InputFieldComponent } from './components/input-field/input-field.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import {RoundedSocialButtonComponent} from "./components/rounded-social-button/rounded-social-button.component";
+import {CoreModule} from "../core/core.module";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/locale/', '.json');
-}
+
 
 @NgModule({
   declarations: [
+    InputFieldComponent,
+    RoundedSocialButtonComponent,
     InputFieldComponent,
     SidebarComponent,
     NavbarComponent
   ],
   imports: [
     CommonModule,
+    FontAwesomeModule,
     HttpClientModule,
-    TranslateModule.forChild({
-      defaultLanguage: 'ru',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+    CoreModule,
+    ReactiveFormsModule
+  ],
+  exports: [
+    InputFieldComponent,
+    RoundedSocialButtonComponent,
+    TranslateModule,
+    InputFieldComponent,
+    SidebarComponent,
+    NavbarComponent
   ],
   providers:[TranslateStore ],
-    exports: [
-        TranslateModule,
-        InputFieldComponent,
-        SidebarComponent,
-        NavbarComponent
-    ]
 })
 export class SharedModule { }
