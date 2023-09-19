@@ -9,6 +9,10 @@ import {SharedModule} from "../shared/shared.module";
 import {CoreModule} from "../core/core.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import { ResetComponent } from './reset/reset.component';
+import {EffectsModule} from "@ngrx/effects";
+import {RegisterEffect} from "../shared/store/auth/register/Register.effect";
+import {StoreModule} from "@ngrx/store";
+import {registerReducer} from "../shared/store/auth/register/Register.reducer";
 
 
 @NgModule({
@@ -23,7 +27,8 @@ import { ResetComponent } from './reset/reset.component';
         AuthRoutingModule,
         CoreModule,
         SharedModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+
     ]
 })
 export class AuthModule { }

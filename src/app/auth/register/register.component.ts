@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { faGoogle,faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import {FormControl, FormGroup, isFormGroup, Validators} from "@angular/forms";
+import {Store} from "@ngrx/store";
+import {registerAction} from "../../shared/store/auth/register/Register.action";
+import {RegisterRequest} from "../../shared/store/auth/register/RegisterRequest";
+import {getRegisterState} from "../../shared/store/auth/register/Register.selector";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,6 +13,10 @@ import {FormControl, FormGroup, isFormGroup, Validators} from "@angular/forms";
 export class RegisterComponent {
   faGoogle = faGoogle;
   faFacebookF = faFacebookF;
+
+  constructor(private store: Store<RegisterComponent>) {
+
+  }
 
   register_form : FormGroup = new FormGroup({
     email: new FormControl("", [
@@ -37,7 +45,13 @@ export class RegisterComponent {
   });
 
   onSubmit() {
-    // @ts-ignore
-    console.log(JSON.stringify(this.register_form.getRawValue()));
+    console.log(this.register_form.getRawValue());
+    if(this.register_form.valid){
+      let requestData = this.register_form.getRawValue() as RegisterRequest;
+      this.store.dispatch(registerAction({requestData:requestData}));
+      this.store.select(getRegisterState).subscribe(item=>{
+        console.log(item);
+      })
+    }
   }
 }
