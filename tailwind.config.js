@@ -3,6 +3,7 @@ module.exports = {
   mode:"jit",
   content: [
     "./src/**/*.{html,ts}",
+    "./node_modules/flowbite/**/*.js" // add this line
   ],
   purge: [
     './src/**/*.{html,ts}', './projects/**/*.{html,ts}'
@@ -15,7 +16,8 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    require('tw-elements/dist/plugin')
+    require('tw-elements/dist/plugin'),
+    require('flowbite/plugin')
   ],
 }
 
