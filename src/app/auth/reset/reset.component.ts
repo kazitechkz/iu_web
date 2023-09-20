@@ -8,6 +8,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class ResetComponent {
 
+  errors:Record<string, string[]> | null = null;
 
   reset_form : FormGroup = new FormGroup({
     email: new FormControl("", [

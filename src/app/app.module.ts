@@ -16,6 +16,8 @@ import {loginReducer} from "./shared/store/auth/login/login.reducer";
 import {LoginEffect} from "./shared/store/auth/login/login.effect";
 import {ReducersConstants} from "./core/constants/reducers.constants";
 import {EffectsConstants} from "./core/constants/effects.constants";
+import {LoadingInterceptor} from "./core/interceptors/loading.interceptor";
+import {NgxSpinnerModule} from "ngx-spinner";
 
 @NgModule({
     declarations: [
@@ -27,11 +29,13 @@ import {EffectsConstants} from "./core/constants/effects.constants";
         AppRoutingModule,
         SharedModule,
         FontAwesomeModule,
+        NgxSpinnerModule,
         StoreModule.forRoot(ReducersConstants),
         EffectsModule.forRoot(EffectsConstants),
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
 
     ],
     bootstrap: [AppComponent]

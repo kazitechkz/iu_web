@@ -25,7 +25,6 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
-        NgxSpinnerModule.forRoot({type: 'ball-scale-multiple'})
     ],
     providers: [TranslateStore],
     exports: [

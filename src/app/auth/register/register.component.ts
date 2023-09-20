@@ -9,6 +9,7 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 import {RegisterState} from "../../shared/store/auth/register/Register.state";
 import {Subscription} from "rxjs";
 import {RoutesName} from "../../core/constants/routes.constants";
+import {NgxSpinnerService} from "ngx-spinner";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -21,7 +22,6 @@ export class RegisterComponent implements OnInit,OnDestroy{
   registerSubscription:Subscription = new Subscription();
 
   private store = inject(Store<RegisterComponent>)
-
   ngOnDestroy(): void {
         this.registerSubscription.unsubscribe();
     }
