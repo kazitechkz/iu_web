@@ -2,6 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'ngx-toastr/toastr';
 
 $main_green : #4DC591;
 $main_secondary : #9BA1FF;

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {HttpClient} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {TranslateLoader, TranslateModule, TranslateStore} from "@ngx-translate/core";
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -12,6 +14,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [],
   imports: [
     CommonModule,
+    ToastrModule.forRoot(), // ToastrModule added
     TranslateModule.forChild({
       defaultLanguage: 'ru',
       loader: {

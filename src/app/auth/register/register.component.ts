@@ -5,6 +5,7 @@ import {Store} from "@ngrx/store";
 import {registerAction} from "../../shared/store/auth/register/Register.action";
 import {RegisterRequest} from "../../shared/store/auth/register/RegisterRequest";
 import {getRegisterState} from "../../shared/store/auth/register/Register.selector";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -46,12 +47,12 @@ export class RegisterComponent {
 
   onSubmit() {
     console.log(this.register_form.getRawValue());
-    if(this.register_form.valid){
+
       let requestData = this.register_form.getRawValue() as RegisterRequest;
       this.store.dispatch(registerAction({requestData:requestData}));
       this.store.select(getRegisterState).subscribe(item=>{
-        console.log(item);
+
       })
-    }
+
   }
 }
