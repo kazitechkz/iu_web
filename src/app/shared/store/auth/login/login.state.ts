@@ -1,14 +1,6 @@
-import {ResponseData} from "../../response_data";
+import {createEntityAdapter} from "@ngrx/entity";
+import {UserModel, Users} from "../../../models/user.model";
 
-export interface LoginState {
-  success:boolean|null,
-  errors:any,
-  token: string | null
-}
+export const UserAdapter = createEntityAdapter<Users>();
 
-
-export const initialLoginState: LoginState = {
-  success : null,
-  errors: null,
-  token: null
-};
+export const UserState: UserModel = UserAdapter.getInitialState();

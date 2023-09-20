@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {HttpClient} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {TranslateLoader, TranslateModule, TranslateStore} from "@ngx-translate/core";
@@ -9,26 +9,28 @@ import {NgxSpinnerModule} from "ngx-spinner";
 
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/locale/', '.json');
+    return new TranslateHttpLoader(http, './assets/locale/', '.json');
 }
+
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    ToastrModule.forRoot(), // ToastrModule added
-    TranslateModule.forChild({
-      defaultLanguage: 'ru',
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
-  ],
-  providers:[TranslateStore ],
-  exports:[
-    TranslateModule
-  ]
+    declarations: [],
+    imports: [
+        CommonModule,
+        ToastrModule.forRoot(), // ToastrModule added
+        TranslateModule.forChild({
+            defaultLanguage: 'ru',
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+        NgxSpinnerModule.forRoot({type: 'ball-scale-multiple'})
+    ],
+    providers: [TranslateStore],
+    exports: [
+        TranslateModule
+    ]
 })
-export class CoreModule { }
+export class CoreModule {
+}

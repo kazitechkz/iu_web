@@ -1,8 +1,9 @@
 import {createFeatureSelector, createSelector} from "@ngrx/store";
-import {LoginState} from "./login.state";
+import {UserModel} from "../../../models/user.model";
+import {ResponseData} from "../../response_data";
 
-const get_login_state = createFeatureSelector<LoginState>('login');
+const get_login_state = createFeatureSelector<ResponseData<UserModel>>('login');
 
-export const getloginState = createSelector(get_login_state, (state) => {
+export const getLoginState = createSelector(get_login_state, (state) => {
     return state;
 })

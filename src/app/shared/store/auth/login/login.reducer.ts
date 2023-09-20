@@ -1,11 +1,11 @@
 import {createReducer, on} from "@ngrx/store";
-import {initialLoginState} from "./login.state";
 import {LoginActionTypes} from "./login.action.types";
 import {loginAction, loginActionFailure, loginActionSuccess} from "./login.action";
+import {UserState} from "./login.state";
 
 
 const _loginReducer = createReducer(
-    initialLoginState,
+    UserState,
     on(loginAction, (state, action) => {
         return {
             ...state,
@@ -16,7 +16,7 @@ const _loginReducer = createReducer(
             ...state,
             success: true,
             errors: null,
-            token: action.responseData.data
+            data: action.responseData.data
         }
     }),
     on(loginActionFailure, (state, action) => {

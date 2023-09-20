@@ -2,10 +2,11 @@ import {Action, createAction, props} from "@ngrx/store";
 import {LoginActionTypes} from "./login.action.types";
 import {LoginRequest} from "./loginRequest";
 import {ResponseData} from "../../response_data";
+import {UserInfo} from "../../../models/user.model";
 
 
 export const loginAction = createAction(LoginActionTypes.OnLogin, props<{ requestData: LoginRequest }>());
 export const loginActionSuccess = createAction(LoginActionTypes.OnLoginSuccess, props<{
-    responseData: ResponseData<string>
+    responseData: ResponseData<UserInfo>
 }>());
 export const loginActionFailure = createAction(LoginActionTypes.OnLoginFailure, props<{ errors: any }>());

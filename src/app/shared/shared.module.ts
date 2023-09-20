@@ -10,10 +10,6 @@ import {RoundedSocialButtonComponent} from "./components/rounded-social-button/r
 import {CoreModule} from "../core/core.module";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ReactiveFormsModule} from "@angular/forms";
-
-
-
-
 @NgModule({
   declarations: [
     InputFieldComponent,

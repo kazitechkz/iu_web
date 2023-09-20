@@ -9,6 +9,7 @@ import {RegisterRequest} from "./RegisterRequest";
 import {ToastrService} from "ngx-toastr";
 import {data} from "autoprefixer";
 import {Router} from "@angular/router";
+import {RoutesName} from "../../../../core/constants/routes.constants";
 
 @Injectable()
 export class RegisterEffect {
@@ -19,33 +20,33 @@ export class RegisterEffect {
     private router = inject(Router);
 
 
-  on_register$ = createEffect((): any =>
-    this.action$.pipe(
-      ofType(registerAction),
-      switchMap(action =>{
-          return this.service.RegisterUser(action.requestData).pipe(
-              switchMap(data=>{
-                  this.toastr.success(data.message??"Success");
-                      return of(
-                          registerActionSuccess({ responseData: data }),
-                      );
-                  }
-              ),
-              catchError((_error) => of(registerActionFailure({ errors: _error })))
-          );
-        }
-      )
-    ),
-  );
+    on_register$ = createEffect((): any =>
+        this.action$.pipe(
+            ofType(registerAction),
+            switchMap(action => {
+                    return this.service.RegisterUser(action.requestData).pipe(
+                        switchMap(data => {
+                                this.toastr.success(data.message ?? "Success");
+                                return of(
+                                    registerActionSuccess({responseData: data}),
+                                );
+                            }
+                        ),
+                        catchError((_error) => of(registerActionFailure({errors: _error})))
+                    );
+                }
+            )
+        ),
+    );
 
     registerSuccess$ = createEffect(
         () => {
             return this.action$.pipe(
                 ofType(registerActionSuccess),
-                exhaustMap(() => this.router.navigate(['/auth/login']))
+                exhaustMap(() => this.router.navigate([RoutesName.loginRoute]))
             );
         },
-        { dispatch: false }
+        {dispatch: false}
     );
 
 

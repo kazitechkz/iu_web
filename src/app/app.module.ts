@@ -14,6 +14,8 @@ import {ErrorInterceptor} from "./core/interceptors/error.interceptor";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {loginReducer} from "./shared/store/auth/login/login.reducer";
 import {LoginEffect} from "./shared/store/auth/login/login.effect";
+import {ReducersConstants} from "./core/constants/reducers.constants";
+import {EffectsConstants} from "./core/constants/effects.constants";
 
 @NgModule({
     declarations: [
@@ -25,8 +27,8 @@ import {LoginEffect} from "./shared/store/auth/login/login.effect";
         AppRoutingModule,
         SharedModule,
         FontAwesomeModule,
-        StoreModule.forRoot({register: registerReducer, login: loginReducer}),
-        EffectsModule.forRoot([RegisterEffect, LoginEffect]),
+        StoreModule.forRoot(ReducersConstants),
+        EffectsModule.forRoot(EffectsConstants),
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

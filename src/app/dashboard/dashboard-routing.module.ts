@@ -5,21 +5,21 @@ import {IndexComponent} from "./index/index.component";
 
 
 const routes: Routes = [
-  {
-    path: "",
-    component: LayoutComponent,
-    children: [
-      {
-        path: 'index',
-        component: IndexComponent
-      }
-    ]
-  }
+    {
+        path: "",
+        component: LayoutComponent,
+        children: [
+            {
+                path: 'index',
+                component: IndexComponent
+            }
+        ]
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class DashboardRoutingModule {
 

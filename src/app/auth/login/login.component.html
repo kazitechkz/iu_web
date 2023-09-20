@@ -8,8 +8,8 @@
             <div class="mt-8 mb-4">
         <span class="text-xl text-dark">
           {{ 'sign_up' | translate }}
-            <app-rounded-social-button [icon]="faGoogle" [bg_color]="'bg-[#FF904D]'" />
-          <app-rounded-social-button [icon]="faFacebookF" [bg_color]="'bg-[#3B5998]'" />
+            <app-rounded-social-button [icon]="faGoogle" [bg_color]="'bg-[#FF904D]'"/>
+          <app-rounded-social-button [icon]="faFacebookF" [bg_color]="'bg-[#3B5998]'"/>
             {{ 'or' | translate }}
         </span>
             </div>
@@ -22,6 +22,7 @@
                         [placeholder]="'email'"
                         [label]="'email'"
                         [error_message]="'email_is_not_right'"
+                        [backErrors]="errors"
                         ngDefaultControl
                 />
                 <!--Password input-->
@@ -32,6 +33,7 @@
                         [placeholder]="'password'"
                         [label]="'password'"
                         [error_message]="'password_is_not_right'"
+                        [backErrors]="errors"
                         ngDefaultControl
                 />
 
@@ -40,7 +42,7 @@
 
                     <span
                             class="inline-block hover:cursor-pointer text-md text-left body-text">
-                        Forget Password? <a routerLink="/auth/reset" class="main-tertiary-color" >Reset Password</a>
+                        Forget Password? <a [routerLink]="[RoutesName.resetRoute]" class="main-tertiary-color">Reset Password</a>
                     </span>
                 </div>
 
@@ -56,16 +58,10 @@
                 <div class="my-4 text-center">
                     <span
                             class="inline-block pl-[0.15rem] hover:cursor-pointer text-md main-text">
-                        Don’t have account? <a class="main-tertiary-color" routerLink="/auth/register">Sign Up</a>
+                        Don’t have account? <a class="main-tertiary-color" [routerLink]="[RoutesName.registerRoute]">Sign Up</a>
                     </span>
                 </div>
-
             </form>
-
-
-
-
-
         </div>
     </div>
 </div>
