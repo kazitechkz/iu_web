@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import { faGoogle,faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import {FormControl, FormGroup, isFormGroup, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
@@ -6,19 +6,28 @@ import {registerAction} from "../../shared/store/auth/register/Register.action";
 import {RegisterRequest} from "../../shared/store/auth/register/RegisterRequest";
 import {getRegisterState} from "../../shared/store/auth/register/Register.selector";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import {RegisterState} from "../../shared/store/auth/register/Register.state";
+import {Subscription} from "rxjs";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit,OnDestroy{
   faGoogle = faGoogle;
   faFacebookF = faFacebookF;
+  errors:Record<string, string[]> | null = null;
+  registerSubscription:Subscription = new Subscription();
 
-  constructor(private store: Store<RegisterComponent>) {
+  private store = inject(Store<RegisterComponent>)
 
-  }
+  ngOnDestroy(): void {
+        this.registerSubscription.unsubscribe();
+    }
 
+  ngOnInit(): void {
+
+    }
   register_form : FormGroup = new FormGroup({
     email: new FormControl("", [
       Validators.required,
@@ -46,13 +55,12 @@ export class RegisterComponent {
   });
 
   onSubmit() {
-    console.log(this.register_form.getRawValue());
-
       let requestData = this.register_form.getRawValue() as RegisterRequest;
       this.store.dispatch(registerAction({requestData:requestData}));
-      this.store.select(getRegisterState).subscribe(item=>{
-
+     this.registerSubscription = this.store.select(getRegisterState).subscribe((item:RegisterState) =>{
+          if(item.errors){
+            this.errors = item.errors;
+          }
       })
-
   }
 }

@@ -1,5 +1,5 @@
 import {createReducer,on} from "@ngrx/store";
-import {initialRegisterState} from "./Register.state";
+import {initialRegisterState, RegisterState} from "./Register.state";
 import {RegisterActionTypes} from "./Register.action.types";
 import {registerAction, registerActionFailure, registerActionSuccess} from "./Register.action";
 
@@ -30,7 +30,7 @@ const _register_reducer = createReducer(
   })
 );
 
-export function registerReducer(state: any, action: any) {
+export function registerReducer(state:any, action: any) {
   return _register_reducer(state, action);
 
 }
