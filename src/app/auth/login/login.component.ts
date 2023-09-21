@@ -1,22 +1,24 @@
-import {Component, inject, OnDestroy} from '@angular/core';
+import {Component, DestroyRef, inject, OnDestroy, OnInit} from '@angular/core';
 import {faGoogle, faFacebookF} from '@fortawesome/free-brands-svg-icons';
 import {FormControl, FormGroup, isFormGroup, Validators} from "@angular/forms";
 import {LoginRequest} from "../../shared/store/auth/login/loginRequest";
 import {Store} from "@ngrx/store";
 import {loginAction} from "../../shared/store/auth/login/login.action";
 import {getLoginState} from "../../shared/store/auth/login/login.selector";
-import {Subscription} from "rxjs";
+import {interval, Subscription, timer} from "rxjs";
 import {RoutesName} from "../../core/constants/routes.constants";
+import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
+import {time} from "@rxweb/reactive-form-validators";
+import {StrHelper} from "../../core/helpers/str.helper";
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnDestroy {
-    private loginSubscription = new Subscription();
+export class LoginComponent {
     private _store = inject(Store);
-
+    destroyRef = inject(DestroyRef);
     faGoogle = faGoogle;
     faFacebookF = faFacebookF;
     errors:Record<string, string[]> | null = null;
@@ -35,16 +37,15 @@ export class LoginComponent implements OnDestroy {
     onSubmit() {
         let requestData = this.login_form.getRawValue() as LoginRequest;
         this._store.dispatch(loginAction({requestData: requestData}));
-        this.loginSubscription = this._store.select(getLoginState).subscribe(item => {
-            if(item.errors){
-                this.errors = item.errors;
-            }
+        this._store.select(getLoginState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+          if(item.errors){
+            this.errors = item.errors;
+          }
         })
     }
 
-    ngOnDestroy(): void {
-        this.loginSubscription.unsubscribe()
-    }
+
 
     protected readonly RoutesName = RoutesName;
+  protected readonly StrHelper = StrHelper;
 }
