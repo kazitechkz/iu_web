@@ -5,6 +5,7 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {ResetComponent} from "./reset/reset.component";
 import {RoutesName} from "../core/constants/routes.constants";
+import {authGuard} from "../core/guards/auth.guard";
 
 const routes: Routes = [
     {

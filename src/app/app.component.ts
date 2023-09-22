@@ -9,4 +9,12 @@ import {NgxSpinnerService} from "ngx-spinner";
 export class AppComponent {
   title = 'iu_web';
 
+  // loadCurrentUser() {
+  //   const token = localStorage.getItem('token');
+  //   this.accountService.loadCurrentUser(token).subscribe(() => {
+  //     console.log('loaded user');
+  //   }, error => {
+  //     console.log(error);
+  //   });
+  // }
 }

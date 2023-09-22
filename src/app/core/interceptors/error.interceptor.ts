@@ -1,15 +1,16 @@
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {NavigationExtras, Router} from "@angular/router";
-import {Injectable} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {ToastrService} from "ngx-toastr";
+import {AuthService} from "../../auth/auth.service";
 
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-
-    constructor(private router: Router, private toastr: ToastrService) {
-    }
+    private _routerService = inject(Router)
+    private _toastrService = inject(ToastrService)
+    private _authService = inject(AuthService)
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let self = this;
@@ -20,27 +21,28 @@ export class ErrorInterceptor implements HttpInterceptor {
                     if (error.status === 400) {
                         if (error.error.errors) {
                             Object.values(error.error.errors).forEach(function (elem: any) {
-                                self.toastr.error(elem)
+                                self._toastrService.error(elem)
                             })
                             throw error.error.errors;
                         } else {
-                            this.toastr.error(error.error.message, error.error.statusCode);
+                            this._toastrService.error(error.error.message, error.error.statusCode);
                         }
                     }
                     if (error.status === 401) {
-                        this.toastr.error(error.error.message, error.error.statusCode);
+                        this._authService.logout()
+                        this._toastrService.error(error.error.message, error.error.statusCode);
                     }
                   if (error.status === 422) {
-                    this.toastr.error(error.error.message, error.error.statusCode);
+                    this._toastrService.error(error.error.message, error.error.statusCode);
                   }
                     if (error.status === 403) {
-                        this.toastr.error(error.error.message, error.error.statusCode);
+                        this._toastrService.error(error.error.message, error.error.statusCode);
                     }
                     if (error.status === 404) {
-                        this.router.navigateByUrl('/not-found');
+                        this._routerService.navigateByUrl('/not-found');
                     }
                     if (error.status === 500) {
-                        this.toastr.error(error.error.message, error.error.statusCode);
+                        this._toastrService.error(error.error.message, error.error.statusCode);
                         //const navigationExtras: NavigationExtras = {state: {error: error.error}}
                         // this.router.navigateByUrl('/server-error', navigationExtras);
                     }

@@ -9,7 +9,20 @@ import {UserInfo} from "../models/user.model";
 export class SessionService {
     private _http = inject(HttpClient)
 
-    setUserToLocalStorage(userdata: UserInfo) {
-        localStorage.setItem('userdata', JSON.stringify(userdata))
+    setDataToLocalStorage(key: string, data: any) {
+      if (data != null) {
+        localStorage.setItem(key, JSON.stringify(data))
+      }
+    }
+
+    getDataFromLocalStorage(key: string) {
+      if (localStorage.getItem(key) != null) {
+        // @ts-ignore
+        return JSON.parse(localStorage.getItem(key))
+      }
+    }
+
+    removeDataFromLocalStorage(key: string) {
+      localStorage.removeItem(key)
     }
 }

@@ -18,6 +18,7 @@ import {ReducersConstants} from "./core/constants/reducers.constants";
 import {EffectsConstants} from "./core/constants/effects.constants";
 import {LoadingInterceptor} from "./core/interceptors/loading.interceptor";
 import {NgxSpinnerModule} from "ngx-spinner";
+import {JwtInterceptor} from "./core/interceptors/jwt.interceptor";
 
 @NgModule({
     declarations: [
@@ -36,7 +37,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
         {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
-
+        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     ],
     bootstrap: [AppComponent]
 })

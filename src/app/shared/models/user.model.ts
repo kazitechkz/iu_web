@@ -15,5 +15,6 @@ export interface UserInfo {
     email: string,
     phone: string,
     token: string,
-    role: string
+    role: string,
+    subscription: any
 }

@@ -14,8 +14,8 @@ import {APIRoutesName} from "../../../../core/constants/api-routes.constants";
 export class LoginService {
     private _http = inject(HttpClient)
 
-    loginUser(requestData: LoginRequest): Observable<ResponseData<UserInfo>> {
-        return this._http.post<ResponseData<UserInfo>>(environment.baseUrl + APIRoutesName.loginRoute, requestData);
+    loginUser(requestData: LoginRequest): Observable<ResponseData<string>> {
+        return this._http.post<ResponseData<string>>(environment.baseUrl + APIRoutesName.loginRoute, requestData);
     }
 
 }
