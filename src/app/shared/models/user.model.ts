@@ -10,11 +10,10 @@ export interface Users {
 export interface UserModel extends EntityState<Users> {
 
 }
-export interface UserInfo {
+export interface Me {
     name: string,
     email: string,
     phone: string,
-    token: string,
     role: string,
     subscription: any
 }

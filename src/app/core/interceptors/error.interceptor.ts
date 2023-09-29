@@ -4,6 +4,7 @@ import {NavigationExtras, Router} from "@angular/router";
 import {inject, Injectable} from "@angular/core";
 import {ToastrService} from "ngx-toastr";
 import {AuthService} from "../../auth/auth.service";
+import {RoutesName} from "../constants/routes.constants";
 
 
 @Injectable()
@@ -17,7 +18,7 @@ export class ErrorInterceptor implements HttpInterceptor {
         return next.handle(req).pipe(
             catchError(error => {
                 if (error) {
-                    // console.log(error)
+                    // console.log(error.status)
                     if (error.status === 400) {
                         if (error.error.errors) {
                             Object.values(error.error.errors).forEach(function (elem: any) {
@@ -39,7 +40,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                         this._toastrService.error(error.error.message, error.error.statusCode);
                     }
                     if (error.status === 404) {
-                        this._routerService.navigateByUrl('/not-found');
+                        this._routerService.navigateByUrl(RoutesName.notFound).then(null)
                     }
                     if (error.status === 500) {
                         this._toastrService.error(error.error.message, error.error.statusCode);

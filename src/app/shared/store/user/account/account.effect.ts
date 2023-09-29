@@ -1,44 +1,44 @@
 import {inject, Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {LoginService} from "./login.service";
+import {AccountService} from "./account.service";
 import {catchError, distinct, exhaustMap, map, of, switchMap} from "rxjs";
-import {loginAction, loginActionFailure, loginActionSuccess} from "./login.action";
+import {accountAction, accountActionFailure, accountActionSuccess} from "./account.action";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {SessionService} from "../../../services/session.service";
+import {Me} from "../../../models/user.model";
 import {RoutesName} from "../../../../core/constants/routes.constants";
 import {LocalKeysConstants} from "../../../../core/constants/local-keys.constants";
+import {registerActionSuccess} from "../../auth/register/Register.action";
 
 @Injectable()
-export class LoginEffect {
+export class AccountEffect {
 
-    private _service = inject(LoginService);
+    private _service = inject(AccountService);
     private action$ = inject(Actions);
     private _toastr = inject(ToastrService);
     private _localStorage = inject(SessionService);
     private _route = inject(Router);
 
-    _onLogin = createEffect((): any =>
+    _onAccount = createEffect((): any =>
         this.action$.pipe(
-            ofType(loginAction),
+            ofType(accountAction),
             switchMap((action) => {
-                return this._service.loginUser(action.requestData).pipe(
+                return this._service.meUser().pipe(
                     switchMap(data => {
                             this._toastr.success('Success')
-                            this._localStorage.setDataToLocalStorage(LocalKeysConstants.token, data.data as string)
-                            this._route.navigate([RoutesName.dashboard]).then(r => console.log('Navigated to dashboard'))
+                            this._localStorage.setDataToLocalStorage(LocalKeysConstants.user, data.data as Me)
+                            this._route.navigate([RoutesName.dashboard]).then(null)
                             return of(
-                                loginActionSuccess({responseData: data}),
+                                accountActionSuccess({responseData: data}),
                             )
                         }
                     ),
                     catchError((_error) =>
-                        of(loginActionFailure({errors: _error}))
+                        of(accountActionFailure({errors: _error}))
                     )
                 )
             }),
         ),
     );
-
-
 }

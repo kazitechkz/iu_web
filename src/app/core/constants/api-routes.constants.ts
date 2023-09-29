@@ -3,4 +3,5 @@ export enum APIRoutesName {
     registerRoute = "auth/register",
     resetRoute = "auth/reset",
     sendResetTokenRoute = "auth/send-reset-token",
+    me = "me"
 }

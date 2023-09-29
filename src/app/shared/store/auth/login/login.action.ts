@@ -2,7 +2,6 @@ import {Action, createAction, props} from "@ngrx/store";
 import {LoginActionTypes} from "./login.action.types";
 import {LoginRequest} from "./loginRequest";
 import {ResponseData} from "../../response_data";
-import {UserInfo} from "../../../models/user.model";
 
 
 export const loginAction = createAction(LoginActionTypes.OnLogin, props<{ requestData: LoginRequest }>());

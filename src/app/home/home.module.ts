@@ -6,12 +6,14 @@ import {HomeLayoutComponent} from './home-layout/home-layout.component';
 import {IndexComponent} from './index/index.component';
 import {SharedModule} from "../shared/shared.module";
 import {CoreModule} from "../core/core.module";
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
     declarations: [
         HomeLayoutComponent,
-        IndexComponent
+        IndexComponent,
+        NotFoundComponent
     ],
     imports: [
         CommonModule,
