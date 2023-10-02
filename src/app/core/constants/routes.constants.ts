@@ -4,6 +4,7 @@ export enum RoutesName {
     dashboard = "dashboard",
     resetRoute = "auth/reset",
     notFound = "not-found",
-    pass_unt = "dashboard/pass-unt",
+    passUnt = "dashboard/pass-unt",
+    passUntExam = "dashboard/pass-unt-exam",
     stepRoute = "step"
 }

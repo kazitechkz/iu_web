@@ -8,7 +8,12 @@ import { StepComponent } from './step/step.component';
 import { PassUntComponent } from './pass-unt/pass-unt.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {SlickCarouselModule} from "ngx-slick-carousel";
+import {Select2Module} from "ng-select2-component";
+import {UiSwitchModule} from "ngx-ui-switch";
+import { PassUntExamComponent } from './pass-unt-exam/pass-unt-exam.component';
+import {CountdownComponent} from "ngx-countdown";
 import { StepDetailComponent } from './step/step-detail/step-detail.component';
+import {MarkdownModule} from "ngx-markdown";
 
 
 @NgModule({
@@ -18,15 +23,21 @@ import { StepDetailComponent } from './step/step-detail/step-detail.component';
         PassUntComponent,
         IndexComponent,
         StepComponent,
+        PassUntExamComponent,
+        StepComponent,
         StepDetailComponent,
     ],
-    imports: [
-        CommonModule,
-        DashboardRoutingModule,
-        SharedModule,
-        FontAwesomeModule,
-        SlickCarouselModule
-    ]
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    SharedModule,
+    FontAwesomeModule,
+    SlickCarouselModule,
+    Select2Module,
+    UiSwitchModule,
+    CountdownComponent,
+    MarkdownModule
+  ]
 })
 export class DashboardModule {
 }

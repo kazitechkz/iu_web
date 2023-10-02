@@ -18,7 +18,7 @@ export class SubjectEffect {
   private _service = inject(SubjectService);
   private action$ = inject(Actions);
 
-  _onAccount = createEffect((): any =>
+  _onSubjects = createEffect((): any =>
     this.action$.pipe(
       ofType(subjectGetAction),
       switchMap((action) => {

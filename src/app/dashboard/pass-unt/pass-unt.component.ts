@@ -1,6 +1,6 @@
 import {Component, DestroyRef, inject, OnInit, ViewChild} from '@angular/core';
 import {ColorConstants} from "../../core/constants/color.constants";
-import {faClock,faBook,faLanguage,faCircleCheck} from "@fortawesome/free-solid-svg-icons";
+import {faClock,faBook,faLanguage,faCircleCheck,faForwardFast} from "@fortawesome/free-solid-svg-icons";
 import {Store} from "@ngrx/store";
 import {loginAction} from "../../shared/store/auth/login/login.action";
 import {subjectGetAction} from "../../shared/store/subject/subject.action";
@@ -11,6 +11,8 @@ import {getSubjectsState} from "../../shared/store/subject/subject.selector";
 import {Subject} from "../../models/subject.model";
 import {ImageHelper} from "../../core/helpers/image.helper";
 import {SlickCarouselComponent} from "ngx-slick-carousel";
+import {Select2Data} from "ng-select2-component";
+import {RoutesName} from "../../core/constants/routes.constants";
 @Component({
   selector: 'app-pass-unt',
   templateUrl: './pass-unt.component.html',
@@ -20,6 +22,7 @@ export class PassUntComponent implements OnInit{
   faClock = faClock;
   faBook = faBook;
   faLanguage = faLanguage;
+  faForwardFast = faForwardFast;
   protected readonly ColorConstants = ColorConstants;
   private _store = inject(Store);
   destroyRef = inject(DestroyRef);
@@ -27,8 +30,7 @@ export class PassUntComponent implements OnInit{
   subjects:Subject[] = [];
   protected readonly ImageHelper = ImageHelper;
   chosenSubject:number[] = [];
-
-
+  locale_id:number = 1;
   ngOnInit(): void {
     this._store.dispatch(subjectGetAction());
     this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
@@ -70,7 +72,7 @@ export class PassUntComponent implements OnInit{
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          dots: false
+          dots: true
         }
       }
     ]
@@ -90,5 +92,10 @@ export class PassUntComponent implements OnInit{
     }
   }
 
+  changeLanguage(value:any){
+    this.locale_id = value ? 1 : 2;
+  }
+
   protected readonly faCircleCheck = faCircleCheck;
+  protected readonly RoutesName = RoutesName;
 }

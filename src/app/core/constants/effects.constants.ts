@@ -3,6 +3,7 @@ import {RegisterEffect} from "../../shared/store/auth/register/Register.effect";
 import {ResetEffect} from "../../shared/store/auth/reset/Reset.effect";
 import {AccountEffect} from "../../shared/store/user/account/account.effect";
 import {SubjectEffect} from "../../shared/store/subject/subject.effect";
+import {GetAttemptEffect} from "../../shared/store/attempt/getAttempt/getAttempt.effect";
 import {StepEffect} from "../../shared/store/step/step.effect";
 import {StepDetailEffect} from "../../shared/store/step/detail/stepDetail.effect";
 
@@ -11,6 +12,8 @@ export const EffectsConstants = [
     RegisterEffect,
     ResetEffect,
     AccountEffect,
+    SubjectEffect,
+    GetAttemptEffect,
     SubjectEffect,
     StepEffect,
     StepDetailEffect

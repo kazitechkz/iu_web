@@ -1,6 +1,6 @@
 <div class="w-full flex">
   <div class="w-full p-4">
-    <div class="st w-full container">
+    <div class="st w-full container mx-auto">
 
       <div class="stepper">
         <div class="step-button flex justify-start bg-pos-bottom" >
@@ -63,9 +63,20 @@
           </div>
         </div>
       </div>
-
+    </div>
+    <div class="container mx-auto">
+      <ngx-slick-carousel class="carousel"
+                          [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer relative" routerLink="/dashboard/step/{{subject.id}}">
+          <div class=" min-h-[250px]  bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
+          <p class="text-center text-md font-bold py-4">
+            {{subject.title_ru}}
+          </p>
+        </div>
+      </ngx-slick-carousel>
     </div>
   </div>
+
   <!--  <div class="w-[30%] p-4">-->
   <!--        <div-->
   <!--          class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">-->

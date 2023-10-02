@@ -161,3 +161,14 @@
     transform: rotate(1080deg) scale(1) translate(0, 0);
   }
 }
+/* the slides */
+.slick-slide {
+  margin: 10px 10px;
+}
+/* the parent */
+.slick-list {
+  margin: 10px -10px;
+}
+.slick-dots{
+  bottom: -60px!important;
+}

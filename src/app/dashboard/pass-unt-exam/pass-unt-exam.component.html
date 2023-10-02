@@ -1,0 +1,156 @@
+<section *ngIf="attempt">
+  <div class="container mx-auto">
+    <div class="grid grid-cols-12 py-5 my-3 main-green-bg rounded-2xl">
+      <div class="col-span-12 md:col-span-12 text-center">
+        <p class="md:text-5xl font-bold text-white my-2 px-1">
+          Сдача ЕНТ
+        </p>
+        <div class="md:text-5xl font-bold text-white mb-2 mt-5 px-1 flex justify-center">
+          <fa-icon [icon]="faClock" class="mr-3"></fa-icon>
+          <countdown [config]="timeConfig"></countdown>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-12">
+      <div class="col-span-12 flex justify-center">
+        <div class="w-[300px]">
+          <select class="w-full rounded-2xl" (change)="changeSubject($event)">
+            <option  *ngFor="let subject of attempt.subject_questions" value="{{subject.attempt_subject_id}}">
+              {{subject.title_ru}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 mt-8">
+      <div class="col-span-12">
+        <ngx-slick-carousel class="carousel"
+                            [config]="slidePaginationConfig">
+          <div ngxSlickItem *ngFor="let questionNumber of questions.keys()" class="slide cursor-pointer relative">
+            <button
+              class="rounded-full w-14 h-14 flex justify-center items-center bg-[#9295A3] text-2xl text-white font-bold"
+              type="button"
+            >
+              {{questionNumber + 1}}
+            </button>
+
+          </div>
+        </ngx-slick-carousel>
+      </div>
+    </div>
+
+
+    <div class="grid grid-cols-12 mt-[50px] ">
+      <div class="col-span-12 md:col-span-3 flex justify-center items-center">
+        <div class="text-center">
+          <button
+            class="inline hover:rotate-0 rotate-180 hover:bg-yellow-200 rounded-full shadow-lg w-14 h-14  bg-yellow-400 text-2xl text-white font-bold"
+            type="button"
+          >
+            <fa-icon [icon]="faLightbulb" class="text-white text-2xl"></fa-icon>
+          </button>
+          <img src="assets/images/helper.png">
+        </div>
+      </div>
+      <div class="col-span-12 md:col-span-6">
+        <div>
+          <ngx-slick-carousel class="carousel" [config]="questionSlider">
+            <div ngxSlickItem *ngFor="let question of questions" class="slide cursor-pointer
+                relative  rounded-2xl shadow-2xl max-h-[500px] overflow-y-scroll" style="height: 500px">
+                <div class="p-4 text-black font-bold content-question" [innerHTML]="question.text"></div>
+                <div class="p-4 text-black  font-bold content-question" [innerHTML]="question.context.context"></div>
+            </div>
+          </ngx-slick-carousel>
+        </div>
+      </div>
+      <div class="col-span-12 md:col-span-3 flex justify-center items-center">
+        <div class="text-center">
+          <div class="my-2 md:flex justify-around px-4">
+            <button
+              class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
+              type="button">
+              <fa-icon [icon]="faDice"></fa-icon>
+            </button>
+            <button
+              class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
+              type="button">
+              <fa-icon [icon]="faStar"></fa-icon>
+            </button>
+            <button
+              class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
+              type="button">
+              <fa-icon [icon]="faBug"></fa-icon>
+            </button>
+          </div>
+          <img src="assets/images/thinking.png">
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 mt-8 mb-4">
+      <div class="col-span-12 md:col-span-4 p-4">
+        <button type="button" class="
+      mt-4
+      text-lg
+      w-full
+      font-bold
+      inline
+      main-secondary-bg
+      text-white
+      focus:outline-none focus:ring-4
+      focus:ring-violet-500 font-medium
+      rounded-lg text-sm px-5 py-5
+      text-center mr-2 mb-2
+   "
+        >
+          <fa-icon [icon]="faBackwardFast" class="mx-2 text-lg"></fa-icon>
+          Предыдущий вопрос
+
+        </button>
+      </div>
+
+      <div class="col-span-12 md:col-span-4 p-4">
+        <button type="button" class="
+      w-full
+      mt-4
+      text-lg
+      font-bold
+      inline
+      main-green-bg
+      text-white
+      focus:outline-none focus:ring-4
+      focus:ring-green-500 font-medium
+      rounded-lg text-sm px-5 py-5
+      text-center mr-2 mb-2
+   "
+        >
+          Ответить
+          <fa-icon [icon]="faCheck" class="mx-2 text-lg"></fa-icon>
+        </button>
+      </div>
+
+      <div class="col-span-12 md:col-span-4 p-4">
+        <button type="button" class="
+      w-full
+      mt-4
+      text-lg
+      font-bold
+      inline
+      main-secondary-bg
+      text-white
+      focus:outline-none focus:ring-4
+      focus:ring-violet-500 font-medium
+      rounded-lg text-sm px-5 py-5
+      text-center mr-2 mb-2
+   "
+        >
+          Следующий вопрос
+          <fa-icon [icon]="faForwardFast" class="mx-2 text-lg"></fa-icon>
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
