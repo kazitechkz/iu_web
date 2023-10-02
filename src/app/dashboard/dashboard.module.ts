@@ -5,11 +5,14 @@ import {DashboardRoutingModule} from "./dashboard-routing.module";
 import {SharedModule} from "../shared/shared.module";
 import {IndexComponent} from './index/index.component';
 import { StepComponent } from './step/step.component';
+import { PassUntComponent } from './pass-unt/pass-unt.component';
 
 
 @NgModule({
     declarations: [
         LayoutComponent,
+        IndexComponent,
+        PassUntComponent,
         IndexComponent,
         StepComponent
     ],

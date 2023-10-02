@@ -4,6 +4,7 @@ import {LayoutComponent} from "./layout/layout.component";
 import {IndexComponent} from "./index/index.component";
 import {authGuard} from "../core/guards/auth.guard";
 import {StepComponent} from "./step/step.component";
+import {PassUntComponent} from "./pass-unt/pass-unt.component";
 
 
 const routes: Routes = [
@@ -17,6 +18,10 @@ const routes: Routes = [
                 path: 'index',
                 component: IndexComponent
             },
+          {
+            path: 'pass-unt',
+            component: PassUntComponent
+          },
             {
                 path: 'step',
                 component: StepComponent
