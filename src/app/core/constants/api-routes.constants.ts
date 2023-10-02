@@ -5,4 +5,6 @@ export enum APIRoutesName {
     sendResetTokenRoute = "auth/send-reset-token",
     me = "me",
     getSubjects = "subjects",
+    getSteps = "steps",
+    getStepDetail = "step-detail"
 }

@@ -8,6 +8,7 @@ import { StepComponent } from './step/step.component';
 import { PassUntComponent } from './pass-unt/pass-unt.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {SlickCarouselModule} from "ngx-slick-carousel";
+import { StepDetailComponent } from './step/step-detail/step-detail.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {SlickCarouselModule} from "ngx-slick-carousel";
         IndexComponent,
         PassUntComponent,
         IndexComponent,
-        StepComponent
+        StepComponent,
+        StepDetailComponent,
     ],
     imports: [
         CommonModule,

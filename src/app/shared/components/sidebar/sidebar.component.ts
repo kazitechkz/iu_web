@@ -7,6 +7,5 @@ import {RoutesName} from "../../../core/constants/routes.constants";
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-  routesName = RoutesName
   protected readonly RoutesName = RoutesName;
 }

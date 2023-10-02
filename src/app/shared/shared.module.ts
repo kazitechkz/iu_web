@@ -10,7 +10,7 @@ import {RoundedSocialButtonComponent} from "./components/rounded-social-button/r
 import {CoreModule} from "../core/core.module";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ReactiveFormsModule} from "@angular/forms";
-import {RouterLink} from "@angular/router";
+import {RouterLink, RouterLinkActive} from "@angular/router";
 
 @NgModule({
   declarations: [
@@ -27,6 +27,7 @@ import {RouterLink} from "@angular/router";
         CoreModule,
         ReactiveFormsModule,
         RouterLink,
+        RouterLinkActive,
     ],
   exports: [
     InputFieldComponent,

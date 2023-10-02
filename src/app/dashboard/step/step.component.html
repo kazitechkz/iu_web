@@ -1,1 +1,41 @@
-<p>step works!</p>
+<div>
+  <div class="bg-white">
+    <div class="mx-auto max-w-full">
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900">Предметы</h2>
+
+      <div *ngIf="steps" class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+          <div class="group relative shadow cursor-pointer" *ngFor="let step of steps">
+            <a [routerLink]="[step.id]">
+              <div class="p-5 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-72">
+                <div class="h-20 w-20 rounded-full bg-no-repeat bg-cover bg-center" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(step.image?.url) + ')'}"></div>
+                <h1 class="my-4 text-2xl">
+                  {{step.title_ru}}
+                </h1>
+
+                <div class="my-2 text-base flex items-center justify-between">
+                  <div class="flex items-center">
+                    <i class="fa fa-book mr-3" aria-hidden="true"></i>
+                    {{step.steps_count}} Этапов
+                  </div>
+                  <div class="flex items-center">
+                    <i class="fa fa-terminal mr-3" aria-hidden="true"></i>
+                    {{step.sub_steps_count}} Субэтапов
+                  </div>
+                </div>
+
+                <div class="mt-4 flex justify-between items-center absolute bottom-[10%] left-0 right-0 px-5">
+                  <div class="w-full pr-3">
+                    <div class="h-1 w-full bg-neutral-200 dark:bg-neutral-600">
+                      <div class="h-1" [ngStyle]="{'width': step.progress + '%', 'background-color': ColorConstants.primaryColor}"></div>
+                    </div>
+                  </div>
+                  <p class="text-sm font-medium text-gray-900">{{step.progress}}%</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        <!-- More products... -->
+      </div>
+    </div>
+  </div>
+</div>

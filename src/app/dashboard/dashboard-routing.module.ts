@@ -5,6 +5,7 @@ import {IndexComponent} from "./index/index.component";
 import {authGuard} from "../core/guards/auth.guard";
 import {StepComponent} from "./step/step.component";
 import {PassUntComponent} from "./pass-unt/pass-unt.component";
+import {StepDetailComponent} from "./step/step-detail/step-detail.component";
 
 
 const routes: Routes = [
@@ -24,7 +25,11 @@ const routes: Routes = [
           },
             {
                 path: 'step',
-                component: StepComponent
+                component: StepComponent,
+            },
+            {
+                path: 'step/:id',
+                component: StepDetailComponent,
             },
         ]
     }

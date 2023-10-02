@@ -1,0 +1,163 @@
+.st {
+  background-color: #c9ecff;
+  background-image: url("https://lingualeo.com/_next/static/media/grass-left.e29e0a37a0f88866c1993299ecaad798.svg"),url("https://lingualeo.com/_next/static/media/grass-right.15a9f25dfb6a3ebf2668e2f91495ba34.svg");
+  background-repeat: no-repeat,no-repeat;
+  background-size: 102px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 300px);
+  justify-content: center;
+  position: relative;
+  background-position: 0 100%,100% 100%;
+}
+.stepper {
+  align-items: center;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  overflow-y: auto;
+  direction: rtl;
+  position: relative;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  width: 100%;
+}
+.bg-pos-top {
+  background-position: top;
+}
+.bg-pos-bottom {
+  background-position: bottom;
+}
+.step-button {
+  box-sizing: border-box;
+  border: none;
+  width: 420px;
+  height: 240px;
+  cursor: pointer;
+  background-image: url("https://lingualeo.com/_next/static/media/path.e8e7a9752d8995c3cf61146fd67da28c.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  flex-shrink: 0;
+  position: relative;
+}
+.step-first {
+  left: 0;
+  position: absolute;
+  bottom: 20px;
+  box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 156px;
+}
+.step-button-left {
+  left: -50px;
+  position: absolute;
+  top: 16px;
+  box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 156px;
+}
+
+.step-button-right {
+  right: -60px;
+  position: absolute;
+  top: 16px;
+  box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 156px;
+}
+.st-content {
+  background-color: #fff;
+  border-radius: 12px;
+  color: #37383c;
+  font-size: 12px;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: normal;
+  line-height: normal;
+  margin: 20px 0 0;
+  max-width: 156px;
+  padding: 4px 10px;
+  text-align: center;
+  z-index: 9999;
+}
+
+.st-img {
+  width: 90px;
+  height: 90px;
+  border: 1px solid black;
+  border-radius: 100%;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+.circle {
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  box-shadow: 0 1px 0 0 rgba(255, 192, 0, 0.25), 0 -1px 0 0 rgba(255, 64, 0, 0.25), 1px 0 0 0 rgba(255, 192, 0, 0.25), -1px 0 0 0 rgba(255, 64, 0, 0.25), 1px -1px 0 0 rgba(255, 128, 0, 0.5), -1px 1px 0 0 rgba(255, 128, 0, 0.5), 1px 1px 0 0 rgba(255, 255, 0, 0.75), -1px -1px 0 0 rgba(255, 0, 0, 0.75);
+}
+
+.circle:nth-of-type(2) {
+  box-shadow: 0 1px 0 0 rgba(225, 131, 194, 0.25), 0 -1px 0 0 rgba(165, 181, 222, 0.25), 1px 0 0 0 rgba(225, 131, 194, 0.25), -1px 0 0 0 rgba(165, 181, 222, 0.25), 1px -1px 0 0 rgba(195, 156, 208, 0.5), -1px 1px 0 0 rgba(195, 156, 208, 0.5), 1px 1px 0 0 rgba(255, 105, 180, 0.75), -1px -1px 0 0 rgba(135, 206, 235, 0.75);
+  animation: rotateThis 1s linear infinite;
+}
+.circle:nth-of-type(3) {
+  box-shadow: 0 1px 0 0 rgba(192, 63, 153, 0.25), 0 -1px 0 0 rgba(214, 69, 99, 0.25), 1px 0 0 0 rgba(192, 63, 153, 0.25), -1px 0 0 0 rgba(214, 69, 99, 0.25), 1px -1px 0 0 rgba(203, 66, 126, 0.5), -1px 1px 0 0 rgba(203, 66, 126, 0.5), 1px 1px 0 0 rgba(181, 59, 180, 0.75), -1px -1px 0 0 rgba(225, 72, 71, 0.75);
+}
+.circle-multiple {
+  height: 90px;
+  width: 90px;
+}
+.circle-multiple .circle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  //bottom: 20;
+  left: 0;
+  margin: auto;
+}
+.circle-multiple .circle:nth-of-type(1) {
+  animation: psycho 2s linear infinite;
+}
+.circle-multiple .circle:nth-of-type(2) {
+  animation: psycho 2s linear 0.1s infinite;
+}
+.circle-multiple .circle:nth-of-type(3) {
+  animation: psycho 2s linear 0.25s infinite;
+}
+
+@keyframes rotateThis {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(360deg) scale(1);
+  }
+}
+@keyframes psycho {
+  0% {
+    transform: rotate(0deg) scale(1) translate(0, 0);
+  }
+  33% {
+    transform: rotate(360deg) scale(1) translate(5px, 5px);
+  }
+  66% {
+    transform: rotate(720deg) scale(1) translate(-5px, -5px);
+  }
+  100% {
+    transform: rotate(1080deg) scale(1) translate(0, 0);
+  }
+}
