@@ -8,4 +8,5 @@ import {RoutesName} from "../../../core/constants/routes.constants";
 })
 export class SidebarComponent {
   routesName = RoutesName
+  protected readonly RoutesName = RoutesName;
 }
