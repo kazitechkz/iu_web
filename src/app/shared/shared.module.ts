@@ -11,6 +11,7 @@ import {CoreModule} from "../core/core.module";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterLink} from "@angular/router";
+
 @NgModule({
   declarations: [
     InputFieldComponent,
@@ -25,7 +26,7 @@ import {RouterLink} from "@angular/router";
         HttpClientModule,
         CoreModule,
         ReactiveFormsModule,
-        RouterLink
+        RouterLink,
     ],
   exports: [
     InputFieldComponent,
@@ -33,7 +34,8 @@ import {RouterLink} from "@angular/router";
     TranslateModule,
     InputFieldComponent,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+
   ],
   providers:[TranslateStore ],
 })

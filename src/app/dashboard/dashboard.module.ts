@@ -6,6 +6,8 @@ import {SharedModule} from "../shared/shared.module";
 import {IndexComponent} from './index/index.component';
 import { StepComponent } from './step/step.component';
 import { PassUntComponent } from './pass-unt/pass-unt.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {SlickCarouselModule} from "ngx-slick-carousel";
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { PassUntComponent } from './pass-unt/pass-unt.component';
     imports: [
         CommonModule,
         DashboardRoutingModule,
-        SharedModule
+        SharedModule,
+        FontAwesomeModule,
+        SlickCarouselModule
     ]
 })
 export class DashboardModule {

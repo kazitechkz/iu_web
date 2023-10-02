@@ -1,17 +1,66 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12 py-5 my-3 main-green-bg rounded-2xl">
-    <div class="col-span-12 md:col-span-6 px-5">
-      <p class="md:text-2xl text-white font-bold">
-        Сдать полный тест ЕНТ
-      </p>
-      <p class="md:text-xl text-white font-bold my-2">
-        Сдать полный тест ЕНТ
-      </p>
-    </div>
     <div class="col-span-12 md:col-span-6">
+      <img src="assets/images/bear_office.png"/>
+    </div>
+    <div class="col-span-12 md:col-span-6 px-5 md:flex items-center text-center md:text-left">
+      <div>
+        <p class="md:text-2xl text-white font-bold">
+          Сдать полный тест ЕНТ
+        </p>
+        <div class="my-4">
+          <p class="md:text-xl text-white my-2 px-1">
+            <fa-icon [icon]="faClock" class="ml-2"></fa-icon> На выполнение 3.5 часа (210 минут)
+          </p>
+          <p class="md:text-xl text-white my-2 px-1">
+            <fa-icon [icon]="faBook" class="ml-2"></fa-icon> Предметы: 3 основных + 2 на выбор <br>
+          </p>
+          <p class="md:text-xl text-white my-2 px-1">
+            <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon> Два основных языка: Казахский и Русский <br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-12 gap-3 py-5 my-3 ">
+    <div class="col-span-12 md:col-span-12 card">
 
     </div>
   </div>
+  <section *ngIf="subjects">
+    <div class="grid grid-cols-12 gap-3 py-5 my-3 ">
+      <div class="col-span-12 md:col-span-12 card">
+        <p class=" text-4xl font-bold py-4">
+          Обязательные компоненты
+        </p>
+      </div>
+      <div class="col-span-12 md:col-span-4 card rounded-2xl shadow-xl" *ngFor="let complusory_subject of complusory_subjects">
+        <div class="caret-danger min-h-[450px] max-h-[500px] bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(complusory_subject.image?.url) + ')'}"></div>
+        <p class="text-center text-xl font-bold py-4">
+          {{complusory_subject.title_ru}}
+        </p>
+      </div>
+    </div>
+
+    <div class="col-span-12 md:col-span-12 card">
+      <p class=" text-4xl font-bold py-4">
+        Выберите предметы:
+      </p>
+    </div>
+    <ngx-slick-carousel class="carousel"
+                        #slickModal="slick-carousel"
+                        [config]="slideConfig">
+      <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer relative" (click)="chooseSubject(subject.id)">
+        <fa-icon *ngIf="chosenSubject.includes(subject.id)" [icon]="faCircleCheck" class="main-green-color absolute right-1.5 top-1.5 text-4xl"></fa-icon>
+        <div class=" min-h-[450px] max-h-[500px] bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
+        <p class="text-center text-xl font-bold py-4">
+          {{subject.title_ru}}
+        </p>
+      </div>
+    </ngx-slick-carousel>
+
+  </section>
+
 
 
 </div>

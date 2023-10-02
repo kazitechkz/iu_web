@@ -19,7 +19,7 @@ import {EffectsConstants} from "./core/constants/effects.constants";
 import {LoadingInterceptor} from "./core/interceptors/loading.interceptor";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {JwtInterceptor} from "./core/interceptors/jwt.interceptor";
-
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 @NgModule({
     declarations: [
         AppComponent
@@ -31,6 +31,7 @@ import {JwtInterceptor} from "./core/interceptors/jwt.interceptor";
         SharedModule,
         FontAwesomeModule,
         NgxSpinnerModule,
+      SlickCarouselModule,
         StoreModule.forRoot(ReducersConstants),
         EffectsModule.forRoot(EffectsConstants),
     ],
