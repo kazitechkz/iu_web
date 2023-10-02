@@ -4,12 +4,14 @@ import {LayoutComponent} from './layout/layout.component';
 import {DashboardRoutingModule} from "./dashboard-routing.module";
 import {SharedModule} from "../shared/shared.module";
 import {IndexComponent} from './index/index.component';
+import { StepComponent } from './step/step.component';
 
 
 @NgModule({
     declarations: [
         LayoutComponent,
-        IndexComponent
+        IndexComponent,
+        StepComponent
     ],
     imports: [
         CommonModule,

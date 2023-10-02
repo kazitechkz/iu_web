@@ -26,9 +26,9 @@ export class AccountEffect {
             switchMap((action) => {
                 return this._service.meUser().pipe(
                     switchMap(data => {
-                            this._toastr.success('Success')
+                            // this._toastr.success('Success')
                             this._localStorage.setDataToLocalStorage(LocalKeysConstants.user, data.data as Me)
-                            this._route.navigate([RoutesName.dashboard]).then(null)
+                            // this._route.navigate([RoutesName.dashboard]).then(null)
                             return of(
                                 accountActionSuccess({responseData: data}),
                             )

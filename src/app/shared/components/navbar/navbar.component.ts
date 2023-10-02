@@ -22,8 +22,7 @@ export class NavbarComponent implements OnInit {
   private _store = inject(Store)
   private _route = inject(Router)
   destroyRef = inject(DestroyRef);
-  //@ts-ignore
-  public user: Me;
+  public user?: Me | null;
   ngOnInit(): void {
     this.me()
   }
@@ -31,7 +30,6 @@ export class NavbarComponent implements OnInit {
   me() {
     this._store.dispatch(accountAction())
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-      //@ts-ignore
       this.user = item.data
     })
   }

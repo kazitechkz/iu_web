@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {RoutesName} from "../../../core/constants/routes.constants";
 
 @Component({
   selector: 'app-sidebar',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
-
+  routesName = RoutesName
 }

@@ -3,5 +3,6 @@ export enum RoutesName {
     registerRoute = "auth/register",
     dashboard = "dashboard",
     resetRoute = "auth/reset",
-    notFound = "not-found"
+    notFound = "not-found",
+    stepRoute = "step"
 }

@@ -13,6 +13,7 @@ import {EffectsModule} from "@ngrx/effects";
 import {RegisterEffect} from "../shared/store/auth/register/Register.effect";
 import {StoreModule} from "@ngrx/store";
 import {registerReducer} from "../shared/store/auth/register/Register.reducer";
+import {RxReactiveFormsModule} from "@rxweb/reactive-form-validators";
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {registerReducer} from "../shared/store/auth/register/Register.reducer";
         CoreModule,
         SharedModule,
         ReactiveFormsModule,
+        RxReactiveFormsModule,
 
     ]
 })

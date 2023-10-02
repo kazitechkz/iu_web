@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {LayoutComponent} from "./layout/layout.component";
 import {IndexComponent} from "./index/index.component";
 import {authGuard} from "../core/guards/auth.guard";
+import {StepComponent} from "./step/step.component";
 
 
 const routes: Routes = [
@@ -15,7 +16,11 @@ const routes: Routes = [
             {
                 path: 'index',
                 component: IndexComponent
-            }
+            },
+            {
+                path: 'step',
+                component: StepComponent
+            },
         ]
     }
 ];
