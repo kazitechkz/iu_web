@@ -7,6 +7,10 @@ import {GetAttemptEffect} from "../../shared/store/attempt/getAttempt/getAttempt
 import {StepEffect} from "../../shared/store/step/step.effect";
 import {StepDetailEffect} from "../../shared/store/step/detail/stepDetail.effect";
 import {CreateAttemptEffect} from "../../shared/store/attempt/createAttempt/createAttempt.effect";
+import {CreateAnswerEffect} from "../../shared/store/attempt/answer/answer.effect";
+import {
+  GetAnsweredResultEffect
+} from "../../shared/store/attempt/answeredResult/answerResult.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -19,4 +23,7 @@ export const EffectsConstants = [
     StepEffect,
     StepDetailEffect,
     CreateAttemptEffect,
+    CreateAnswerEffect,
+    GetAnsweredResultEffect,
+
 ]

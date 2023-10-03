@@ -1,4 +1,4 @@
-<section *ngIf="attempt">
+<section *ngIf="attempt && !loading">
   <div class="container mx-auto">
     <div class="grid grid-cols-12 py-5 my-3 main-green-bg rounded-2xl">
       <div class="col-span-12 md:col-span-12 text-center">
@@ -22,13 +22,22 @@
         </div>
       </div>
     </div>
+    <!--    Pagination-->
     <div class="grid grid-cols-12 mt-8">
-      <div class="col-span-12">
+      <div class="col-span-12" *ngIf="answeredResult">
         <ngx-slick-carousel class="carousel"
                             [config]="slidePaginationConfig">
-          <div ngxSlickItem *ngFor="let questionNumber of questions.keys()" class="slide cursor-pointer relative">
+          <div ngxSlickItem *ngFor="let questionNumber of question_pagination" class="slide cursor-pointer relative">
             <button
-              class="rounded-full w-14 h-14 flex justify-center items-center bg-[#9295A3] text-2xl text-white font-bold"
+              (click)="goToSlider(questionNumber)"
+              class="rounded-full w-14 h-14 flex justify-center items-center
+                bg-[#9295A3]
+              text-2xl text-white font-bold"
+              [ngClass]="{
+                  'bg-[#9BA1FF]': (answered_questions.hasOwnProperty(questions[questionNumber].id) || (answeredResult[questions[questionNumber].id])),
+                  'bg-[#9295A3]': (active_slider != questionNumber),
+                  'bg-[#FF7648]': (active_slider == questionNumber),
+              }"
               type="button"
             >
               {{questionNumber + 1}}
@@ -38,31 +47,42 @@
         </ngx-slick-carousel>
       </div>
     </div>
-
-
+    <!--    Pagination-->
+<!--    Question Modal-->
     <div class="grid grid-cols-12 mt-[50px] ">
+      <!--    Prompt-->
       <div class="col-span-12 md:col-span-3 flex justify-center items-center">
         <div class="text-center">
           <button
             class="inline hover:rotate-0 rotate-180 hover:bg-yellow-200 rounded-full shadow-lg w-14 h-14  bg-yellow-400 text-2xl text-white font-bold"
-            type="button"
           >
             <fa-icon [icon]="faLightbulb" class="text-white text-2xl"></fa-icon>
           </button>
           <img src="../../../../assets/images/helper.png">
         </div>
       </div>
+      <!--    Prompt-->
+      <!--    Question-->
       <div class="col-span-12 md:col-span-6">
         <div>
-          <ngx-slick-carousel class="carousel" [config]="questionSlider">
+          <ngx-slick-carousel
+            (afterChange)="changeSlider($event)"
+            #slickModal="slick-carousel"  class="carousel" [config]="questionSlider">
             <div ngxSlickItem *ngFor="let question of questions" class="slide cursor-pointer
                 relative  rounded-2xl shadow-2xl max-h-[500px] overflow-y-scroll" style="height: 500px">
+                <div class="my-4 text-xl text-black p-4 font-bold">
+                  Вопрос № {{active_slider+1}}
+                </div>
                 <div class="p-4 text-black font-bold content-question" [innerHTML]="question.text"></div>
-                <div class="p-4 text-black  font-bold content-question" [innerHTML]="question.context.context"></div>
+                <section *ngIf="question.context">
+                  <div class="p-4 text-black  font-bold content-question" [innerHTML]="question.context.context"></div>
+                </section>
             </div>
           </ngx-slick-carousel>
         </div>
       </div>
+      <!--    Question-->
+      <!--    Actions -->
       <div class="col-span-12 md:col-span-3 flex justify-center items-center">
         <div class="text-center">
           <div class="my-2 md:flex justify-around px-4">
@@ -85,8 +105,93 @@
           <img src="../../../../assets/images/thinking.png">
         </div>
       </div>
+      <!--    Actions -->
     </div>
+    <!--    Question Modal-->
 
+    <!--    Answer Modal-->
+    <div class="mt-5 flex justify-center">
+
+      <div class="md:w-6/12 w-full p-5" *ngIf="answeredResult">
+
+        <div (click)="answerQuestion(questions[active_slider].id,'a')"
+             [ngClass]="{
+                'bg-[#9BA1FF]' :is_answered('a')? true : false,
+                'text-white': is_answered('a')? true : false,
+             }"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             *ngIf="questions[active_slider].answer_a">
+          <div [innerHTML]="questions[active_slider].answer_a"></div>
+        </div>
+        <div (click)="answerQuestion(questions[active_slider].id,'b')"
+             [ngClass]="{
+                'bg-[#9BA1FF]' :is_answered('b')? true : false,
+                'text-white': is_answered('b')? true : false,
+             }"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             *ngIf="questions[active_slider].answer_b">
+          <div [innerHTML]="questions[active_slider].answer_b"></div>
+        </div>
+        <div (click)="answerQuestion(questions[active_slider].id,'c')"
+             [ngClass]="{
+                'bg-[#9BA1FF]' :is_answered('c')? true : false,
+                'text-white': is_answered('c')? true : false,
+             }"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             *ngIf="questions[active_slider].answer_c">
+          <div [innerHTML]="questions[active_slider].answer_c"></div>
+        </div>
+        <div (click)="answerQuestion(questions[active_slider].id,'d')"
+             [ngClass]="{
+                'bg-[#9BA1FF]' :is_answered('d')? true : false,
+                'text-white': is_answered('d')? true : false,
+             }"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             *ngIf="questions[active_slider].answer_d">
+          <div [innerHTML]="questions[active_slider].answer_d"></div>
+        </div>
+        <div (click)="answerQuestion(questions[active_slider].id,'e')"
+             [ngClass]="{
+                'bg-[#9BA1FF]' :is_answered('e')? true : false,
+                'text-white': is_answered('e')? true : false,
+             }"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             *ngIf="questions[active_slider].answer_e">
+          <div [innerHTML]="questions[active_slider].answer_e"></div>
+        </div>
+        <div (click)="answerQuestion(questions[active_slider].id,'f')"
+             [ngClass]="{
+                'bg-[#9BA1FF]' :is_answered('f')? true : false,
+                'text-white': is_answered('f')? true : false,
+             }"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             *ngIf="questions[active_slider].answer_f">
+          <div [innerHTML]="questions[active_slider].answer_f"></div>
+        </div>
+        <div (click)="answerQuestion(questions[active_slider].id,'g')"
+             [ngClass]="{
+                'bg-[#9BA1FF]' :is_answered('g')? true : false,
+                'text-white': is_answered('g')? true : false,
+             }"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             *ngIf="questions[active_slider].answer_g">
+          <div [innerHTML]="questions[active_slider].answer_g"></div>
+        </div>
+        <div (click)="answerQuestion(questions[active_slider].id,'h')"
+             [ngClass]="{
+                'bg-[#9BA1FF]' :is_answered('h')? true : false,
+                'text-white': is_answered('h')? true : false,
+             }"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             *ngIf="questions[active_slider].answer_h">
+          <div [innerHTML]="questions[active_slider].answer_h"></div>
+        </div>
+      </div>
+
+    </div>
+    <!--    Answer Modal-->
+
+<!--    Prev, Answer, Next-->
     <div class="grid grid-cols-12 mt-8 mb-4">
       <div class="col-span-12 md:col-span-4 p-4">
         <button type="button" class="
@@ -102,6 +207,7 @@
       rounded-lg text-sm px-5 py-5
       text-center mr-2 mb-2
    "
+                (click)="prev()"
         >
           <fa-icon [icon]="faBackwardFast" class="mx-2 text-lg"></fa-icon>
           Предыдущий вопрос
@@ -111,18 +217,19 @@
 
       <div class="col-span-12 md:col-span-4 p-4">
         <button type="button" class="
-      w-full
-      mt-4
-      text-lg
-      font-bold
-      inline
-      main-green-bg
-      text-white
-      focus:outline-none focus:ring-4
-      focus:ring-green-500 font-medium
-      rounded-lg text-sm px-5 py-5
-      text-center mr-2 mb-2
-   "
+            w-full
+            mt-4
+            text-lg
+            font-bold
+            inline
+            main-green-bg
+            text-white
+            focus:outline-none focus:ring-4
+            focus:ring-green-500 font-medium
+            rounded-lg text-sm px-5 py-5
+            text-center mr-2 mb-2"
+                (click)="checkAnswer(questions[active_slider].id)"
+                *ngIf="answered_questions.hasOwnProperty(questions[active_slider].id) && !answeredResult[questions[active_slider].id]"
         >
           Ответить
           <fa-icon [icon]="faCheck" class="mx-2 text-lg"></fa-icon>
@@ -141,8 +248,9 @@
       focus:outline-none focus:ring-4
       focus:ring-violet-500 font-medium
       rounded-lg text-sm px-5 py-5
-      text-center mr-2 mb-2
-   "
+      text-center mr-2 mb-2"
+                (click)="next()"
+
         >
           Следующий вопрос
           <fa-icon [icon]="faForwardFast" class="mx-2 text-lg"></fa-icon>
@@ -150,7 +258,8 @@
       </div>
 
     </div>
-
+    <!--    Prev, Answer, Next-->
   </div>
 
 </section>
+

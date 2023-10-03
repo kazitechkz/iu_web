@@ -7,6 +7,8 @@ import {getAttemptReducer} from "../../shared/store/attempt/getAttempt/getAttemp
 import {stepReducer} from "../../shared/store/step/step.reducer";
 import {stepDetailReducer} from "../../shared/store/step/detail/stepDetail.reducer";
 import {createAttemptReducer} from "../../shared/store/attempt/createAttempt/createAttempt.reducer";
+import {answerReducer} from "../../shared/store/attempt/answer/answer.reducer";
+import {answeredResultReducer} from "../../shared/store/attempt/answeredResult/answerResult.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -18,5 +20,7 @@ export const ReducersConstants = {
   getAttempt:getAttemptReducer,
   steps: stepReducer,
   stepDetail: stepDetailReducer,
-  createAttempt:createAttemptReducer
+  createAttempt:createAttemptReducer,
+  answer:answerReducer,
+  answeredResult:answeredResultReducer,
 }
