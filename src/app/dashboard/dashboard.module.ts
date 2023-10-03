@@ -14,6 +14,8 @@ import { PassUntExamComponent } from './unt/pass-unt-exam/pass-unt-exam.componen
 import {CountdownComponent} from "ngx-countdown";
 import { StepDetailComponent } from './step/step-detail/step-detail.component';
 import {MarkdownModule} from "ngx-markdown";
+import {NgxSmartModalModule} from "ngx-smart-modal";
+import { SubStepComponent } from './step/sub-step/sub-step.component';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import {MarkdownModule} from "ngx-markdown";
         PassUntExamComponent,
         StepComponent,
         StepDetailComponent,
+        SubStepComponent,
     ],
   imports: [
     CommonModule,
@@ -36,7 +39,8 @@ import {MarkdownModule} from "ngx-markdown";
     Select2Module,
     UiSwitchModule,
     CountdownComponent,
-    MarkdownModule
+    MarkdownModule,
+    NgxSmartModalModule
   ]
 })
 export class DashboardModule {

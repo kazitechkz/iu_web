@@ -1,6 +1,7 @@
 import {Image} from "./image.model";
 import {CategoryModel} from "./category.model";
 export interface Steps {
+  id: number
   title_ru: string
   title_kk: string
   title_en: string | null

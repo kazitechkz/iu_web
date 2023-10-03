@@ -7,42 +7,47 @@ import {StepComponent} from "./step/step.component";
 import {PassUntComponent} from "./unt/pass-unt/pass-unt.component";
 import {PassUntExamComponent} from "./unt/pass-unt-exam/pass-unt-exam.component";
 import {StepDetailComponent} from "./step/step-detail/step-detail.component";
+import {SubStepComponent} from "./step/sub-step/sub-step.component";
 
 
 const routes: Routes = [
-    {
-        path: "",
-        component: LayoutComponent,
-        canActivate: [authGuard],
-        canActivateChild: [authGuard],
-        children: [
-            {
-                path: 'index',
-                component: IndexComponent
-            },
-          {
-            path: 'pass-unt',
-            component: PassUntComponent
-          },
-          {
-            path: 'pass-unt-exam/:id',
-            component: PassUntExamComponent
-          },
-            {
-                path: 'step',
-                component: StepComponent,
-            },
-            {
-                path: 'step/:id',
-                component: StepDetailComponent,
-            },
-        ]
-    }
+  {
+    path: "",
+    component: LayoutComponent,
+    canActivate: [authGuard],
+    canActivateChild: [authGuard],
+    children: [
+      {
+        path: 'index',
+        component: IndexComponent
+      },
+      {
+        path: 'pass-unt',
+        component: PassUntComponent
+      },
+      {
+        path: 'pass-unt-exam/:id',
+        component: PassUntExamComponent
+      },
+      {
+        path: 'step',
+        component: StepComponent
+      },
+      {
+        path: 'step/:id',
+        component: StepDetailComponent,
+      },
+      {
+        path: 'sub-step/:id',
+        component: SubStepComponent,
+      },
+    ]
+  }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
 export class DashboardRoutingModule {
 

@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit, ViewContainerRef} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {ActivatedRoute, Router} from "@angular/router";
 import {StepModel, Steps} from "../../../shared/models/step.model";
@@ -12,6 +12,11 @@ import {subjectGetAction} from "../../../shared/store/subject/subject.action";
 import {getSubjectsState} from "../../../shared/store/subject/subject.selector";
 import {Subject} from "../../../shared/models/subject.model";
 import {RoutesName} from "../../../core/constants/routes.constants";
+import {NgxSmartModalService} from "ngx-smart-modal";
+import {SubStepModel} from "../../../shared/models/subStep.model";
+import {subStepAction} from "../../../shared/store/step/subStep/subStep.action";
+import {getSubStepState} from "../../../shared/store/step/subStep/subStep.selector";
+import {StrHelper} from "../../../core/helpers/str.helper";
 
 @Component({
   selector: 'app-step-detail',
@@ -24,13 +29,24 @@ export class StepDetailComponent implements OnInit {
   destroyRef = inject(DestroyRef);
   public steps?: Steps[] | null;
   subjects:Subject[] = [];
+  dialog = inject(NgxSmartModalService)
+  public subSteps: SubStepModel[] | null = []
+
   ngOnInit(): void {
     this.getStepDetail();
     this.getSubjects();
   }
 
+  openDialog(id: string) {
+    this._store.dispatch(subStepAction({requestData: parseInt(id)}))
+    this._store.select(getSubStepState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      this.subSteps = item.data
+    })
+    this.dialog.getModal(id).open()
+  }
+
   getStepDetail() {
-    this._route.params.subscribe(params => {
+    this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(stepDetailAction({requestData: params['id']}))
       this._store.select(getStepDetailState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         this.steps = item.data
@@ -88,4 +104,6 @@ export class StepDetailComponent implements OnInit {
   protected readonly Array = Array;
     protected readonly faCircleCheck = faCircleCheck;
   protected readonly RoutesName = RoutesName;
+  protected readonly console = console;
+  protected readonly StrHelper = StrHelper;
 }

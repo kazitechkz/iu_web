@@ -6,5 +6,6 @@ export enum RoutesName {
     notFound = "not-found",
     passUnt = "dashboard/pass-unt",
     passUntExam = "dashboard/pass-unt-exam",
-    stepRoute = "step"
+    stepRoute = "step",
+    subStepRoute = "sub-step"
 }

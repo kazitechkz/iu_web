@@ -14,33 +14,35 @@ import {EffectsConstants} from "./core/constants/effects.constants";
 import {LoadingInterceptor} from "./core/interceptors/loading.interceptor";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {JwtInterceptor} from "./core/interceptors/jwt.interceptor";
-import { SlickCarouselModule } from 'ngx-slick-carousel';
+import {SlickCarouselModule} from 'ngx-slick-carousel';
 import {UiSwitchModule} from "ngx-ui-switch";
 import {CountdownModule} from "ngx-countdown";
+import {NgxSmartModalModule} from "ngx-smart-modal";
 
 @NgModule({
-    declarations: [
-        AppComponent
-    ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        SharedModule,
-        FontAwesomeModule,
-        NgxSpinnerModule,
-      SlickCarouselModule,
-      CountdownModule,
-      UiSwitchModule,
-        StoreModule.forRoot(ReducersConstants),
-        EffectsModule.forRoot(EffectsConstants),
-    ],
-    providers: [
-        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    SharedModule,
+    FontAwesomeModule,
+    NgxSpinnerModule,
+    SlickCarouselModule,
+    CountdownModule,
+    UiSwitchModule,
+    StoreModule.forRoot(ReducersConstants),
+    EffectsModule.forRoot(EffectsConstants),
+    NgxSmartModalModule.forRoot()
+  ],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

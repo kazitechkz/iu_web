@@ -11,6 +11,7 @@ import {CreateAnswerEffect} from "../../shared/store/attempt/answer/answer.effec
 import {
   GetAnsweredResultEffect
 } from "../../shared/store/attempt/answeredResult/answerResult.effect";
+import {SubStepDetailEffect, SubStepEffect} from "../../shared/store/step/subStep/subStep.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -22,7 +23,9 @@ export const EffectsConstants = [
     SubjectEffect,
     StepEffect,
     StepDetailEffect,
+    SubStepEffect,
     CreateAttemptEffect,
+    SubStepDetailEffect,
     CreateAnswerEffect,
     GetAnsweredResultEffect,
 
