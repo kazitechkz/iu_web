@@ -6,6 +6,7 @@ import {SubjectEffect} from "../../shared/store/subject/subject.effect";
 import {GetAttemptEffect} from "../../shared/store/attempt/getAttempt/getAttempt.effect";
 import {StepEffect} from "../../shared/store/step/step.effect";
 import {StepDetailEffect} from "../../shared/store/step/detail/stepDetail.effect";
+import {CreateAttemptEffect} from "../../shared/store/attempt/createAttempt/createAttempt.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -16,5 +17,6 @@ export const EffectsConstants = [
     GetAttemptEffect,
     SubjectEffect,
     StepEffect,
-    StepDetailEffect
+    StepDetailEffect,
+    CreateAttemptEffect,
 ]

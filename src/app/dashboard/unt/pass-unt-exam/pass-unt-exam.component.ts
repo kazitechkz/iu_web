@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, OnInit, ViewChild} from '@angular/core';
+import {Component, DestroyRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {
   faClock,
   faLightbulb,
@@ -9,24 +9,26 @@ import {
   faBackwardFast,
   faCheck
 } from "@fortawesome/free-solid-svg-icons";
-import {ImageHelper} from "../../core/helpers/image.helper";
+import {ImageHelper} from "../../../core/helpers/image.helper";
 import {CountdownComponent, CountdownConfig} from "ngx-countdown";
-import { Select, initTE } from "tw-elements";
-import {RoutesName} from "../../core/constants/routes.constants";
-import {subjectGetAction} from "../../shared/store/subject/subject.action";
-import {getSubjectsState} from "../../shared/store/subject/subject.selector";
-import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
+import {RoutesName} from "../../../core/constants/routes.constants";
+import {getSubjectsState} from "../../../shared/store/subject/subject.selector";
+import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {Store} from "@ngrx/store";
-import {getAttemptAction} from "../../shared/store/attempt/getAttempt/getAttempt.action";
-import {getAttemptSelector} from "../../shared/store/attempt/getAttempt/getAttempt.selector";
-import {Attempt} from "../../shared/models/attempt.model";
-import {Question} from "../../shared/models/question.model";
+import {getAttemptAction} from "../../../shared/store/attempt/getAttempt/getAttempt.action";
+import {getAttemptSelector} from "../../../shared/store/attempt/getAttempt/getAttempt.selector";
+import {Attempt} from "../../../shared/models/attempt.model";
+import {Question} from "../../../shared/models/question.model";
+import {stepDetailAction} from "../../../shared/store/step/detail/stepDetail.action";
+import {getStepDetailState} from "../../../shared/store/step/detail/stepDetail.selector";
+import {ActivatedRoute} from "@angular/router";
+import {Subscription} from "rxjs";
 @Component({
   selector: 'app-pass-unt-exam',
   templateUrl: './pass-unt-exam.component.html',
   styleUrls: ['./pass-unt-exam.component.scss']
 })
-export class PassUntExamComponent implements OnInit{
+export class PassUntExamComponent implements OnInit,OnDestroy{
     protected readonly faClock = faClock;
     protected readonly faLightbulb = faLightbulb;
     protected readonly faDice = faDice;
@@ -36,24 +38,27 @@ export class PassUntExamComponent implements OnInit{
     protected readonly faForwardFast = faForwardFast;
     protected readonly RoutesName = RoutesName;
     protected readonly faCheck = faCheck;
+    private subscription:Subscription = new Subscription();
     private _store = inject(Store);
-    destroyRef = inject(DestroyRef);
+    private _route = inject(ActivatedRoute)
+
+  destroyRef = inject(DestroyRef);
     questions:Question[] = [];
      //@ts-ignore
     active_subject_id:number;
     //@ts-ignore
     public attempt:Attempt;
 
-
   ngOnInit(): void {
-    initTE({ Select });
-    this._store.dispatch(getAttemptAction());
-    this._store.select(getAttemptSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
-      if(item.data){
-        this.attempt = item.data;
-        this.active_subject_id = (item.data.subject_questions.find(item => true))?.attempt_subject_id ?? 0;
-        this.questions = (item.data.subject_questions.find(item => true))?.question ?? [];
-      }
+   this.subscription =  this._route.params.subscribe(params => {
+      this._store.dispatch(getAttemptAction({requestData:params["id"]}));
+      this._store.select(getAttemptSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+        if(item.data){
+          this.attempt = item.data;
+          this.active_subject_id = (item.data.subject_questions.find(item => true))?.attempt_subject_id ?? 0;
+          this.questions = (item.data.subject_questions.find(item => true))?.question ?? [];
+        }
+      })
     })
   }
 
@@ -64,7 +69,8 @@ export class PassUntExamComponent implements OnInit{
   }
 
   timeConfig:CountdownConfig = {
-    leftTime:18000
+    // @ts-ignore
+    leftTime:180000
   }
 
   //@ts-ignore
@@ -136,6 +142,10 @@ export class PassUntExamComponent implements OnInit{
       }
     ]
   };
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
 
 

@@ -4,6 +4,7 @@ export interface Attempt {
   type_id:           number;
   time_left:         number;
   subject_questions: SubjectQuestion[];
+  start_at:Date,
 }
 
 export interface SubjectQuestion {

@@ -6,5 +6,8 @@ export enum APIRoutesName {
     me = "me",
     getSubjects = "subjects",
     getSteps = "steps",
-    getStepDetail = "step-detail"
+    getStepDetail = "step-detail",
+    getAttemptById = "attempt_by",
+    createAttempt = "attempt",
+
 }

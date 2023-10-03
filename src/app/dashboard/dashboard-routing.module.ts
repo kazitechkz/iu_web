@@ -4,8 +4,8 @@ import {LayoutComponent} from "./layout/layout.component";
 import {IndexComponent} from "./index/index.component";
 import {authGuard} from "../core/guards/auth.guard";
 import {StepComponent} from "./step/step.component";
-import {PassUntComponent} from "./pass-unt/pass-unt.component";
-import {PassUntExamComponent} from "./pass-unt-exam/pass-unt-exam.component";
+import {PassUntComponent} from "./unt/pass-unt/pass-unt.component";
+import {PassUntExamComponent} from "./unt/pass-unt-exam/pass-unt-exam.component";
 import {StepDetailComponent} from "./step/step-detail/step-detail.component";
 
 
@@ -25,7 +25,7 @@ const routes: Routes = [
             component: PassUntComponent
           },
           {
-            path: 'pass-unt-exam',
+            path: 'pass-unt-exam/:id',
             component: PassUntExamComponent
           },
             {

@@ -6,6 +6,7 @@ import {subjectReducer} from "../../shared/store/subject/subject.reducer";
 import {getAttemptReducer} from "../../shared/store/attempt/getAttempt/getAttempt.reducer";
 import {stepReducer} from "../../shared/store/step/step.reducer";
 import {stepDetailReducer} from "../../shared/store/step/detail/stepDetail.reducer";
+import {createAttemptReducer} from "../../shared/store/attempt/createAttempt/createAttempt.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -16,5 +17,6 @@ export const ReducersConstants = {
   subjects:subjectReducer,
   getAttempt:getAttemptReducer,
   steps: stepReducer,
-  stepDetail: stepDetailReducer
+  stepDetail: stepDetailReducer,
+  createAttempt:createAttemptReducer
 }

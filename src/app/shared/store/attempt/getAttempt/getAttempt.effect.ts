@@ -23,7 +23,7 @@ export class GetAttemptEffect {
     this.action$.pipe(
       ofType(getAttemptAction),
       switchMap((action) => {
-        return this._service.getAttempt().pipe(
+        return this._service.getAttempt(action.requestData).pipe(
           switchMap(data => {
               return of(
                 getAttemptActionSuccess({responseData: data}),

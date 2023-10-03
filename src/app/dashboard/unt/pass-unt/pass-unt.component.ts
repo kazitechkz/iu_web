@@ -1,18 +1,23 @@
 import {Component, DestroyRef, inject, OnInit, ViewChild} from '@angular/core';
-import {ColorConstants} from "../../core/constants/color.constants";
+import {ColorConstants} from "../../../core/constants/color.constants";
 import {faClock,faBook,faLanguage,faCircleCheck,faForwardFast} from "@fortawesome/free-solid-svg-icons";
 import {Store} from "@ngrx/store";
-import {loginAction} from "../../shared/store/auth/login/login.action";
-import {subjectGetAction} from "../../shared/store/subject/subject.action";
-import {getLoginState} from "../../shared/store/auth/login/login.selector";
-import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
-import {getSubjectsState} from "../../shared/store/subject/subject.selector";
+import {loginAction} from "../../../shared/store/auth/login/login.action";
+import {subjectGetAction} from "../../../shared/store/subject/subject.action";
+import {getLoginState} from "../../../shared/store/auth/login/login.selector";
+import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
+import {getSubjectsState} from "../../../shared/store/subject/subject.selector";
 // @ts-ignore
 import {Subject} from "../../models/subject.model";
-import {ImageHelper} from "../../core/helpers/image.helper";
+import {ImageHelper} from "../../../core/helpers/image.helper";
 import {SlickCarouselComponent} from "ngx-slick-carousel";
 import {Select2Data} from "ng-select2-component";
-import {RoutesName} from "../../core/constants/routes.constants";
+import {RoutesName} from "../../../core/constants/routes.constants";
+import {CreateAttemptRequest} from "../../../shared/store/attempt/createAttempt/createAttempt.request";
+import {createAttemptAction} from "../../../shared/store/attempt/createAttempt/createAttempt.action";
+
+
+
 @Component({
   selector: 'app-pass-unt',
   templateUrl: './pass-unt.component.html',
@@ -78,7 +83,12 @@ export class PassUntComponent implements OnInit{
     ]
   };
 
-
+  createAttempt(){
+    if (this.chosenSubject.length == 2){
+      let request = {subjects:this.chosenSubject, locale_id:this.locale_id, attempt_type_id:1,} as CreateAttemptRequest;
+      this._store.dispatch(createAttemptAction({requestData:request}));
+    }
+  }
   chooseSubject(id:number){
     const index = this.chosenSubject.indexOf(id); // Check if target exists in the array
     if (index === -1) {

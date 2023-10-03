@@ -6,16 +6,17 @@ import {Me} from "../../../models/user.model";
 import {environment} from "../../../../../environments/environment";
 import {APIRoutesName} from "../../../../core/constants/api-routes.constants";
 import {Attempt} from "../../../models/attempt.model";
+import {CreateAttemptRequest} from "./createAttempt.request";
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class GetAttemptService {
+export class CreateAttemptService {
   private _http = inject(HttpClient)
 
-  getAttempt(id:any): Observable<ResponseData<Attempt>> {
-    return this._http.get<ResponseData<Attempt>>(environment.baseUrl + APIRoutesName.getAttemptById + "/" + id.toString());
+  createAttempt(data:CreateAttemptRequest): Observable<ResponseData<Attempt>> {
+    return this._http.post<ResponseData<Attempt>>(environment.baseUrl + APIRoutesName.createAttempt,data);
   }
 
 }
