@@ -6,7 +6,7 @@ import {SharedModule} from "./shared/shared.module";
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient} from "@angular/common/http";
 import {ErrorInterceptor} from "./core/interceptors/error.interceptor";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ReducersConstants} from "./core/constants/reducers.constants";
@@ -19,6 +19,11 @@ import {UiSwitchModule} from "ngx-ui-switch";
 import {CountdownModule} from "ngx-countdown";
 import {NgxSmartModalModule} from "ngx-smart-modal";
 
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/locale/', '.json');
+}
 @NgModule({
   declarations: [
     AppComponent
@@ -35,7 +40,15 @@ import {NgxSmartModalModule} from "ngx-smart-modal";
     UiSwitchModule,
     StoreModule.forRoot(ReducersConstants),
     EffectsModule.forRoot(EffectsConstants),
-    NgxSmartModalModule.forRoot()
+    NgxSmartModalModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      },
+      defaultLanguage: 'ru'
+    })
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

@@ -17,6 +17,7 @@ import {SubStepModel} from "../../../shared/models/subStep.model";
 import {subStepAction} from "../../../shared/store/step/subStep/subStep.action";
 import {getSubStepState} from "../../../shared/store/step/subStep/subStep.selector";
 import {StrHelper} from "../../../core/helpers/str.helper";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 
 @Component({
   selector: 'app-step-detail',
@@ -24,6 +25,7 @@ import {StrHelper} from "../../../core/helpers/str.helper";
   styleUrls: ['./step-detail.component.scss']
 })
 export class StepDetailComponent implements OnInit {
+  public translate = inject(GlobalTranslateService)
   private _store = inject(Store)
   private _route = inject(ActivatedRoute)
   destroyRef = inject(DestroyRef);

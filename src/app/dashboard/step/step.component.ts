@@ -7,6 +7,7 @@ import {getStepState} from "../../shared/store/step/step.selector";
 import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {StepModel} from "../../shared/models/step.model";
 import {ImageHelper} from "../../core/helpers/image.helper";
+import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
 
 @Component({
   selector: 'app-step',
@@ -14,6 +15,7 @@ import {ImageHelper} from "../../core/helpers/image.helper";
   styleUrls: ['./step.component.scss']
 })
 export class StepComponent implements OnInit {
+  public translate = inject(GlobalTranslateService)
   protected readonly ColorConstants = ColorConstants
   private _store = inject(Store)
   private _route = inject(Router)
@@ -31,4 +33,5 @@ export class StepComponent implements OnInit {
   }
 
   protected readonly ImageHelper = ImageHelper;
+  protected readonly GlobalTranslateService = GlobalTranslateService;
 }

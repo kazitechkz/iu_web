@@ -9,17 +9,17 @@
               <div class="p-5 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-72">
                 <div class="h-20 w-20 rounded-full bg-no-repeat bg-cover bg-center" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(step.image?.url) + ')'}"></div>
                 <h1 class="my-4 text-2xl">
-                  {{step.title_ru}}
+                  {{step | globalTranslate: 'title': translate.currentLang}}
                 </h1>
 
                 <div class="my-2 text-base flex items-center justify-between">
                   <div class="flex items-center">
                     <i class="fa fa-book mr-3" aria-hidden="true"></i>
-                    {{step.steps_count}} Этапов
+                    {{step.steps_count}} {{'step' | translate}}
                   </div>
                   <div class="flex items-center">
                     <i class="fa fa-terminal mr-3" aria-hidden="true"></i>
-                    {{step.sub_steps_count}} Субэтапов
+                    {{step.sub_steps_count}} {{'subStep' | translate}}
                   </div>
                 </div>
 

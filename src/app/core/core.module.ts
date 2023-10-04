@@ -4,16 +4,18 @@ import {HttpClient} from "@angular/common/http";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {TranslateLoader, TranslateModule, TranslateStore} from "@ngx-translate/core";
 import {ToastrModule} from "ngx-toastr";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {NgxSpinnerModule} from "ngx-spinner";
-
+import { TruncatePipe } from './pipes/truncate.pipe';
+import {GlobalTranslatePipe} from "./pipes/globalTranslate.pipe";
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/locale/', '.json');
 }
 
 @NgModule({
-    declarations: [],
+    declarations: [
+    GlobalTranslatePipe,
+    TruncatePipe
+  ],
     imports: [
         CommonModule,
         ToastrModule.forRoot(), // ToastrModule added
@@ -26,10 +28,11 @@ export function HttpLoaderFactory(http: HttpClient) {
             }
         }),
     ],
-    providers: [TranslateStore],
-    exports: [
-        TranslateModule
-    ]
+    providers: [TranslateStore, GlobalTranslatePipe, TruncatePipe],
+  exports: [
+    TranslateModule,
+    GlobalTranslatePipe
+  ]
 })
 export class CoreModule {
 }

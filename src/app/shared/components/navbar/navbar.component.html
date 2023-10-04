@@ -4,7 +4,17 @@
     <div class="w-1/2">
       Dashboard
     </div>
-    <div class="relative w-1/2 flex justify-end">
+    <div class="relative w-1/2 flex justify-end items-center">
+      <div class="px-3 cursor-pointer">
+        <div class="flex justify-center items-center" (click)="localeDropdown = !localeDropdown">
+          <p class="mx-3">{{translate.currentLang | titlecase}}</p>
+        </div>
+        <div *ngIf="localeDropdown" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 z-[999]">
+          <span class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white" (click)="changeLang('kk')">Kk</span>
+          <span class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white" (click)="changeLang('ru')">Ru</span>
+        </div>
+      </div>
+
       <div class="flex justify-center items-center" (click)="isOpen = !isOpen">
         <button class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
           <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400" alt="">

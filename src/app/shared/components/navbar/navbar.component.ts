@@ -9,6 +9,7 @@ import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {Router} from "@angular/router";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {Me} from "../../models/user.model";
+import {GlobalTranslateService} from "../../services/globalTranslate.service";
 
 @Component({
   selector: 'app-navbar',
@@ -16,14 +17,17 @@ import {Me} from "../../models/user.model";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  isOpen: boolean = false;
+  isOpen: boolean = false
+  localeDropdown: boolean = false
   private _authService = inject(AuthService)
   private _sessionService = inject(SessionService)
+  public translate = inject(GlobalTranslateService)
   private _store = inject(Store)
   private _route = inject(Router)
   destroyRef = inject(DestroyRef);
   public user?: Me | null;
   ngOnInit(): void {
+    this.translate.getCurrentLang()
     this.me()
   }
 
@@ -32,6 +36,11 @@ export class NavbarComponent implements OnInit {
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       this.user = item.data
     })
+  }
+
+  changeLang(lang: string) {
+    this.translate.onLangChange(lang)
+    this.localeDropdown = !this.localeDropdown
   }
 
   logout() {
