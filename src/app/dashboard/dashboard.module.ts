@@ -17,6 +17,8 @@ import {MarkdownModule} from "ngx-markdown";
 import {NgxSmartModalModule} from "ngx-smart-modal";
 import { SubStepComponent } from './step/sub-step/sub-step.component';
 import { SingleSubjectComponent } from './unt/single-subject/single-subject.component';
+import {CoreModule} from "../core/core.module";
+import {YouTubePlayerModule} from "@angular/youtube-player";
 
 
 @NgModule({
@@ -32,18 +34,20 @@ import { SingleSubjectComponent } from './unt/single-subject/single-subject.comp
         SubStepComponent,
         SingleSubjectComponent,
     ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    SharedModule,
-    FontAwesomeModule,
-    SlickCarouselModule,
-    Select2Module,
-    UiSwitchModule,
-    CountdownComponent,
-    MarkdownModule,
-    NgxSmartModalModule
-  ]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        SharedModule,
+        FontAwesomeModule,
+        SlickCarouselModule,
+        Select2Module,
+        UiSwitchModule,
+        CountdownComponent,
+        MarkdownModule,
+        NgxSmartModalModule,
+        CoreModule,
+        YouTubePlayerModule
+    ]
 })
 export class DashboardModule {
 }

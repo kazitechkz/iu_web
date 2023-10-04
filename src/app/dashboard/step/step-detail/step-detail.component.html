@@ -22,7 +22,7 @@
                 <div *ngIf="!step.is_free" class="circle bg-no-repeat bg-bottom bg-contain"
                      [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}"></div>
                 <div class="st-content">
-                  {{step.title_ru}}
+                  {{step | globalTranslate: 'title': translate.currentLang}}
                 </div>
                 <div class="mt-4 flex justify-between items-center px-5 w-full [direction:ltr]">
                   <div class="w-full bg-neutral-200 text-black">
@@ -46,7 +46,7 @@
                 <div *ngIf="!step.is_free" class="circle bg-no-repeat bg-bottom bg-contain"
                      [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}"></div>
                 <div class="st-content">
-                  {{step.title_ru}}
+                  {{step | globalTranslate: 'title': translate.currentLang}}
                 </div>
 
                 <div class="mt-4 flex justify-between items-center px-5 w-full [direction:ltr]">
@@ -73,7 +73,7 @@
                       <div class="flex flex-col justify-start p-6 w-3/4">
                         <h5
                           class="mb-2 text-xl font-medium text-neutral-800">
-                          {{subStep.title_ru}}
+                          {{subStep | globalTranslate: 'title': translate.currentLang}}
                         </h5>
                         <div class="flex justify-between items-center">
                           <div class="w-full pr-3">
@@ -102,7 +102,7 @@
         <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer relative" routerLink="/dashboard/step/{{subject.id}}">
           <div class=" min-h-[250px]  bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
           <p class="text-center text-md font-bold py-4">
-            {{subject.title_ru}}
+            {{subject | globalTranslate: 'title': translate.currentLang}}
           </p>
         </div>
       </ngx-slick-carousel>
