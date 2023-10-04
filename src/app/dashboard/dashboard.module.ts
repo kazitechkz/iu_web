@@ -16,6 +16,7 @@ import { StepDetailComponent } from './step/step-detail/step-detail.component';
 import {MarkdownModule} from "ngx-markdown";
 import {NgxSmartModalModule} from "ngx-smart-modal";
 import { SubStepComponent } from './step/sub-step/sub-step.component';
+import { SingleSubjectComponent } from './unt/single-subject/single-subject.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { SubStepComponent } from './step/sub-step/sub-step.component';
         StepComponent,
         StepDetailComponent,
         SubStepComponent,
+        SingleSubjectComponent,
     ],
   imports: [
     CommonModule,

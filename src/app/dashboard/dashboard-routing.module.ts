@@ -8,6 +8,7 @@ import {PassUntComponent} from "./unt/pass-unt/pass-unt.component";
 import {PassUntExamComponent} from "./unt/pass-unt-exam/pass-unt-exam.component";
 import {StepDetailComponent} from "./step/step-detail/step-detail.component";
 import {SubStepComponent} from "./step/sub-step/sub-step.component";
+import {SingleSubjectComponent} from "./unt/single-subject/single-subject.component";
 
 
 const routes: Routes = [
@@ -24,6 +25,10 @@ const routes: Routes = [
       {
         path: 'pass-unt',
         component: PassUntComponent
+      },
+      {
+        path: 'single-subject-unt',
+        component: SingleSubjectComponent
       },
       {
         path: 'pass-unt-exam/:id',

@@ -13,6 +13,10 @@ export enum APIRoutesName {
     createAttempt = "attempt",
     answer = "answer",
     answerResult = "answer-result",
+    getFiftyFifty = "get-fifty-fifty",
+    saveQuestion = "save-question",
+    appealTypes = "appeal-types",
+    createAppeal = "create-appeal-question",
 
 
 }

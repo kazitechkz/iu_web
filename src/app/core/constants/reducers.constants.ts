@@ -10,6 +10,10 @@ import {subStepDetailReducer, subStepReducer} from "../../shared/store/step/subS
 import {createAttemptReducer} from "../../shared/store/attempt/createAttempt/createAttempt.reducer";
 import {answerReducer} from "../../shared/store/attempt/answer/answer.reducer";
 import {answeredResultReducer} from "../../shared/store/attempt/answeredResult/answerResult.reducer";
+import {getFiftyFiftyReducer} from "../../shared/store/attempt/getFiftyFifty/getFiftyFifty.reducer";
+import {saveQuestionReducer} from "../../shared/store/attempt/saveQuestion/saveQuestion.reducer";
+import {appealTypesReducer} from "../../shared/store/appeal/appealTypes/appealTypes.reducer";
+import {createAppealReducer} from "../../shared/store/appeal/createAppeal/createAppeal.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -26,4 +30,8 @@ export const ReducersConstants = {
   subStepDetail: subStepDetailReducer,
   answer:answerReducer,
   answeredResult:answeredResultReducer,
+  getFiftyFifty:getFiftyFiftyReducer,
+  saveQuestion:saveQuestionReducer,
+  appealType:appealTypesReducer,
+  createAppeal:createAppealReducer,
 }

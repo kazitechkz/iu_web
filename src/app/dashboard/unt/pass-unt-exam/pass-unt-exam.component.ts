@@ -1,5 +1,15 @@
 import {Component, DestroyRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {faClock, faLightbulb, faDice, faStar, faBug, faForwardFast, faBackwardFast, faCheck} from "@fortawesome/free-solid-svg-icons";
+import {
+  faClock,
+  faLightbulb,
+  faDice,
+  faStar,
+  faBug,
+  faForwardFast,
+  faBackwardFast,
+  faCheck,
+  faHandshake, faFaceFrownOpen, faClover
+} from "@fortawesome/free-solid-svg-icons";
 import {CountdownConfig} from "ngx-countdown";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
@@ -17,6 +27,21 @@ import {onAnsweredResultAction} from "../../../shared/store/attempt/answeredResu
 import {AnsweredResultRequest} from "../../../shared/store/attempt/answeredResult/answerResult.request";
 import {answeredResultSelector} from "../../../shared/store/attempt/answeredResult/answerResult.selector";
 import {initFlowbite} from "flowbite";
+import {StrHelper} from "../../../core/helpers/str.helper";
+import {ColorConstants} from "../../../core/constants/color.constants";
+import {ImageHelper} from "../../../core/helpers/image.helper";
+import {NgxSmartModalService} from "ngx-smart-modal";
+import {SaveQuestionRequest} from "../../../shared/store/attempt/saveQuestion/saveQuestion.request";
+import {onSaveQuestionAction} from "../../../shared/store/attempt/saveQuestion/saveQuestion.action";
+import {GetFiftyFiftyModel} from "../../../shared/store/attempt/getFiftyFifty/getFiftyFifty.model";
+import {GetFiftyFiftyRequest} from "../../../shared/store/attempt/getFiftyFifty/getFiftyFifty.request";
+import {onGetFiftyFiftyAction} from "../../../shared/store/attempt/getFiftyFifty/getFiftyFifty.action";
+import {getFiftyFiftySelector} from "../../../shared/store/attempt/getFiftyFifty/getFiftyFifty.selector";
+import {AppealType} from "../../../shared/models/appealType.model";
+import {appealTypesAction} from "../../../shared/store/appeal/appealTypes/appealTypes.action";
+import {appealTypeSelector} from "../../../shared/store/appeal/appealTypes/appealTypes.selector";
+import {CreateAppealRequest} from "../../../shared/store/appeal/createAppeal/createAppeal.request";
+import {onCreateAppealAction} from "../../../shared/store/appeal/createAppeal/createAppeal.action";
 @Component({
   selector: 'app-pass-unt-exam',
   templateUrl: './pass-unt-exam.component.html',
@@ -36,8 +61,11 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     private _store = inject(Store);
     private _route = inject(ActivatedRoute)
     public active_slider = 0;
-    //@ts-ignore
-    public answeredResult:AnsweredResult;
+    dialog = inject(NgxSmartModalService)
+    public answeredResult:AnsweredResult = {};
+    public fiftyFiftyResult:GetFiftyFiftyModel = {};
+    public appealTypes:AppealType[] = [];
+    public appealRequest = {type_id:0,question_id:0,message:""};
 
     public answered_questions:{[key: number]: any}= {};
     //@ts-ignore
@@ -55,6 +83,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
 
   ngOnInit(): void {
     this.getAttempt();
+    this.getAppealTypes();
     initFlowbite();
   }
 
@@ -84,9 +113,19 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
       if(item.data){
         this.answeredResult = item.data;
       }
-
     });
   }
+
+  getAppealTypes(){
+    this._store.dispatch(appealTypesAction());
+    this._store.select(appealTypeSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        this.appealTypes = item.data;
+        this.appealRequest.type_id = item.data.find(item=>true)?.id ??0;
+      }
+    });
+  }
+
   changeSubject(subject_id:any){
     this.loading = true;
       subject_id = subject_id.target.value;
@@ -126,8 +165,41 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
       }
     }
     }
-
   }
+
+  saveQuestion(){
+    let request = {questionId:this.questions[this.active_slider].id} as SaveQuestionRequest;
+    this._store.dispatch(onSaveQuestionAction({requestData:request}));
+  }
+
+  getFiftyFifty(){
+    let request = {questionId:this.questions[this.active_slider].id} as GetFiftyFiftyRequest;
+    this._store.dispatch(onGetFiftyFiftyAction({requestData:request}));
+    this._store.select(getFiftyFiftySelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        // @ts-ignore
+        this.fiftyFiftyResult[Object.keys(item.data)[0]] = item.data[Object.keys(item.data)[0]];
+      }
+    });
+    delete this.answered_questions[this.questions[this.active_slider].id];
+  }
+  checkIsFiftyFifty(answer:string):boolean{
+    if(this.fiftyFiftyResult){
+      if(this.fiftyFiftyResult.hasOwnProperty(this.questions[this.active_slider].id)){
+        return this.fiftyFiftyResult[this.questions[this.active_slider].id].includes(answer);
+      }
+    }
+    return true;
+  }
+
+  createAppeal(){
+    this.appealRequest.question_id = this.questions[this.active_slider].id;
+    let request = Object.assign({},this.appealRequest)
+    this._store.dispatch(onCreateAppealAction({requestData:request}));
+    this.appealRequest.message = "";
+    this.closeModal('appealModal');
+  }
+
 
   checkAnswer(questionId:number){
     let request = Object.assign({}, this.answered_questions[questionId]);
@@ -153,6 +225,19 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+  //Open Modal
+    openModal(modalIdentifier:string){
+      this.dialog.getModal(modalIdentifier).open()
+    }
+
+    closeModal(modalIdentifier:string){
+      this.dialog.getModal(modalIdentifier).close()
+    }
+
+  //Open Modal
+
+
+
   //Sliders
   goToSlider(slideNo:number){
     this.slickModal.slickGoTo(slideNo);
@@ -238,4 +323,11 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
 //Sliders
 
 
+    protected readonly StrHelper = StrHelper;
+    protected readonly ColorConstants = ColorConstants;
+    protected readonly ImageHelper = ImageHelper;
+    protected readonly faHandshake = faHandshake;
+    protected readonly prompt = prompt;
+    protected readonly faFaceFrownOpen = faFaceFrownOpen;
+  protected readonly faClover = faClover;
 }

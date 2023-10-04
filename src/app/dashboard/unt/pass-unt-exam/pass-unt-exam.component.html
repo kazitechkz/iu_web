@@ -54,6 +54,7 @@
       <div class="col-span-12 md:col-span-3 flex justify-center items-center">
         <div class="text-center">
           <button
+            (click)="openModal('promptModal')"
             class="inline hover:rotate-0 rotate-180 hover:bg-yellow-200 rounded-full shadow-lg w-14 h-14  bg-yellow-400 text-2xl text-white font-bold"
           >
             <fa-icon [icon]="faLightbulb" class="text-white text-2xl"></fa-icon>
@@ -86,17 +87,23 @@
       <div class="col-span-12 md:col-span-3 flex justify-center items-center">
         <div class="text-center">
           <div class="my-2 md:flex justify-around px-4">
+            <section *ngIf="questions[active_slider].type_id != 3">
+              <button
+                *ngIf="!fiftyFiftyResult.hasOwnProperty(questions[active_slider].id)"
+                (click)="getFiftyFifty()"
+                class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
+                type="button">
+                <fa-icon [icon]="faDice"></fa-icon>
+              </button>
+            </section>
             <button
-              class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
-              type="button">
-              <fa-icon [icon]="faDice"></fa-icon>
-            </button>
-            <button
+              (click)="saveQuestion()"
               class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
               type="button">
               <fa-icon [icon]="faStar"></fa-icon>
             </button>
             <button
+              (click)="openModal('appealModal')"
               class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
               type="button">
               <fa-icon [icon]="faBug"></fa-icon>
@@ -113,79 +120,110 @@
     <div class="mt-5 flex justify-center">
 
       <div class="md:w-6/12 w-full p-5" *ngIf="answeredResult">
-
+        <!-- A Answer-->
+        <section *ngIf="checkIsFiftyFifty('answer_a')">
         <div (click)="answerQuestion(questions[active_slider].id,'a')"
              [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('a')? true : false,
                 'text-white': is_answered('a')? true : false,
              }"
-             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
              *ngIf="questions[active_slider].answer_a">
           <div [innerHTML]="questions[active_slider].answer_a"></div>
         </div>
+        </section>
+        <!-- A Answer-->
+        <!-- B Answer-->
+        <section *ngIf="checkIsFiftyFifty('answer_b')">
         <div (click)="answerQuestion(questions[active_slider].id,'b')"
              [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('b')? true : false,
                 'text-white': is_answered('b')? true : false,
              }"
-             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
              *ngIf="questions[active_slider].answer_b">
           <div [innerHTML]="questions[active_slider].answer_b"></div>
         </div>
+        </section>
+        <!-- B Answer-->
+        <!-- C Answer-->
+        <section *ngIf="checkIsFiftyFifty('answer_c')">
         <div (click)="answerQuestion(questions[active_slider].id,'c')"
              [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('c')? true : false,
                 'text-white': is_answered('c')? true : false,
              }"
-             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
              *ngIf="questions[active_slider].answer_c">
           <div [innerHTML]="questions[active_slider].answer_c"></div>
         </div>
+        </section>
+        <!-- C Answer-->
+        <!-- D Answer-->
+        <section *ngIf="checkIsFiftyFifty('answer_d')">
         <div (click)="answerQuestion(questions[active_slider].id,'d')"
              [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('d')? true : false,
                 'text-white': is_answered('d')? true : false,
              }"
-             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
              *ngIf="questions[active_slider].answer_d">
           <div [innerHTML]="questions[active_slider].answer_d"></div>
         </div>
+        </section>
+        <!-- D Answer-->
+        <!-- E Answer-->
+        <section *ngIf="checkIsFiftyFifty('answer_e')">
         <div (click)="answerQuestion(questions[active_slider].id,'e')"
              [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('e')? true : false,
                 'text-white': is_answered('e')? true : false,
              }"
-             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
              *ngIf="questions[active_slider].answer_e">
           <div [innerHTML]="questions[active_slider].answer_e"></div>
         </div>
+        </section>
+        <!-- E Answer-->
+        <!-- F Answer-->
+        <section *ngIf="checkIsFiftyFifty('answer_f')">
         <div (click)="answerQuestion(questions[active_slider].id,'f')"
              [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('f')? true : false,
                 'text-white': is_answered('f')? true : false,
              }"
-             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
              *ngIf="questions[active_slider].answer_f">
           <div [innerHTML]="questions[active_slider].answer_f"></div>
         </div>
+        </section>
+        <!-- F Answer-->
+        <!-- G Answer-->
+        <section *ngIf="checkIsFiftyFifty('answer_g')">
         <div (click)="answerQuestion(questions[active_slider].id,'g')"
              [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('g')? true : false,
                 'text-white': is_answered('g')? true : false,
              }"
-             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
              *ngIf="questions[active_slider].answer_g">
           <div [innerHTML]="questions[active_slider].answer_g"></div>
         </div>
+        </section>
+        <!-- G Answer-->
+        <!-- H Answer-->
+        <section *ngIf="checkIsFiftyFifty('answer_h')">
         <div (click)="answerQuestion(questions[active_slider].id,'h')"
              [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('h')? true : false,
                 'text-white': is_answered('h')? true : false,
              }"
-             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer"
+             class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
              *ngIf="questions[active_slider].answer_h">
           <div [innerHTML]="questions[active_slider].answer_h"></div>
         </div>
+        </section>
+        <!-- H Answer-->
       </div>
 
     </div>
@@ -258,8 +296,60 @@
       </div>
 
     </div>
-    <!--    Prev, Answer, Next-->
+<!--    Prev, Answer, Next-->
   </div>
 
+<!--  Modal Prompt -->
+  <ngx-smart-modal customClass="nsm-centered unt-modal" identifier="promptModal">
+    <div class="py-3 px-4 text-center">
+      <div>
+        <fa-icon class="inline-block text-4xl text-yellow-300 my-3" [icon]="faLightbulb"></fa-icon>
+      </div>
+      <p class="text-lg md:text-3xl inline-block my-2">Подсказка к вопросу номер № {{active_slider + 1}}</p>
+      <div *ngIf="questions[active_slider].prompt; else no_prompt" [innerHTML]="questions[active_slider].prompt"></div>
+      <ng-template #no_prompt>
+        <span>
+          <fa-icon class="text-yellow-300 mr-2" [icon]="faFaceFrownOpen"></fa-icon>
+          К сожалению, подсказок нет
+        </span>
+      </ng-template>
+      <button (click)="closeModal('promptModal')" type="button" class="focus:outline-none my-4 font-bold text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-500">
+        Понятно!
+      </button>
+    </div>
+  </ngx-smart-modal>
+<!--  Modal Prompt-->
+  <!--  Appeal Modal Prompt -->
+  <ngx-smart-modal customClass="nsm-centered unt-modal" identifier="appealModal">
+    <div class="py-3 px-4 text-center">
+      <div>
+        <fa-icon class="inline-block text-4xl text-red-700 my-3" [icon]="faBug"></fa-icon>
+      </div>
+      <p class="text-lg md:text-3xl inline-block my-2">Аппеляция на вопрос № {{active_slider + 1}}</p>
+      <div class="my-4">
+        <div class="my-2">
+          <select class="w-full rounded-lg my-2" [(ngModel)]="appealRequest.type_id">
+            <option  *ngFor="let type of appealTypes" value="{{type.id}}">
+              {{type.title_ru}}
+            </option>
+          </select>
+        </div>
+        <div class="my-2 text-left">
+          <label>Опишите проблему</label>
+          <textarea class="w-full" [(ngModel)]="appealRequest.message" maxlength="255">
+
+          </textarea>
+        </div>
+
+      </div>
+      <button (click)="createAppeal()" type="button" class="focus:outline-none my-4 mx-2 font-bold text-white bg-red-500 focus:ring-4 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+        Отправить
+      </button>
+      <button (click)="closeModal('appealModal')" type="button" class="focus:outline-none my-4 font-bold text-white main-secondary-bg focus:ring-4 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+        Отмена
+      </button>
+    </div>
+  </ngx-smart-modal>
+  <!--  Appeal Modal Prompt-->
 </section>
 
