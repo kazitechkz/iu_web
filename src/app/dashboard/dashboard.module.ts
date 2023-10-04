@@ -17,6 +17,7 @@ import {MarkdownModule} from "ngx-markdown";
 import {NgxSmartModalModule} from "ngx-smart-modal";
 import { SubStepComponent } from './step/sub-step/sub-step.component';
 import {CoreModule} from "../core/core.module";
+import {YouTubePlayerModule} from "@angular/youtube-player";
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {CoreModule} from "../core/core.module";
         CountdownComponent,
         MarkdownModule,
         NgxSmartModalModule,
-        CoreModule
+        CoreModule,
+        YouTubePlayerModule
     ]
 })
 export class DashboardModule {

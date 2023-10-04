@@ -1,14 +1,10 @@
-import {Component, DestroyRef, inject, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {ActivatedRoute} from "@angular/router";
-import {stepAction} from "../../../shared/store/step/step.action";
-import {getStepState} from "../../../shared/store/step/step.selector";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
-import {subStepAction, subStepDetailAction} from "../../../shared/store/step/subStep/subStep.action";
+import {subStepDetailAction} from "../../../shared/store/step/subStep/subStep.action";
 import {SubStepModel} from "../../../shared/models/subStep.model";
-import {getSubStepDetailState, getSubStepState} from "../../../shared/store/step/subStep/subStep.selector";
-import {SubStepContentModel} from "../../../shared/models/subStepContent.model";
-import {StepModel} from "../../../shared/models/step.model";
+import {getSubStepDetailState} from "../../../shared/store/step/subStep/subStep.selector";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 
 @Component({
@@ -26,6 +22,9 @@ export class SubStepComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSubStep()
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.body.appendChild(tag);
   }
 
   getSubStep() {
