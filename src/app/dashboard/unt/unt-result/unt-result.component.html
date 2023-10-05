@@ -3,12 +3,9 @@
     <div class="grid grid-cols-12 py-5 my-3 main-green-bg rounded-2xl">
       <div class="col-span-12 md:col-span-12 text-center">
         <p class="md:text-5xl font-bold text-white my-2 px-1">
-          Сдача ЕНТ
+          Результат ЕНТ
         </p>
-        <div class="md:text-5xl font-bold text-white mb-2 mt-5 px-1 flex justify-center">
-          <fa-icon [icon]="faClock" class="mr-3"></fa-icon>
-          <countdown (event)="handleCountDownEvent($event)" [config]="timeConfig"></countdown>
-        </div>
+
       </div>
     </div>
     <div class="grid grid-cols-12">
@@ -48,7 +45,7 @@
       </div>
     </div>
     <!--    Pagination-->
-<!--    Question Modal-->
+    <!--    Question Modal-->
     <div class="grid grid-cols-12 mt-[50px] ">
       <!--    Prompt-->
       <div class="col-span-12 md:col-span-3 flex justify-center items-start">
@@ -72,21 +69,21 @@
             <div ngxSlickItem *ngFor="let question of questions"
                  class="slide cursor-pointer
                 relative  rounded-2xl shadow-2xl max-h-[500px] overflow-y-scroll">
-                <div class="my-4 text-xl text-black p-4 font-bold">
-                  Вопрос № {{active_slider+1}}
-                </div>
-                <div class="p-4 text-black font-bold content-question" [innerHTML]="question.text"></div>
-                <section *ngIf="question.context">
-                  <div class="p-4 text-black  font-bold content-question" [innerHTML]="question.context.context"></div>
-                </section>
+              <div class="my-4 text-xl text-black p-4 font-bold">
+                Вопрос № {{active_slider+1}}
+              </div>
+              <div class="p-4 text-black font-bold content-question" [innerHTML]="question.text"></div>
+              <section *ngIf="question.context">
+                <div class="p-4 text-black  font-bold content-question" [innerHTML]="question.context.context"></div>
+              </section>
             </div>
           </ngx-slick-carousel>
         </div>
         <!--    Answer Modal-->
         <div class="w-full p-5" *ngIf="answeredResult">
           <!-- A Answer-->
-          <section *ngIf="checkIsFiftyFifty('answer_a')">
-            <div (click)="answerQuestion(questions[active_slider].id,'a')"
+          <section>
+            <div
                  [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('a')? true : false,
                 'text-white': is_answered('a')? true : false,
@@ -98,8 +95,8 @@
           </section>
           <!-- A Answer-->
           <!-- B Answer-->
-          <section *ngIf="checkIsFiftyFifty('answer_b')">
-            <div (click)="answerQuestion(questions[active_slider].id,'b')"
+          <section>
+            <div
                  [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('b')? true : false,
                 'text-white': is_answered('b')? true : false,
@@ -111,8 +108,8 @@
           </section>
           <!-- B Answer-->
           <!-- C Answer-->
-          <section *ngIf="checkIsFiftyFifty('answer_c')">
-            <div (click)="answerQuestion(questions[active_slider].id,'c')"
+          <section>
+            <div
                  [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('c')? true : false,
                 'text-white': is_answered('c')? true : false,
@@ -124,8 +121,8 @@
           </section>
           <!-- C Answer-->
           <!-- D Answer-->
-          <section *ngIf="checkIsFiftyFifty('answer_d')">
-            <div (click)="answerQuestion(questions[active_slider].id,'d')"
+          <section>
+            <div
                  [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('d')? true : false,
                 'text-white': is_answered('d')? true : false,
@@ -137,8 +134,8 @@
           </section>
           <!-- D Answer-->
           <!-- E Answer-->
-          <section *ngIf="checkIsFiftyFifty('answer_e')">
-            <div (click)="answerQuestion(questions[active_slider].id,'e')"
+          <section>
+            <div
                  [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('e')? true : false,
                 'text-white': is_answered('e')? true : false,
@@ -150,8 +147,8 @@
           </section>
           <!-- E Answer-->
           <!-- F Answer-->
-          <section *ngIf="checkIsFiftyFifty('answer_f')">
-            <div (click)="answerQuestion(questions[active_slider].id,'f')"
+          <section>
+            <div
                  [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('f')? true : false,
                 'text-white': is_answered('f')? true : false,
@@ -163,8 +160,8 @@
           </section>
           <!-- F Answer-->
           <!-- G Answer-->
-          <section *ngIf="checkIsFiftyFifty('answer_g')">
-            <div (click)="answerQuestion(questions[active_slider].id,'g')"
+          <section>
+            <div
                  [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('g')? true : false,
                 'text-white': is_answered('g')? true : false,
@@ -176,8 +173,8 @@
           </section>
           <!-- G Answer-->
           <!-- H Answer-->
-          <section *ngIf="checkIsFiftyFifty('answer_h')">
-            <div (click)="answerQuestion(questions[active_slider].id,'h')"
+          <section>
+            <div
                  [ngClass]="{
                 'bg-[#9BA1FF]' :is_answered('h')? true : false,
                 'text-white': is_answered('h')? true : false,
@@ -196,15 +193,6 @@
       <div class="col-span-12 md:col-span-3 flex justify-center items-start">
         <div class="text-center">
           <div class="my-2 md:flex justify-around px-4">
-            <section *ngIf="questions[active_slider].type_id != 3">
-              <button
-                *ngIf="!fiftyFiftyResult.hasOwnProperty(questions[active_slider].id)"
-                (click)="getFiftyFifty()"
-                class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
-                type="button">
-                <fa-icon [icon]="faDice"></fa-icon>
-              </button>
-            </section>
             <button
               (click)="saveQuestion()"
               class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
@@ -225,7 +213,7 @@
     </div>
     <!--    Question Modal-->
 
-<!--    Prev, Answer, Next-->
+    <!--    Prev, Answer, Next-->
     <div class="grid grid-cols-12 mt-8 mb-4">
       <div class="col-span-12 md:col-span-4 p-4">
         <button type="button" class="
@@ -248,28 +236,8 @@
 
         </button>
       </div>
-
       <div class="col-span-12 md:col-span-4 p-4">
-        <button type="button" class="
-            w-full
-            mt-4
-            text-lg
-            font-bold
-            inline
-            main-green-bg
-            text-white
-            focus:outline-none focus:ring-4
-            focus:ring-green-500 font-medium
-            rounded-lg text-sm px-5 py-5
-            text-center mr-2 mb-2"
-                (click)="checkAnswer(questions[active_slider].id)"
-                *ngIf="answered_questions.hasOwnProperty(questions[active_slider].id) && !answeredResult[questions[active_slider].id]"
-        >
-          Ответить
-          <fa-icon [icon]="faCheck" class="mx-2 text-lg"></fa-icon>
-        </button>
       </div>
-
       <div class="col-span-12 md:col-span-4 p-4">
         <button type="button" class="
       w-full
@@ -292,10 +260,10 @@
       </div>
 
     </div>
-<!--    Prev, Answer, Next-->
+    <!--    Prev, Answer, Next-->
   </div>
 
-<!--  Modal Prompt -->
+  <!--  Modal Prompt -->
   <ngx-smart-modal customClass="nsm-centered unt-modal" identifier="promptModal">
     <div class="py-3 px-4 text-center">
       <div>
@@ -314,7 +282,7 @@
       </button>
     </div>
   </ngx-smart-modal>
-<!--  Modal Prompt-->
+  <!--  Modal Prompt-->
   <!--  Appeal Modal Prompt -->
   <ngx-smart-modal customClass="nsm-centered unt-modal" identifier="appealModal">
     <div class="py-3 px-4 text-center">

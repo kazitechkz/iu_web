@@ -16,6 +16,7 @@ import {GetFiftyFiftyEffect} from "../../shared/store/attempt/getFiftyFifty/getF
 import {SaveQuestionEffect} from "../../shared/store/attempt/saveQuestion/saveQuestion.effect";
 import {AppealTypesEffect} from "../../shared/store/appeal/appealTypes/appealTypes.effect";
 import {CreateAppealEffect} from "../../shared/store/appeal/createAppeal/createAppeal.effect";
+import {GetStatEffect} from "../../shared/store/attempt/getStat/getStat.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -36,4 +37,5 @@ export const EffectsConstants = [
     SaveQuestionEffect,
     AppealTypesEffect,
     CreateAppealEffect,
+    GetStatEffect,
 ]

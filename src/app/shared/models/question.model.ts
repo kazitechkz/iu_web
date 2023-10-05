@@ -9,6 +9,7 @@ export interface Question {
   answer_f:        string;
   answer_g:        string;
   answer_h:        string;
+  correct_answers: string|null;
   prompt:          string;
   explanation:     string;
   created_at:      string;

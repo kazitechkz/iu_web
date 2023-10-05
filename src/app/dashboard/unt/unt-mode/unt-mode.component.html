@@ -1,0 +1,118 @@
+<div class="container mx-auto min-h-[100vh] flex  items-center">
+
+  <div class="grid grid-cols-12 w-full">
+
+    <div class="col-span-12 md:col-span-5 my-2  mx-3 p-3 flex justify-center">
+      <div class="main-secondary-bg w-full md:w-11/12 shadow-2xl rounded-2xl p-3 ">
+        <div class=" text-center my-4">
+          <p class="text-lg md:text-2xl text-white font-bold"> Тестирование выбранного предмета</p>
+        </div>
+        <div class="relative text-right">
+          <div class="right-0 inline-block  justify-end my-5 hidden md:flex">
+            <div class="bubble bubble-bottom-left text-white font-bold italic w-8/12 md:w-6/12 text-sm" contenteditable>Я не боюсь того кто знает все 16 предметов, я боюсь того кто проходит 1 предмет 10000 раз</div>
+          </div>
+          <div class="flex justify-center my-2">
+            <img class="max-w-[300px]" src="assets/images/single-mode.png">
+          </div>
+        </div>
+        <div class="grid grid-cols-12 p-4">
+          <div class="col-span-12 md:col-span-6 my-2">
+            <span class="text-sm text-white flex">
+              <fa-icon [icon]="faBullseye" class="mx-2"></fa-icon>
+              <p>Для тех кто нацелен на определенный предмет</p>
+            </span>
+          </div>
+          <div class="col-span-12 md:col-span-6 my-2">
+            <span class="text-sm text-white flex">
+              <fa-icon [icon]="faBook" class="mx-2"></fa-icon>
+              <p>Широкий выбор из 16 предметов</p>
+            </span>
+          </div>
+          <div class="col-span-12 md:col-span-6 my-2">
+            <span class="text-sm text-white flex">
+              <fa-icon [icon]="faStar" class="mx-2"></fa-icon>
+              <p>Работа над слабыми местами</p>
+            </span>
+          </div>
+          <div class="col-span-12 md:col-span-6 my-2">
+            <span class="text-sm text-white flex">
+              <fa-icon [icon]="faCircleQuestion" class="mx-2"></fa-icon>
+              <p>База из более чем 100к вопросов</p>
+            </span>
+          </div>
+        </div>
+        <div class="text-center">
+          <a [routerLink]="'/'+[RoutesName.passUntSingle]" class="focus:outline-none
+          inline-block my-2
+          text-white bg-[#ffa19b]
+          cursor-pointer
+          hover:!bg-[#eee]
+          font-bold
+          rounded-lg text-md md:text-lg px-5 py-2.5 mb-2">
+            🧠 Одна дисциплина, одна страсть
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 md:col-span-2 my-4 justify-center items-center flex">
+        <fa-icon [icon]="faArrowRightArrowLeft" class="text-5xl font-bold main-tertiary-color"></fa-icon>
+    </div>
+
+    <div class="col-span-12 md:col-span-5 my-2  mx-3 p-3 flex justify-center">
+      <div class="main-green-bg w-full md:w-11/12 shadow-2xl rounded-2xl p-3 ">
+        <div class=" text-center my-4">
+          <p class="text-lg md:text-2xl text-white font-bold">Полное тестировние</p>
+        </div>
+        <div class="relative text-right">
+          <div class="right-0 inline-block  justify-end my-5 hidden md:flex">
+            <div class="bubble-2 bubble-bottom-left-2 text-white font-bold italic w-8/12 md:w-6/12 text-sm" contenteditable>
+              Хочешь гранта готовься к ЕНТ
+            </div>
+          </div>
+          <div class="flex justify-center my-2">
+            <img class="max-w-[300px]" src="assets/images/many-mode.png">
+          </div>
+        </div>
+        <div class="grid grid-cols-12 p-4">
+          <div class="col-span-12 md:col-span-6 my-2">
+            <span class="text-sm text-white flex">
+              <fa-icon [icon]="faGraduationCap" class="mx-2"></fa-icon>
+              <p>Для тех кто хочет полноценно подготовиться к ЕНТ</p>
+            </span>
+          </div>
+          <div class="col-span-12 md:col-span-6 my-2">
+            <span class="text-sm text-white flex">
+              <fa-icon [icon]="faBook" class="mx-2"></fa-icon>
+              <p>Широкий выбор из 16 предметов</p>
+            </span>
+          </div>
+          <div class="col-span-12 md:col-span-6 my-2">
+            <span class="text-sm text-white flex">
+              <fa-icon [icon]="faStar" class="mx-2"></fa-icon>
+              <p>Работа над слабыми местами</p>
+            </span>
+          </div>
+          <div class="col-span-12 md:col-span-6 my-2">
+            <span class="text-sm text-white flex">
+              <fa-icon [icon]="faCircleQuestion" class="mx-2"></fa-icon>
+              <p>База из более чем 100к вопросов</p>
+            </span>
+          </div>
+        </div>
+        <div class="text-center">
+          <a [routerLink]="'/'+[RoutesName.passUnt]" class="focus:outline-none
+          inline-block my-2
+          text-white main-tertiary-bg
+          cursor-pointer
+          hover:!bg-[#eee]
+          font-bold
+          rounded-lg text-md md:text-lg px-5 py-2.5 mb-2">
+            🏆 Место, где выигрывают гранты!
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
