@@ -8,6 +8,7 @@ export enum RoutesName {
     passUnt = "dashboard/pass-unt",
     passUntSingle = "dashboard/single-subject-unt",
     passUntExam = "dashboard/pass-unt-exam",
+    resultUnt = "dashboard/unt-result",
     stepRoute = "step",
     subStepRoute = "sub-step",
 }

@@ -18,7 +18,7 @@ import {getAttemptAction} from "../../../shared/store/attempt/getAttempt/getAtte
 import {getAttemptSelector} from "../../../shared/store/attempt/getAttempt/getAttempt.selector";
 import {Attempt} from "../../../shared/models/attempt.model";
 import {Question} from "../../../shared/models/question.model";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {distinctUntilChanged, Subscription} from "rxjs";
 import {SlickCarouselComponent} from "ngx-slick-carousel";
 import {createAnswerAction} from "../../../shared/store/attempt/answer/answer.action";
@@ -42,6 +42,7 @@ import {appealTypesAction} from "../../../shared/store/appeal/appealTypes/appeal
 import {appealTypeSelector} from "../../../shared/store/appeal/appealTypes/appealTypes.selector";
 import {onCreateAppealAction} from "../../../shared/store/appeal/createAppeal/createAppeal.action";
 import {answerSelector} from "../../../shared/store/attempt/answer/answer.selector";
+import {finishAttemptAction} from "../../../shared/store/attempt/finishAttempt/finishAttempt.action";
 
 @Component({
   selector: 'app-pass-unt-exam',
@@ -61,6 +62,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     private subscription:Subscription = new Subscription();
     private _store = inject(Store);
     private _route = inject(ActivatedRoute)
+    private _router = inject(Router)
     public active_slider = 0;
     dialog = inject(NgxSmartModalService)
     public answeredResult:AnsweredResult = {};
@@ -112,7 +114,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     this._store.select(answerSelector).pipe(distinctUntilChanged((prev, curr) => prev.data?.question_id == curr.data?.question_id),autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         if(item.data.is_finished){
-          alert("we have finished");
+          this._router.navigate([RoutesName.resultUnt + "/" + this.attempt.attempt_id]).then(r => true);
         }
       }
     });
@@ -156,9 +158,8 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
 
   handleCountDownEvent(e: CountdownEvent) {
     if (e.action === 'notify') {
-      console.log(e);
+      this._store.dispatch(finishAttemptAction({requestData:this.attempt.attempt_id}));
     }
-
   }
 
   answerQuestion(questionId:number,answer:string){

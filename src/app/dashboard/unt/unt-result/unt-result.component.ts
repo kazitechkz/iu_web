@@ -34,6 +34,7 @@ import {onCreateAppealAction} from "../../../shared/store/appeal/createAppeal/cr
 import {answerSelector} from "../../../shared/store/attempt/answer/answer.selector";
 import {getStatAction} from "../../../shared/store/attempt/getStat/getStat.action";
 import {getStatSelector} from "../../../shared/store/attempt/getStat/getStat.selector";
+import {AttemptQuestion} from "../../../shared/models/attemptQuestion.model";
 
 @Component({
   selector: 'app-unt-result',
@@ -60,6 +61,7 @@ export class UntResultComponent {
   loading = false;
   //@ts-ignore
   public attempt:Attempt;
+  public attempt_question:AttemptQuestion[] = [];
   //@ts-ignore
   question_pagination:any;
 
@@ -76,11 +78,12 @@ export class UntResultComponent {
       this._store.dispatch(getStatAction({requestData:params["id"]}));
       this._store.select(getStatSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
         if(item.data){
-          this.attempt = item.data;
-          this.active_subject_id = (item.data.subject_questions.find(item => true))?.attempt_subject_id ?? 0;
-          this.questions = (item.data.subject_questions.find(item => true))?.question ?? [];
+          this.attempt = item.data.attempt;
+          this.attempt_question = item.data.attempt_questions;
+          this.active_subject_id = (item.data.attempt.subject_questions.find(item => true))?.attempt_subject_id ?? 0;
+          this.questions = (item.data.attempt.subject_questions.find(item => true))?.question ?? [];
           this.question_pagination = Array.from({ length: this.questions.length }, (value, index) => index);
-          this.getAttemptResult((item.data.subject_questions.find(item => true))?.attempt_subject_id??0);
+          this.getAttemptResult((item.data.attempt.subject_questions.find(item => true))?.attempt_subject_id??0);
         }
       });
     });

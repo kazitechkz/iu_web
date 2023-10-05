@@ -15,6 +15,7 @@ import {saveQuestionReducer} from "../../shared/store/attempt/saveQuestion/saveQ
 import {appealTypesReducer} from "../../shared/store/appeal/appealTypes/appealTypes.reducer";
 import {createAppealReducer} from "../../shared/store/appeal/createAppeal/createAppeal.reducer";
 import {getStatReducer} from "../../shared/store/attempt/getStat/getStat.reducer";
+import {finishAttemptReducer} from "../../shared/store/attempt/finishAttempt/finishAttempt.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -36,4 +37,5 @@ export const ReducersConstants = {
   appealType:appealTypesReducer,
   createAppeal:createAppealReducer,
   getUNTStat:getStatReducer,
+  finishAttempt:finishAttemptReducer,
 }
