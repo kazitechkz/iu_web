@@ -19,6 +19,7 @@ export enum APIRoutesName {
     saveQuestion = "save-question",
     appealTypes = "appeal-types",
     createAppeal = "create-appeal-question",
+    getSubStepExam = "get-step-tests"
 
 
 }

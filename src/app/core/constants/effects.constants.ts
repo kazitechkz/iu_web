@@ -16,6 +16,7 @@ import {GetFiftyFiftyEffect} from "../../shared/store/attempt/getFiftyFifty/getF
 import {SaveQuestionEffect} from "../../shared/store/attempt/saveQuestion/saveQuestion.effect";
 import {AppealTypesEffect} from "../../shared/store/appeal/appealTypes/appealTypes.effect";
 import {CreateAppealEffect} from "../../shared/store/appeal/createAppeal/createAppeal.effect";
+import {SubStepExamEffect} from "../../shared/store/step/exam/subStepExam.effect";
 import {GetStatEffect} from "../../shared/store/attempt/getStat/getStat.effect";
 import {FinishAttemptEffect} from "../../shared/store/attempt/finishAttempt/finishAttempt.effect";
 
@@ -38,6 +39,7 @@ export const EffectsConstants = [
     SaveQuestionEffect,
     AppealTypesEffect,
     CreateAppealEffect,
+    SubStepExamEffect,
     GetStatEffect,
     FinishAttemptEffect,
 ]

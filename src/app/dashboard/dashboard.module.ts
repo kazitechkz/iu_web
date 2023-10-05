@@ -19,6 +19,7 @@ import { SubStepComponent } from './step/sub-step/sub-step.component';
 import { SingleSubjectComponent } from './unt/single-subject/single-subject.component';
 import {CoreModule} from "../core/core.module";
 import {YouTubePlayerModule} from "@angular/youtube-player";
+import { ExamComponent } from './step/exam/exam.component';
 import { UntModeComponent } from './unt/unt-mode/unt-mode.component';
 import { UntResultComponent } from './unt/unt-result/unt-result.component';
 
@@ -35,6 +36,7 @@ import { UntResultComponent } from './unt/unt-result/unt-result.component';
         StepDetailComponent,
         SubStepComponent,
         SingleSubjectComponent,
+        ExamComponent,
         UntModeComponent,
         UntResultComponent,
     ],

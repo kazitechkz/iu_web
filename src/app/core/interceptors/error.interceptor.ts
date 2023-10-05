@@ -43,7 +43,12 @@ export class ErrorInterceptor implements HttpInterceptor {
                         this._routerService.navigateByUrl(RoutesName.notFound).then(null)
                     }
                     if (error.status === 500) {
+                      if (error.error.errors) {
+                        this._toastrService.error(error.error.errors, error.error.statusCode);
+                        this._toastrService.error(error.errors.message, error.error.statusCode);
+                      } else {
                         this._toastrService.error(error.error.message, error.error.statusCode);
+                      }
                         //const navigationExtras: NavigationExtras = {state: {error: error.error}}
                         // this.router.navigateByUrl('/server-error', navigationExtras);
                     }

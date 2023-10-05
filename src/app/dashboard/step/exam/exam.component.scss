@@ -1,0 +1,7 @@
+.scroll-x-container {
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #4DC591 #9BA1FF;
+  scroll-behavior: smooth;
+  /* postcss-scrollbar will add the -webkit version automatically! */
+}

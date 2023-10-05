@@ -14,6 +14,7 @@ import {getFiftyFiftyReducer} from "../../shared/store/attempt/getFiftyFifty/get
 import {saveQuestionReducer} from "../../shared/store/attempt/saveQuestion/saveQuestion.reducer";
 import {appealTypesReducer} from "../../shared/store/appeal/appealTypes/appealTypes.reducer";
 import {createAppealReducer} from "../../shared/store/appeal/createAppeal/createAppeal.reducer";
+import {subStepExamReducer} from "../../shared/store/step/exam/subStepExam.reducer";
 import {getStatReducer} from "../../shared/store/attempt/getStat/getStat.reducer";
 import {finishAttemptReducer} from "../../shared/store/attempt/finishAttempt/finishAttempt.reducer";
 
@@ -23,19 +24,20 @@ export const ReducersConstants = {
   sendResetToken: sendResetTokenReducer,
   resetPassword: resetPasswordReducer,
   me: accountReducer,
-  subjects:subjectReducer,
-  getAttempt:getAttemptReducer,
+  subjects: subjectReducer,
+  getAttempt: getAttemptReducer,
   steps: stepReducer,
   stepDetail: stepDetailReducer,
   subSteps: subStepReducer,
-  createAttempt:createAttemptReducer,
+  createAttempt: createAttemptReducer,
   subStepDetail: subStepDetailReducer,
-  answer:answerReducer,
-  answeredResult:answeredResultReducer,
-  getFiftyFifty:getFiftyFiftyReducer,
-  saveQuestion:saveQuestionReducer,
-  appealType:appealTypesReducer,
-  createAppeal:createAppealReducer,
-  getUNTStat:getStatReducer,
-  finishAttempt:finishAttemptReducer,
+  subStepExam: subStepExamReducer,
+  answer: answerReducer,
+  answeredResult: answeredResultReducer,
+  getFiftyFifty: getFiftyFiftyReducer,
+  saveQuestion: saveQuestionReducer,
+  appealType: appealTypesReducer,
+  createAppeal: createAppealReducer,
+  getUNTStat: getStatReducer,
+  finishAttempt: finishAttemptReducer,
 }

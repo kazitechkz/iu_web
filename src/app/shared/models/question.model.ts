@@ -32,3 +32,10 @@ export interface Context {
   updated_at: string;
   deleted_at: null;
 }
+
+export interface SubStepExamModel {
+  id: number
+  sub_step_id: number
+  question_id: number
+  question: Question
+}

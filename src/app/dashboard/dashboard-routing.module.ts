@@ -9,6 +9,7 @@ import {PassUntExamComponent} from "./unt/pass-unt-exam/pass-unt-exam.component"
 import {StepDetailComponent} from "./step/step-detail/step-detail.component";
 import {SubStepComponent} from "./step/sub-step/sub-step.component";
 import {SingleSubjectComponent} from "./unt/single-subject/single-subject.component";
+import {ExamComponent} from "./step/exam/exam.component";
 import {UntModeComponent} from "./unt/unt-mode/unt-mode.component";
 import {UntResultComponent} from "./unt/unt-result/unt-result.component";
 
@@ -55,6 +56,10 @@ const routes: Routes = [
       {
         path: 'sub-step/:id',
         component: SubStepComponent,
+      },
+      {
+        path: 'sub-step-exam/:sub_step_id/:locale_id',
+        component: ExamComponent,
       },
     ]
   }
