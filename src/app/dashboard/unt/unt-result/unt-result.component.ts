@@ -1,17 +1,12 @@
 import {Component, DestroyRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {faClock, faLightbulb, faDice, faStar, faBug, faForwardFast, faBackwardFast, faCheck, faHandshake, faFaceFrownOpen, faClover} from "@fortawesome/free-solid-svg-icons";
-import {CountdownConfig, CountdownEvent} from "ngx-countdown";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {Store} from "@ngrx/store";
-import {getAttemptAction} from "../../../shared/store/attempt/getAttempt/getAttempt.action";
-import {getAttemptSelector} from "../../../shared/store/attempt/getAttempt/getAttempt.selector";
 import {Attempt} from "../../../shared/models/attempt.model";
 import {Question} from "../../../shared/models/question.model";
 import {ActivatedRoute} from "@angular/router";
-import {distinctUntilChanged, Subscription} from "rxjs";
 import {SlickCarouselComponent} from "ngx-slick-carousel";
-import {createAnswerAction} from "../../../shared/store/attempt/answer/answer.action";
 import {AnsweredResult} from "../../../shared/store/attempt/answeredResult/answeredResult";
 import {onAnsweredResultAction} from "../../../shared/store/attempt/answeredResult/answerResult.action";
 import {AnsweredResultRequest} from "../../../shared/store/attempt/answeredResult/answerResult.request";
@@ -23,18 +18,16 @@ import {ImageHelper} from "../../../core/helpers/image.helper";
 import {NgxSmartModalService} from "ngx-smart-modal";
 import {SaveQuestionRequest} from "../../../shared/store/attempt/saveQuestion/saveQuestion.request";
 import {onSaveQuestionAction} from "../../../shared/store/attempt/saveQuestion/saveQuestion.action";
-import {GetFiftyFiftyModel} from "../../../shared/store/attempt/getFiftyFifty/getFiftyFifty.model";
-import {GetFiftyFiftyRequest} from "../../../shared/store/attempt/getFiftyFifty/getFiftyFifty.request";
-import {onGetFiftyFiftyAction} from "../../../shared/store/attempt/getFiftyFifty/getFiftyFifty.action";
-import {getFiftyFiftySelector} from "../../../shared/store/attempt/getFiftyFifty/getFiftyFifty.selector";
 import {AppealType} from "../../../shared/models/appealType.model";
 import {appealTypesAction} from "../../../shared/store/appeal/appealTypes/appealTypes.action";
 import {appealTypeSelector} from "../../../shared/store/appeal/appealTypes/appealTypes.selector";
 import {onCreateAppealAction} from "../../../shared/store/appeal/createAppeal/createAppeal.action";
-import {answerSelector} from "../../../shared/store/attempt/answer/answer.selector";
 import {getStatAction} from "../../../shared/store/attempt/getStat/getStat.action";
 import {getStatSelector} from "../../../shared/store/attempt/getStat/getStat.selector";
 import {AttemptQuestion} from "../../../shared/models/attemptQuestion.model";
+import {Subscription} from "rxjs";
+import {AttemptModel} from "../../../shared/models/attempt";
+import {CountdownConfig} from "ngx-countdown";
 
 @Component({
   selector: 'app-unt-result',
@@ -53,7 +46,6 @@ export class UntResultComponent {
   public answered_questions:{[key: number]: any}= {};
   //@ts-ignore
   @ViewChild('slickModal') slickModal: SlickCarouselComponent;
-
   destroyRef = inject(DestroyRef);
   questions:Question[] = [];
   //@ts-ignore
@@ -61,10 +53,16 @@ export class UntResultComponent {
   loading = false;
   //@ts-ignore
   public attempt:Attempt;
+  //@ts-ignore
+  public result:AttemptModel;
   public attempt_question:AttemptQuestion[] = [];
   //@ts-ignore
   question_pagination:any;
-
+  timeConfig:CountdownConfig = {
+    // @ts-ignore
+    leftTime:180,
+    demand:true
+  }
   ngOnInit(): void {
     this.getAttempt();
     this.getAppealTypes();
@@ -79,7 +77,11 @@ export class UntResultComponent {
       this._store.select(getStatSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
         if(item.data){
           this.attempt = item.data.attempt;
+          this.result = item.data.result;
           this.attempt_question = item.data.attempt_questions;
+          this.timeConfig.leftTime = (item.data.result.time - item.data.result.time_left)/1000;
+
+          this.timeConfig.stopTime;
           this.active_subject_id = (item.data.attempt.subject_questions.find(item => true))?.attempt_subject_id ?? 0;
           this.questions = (item.data.attempt.subject_questions.find(item => true))?.question ?? [];
           this.question_pagination = Array.from({ length: this.questions.length }, (value, index) => index);
@@ -146,6 +148,7 @@ export class UntResultComponent {
 
 
   is_answered(answer:string){
+    this.is_correct(answer);
     let index = this.questions[this.active_slider].id;
     if(this.answered_questions[index]){
       return this.answered_questions[index].answers.includes(answer);
@@ -155,6 +158,69 @@ export class UntResultComponent {
     }
     return false;
   }
+
+
+  is_correct(answer:string){
+    let correct_answers = this.questions[this.active_slider].correct_answers?.split(",");
+    if(correct_answers){
+      return correct_answers.includes(answer);
+    }
+    return false;
+  }
+
+  is_answered_correct(answer:string){
+    let correct_answers = this.questions[this.active_slider].correct_answers?.split(",");
+    if(correct_answers){
+      return correct_answers.includes(answer);
+    }
+    return false;
+
+  }
+
+  get_answer_style(answer:string){
+    let right_but_not_answered = {'border-green-400':true,'border-2':true};
+    let right_answered = {'text-white':true,'main-green-bg':true,'border-green-500':true};
+    let not_right_answered = {'text-white':true,'bg-red-500':true,'border-red-500':true};
+
+    //Проверяем ответил ли пользователь на данный вопрос
+    if (this.is_answered(answer)){
+      //Проверяем верно ли или нет
+        return  this.is_answered_correct(answer) ? right_answered : not_right_answered;
+    }
+    else{
+      return  this.is_answered_correct(answer) ? right_but_not_answered : {};
+    }
+  }
+
+  get_question_result(activeSlider:number|null = null):number{
+    let customActiveSlider = activeSlider ?? this.active_slider;
+    return this.attempt_question.find(item=>item.question_id == this.questions[customActiveSlider].id)?.point ??0;
+  }
+
+  get_question_result_style(activeSlider:number|null = null){
+      let customActiveSlider = activeSlider ?? this.active_slider;
+      let point = this.get_question_result(customActiveSlider);
+      let not_right = {'text-white':true,'bg-red-500':true,'border-red-500':true};
+      let already_answered = {'text-white':true,'bg-yellow-500':true,'border-yellow-500':true};
+      let right_answered = {'text-white':true,'bg-green-500':true,'border-green-500':true};
+      let type_id = this.questions[customActiveSlider].type_id;
+      if(type_id != 3){
+        return point > 0 ? right_answered : not_right;
+      }
+      else{
+          if(point == 2){
+            return  right_answered;
+          }
+          if(point == 1){
+            return already_answered;
+          }
+          return not_right;
+      }
+  }
+
+
+
+
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -261,19 +327,13 @@ export class UntResultComponent {
 
 
   protected readonly StrHelper = StrHelper;
-  protected readonly ColorConstants = ColorConstants;
   protected readonly ImageHelper = ImageHelper;
-  protected readonly faHandshake = faHandshake;
-  protected readonly prompt = prompt;
   protected readonly faFaceFrownOpen = faFaceFrownOpen;
-  protected readonly faClover = faClover;
-  protected readonly faClock = faClock;
   protected readonly faLightbulb = faLightbulb;
-  protected readonly faDice = faDice;
   protected readonly faStar = faStar;
   protected readonly faBug = faBug;
   protected readonly faBackwardFast = faBackwardFast;
   protected readonly faForwardFast = faForwardFast;
   protected readonly RoutesName = RoutesName;
-  protected readonly faCheck = faCheck;
+  protected readonly faClock = faClock;
 }

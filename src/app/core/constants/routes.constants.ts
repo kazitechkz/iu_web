@@ -12,5 +12,4 @@ export enum RoutesName {
     stepRoute = "step",
     subStepRoute = "sub-step",
     subStepExam = "sub-step-exam",
-    subStepRoute = "sub-step",
 }

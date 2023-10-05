@@ -5,7 +5,13 @@
         <p class="md:text-5xl font-bold text-white my-2 px-1">
           Результат ЕНТ
         </p>
-
+        <div class="md:text-5xl font-bold text-white mb-2 mt-5 px-1 flex justify-center">
+          <fa-icon [icon]="faClock" class="mr-3"></fa-icon>
+          <countdown  [config]="timeConfig"></countdown>
+        </div>
+        <p class="md:text-5xl font-bold text-white my-2 px-1">
+          {{result.points}} / {{result.max_points}}
+        </p>
       </div>
     </div>
     <div class="grid grid-cols-12">
@@ -30,11 +36,7 @@
               class="rounded-full w-14 h-14 flex justify-center items-center
                 bg-[#9295A3]
               text-2xl text-white font-bold"
-              [ngClass]="{
-                  'bg-[#9BA1FF]': (answered_questions.hasOwnProperty(questions[questionNumber].id) || (answeredResult[questions[questionNumber].id])),
-                  'bg-[#9295A3]': (active_slider != questionNumber),
-                  'bg-[#FF7648]': (active_slider == questionNumber),
-              }"
+              [ngClass]="get_question_result_style(questionNumber)"
               type="button"
             >
               {{questionNumber + 1}}
@@ -84,10 +86,7 @@
           <!-- A Answer-->
           <section>
             <div
-                 [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('a')? true : false,
-                'text-white': is_answered('a')? true : false,
-             }"
+              [ngClass]="get_answer_style('a')"
                  class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                  *ngIf="questions[active_slider].answer_a">
               <div [innerHTML]="questions[active_slider].answer_a"></div>
@@ -97,10 +96,7 @@
           <!-- B Answer-->
           <section>
             <div
-                 [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('b')? true : false,
-                'text-white': is_answered('b')? true : false,
-             }"
+                [ngClass]="get_answer_style('b')"
                  class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                  *ngIf="questions[active_slider].answer_b">
               <div [innerHTML]="questions[active_slider].answer_b"></div>
@@ -110,10 +106,7 @@
           <!-- C Answer-->
           <section>
             <div
-                 [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('c')? true : false,
-                'text-white': is_answered('c')? true : false,
-             }"
+                 [ngClass]="get_answer_style('c')"
                  class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                  *ngIf="questions[active_slider].answer_c">
               <div [innerHTML]="questions[active_slider].answer_c"></div>
@@ -123,11 +116,8 @@
           <!-- D Answer-->
           <section>
             <div
-                 [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('d')? true : false,
-                'text-white': is_answered('d')? true : false,
-             }"
-                 class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
+              [ngClass]="get_answer_style('d')"
+              class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                  *ngIf="questions[active_slider].answer_d">
               <div [innerHTML]="questions[active_slider].answer_d"></div>
             </div>
@@ -136,11 +126,9 @@
           <!-- E Answer-->
           <section>
             <div
-                 [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('e')? true : false,
-                'text-white': is_answered('e')? true : false,
-             }"
-                 class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
+              [ngClass]="get_answer_style('e')"
+
+              class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                  *ngIf="questions[active_slider].answer_e">
               <div [innerHTML]="questions[active_slider].answer_e"></div>
             </div>
@@ -149,10 +137,7 @@
           <!-- F Answer-->
           <section>
             <div
-                 [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('f')? true : false,
-                'text-white': is_answered('f')? true : false,
-             }"
+              [ngClass]="get_answer_style('f')"
                  class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                  *ngIf="questions[active_slider].answer_f">
               <div [innerHTML]="questions[active_slider].answer_f"></div>
@@ -162,10 +147,7 @@
           <!-- G Answer-->
           <section>
             <div
-                 [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('g')? true : false,
-                'text-white': is_answered('g')? true : false,
-             }"
+                [ngClass]="get_answer_style('g')"
                  class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                  *ngIf="questions[active_slider].answer_g">
               <div [innerHTML]="questions[active_slider].answer_g"></div>
@@ -175,10 +157,7 @@
           <!-- H Answer-->
           <section>
             <div
-                 [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('h')? true : false,
-                'text-white': is_answered('h')? true : false,
-             }"
+              [ngClass]="get_answer_style('h')"
                  class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                  *ngIf="questions[active_slider].answer_h">
               <div [innerHTML]="questions[active_slider].answer_h"></div>
@@ -236,7 +215,14 @@
 
         </button>
       </div>
-      <div class="col-span-12 md:col-span-4 p-4">
+      <div class="col-span-12 md:col-span-4 p-4 flex justify-center">
+        <button
+          class="rounded-full w-24 h-24 flex justify-center items-center text-4xl text-white font-bold"
+          [ngClass]="get_question_result_style()"
+          type="button"
+        >
+          {{this.get_question_result()}}
+        </button>
       </div>
       <div class="col-span-12 md:col-span-4 p-4">
         <button type="button" class="
