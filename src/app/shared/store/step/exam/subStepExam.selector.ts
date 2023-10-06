@@ -7,3 +7,9 @@ const get_sub_step_exam_state = createFeatureSelector<ResponseData<SubStepExamMo
 export const getSubStepExamState = createSelector(get_sub_step_exam_state, (state) => {
     return state;
 })
+
+const pass_sub_step_exam_state = createFeatureSelector<ResponseData<boolean>>('passSubStepExam');
+
+export const passSubStepExamState = createSelector(pass_sub_step_exam_state, (state) => {
+    return state;
+})

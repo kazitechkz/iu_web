@@ -9,3 +9,9 @@ export const subStepExamActionSuccess = createAction(SubStepExamActionTypes.OnSu
     responseData: ResponseData<SubStepExamModel[]>
 }>());
 export const subStepExamActionFailure = createAction(SubStepExamActionTypes.OnSubStepExamFailure, props<{ errors: any }>());
+
+export const passSubStepExamAction = createAction(SubStepExamActionTypes.passSubStepExam, props<{ requestData: any }>());
+export const passSubStepExamActionSuccess = createAction(SubStepExamActionTypes.passSubStepExamSuccess, props<{
+    responseData: ResponseData<boolean>
+}>());
+export const passSubStepExamActionFailure = createAction(SubStepExamActionTypes.passSubStepExamFailure, props<{ errors: any }>());

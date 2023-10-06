@@ -14,8 +14,12 @@ import {SubStepExamRequest} from "./subStepExam.request";
 export class SubStepExamService {
     private _http = inject(HttpClient)
 
-    getStepExam(req: SubStepExamRequest): Observable<ResponseData<SubStepExamModel[]>> {
+    getStepExam(req: SubStepExamRequest) {
         return this._http.get<ResponseData<SubStepExamModel[]>>(environment.baseUrl + APIRoutesName.getSubStepExam + "/" + req.sub_step_id + "/" + req.locale_id);
+    }
+
+    passStepExam(req: any) {
+      return this._http.post<ResponseData<boolean>>(environment.baseUrl + APIRoutesName.passSubStepExam, req);
     }
 
 }
