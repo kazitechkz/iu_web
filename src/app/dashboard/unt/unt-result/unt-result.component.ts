@@ -34,7 +34,7 @@ import {CountdownConfig} from "ngx-countdown";
   templateUrl: './unt-result.component.html',
   styleUrls: ['./unt-result.component.scss']
 })
-export class UntResultComponent {
+export class UntResultComponent implements  OnInit, OnDestroy{
   private subscription:Subscription = new Subscription();
   private _store = inject(Store);
   private _route = inject(ActivatedRoute)
@@ -80,7 +80,6 @@ export class UntResultComponent {
           this.result = item.data.result;
           this.attempt_question = item.data.attempt_questions;
           this.timeConfig.leftTime = (item.data.result.time - item.data.result.time_left)/1000;
-
           this.timeConfig.stopTime;
           this.active_subject_id = (item.data.attempt.subject_questions.find(item => true))?.attempt_subject_id ?? 0;
           this.questions = (item.data.attempt.subject_questions.find(item => true))?.question ?? [];

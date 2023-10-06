@@ -14,7 +14,7 @@ export class GetStatEffect {
   private _service = inject(GetStatService);
   private action$ = inject(Actions);
 
-  _onGetAttempt = createEffect((): any =>
+  _onGetStat= createEffect((): any =>
     this.action$.pipe(
       ofType(getStatAction),
       switchMap((action) => {

@@ -6,6 +6,7 @@ import {TranslateLoader, TranslateModule, TranslateStore} from "@ngx-translate/c
 import {ToastrModule} from "ngx-toastr";
 import { TruncatePipe } from './pipes/truncate.pipe';
 import {GlobalTranslatePipe} from "./pipes/globalTranslate.pipe";
+import {MathJaxPipe} from "./pipes/mathJax.pipe";
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/locale/', '.json');
@@ -14,7 +15,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
     declarations: [
     GlobalTranslatePipe,
-    TruncatePipe
+    TruncatePipe,
+      MathJaxPipe,
   ],
     imports: [
         CommonModule,
@@ -28,10 +30,11 @@ export function HttpLoaderFactory(http: HttpClient) {
             }
         }),
     ],
-    providers: [TranslateStore, GlobalTranslatePipe, TruncatePipe],
+    providers: [TranslateStore, GlobalTranslatePipe, TruncatePipe,],
   exports: [
     TranslateModule,
-    GlobalTranslatePipe
+    GlobalTranslatePipe,
+    MathJaxPipe,
   ]
 })
 export class CoreModule {

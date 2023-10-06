@@ -27,6 +27,7 @@ export class CreateAttemptEffect {
       switchMap((action) => {
         return this._service.createAttempt(action.requestData).pipe(
           switchMap(data => {
+            this._route.navigate([RoutesName.passUntExam + "/" + data.data?.attempt_id ?? 0])
               return of(
                 createAttemptActionSuccess({responseData: data}),
               )
@@ -40,14 +41,4 @@ export class CreateAttemptEffect {
     ),
   );
 
-  createAttemptSuccess$ = createEffect(
-    () => {
-      return this.action$.pipe(
-        ofType(createAttemptActionSuccess),
-        // @ts-ignore
-        exhaustMap((action) => this._route.navigate([RoutesName.passUntExam + "/" + action.responseData.data.attempt_id ?? 0]))
-      );
-    },
-    {dispatch: false}
-  );
 }

@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, DestroyRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {
   faClock,
   faLightbulb,
@@ -69,6 +69,8 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     public fiftyFiftyResult:GetFiftyFiftyModel = {};
     public appealTypes:AppealType[] = [];
     public appealRequest = {type_id:0,question_id:0,message:""};
+    //@ts-ignore
+    public actual_question:Question;
 
     public answered_questions:{[key: number]: any}= {};
     //@ts-ignore
@@ -87,7 +89,6 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
   ngOnInit(): void {
     this.getAttempt();
     this.getAppealTypes();
-    this.checkResult();
     initFlowbite();
   }
 
@@ -101,6 +102,8 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
           this.attempt = item.data;
           this.active_subject_id = (item.data.subject_questions.find(item => true))?.attempt_subject_id ?? 0;
           this.questions = (item.data.subject_questions.find(item => true))?.question ?? [];
+          //@ts-ignore
+          this.actual_question = (item.data.subject_questions.find(item => true))?.question[0];
           this.timeConfig.leftTime = item.data.time_left/1000
           this.question_pagination = Array.from({ length: this.questions.length }, (value, index) => index);
           this.getAttemptResult((item.data.subject_questions.find(item => true))?.attempt_subject_id??0);
@@ -113,8 +116,8 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
   checkResult(){
     this._store.select(answerSelector).pipe(distinctUntilChanged((prev, curr) => prev.data?.question_id == curr.data?.question_id),autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
-        if(item.data.is_finished){
-          this._router.navigate([RoutesName.resultUnt + "/" + this.attempt.attempt_id]).then(r => true);
+        if(item.data.is_finished === true){
+         this._router.navigate([RoutesName.resultUnt + "/" + this.attempt.attempt_id]).then(r => true);
         }
       }
     });
@@ -141,6 +144,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
   }
 
   changeSubject(subject_id:any){
+    this.slickModal.slickGoTo(0);
     this.loading = true;
       subject_id = subject_id.target.value;
     this.active_subject_id = (this.attempt.subject_questions.find(item => item.attempt_subject_id == subject_id))?.attempt_subject_id ?? 0;
@@ -234,6 +238,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
       request.answers = request.answers.join(',');
       this._store.dispatch(createAnswerAction({requestData:request}));
       this.getAttemptResult(this.active_subject_id);
+      this.checkResult();
       this.next();
     }
   }
@@ -263,7 +268,9 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
 
   //Open Modal
 
-
+  setActualQuestion(){
+    this.actual_question = this.questions[this.active_slider];
+  }
 
   //Sliders
   goToSlider(slideNo:number){
@@ -271,6 +278,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
   }
   changeSlider($event:any){
     this.active_slider = $event.currentSlide;
+    this.setActualQuestion();
   }
   next() {
     this.slickModal.slickNext();

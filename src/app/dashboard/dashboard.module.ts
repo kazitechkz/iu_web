@@ -40,20 +40,20 @@ import { UntResultComponent } from './unt/unt-result/unt-result.component';
         UntModeComponent,
         UntResultComponent,
     ],
-    imports: [
-        CommonModule,
-        DashboardRoutingModule,
-        SharedModule,
-        FontAwesomeModule,
-        SlickCarouselModule,
-        Select2Module,
-        UiSwitchModule,
-        CountdownComponent,
-        MarkdownModule,
-        NgxSmartModalModule,
-        CoreModule,
-        YouTubePlayerModule
-    ]
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    SharedModule,
+    FontAwesomeModule,
+    SlickCarouselModule,
+    Select2Module,
+    UiSwitchModule,
+    CountdownComponent,
+    MarkdownModule,
+    NgxSmartModalModule,
+    CoreModule,
+    YouTubePlayerModule,
+  ]
 })
 export class DashboardModule {
 }

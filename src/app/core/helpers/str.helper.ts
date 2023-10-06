@@ -19,4 +19,12 @@ export class StrHelper {
       return 1
     }
   }
+
+
+  public static toMathJax(input_string:string):string{
+    let output_string = "";
+    output_string = input_string.replaceAll("<pre>", "$$")
+    output_string = output_string.replaceAll("</pre>", "$$")
+    return output_string;
+  }
 }

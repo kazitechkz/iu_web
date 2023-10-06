@@ -21,12 +21,13 @@ import {NgxSmartModalModule} from "ngx-smart-modal";
 
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {MarkdownModule} from "ngx-markdown";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
 }
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +39,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SlickCarouselModule,
     CountdownModule,
     UiSwitchModule,
+    MarkdownModule.forRoot(),
     StoreModule.forRoot(ReducersConstants),
     EffectsModule.forRoot(EffectsConstants),
     NgxSmartModalModule.forRoot(),
