@@ -12,6 +12,7 @@ import {SingleSubjectComponent} from "./unt/single-subject/single-subject.compon
 import {ExamComponent} from "./step/exam/exam.component";
 import {UntModeComponent} from "./unt/unt-mode/unt-mode.component";
 import {UntResultComponent} from "./unt/unt-result/unt-result.component";
+import {ResultExamComponent} from "./step/result-exam/result-exam.component";
 
 
 const routes: Routes = [
@@ -60,6 +61,10 @@ const routes: Routes = [
       {
         path: 'sub-step-exam/:sub_step_id/:locale_id',
         component: ExamComponent,
+      },
+      {
+        path: 'result-exam/:sub_step_id/:locale_id',
+        component: ResultExamComponent,
       },
     ]
   }

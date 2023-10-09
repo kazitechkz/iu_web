@@ -28,8 +28,8 @@
                   <div class="w-full bg-neutral-200 text-black">
                     <div
                       class="bg-primary p-0.5 text-center text-xs font-medium leading-none italic"
-                      [ngStyle]="{'width': step.progress + '%', 'background-color': ColorConstants.primaryColor}">
-                      {{step.progress}}%
+                      [ngStyle]="{'width': step.progress_kk + '%', 'background-color': ColorConstants.primaryColor}">
+                      {{step.progress_kk}}%
                     </div>
                   </div>
                 </div>
@@ -46,15 +46,15 @@
                 <div *ngIf="!step.is_free" class="circle bg-no-repeat bg-bottom bg-contain"
                      [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}"></div>
                 <div class="st-content">
-                  {{step | globalTranslate: 'title': translate.currentLang}}
+                  {{ step | globalTranslate: 'title': translate.currentLang }}
                 </div>
 
                 <div class="mt-4 flex justify-between items-center px-5 w-full [direction:ltr]">
                   <div class="w-full bg-neutral-200 text-black">
                     <div
                       class="bg-primary p-0.5 text-center text-xs font-medium leading-none italic"
-                      [ngStyle]="{'width': step.progress + '%', 'background-color': ColorConstants.primaryColor}">
-                      {{step.progress}}%
+                      [ngStyle]="{'width': StrHelper.getProgressByCurrentLang(step, translate.currentLang) + '%', 'background-color': ColorConstants.primaryColor}">
+                      {{ step | globalTranslate: 'progress' : translate.currentLang }}%
                     </div>
                   </div>
                 </div>
@@ -78,10 +78,10 @@
                         <div class="flex justify-between items-center">
                           <div class="w-full pr-3">
                             <div class="h-1 w-full bg-neutral-200">
-                              <div class="h-1" [ngStyle]="{'width': subStep.progress + '%', 'background-color': ColorConstants.primaryColor}"></div>
+                              <div class="h-1" [ngStyle]="{'width': StrHelper.getProgressByCurrentLang(subStep, translate.currentLang) + '%', 'background-color': ColorConstants.primaryColor}"></div>
                             </div>
                           </div>
-                          <p class="text-sm font-medium">{{subStep.progress}}%</p>
+                          <p class="text-sm font-medium">{{subStep | globalTranslate: 'progress' : translate.currentLang}}%</p>
                         </div>
                         <!--                      <p class="text-xs text-neutral-500">-->
                         <!--                        Last updated 3 mins ago-->

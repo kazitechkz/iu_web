@@ -17,6 +17,7 @@ import {createAppealReducer} from "../../shared/store/appeal/createAppeal/create
 import {passSubStepExamReducer, subStepExamReducer} from "../../shared/store/step/exam/subStepExam.reducer";
 import {getStatReducer} from "../../shared/store/attempt/getStat/getStat.reducer";
 import {finishAttemptReducer} from "../../shared/store/attempt/finishAttempt/finishAttempt.reducer";
+import {resultExamReducer} from "../../shared/store/step/resultExam/resultExam.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -41,4 +42,5 @@ export const ReducersConstants = {
   createAppeal: createAppealReducer,
   getUNTStat: getStatReducer,
   finishAttempt: finishAttemptReducer,
+  resultStepExam: resultExamReducer
 }

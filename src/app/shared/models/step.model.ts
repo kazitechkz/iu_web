@@ -12,7 +12,8 @@ export interface Steps {
   is_free: boolean
   is_active: boolean
   image: Image | null
-  progress: number
+  progress_kk: number
+  progress_ru: number
 }
 export interface StepModel {
   id: number
