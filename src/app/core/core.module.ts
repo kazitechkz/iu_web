@@ -7,6 +7,7 @@ import {ToastrModule} from "ngx-toastr";
 import { TruncatePipe } from './pipes/truncate.pipe';
 import {GlobalTranslatePipe} from "./pipes/globalTranslate.pipe";
 import {MathJaxPipe} from "./pipes/mathJax.pipe";
+import {FusionChartsModule} from "angular-fusioncharts";
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/locale/', '.json');

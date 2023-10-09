@@ -13,6 +13,7 @@ import {ExamComponent} from "./step/exam/exam.component";
 import {UntModeComponent} from "./unt/unt-mode/unt-mode.component";
 import {UntResultComponent} from "./unt/unt-result/unt-result.component";
 import {ResultExamComponent} from "./step/result-exam/result-exam.component";
+import {UntStatComponent} from "./unt/unt-stat/unt-stat.component";
 
 
 const routes: Routes = [
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path: 'unt-result/:id',
         component: UntResultComponent
+      },
+      {
+        path: 'unt-statistics',
+        component: UntStatComponent
       },
       {
         path: 'step',
