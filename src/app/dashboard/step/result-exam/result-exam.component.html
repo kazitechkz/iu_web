@@ -1,0 +1,53 @@
+<div class="container my-10 mx-auto md:px-6">
+  <div
+    class="mb-3 inline-flex w-full items-center rounded-lg bg-success-100 px-6 py-5 text-base text-success-700"
+    role="alert">
+  <span class="mr-2">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      class="h-5 w-5">
+      <path
+        fill-rule="evenodd"
+        d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z"
+        clip-rule="evenodd" />
+    </svg>
+  </span>
+    {{results?.is_right}} / {{results?.count}}
+  </div>
+  <div *ngFor="let question of results?.questions"
+       class="block rounded-lg bg-white p-6 my-3 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+    <h5
+      class="mb-2 text-xl font-medium leading-tight text-neutral-800">
+      {{question.question.text}}
+    </h5>
+    <div class="my-2" *ngIf="question.question.context" [innerHTML]="question.question.context.context"></div>
+    <div class="my-5">
+      <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+        <label
+          class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('a', question.result.user_answer, question.result.is_right)}">
+          {{question.question.answer_a}}
+        </label>
+      </div>
+      <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+        <label
+          class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('b', question.result.user_answer, question.result.is_right)}">
+          {{question.question.answer_b}}
+        </label>
+      </div>
+      <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+        <label
+          class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('c', question.result.user_answer, question.result.is_right)}">
+          {{question.question.answer_c}}
+        </label>
+      </div>
+      <div  class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+        <label
+          class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('d', question.result.user_answer, question.result.is_right)}">
+          {{question.question.answer_d}}
+        </label>
+      </div>
+    </div>
+  </div>
+</div>

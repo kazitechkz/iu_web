@@ -20,6 +20,17 @@ export class StrHelper {
     }
   }
 
+  public static getProgressByCurrentLang(value: any, lang: string | null): number {
+    if (lang != null) {
+      if (lang == 'kk') {
+        return value.progress_kk
+      } else {
+        return value.progress_ru
+      }
+    } else {
+      return value.progress_kk
+    }
+  }
 
   public static toMathJax(input_string:string):string{
     let output_string = "";

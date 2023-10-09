@@ -22,6 +22,7 @@ import {YouTubePlayerModule} from "@angular/youtube-player";
 import { ExamComponent } from './step/exam/exam.component';
 import { UntModeComponent } from './unt/unt-mode/unt-mode.component';
 import { UntResultComponent } from './unt/unt-result/unt-result.component';
+import { ResultExamComponent } from './step/result-exam/result-exam.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { UntResultComponent } from './unt/unt-result/unt-result.component';
         ExamComponent,
         UntModeComponent,
         UntResultComponent,
+        ResultExamComponent,
     ],
   imports: [
     CommonModule,

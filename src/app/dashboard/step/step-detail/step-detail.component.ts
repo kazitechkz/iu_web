@@ -49,7 +49,7 @@ export class StepDetailComponent implements OnInit {
 
   getStepDetail() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
-      this._store.dispatch(stepDetailAction({requestData: params['id']}))
+      this._store.dispatch(stepDetailAction({ requestData: params['id'] }))
       this._store.select(getStepDetailState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         this.steps = item.data
       })
@@ -58,7 +58,7 @@ export class StepDetailComponent implements OnInit {
 
   getSubjects(){
     this._store.dispatch(subjectGetAction());
-    this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+    this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=> {
       if(item.data){
         this.subjects = item.data;
       }

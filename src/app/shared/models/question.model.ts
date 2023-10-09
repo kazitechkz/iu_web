@@ -38,4 +38,11 @@ export interface SubStepExamModel {
   sub_step_id: number
   question_id: number
   question: Question
+  result: SubStepExamResult
+}
+
+export interface SubStepExamResult {
+  id: number
+  is_right: boolean
+  user_answer: string
 }

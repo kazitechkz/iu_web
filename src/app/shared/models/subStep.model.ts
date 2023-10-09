@@ -14,5 +14,15 @@ export interface SubStepModel {
   is_active: number
   sub_step_content: SubStepContentModel | null
   sub_step_video: SubStepVideoModel | null
-  progress: number
+  sub_step_result: SubResult[]
+  progress_kk: number
+  progress_ru: number
+}
+
+export interface SubResult {
+  id: number
+  locale_id: number
+  sub_step_id: number
+  user_id: number
+  user_point: number
 }

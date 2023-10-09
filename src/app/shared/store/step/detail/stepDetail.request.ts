@@ -1,3 +1,4 @@
 export interface StepDetailRequest {
-  id: number
+  step_id: number
+  locale_id: number
 }

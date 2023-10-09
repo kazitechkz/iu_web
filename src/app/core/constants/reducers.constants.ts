@@ -18,6 +18,7 @@ import {passSubStepExamReducer, subStepExamReducer} from "../../shared/store/ste
 import {getStatReducer} from "../../shared/store/attempt/getStat/getStat.reducer";
 import {finishAttemptReducer} from "../../shared/store/attempt/finishAttempt/finishAttempt.reducer";
 import {allAttemptReducer} from "../../shared/store/attempt/allAttempt/allAttempt.reducer";
+import {resultExamReducer} from "../../shared/store/step/resultExam/resultExam.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -43,4 +44,5 @@ export const ReducersConstants = {
   getUNTStat: getStatReducer,
   finishAttempt: finishAttemptReducer,
   allAttempt:allAttemptReducer,
+  resultStepExam: resultExamReducer
 }

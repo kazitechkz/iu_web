@@ -33,6 +33,13 @@ export class GlobalTranslatePipe implements PipeTransform {
             return value.text_kk
           }
         }
+        if (target == 'progress') {
+          if (limit != null) {
+            return this.truncate.transform(value.progress_kk, limit)
+          } else {
+            return value.progress_kk
+          }
+        }
       }
       if (currentLang == 'ru') {
         if (target == 'title') {
@@ -54,6 +61,13 @@ export class GlobalTranslatePipe implements PipeTransform {
             return this.truncate.transform(value.text_ru, limit)
           } else {
             return value.text_ru
+          }
+        }
+        if (target == 'progress') {
+          if (limit != null) {
+            return this.truncate.transform(value.progress_ru, limit)
+          } else {
+            return value.progress_ru
           }
         }
       }
