@@ -19,6 +19,7 @@ import {CreateAppealEffect} from "../../shared/store/appeal/createAppeal/createA
 import {PassSubStepExamEffect, SubStepExamEffect} from "../../shared/store/step/exam/subStepExam.effect";
 import {GetStatEffect} from "../../shared/store/attempt/getStat/getStat.effect";
 import {FinishAttemptEffect} from "../../shared/store/attempt/finishAttempt/finishAttempt.effect";
+import {AllAttemptEffect} from "../../shared/store/attempt/allAttempt/allAttempt.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -43,4 +44,5 @@ export const EffectsConstants = [
     PassSubStepExamEffect,
     GetStatEffect,
     FinishAttemptEffect,
+    AllAttemptEffect,
 ]

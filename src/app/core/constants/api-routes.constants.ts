@@ -10,6 +10,7 @@ export enum APIRoutesName {
     getSubSteps = "sub-steps",
     getSubStep = "sub-step",
     getAttemptById = "attempt_by",
+    userAttempts = "user-attempts",
     getStatAttemptById = "statistics-attempt-by",
     finishAttempt = "finish",
     createAttempt = "attempt",
@@ -20,5 +21,6 @@ export enum APIRoutesName {
     appealTypes = "appeal-types",
     createAppeal = "create-appeal-question",
     getSubStepExam = "get-step-tests",
-    passSubStepExam = "pass-step-test"
+    passSubStepExam = "pass-step-test",
+
 }
