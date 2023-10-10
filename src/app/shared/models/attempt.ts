@@ -1,3 +1,7 @@
+import {AttemptType} from "./attemptType.model";
+import {Locale} from "./locale.model";
+import {Subject} from "./subject.model";
+
 export interface AttemptModel{
   id: number
   type_id: number
@@ -9,8 +13,10 @@ export interface AttemptModel{
   points: number
   time: number
   time_left: number
+  attempt_type:AttemptType|null
+  subjects:Subject[]|null
+  locale:Locale|null
   deleted_at: Date|null
   created_at: Date
   updated_at: Date|null
-
 }

@@ -12,6 +12,7 @@ export enum APIRoutesName {
     getAttemptById = "attempt_by",
     userAttempts = "user-attempts",
     getStatAttemptById = "statistics-attempt-by",
+    getUntStat = "user-unt-statistics",
     finishAttempt = "finish",
     createAttempt = "attempt",
     answer = "answer",

@@ -127,7 +127,6 @@ export class UntResultComponent implements  OnInit, OnDestroy{
 
 
 
-
   saveQuestion(){
     let request = {questionId:this.questions[this.active_slider].id} as SaveQuestionRequest;
     this._store.dispatch(onSaveQuestionAction({requestData:request}));

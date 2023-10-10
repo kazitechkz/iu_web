@@ -12,5 +12,6 @@ export enum RoutesName {
     stepRoute = "step",
     subStepRoute = "sub-step",
     subStepExam = "sub-step-exam",
-    untStats = "dashboard/unt-statistics"
+    untStats = "dashboard/unt-statistics",
+    tournamentList = "dashboard/tournament-list",
 }

@@ -1,13 +1,13 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12 gap-3">
-    <div class="col-span-12 md:col-span-4 mx-3 p-4">
-      <div class="main-green-bg rounded-2xl p-4 shadow-lg md:flex items-center">
+    <div class="col-span-12 md:col-span-4 mx-3 p-4" *ngIf="untStat">
+      <div class="main-green-bg rounded-2xl p-4 shadow-lg md:flex items-center cursor-pointer">
         <div class="md:w-4/12 p-2 text-center">
           <img class="inline" src="assets/images/medal.png">
         </div>
         <div class="md:w-8/12 p-2">
           <p class="text-lg md:text-xl text-center md:text-left text-white font-bold">
-            Статистика по вашим результатам тестирования
+            Статистика по вашим результатам тестирования доступна тут
           </p>
         </div>
       </div>
@@ -21,7 +21,7 @@
             </div>
             <div class="md:w-8/12 p-4 break-words">
               <p class="text-md md:text-lg text-center md:text-left text-black font-bold">
-                150
+                {{untStat.attempt_count}}
               </p>
               <p class="text-sm md:text-md text-center md:text-left text-gray-400">
                 Всего
@@ -38,7 +38,7 @@
             </div>
             <div class="md:w-8/12 p-4 break-words">
               <p class="text-md md:text-lg text-center md:text-left text-black font-bold">
-                150000
+                {{untStat.attempt_question_count}}
               </p>
               <p class="text-sm md:text-md text-center md:text-left text-gray-400">
                 Вопросов пройдено
@@ -55,7 +55,7 @@
             </div>
             <div class="md:w-8/12 p-4 break-words">
               <p class="text-md md:text-lg text-center md:text-left text-black font-bold">
-                50
+                {{untStat.attempt_count_unfinished}}
               </p>
               <p class="text-sm md:text-md text-center md:text-left text-gray-400">
                 Незавершенно
@@ -72,7 +72,7 @@
             </div>
             <div class="md:w-8/12 p-4 break-words">
               <p class="text-md md:text-lg text-center md:text-left text-black font-bold">
-                40
+                {{untStat.average}}
               </p>
               <p class="text-sm md:text-md text-center md:text-left text-gray-400">
                 Средний результат
@@ -81,13 +81,102 @@
           </div>
         </div>
         <div class="col-span-12 bg-white rounded-2xl p-4 shadow-lg md:flex items-center">
-
+          <canvas
+            baseChart
+            class="chart"
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [type]="barChartType"
+          >
+          </canvas>
         </div>
       </div>
 
 
     </div>
-    <div class="col-span-12 md:col-span-8 mx-3 p-4">
+    <div class="col-span-12 md:col-span-8 mx-3 p-4" *ngIf="attempts">
+      <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
+        <div class="relative overflow-x-auto" *ngIf="attempts.data">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 capitalize">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                #
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Предметы
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Результат
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Тип сдачи
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Язык сдачи
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Дата начала
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Завершен
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Действия
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let attempt of attempts.data | paginate: { itemsPerPage: attempts.per_page, currentPage: attempts.current_page,totalItems:attempts.total }">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
+                <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.png')] bg-cover bg-no-repeat my-2"></div>
+                <p class="font-bold text-black ml-2 inline-block">#{{attempt.id}}</p>
+              </th>
+              <td class="px-6 py-4">
+                <ul class="text-black ml-2" *ngIf="attempt.subjects">
+                  <li class="text-sm list-item list-decimal" *ngFor="let subject of attempt.subjects">
+                    {{subject.title_ru}}
+                  </li>
+                </ul>
+              </td>
+              <td class="px-6 py-4">
+                <p class="text-black ml-2 font-bold">{{attempt.points}} из {{attempt.max_points}}</p>
+              </td>
+              <td class="px-6 py-4">
+                <p class="text-black ml-2">{{attempt.attempt_type != null ? attempt.attempt_type.title_ru : ""}}</p>
+              </td>
+              <td class="px-6 py-4">
+                <p class="text-black ml-2">{{attempt.locale != null ? attempt.locale.title : ""}}</p>
+              </td>
+              <td class="px-6 py-4">
+                <p class="text-black ml-2">{{moment(attempt.start_at).format('DD/MM/YYYY HH:mm')}}</p>
+              </td>
+              <td class="px-6 py-4">
+                <p *ngIf="attempt.end_at;else countdownTimer" class="text-black ml-2">{{moment(attempt.end_at).format('DD/MM/YYYY HH:mm')}}</p>
+                <ng-template #countdownTimer>
+                  <countdown class="text-red-700" [config]="{leftTime:attempt.time_left/1000}"></countdown>
+                </ng-template>
+              </td>
+              <td class="px-6 py-4">
+                <a *ngIf="attempt.end_at;else notEnded" [routerLink]="['/' + RoutesName.resultUnt + '/' + attempt.id.toString()]" type="button" class="cursor-pointer text-white bg-green-300 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
+                  Результаты
+                </a>
+                <ng-template #notEnded>
+                  <a  [routerLink]="['/' + RoutesName.passUntExam + '/' + attempt.id.toString()]" type="button" class="cursor-pointer text-white bg-red-300 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-500 dark:hover:bg-red-500 dark:focus:ring-red-500">
+                    Пройти
+                  </a>
+                </ng-template>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="my-2 flex justify-center">
+            <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
+
+          </div>
+        </div>
+
+      </div>
 
 
 

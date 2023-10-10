@@ -14,6 +14,7 @@ import {UntModeComponent} from "./unt/unt-mode/unt-mode.component";
 import {UntResultComponent} from "./unt/unt-result/unt-result.component";
 import {ResultExamComponent} from "./step/result-exam/result-exam.component";
 import {UntStatComponent} from "./unt/unt-stat/unt-stat.component";
+import {TournamentListComponent} from "./tournament/tournament-list/tournament-list.component";
 
 
 const routes: Routes = [
@@ -50,6 +51,10 @@ const routes: Routes = [
       {
         path: 'unt-statistics',
         component: UntStatComponent
+      },
+      {
+        path: 'tournament-list',
+        component: TournamentListComponent
       },
       {
         path: 'step',

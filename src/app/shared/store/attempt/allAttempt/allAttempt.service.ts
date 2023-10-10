@@ -7,6 +7,7 @@ import {APIRoutesName} from "../../../../core/constants/api-routes.constants";
 import {Attempt} from "../../../models/attempt.model";
 import {AllAttemptRequest} from "./allAttempt.request";
 import {Pagination} from "../../pagination";
+import {AttemptModel} from "../../../models/attempt";
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,12 @@ import {Pagination} from "../../pagination";
 export class AllAttemptService {
   private _http = inject(HttpClient)
 
-  allAttempt(parameters:AllAttemptRequest): Observable<ResponseData<Pagination<Attempt>>> {
+  allAttempt(parameters:AllAttemptRequest): Observable<ResponseData<Pagination<AttemptModel[]>>> {
     let httpParams = new HttpParams();
     if(parameters.page != null && parameters.page > 0){
       httpParams = httpParams.append("page",parameters.page.toString())
     }
-    return this._http.get<ResponseData<Pagination<Attempt>>>(environment.baseUrl + APIRoutesName.userAttempts,{params:httpParams});
+    return this._http.get<ResponseData<Pagination<AttemptModel[]>>>(environment.baseUrl + APIRoutesName.userAttempts,{params:httpParams});
   }
 
 }

@@ -24,6 +24,9 @@ import { UntModeComponent } from './unt/unt-mode/unt-mode.component';
 import { UntResultComponent } from './unt/unt-result/unt-result.component';
 import { ResultExamComponent } from './step/result-exam/result-exam.component';
 import { UntStatComponent } from './unt/unt-stat/unt-stat.component';
+import {NgxPaginationModule} from "ngx-pagination";
+import {NgChartsModule} from "ng2-charts";
+import { TournamentListComponent } from './tournament/tournament-list/tournament-list.component';
 
 
 @NgModule({
@@ -43,21 +46,24 @@ import { UntStatComponent } from './unt/unt-stat/unt-stat.component';
         UntResultComponent,
         ResultExamComponent,
         UntStatComponent,
+        TournamentListComponent,
     ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    SharedModule,
-    FontAwesomeModule,
-    SlickCarouselModule,
-    Select2Module,
-    UiSwitchModule,
-    CountdownComponent,
-    MarkdownModule,
-    NgxSmartModalModule,
-    CoreModule,
-    YouTubePlayerModule,
-  ]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        SharedModule,
+        FontAwesomeModule,
+        SlickCarouselModule,
+        Select2Module,
+        UiSwitchModule,
+        CountdownComponent,
+        MarkdownModule,
+        NgxSmartModalModule,
+        CoreModule,
+        YouTubePlayerModule,
+        NgxPaginationModule,
+        NgChartsModule,
+    ]
 })
 export class DashboardModule {
 }

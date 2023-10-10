@@ -23,6 +23,8 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {MarkdownModule} from "ngx-markdown";
+import {NgxPaginationModule} from "ngx-pagination";
+import {NgChartsModule} from "ng2-charts";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/locale/', '.json');
 }
@@ -40,10 +42,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     SlickCarouselModule,
     CountdownModule,
     UiSwitchModule,
+    NgxPaginationModule,
     MarkdownModule.forRoot(),
     StoreModule.forRoot(ReducersConstants),
     EffectsModule.forRoot(EffectsConstants),
     NgxSmartModalModule.forRoot(),
+    NgChartsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

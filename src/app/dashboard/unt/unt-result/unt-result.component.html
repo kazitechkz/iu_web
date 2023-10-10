@@ -67,107 +67,134 @@
       <!--    Question And Answer-->
       <div class="col-span-12 md:col-span-6">
         <div>
-          <ngx-slick-carousel
-            (afterChange)="changeSlider($event)"
-            #slickModal="slick-carousel"  class="carousel" [config]="questionSlider">
-            <div ngxSlickItem *ngFor="let question of questions"
-                 class="slide cursor-pointer
-                relative  rounded-2xl shadow-2xl max-h-[500px] overflow-y-scroll">
-              <div class="my-4 text-xl text-black p-4 font-bold">
-                Вопрос № {{active_slider+1}}
-              </div>
-              <div class="p-4 text-black font-bold content-question" [innerHTML]="question.text"></div>
-              <section *ngIf="question.context">
-                <div class="p-4 text-black  font-bold content-question" [innerHTML]="question.context.context"></div>
-              </section>
-            </div>
-          </ngx-slick-carousel>
-        </div>
-        <!--    Answer Modal-->
-        <div class="w-full p-5" *ngIf="answeredResult">
-          <!-- A Answer-->
-          <section>
-            <div
-              [ngClass]="get_answer_style('a')"
-                 class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
-                 *ngIf="questions[active_slider].answer_a">
-              <div [innerHTML]="questions[active_slider].answer_a"></div>
-            </div>
-          </section>
-          <!-- A Answer-->
-          <!-- B Answer-->
-          <section>
-            <div
-                [ngClass]="get_answer_style('b')"
-                 class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
-                 *ngIf="questions[active_slider].answer_b">
-              <div [innerHTML]="questions[active_slider].answer_b"></div>
-            </div>
-          </section>
-          <!-- B Answer-->
-          <!-- C Answer-->
-          <section>
-            <div
-                 [ngClass]="get_answer_style('c')"
-                 class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
-                 *ngIf="questions[active_slider].answer_c">
-              <div [innerHTML]="questions[active_slider].answer_c"></div>
-            </div>
-          </section>
-          <!-- C Answer-->
-          <!-- D Answer-->
-          <section>
-            <div
-              [ngClass]="get_answer_style('d')"
-              class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
-                 *ngIf="questions[active_slider].answer_d">
-              <div [innerHTML]="questions[active_slider].answer_d"></div>
-            </div>
-          </section>
-          <!-- D Answer-->
-          <!-- E Answer-->
-          <section>
-            <div
-              [ngClass]="get_answer_style('e')"
+          <section *ngFor="let questions_ones of attempt.subject_questions">
+            <section *ngIf="questions_ones.attempt_subject_id == active_subject_id">
+              <ngx-slick-carousel
+                (afterChange)="changeSlider($event)"
+                #slickModal="slick-carousel"  class="carousel" [config]="questionSlider">
+                <div ngxSlickItem *ngFor="let question of questions_ones.question"
+                     class="slide cursor-pointer
+                    relative  rounded-2xl shadow-2xl overflow-y-scroll">
+                  <div class="my-4 text-xl text-black p-4 font-bold">
+                    Вопрос № {{active_slider+1}}
+                  </div>
+                  <div class="p-4 text-black font-bold content-question">
+                    <markdown katex>
+                      {{question.text | mathjaxTransform}}
+                    </markdown>
+                  </div>
+                  <section *ngIf="question.context">
+                    <div class="p-4 text-black  font-bold content-question">
+                      <markdown katex>
+                        {{question.context.context | mathjaxTransform}}
+                      </markdown>
+                    </div>
+                  </section>
+                  <!--    Answer Modal-->
+                  <div class="w-full p-5" *ngIf="answeredResult">
+                    <!-- A Answer-->
+                    <section>
+                      <div
+                        [ngClass]="get_answer_style('a')"
+                        class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
+                        *ngIf="questions[active_slider].answer_a">
+                        <markdown katex>
+                          {{question.answer_a | mathjaxTransform}}
+                        </markdown>
+                      </div>
+                    </section>
+                    <!-- A Answer-->
+                    <!-- B Answer-->
+                    <section>
+                      <div
+                        [ngClass]="get_answer_style('b')"
+                        class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
+                        *ngIf="questions[active_slider].answer_b">
+                        <markdown katex>
+                          {{question.answer_b | mathjaxTransform}}
+                        </markdown>
+                      </div>
+                    </section>
+                    <!-- B Answer-->
+                    <!-- C Answer-->
+                    <section>
+                      <div
+                        [ngClass]="get_answer_style('c')"
+                        class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
+                        *ngIf="questions[active_slider].answer_c">
+                        <markdown katex>
+                          {{question.answer_c | mathjaxTransform}}
+                        </markdown>
+                      </div>
+                    </section>
+                    <!-- C Answer-->
+                    <!-- D Answer-->
+                    <section>
+                      <div
+                        [ngClass]="get_answer_style('d')"
+                        class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
+                        *ngIf="questions[active_slider].answer_d">
+                        <markdown katex>
+                          {{question.answer_d | mathjaxTransform}}
+                        </markdown>
+                      </div>
+                    </section>
+                    <!-- D Answer-->
+                    <!-- E Answer-->
+                    <section>
+                      <div
+                        [ngClass]="get_answer_style('e')"
 
-              class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
-                 *ngIf="questions[active_slider].answer_e">
-              <div [innerHTML]="questions[active_slider].answer_e"></div>
-            </div>
+                        class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
+                        *ngIf="questions[active_slider].answer_e">
+                        <markdown katex>
+                          {{question.answer_e | mathjaxTransform}}
+                        </markdown>
+                      </div>
+                    </section>
+                    <!-- E Answer-->
+                    <!-- F Answer-->
+                    <section>
+                      <div
+                        [ngClass]="get_answer_style('f')"
+                        class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
+                        *ngIf="questions[active_slider].answer_f">
+                        <markdown katex>
+                          {{question.answer_f | mathjaxTransform}}
+                        </markdown>
+                      </div>
+                    </section>
+                    <!-- F Answer-->
+                    <!-- G Answer-->
+                    <section>
+                      <div
+                        [ngClass]="get_answer_style('g')"
+                        class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
+                        *ngIf="questions[active_slider].answer_g">
+                        <div [innerHTML]="questions[active_slider].answer_g"></div>
+                      </div>
+                    </section>
+                    <!-- G Answer-->
+                    <!-- H Answer-->
+                    <section>
+                      <div
+                        [ngClass]="get_answer_style('h')"
+                        class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
+                        *ngIf="questions[active_slider].answer_h">
+                        <markdown katex>
+                          {{question.answer_h | mathjaxTransform}}
+                        </markdown>
+                      </div>
+                    </section>
+                    <!-- H Answer-->
+                  </div>
+                  <!--    Answer Modal-->
+                </div>
+              </ngx-slick-carousel>
+            </section>
           </section>
-          <!-- E Answer-->
-          <!-- F Answer-->
-          <section>
-            <div
-              [ngClass]="get_answer_style('f')"
-                 class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
-                 *ngIf="questions[active_slider].answer_f">
-              <div [innerHTML]="questions[active_slider].answer_f"></div>
-            </div>
-          </section>
-          <!-- F Answer-->
-          <!-- G Answer-->
-          <section>
-            <div
-                [ngClass]="get_answer_style('g')"
-                 class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
-                 *ngIf="questions[active_slider].answer_g">
-              <div [innerHTML]="questions[active_slider].answer_g"></div>
-            </div>
-          </section>
-          <!-- G Answer-->
-          <!-- H Answer-->
-          <section>
-            <div
-              [ngClass]="get_answer_style('h')"
-                 class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
-                 *ngIf="questions[active_slider].answer_h">
-              <div [innerHTML]="questions[active_slider].answer_h"></div>
-            </div>
-          </section>
-          <!-- H Answer-->
         </div>
-        <!--    Answer Modal-->
+
       </div>
       <!--    Question And Answer-->
       <!--    Actions -->
