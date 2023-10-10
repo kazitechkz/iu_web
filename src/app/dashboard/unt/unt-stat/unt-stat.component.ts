@@ -15,6 +15,7 @@ import {allAttemptSelector} from "../../../shared/store/attempt/allAttempt/allAt
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {AttemptModel} from "../../../shared/models/attempt";
 import {StrHelper} from "../../../core/helpers/str.helper";
+// @ts-ignore
 import * as moment from 'moment';
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {UntStatModel} from "../../../shared/models/untStat.model";
