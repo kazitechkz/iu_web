@@ -27,6 +27,7 @@ import { UntStatComponent } from './unt/unt-stat/unt-stat.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {NgChartsModule} from "ng2-charts";
 import { TournamentListComponent } from './tournament/tournament-list/tournament-list.component';
+import { TournamentDetailComponent } from './tournament/tournament-detail/tournament-detail.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { TournamentListComponent } from './tournament/tournament-list/tournament
         ResultExamComponent,
         UntStatComponent,
         TournamentListComponent,
+        TournamentDetailComponent,
     ],
     imports: [
         CommonModule,

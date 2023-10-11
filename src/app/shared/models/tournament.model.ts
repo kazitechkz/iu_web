@@ -1,6 +1,7 @@
-import {Locale} from "moment";
 import {Subject} from "./subject.model";
 import {Image} from "./image.model";
+import {SubTournament} from "./subTournament.model";
+import {Locale} from "./locale.model";
 
 export interface Tournament {
   id: number
@@ -25,5 +26,6 @@ export interface Tournament {
   updated_at: string
   locales: Locale[]|null
   subject: Subject|null
+  sub_tournaments:SubTournament[]|null
   file: Image
 }

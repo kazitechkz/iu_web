@@ -23,5 +23,7 @@ export enum APIRoutesName {
     createAppeal = "create-appeal-question",
     getSubStepExam = "get-step-tests",
     getResultExam = "get-result-step-tests",
-    passSubStepExam = "pass-step-test"
+    passSubStepExam = "pass-step-test",
+    getAllTournament = "tournaments-all",
+    getTournamentDetail = "tournament-detail",
 }

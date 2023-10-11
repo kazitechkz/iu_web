@@ -1,0 +1,98 @@
+<section>
+  <div class="container mx-auto">
+    <div class="grid grid-cols-12 my-3 p-3 gap-2" *ngIf="tournamentDetails">
+      <div class="col-span-12 md:col-span-4 min-h-[350px] max-h-[450px] relative">
+        <div class="absolute rounded-xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(tournamentDetails.file.url) + ')'}"></div>
+        <div class="text-left z-20 absolute left-3 bottom-10 font-bold">
+          <p class="text-white text-lg md:text-4xl  my-2 px-1 uppercase">Турнир:</p>
+          <p class="main-secondary-color text-lg md:text-4xl  my-2 px-1">{{tournamentDetails.title_ru}}</p>
+        </div>
+      </div>
+      <div class="col-span-12 md:col-span-8 min-h-[300px] shadow-2xl bg-white rounded-2xl">
+        <div class="p-2">
+          <span class="main-secondary-color font-bold text-lg md:text-4xl  my-2 px-4 uppercase">{{tournamentDetails.title_ru}}</span>
+          <div class="m-3">
+            <p class="body-text font-bold text-md md:text-lg  my-2 px-1">
+              Предмет сдачи:
+            </p>
+            <p class="body-text text-md md:text-lg  my-2 px-1">
+              <fa-icon [icon]="faBook" class="ml-2"></fa-icon>
+              {{tournamentDetails.subject?.title_ru}}
+            </p>
+            <p class="body-text font-bold text-md md:text-lg  my-2 px-1">
+              Стоимость участия:
+            </p>
+            <p class="body-text text-md md:text-lg   my-2 px-1">
+              <fa-icon [icon]="faMoneyBill" class="ml-2"></fa-icon>
+              {{tournamentDetails.price}} {{tournamentDetails.currency}}
+            </p>
+            <p class="body-text font-bold text-md md:text-lg  my-2 px-1">
+                Доступные языки:
+            </p>
+            <p class="body-text text-md md:text-lg  my-2 px-1" *ngFor="let locale of tournamentDetails.locales">
+              <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon>
+              {{locale.title}}
+            </p>
+          </div>
+          <span class="main-secondary-color font-bold text-lg md:text-2xl  my-2 px-4 capitalize my-2">Описание:</span>
+          <div class="my-2 px-4 body-text" [innerHTML]="tournamentDetails.description_ru"></div>
+          <span class="main-secondary-color font-bold text-lg md:text-2xl  my-2 px-4 capitalize my-2">Правила:</span>
+          <div class="my-2 px-4 body-text" [innerHTML]="tournamentDetails.rule_ru"></div>
+        </div>
+        <div class="text-left p-5">
+          <a
+            type="button"
+            class="inline-block main-secondary-bg border-0 rounded-full px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0"
+            data-te-ripple-init>
+            Участвовать
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12">
+      <div class="col-span-12 bg-white p-5 shadow-2xl rounded-2xl my-3">
+        <div class="p-5 rounded-full">
+          <p class="text-black text-lg md:text-2xl font-bold  my-2 px-1 uppercase">Этапы:</p>
+          <ul
+            class="relative m-0 w-full list-none overflow-hidden p-0 transition-[height] duration-200 ease-in-out"
+            data-te-stepper-init
+            data-te-stepper-type="vertical">
+            <!--First item-->
+            <li
+              *ngFor="let step of steps"
+              data-te-stepper-step-ref
+              class="relative h-fit {{!step.is_last?'after:absolute after:left-[2.45rem] after:top-[3.6rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#9BA1FF] after:content-[\'\'] dark:after:bg-[9BA1FF]':''}}">
+              <div
+                data-te-stepper-head-ref
+                class="flex cursor-pointer text-black items-center p-6 leading-[1.3rem] no-underline after:bg-[#9BA1FF] after:content-[''] hover:bg-[#9BA1FF] focus:outline-none hover:text-white">
+              <span
+                data-te-stepper-head-icon-ref
+                class="mr-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#9BA1FF] text-sm font-medium text-white border-2 border-white">
+                <fa-icon class="mr-1" [icon]="faUsers"></fa-icon>
+                {{step.max_participants}}
+                </span>
+                <span
+                  data-te-stepper-head-text-ref
+                  class=" after:absolute after:flex after:text-[0.8rem] after:content-[data-content]">
+                   {{step.title_ru}}
+                </span>
+              </div>
+              <div
+                data-te-stepper-content-ref
+                class="transition-[height, margin-bottom, padding-top, padding-bottom] left-0 overflow-hidden pb-6 pl-[3.75rem] pr-6 duration-300 ease-in-out">
+                <div class="w-full rounded-full p-5 ">
+                  {{step.order}}
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</section>

@@ -20,6 +20,10 @@ import {finishAttemptReducer} from "../../shared/store/attempt/finishAttempt/fin
 import {allAttemptReducer} from "../../shared/store/attempt/allAttempt/allAttempt.reducer";
 import {resultExamReducer} from "../../shared/store/step/resultExam/resultExam.reducer";
 import {getUntStatReducer} from "../../shared/store/attempt/getUntStat/getUntStat.reducer";
+import {getAllTournamentReducer} from "../../shared/store/tournament/getAllTournament/getAllTournament.reducer";
+import {
+  getTournamentDetailReducer
+} from "../../shared/store/tournament/getTournamentDetail/getTournamentDetail.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -47,4 +51,6 @@ export const ReducersConstants = {
   allAttempt:allAttemptReducer,
   resultStepExam: resultExamReducer,
   untTotalStat:getUntStatReducer,
+  getAllTournament:getAllTournamentReducer,
+  getTournamentDetail:getTournamentDetailReducer,
 }
