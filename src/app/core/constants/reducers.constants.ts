@@ -24,6 +24,9 @@ import {getAllTournamentReducer} from "../../shared/store/tournament/getAllTourn
 import {
   getTournamentDetailReducer
 } from "../../shared/store/tournament/getTournamentDetail/getTournamentDetail.reducer";
+import {
+  getSubTournamentDetailReducer
+} from "../../shared/store/tournament/getSubTournamentDetail/getSubTournamentDetail.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -53,4 +56,7 @@ export const ReducersConstants = {
   untTotalStat:getUntStatReducer,
   getAllTournament:getAllTournamentReducer,
   getTournamentDetail:getTournamentDetailReducer,
+  participateTournament:passSubStepExamReducer,
+  getSubTournamentDetail:getSubTournamentDetailReducer,
+
 }

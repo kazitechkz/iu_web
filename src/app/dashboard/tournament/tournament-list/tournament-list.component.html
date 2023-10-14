@@ -2,7 +2,7 @@
   <div class="grid grid-cols-12 py-5 my-3 main-secondary-bg rounded-2xl">
     <div class="col-span-12 md:col-span-6  md:px-10 md:flex items-center text-center md:text-left">
       <div>
-        <p class="text-lg md:text-5xl text-white font-bold">
+        <p class="text-lg md:text-3xl text-white font-bold">
           Участвуй в турнире и выигрывай ценные призы
         </p>
         <div class="my-4 pt-5">
@@ -83,7 +83,7 @@
             <div class="grid grid-cols-12 p-3 gap-2"  *ngIf="tournaments.open">
               <div class="col-span-12 md:col-span-4" *ngFor="let open_tournament of tournaments.open">
                 <div class="card min-h-[300px] relative shadow-2xl cursor-pointer" [routerLink]="['/'+RoutesName.tournamentDetail + '/' + open_tournament.id ]">
-                    <div class="absolute rounded-xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(open_tournament.file.url) + ')'}"></div>
+                    <div class="absolute rounded-xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(open_tournament!.file!.url) + ')'}"></div>
                     <div class="text-center md:text-left z-20 absolute left-3 bottom-4 font-bold">
                       <p class="main-green-color text-lg  my-2 px-1">{{open_tournament.title_ru}}</p>
                       <p class="text-yellow-200 text-sm  my-2 px-1">
@@ -114,7 +114,7 @@
             <div class="grid grid-cols-12 p-3 gap-2"  *ngIf="tournaments.participated">
               <div class="col-span-12 md:col-span-4" *ngFor="let participated_tournament of tournaments.participated">
                 <div class="card min-h-[300px] relative shadow-2xl cursor-pointer">
-                  <div class="absolute rounded-xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(participated_tournament.file.url) + ')'}"></div>
+                  <div class="absolute rounded-xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(participated_tournament.file!.url) + ')'}"></div>
                   <div class="text-center md:text-left z-20 absolute left-3 bottom-4 font-bold">
                     <p class="main-green-color text-lg  my-2 px-1">{{participated_tournament.title_ru}}</p>
                     <p class="text-yellow-200 text-sm  my-2 px-1">

@@ -16,6 +16,7 @@ import {ResultExamComponent} from "./step/result-exam/result-exam.component";
 import {UntStatComponent} from "./unt/unt-stat/unt-stat.component";
 import {TournamentListComponent} from "./tournament/tournament-list/tournament-list.component";
 import {TournamentDetailComponent} from "./tournament/tournament-detail/tournament-detail.component";
+import {SubTournamentDetailComponent} from "./tournament/sub-tournament-detail/sub-tournament-detail.component";
 
 
 const routes: Routes = [
@@ -60,6 +61,10 @@ const routes: Routes = [
       {
         path: 'tournament-detail/:id',
         component: TournamentDetailComponent
+      },
+      {
+        path: 'sub-tournament-detail/:id',
+        component: SubTournamentDetailComponent
       },
       {
         path: 'step',

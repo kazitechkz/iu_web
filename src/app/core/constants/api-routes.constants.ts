@@ -26,4 +26,9 @@ export enum APIRoutesName {
     passSubStepExam = "pass-step-test",
     getAllTournament = "tournaments-all",
     getTournamentDetail = "tournament-detail",
+    participateTournament = "participate-tournament",
+    getSubTournamentDetail = "sub-tournament-detail",
+    getSubTournamentResult = "sub-tournament-results",
+    getSubTournamentParticipant = "sub-tournament-participants",
+    getSubTournamentWinner = "sub-tournament-winners",
 }

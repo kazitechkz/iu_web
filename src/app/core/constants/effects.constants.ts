@@ -24,6 +24,12 @@ import {ResultExamEffect} from "../../shared/store/step/resultExam/resultExam.ef
 import {GetUntStatEffect} from "../../shared/store/attempt/getUntStat/getUntStat.effect";
 import {GetAllTournamentEffect} from "../../shared/store/tournament/getAllTournament/getAllTournament.effect";
 import {GetTournamentDetailEffect} from "../../shared/store/tournament/getTournamentDetail/getTournamentDetail.effect";
+import {
+  ParticipateTournamentEffect
+} from "../../shared/store/tournament/participateTournament/participateTournament.effect";
+import {
+  GetSubTournamentDetailEffect
+} from "../../shared/store/tournament/getSubTournamentDetail/getSubTournamentDetail.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -53,4 +59,6 @@ export const EffectsConstants = [
     GetUntStatEffect,
     GetAllTournamentEffect,
     GetTournamentDetailEffect,
+    ParticipateTournamentEffect,
+    GetSubTournamentDetailEffect,
 ]

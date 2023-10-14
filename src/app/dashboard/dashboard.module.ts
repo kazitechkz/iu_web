@@ -11,7 +11,7 @@ import {SlickCarouselModule} from "ngx-slick-carousel";
 import {Select2Module} from "ng-select2-component";
 import {UiSwitchModule} from "ngx-ui-switch";
 import { PassUntExamComponent } from './unt/pass-unt-exam/pass-unt-exam.component';
-import {CountdownComponent} from "ngx-countdown";
+import {CountdownComponent, CountdownModule} from "ngx-countdown";
 import { StepDetailComponent } from './step/step-detail/step-detail.component';
 import {MarkdownModule} from "ngx-markdown";
 import {NgxSmartModalModule} from "ngx-smart-modal";
@@ -28,6 +28,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {NgChartsModule} from "ng2-charts";
 import { TournamentListComponent } from './tournament/tournament-list/tournament-list.component';
 import { TournamentDetailComponent } from './tournament/tournament-detail/tournament-detail.component';
+import { SubTournamentDetailComponent } from './tournament/sub-tournament-detail/sub-tournament-detail.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { TournamentDetailComponent } from './tournament/tournament-detail/tourna
         UntStatComponent,
         TournamentListComponent,
         TournamentDetailComponent,
+        SubTournamentDetailComponent,
     ],
     imports: [
         CommonModule,
@@ -65,6 +67,7 @@ import { TournamentDetailComponent } from './tournament/tournament-detail/tourna
         YouTubePlayerModule,
         NgxPaginationModule,
         NgChartsModule,
+        CountdownModule,
     ]
 })
 export class DashboardModule {

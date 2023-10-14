@@ -27,5 +27,5 @@ export interface Tournament {
   locales: Locale[]|null
   subject: Subject|null
   sub_tournaments:SubTournament[]|null
-  file: Image
+  file: Image|null
 }

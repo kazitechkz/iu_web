@@ -2,6 +2,7 @@ import {Tournament} from "./tournament.model";
 import {TournamentStep} from "./tournamentStep.model";
 
 export interface SubTournament{
+  id:number,
   tournament_id:number,
   step_id:number,
   question_quantity:number,
@@ -15,5 +16,5 @@ export interface SubTournament{
   start_at:Date,
   end_at:Date,
   tournament:Tournament|null
-  step:TournamentStep|null
+  tournament_step:TournamentStep|null
 }

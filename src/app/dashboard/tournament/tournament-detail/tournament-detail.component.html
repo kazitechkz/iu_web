@@ -1,32 +1,32 @@
-<section>
+<section class="px-3">
   <div class="container mx-auto">
-    <div class="grid grid-cols-12 my-3 p-3 gap-2" *ngIf="tournamentDetails">
-      <div class="col-span-12 md:col-span-4 min-h-[350px] max-h-[450px] relative">
-        <div class="absolute rounded-xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(tournamentDetails.file.url) + ')'}"></div>
+    <div class="grid grid-cols-12 m-2 gap-2" *ngIf="tournamentDetails">
+      <div class="col-span-12 md:col-span-4 min-h-[300px] max-h-[450px] relative">
+        <div class="absolute rounded-xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(tournamentDetails.file!.url) + ')'}"></div>
         <div class="text-left z-20 absolute left-3 bottom-10 font-bold">
           <p class="text-white text-lg md:text-4xl  my-2 px-1 uppercase">Турнир:</p>
           <p class="main-secondary-color text-lg md:text-4xl  my-2 px-1">{{tournamentDetails.title_ru}}</p>
         </div>
       </div>
       <div class="col-span-12 md:col-span-8 min-h-[300px] shadow-2xl bg-white rounded-2xl">
-        <div class="p-2">
+        <div class="py-4 px-2">
           <span class="main-secondary-color font-bold text-lg md:text-4xl  my-2 px-4 uppercase">{{tournamentDetails.title_ru}}</span>
           <div class="m-3">
-            <p class="body-text font-bold text-md md:text-lg  my-2 px-1">
+            <p class="main-secondary-color font-bold text-md md:text-lg  my-2 px-1">
               Предмет сдачи:
             </p>
             <p class="body-text text-md md:text-lg  my-2 px-1">
               <fa-icon [icon]="faBook" class="ml-2"></fa-icon>
               {{tournamentDetails.subject?.title_ru}}
             </p>
-            <p class="body-text font-bold text-md md:text-lg  my-2 px-1">
+            <p class="main-secondary-color font-bold text-md md:text-lg  my-2 px-1">
               Стоимость участия:
             </p>
             <p class="body-text text-md md:text-lg   my-2 px-1">
               <fa-icon [icon]="faMoneyBill" class="ml-2"></fa-icon>
               {{tournamentDetails.price}} {{tournamentDetails.currency}}
             </p>
-            <p class="body-text font-bold text-md md:text-lg  my-2 px-1">
+            <p class="main-secondary-color font-bold text-md md:text-lg  my-2 px-1">
                 Доступные языки:
             </p>
             <p class="body-text text-md md:text-lg  my-2 px-1" *ngFor="let locale of tournamentDetails.locales">
@@ -34,25 +34,135 @@
               {{locale.title}}
             </p>
           </div>
-          <span class="main-secondary-color font-bold text-lg md:text-2xl  my-2 px-4 capitalize my-2">Описание:</span>
-          <div class="my-2 px-4 body-text" [innerHTML]="tournamentDetails.description_ru"></div>
-          <span class="main-secondary-color font-bold text-lg md:text-2xl  my-2 px-4 capitalize my-2">Правила:</span>
-          <div class="my-2 px-4 body-text" [innerHTML]="tournamentDetails.rule_ru"></div>
-        </div>
-        <div class="text-left p-5">
-          <a
-            type="button"
-            class="inline-block main-secondary-bg border-0 rounded-full px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0"
-            data-te-ripple-init>
-            Участвовать
-          </a>
         </div>
       </div>
     </div>
 
-    <div class="grid grid-cols-12">
+    <div class="grid grid-cols-12 m-2">
+      <div class="col-span-12 bg-white p-5 shadow-xl rounded-2xl my-3">
+        <div id="rule-block">
+          <div>
+            <h2 class="mb-0" id="headingTwo">
+              <button
+                class="group font-bold text-md lg:text-2xl relative flex w-full items-center rounded-none border-0 bg-white px-5 py-4 text-left text-base main-secondary-color transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:main-secondary-color [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:main-secondary-color dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]"
+                type="button"
+                data-te-collapse-init
+                data-te-collapse-collapsed
+                data-te-target="#ruleBlock"
+                aria-expanded="false"
+                aria-controls="ruleBlock">
+                Правила
+                <span
+                  class="-mr-1 ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          </svg>
+            </span>
+              </button>
+            </h2>
+            <div
+              id="ruleBlock"
+              class="!visible hidden"
+              data-te-collapse-item
+              aria-labelledby="headingTwo"
+              data-te-parent="#accordionExample">
+              <div class="px-5 py-4" *ngIf="tournamentDetails">
+                <div  [innerHTML]="tournamentDetails.rule_ru"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-12 bg-white p-5 shadow-xl rounded-2xl my-3">
+        <div>
+          <h2 class="accordion-header mb-0" id="headingThree">
+            <button
+              class="group font-bold text-md lg:text-2xl relative flex w-full items-center rounded-none border-0 bg-white px-5 py-4 text-left text-base main-secondary-color transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:main-secondary-color [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:main-secondary-color dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]"
+              type="button"
+              data-te-collapse-init
+              data-te-collapse-collapsed
+              data-te-target="#descriptionBlock"
+              aria-expanded="false"
+              aria-controls="descriptionBlock">
+              Описание
+              <span
+                class="-mr-1 ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          </svg>
+        </span>
+            </button>
+          </h2>
+          <div
+            id="descriptionBlock"
+            class="!visible hidden"
+            data-te-collapse-item
+            aria-labelledby="headingThree"
+            data-te-parent="#accordionExample">
+            <div class="px-5 py-4" *ngIf="tournamentDetails">
+              <div  [innerHTML]="tournamentDetails.description_ru"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-12 bg-white p-5 shadow-xl rounded-2xl my-3" *ngIf="firstSubTournament">
+        <section *ngIf="!subtournament_ids.includes(firstSubTournament.id);else participated">
+          <div class="text-center" *ngIf="firstSubTournament.is_current && !firstSubTournament.is_finished && (moment(firstSubTournament.start_at).isBefore(moment.now()) && moment(firstSubTournament.end_at).isAfter(moment.now()));else passed">
+            <p
+              class="text-danger text-xl lg:text-2xl font-bold inline-block">
+              До окончания регистрации:
+            </p>
+            <div class="my-4">
+            <countdown class="text-danger text-2xl lg:text-5xl font-bold inline-block" [config]="{leftTime:moment(firstSubTournament.end_at).diff(moment.now(),'seconds')}"></countdown>
+            </div>
+            <a
+              (click)="participateTournament()"
+              type="button"
+              class="inline-block main-secondary-bg border-0 rounded-full px-3 lg:px-4 py-2 lg:py-3 text-md lg:text-2xl font-bold uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0 my-2"
+              data-te-ripple-init>
+              Хочу участвовать
+            </a>
+          </div>
+          <ng-template #passed>
+            <span
+              class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3">
+              <fa-icon [icon]="faSadTear"></fa-icon>
+                <p>К сожаленью, дата регистрации турнира уже прошла</p>
+            </span>
+          </ng-template>
+        </section>
+        <ng-template #participated>
+          <span
+            class="main-green-color md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3">
+            <fa-icon [icon]="faSmileWink"></fa-icon>
+            <p>Вы являетесь участником данного турнира</p>
+          </span>
+        </ng-template>
+
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 m-2">
       <div class="col-span-12 bg-white p-5 shadow-2xl rounded-2xl my-3">
-        <div class="p-5 rounded-full">
+        <div class="lg:p-5 rounded-full">
           <p class="text-black text-lg md:text-2xl font-bold  my-2 px-1 uppercase">Этапы:</p>
           <ul
             class="relative m-0 w-full list-none overflow-hidden p-0 transition-[height] duration-200 ease-in-out"
@@ -81,9 +191,47 @@
               <div
                 data-te-stepper-content-ref
                 class="transition-[height, margin-bottom, padding-top, padding-bottom] left-0 overflow-hidden pb-6 pl-[3.75rem] pr-6 duration-300 ease-in-out">
-                <div class="w-full rounded-full p-5 ">
-                  {{step.order}}
+                <div class="w-full rounded-full lg:p-5" *ngIf="getSubTournament(step.id);else noSubTournament">
+                  <div class="card lg:flex items-center w-full shadow-lg rounded-xl p-4 body-text">
+                    <div class="md:w-2/12 text-center main-secondary-color my-2">
+                      <fa-icon class="text-2xl lg:text-5xl" [icon]="faCheckCircle"></fa-icon>
+                    </div>
+                    <div class="md:w-10/12 text-center lg:text-left my-2">
+                      <p class="text-md md:text-2xl font-bold">{{step.title_ru}}</p>
+                      <ul class="list-disc pl-3 lg:px-4">
+                        <li class="text-sm md:text-xl ">
+                          Кол-во участников: <b>{{step.max_participants}}</b>
+                        </li>
+                        <li class="text-sm md:text-xl">
+                          Кол-во вопросов: <b>{{getSubTournament(step.id)!.question_quantity}}</b>
+                        </li>
+                        <li class="text-sm md:text-xl">
+                          Максимальное кол-во баллов: <b>{{getSubTournament(step.id)!.max_point}}</b>
+                        </li>
+                        <li class="text-sm md:text-xl">
+                          Время проведения: с <b>{{moment(getSubTournament(step.id)!.start_at).format('HH:mm DD.MM.YYYY')}}</b> - по <b>{{moment(getSubTournament(step.id)!.end_at).format('HH:mm DD.MM.YYYY')}}</b>
+                        </li>
+                        <li class="text-sm md:text-xl">
+                          Отведенное время
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="text-center md:text-right">
+                      <a
+                        routerLink="{{'/' + RoutesName.subTournamentDetail + '/' + getSubTournament(step.id)!.id}}"
+                        type="button"
+                        class="inline-block my-2 main-secondary-bg border-0 rounded-full px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0"
+                        data-te-ripple-init>
+                        Подробнее
+                      </a>
+                    </div>
+                  </div>
+
+
                 </div>
+                <ng-template #noSubTournament>
+                  <p class="text-danger">Этап еще не объявлен</p>
+                </ng-template>
               </div>
             </li>
 
