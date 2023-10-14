@@ -46,19 +46,18 @@ export class SubStepComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.getSubStep()
     this.onYoutubePlayer()
-    console.log(this.subStep)
   }
 
   // 87787133389 Nurgeldi
   getSubStep() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(subStepDetailAction({requestData: params['id']}))
-      // this._store.select(getSubStepDetailState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-      //   this.subStep =  item.data
-      //   this.videoId = this.getId('https://www.youtube.com/watch?v=MwpMEbgC7DA')
-      //   //@ts-ignore
-      //   this.result = item.data?.sub_step_result
-      // })
+      this._store.select(getSubStepDetailState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+        this.subStep =  item.data
+        this.videoId = this.getId('https://www.youtube.com/watch?v=MwpMEbgC7DA')
+        //@ts-ignore
+        this.result = item.data?.sub_step_result
+      })
     })
   }
 
