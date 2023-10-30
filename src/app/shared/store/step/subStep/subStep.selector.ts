@@ -13,3 +13,10 @@ const get_sub_step_detail_state = createFeatureSelector<ResponseData<SubStepMode
 export const getSubStepDetailState = createSelector(get_sub_step_detail_state, (state) => {
     return state;
 })
+
+
+const get_sub_step_result_state = createFeatureSelector<ResponseData<boolean>>('subStepResult');
+
+export const getSubStepResultState = createSelector(get_sub_step_result_state, (state) => {
+    return state;
+})

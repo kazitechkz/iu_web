@@ -7,7 +7,7 @@ import {
   subStepActionFailure,
   subStepActionSuccess,
   subStepDetailAction, subStepDetailActionFailure,
-  subStepDetailActionSuccess
+  subStepDetailActionSuccess, subStepResultAction, subStepResultActionFailure, subStepResultActionSuccess
 } from "./subStep.action";
 
 
@@ -54,6 +54,27 @@ export class SubStepDetailEffect {
             return of(subStepDetailActionSuccess({responseData: data}))
           }),
           catchError((_error) => of(subStepDetailActionFailure({errors: _error})))
+        )
+      })
+    )
+  );
+}
+
+@Injectable()
+export class SubStepResultEffect {
+
+  private _service = inject(SubStepService);
+  private action$ = inject(Actions);
+
+  _onSubStepResult = createEffect((): any =>
+    this.action$.pipe(
+      ofType(subStepResultAction),
+      switchMap((action) => {
+        return this._service.getSubStepResult(action.requestData).pipe(
+          switchMap(data => {
+            return of(subStepResultActionSuccess({responseData: data}))
+          }),
+          catchError((_error) => of(subStepResultActionFailure({errors: _error})))
         )
       })
     )

@@ -20,34 +20,55 @@
        class="block rounded-lg bg-white p-6 my-3 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
     <h5
       class="mb-2 text-xl font-medium leading-tight text-neutral-800">
-      {{question.question.text}}
+      <markdown katex>
+        {{question.question.text | mathjaxTransform}}
+      </markdown>
     </h5>
     <div class="my-2" *ngIf="question.question.context" [innerHTML]="question.question.context.context"></div>
     <div class="my-5">
       <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
         <label
           class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('a', question.result.user_answer, question.result.is_right)}">
-          {{question.question.answer_a}}
+          <markdown katex>
+            a. {{question.question.answer_a | mathjaxTransform}}
+          </markdown>
         </label>
       </div>
       <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
         <label
           class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('b', question.result.user_answer, question.result.is_right)}">
-          {{question.question.answer_b}}
+          <markdown katex>
+            b. {{question.question.answer_b | mathjaxTransform}}
+          </markdown>
         </label>
       </div>
       <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
         <label
           class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('c', question.result.user_answer, question.result.is_right)}">
-          {{question.question.answer_c}}
+          <markdown katex>
+            c. {{question.question.answer_c | mathjaxTransform}}
+          </markdown>
         </label>
       </div>
       <div  class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
         <label
           class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('d', question.result.user_answer, question.result.is_right)}">
-          {{question.question.answer_d}}
+          <markdown katex>
+            d. {{question.question.answer_d | mathjaxTransform}}
+          </markdown>
         </label>
       </div>
     </div>
   </div>
+
+  <a
+     [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepExam + '/' + subStepId + '/' + localeId)"
+     class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+    Пройти снова
+  </a>
+
+  <a [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepRoute + '/' + subStepId)"
+     class="ml-3 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+    Вернуться на главную
+  </a>
 </div>

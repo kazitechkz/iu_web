@@ -4,19 +4,23 @@ import {
   Component,
   DestroyRef, DoCheck,
   ElementRef,
-  inject,
+  inject, OnChanges,
   OnInit,
+  SimpleChanges,
   ViewChild
 } from '@angular/core';
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
 import {ActivatedRoute} from "@angular/router";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
-import {subStepDetailAction} from "../../../shared/store/step/subStep/subStep.action";
+import {subStepDetailAction, subStepResultAction} from "../../../shared/store/step/subStep/subStep.action";
 import {SubResult, SubStepModel} from "../../../shared/models/subStep.model";
-import {getSubStepDetailState} from "../../../shared/store/step/subStep/subStep.selector";
+import {getSubStepDetailState, getSubStepResultState} from "../../../shared/store/step/subStep/subStep.selector";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {StrHelper} from "../../../core/helpers/str.helper";
+import {Actions} from "@ngrx/effects";
+import {Observable} from "rxjs";
+import {ResponseData} from "../../../shared/store/response_data";
 
 @Component({
   selector: 'app-sub-step',
@@ -24,7 +28,6 @@ import {StrHelper} from "../../../core/helpers/str.helper";
   styleUrls: ['./sub-step.component.scss']
 })
 export class SubStepComponent implements OnInit, AfterViewInit {
-
   ngAfterViewInit(): void {
     this.onResize();
     window.addEventListener('resize', this.onResize.bind(this));
@@ -37,27 +40,33 @@ export class SubStepComponent implements OnInit, AfterViewInit {
   private changeDetectorRef = inject(ChangeDetectorRef)
   //@ts-ignore
   public subStep: SubStepModel | null
-  public result: SubResult[] = []
+  //@ts-ignore
+  result$: Observable<ResponseData<boolean>>;
 
   videoHeight: number | undefined;
   videoWidth: number | undefined;
   videoId: string = ''
 
   ngOnInit(): void {
+    this.checkResult()
     this.getSubStep()
     this.onYoutubePlayer()
   }
 
-  // 87787133389 Nurgeldi
   getSubStep() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(subStepDetailAction({requestData: params['id']}))
       this._store.select(getSubStepDetailState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         this.subStep =  item.data
         this.videoId = this.getId('https://www.youtube.com/watch?v=MwpMEbgC7DA')
-        //@ts-ignore
-        this.result = item.data?.sub_step_result
       })
+    })
+  }
+
+  checkResult() {
+    this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
+      this._store.dispatch(subStepResultAction({requestData: {sub_step_id: params['id'], locale_id: StrHelper.getLocaleIdByCurrentLang(this.translate.currentLang)}}))
+      this.result$ = this._store.pipe(select(getSubStepResultState))
     })
   }
 

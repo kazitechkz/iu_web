@@ -7,3 +7,6 @@ export const subStepState: EntityState<SubStepModel[]> = accountAdapter.getIniti
 
 export const subStepDetailAdapter = createEntityAdapter<SubStepModel>();
 export const subStepDetailState: EntityState<SubStepModel> = subStepDetailAdapter.getInitialState();
+
+export const subStepResultAdapter = createEntityAdapter<boolean>();
+export const subStepResultState: EntityState<boolean> = subStepResultAdapter.getInitialState();

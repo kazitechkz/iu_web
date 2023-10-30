@@ -7,6 +7,8 @@ import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {getResultExamState} from "../../../shared/store/step/resultExam/resultExam.selector";
 import {resultExamAction} from "../../../shared/store/step/resultExam/resultExam.action";
 import {ResultExamModel} from "../../../shared/models/resultExam.model";
+import {StrHelper} from "../../../core/helpers/str.helper";
+import {RoutesName} from "../../../core/constants/routes.constants";
 
 @Component({
   selector: 'app-result-exam',
@@ -21,6 +23,8 @@ export class ResultExamComponent implements OnInit {
   destroyRef = inject(DestroyRef);
   //@ts-ignore
   public results: ResultExamModel | null
+  public subStepId: number | undefined
+  public localeId: number | undefined
 
   ngOnInit(): void {
     this.getResult()
@@ -28,6 +32,8 @@ export class ResultExamComponent implements OnInit {
 
   getResult() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
+      this.subStepId = params['sub_step_id']
+      this.localeId = params['locale_id']
       this._store.dispatch(resultExamAction({requestData: {sub_step_id: params['sub_step_id'], locale_id: params['locale_id']}}))
       this._store.select(getResultExamState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         this.results = item.data
@@ -45,4 +51,6 @@ export class ResultExamComponent implements OnInit {
     }
   }
 
+    protected readonly StrHelper = StrHelper;
+    protected readonly RoutesName = RoutesName;
 }

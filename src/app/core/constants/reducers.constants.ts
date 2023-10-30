@@ -6,7 +6,11 @@ import {subjectReducer} from "../../shared/store/subject/subject.reducer";
 import {getAttemptReducer} from "../../shared/store/attempt/getAttempt/getAttempt.reducer";
 import {stepReducer} from "../../shared/store/step/step.reducer";
 import {stepDetailReducer} from "../../shared/store/step/detail/stepDetail.reducer";
-import {subStepDetailReducer, subStepReducer} from "../../shared/store/step/subStep/subStep.reducer";
+import {
+  subStepDetailReducer,
+  subStepReducer,
+  subStepResultReducer
+} from "../../shared/store/step/subStep/subStep.reducer";
 import {createAttemptReducer} from "../../shared/store/attempt/createAttempt/createAttempt.reducer";
 import {answerReducer} from "../../shared/store/attempt/answer/answer.reducer";
 import {answeredResultReducer} from "../../shared/store/attempt/answeredResult/answerResult.reducer";
@@ -58,5 +62,6 @@ export const ReducersConstants = {
   getTournamentDetail:getTournamentDetailReducer,
   participateTournament:passSubStepExamReducer,
   getSubTournamentDetail:getSubTournamentDetailReducer,
+  subStepResult: subStepResultReducer
 
 }

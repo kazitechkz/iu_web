@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, DestroyRef, DoCheck, inject, OnInit} from '@angular/core';
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {Store} from "@ngrx/store";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {passSubStepExamAction, subStepExamAction} from "../../../shared/store/step/exam/subStepExam.action";
 import {getSubStepExamState, passSubStepExamState} from "../../../shared/store/step/exam/subStepExam.selector";
@@ -15,10 +15,10 @@ import {StrHelper} from "../../../core/helpers/str.helper";
   styleUrls: ['./exam.component.scss']
 })
 export class ExamComponent implements OnInit, DoCheck {
-
   public translate = inject(GlobalTranslateService)
   private _store = inject(Store)
   private _route = inject(ActivatedRoute)
+  private _router = inject(Router)
   destroyRef = inject(DestroyRef);
   public questions: SubStepExamModel[] | null = []
   //@ts-ignore
@@ -46,9 +46,11 @@ export class ExamComponent implements OnInit, DoCheck {
   }
 
   getAnswers() {
-    this._store.dispatch(passSubStepExamAction({requestData: this.answers}))
-    this._store.select(passSubStepExamState).pipe(distinctUntilChanged(), autoUnsubscribe(this.destroyRef)).subscribe(item => {
-      console.log(item)
+    this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
+      this._store.dispatch(passSubStepExamAction({requestData: this.answers}))
+      this._store.select(passSubStepExamState).pipe(distinctUntilChanged(), autoUnsubscribe(this.destroyRef)).subscribe(item => {
+        this._router.navigateByUrl('/dashboard/result-exam/'+params['sub_step_id']+'/'+params['locale_id'])
+      })
     })
   }
 

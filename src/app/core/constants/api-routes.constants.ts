@@ -9,6 +9,7 @@ export enum APIRoutesName {
     getStepDetail = "step-detail",
     getSubSteps = "sub-steps",
     getSubStep = "sub-step",
+    getSubStepResult = "check-sub-step-result",
     getAttemptById = "attempt_by",
     userAttempts = "user-attempts",
     getStatAttemptById = "statistics-attempt-by",

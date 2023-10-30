@@ -11,7 +11,7 @@ import {CreateAnswerEffect} from "../../shared/store/attempt/answer/answer.effec
 import {
   GetAnsweredResultEffect
 } from "../../shared/store/attempt/answeredResult/answerResult.effect";
-import {SubStepDetailEffect, SubStepEffect} from "../../shared/store/step/subStep/subStep.effect";
+import {SubStepDetailEffect, SubStepEffect, SubStepResultEffect} from "../../shared/store/step/subStep/subStep.effect";
 import {GetFiftyFiftyEffect} from "../../shared/store/attempt/getFiftyFifty/getFiftyFifty.effect";
 import {SaveQuestionEffect} from "../../shared/store/attempt/saveQuestion/saveQuestion.effect";
 import {AppealTypesEffect} from "../../shared/store/appeal/appealTypes/appealTypes.effect";
@@ -61,4 +61,5 @@ export const EffectsConstants = [
     GetTournamentDetailEffect,
     ParticipateTournamentEffect,
     GetSubTournamentDetailEffect,
+    SubStepResultEffect
 ]

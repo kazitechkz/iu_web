@@ -37,7 +37,13 @@ export class ErrorInterceptor implements HttpInterceptor {
                     this._toastrService.error(error.error.message, error.error.statusCode);
                   }
                     if (error.status === 403) {
+                      if (error.error.errors) {
+                        this._toastrService.error(error.error.errors, error.error.statusCode);
+                        this._toastrService.error(error.errors.message, error.error.statusCode);
+                      } else {
                         this._toastrService.error(error.error.message, error.error.statusCode);
+                      }
+                        // this._toastrService.error(error.error.message, error.error.statusCode);
                     }
                     if (error.status === 404) {
                         this._routerService.navigateByUrl(RoutesName.notFound).then(null)

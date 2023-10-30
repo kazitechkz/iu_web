@@ -1,11 +1,11 @@
 import {createReducer, on} from "@ngrx/store";
-import {subStepDetailState, subStepState} from "./subStep.state";
+import {subStepDetailState, subStepResultState, subStepState} from "./subStep.state";
 import {
   subStepAction,
   subStepActionFailure,
   subStepActionSuccess,
   subStepDetailActionFailure,
-  subStepDetailActionSuccess
+  subStepDetailActionSuccess, subStepResultActionFailure, subStepResultActionSuccess
 } from "./subStep.action";
 
 
@@ -63,4 +63,32 @@ const _subStepDetailReducer = createReducer(
 
 export function subStepDetailReducer(state: any, action: any) {
     return _subStepDetailReducer(state, action);
+}
+
+const _subStepResultReducer = createReducer(
+    subStepResultState,
+    on(subStepAction, (state, action) => {
+        return {
+            ...state,
+        }
+    }),
+    on(subStepResultActionSuccess, (state, action) => {
+        return {
+            ...state,
+            success: true,
+            errors: null,
+            data: action.responseData.data
+        }
+    }),
+    on(subStepResultActionFailure, (state, action) => {
+        return {
+            ...state,
+            success: false,
+            errors: action.errors
+        }
+    })
+);
+
+export function subStepResultReducer(state: any, action: any) {
+    return _subStepResultReducer(state, action);
 }
