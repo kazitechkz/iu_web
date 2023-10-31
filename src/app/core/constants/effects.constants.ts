@@ -30,6 +30,21 @@ import {
 import {
   GetSubTournamentDetailEffect
 } from "../../shared/store/tournament/getSubTournamentDetail/getSubTournamentDetail.effect";
+import {
+  GetSubTournamentParticipantsEffect
+} from "../../shared/store/tournament/getSubTournamentParticipants/getSubTournamentParticipants.effect";
+import {
+  GetSubTournamentResultsEffect
+} from "../../shared/store/tournament/getSubTournamentResults/getSubTournamentResults.effect";
+import {
+  CreateTournamentAttemptEffect
+} from "../../shared/store/tournament/createTournamentAttempt/createTournamentAttempt.effect";
+import {
+  GetSubTournamentRivalsEffect
+} from "../../shared/store/tournament/getSubTournamentRivals/getSubTournamentRivals.effect";
+import {
+  GetSubTournamentWinnersEffect
+} from "../../shared/store/tournament/getSubTournamentWinners/getSubTournamentWinners.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -61,5 +76,10 @@ export const EffectsConstants = [
     GetTournamentDetailEffect,
     ParticipateTournamentEffect,
     GetSubTournamentDetailEffect,
-    SubStepResultEffect
+    SubStepResultEffect,
+    GetSubTournamentParticipantsEffect,
+    GetSubTournamentResultsEffect,
+    CreateTournamentAttemptEffect,
+    GetSubTournamentWinnersEffect,
+    GetSubTournamentRivalsEffect,
 ]

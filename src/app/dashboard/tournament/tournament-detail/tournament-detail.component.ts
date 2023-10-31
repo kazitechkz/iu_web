@@ -26,6 +26,7 @@ import {
 import {
   OnParticipateTournamentAction
 } from "../../../shared/store/tournament/participateTournament/participateTournament.action";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 @Component({
   selector: 'app-tournament-detail',
   templateUrl: './tournament-detail.component.html',
@@ -36,6 +37,7 @@ export class TournamentDetailComponent implements OnInit,OnDestroy{
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
   private _route = inject(ActivatedRoute);
+  public translate = inject(GlobalTranslateService);
   //@ts-ignore
   public tournamentDetails:Tournament;
   //@ts-ignore
@@ -81,8 +83,6 @@ export class TournamentDetailComponent implements OnInit,OnDestroy{
       this._store.dispatch(OnParticipateTournamentAction({requestData:request}));
       this.getTournamentInfo();
     }
-
-
   }
 
   getSubTournament(stepId:number):SubTournament|null{

@@ -1,107 +1,487 @@
 <section>
   <div class="container mx-auto">
-    <div class="grid grid-cols-12 m-3 gap-2 min-h-[450px] h-[60vh] max-h-[600px] main-green-bg rounded-xl">
-      <div class="col-span-12 md:col-span-4">
+    <div *ngIf="tournament" class="grid grid-cols-12 m-3 gap-2 min-h-[450px] h-[60vh] max-h-[600px] rounded-xl bg-cover bg-center bg-no-repeat bg-fixed" [ngStyle]="{'background-image':'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(' + ImageHelper.getImage(tournament.file!.url) + ')'}">
+      <div class="col-span-12 p-3 flex justify-center items-center">
+        <div>
+          <div class="my-3 text-center">
+            <p class="text-white font-bold text-xl md:text-4xl lg:text-5xl">
+                {{tournament|globalTranslate:'title':translate.currentLang}}
+            </p>
+          </div>
+          <div class="my-3 text-center">
+            <p class="text-yellow-200 text-xl md:text-3xl lg:text-4xl">
+              {{sub_tournament.tournament_step|globalTranslate:'title':translate.currentLang}}
+            </p>
+          </div>
+          <div class="my-3 text-center">
+            <p class="text-yellow-200 text-xl md:text-2xl lg:text-3xl">
+              <fa-icon [icon]="faClock" class="ml-2"></fa-icon> {{moment(sub_tournament.start_at).format('HH:mm DD/MM/YYYY')}} - {{moment(sub_tournament.end_at).format('HH:mm DD/MM/YYYY')}}
+            </p>
+          </div>
+          <div class="my-3" *ngIf="sub_tournament">
+            <section *ngIf="!sub_tournament_ids.includes(sub_tournament.id) && sub_tournament.tournament_step?.is_first;else participated">
+              <div class="text-center" *ngIf="sub_tournament.is_current && !sub_tournament.is_finished && (moment(sub_tournament.start_at).isBefore(moment.now()) && moment(sub_tournament.end_at).isAfter(moment.now()));else passed">
+                <p
+                  class="text-danger text-xl lg:text-2xl font-bold inline-block">
+                  До окончания регистрации:
+                </p>
+                <div class="my-4">
+                  <countdown class="text-danger text-2xl lg:text-5xl font-bold inline-block" [config]="{leftTime:moment(sub_tournament.end_at).diff(moment.now(),'seconds'),format:'dd/HH:mm:ss'}"></countdown>
+                </div>
+                <a
+
+                  type="button"
+                  class="inline-block main-green-bg border-0 rounded-full px-3 lg:px-4 py-2 lg:py-3 text-md lg:text-2xl font-bold uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0 my-2"
+                  data-te-ripple-init>
+                  Хочу участвовать
+                </a>
+              </div>
+              <ng-template #passed>
+            <span
+              class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3"
+              *ngIf="moment(sub_tournament.end_at).isAfter(moment.now())"
+            >
+              <fa-icon [icon]="faSadTear"></fa-icon>
+                <p>К сожалению, дата регистрации турнира уже прошла</p>
+            </span>
+                <span
+                  class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3"
+                  *ngIf="moment(sub_tournament.start_at).isBefore(moment.now())"
+                >
+              <fa-icon [icon]="faSadTear"></fa-icon>
+                <p>К сожалению, дата регистрации турнира еще не началась</p>
+            </span>
+              </ng-template>
+            </section>
+            <ng-template #participated>
+              <div class="text-center" *ngIf="sub_tournament_ids.includes(sub_tournament.id);else not_participated">
+                  <span
+                    class="main-green-color md:text-2xl xl:text-3xl inline-block text-center w-full m-3" *ngIf="my_result">
+                  <fa-icon [icon]="faSmileWink"></fa-icon>
+                  <p>Вы являетесь участником данного турнира</p>
+                </span>
+                <section *ngIf="!my_result">
+                  <div class="card md:flex items-center justify-center text-center">
+                    <ui-switch
+                      class="inline"
+                      checkedLabel="Қазақ тілі"
+                      defaultBgColor = '#9BA1FF'
+                      (valueChange)="changeLanguage($event)"
+                      size="large"
+                      uncheckedLabel="Русский язык"
+                      defaultBoColor="white"
+                      [checked]="locale_id == 1"
+                      checkedTextColor="white"
+                      switchColor="#fcfcfc"
+                      uncheckedTextColor="white"
+                    ></ui-switch>
+                  </div>
+                  <a
+                    *ngIf="!my_result"
+                    (click)="createTournamentAttempt()"
+                    type="button"
+                    class="inline-block main-green-bg border-0 rounded-full px-3 lg:px-4 py-2 lg:py-3 text-md lg:text-xl font-bold uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0 my-2"
+                    data-te-ripple-init>
+                    Сдать экзамен
+                  </a>
+                </section>
+              </div>
+              <ng-template #not_participated>
+                <span
+                  class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3">
+              <fa-icon [icon]="faSadTear"></fa-icon>
+                <p>К сожалению, вы не участник</p>
+            </span>
+              </ng-template>
+
+            </ng-template>
+          </div>
+        </div>
       </div>
-
-
-
-
     </div>
 
     <div class="grid grid-cols-12 m-3 gap-2">
       <div class="col-span-12">
-        <!--Pills navigation-->
-        <ul
-          class="mb-5 flex list-none flex-col flex-wrap pl-0 md:flex-row"
-          id="pills-tab"
-          role="tablist"
-          data-te-nav-ref>
-          <li role="presentation">
-            <a
-              href="#pills-home"
-              class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-neutral-700 dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
-              id="pills-home-tab"
-              data-te-toggle="pill"
-              data-te-target="#pills-home"
-              data-te-nav-active
-              role="tab"
-              aria-controls="pills-home"
-              aria-selected="true"
-            >Home</a
-            >
-          </li>
-          <li role="presentation">
-            <a
-              href="#pills-profile"
-              class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-neutral-700 dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
-              id="pills-profile-tab"
-              data-te-toggle="pill"
-              data-te-target="#pills-profile"
-              role="tab"
-              aria-controls="pills-profile"
-              aria-selected="false"
-            >Profile</a
-            >
-          </li>
-          <li role="presentation">
-            <a
-              href="#pills-contact"
-              class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-neutral-700 dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
-              id="pills-contact-tab"
-              data-te-toggle="pill"
-              data-te-target="#pills-contact"
-              role="tab"
-              aria-controls="pills-contact"
-              aria-selected="false"
-            >Contact</a
-            >
-          </li>
-          <li role="presentation">
-            <a
-              href="#pills-disabled"
-              class="pointer-events-none my-2 block rounded bg-neutral-200 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-400 dark:bg-neutral-600 dark:text-neutral-500"
-              id="pills-disabled-tab"
-              data-te-toggle="pill"
-              data-te-target="#pills-disabled"
-              role="tab"
-              aria-controls="pills-disabled"
-              aria-selected="false"
-            >Disabled</a
-            >
-          </li>
-        </ul>
+        <div class="md:flex justify-center">
+          <!--Pills navigation-->
+          <ul
+            class="mb-5 flex list-none flex-col flex-wrap pl-0 md:flex-row"
+            id="pills-tab"
+            role="tablist"
+            data-te-nav-ref>
+            <li role="presentation">
+              <a
+                href="#pills-participants"
+                class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-neutral-700 dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
+                id="pills-participants-tab"
+                data-te-toggle="pill"
+                data-te-target="#pills-participants"
+                data-te-nav-active
+                role="tab"
+                aria-controls="pills-participants"
+                aria-selected="true"
+              >Участники</a
+              >
+            </li>
+            <li role="presentation" *ngIf="sub_tournament">
+              <a
+                *ngIf="sub_tournament.tournament_step?.is_playoff"
+                href="#pills-rivals"
+                class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-neutral-700 dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
+                id="pills-rivals-tab"
+                data-te-toggle="pill"
+                data-te-target="#pills-rivals"
+                role="tab"
+                aria-controls="pills-rivals"
+                aria-selected="false"
+              >Playoff</a
+              >
+            </li>
+            <li role="presentation">
+              <a
+                href="#pills-results"
+                class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-neutral-700 dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
+                id="pills-results-tab"
+                data-te-toggle="pill"
+                data-te-target="#pills-results"
+                role="tab"
+                aria-controls="pills-results"
+                aria-selected="false"
+              >Результаты</a
+              >
+            </li>
+            <li role="presentation">
+              <a
+                href="#pills-winners"
+                class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-neutral-700 dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
+                id="pills-winners-tab"
+                data-te-toggle="pill"
+                data-te-target="#pills-winners"
+                role="tab"
+                aria-controls="pills-winners"
+                aria-selected="false"
+              >Победители</a
+              >
+            </li>
+          </ul>
+        </div>
+
 
         <!--Pills content-->
         <div class="mb-6">
+          <!--Participate-->
           <div
             class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-            id="pills-home"
+            id="pills-participants"
             role="tabpanel"
-            aria-labelledby="pills-home-tab"
+            aria-labelledby="pills-participants-tab"
             data-te-tab-active>
-            Tab 1 content
+            <div class="mx-3 p-4" *ngIf="sub_tournament_participants">
+              <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
+                <div class="relative overflow-x-auto" *ngIf="sub_tournament_participants.data">
+                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 capitalize">
+                    <tr>
+                      <th scope="col" class="px-6 py-3">
+                        #
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Имя
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Никнейм
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Email
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Дата регистрации
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let participant of sub_tournament_participants.data | paginate: { itemsPerPage: sub_tournament_participants.per_page, currentPage: sub_tournament_participants.current_page,totalItems:sub_tournament_participants.total }">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
+                        <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.png')] bg-cover bg-no-repeat my-2"></div>
+                        <p class="font-bold text-black ml-2 inline-block">#{{participant.id}}</p>
+                      </th>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{participant.user?.name}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{participant.user?.username}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{participant.user?.email}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2">{{moment(participant.updated_at??participant.created_at).format('DD/MM/YYYY HH:mm')}}</p>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div class="my-2 flex justify-center">
+                    <pagination-controls class="rounded-full" (pageChange)="participantPageChanged($event)"></pagination-controls>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
+          <!--Participate-->
+          <!--Rivals-->
           <div
             class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-            id="pills-profile"
+            id="pills-rivals"
             role="tabpanel"
-            aria-labelledby="pills-profile-tab">
-            Tab 2 content
+            aria-labelledby="pills-rivals-tab"
+            data-te-tab-active>
+            <div class="mx-3 p-4" *ngIf="sub_tournament_rivals">
+              <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl my-3 py-3" *ngFor="let rivals of sub_tournament_rivals">
+                <div class="relative overflow-x-auto">
+                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 capitalize">
+                    <tr>
+                      <th scope="col" class="px-6 py-3">
+                        Первый игрок
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Баллы
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Время
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Второй игрок
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Баллы
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Время
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="bg-white rounded-2xl my-2 border-b border-gray-300">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
+                        <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.png')] bg-cover bg-no-repeat my-2"></div>
+                        <p class="text-black ml-2 font-bold">{{rivals.rival_one_user?.name}}</p>
+                        <p class="text-black text-sm ml-2 font-bold">({{rivals.rival_one_user?.email}})</p>
+                      </th>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{rivals.point_one}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{rivals.time_one}}</p>
+                      </td>
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
+                        <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.png')] bg-cover bg-no-repeat my-2"></div>
+                        <p class="text-black ml-2 font-bold">{{rivals.rival_two_user?.name}}</p>
+                        <p class="text-black text-sm ml-2 font-bold">({{rivals.rival_two_user?.email}})</p>
+                      </th>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{rivals.point_two}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{rivals.time_two}}</p>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="relative overflow-x-auto" *ngIf="sub_tournament.is_finished">
+                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 capitalize">
+                    <tr>
+                      <th scope="col" class="px-6 py-3">
+                        Победитель
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="bg-white rounded-2xl my-2 border-b border-gray-300">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
+                        <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.png')] bg-cover bg-no-repeat my-2"></div>
+                        <p class="text-black ml-2 font-bold">{{rivals.winner_user?.name}}</p>
+                        <p class="text-black text-sm ml-2 font-bold">({{rivals.winner_user?.email}})</p>
+                      </th>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
+          <!--Rivals-->
+          <!--Result-->
           <div
             class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-            id="pills-contact"
+            id="pills-results"
             role="tabpanel"
-            aria-labelledby="pills-contact-tab">
-            Tab 3 content
+            aria-labelledby="pills-results-tab">
+            <div class="mx-3 p-4" *ngIf="sub_tournament_results">
+              <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl" *ngIf="sub_tournament_results.my_result">
+                <div class="relative overflow-x-auto">
+                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 capitalize">
+                    <tr>
+                      <th scope="col" class="px-6 py-3">
+                        #
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Имя
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Никнейм
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Email
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Баллы
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Время
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngIf="sub_tournament_results.my_result">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
+                        <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.png')] bg-cover bg-no-repeat my-2"></div>
+                        <p class="font-bold text-black ml-2 inline-block">#{{sub_tournament_results.my_result.id}}</p>
+                      </th>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{sub_tournament_results.my_result.user?.name}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{sub_tournament_results.my_result.user?.username}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{sub_tournament_results.my_result.user?.email}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2">{{sub_tournament_results.my_result.point}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2">{{sub_tournament_results.my_result.time}}</p>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+            <div class="mx-3 p-4" *ngIf="sub_tournament_results">
+              <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl" *ngIf="sub_tournament_results.results">
+                <div class="relative overflow-x-auto">
+                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 capitalize">
+                    <tr>
+                      <th scope="col" class="px-6 py-3">
+                        #
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Имя
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Никнейм
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Email
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Баллы
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Время
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let result of sub_tournament_results.results.data | paginate: { itemsPerPage: sub_tournament_results.results.per_page, currentPage: sub_tournament_results.results.current_page,totalItems:sub_tournament_results.results.total }">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
+                        <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.png')] bg-cover bg-no-repeat my-2"></div>
+                        <p class="font-bold text-black ml-2 inline-block">#{{result.id}}</p>
+                      </th>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{result.user?.name}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{result.user?.username}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{result.user?.email}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2">{{result.point}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2">{{result.time}}</p>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div class="my-2 flex justify-center">
+                    <pagination-controls class="rounded-full" (pageChange)="resultPageChanged($event)"></pagination-controls>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
+          <!--Result-->
           <div
             class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
-            id="pills-disabled"
+            id="pills-winners"
             role="tabpanel"
-            aria-labelledby="pills-disabled-tab">
-            Tab 4 disabled
+            aria-labelledby="pills-winners-tab">
+            <!--Winners-->
+            <div class="mx-3 p-4" *ngIf="sub_tournament_winners">
+              <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl" *ngIf="sub_tournament_winners">
+                <div class="relative overflow-x-auto">
+                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 capitalize">
+                    <tr>
+                      <th scope="col" class="px-6 py-3">
+                        #
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Имя
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Никнейм
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Email
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let winner of sub_tournament_winners">
+                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
+                        <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.png')] bg-cover bg-no-repeat my-2"></div>
+                        <p class="font-bold text-black ml-2 inline-block">#{{winner.id}}</p>
+                      </th>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{winner.user?.name}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{winner.user?.username}}</p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="text-black ml-2 font-bold">{{winner.user?.email}}</p>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+            <!--Winners-->
           </div>
         </div>
       </div>

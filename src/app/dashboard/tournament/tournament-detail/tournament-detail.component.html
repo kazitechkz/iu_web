@@ -124,14 +124,14 @@
         </div>
       </div>
       <div class="col-span-12 bg-white p-5 shadow-xl rounded-2xl my-3" *ngIf="firstSubTournament">
-        <section *ngIf="!subtournament_ids.includes(firstSubTournament.id);else participated">
+        <section *ngIf="!subtournament_ids.includes(firstSubTournament.id) && !firstSubTournament.is_finished;else participated">
           <div class="text-center" *ngIf="firstSubTournament.is_current && !firstSubTournament.is_finished && (moment(firstSubTournament.start_at).isBefore(moment.now()) && moment(firstSubTournament.end_at).isAfter(moment.now()));else passed">
             <p
               class="text-danger text-xl lg:text-2xl font-bold inline-block">
               До окончания регистрации:
             </p>
             <div class="my-4">
-            <countdown class="text-danger text-2xl lg:text-5xl font-bold inline-block" [config]="{leftTime:moment(firstSubTournament.end_at).diff(moment.now(),'seconds')}"></countdown>
+              <countdown class="text-danger text-2xl lg:text-5xl font-bold inline-block" [config]="{leftTime:moment(firstSubTournament.end_at).diff(moment.now(),'seconds'),format:'dd/HH:mm:ss'}"></countdown>
             </div>
             <a
               (click)="participateTournament()"
@@ -143,9 +143,18 @@
           </div>
           <ng-template #passed>
             <span
-              class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3">
+              class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3"
+              *ngIf="moment(firstSubTournament.end_at).isAfter(moment.now())"
+            >
               <fa-icon [icon]="faSadTear"></fa-icon>
-                <p>К сожаленью, дата регистрации турнира уже прошла</p>
+                <p>К сожалению, дата регистрации турнира уже прошла</p>
+            </span>
+            <span
+              class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3"
+              *ngIf="moment(firstSubTournament.start_at).isBefore(moment.now())"
+            >
+              <fa-icon [icon]="faSadTear"></fa-icon>
+                <p>К сожалению, дата регистрации турнира еще не началась</p>
             </span>
           </ng-template>
         </section>
@@ -156,7 +165,6 @@
             <p>Вы являетесь участником данного турнира</p>
           </span>
         </ng-template>
-
       </div>
     </div>
 

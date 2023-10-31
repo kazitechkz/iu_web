@@ -31,6 +31,21 @@ import {
 import {
   getSubTournamentDetailReducer
 } from "../../shared/store/tournament/getSubTournamentDetail/getSubTournamentDetail.reducer";
+import {
+  getSubTournamentParticipantsReducer
+} from "../../shared/store/tournament/getSubTournamentParticipants/getSubTournamentParticipants.reducer";
+import {
+  createTournamentAttemptReducer
+} from "../../shared/store/tournament/createTournamentAttempt/createTournamentAttempt.reducer";
+import {
+  getSubTournamentResultsReducer
+} from "../../shared/store/tournament/getSubTournamentResults/getSubTournamentResults.reducer";
+import {
+  getSubTournamentRivalsReducer
+} from "../../shared/store/tournament/getSubTournamentRivals/getSubTournamentRivals.reducer";
+import {
+  getSubTournamentWinnersReducer
+} from "../../shared/store/tournament/getSubTournamentWinners/getSubTournamentWinners.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -62,6 +77,11 @@ export const ReducersConstants = {
   getTournamentDetail:getTournamentDetailReducer,
   participateTournament:passSubStepExamReducer,
   getSubTournamentDetail:getSubTournamentDetailReducer,
-  subStepResult: subStepResultReducer
+  subStepResult: subStepResultReducer,
+  getSubTournamentParticipants:getSubTournamentParticipantsReducer,
+  getSubTournamentWinners:getSubTournamentWinnersReducer,
+  getSubTournamentRivals:getSubTournamentRivalsReducer,
+  getSubTournamentResults:getSubTournamentResultsReducer,
+  createTournamentAttempt:createTournamentAttemptReducer,
 
 }
