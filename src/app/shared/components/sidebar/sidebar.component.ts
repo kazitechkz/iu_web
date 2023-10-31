@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {RoutesName} from "../../../core/constants/routes.constants";
 
 @Component({
@@ -7,5 +7,6 @@ import {RoutesName} from "../../../core/constants/routes.constants";
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
+  @Input() mobile: boolean = false
   protected readonly RoutesName = RoutesName;
 }

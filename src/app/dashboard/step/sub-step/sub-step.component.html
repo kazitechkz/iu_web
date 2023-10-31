@@ -1,46 +1,47 @@
 <!-- Container for demo purpose -->
-<div class="container my-10 mx-auto md:px-6">
-  <!-- Section: Design Block -->
-  <section class="mb-16">
-    <h1 class="mb-4 text-3xl font-bold">
-      {{subStep | globalTranslate: 'title': translate.currentLang}}
-    </h1>
+<div *ngIf="(subStep$ | async)?.data != null; else elseBlock">
+  <div class="container my-10 mx-auto md:px-6">
+    <!-- Section: Design Block -->
+    <section class="mb-16">
+      <h1 class="mb-4 text-3xl font-bold">
+        {{(subStep$ | async)?.data | globalTranslate: 'title': translate.currentLang}}
+      </h1>
 
-    <p class="mb-6 flex items-center font-bold uppercase text-danger dark:text-danger-500">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-           class="mr-2 h-5 w-5">
-        <path stroke-linecap="round" stroke-linejoin="round"
-              d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
-        <path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
-      </svg> Уровень {{subStep?.level}}
-    </p>
-    <div class="rounded-[2rem] w-full shadow p-3" #youTubePlayer>
-      <youtube-player id="youtube-player" [width]="videoWidth" [height]="videoHeight" [videoId]="videoId"></youtube-player>
-    </div>
+      <p class="mb-6 flex items-center font-bold uppercase text-danger dark:text-danger-500">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+             class="mr-2 h-5 w-5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
+        </svg> Уровень {{(subStep$ | async)?.data?.level}}
+      </p>
+      <div class="rounded-[2rem] w-full shadow p-3" #youTubePlayer>
+        <youtube-player id="youtube-player" [width]="videoWidth" [height]="videoHeight" [videoId]="videoId"></youtube-player>
+      </div>
 
-    <div [innerHTML]="subStep?.sub_step_content | globalTranslate: 'text': translate.currentLang"></div>
-  </section>
+      <div [innerHTML]="(subStep$ | async)?.data?.sub_step_content | globalTranslate: 'text': translate.currentLang"></div>
+    </section>
 
+    <a *ngIf="(result$ | async)?.data"
+       [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepExam + '/' + (subStep$ | async)?.data?.id + '/' + StrHelper.getLocaleIdByCurrentLang(translate.currentLang))"
+       class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+      Пройти снова
+    </a>
 
-  <a *ngIf="(result$ | async)?.data"
-    [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepExam + '/' + subStep?.id + '/' + StrHelper.getLocaleIdByCurrentLang(translate.currentLang))"
-    class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-    Пройти снова
-  </a>
+    <a *ngIf="!(result$ | async)?.data"
+       [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepExam + '/' + (subStep$ | async)?.data?.id + '/' + StrHelper.getLocaleIdByCurrentLang(translate.currentLang))"
+       class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+      Начать тест
+    </a>
 
-  <a *ngIf="!(result$ | async)?.data"
-    [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepExam + '/' + subStep?.id + '/' + StrHelper.getLocaleIdByCurrentLang(translate.currentLang))"
-    class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-    Начать тест
-  </a>
+    <a *ngIf="(result$ | async)?.data" [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepResultExam + '/' + (subStep$ | async)?.data?.id + '/' + StrHelper.getLocaleIdByCurrentLang(translate.currentLang))"
+       class="ml-3 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+      Посмотреть результат
+    </a>
 
-
-  <a *ngIf="(result$ | async)?.data" [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepResultExam + '/' + subStep?.id + '/' + StrHelper.getLocaleIdByCurrentLang(translate.currentLang))"
-     class="ml-3 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-    Посмотреть результат
-  </a>
-
-  <!-- Section: Design Block -->
+    <!-- Section: Design Block -->
+  </div>
 </div>
+<ng-template #elseBlock>К сожалению, у вас недостаточно прав!</ng-template>
 <!-- Container for demo purpose -->

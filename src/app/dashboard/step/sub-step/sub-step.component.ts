@@ -19,7 +19,7 @@ import {GlobalTranslateService} from "../../../shared/services/globalTranslate.s
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {StrHelper} from "../../../core/helpers/str.helper";
 import {Actions} from "@ngrx/effects";
-import {Observable} from "rxjs";
+import {distinctUntilChanged, Observable} from "rxjs";
 import {ResponseData} from "../../../shared/store/response_data";
 
 @Component({
@@ -39,15 +39,20 @@ export class SubStepComponent implements OnInit, AfterViewInit {
   destroyRef = inject(DestroyRef);
   private changeDetectorRef = inject(ChangeDetectorRef)
   //@ts-ignore
-  public subStep: SubStepModel | null
+  public subStep: SubStepModel
+  //@ts-ignore
+  public responseData: ResponseData<SubStepModel>
   //@ts-ignore
   result$: Observable<ResponseData<boolean>>;
+  //@ts-ignore
+  subStep$: Observable<ResponseData<SubStepModel>>
 
   videoHeight: number | undefined;
   videoWidth: number | undefined;
   videoId: string = ''
 
   ngOnInit(): void {
+
     this.checkResult()
     this.getSubStep()
     this.onYoutubePlayer()
@@ -56,10 +61,7 @@ export class SubStepComponent implements OnInit, AfterViewInit {
   getSubStep() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(subStepDetailAction({requestData: params['id']}))
-      this._store.select(getSubStepDetailState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-        this.subStep =  item.data
-        this.videoId = this.getId('https://www.youtube.com/watch?v=MwpMEbgC7DA')
-      })
+      this.subStep$ = this._store.pipe(autoUnsubscribe(this.destroyRef), select(getSubStepDetailState))
     })
   }
 

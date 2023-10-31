@@ -1,22 +1,21 @@
 <div>
-  <div class="bg-white">
+  <div class="bg-white px-3">
     <div class="container mx-auto">
       <h2 class="text-2xl font-bold tracking-tight text-gray-900">Предметы</h2>
 
-      <div *ngIf="steps" class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <div *ngIf="steps" class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8 py-3">
           <div class="group relative shadow cursor-pointer" *ngFor="let step of steps">
             <a [routerLink]="[step.id]">
               <div class="p-5 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-52">
-                <div class="flex justify-start items-center">
+                <div class="flex justify-center items-center">
                   <div class="h-16 w-16 rounded-full bg-no-repeat bg-cover bg-center" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(step.image?.url) + ')'}"></div>
-                  <div>
-                    <p class="text-xl mx-2">
-                      {{step | globalTranslate: 'title': translate.currentLang}}
-                    </p>
-                  </div>
                 </div>
-
-                <div class="my-4 text-base flex items-center justify-between">
+                <div>
+                  <p class="mx-2 sm:text-xs lg:text-base text-center">
+                    {{step | globalTranslate: 'title': translate.currentLang}}
+                  </p>
+                </div>
+                <div class="my-4 text-base sm:text-xs flex items-center justify-between">
                   <div class="flex items-center">
                     <i class="fa fa-book mr-3" aria-hidden="true"></i>
                     {{step.steps_count}} {{'step' | translate}}
