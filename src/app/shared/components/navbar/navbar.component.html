@@ -1,10 +1,14 @@
 <div class="w-full flex flex-col">
   <!-- Desktop Header -->
-  <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
-    <div class="w-1/2">
+  <header class="w-full items-center bg-white py-2 px-6 sm:flex">
+    <div class="w-1/2 mobile:hidden md:block">
       Dashboard
     </div>
-    <div class="relative w-1/2 flex justify-end items-center">
+
+    <div class="relative w-1/2 mobile:w-full flex mobile:justify-between md:justify-end items-center">
+      <div class="w-1/2 sm:hidden mobile:block">
+        <i class="fa fa-bars cursor-pointer" aria-hidden="true" (click)="sideBar = !sideBar"></i>
+      </div>
       <div class="px-3 cursor-pointer">
         <div class="flex justify-center items-center" (click)="localeDropdown = !localeDropdown">
           <p class="mx-3">{{translate.currentLang | titlecase}}</p>
@@ -16,21 +20,24 @@
       </div>
 
       <div class="flex justify-center items-center" (click)="isOpen = !isOpen">
-        <button class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
+        <button class="relative z-10 mobile:w-8 mobile:h-8 md:w-12 md:h-12 rounded-full overflow-hidden mobile:border-2 md:border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
           <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400" alt="">
         </button>
-        <p class="mx-3">{{user?.name}}</p>
+<!--        <p class="mx-3">{{user?.name}}</p>-->
       </div>
 
 
-      <div *ngIf="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-        <a routerLink="index" class="block px-4 py-2 account-link cursor-pointer">Account</a>
-        <a href="#" class="block px-4 py-2 account-link cursor-pointer">Support</a>
-        <a (click)="logout()" class="block px-4 py-2 account-link cursor-pointer">Sign Out</a>
+      <div *ngIf="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 md:mt-44 mobile:mt-48 z-[999] mobile:right-0">
+        <a routerLink="index" class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white">Account</a>
+        <a href="#" class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white">Support</a>
+        <a (click)="logout()" class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white">Sign Out</a>
       </div>
     </div>
   </header>
 
+  <div class="transition delay-150 ease-in-out sm:hidden mobile:block">
+    <app-sidebar [mobile]="!sideBar"/>
+  </div>
   <!-- Mobile Header & Nav -->
 <!--  <header x-data="{ isOpen: false }" class="w-full bg-sidebar py-5 px-6 sm:hidden">-->
 <!--    <div class="flex items-center justify-between">-->

@@ -17,6 +17,7 @@ import {GlobalTranslateService} from "../../services/globalTranslate.service";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  sideBar: boolean = false
   isOpen: boolean = false
   localeDropdown: boolean = false
   private _authService = inject(AuthService)
