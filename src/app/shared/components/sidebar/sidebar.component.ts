@@ -7,6 +7,7 @@ import {select, Store} from "@ngrx/store";
 import {Observable, Subscription} from "rxjs";
 import {selectSidenavIsOpen} from "../../store/core/sidebar/sidebar.selector";
 import {closeSidebarAction} from "../../store/core/sidebar/sidebar.action";
+import {StrHelper} from "../../../core/helpers/str.helper";
 
 @Component({
   selector: 'app-sidebar',
@@ -46,7 +47,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     },
     {
       title: 'Обучение',
-      path: RoutesName.stepRoute,
+      path: StrHelper.getDashboardRouteName(RoutesName.stepRoute),
       icon: faGraduationCap as IconProp
     },
     {
