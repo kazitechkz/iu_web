@@ -2,7 +2,7 @@ import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {AuthService} from "../../../auth/auth.service";
 import {SessionService} from "../../services/session.service";
 import {LocalKeysConstants} from "../../../core/constants/local-keys.constants";
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
 import {accountAction} from "../../store/user/account/account.action";
 import {getAccountState} from "../../store/user/account/account.selector";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
@@ -10,6 +10,9 @@ import {Router} from "@angular/router";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {Me} from "../../models/user.model";
 import {GlobalTranslateService} from "../../services/globalTranslate.service";
+import {Observable} from "rxjs";
+import {selectSidenavIsOpen} from "../../store/core/sidebar/sidebar.selector";
+import {openSidebarAction} from "../../store/core/sidebar/sidebar.action";
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +20,8 @@ import {GlobalTranslateService} from "../../services/globalTranslate.service";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  sideBar: boolean = false
+  //@ts-ignore
+  sideBar$: Observable<boolean>;
   isOpen: boolean = false
   localeDropdown: boolean = false
   private _authService = inject(AuthService)
@@ -28,8 +32,13 @@ export class NavbarComponent implements OnInit {
   destroyRef = inject(DestroyRef);
   public user?: Me | null;
   ngOnInit(): void {
+    this.sideBar$ = this._store.pipe(select(selectSidenavIsOpen))
     this.translate.getCurrentLang()
     this.me()
+  }
+
+  openSideNav() {
+    this._store.dispatch(openSidebarAction())
   }
 
   me() {

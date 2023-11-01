@@ -1,5 +1,5 @@
 <div class="w-full flex">
-  <div class="w-full p-4">
+  <div class="w-full lg:p-4 sm:pl-2 mobile:p-1.5">
     <div class="st w-full container mx-auto">
 
       <div class="stepper">
@@ -65,14 +65,15 @@
                 <div class="my-3" *ngFor="let subStep of subSteps">
                   <a [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepRoute) + '/' + subStep.id">
                     <div
-                      class="flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:max-w-xl md:flex-row">
+                      class="flex sm:flex-col mobile:pl-2 mobile:items-center rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:max-w-xl md:flex-row">
                       <img
-                        class="h-96 w-1/4 rounded-t-lg object-cover md:h-auto md:!rounded-none md:!rounded-l-lg"
+                        class="mobile:hidden mobile:h-auto h-96 w-1/4 rounded-t-lg object-cover md:h-auto md:!rounded-none md:!rounded-l-lg"
                         [src]="ImageHelper.getImage(null)"
                         alt="" />
-                      <div class="flex flex-col justify-start p-6 w-3/4">
+                      <div class="sm:hidden mobile:block border w-[50px] h-[50px] rounded-full bg-no-repeat bg-center bg-cover" [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(null)+')'}"></div>
+                      <div class="flex flex-col justify-start p-6 mobile:p-2 w-3/4">
                         <h5
-                          class="mb-2 text-xl font-medium text-neutral-800">
+                          class="mb-2 mobile:text-xs sm:text-xl font-medium text-neutral-800">
                           {{subStep | globalTranslate: 'title': translate.currentLang}}
                         </h5>
                         <div class="flex justify-between items-center">
@@ -81,7 +82,7 @@
                               <div class="h-1" [ngStyle]="{'width': StrHelper.getProgressByCurrentLang(subStep, translate.currentLang) + '%', 'background-color': ColorConstants.primaryColor}"></div>
                             </div>
                           </div>
-                          <p class="text-sm font-medium">{{subStep | globalTranslate: 'progress' : translate.currentLang}}%</p>
+                          <p class="text-sm mobile:text-xs font-medium">{{subStep | globalTranslate: 'progress' : translate.currentLang}}%</p>
                         </div>
                         <!--                      <p class="text-xs text-neutral-500">-->
                         <!--                        Last updated 3 mins ago-->

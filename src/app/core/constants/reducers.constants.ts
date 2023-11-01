@@ -46,6 +46,7 @@ import {
 import {
   getSubTournamentWinnersReducer
 } from "../../shared/store/tournament/getSubTournamentWinners/getSubTournamentWinners.reducer";
+import {sidenavReducer} from "../../shared/store/core/sidebar/sidebar.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -83,5 +84,5 @@ export const ReducersConstants = {
   getSubTournamentRivals:getSubTournamentRivalsReducer,
   getSubTournamentResults:getSubTournamentResultsReducer,
   createTournamentAttempt:createTournamentAttemptReducer,
-
+  sidenav: sidenavReducer
 }

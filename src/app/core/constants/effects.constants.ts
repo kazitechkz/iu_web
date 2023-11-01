@@ -45,6 +45,7 @@ import {
 import {
   GetSubTournamentWinnersEffect
 } from "../../shared/store/tournament/getSubTournamentWinners/getSubTournamentWinners.effect";
+import {SidenavEffects} from "../../shared/store/core/sidebar/sidebar.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -82,4 +83,5 @@ export const EffectsConstants = [
     CreateTournamentAttemptEffect,
     GetSubTournamentWinnersEffect,
     GetSubTournamentRivalsEffect,
+    SidenavEffects
 ]
