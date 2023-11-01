@@ -224,8 +224,9 @@
             </div>
           </div>
         </div>
-        <div class="my-2" *ngIf="questions[active_slider].explanation">
-          {{questions[active_slider].explanation}}
+        <div class="my-2 p-4" *ngIf="questions[active_slider].explanation">
+          <markdown katex [data]="questions[active_slider].explanation | mathjaxTransform" *ngIf="questions[active_slider].explanation"></markdown>
+
         </div>
 
       </div>
