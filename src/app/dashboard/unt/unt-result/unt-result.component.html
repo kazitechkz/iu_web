@@ -1,4 +1,3 @@
-{{loading}}
 <section *ngIf="attempt && !loading">
   <div class="container mx-auto">
     <div class="grid grid-cols-12 py-5 my-3 main-green-bg rounded-2xl">
@@ -10,8 +9,8 @@
           <fa-icon [icon]="faClock" class="mr-3"></fa-icon>
           <countdown  [config]="timeConfig"></countdown>
         </div>
-        <p class="md:text-5xl font-bold text-white my-2 px-1">
-          {{result.points}} / {{result.max_points}}
+        <p class="md:text-3xl font-bold text-white my-2 px-1">
+          {{result.points}} верных из {{result.max_points}}
         </p>
       </div>
     </div>
@@ -26,7 +25,6 @@
         </div>
       </div>
     </div>
-
     <!--    Pagination-->
     <div class="grid grid-cols-12 mt-8">
       <div class="col-span-12" *ngIf="answeredResult">
@@ -52,20 +50,12 @@
     <!--    Question Modal-->
     <div class="grid grid-cols-12 mt-[50px] ">
       <!--    Prompt-->
-      <div class="col-span-12 md:col-span-3 flex justify-center items-start">
-        <div class="text-center">
-          <button
-            (click)="openModal('promptModal')"
-            class="inline hover:rotate-0 rotate-180 hover:bg-yellow-200 rounded-full shadow-lg w-14 h-14  bg-yellow-400 text-2xl text-white font-bold"
-          >
-            <fa-icon [icon]="faLightbulb" class="text-white text-2xl"></fa-icon>
-          </button>
-          <img src="assets/images/helper.png">
-        </div>
+      <div class="col-span-12 flex justify-center">
+
       </div>
       <!--    Prompt-->
       <!--    Question And Answer-->
-      <div class="col-span-12 md:col-span-6">
+      <div class="col-span-12 xl:col-span-8">
         <div>
           <section *ngFor="let questions_ones of attempt.subject_questions">
             <section *ngIf="questions_ones.attempt_subject_id == active_subject_id">
@@ -74,17 +64,18 @@
                 #slickModal="slick-carousel"  class="carousel" [config]="questionSlider">
                 <div ngxSlickItem *ngFor="let question of questions_ones.question"
                      class="slide cursor-pointer
+                     bg-white
                     relative  rounded-2xl shadow-2xl overflow-y-scroll">
-                  <div class="my-4 text-xl text-black p-4 font-bold">
+                  <div class="my-4 text-xl text-black p-5 font-bold">
                     Вопрос № {{active_slider+1}}
                   </div>
-                  <div class="p-4 text-black font-bold content-question">
+                  <div class="p-5 text-black font-bold content-question">
                     <markdown katex>
                       {{question.text | mathjaxTransform}}
                     </markdown>
                   </div>
                   <section *ngIf="question.context">
-                    <div class="p-4 text-black  font-bold content-question">
+                    <div class="p-5 text-black content-question" *ngIf="question.context.context">
                       <markdown katex>
                         {{question.context.context | mathjaxTransform}}
                       </markdown>
@@ -198,24 +189,45 @@
       </div>
       <!--    Question And Answer-->
       <!--    Actions -->
-      <div class="col-span-12 md:col-span-3 flex justify-center items-start">
-        <div class="text-center">
-          <div class="my-2 md:flex justify-around px-4">
-            <button
-              (click)="saveQuestion()"
-              class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
-              type="button">
-              <fa-icon [icon]="faStar"></fa-icon>
-            </button>
-            <button
-              (click)="openModal('appealModal')"
-              class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
-              type="button">
-              <fa-icon [icon]="faBug"></fa-icon>
-            </button>
+      <div class="col-span-12 xl:col-span-4">
+        <div class="flex justify-center items-start">
+          <div class="text-center flex py-3 my-2">
+            <div>
+              <button
+                (click)="openModal('promptModal')"
+                class="inline hover:rotate-0 rotate-180 hover:bg-yellow-200 rounded-full shadow-lg w-14 h-14 mx-4  bg-yellow-400 text-2xl text-white font-bold"
+              >
+                <fa-icon [icon]="faLightbulb" class="text-white text-2xl"></fa-icon>
+              </button>
+              <br>
+              <small class="text-yellow-400 font-bold">Подсказка</small>
+            </div>
+            <div>
+              <button
+                (click)="saveQuestion()"
+                class="inline hover:rotate-0 rotate-180 main-green-bg rounded-full shadow-lg w-14 h-14 mx-4   text-2xl text-white font-bold"
+                type="button">
+                <fa-icon [icon]="faStar"></fa-icon>
+              </button>
+              <br>
+              <small class="main-green-color font-bold">Закладки</small>
+            </div>
+            <div>
+              <button
+                (click)="openModal('appealModal')"
+                class="inline hover:rotate-0 rotate-180 bg-red-500 rounded-full shadow-lg w-14 h-14 mx-4   text-2xl text-white font-bold"
+                type="button">
+                <fa-icon [icon]="faBug"></fa-icon>
+              </button>
+              <br>
+              <small class="text-red-500 font-bold">Ошибка</small>
+            </div>
           </div>
-          <img src="assets/images/thinking.png">
         </div>
+        <div class="my-2" *ngIf="questions[active_slider].explanation">
+          {{questions[active_slider].explanation}}
+        </div>
+
       </div>
       <!--    Actions -->
     </div>
@@ -285,7 +297,8 @@
         <fa-icon class="inline-block text-4xl text-yellow-300 my-3" [icon]="faLightbulb"></fa-icon>
       </div>
       <p class="text-lg md:text-3xl inline-block my-2">Подсказка к вопросу номер № {{active_slider + 1}}</p>
-      <div *ngIf="questions[active_slider].prompt; else no_prompt" [innerHTML]="questions[active_slider].prompt"></div>
+      <markdown katex [data]="questions[active_slider].prompt | mathjaxTransform" *ngIf="questions[active_slider].prompt ; else no_prompt"></markdown>
+
       <ng-template #no_prompt>
         <span>
           <fa-icon class="text-yellow-300 mr-2" [icon]="faFaceFrownOpen"></fa-icon>

@@ -7,6 +7,7 @@ const _getUntStatReducer = createReducer(
   on(getUntStatAction, (state, action) => {
     return {
       ...state,
+      data:null,
     }
   }),
   on(getUntStatActionSuccess, (state, action) => {

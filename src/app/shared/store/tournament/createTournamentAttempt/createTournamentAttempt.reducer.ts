@@ -10,6 +10,7 @@ const _createTournamentAttemptReducer = createReducer(
   on(createTournamentAttemptAction, (state, action) => {
     return {
       ...state,
+      data:null,
     }
   }),
   on(createTournamentAttemptActionSuccess, (state, action) => {

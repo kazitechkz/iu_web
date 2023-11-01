@@ -8,6 +8,7 @@ const _saveQuestionReducer = createReducer(
   on(onSaveQuestionAction, (state, action) => {
     return {
       ...state,
+      data:null,
     }
   }),
   on(onSaveQuestionActionSuccess, (state, action) => {

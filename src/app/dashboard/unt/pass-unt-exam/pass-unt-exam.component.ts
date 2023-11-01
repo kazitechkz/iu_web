@@ -8,7 +8,7 @@ import {
   faForwardFast,
   faBackwardFast,
   faCheck,
-  faHandshake, faFaceFrownOpen, faClover
+  faHandshake, faFaceFrownOpen, faClover, faPersonRunning
 } from "@fortawesome/free-solid-svg-icons";
 import {CountdownConfig, CountdownEvent} from "ngx-countdown";
 import {RoutesName} from "../../../core/constants/routes.constants";
@@ -114,7 +114,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
   }
 
   checkResult(){
-    this._store.select(answerSelector).pipe(distinctUntilChanged((prev, curr) => prev.data?.question_id == curr.data?.question_id),autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+    this._store.select(answerSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         if(item.data.is_finished === true){
          this._router.navigate([RoutesName.resultUnt + "/" + this.attempt.attempt_id]).then(r => true);
@@ -243,6 +243,10 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     }
   }
 
+  finishAttempt(){
+    this._store.dispatch(finishAttemptAction({requestData:this.attempt.attempt_id}));
+  }
+
   is_answered(answer:string){
     let index = this.questions[this.active_slider].id;
     if(this.answered_questions[index]){
@@ -297,10 +301,10 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     "infinite": false,
     "responsive": [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
-          slidesToShow: 12,
-          slidesToScroll: 12,
+          slidesToShow: 8,
+          slidesToScroll: 8,
           infinite: true,
           dots: false
         }
@@ -308,13 +312,13 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: 10,
-          slidesToScroll: 10,
+          slidesToShow: 6,
+          slidesToScroll: 6,
           dots: false
         }
       },
       {
-        breakpoint: 700,
+        breakpoint: 899,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
@@ -368,4 +372,5 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     protected readonly prompt = prompt;
     protected readonly faFaceFrownOpen = faFaceFrownOpen;
   protected readonly faClover = faClover;
+  protected readonly faPersonRunning = faPersonRunning;
 }

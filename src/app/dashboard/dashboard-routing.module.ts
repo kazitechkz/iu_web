@@ -17,6 +17,7 @@ import {UntStatComponent} from "./unt/unt-stat/unt-stat.component";
 import {TournamentListComponent} from "./tournament/tournament-list/tournament-list.component";
 import {TournamentDetailComponent} from "./tournament/tournament-detail/tournament-detail.component";
 import {SubTournamentDetailComponent} from "./tournament/sub-tournament-detail/sub-tournament-detail.component";
+import {MyProfileComponent} from "./profile/my-profile/my-profile.component";
 
 
 const routes: Routes = [
@@ -85,6 +86,10 @@ const routes: Routes = [
       {
         path: 'result-exam/:sub_step_id/:locale_id',
         component: ResultExamComponent,
+      },
+      {
+        path: 'my-profile',
+        component: MyProfileComponent,
       },
     ]
   }

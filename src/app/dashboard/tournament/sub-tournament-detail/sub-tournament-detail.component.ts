@@ -73,6 +73,12 @@ import {
   getSubTournamentRivalsAction
 } from "../../../shared/store/tournament/getSubTournamentRivals/getSubTournamentRivals.action";
 import {SubTournamentRival} from "../../../shared/models/subTournamentRival.model";
+import {
+  ParticipateTournamentRequest
+} from "../../../shared/store/tournament/participateTournament/participateTournament.request";
+import {
+  OnParticipateTournamentAction
+} from "../../../shared/store/tournament/participateTournament/participateTournament.action";
 @Component({
   selector: 'app-sub-tournament-detail',
   templateUrl: './sub-tournament-detail.component.html',
@@ -191,7 +197,6 @@ export class SubTournamentDetailComponent implements OnInit{
     this._store.select(getSubTournamentRivalsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
       item => {
         if(item.data){
-          console.log(item.data);
           this.sub_tournament_rivals = item.data;
         }
       }
@@ -200,6 +205,14 @@ export class SubTournamentDetailComponent implements OnInit{
 
   changeLanguage(value:any){
     this.locale_id = value ? 1 : 2;
+  }
+
+  participateTournament(){
+    let request = {locale_id:this.locale_id, sub_tournament_id:this.sub_tournament.id} as ParticipateTournamentRequest;
+    if(request.sub_tournament_id){
+      this._store.dispatch(OnParticipateTournamentAction({requestData:request}));
+      this.getSubTournamentDetail();
+    }
   }
 
   createTournamentAttempt(){

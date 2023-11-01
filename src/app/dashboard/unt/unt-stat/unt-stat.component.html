@@ -1,6 +1,6 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12 gap-3">
-    <div class="col-span-12 md:col-span-4 mx-3 p-4" *ngIf="untStat">
+    <div class="col-span-12 xl:col-span-5 mx-3 p-4 order-2 xl:order-1" *ngIf="untStat">
       <div class="main-green-bg rounded-2xl p-4 shadow-lg md:flex items-center cursor-pointer">
         <div class="md:w-4/12 p-2 text-center">
           <img class="inline" src="assets/images/medal.png">
@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="grid grid-cols-12 my-4 gap-3">
-        <div class="col-span-12 md:col-span-6">
+        <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-6">
           <div class="bg-white p-4 md:flex items-center shadow-lg rounded-2xl h-full">
             <div class="md:w-4/12 p-2 text-center grid justify-center">
               <div class="rounded-full bg-green-300 h-16 w-16 flex justify-center items-center self-center">
@@ -29,7 +29,7 @@
             </div>
           </div>
         </div>
-        <div class="col-span-12 md:col-span-6">
+        <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-6">
           <div class="bg-white p-4 md:flex items-center shadow-lg rounded-2xl h-full">
             <div class="md:w-4/12 p-2 text-center grid justify-center">
               <div class="rounded-full bg-red-300 h-16 w-16 flex justify-center items-center self-center">
@@ -46,7 +46,7 @@
             </div>
           </div>
         </div>
-        <div class="col-span-12 md:col-span-6">
+        <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-6">
           <div class="bg-white p-4 md:flex items-center shadow-lg rounded-2xl h-full">
             <div class="md:w-4/12 p-2 text-center grid justify-center">
               <div class="rounded-full bg-yellow-300 h-16 w-16 flex justify-center items-center self-center">
@@ -63,7 +63,7 @@
             </div>
           </div>
         </div>
-        <div class="col-span-12 md:col-span-6">
+        <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-6">
           <div class="bg-white p-4 md:flex items-center shadow-lg rounded-2xl h-full">
             <div class="md:w-4/12 p-2 text-center grid justify-center">
               <div class="rounded-full bg-blue-300 h-16 w-16 flex justify-center items-center self-center">
@@ -94,7 +94,7 @@
 
 
     </div>
-    <div class="col-span-12 md:col-span-8 mx-3 p-4" *ngIf="attempts">
+    <div class="col-span-12 xl:col-span-7 mx-3 p-4 order-1 xl:order-2" *ngIf="attempts">
       <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
         <div class="relative overflow-x-auto" *ngIf="attempts.data">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

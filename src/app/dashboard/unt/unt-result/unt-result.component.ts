@@ -216,10 +216,6 @@ export class UntResultComponent implements  OnInit, OnDestroy{
       }
   }
 
-
-
-
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
@@ -260,10 +256,10 @@ export class UntResultComponent implements  OnInit, OnDestroy{
     "infinite": false,
     "responsive": [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
-          slidesToShow: 12,
-          slidesToScroll: 12,
+          slidesToShow: 8,
+          slidesToScroll: 8,
           infinite: true,
           dots: false
         }
@@ -271,13 +267,13 @@ export class UntResultComponent implements  OnInit, OnDestroy{
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: 10,
-          slidesToScroll: 10,
+          slidesToShow: 6,
+          slidesToScroll: 6,
           dots: false
         }
       },
       {
-        breakpoint: 700,
+        breakpoint: 899,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,

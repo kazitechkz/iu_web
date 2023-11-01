@@ -7,6 +7,9 @@ const _answerReducer = createReducer(
   on(createAnswerAction, (state, action) => {
     return {
       ...state,
+      success: null,
+      errors: null,
+      data:null,
     }
   }),
   on(createAnswerActionSuccess, (state, action) => {

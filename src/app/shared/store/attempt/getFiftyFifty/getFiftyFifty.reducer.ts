@@ -12,6 +12,7 @@ const _getFiftyFiftyReducer = createReducer(
   on(onGetFiftyFiftyAction, (state, action) => {
     return {
       ...state,
+      data:null,
     }
   }),
   on(onGetFiftyFiftyActionSuccess, (state, action) => {

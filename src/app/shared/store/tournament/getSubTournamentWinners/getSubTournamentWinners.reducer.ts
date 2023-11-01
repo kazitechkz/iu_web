@@ -11,6 +11,7 @@ const _getSubTournamentWinnersReducer = createReducer(
   on(getSubTournamentWinnersAction, (state, action) => {
     return {
       ...state,
+      data:null,
     }
   }),
   on(getSubTournamentWinnersActionSuccess, (state, action) => {

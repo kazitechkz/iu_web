@@ -7,6 +7,7 @@ const _getAttemptReducer = createReducer(
   on(getAttemptAction, (state, action) => {
     return {
       ...state,
+      data:null,
     }
   }),
   on(getAttemptActionSuccess, (state, action) => {

@@ -29,6 +29,7 @@ import {NgChartsModule} from "ng2-charts";
 import { TournamentListComponent } from './tournament/tournament-list/tournament-list.component';
 import { TournamentDetailComponent } from './tournament/tournament-detail/tournament-detail.component';
 import { SubTournamentDetailComponent } from './tournament/sub-tournament-detail/sub-tournament-detail.component';
+import { MyProfileComponent } from './profile/my-profile/my-profile.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { SubTournamentDetailComponent } from './tournament/sub-tournament-detail
         TournamentListComponent,
         TournamentDetailComponent,
         SubTournamentDetailComponent,
+        MyProfileComponent,
     ],
     imports: [
         CommonModule,

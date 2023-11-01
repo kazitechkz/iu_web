@@ -15,7 +15,7 @@
       <div class="col-span-12 flex justify-center">
         <div class="w-[300px]">
           <select class="w-full rounded-2xl" (change)="changeSubject($event)">
-            <option  *ngFor="let subject of attempt.subject_questions" value="{{subject.attempt_subject_id}}">
+            <option *ngFor="let subject of attempt.subject_questions" value="{{subject.attempt_subject_id}}">
               {{subject.title_ru}}
             </option>
           </select>
@@ -51,38 +51,75 @@
     <!--    Question Modal-->
     <div class="grid grid-cols-12 mt-[50px] ">
       <!--    Prompt-->
-      <div class="col-span-12 md:col-span-3 flex justify-center items-start">
-        <div class="text-center">
+      <div class="col-span-12 flex justify-center items-start">
+        <div class="text-center flex py-3">
+          <div *ngIf="attempt.type_id != 3">
+            <button
+              (click)="openModal('promptModal')"
+              class="inline hover:rotate-0 rotate-180 hover:bg-yellow-200 rounded-full shadow-lg w-14 h-14 mx-4  bg-yellow-400 text-2xl text-white font-bold"
+            >
+              <fa-icon [icon]="faLightbulb" class="text-white text-2xl"></fa-icon>
+            </button>
+            <br>
+            <small class="text-yellow-400 font-bold">Подсказка</small>
+          </div>
+          <div *ngIf="questions[active_slider].type_id != 3">
+            <section *ngIf="attempt.type_id != 3">
+            <section *ngIf="!fiftyFiftyResult.hasOwnProperty(questions[active_slider].id)">
+              <button
+                (click)="getFiftyFifty()"
+                class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14 mx-4 text-2xl text-white font-bold mx-4"
+                type="button">
+                <fa-icon [icon]="faDice"></fa-icon>
+              </button>
+              <br>
+              <small class="main-secondary-color font-bold">50/50</small>
+            </section>
+            </section>
+          </div>
+          <div>
+            <button
+              (click)="saveQuestion()"
+              class="inline hover:rotate-0 rotate-180 main-green-bg rounded-full shadow-lg w-14 h-14 mx-4   text-2xl text-white font-bold"
+              type="button">
+              <fa-icon [icon]="faStar"></fa-icon>
+            </button>
+            <br>
+            <small class="main-green-color font-bold">Закладки</small>
+          </div>
+          <div>
           <button
-            (click)="openModal('promptModal')"
-            class="inline hover:rotate-0 rotate-180 hover:bg-yellow-200 rounded-full shadow-lg w-14 h-14  bg-yellow-400 text-2xl text-white font-bold"
-          >
-            <fa-icon [icon]="faLightbulb" class="text-white text-2xl"></fa-icon>
+            (click)="openModal('appealModal')"
+            class="inline hover:rotate-0 rotate-180 bg-red-500 rounded-full shadow-lg w-14 h-14 mx-4   text-2xl text-white font-bold"
+            type="button">
+            <fa-icon [icon]="faBug"></fa-icon>
           </button>
-          <img src="assets/images/helper.png">
+            <br>
+          <small class="text-red-500 font-bold">Ошибка</small>
+          </div>
         </div>
       </div>
       <!--    Prompt-->
       <!--    Question And Answer-->
-      <div class="col-span-12 md:col-span-6">
+      <div class="col-span-12 md:col-span-2"></div>
+      <div class="col-span-12 md:col-span-8">
         <div>
           <section *ngFor="let questions_ones of attempt.subject_questions">
             <section *ngIf="questions_ones.attempt_subject_id == active_subject_id">
               <ngx-slick-carousel
-                      (afterChange)="changeSlider($event)"
-                      #slickModal="slick-carousel"  class="carousel" [config]="questionSlider">
+                (afterChange)="changeSlider($event)"
+                #slickModal="slick-carousel" class="carousel" [config]="questionSlider">
                 <div ngxSlickItem *ngFor="let question of questions_ones.question"
-                     class="slide cursor-pointer
-                relative  rounded-2xl shadow-2xl overflow-y-scroll">
+                     class="slide cursor-pointer relative  rounded-2xl shadow-2xl overflow-y-scroll">
                   <div class="my-4 text-xl text-black p-4 font-bold">
-                    Вопрос № {{active_slider+1}}
+                    Вопрос № {{active_slider + 1}} из {{questions_ones.question.length}}
                   </div>
                   <div class="p-4 text-black font-bold content-question">
                     <markdown katex>
                       {{question.text | mathjaxTransform}}
                     </markdown>
                   </div>
-                  <section *ngIf="question.context">
+                  <section *ngIf="question.context" class="p-4">
                     <markdown katex>
                       {{question.context.context | mathjaxTransform}}
                     </markdown>
@@ -93,9 +130,9 @@
                     <section *ngIf="checkIsFiftyFifty('answer_a')">
                       <div (click)="answerQuestion(questions[active_slider].id,'a')"
                            [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('a')? true : false,
-                'text-white': is_answered('a')? true : false,
-             }"
+                            'bg-[#9BA1FF]' :is_answered('a')? true : false,
+                            'text-white': is_answered('a')? true : false,
+                           }"
                            class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                            *ngIf="question.answer_a">
                         <markdown katex>
@@ -108,9 +145,9 @@
                     <section *ngIf="checkIsFiftyFifty('answer_b')">
                       <div (click)="answerQuestion(question.id,'b')"
                            [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('b')? true : false,
-                'text-white': is_answered('b')? true : false,
-             }"
+                                'bg-[#9BA1FF]' :is_answered('b')? true : false,
+                                'text-white': is_answered('b')? true : false,
+                             }"
                            class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                            *ngIf="question.answer_b">
                         <markdown katex>
@@ -123,9 +160,9 @@
                     <section *ngIf="checkIsFiftyFifty('answer_c')">
                       <div (click)="answerQuestion(questions[active_slider].id,'c')"
                            [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('c')? true : false,
-                'text-white': is_answered('c')? true : false,
-             }"
+                              'bg-[#9BA1FF]' :is_answered('c')? true : false,
+                              'text-white': is_answered('c')? true : false,
+                           }"
                            class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                            *ngIf="question.answer_c">
                         <markdown katex>
@@ -138,9 +175,9 @@
                     <section *ngIf="checkIsFiftyFifty('answer_d')">
                       <div (click)="answerQuestion(questions[active_slider].id,'d')"
                            [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('d')? true : false,
-                'text-white': is_answered('d')? true : false,
-             }"
+                              'bg-[#9BA1FF]' :is_answered('d')? true : false,
+                              'text-white': is_answered('d')? true : false,
+                           }"
                            class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                            *ngIf="question.answer_d">
                         <markdown katex>
@@ -153,9 +190,9 @@
                     <section *ngIf="checkIsFiftyFifty('answer_e')">
                       <div (click)="answerQuestion(questions[active_slider].id,'e')"
                            [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('e')? true : false,
-                'text-white': is_answered('e')? true : false,
-             }"
+                              'bg-[#9BA1FF]' :is_answered('e')? true : false,
+                              'text-white': is_answered('e')? true : false,
+                           }"
                            class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                            *ngIf="question.answer_e">
                         <markdown katex>
@@ -168,9 +205,9 @@
                     <section *ngIf="checkIsFiftyFifty('answer_f')">
                       <div (click)="answerQuestion(questions[active_slider].id,'f')"
                            [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('f')? true : false,
-                'text-white': is_answered('f')? true : false,
-             }"
+                              'bg-[#9BA1FF]' :is_answered('f')? true : false,
+                              'text-white': is_answered('f')? true : false,
+                           }"
                            class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                            *ngIf="question.answer_f">
                         <markdown katex>
@@ -183,9 +220,9 @@
                     <section *ngIf="checkIsFiftyFifty('answer_g')">
                       <div (click)="answerQuestion(questions[active_slider].id,'g')"
                            [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('g')? true : false,
-                'text-white': is_answered('g')? true : false,
-             }"
+                              'bg-[#9BA1FF]' :is_answered('g')? true : false,
+                              'text-white': is_answered('g')? true : false,
+                           }"
                            class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                            *ngIf="question.answer_g">
                         <markdown katex>
@@ -198,9 +235,9 @@
                     <section *ngIf="checkIsFiftyFifty('answer_h')">
                       <div (click)="answerQuestion(questions[active_slider].id,'h')"
                            [ngClass]="{
-                'bg-[#9BA1FF]' :is_answered('h')? true : false,
-                'text-white': is_answered('h')? true : false,
-             }"
+                                'bg-[#9BA1FF]' :is_answered('h')? true : false,
+                                'text-white': is_answered('h')? true : false,
+                             }"
                            class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                            *ngIf="question.answer_h">
                         <markdown katex>
@@ -220,37 +257,8 @@
         </div>
 
       </div>
+      <div class="col-span-12 md:col-span-2"></div>
       <!--    Question And Answer-->
-      <!--    Actions -->
-      <div class="col-span-12 md:col-span-3 flex justify-center items-start">
-        <div class="text-center">
-          <div class="my-2 md:flex justify-around px-4">
-            <section *ngIf="questions[active_slider].type_id != 3">
-              <button
-                *ngIf="!fiftyFiftyResult.hasOwnProperty(questions[active_slider].id)"
-                (click)="getFiftyFifty()"
-                class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
-                type="button">
-                <fa-icon [icon]="faDice"></fa-icon>
-              </button>
-            </section>
-            <button
-              (click)="saveQuestion()"
-              class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
-              type="button">
-              <fa-icon [icon]="faStar"></fa-icon>
-            </button>
-            <button
-              (click)="openModal('appealModal')"
-              class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg w-14 h-14   text-2xl text-white font-bold"
-              type="button">
-              <fa-icon [icon]="faBug"></fa-icon>
-            </button>
-          </div>
-          <img src="assets/images/thinking.png">
-        </div>
-      </div>
-      <!--    Actions -->
     </div>
     <!--    Question Modal-->
 
@@ -258,17 +266,17 @@
     <div class="grid grid-cols-12 mt-8 mb-4">
       <div class="col-span-12 md:col-span-4 p-4">
         <button type="button" class="
-      mt-4
-      text-lg
-      w-full
-      font-bold
-      inline
-      main-secondary-bg
-      text-white
-      focus:outline-none focus:ring-4
-      focus:ring-violet-500 font-medium
-      rounded-lg text-sm px-5 py-5
-      text-center mr-2 mb-2
+          mt-4
+          text-lg
+          w-full
+          font-bold
+          inline
+          main-secondary-bg
+          text-white
+          focus:outline-none focus:ring-4
+          focus:ring-violet-500 font-medium
+          rounded-lg text-sm px-5 py-5
+          text-center mr-2 mb-2
    "
                 (click)="prev()"
         >
@@ -322,6 +330,27 @@
 
     </div>
     <!--    Prev, Answer, Next-->
+    <div class="col-span-12 flex justify-end items-end">
+      <!--    Finish-->
+      <button type="button" class="
+            mt-4
+            text-lg
+            font-bold
+            inline
+            bg-red-500
+            text-white
+            focus:outline-none focus:ring-4
+            focus:ring-green-500 font-medium
+            rounded-lg text-sm px-5 py-5
+            text-center mr-2 mb-2"
+              (click)="finishAttempt()"
+      >
+        Завершить досрочно
+        <fa-icon [icon]="faPersonRunning" class="mx-2 text-lg"></fa-icon>
+      </button>
+      <!--    Finish-->
+    </div>
+
   </div>
 
   <!--  Modal Prompt -->
@@ -331,16 +360,16 @@
         <fa-icon class="inline-block text-4xl text-yellow-300 my-3" [icon]="faLightbulb"></fa-icon>
       </div>
       <p class="text-lg md:text-3xl inline-block my-2">Подсказка к вопросу номер № {{active_slider + 1}}</p>
-      <markdown katex *ngIf="questions[active_slider].prompt; else no_prompt">
-        {{questions[active_slider].prompt | mathjaxTransform}}
-      </markdown>
+
+        <markdown katex [data]="questions[active_slider].prompt | mathjaxTransform" *ngIf="questions[active_slider].prompt ; else no_prompt"></markdown>
       <ng-template #no_prompt>
         <span>
           <fa-icon class="text-yellow-300 mr-2" [icon]="faFaceFrownOpen"></fa-icon>
-          К сожалению, подсказок нет
+          К сожалению, подсказок нет <br>
         </span>
       </ng-template>
-      <button (click)="closeModal('promptModal')" type="button" class="focus:outline-none my-4 font-bold text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-500">
+      <button (click)="closeModal('promptModal')" type="button"
+              class="focus:outline-none my-4 font-bold text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-500">
         Понятно!
       </button>
     </div>
@@ -356,7 +385,7 @@
       <div class="my-4">
         <div class="my-2">
           <select class="w-full rounded-lg my-2" [(ngModel)]="appealRequest.type_id">
-            <option  *ngFor="let type of appealTypes" value="{{type.id}}">
+            <option *ngFor="let type of appealTypes" value="{{type.id}}">
               {{type.title_ru}}
             </option>
           </select>
@@ -369,10 +398,12 @@
         </div>
 
       </div>
-      <button (click)="createAppeal()" type="button" class="focus:outline-none my-4 mx-2 font-bold text-white bg-red-500 focus:ring-4 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+      <button (click)="createAppeal()" type="button"
+              class="focus:outline-none my-4 mx-2 font-bold text-white bg-red-500 focus:ring-4 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
         Отправить
       </button>
-      <button (click)="closeModal('appealModal')" type="button" class="focus:outline-none my-4 font-bold text-white main-secondary-bg focus:ring-4 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+      <button (click)="closeModal('appealModal')" type="button"
+              class="focus:outline-none my-4 font-bold text-white main-secondary-bg focus:ring-4 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
         Отмена
       </button>
     </div>

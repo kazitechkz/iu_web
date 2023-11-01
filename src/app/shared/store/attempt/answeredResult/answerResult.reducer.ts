@@ -11,6 +11,7 @@ const _answeredResultReducer = createReducer(
   on(onAnsweredResultAction, (state, action) => {
     return {
       ...state,
+      data:null,
     }
   }),
   on(onAnsweredResultActionSuccess, (state, action) => {

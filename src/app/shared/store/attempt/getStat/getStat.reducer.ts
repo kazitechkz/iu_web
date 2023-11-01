@@ -7,6 +7,7 @@ const _getStatReducer = createReducer(
   on(getStatAction, (state, action) => {
     return {
       ...state,
+      data:null,
     }
   }),
   on(getStatActionSuccess, (state, action) => {

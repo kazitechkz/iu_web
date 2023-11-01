@@ -9,6 +9,7 @@ const _accountReducer = createReducer(
     on(accountAction, (state, action) => {
         return {
             ...state,
+          data:null,
         }
     }),
     on(accountActionSuccess, (state, action) => {

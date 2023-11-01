@@ -134,3 +134,9 @@ body{
 .ngx-pagination .current {
   background: #4DC591!important;
 }
+.slick-slide{
+  img {
+    display: block;
+    margin: auto;
+  }
+}
