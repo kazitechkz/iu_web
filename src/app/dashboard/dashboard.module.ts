@@ -31,6 +31,8 @@ import { TournamentDetailComponent } from './tournament/tournament-detail/tourna
 import { SubTournamentDetailComponent } from './tournament/sub-tournament-detail/sub-tournament-detail.component';
 import { MyProfileComponent } from './profile/my-profile/my-profile.component';
 import { ResultByAttemptIdComponent } from './stat/result-by-attempt-id/result-by-attempt-id.component';
+import { StatByAttemptIdComponent } from './stat/stat-by-attempt-id/stat-by-attempt-id.component';
+import { StatBySubjectIdComponent } from './stat/stat-by-subject-id/stat-by-subject-id.component';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { ResultByAttemptIdComponent } from './stat/result-by-attempt-id/result-b
         SubTournamentDetailComponent,
         MyProfileComponent,
         ResultByAttemptIdComponent,
+        StatByAttemptIdComponent,
+        StatBySubjectIdComponent,
     ],
     imports: [
         CommonModule,

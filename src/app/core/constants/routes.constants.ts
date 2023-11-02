@@ -18,5 +18,7 @@ export enum RoutesName {
     tournamentDetail = "dashboard/tournament-detail",
     subTournamentDetail = "dashboard/sub-tournament-detail",
     resultByAttemptId = "dashboard/result-attempt",
+    statByAttemptId = "dashboard/stat-attempt",
+    statBySubjectId = "dashboard/stat-subject",
     myProfile = "dashboard/my-profile",
 }
