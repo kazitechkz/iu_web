@@ -30,6 +30,7 @@ import { TournamentListComponent } from './tournament/tournament-list/tournament
 import { TournamentDetailComponent } from './tournament/tournament-detail/tournament-detail.component';
 import { SubTournamentDetailComponent } from './tournament/sub-tournament-detail/sub-tournament-detail.component';
 import { MyProfileComponent } from './profile/my-profile/my-profile.component';
+import { ResultByAttemptIdComponent } from './stat/result-by-attempt-id/result-by-attempt-id.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { MyProfileComponent } from './profile/my-profile/my-profile.component';
         TournamentDetailComponent,
         SubTournamentDetailComponent,
         MyProfileComponent,
+        ResultByAttemptIdComponent,
     ],
     imports: [
         CommonModule,

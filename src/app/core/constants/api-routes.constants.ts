@@ -34,4 +34,7 @@ export enum APIRoutesName {
     getSubTournamentParticipants = "sub-tournament-participants",
     getSubTournamentWinners = "sub-tournament-winners",
     getSubTournamentRivals = "sub-tournament-rivals",
+    resultByAttemptId = "statistics/attempt-result",
+    statByAttemptId = "statistics/attempt-stats",
+    statBySubjectId = "statistics/subject-stats",
 }

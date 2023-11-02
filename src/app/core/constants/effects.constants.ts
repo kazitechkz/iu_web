@@ -24,28 +24,17 @@ import {ResultExamEffect} from "../../shared/store/step/resultExam/resultExam.ef
 import {GetUntStatEffect} from "../../shared/store/attempt/getUntStat/getUntStat.effect";
 import {GetAllTournamentEffect} from "../../shared/store/tournament/getAllTournament/getAllTournament.effect";
 import {GetTournamentDetailEffect} from "../../shared/store/tournament/getTournamentDetail/getTournamentDetail.effect";
-import {
-  ParticipateTournamentEffect
-} from "../../shared/store/tournament/participateTournament/participateTournament.effect";
-import {
-  GetSubTournamentDetailEffect
-} from "../../shared/store/tournament/getSubTournamentDetail/getSubTournamentDetail.effect";
-import {
-  GetSubTournamentParticipantsEffect
-} from "../../shared/store/tournament/getSubTournamentParticipants/getSubTournamentParticipants.effect";
-import {
-  GetSubTournamentResultsEffect
-} from "../../shared/store/tournament/getSubTournamentResults/getSubTournamentResults.effect";
-import {
-  CreateTournamentAttemptEffect
-} from "../../shared/store/tournament/createTournamentAttempt/createTournamentAttempt.effect";
-import {
-  GetSubTournamentRivalsEffect
-} from "../../shared/store/tournament/getSubTournamentRivals/getSubTournamentRivals.effect";
-import {
-  GetSubTournamentWinnersEffect
-} from "../../shared/store/tournament/getSubTournamentWinners/getSubTournamentWinners.effect";
+import {ParticipateTournamentEffect} from "../../shared/store/tournament/participateTournament/participateTournament.effect";
+import {GetSubTournamentDetailEffect} from "../../shared/store/tournament/getSubTournamentDetail/getSubTournamentDetail.effect";
+import {GetSubTournamentParticipantsEffect} from "../../shared/store/tournament/getSubTournamentParticipants/getSubTournamentParticipants.effect";
+import {GetSubTournamentResultsEffect} from "../../shared/store/tournament/getSubTournamentResults/getSubTournamentResults.effect";
+import {CreateTournamentAttemptEffect} from "../../shared/store/tournament/createTournamentAttempt/createTournamentAttempt.effect";
+import {GetSubTournamentRivalsEffect} from "../../shared/store/tournament/getSubTournamentRivals/getSubTournamentRivals.effect";
+import {GetSubTournamentWinnersEffect} from "../../shared/store/tournament/getSubTournamentWinners/getSubTournamentWinners.effect";
 import {SidenavEffects} from "../../shared/store/core/sidebar/sidebar.effect";
+import {ResultByAttemptIdEffect} from "../../shared/store/stat/resultByAttemptId/resultByAttemptId.effect";
+import {StatByAttemptIdEffect} from "../../shared/store/stat/statByAttemptId/statByAttemptId.effect";
+import {StatBySubjectIdEffect} from "../../shared/store/stat/statBySubjectId/statBySubjectId.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -83,5 +72,8 @@ export const EffectsConstants = [
     CreateTournamentAttemptEffect,
     GetSubTournamentWinnersEffect,
     GetSubTournamentRivalsEffect,
-    SidenavEffects
+    SidenavEffects,
+    ResultByAttemptIdEffect,
+    StatByAttemptIdEffect,
+    StatBySubjectIdEffect,
 ]

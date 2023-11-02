@@ -1,0 +1,155 @@
+<div class="container mx-auto" *ngIf="resultByAttempt">
+  <div class="grid grid-cols-12 gap-2 bg-white rounded-xl shadow-lg p-3 my-3 justify-center items-center" *ngIf="resultByAttempt.attempt">
+    <div class="col-span-12 md:col-span-3 my-2">
+      <p class="text-md md:text-xl lg:text-xl xl:text-2xl text-center uppercase bg-blue-400 rounded-lg text-white p-3">
+        {{resultByAttempt.attempt.attempt_type?.title_ru}}
+      </p>
+    </div>
+    <div class="col-span-12 md:col-span-6 my-2">
+      <p class="text-lg md:text-2xl lg:text-3xl xl:text-4xl text-center uppercase font-bold">
+        Результат тестирования
+      </p>
+    </div>
+    <div class="col-span-12 md:col-span-3 my-2">
+      <p class="text-md md:text-xl lg:text-xl xl:text-2xl text-center uppercase bg-blue-400 rounded-lg text-white p-3">
+        Попытка № {{resultByAttempt.attempt.id}}
+      </p>
+    </div>
+    <div class="col-span-12 mt-[40px] mb-2">
+      <p class="text-md md:text-xl lg:text-2xl xl:text-3xl text-center uppercase font-bold">
+        {{resultByAttempt.attempt.user?.name}} набрал(-a)
+      </p>
+    </div>
+    <div class="col-span-12 my-2 my-2">
+      <p class="text-lg md:text-4xl lg:text-5xl xl:text-6xl text-center uppercase font-bold">
+        {{resultByAttempt.attempt.points}} из {{resultByAttempt.attempt.max_points}} баллов
+      </p>
+    </div>
+    <div class="col-span-12 mt-2 mb-[40px]">
+      <p class="text-md md:text-xl lg:text-2xl xl:text-3xl text-center uppercase font-bold">
+        За  <countdown  [config]="timeConfig"></countdown>
+      </p>
+    </div>
+    <div class="col-span-12 lg:col-span-6 my-4">
+      <div class="flex justify-center items-center">
+        <table class="w-full md:w-10/12 lg:w-8/12">
+        <tbody>
+        <tr>
+          <td colspan="2" class="font-bold">Тип сдачи:</td>
+          <td class="font-bold text-blue-400">{{resultByAttempt.attempt.attempt_type?.title_ru}}</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="font-bold">Дата начала:</td>
+          <td class="font-bold text-blue-400">{{moment(resultByAttempt.attempt.start_at).format('HH:mm:ss DD/MM/YYYY')}}</td>
+        </tr>
+        <tr>
+          <td colspan="2" class="font-bold">Дата окончания:</td>
+          <td class="font-bold text-blue-400">{{moment(resultByAttempt.attempt.end_at).format('HH:mm:ss DD/MM/YYYY')}}</td>
+        </tr>
+        </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-span-12 lg:col-span-6 my-4">
+      <div class="flex justify-center items-center">
+        <table class="w-full md:w-10/12 lg:w-8/12">
+          <tbody>
+          <tr>
+            <td colspan="2" class="font-bold">Язык сдачи:</td>
+            <td class="font-bold text-blue-400">{{resultByAttempt.attempt.locale?.title}}</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="font-bold">Максимальный балл:</td>
+            <td class="font-bold text-blue-400">{{resultByAttempt.attempt.max_points}}</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="font-bold">Набранный балл:</td>
+            <td class="font-bold text-blue-400">{{resultByAttempt.attempt.points}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-span-12 my-4">
+        <div class="relative overflow-x-auto flex justify-center items-center">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 capitalize">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                №
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Предметы
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Всего вопросов
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Верно отвеченно
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Неверно отвеченно
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Набранно
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let subject of resultByAttempt.subjects">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
+                <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(subject.image?.url)+ ')'}"></div>
+                <p class="font-bold text-black ml-2 inline-block">#{{subject.id}}</p>
+              </th>
+              <td class="px-6 py-4">
+                <p class="text-black ml-2 font-bold">{{subject.title_ru}}</p>
+              </td>
+              <td class="px-6 py-4">
+                <p class="text-black ml-2 font-bold">
+                  {{(getSubjectResult(subject.id)?.total ?? 0)}}
+                </p>
+              </td>
+              <td class="px-6 py-4">
+                <p class="text-green-400 ml-2 font-bold">
+                  {{(getSubjectResult(subject.id)?.right ?? 0)}}
+                </p>
+              </td>
+              <td class="px-6 py-4">
+                <p class="text-red-400 ml-2 font-bold">
+                  {{(getSubjectResult(subject.id)?.not_right ?? 0)}}
+                </p>
+              </td>
+              <td class="px-6 py-4">
+                <p class="text-black ml-2 font-bold">
+                  {{(getSubjectResult(subject.id)?.point ?? 0)}}
+                </p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <div class="col-span-12 lg:col-span-6 my-2">
+      <div class="text-center my-2">
+        <a
+          class="cursor-pointer text-white main-secondary-bg hover:bg-violet-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-500 dark:hover:bg-blue-700 dark:focus:ring-blue-700">
+          <fa-icon class="mr-1 text-white" [icon]="faChartBar"></fa-icon>
+         Посмотреть полную статистику
+        </a>
+      </div>
+    </div>
+    <div class="col-span-12 lg:col-span-6 my-2">
+      <div class="text-center my-2">
+        <a
+          [routerLink]="'/'+RoutesName.resultUnt + '/' + resultByAttempt.attempt.id"
+          class="cursor-pointer text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-700">
+          <fa-icon class="mr-1 text-white" [icon]="faCheckCircle"></fa-icon>
+          Работа над ошибками
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

@@ -18,6 +18,7 @@ import {TournamentListComponent} from "./tournament/tournament-list/tournament-l
 import {TournamentDetailComponent} from "./tournament/tournament-detail/tournament-detail.component";
 import {SubTournamentDetailComponent} from "./tournament/sub-tournament-detail/sub-tournament-detail.component";
 import {MyProfileComponent} from "./profile/my-profile/my-profile.component";
+import {ResultByAttemptIdComponent} from "./stat/result-by-attempt-id/result-by-attempt-id.component";
 
 
 const routes: Routes = [
@@ -86,6 +87,10 @@ const routes: Routes = [
       {
         path: 'result-exam/:sub_step_id/:locale_id',
         component: ResultExamComponent,
+      },
+      {
+        path: 'result-attempt/:id',
+        component: ResultByAttemptIdComponent,
       },
       {
         path: 'my-profile',

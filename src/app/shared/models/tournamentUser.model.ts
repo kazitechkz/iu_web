@@ -4,5 +4,4 @@ export interface TournamentUser{
   name:string,
   phone:string,
   email:string
-
 }
