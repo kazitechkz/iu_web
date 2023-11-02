@@ -23,10 +23,10 @@ export class ExamComponent implements OnInit, DoCheck {
   public questions: SubStepExamModel[] | null = []
   //@ts-ignore
   public keys: IterableIterator<number> = []
-  public answers: {sub_step_id: number, answer: string, locale_id: number}[] = []
+  public answers: {sub_step_test_id: number, answer: string, locale_id: number}[] = []
   getQuestions() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
-      this._store.dispatch(subStepExamAction({requestData: {sub_step_id: params['sub_step_id'], locale_id: params['locale_id']}}))
+      this._store.dispatch(subStepExamAction({requestData: {sub_step_id: params['sub_step_test_id'], locale_id: params['locale_id']}}))
       this._store.select(getSubStepExamState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         this.questions = item.data
       })
@@ -34,14 +34,14 @@ export class ExamComponent implements OnInit, DoCheck {
   }
 
   add(questionId: number, answer: string) {
-    if (this.answers.find(el => el.sub_step_id == questionId)) {
+    if (this.answers.find(el => el.sub_step_test_id == questionId)) {
       this.answers.forEach((el) => {
-        if (el.sub_step_id == questionId) {
+        if (el.sub_step_test_id == questionId) {
           el.answer = answer
         }
       })
     } else {
-      this.answers.push({sub_step_id: questionId, answer: answer, locale_id: StrHelper.getLocaleIdByCurrentLang(this.translate.currentLang)})
+      this.answers.push({sub_step_test_id: questionId, answer: answer, locale_id: StrHelper.getLocaleIdByCurrentLang(this.translate.currentLang)})
     }
   }
 
@@ -49,7 +49,7 @@ export class ExamComponent implements OnInit, DoCheck {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(passSubStepExamAction({requestData: this.answers}))
       this._store.select(passSubStepExamState).pipe(distinctUntilChanged(), autoUnsubscribe(this.destroyRef)).subscribe(item => {
-        this._router.navigateByUrl('/dashboard/result-exam/'+params['sub_step_id']+'/'+params['locale_id'])
+        this._router.navigateByUrl('/dashboard/result-exam/'+params['sub_step_test_id']+'/'+params['locale_id'])
       })
     })
   }

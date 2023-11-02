@@ -1,0 +1,26 @@
+{
+  "HOME": "Главная",
+  "STEPS": "Обучение",
+  "ENT": "Тренажер ЕНТ",
+  "BATTLE_ENT": "Battle ЕНТ",
+  "TOURNAMENT": "Турнир",
+  "COUCHERS": "Репетиторы",
+  "STATISTICS": "Статистика",
+  "PROFILE": "Профиль",
+  "FORUM": "Форум",
+  "SUBJECTS": "Предметы",
+  "STEP": "Этап",
+  "SUB_STEP": "Суб этап",
+  "LEVEL": "Уровень",
+  "SAVE_BUTTON": "Сохранить",
+  "SEND_BUTTON": "Отправить",
+  "CANCEL_BUTTON": "Отмена",
+  "RESTART_BUTTON": "Пройти снова",
+  "SHOW_RESULT_BUTTON": "Просмотреть результат",
+  "START_TEST_BUTTON": "Начать тест",
+  "BACK_BUTTON": "Вернуться назад",
+  "FORBIDDEN_MESSAGE": "К сожалению, у вас недостаточно прав!",
+  "NO_RESULTS": "Ничего не найдено"
+
+
+}

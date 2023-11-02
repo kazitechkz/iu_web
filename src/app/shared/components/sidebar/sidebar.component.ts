@@ -41,47 +41,47 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   public menuLists = [
     {
-      title: 'Главная',
+      title: 'HOME',
       path: '#',
       icon: faHome as IconProp
     },
     {
-      title: 'Обучение',
+      title: 'STEPS',
       path: StrHelper.getDashboardRouteName(RoutesName.stepRoute),
       icon: faGraduationCap as IconProp
     },
     {
-      title: 'Тренажер ЕНТ',
+      title: 'ENT',
       path: RoutesName.untMode,
       icon: faHandPointRight as IconProp
     },
     {
-      title: 'Battle ЕНТ',
+      title: 'BATTLE_ENT',
       path: '#',
       icon: faBolt as IconProp
     },
     {
-      title: 'Турнир',
+      title: 'TOURNAMENT',
       path: RoutesName.tournamentList,
       icon: faGamepad as IconProp
     },
     {
-      title: 'Репетитор',
+      title: 'COUCHERS',
       path: RoutesName.tournamentList,
       icon: faMale as IconProp
     },
     {
-      title: 'Статистика',
+      title: 'STATISTICS',
       path: RoutesName.untStats,
       icon: faChartLine as IconProp
     },
     {
-      title: 'Профиль',
+      title: 'PROFILE',
       path: RoutesName.untStats,
       icon: faUser as IconProp
     },
     {
-      title: 'Форум',
+      title: 'FORUM',
       path: RoutesName.untStats,
       icon: faF as IconProp
     }

@@ -7,7 +7,7 @@
     <div class="bg-link" routerLinkActive="active-nav-link" *ngFor="let menu of menuLists">
       <a [routerLink]="'/' + menu.path" (click)="navigateTo(menu.path)" class="flex items-center py-2 pl-6 nav-item cursor-pointer">
         <fa-icon [icon]="menu.icon" class="mr-3"></fa-icon>
-        {{menu.title}}
+        {{menu.title | translate}}
       </a>
     </div>
   </nav>

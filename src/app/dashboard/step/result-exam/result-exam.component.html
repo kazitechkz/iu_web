@@ -1,4 +1,4 @@
-<div class="container my-10 mx-auto md:px-6">
+<div *ngIf="results; else elseBlock" class="container my-10 mx-auto md:px-6">
   <div
     class="mb-3 inline-flex w-full items-center rounded-lg bg-success-100 px-6 py-5 text-base text-success-700"
     role="alert">
@@ -14,11 +14,11 @@
         clip-rule="evenodd" />
     </svg>
   </span>
-    {{results?.is_right}} / {{results?.count}}
+    {{results.is_right}} / {{results.count}}
   </div>
   <div *ngFor="let question of results?.questions"
        class="block rounded-lg bg-white p-6 my-3 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-    <div id="custom-img">
+    <div class="content-question">
       <h5
         class="mb-2 text-xl font-medium leading-tight text-neutral-800">
         <markdown katex>
@@ -66,11 +66,14 @@
   <a
      [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepExam + '/' + subStepId + '/' + localeId)"
      class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-    Пройти снова
+    {{'RESTART_BUTTON' | translate}}
   </a>
 
   <a [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepRoute + '/' + subStepId)"
      class="ml-3 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-    Вернуться на главную
+    {{'BACK_BUTTON' | translate}}
   </a>
 </div>
+<ng-template #elseBlock>
+  {{'NO_RESULTS' | translate}}
+</ng-template>

@@ -1,5 +1,5 @@
 import {Component, DestroyRef, inject, OnInit} from '@angular/core';
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
 import {ActivatedRoute, Router} from "@angular/router";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import { ColorConstants } from 'src/app/core/constants/color.constants';
@@ -9,6 +9,7 @@ import {resultExamAction} from "../../../shared/store/step/resultExam/resultExam
 import {ResultExamModel} from "../../../shared/models/resultExam.model";
 import {StrHelper} from "../../../core/helpers/str.helper";
 import {RoutesName} from "../../../core/constants/routes.constants";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-result-exam',
@@ -22,7 +23,10 @@ export class ResultExamComponent implements OnInit {
   private _route = inject(ActivatedRoute)
   destroyRef = inject(DestroyRef);
   //@ts-ignore
-  public results: ResultExamModel | null
+  results$: Observable<ResponseData<ResultExamModel>>
+  //@ts-ignore
+  public results: ResultExamModel
+  public check: boolean = true
   public subStepId: number | undefined
   public localeId: number | undefined
 
@@ -35,7 +39,8 @@ export class ResultExamComponent implements OnInit {
       this.subStepId = params['sub_step_id']
       this.localeId = params['locale_id']
       this._store.dispatch(resultExamAction({requestData: {sub_step_id: params['sub_step_id'], locale_id: params['locale_id']}}))
-      this._store.select(getResultExamState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      this.results$ = this._store.pipe(autoUnsubscribe(this.destroyRef), select(getResultExamState))
+      this.results$.pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         this.results = item.data
       })
     })

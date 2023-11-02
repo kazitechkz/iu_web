@@ -6,7 +6,7 @@ import {SharedModule} from "./shared/shared.module";
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
-import {HTTP_INTERCEPTORS, HttpClient} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {ErrorInterceptor} from "./core/interceptors/error.interceptor";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ReducersConstants} from "./core/constants/reducers.constants";
@@ -26,7 +26,7 @@ import {MarkdownModule} from "ngx-markdown";
 import {NgxPaginationModule} from "ngx-pagination";
 import {NgChartsModule} from "ng2-charts";
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/locale/', '.json');
+  return new TranslateHttpLoader(http);
 }
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CountdownModule,
     UiSwitchModule,
     NgxPaginationModule,
+    HttpClientModule,
     MarkdownModule.forRoot(),
     StoreModule.forRoot(ReducersConstants),
     EffectsModule.forRoot(EffectsConstants),

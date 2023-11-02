@@ -7,7 +7,6 @@ import {GlobalTranslateService} from "../../shared/services/globalTranslate.serv
 })
 export class GlobalTranslatePipe implements PipeTransform {
   private truncate = inject(TruncatePipe)
-  private localeService = inject(GlobalTranslateService)
 
   transform(value: any, target: string, currentLang: string | null, limit: number | null = null): unknown {
     if (currentLang != null && value != null) {

@@ -8,10 +8,6 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import {GlobalTranslatePipe} from "./pipes/globalTranslate.pipe";
 import {MathJaxPipe} from "./pipes/mathJax.pipe";
 
-export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http, './assets/locale/', '.json');
-}
-
 @NgModule({
     declarations: [
     GlobalTranslatePipe,
@@ -21,14 +17,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     imports: [
         CommonModule,
         ToastrModule.forRoot(), // ToastrModule added
-        TranslateModule.forChild({
-            defaultLanguage: 'ru',
-            loader: {
-                provide: TranslateLoader,
-                useFactory: HttpLoaderFactory,
-                deps: [HttpClient]
-            }
-        }),
     ],
     providers: [TranslateStore, GlobalTranslatePipe, TruncatePipe,],
   exports: [

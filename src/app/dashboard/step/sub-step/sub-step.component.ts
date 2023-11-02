@@ -21,18 +21,26 @@ import {StrHelper} from "../../../core/helpers/str.helper";
 import {Actions} from "@ngrx/effects";
 import {distinctUntilChanged, Observable} from "rxjs";
 import {ResponseData} from "../../../shared/store/response_data";
+import {calculate} from "@rxweb/reactive-form-validators/algorithm/luhn-algorithm";
 
 @Component({
   selector: 'app-sub-step',
   templateUrl: './sub-step.component.html',
   styleUrls: ['./sub-step.component.scss']
 })
-export class SubStepComponent implements OnInit, AfterViewInit {
-  ngAfterViewInit(): void {
-    this.onResize();
-    window.addEventListener('resize', this.onResize.bind(this));
-  }
-  @ViewChild('youTubePlayer') youTubePlayer: ElementRef<HTMLDivElement> | undefined;
+export class SubStepComponent implements OnInit {
+  //@ts-ignore
+  @ViewChild('mobileElement') mobileElement: ElementRef
+  //@ts-ignore
+  @ViewChild('smElement') smElement: ElementRef
+  //@ts-ignore
+  @ViewChild('mdElement') mdElement: ElementRef
+  //@ts-ignore
+  @ViewChild('lgElement') lgElement: ElementRef
+  //@ts-ignore
+  @ViewChild('xlElement') xlElement: ElementRef
+  //@ts-ignore
+  @ViewChild('xxlElement') xxlElement: ElementRef
   public translate = inject(GlobalTranslateService)
   private _store = inject(Store)
   private _route = inject(ActivatedRoute)
@@ -52,16 +60,22 @@ export class SubStepComponent implements OnInit, AfterViewInit {
   videoId: string = ''
 
   ngOnInit(): void {
-
     this.checkResult()
     this.getSubStep()
     this.onYoutubePlayer()
+  }
+
+  getWidth(width: number) {
+    return width * 0.85;
   }
 
   getSubStep() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(subStepDetailAction({requestData: params['id']}))
       this.subStep$ = this._store.pipe(autoUnsubscribe(this.destroyRef), select(getSubStepDetailState))
+      this.subStep$.pipe().subscribe(item => {
+        this.videoId = this.getId(item.data?.sub_step_video?.url)
+      })
     })
   }
 
@@ -72,27 +86,14 @@ export class SubStepComponent implements OnInit, AfterViewInit {
     })
   }
 
-  onResize(): void {
-    // you can remove this line if you want to have wider video player than 1200px
-
-    this.videoWidth = Math.min(
-      // @ts-ignore
-      this.youTubePlayer.nativeElement.clientWidth - (this.youTubePlayer.nativeElement.clientWidth * 0.02)
-    );
-    // so you keep the ratio
-    this.videoHeight = this.videoWidth * 0.3;
-    this.changeDetectorRef.detectChanges();
-  }
-
   onYoutubePlayer() {
     const tag = document.createElement('script');
     tag.src = 'https://www.youtube.com/iframe_api';
     document.body.appendChild(tag);
   }
 
-  getId(url: string) {
+  getId(url: string | undefined) {
     let regex = /(youtu.*be.*)\/(watch\?v=|embed\/|v|shorts|)(.*?((?=[&#?])|$))/gm;
-
     // @ts-ignore
     return regex.exec(url)[3]
   }
