@@ -6,8 +6,17 @@ import {
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {getAccountState} from "../../../shared/store/user/account/account.selector";
 import {Me} from "../../../shared/models/user.model";
-import {faCrown, faEnvelope, faPencilAlt, faPhone, faUser} from "@fortawesome/free-solid-svg-icons";
+import {
+  faCalendar,
+  faCrown,
+  faEnvelope,
+  faPencilAlt,
+  faPhone,
+  faUser,
+  faVenusMars
+} from "@fortawesome/free-solid-svg-icons";
 import {ImageHelper} from "../../../core/helpers/image.helper";
+import * as moment from "moment";
 
 @Component({
   selector: 'app-my-profile',
@@ -40,4 +49,8 @@ export class MyProfileComponent implements OnInit{
   protected readonly faUser = faUser;
   protected readonly ImageHelper = ImageHelper;
   protected readonly faPencilAlt = faPencilAlt;
+  protected readonly faVenusMars = faVenusMars;
+  protected readonly faCalendar = faCalendar;
+  protected readonly moment = moment;
+  protected readonly Date = Date;
 }

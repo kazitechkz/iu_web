@@ -1,15 +1,22 @@
-<div class="container mx-auto">
+<div class="container mx-auto" *ngIf="me">
   <div class="grid grid-cols-12 gap-4">
     <div class="col-span-12 lg:col-span-4 my-4  p-3 bg-white shadow-2xl rounded-lg">
       <div class="flex justify-center items-center my-2">
-        <div class="rounded-full w-[130px] h-[130px] md:w-[260px] md:h-[260px] bg-center bg-no-repeat bg-cover bg-[url('https://mdbcdn.b-cdn.net/img/new/slides/006.webp')]"></div>
+        <div class="rounded-full w-[130px] h-[130px] md:w-[260px] md:h-[260px] bg-center bg-no-repeat bg-cover" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(me.file?.url) +')'}"></div>
       </div>
       <hr>
       <div *ngIf="me" class="px-3 py-4">
-        <p class="block mb-2 text-xl md:text-2xl lg:text-3xl font-bold main-green-color">{{me.name}}</p>
+        <p class="block mb-2 text-xl md:text-2xl lg:text-3xl font-bold">{{me.name}}</p>
         <span class="flex mb-2 text-sm md:text-md lg:text-lg font-normal">
           <fa-icon class="mr-2 main-green-color" [icon]="faCrown"></fa-icon>
           <p>{{me.role}}</p>
+        </span>
+        <span class="flex mb-2 text-sm md:text-md lg:text-lg font-normal" *ngIf="me.birth_date">
+          <fa-icon class="mr-2 main-green-color" [icon]="faCalendar"></fa-icon>
+          <p>
+            {{moment(Date.now()).diff(me.birth_date,"years")}} years old
+            ({{moment(me.birth_date).format("DD/MM/yyyy")}})
+          </p>
         </span>
         <span class="flex mb-2 text-sm md:text-md lg:text-lg font-normal">
           <fa-icon class="mr-2 main-green-color" [icon]="faEnvelope"></fa-icon>
@@ -18,6 +25,10 @@
         <span class="flex mb-2 text-sm md:text-md lg:text-lg font-normal">
           <fa-icon class="mr-2 main-green-color" [icon]="faPhone"></fa-icon>
           <p>{{me.phone}}</p>
+        </span>
+        <span class="flex mb-2 text-sm md:text-md lg:text-lg font-normal" *ngIf="me.gender">
+          <fa-icon class="mr-2 main-green-color" [icon]="faVenusMars"></fa-icon>
+          <p>{{me.gender.title_ru}}</p>
         </span>
         <div class="text-right my-2">
           <a

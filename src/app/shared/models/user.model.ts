@@ -1,11 +1,13 @@
 import {EntityState} from "@ngrx/entity";
+import {Image} from "./image.model";
+import {Gender} from "./gender.model";
 
 export interface Users {
     name: string,
     email: string,
     phone: string,
     username: string,
-    password: string
+    password: string,
 }
 export interface UserModel extends EntityState<Users> {
 
@@ -15,5 +17,8 @@ export interface Me {
     email: string,
     phone: string,
     role: string,
-    subscription: any
+    subscription: any,
+    file:Image|null,
+    gender:Gender|null,
+    birth_date: Date|null
 }
