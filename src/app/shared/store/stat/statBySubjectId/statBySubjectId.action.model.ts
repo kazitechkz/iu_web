@@ -2,7 +2,7 @@ import {Subject} from "../../../models/subject.model";
 import {SubCategoryModel} from "../../../models/subCategory.model";
 
 export interface StatBySubjectIdModel{
-  subjects:Subject[],
+  subject:Subject,
   stat_by_subject:StatBySubject[]
 }
 

@@ -1,0 +1,72 @@
+<div class="container mx-auto">
+  <div class="grid grid-cols-12 gap-3" *ngIf="statByAttempt">
+    <div class="col-span-12 my-3 bg-white rounded-lg shadow-lg p-3" *ngFor="let subject of statByAttempt.subjects">
+      <div class="md:flex items-center">
+        <div class="w-12 h-12 md:w-20 md:h-20 lg:w-28 lg:h-28 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(subject.image?.url)+ ')'}"></div>
+        <a
+          [routerLink]="'/'+RoutesName.statBySubjectId + '/' + subject.id"
+          class="text-md md:text-lg lg:text-xl xl:text-xl uppercase font-bold ml-2 cursor-pointer">
+          {{subject.title_ru}}
+        </a>
+      </div>
+      <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 capitalize">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              Категория
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Всего вопросов
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Верно отвеченно
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Неверно отвеченно
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Действие
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let result of getSubjectResult(subject.id)">
+            <td class="p-4">
+              <p class="text-black ml-2 font-bold" *ngIf="result.sub_category;else no_category">
+                {{result.sub_category.title_ru}}
+                ({{result.sub_category.category?.title_ru}})
+              </p>
+              <ng-template #no_category>
+                <p>-</p>
+              </ng-template>
+            </td>
+            <td class="p-4">
+              <p class="text-black ml-2 font-bold">
+                {{result.total}}
+              </p>
+            </td>
+            <td class="p-4">
+              <p class="text-green-400 ml-2 font-bold">
+                {{result.right}}
+              </p>
+            </td>
+            <td class="p-4">
+              <p class="text-red-400 ml-2 font-bold">
+                {{result.not_right}}
+              </p>
+            </td>
+            <td class="p-4">
+              <a
+                class="w-[130px] flex justify-center items-center cursor-pointer text-white bg-violet-400 hover:bg-violet-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-500 dark:hover:bg-violet-700 dark:focus:ring-violet-700">
+                <fa-icon class="mr-1 text-white" [icon]="faCoins"></fa-icon>
+                  Пройти тест
+              </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

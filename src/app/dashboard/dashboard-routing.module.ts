@@ -19,6 +19,8 @@ import {TournamentDetailComponent} from "./tournament/tournament-detail/tourname
 import {SubTournamentDetailComponent} from "./tournament/sub-tournament-detail/sub-tournament-detail.component";
 import {MyProfileComponent} from "./profile/my-profile/my-profile.component";
 import {ResultByAttemptIdComponent} from "./stat/result-by-attempt-id/result-by-attempt-id.component";
+import {StatByAttemptIdComponent} from "./stat/stat-by-attempt-id/stat-by-attempt-id.component";
+import {StatBySubjectIdComponent} from "./stat/stat-by-subject-id/stat-by-subject-id.component";
 
 
 const routes: Routes = [
@@ -91,6 +93,14 @@ const routes: Routes = [
       {
         path: 'result-attempt/:id',
         component: ResultByAttemptIdComponent,
+      },
+      {
+        path: 'stat-attempt/:id',
+        component: StatByAttemptIdComponent,
+      },
+      {
+        path: 'stat-subject/:id',
+        component: StatBySubjectIdComponent,
       },
       {
         path: 'my-profile',

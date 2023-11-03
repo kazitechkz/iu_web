@@ -1,8 +1,8 @@
 import {SubCategoryModel} from "./subCategory.model";
 
 export interface CategoryModel {
-  subjectId: number
-  titleKk: string
-  titleRu: string
-  subCategories: SubCategoryModel[] | null
+  subject_id: number
+  title_kk: string
+  title_ru: string
+  sub_categories: SubCategoryModel[] | null
 }
