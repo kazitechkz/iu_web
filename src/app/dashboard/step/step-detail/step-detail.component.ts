@@ -25,6 +25,7 @@ import {GlobalTranslateService} from "../../../shared/services/globalTranslate.s
   styleUrls: ['./step-detail.component.scss']
 })
 export class StepDetailComponent implements OnInit {
+
   public translate = inject(GlobalTranslateService)
   private _store = inject(Store)
   private _route = inject(ActivatedRoute)
@@ -37,6 +38,22 @@ export class StepDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getStepDetail();
     this.getSubjects();
+    this.onScrollX()
+  }
+
+  onScrollX() {
+    let scrollX = document.getElementById('scroll-x')
+    // @ts-ignore
+    scrollX.addEventListener("wheel", function (e) {
+      if (e.deltaY > 0) {
+        // @ts-ignore
+        scrollX.scrollLeft += 100;
+      }
+      else {
+        // @ts-ignore
+        scrollX.scrollLeft -= 100;
+      }
+    });
   }
 
   openDialog(id: string) {

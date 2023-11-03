@@ -35,9 +35,22 @@
         <youtube-player [width]="getWidth(xxlElement.offsetWidth)" [videoId]="videoId"></youtube-player>
       </div>
 
-      <markdown katex>
-        <div class="my-3" [innerHTML]="(subStep$ | async)?.data?.sub_step_content | globalTranslate: 'text': translate.currentLang"></div>
-      </markdown>
+      <div class="my-3">
+<!--        <markdown katex>-->
+<!--          {{(subStep$ | async)?.data?.sub_step_content | globalTranslate : 'text': this.translate.currentLang}}-->
+<!--        </markdown>-->
+        <div *ngIf="this.translate.currentLang == 'ru'">
+          <markdown katex>
+            {{content.text_ru | mathjaxTransform}}
+          </markdown>
+        </div>
+        <div *ngIf="this.translate.currentLang == 'kk'">
+          <markdown katex>
+            {{content.text_kk | mathjaxTransform}}
+          </markdown>
+        </div>
+
+      </div>
     </section>
 
     <div class="flex">

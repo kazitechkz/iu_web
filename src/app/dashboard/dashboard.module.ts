@@ -31,6 +31,7 @@ import { TournamentDetailComponent } from './tournament/tournament-detail/tourna
 import { SubTournamentDetailComponent } from './tournament/sub-tournament-detail/sub-tournament-detail.component';
 import { MyProfileComponent } from './profile/my-profile/my-profile.component';
 import { ResultByAttemptIdComponent } from './stat/result-by-attempt-id/result-by-attempt-id.component';
+import {MathJaxPipe} from "../core/pipes/mathJax.pipe";
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { ResultByAttemptIdComponent } from './stat/result-by-attempt-id/result-b
         NgxPaginationModule,
         NgChartsModule,
         CountdownModule,
-    ]
+    ],
+  providers: [MathJaxPipe]
 })
 export class DashboardModule {
 }

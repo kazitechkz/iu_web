@@ -8,6 +8,8 @@ export class MathJaxPipe implements PipeTransform {
 
     value = value.replaceAll("<pre>", "$$")
     value = value.replaceAll("</pre>", "$$")
+    value = value.replaceAll("<br>", "")
+    value = value.replaceAll("</br>", "")
     value = value.replaceAll("\\left{\\", "")
     value = value.replaceAll("\\left", "")
     value = value.replaceAll("{\\begin", "\\begin")

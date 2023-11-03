@@ -22,6 +22,9 @@ import {Actions} from "@ngrx/effects";
 import {distinctUntilChanged, Observable} from "rxjs";
 import {ResponseData} from "../../../shared/store/response_data";
 import {calculate} from "@rxweb/reactive-form-validators/algorithm/luhn-algorithm";
+import {GlobalTranslatePipe} from "../../../core/pipes/globalTranslate.pipe";
+import {MathJaxPipe} from "../../../core/pipes/mathJax.pipe";
+import {SubStepContentModel} from "../../../shared/models/subStepContent.model";
 
 @Component({
   selector: 'app-sub-step',
@@ -54,9 +57,8 @@ export class SubStepComponent implements OnInit {
   result$: Observable<ResponseData<boolean>>;
   //@ts-ignore
   subStep$: Observable<ResponseData<SubStepModel>>
-
-  videoHeight: number | undefined;
-  videoWidth: number | undefined;
+  //@ts-ignore
+  public content: SubStepContentModel
   videoId: string = ''
 
   ngOnInit(): void {
@@ -73,7 +75,9 @@ export class SubStepComponent implements OnInit {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(subStepDetailAction({requestData: params['id']}))
       this.subStep$ = this._store.pipe(autoUnsubscribe(this.destroyRef), select(getSubStepDetailState))
-      this.subStep$.pipe().subscribe(item => {
+      this.subStep$.pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+        //@ts-ignore
+        this.content = item.data?.sub_step_content
         this.videoId = this.getId(item.data?.sub_step_video?.url)
       })
     })

@@ -97,16 +97,24 @@
         </div>
       </div>
     </div>
-    <div class="container mx-auto">
-      <ngx-slick-carousel class="carousel"
-                          [config]="slideConfig">
-        <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer relative" routerLink="/dashboard/step/{{subject.id}}">
+    <div class="container mx-auto my-3 py-2">
+<!--      <ngx-slick-carousel class="carousel"-->
+<!--                          [config]="slideConfig">-->
+<!--        <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer relative" routerLink="/dashboard/step/{{subject.id}}">-->
+<!--          <div class=" min-h-[250px]  bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>-->
+<!--          <p class="text-center text-md font-bold py-4">-->
+<!--            {{subject | globalTranslate: 'title': translate.currentLang}}-->
+<!--          </p>-->
+<!--        </div>-->
+<!--      </ngx-slick-carousel>-->
+      <div class="flex overflow-x-auto overscroll-none scroll-smooth will-change-scroll scrollbar-color py-3" id="scroll-x">
+        <div *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer flex-shrink-0" routerLink="/dashboard/step/{{subject.id}}">
           <div class=" min-h-[250px]  bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
           <p class="text-center text-md font-bold py-4">
             {{subject | globalTranslate: 'title': translate.currentLang}}
           </p>
         </div>
-      </ngx-slick-carousel>
+      </div>
     </div>
   </div>
 
