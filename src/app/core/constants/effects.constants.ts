@@ -35,6 +35,8 @@ import {SidenavEffects} from "../../shared/store/core/sidebar/sidebar.effect";
 import {ResultByAttemptIdEffect} from "../../shared/store/stat/resultByAttemptId/resultByAttemptId.effect";
 import {StatByAttemptIdEffect} from "../../shared/store/stat/statByAttemptId/statByAttemptId.effect";
 import {StatBySubjectIdEffect} from "../../shared/store/stat/statBySubjectId/statBySubjectId.effect";
+import {GetUntPlanEffect} from "../../shared/store/plan/getUntPlan/getUntPlan.effect";
+import {GetLearningPlanEffect} from "../../shared/store/plan/getLearningPlan/getLearningPlan.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -76,4 +78,6 @@ export const EffectsConstants = [
     ResultByAttemptIdEffect,
     StatByAttemptIdEffect,
     StatBySubjectIdEffect,
+    GetUntPlanEffect,
+    GetLearningPlanEffect,
 ]

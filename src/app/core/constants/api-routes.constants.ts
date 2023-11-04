@@ -37,4 +37,6 @@ export enum APIRoutesName {
     resultByAttemptId = "statistics/attempt-result",
     statByAttemptId = "statistics/attempt-stats",
     statBySubjectId = "statistics/subject-stats",
+    getUntPlan = "plan/unt",
+    getLearningPlan = "plan/learning",
 }
