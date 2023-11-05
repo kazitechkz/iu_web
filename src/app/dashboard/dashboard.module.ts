@@ -35,6 +35,7 @@ import { StatByAttemptIdComponent } from './stat/stat-by-attempt-id/stat-by-atte
 import { StatBySubjectIdComponent } from './stat/stat-by-subject-id/stat-by-subject-id.component';
 import { UntPlanComponent } from './plan/unt-plan/unt-plan.component';
 import {MathJaxPipe} from "../core/pipes/mathJax.pipe";
+import { ContentPlanComponent } from './plan/content-plan/content-plan.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import {MathJaxPipe} from "../core/pipes/mathJax.pipe";
         StatByAttemptIdComponent,
         StatBySubjectIdComponent,
         UntPlanComponent,
+        ContentPlanComponent,
     ],
     imports: [
         CommonModule,

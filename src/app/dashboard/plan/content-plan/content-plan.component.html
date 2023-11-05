@@ -1,0 +1,96 @@
+<div class="container mx-auto">
+  <div class="grid grid-cols-12 gap-3" *ngIf="plans">
+    <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-4 2xl:col-span-3 my-5" *ngFor="let plan of plans.plans">
+      <div class="shadow-lg bg-white rounded-lg h-full cursor-pointer">
+        <div class="header-card main-green-bg rounded-tr-lg rounded-tl-lg text-center h-[220px] py-3">
+          <div class="flex justify-center items-center">
+            <div class="h-24 w-24 rounded-full bg-cover bg-no-repeat my-2 border-white border-2" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(getSubjectByPlan(plan.tag)?.image?.url) +')'}"></div>
+          </div>
+          <div class="my-3">
+            <p class="text-md lg:text-lg xl:text-xl 2xl:text-2xl text-white font-bold">
+              {{getSubjectByPlan(plan.tag)?.title_ru}}
+            </p>
+          </div>
+        </div>
+        <div class="header-body p-3 rounded-br-lg rounded-bl-lg">
+          <div class="text-center my-3 flex justify-center items-end">
+            <p class="text-lg md:text-xl lg:text-2xl xl:text-4xl main-green-color font-bold">
+              {{plan.price}} {{plan.currency}}
+            </p><p class="text-md md:text-lg main-green-color font-bold">/ 1 месяц</p>
+          </div>
+          <div class="header-content px-3">
+            <div class="relative overflow-x-auto">
+              <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <tbody>
+                <tr class="bg-white rounded-2xl">
+                  <td class="py-3">
+                    <div class="flex">
+                      <fa-icon [icon]="faCheckCircle" class="main-green-color text-sm md:text-lg"></fa-icon>
+                      <p class="text-black text-sm md:text-lg ml-2">
+                        {{getStatByPlan(plan.tag)?.steps}} Этапов
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="bg-white rounded-2xl">
+                  <td class="py-3">
+                    <div class="flex">
+                      <fa-icon [icon]="faCheckCircle" class="main-green-color text-sm md:text-lg"></fa-icon>
+                      <p class="text-black text-sm md:text-lg ml-2">
+                        {{getStatByPlan(plan.tag)?.sub_steps}} Тем для подготовки
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="bg-white rounded-2xl">
+                  <td class="py-3">
+                    <div class="flex">
+                      <fa-icon [icon]="faCheckCircle" class="main-green-color text-sm md:text-lg"></fa-icon>
+                      <p class="text-black text-sm md:text-lg ml-2">
+                        {{getStatByPlan(plan.tag)?.videos}} Видеоуроков
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="bg-white rounded-2xl">
+                  <td class="py-3">
+                    <div class="flex">
+                      <fa-icon [icon]="faCheckCircle" class="main-green-color text-sm md:text-lg"></fa-icon>
+                      <p class="text-black text-sm md:text-lg ml-2">
+                        {{getStatByPlan(plan.tag)?.contents}} Уникального материала для подготовки к ЕНТ
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="bg-white rounded-2xl">
+                  <td class="py-3">
+                    <div class="flex">
+                      <fa-icon [icon]="faCheckCircle" class="main-green-color text-sm md:text-lg"></fa-icon>
+                      <p class="text-black text-sm md:text-lg ml-2">
+                        {{getStatByPlan(plan.tag)?.questions}} Уникальных вопросов для самопроверки
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="header-action text-center py-3">
+            <a
+              class="w-[130px]  cursor-pointer text-white main-green-bg focus:outline-none focus:ring-4 font-bold rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+              <fa-icon [icon]="faCoins" class="mr-2"></fa-icon>
+              Приобрести
+            </a>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

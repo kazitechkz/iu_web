@@ -22,6 +22,7 @@ import {ResultByAttemptIdComponent} from "./stat/result-by-attempt-id/result-by-
 import {StatByAttemptIdComponent} from "./stat/stat-by-attempt-id/stat-by-attempt-id.component";
 import {StatBySubjectIdComponent} from "./stat/stat-by-subject-id/stat-by-subject-id.component";
 import {UntPlanComponent} from "./plan/unt-plan/unt-plan.component";
+import {ContentPlanComponent} from "./plan/content-plan/content-plan.component";
 
 
 const routes: Routes = [
@@ -102,6 +103,10 @@ const routes: Routes = [
       {
         path: 'plan-unt',
         component: UntPlanComponent,
+      },
+      {
+        path: 'plan-content',
+        component: ContentPlanComponent,
       },
       {
         path: 'stat-subject/:id',
