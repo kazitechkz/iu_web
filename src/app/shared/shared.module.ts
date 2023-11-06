@@ -11,6 +11,7 @@ import {CoreModule} from "../core/core.module";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterLink, RouterLinkActive} from "@angular/router";
+import { HomeNavbarComponent } from './components/home-navbar/home-navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
     RoundedSocialButtonComponent,
     InputFieldComponent,
     SidebarComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeNavbarComponent
   ],
     imports: [
         CommonModule,
@@ -29,15 +31,16 @@ import {RouterLink, RouterLinkActive} from "@angular/router";
         RouterLink,
         RouterLinkActive,
     ],
-  exports: [
-    InputFieldComponent,
-    RoundedSocialButtonComponent,
-    TranslateModule,
-    InputFieldComponent,
-    SidebarComponent,
-    NavbarComponent,
+    exports: [
+        InputFieldComponent,
+        RoundedSocialButtonComponent,
+        TranslateModule,
+        InputFieldComponent,
+        SidebarComponent,
+        NavbarComponent,
+        HomeNavbarComponent,
 
-  ],
+    ],
   providers:[TranslateStore ],
 })
 export class SharedModule { }

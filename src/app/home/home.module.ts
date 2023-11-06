@@ -7,6 +7,7 @@ import {IndexComponent} from './index/index.component';
 import {SharedModule} from "../shared/shared.module";
 import {CoreModule} from "../core/core.module";
 import { NotFoundComponent } from './not-found/not-found.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
         CommonModule,
         HomeRoutingModule,
         SharedModule,
-        CoreModule
+        CoreModule,
+        FontAwesomeModule
     ]
 })
 export class HomeModule {
