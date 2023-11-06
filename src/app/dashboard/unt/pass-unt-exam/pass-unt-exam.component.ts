@@ -259,7 +259,9 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
   //Open Modal
     openModal(modalIdentifier:string){

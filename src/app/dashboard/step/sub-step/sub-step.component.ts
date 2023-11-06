@@ -65,6 +65,7 @@ export class SubStepComponent implements OnInit {
     this.checkResult()
     this.getSubStep()
     this.onYoutubePlayer()
+    this.result$.pipe().subscribe(item => console.log(item))
   }
 
   getWidth(width: number) {
@@ -86,7 +87,7 @@ export class SubStepComponent implements OnInit {
   checkResult() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(subStepResultAction({requestData: {sub_step_id: params['id'], locale_id: StrHelper.getLocaleIdByCurrentLang(this.translate.currentLang)}}))
-      this.result$ = this._store.pipe(select(getSubStepResultState))
+      this.result$ = this._store.pipe(autoUnsubscribe(this.destroyRef), select(getSubStepResultState))
     })
   }
 

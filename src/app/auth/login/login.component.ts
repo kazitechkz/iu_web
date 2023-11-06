@@ -5,10 +5,8 @@ import {LoginRequest} from "../../shared/store/auth/login/loginRequest";
 import {Store} from "@ngrx/store";
 import {loginAction} from "../../shared/store/auth/login/login.action";
 import {getLoginState} from "../../shared/store/auth/login/login.selector";
-import {interval, Subscription, timer} from "rxjs";
 import {RoutesName} from "../../core/constants/routes.constants";
 import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
-import {time} from "@rxweb/reactive-form-validators";
 import {StrHelper} from "../../core/helpers/str.helper";
 
 @Component({
@@ -29,7 +27,7 @@ export class LoginComponent {
         ]),
         password: new FormControl("", [
             Validators.required,
-            Validators.max(4),
+            Validators.min(4),
             Validators.max(255),
         ]),
     });
@@ -44,8 +42,6 @@ export class LoginComponent {
         })
     }
 
-
-
-    protected readonly RoutesName = RoutesName;
+  protected readonly RoutesName = RoutesName;
   protected readonly StrHelper = StrHelper;
 }

@@ -63,7 +63,7 @@
             <div  class="[direction:ltr] w-full">
               <ngx-smart-modal identifier="{{step.id}}">
                 <div class="my-3" *ngFor="let subStep of subSteps">
-                  <a [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepRoute) + '/' + subStep.id">
+                  <a [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepRoute) + '/' + subStep.id" *ngIf="subStep.is_free">
                     <div
                       class="flex mobile:pl-2 sm:pl-2 mobile:items-center sm:items-center rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:max-w-xl">
                       <img
@@ -87,6 +87,23 @@
                         <!--                      <p class="text-xs text-neutral-500">-->
                         <!--                        Last updated 3 mins ago-->
                         <!--                      </p>-->
+                      </div>
+                    </div>
+                  </a>
+                  <a href="javascript:void (0)" *ngIf="!subStep.is_free">
+                    <div
+                      class="flex mobile:pl-2 sm:pl-2 mobile:items-center sm:items-center rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:max-w-xl">
+                      <img
+                        class="mobile:hidden mobile:h-auto sm:hidden sm:h-auto md:block h-96 w-1/4 rounded-t-lg object-cover md:h-auto md:!rounded-none md:!rounded-l-lg"
+                        [src]="ImageHelper.getImage(null)"
+                        alt="" />
+                      <div class="md:hidden sm:block mobile:block border sm:w-[80px] sm:h-[80px] w-[50px] h-[50px] rounded-full bg-no-repeat bg-center bg-cover" [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(null)+')'}"></div>
+                      <div class="flex justify-between items-center p-6 mobile:p-2 w-3/4">
+                        <h5
+                          class="mb-2 mobile:text-xs sm:text-xl font-medium text-gray-500">
+                          {{subStep | globalTranslate: 'title': translate.currentLang}}
+                        </h5>
+                        <i class="fa fa-lock ml-2 fa-xl text-gray-500" aria-hidden="true"></i>
                       </div>
                     </div>
                   </a>

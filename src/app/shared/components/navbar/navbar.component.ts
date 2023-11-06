@@ -25,14 +25,12 @@ export class NavbarComponent implements OnInit {
   isOpen: boolean = false
   localeDropdown: boolean = false
   private _authService = inject(AuthService)
-  private _sessionService = inject(SessionService)
   public translate = inject(GlobalTranslateService)
   private _store = inject(Store)
-  private _route = inject(Router)
   destroyRef = inject(DestroyRef);
   public user?: Me | null;
   ngOnInit(): void {
-    this.sideBar$ = this._store.pipe(select(selectSidenavIsOpen))
+    this.sideBar$ = this._store.pipe(autoUnsubscribe(this.destroyRef), select(selectSidenavIsOpen))
     this.translate.getCurrentLang()
     this.me()
   }

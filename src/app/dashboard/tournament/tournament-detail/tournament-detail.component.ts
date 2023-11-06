@@ -32,7 +32,7 @@ import {GlobalTranslateService} from "../../../shared/services/globalTranslate.s
   templateUrl: './tournament-detail.component.html',
   styleUrls: ['./tournament-detail.component.scss']
 })
-export class TournamentDetailComponent implements OnInit,OnDestroy{
+export class TournamentDetailComponent implements OnInit{
 
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
@@ -50,9 +50,6 @@ export class TournamentDetailComponent implements OnInit,OnDestroy{
   ngOnInit(): void {
     initTE({Collapse});
     this.getTournamentInfo();
-  }
-
-  ngOnDestroy(): void {
   }
 
   getTournamentInfo(){

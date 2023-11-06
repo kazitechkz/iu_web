@@ -17,6 +17,7 @@ export interface SubStepModel {
   sub_step_result: SubResult[]
   progress_kk: number
   progress_ru: number
+  is_free: boolean
 }
 
 export interface SubResult {
