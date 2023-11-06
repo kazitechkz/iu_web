@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {Subject} from "../../shared/models/subject.model";
+
 import {TranslateService} from "@ngx-translate/core";
 import {
   faArrowCircleRight,
@@ -22,14 +24,25 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {faDumbbell} from "@fortawesome/free-solid-svg-icons/faDumbbell";
 import {ImageHelper} from "../../core/helpers/image.helper";
-
+import {
+  Tab,
+  initTE,
+} from "tw-elements";
+import {Store} from "@ngrx/store";
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.scss']
 })
-export class IndexComponent {
+export class IndexComponent implements OnInit{
+//Injection Start
+  private _store = inject(Store);
+  private destroyRef:DestroyRef = inject(DestroyRef);
+  //Injection End
 
+  //Data
+  subjects:Subject[] = [];
+  //Data
 
   protected readonly faArrowCircleRight = faArrowCircleRight;
   protected readonly faArrowRight = faArrowRight;
@@ -52,4 +65,8 @@ export class IndexComponent {
   protected readonly faMoneyBillWaveAlt = faMoneyBillWaveAlt;
   protected readonly faUsers = faUsers;
   protected readonly ImageHelper = ImageHelper;
+
+  ngOnInit(): void {
+    initTE({ Tab });
+  }
 }

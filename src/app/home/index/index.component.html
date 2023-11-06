@@ -1,7 +1,7 @@
 <div class="container mx-auto">
 <!--  Открывающий раздел -->
   <div class="grid grid-cols-12 min-h-[60vh] items-center justify-center relative">
-    <div class="col-span-12 md:col-span-6 lg:grid-cols-6 py-4 px-3 relative">
+    <div class="col-span-12 md:col-span-6 lg:grid-cols-6 py-4 px-3 relative order-2 md:order-1">
       <div class="my-2">
         <span class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl font-bold inline tracking-wide" style="line-height: 1.25">
           Подготовься к ЕНТ совместно с <p class="main-secondary-color inline ">IUnion</p>
@@ -18,7 +18,7 @@
         </button>
       </div>
     </div>
-    <div class="col-span-12 md:col-span-6 lg:grid-cols-6 py-4 px-3 relative">
+    <div class="col-span-12 md:col-span-6 lg:grid-cols-6 py-4 px-3 relative order-1 md:order-2">
       <img src="assets/images/man_stair.png" class="max-w-[100%] z-10"/>
     </div>
   </div>
@@ -236,6 +236,109 @@
     </div>
   </div>
   <!--  Наши преимущества -->
+  <!--  Наши преподаватели -->
+  <div class="grid grid-cols-12 mt-[30px] mb-[20px] gap-4">
+    <div class="col-span-12 mt-4 mb-[50px]">
+      <span class="text-lg md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold inline tracking-wide uppercase" style="line-height: 1.25">
+        Наши <p class="main-secondary-color inline">преподаватели:</p></span>
+    </div>
+    <div class="col-span-12">
+      <!--Pills navigation-->
+      <ul
+        class="mb-5 flex list-none flex-col flex-wrap pl-0 md:flex-row"
+        id="pills-tab"
+        role="tablist"
+        data-te-nav-ref>
+        <li role="presentation">
+          <a
+            href="#pills-home"
+            class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-neutral-700 dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
+            id="pills-home-tab"
+            data-te-toggle="pill"
+            data-te-target="#pills-home"
+            data-te-nav-active
+            role="tab"
+            aria-controls="pills-home"
+            aria-selected="true"
+          >Home</a
+          >
+        </li>
+        <li role="presentation">
+          <a
+            href="#pills-profile"
+            class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-neutral-700 dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
+            id="pills-profile-tab"
+            data-te-toggle="pill"
+            data-te-target="#pills-profile"
+            role="tab"
+            aria-controls="pills-profile"
+            aria-selected="false"
+          >Profile</a
+          >
+        </li>
+        <li role="presentation">
+          <a
+            href="#pills-contact"
+            class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-neutral-700 dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
+            id="pills-contact-tab"
+            data-te-toggle="pill"
+            data-te-target="#pills-contact"
+            role="tab"
+            aria-controls="pills-contact"
+            aria-selected="false"
+          >Contact</a
+          >
+        </li>
+        <li role="presentation">
+          <a
+            href="#pills-disabled"
+            class="pointer-events-none my-2 block rounded bg-neutral-200 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-400 dark:bg-neutral-600 dark:text-neutral-500"
+            id="pills-disabled-tab"
+            data-te-toggle="pill"
+            data-te-target="#pills-disabled"
+            role="tab"
+            aria-controls="pills-disabled"
+            aria-selected="false"
+          >Disabled</a
+          >
+        </li>
+      </ul>
 
+      <!--Pills content-->
+      <div class="mb-6">
+        <div
+          class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+          id="pills-home"
+          role="tabpanel"
+          aria-labelledby="pills-home-tab"
+          data-te-tab-active>
+          Tab 1 content
+        </div>
+        <div
+          class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+          id="pills-profile"
+          role="tabpanel"
+          aria-labelledby="pills-profile-tab">
+          Tab 2 content
+        </div>
+        <div
+          class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+          id="pills-contact"
+          role="tabpanel"
+          aria-labelledby="pills-contact-tab">
+          Tab 3 content
+        </div>
+        <div
+          class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+          id="pills-disabled"
+          role="tabpanel"
+          aria-labelledby="pills-disabled-tab">
+          Tab 4 disabled
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!--  Наши преподаватели -->
 </div>
 
