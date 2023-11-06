@@ -8,6 +8,7 @@ import {getLoginState} from "../../shared/store/auth/login/login.selector";
 import {RoutesName} from "../../core/constants/routes.constants";
 import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {StrHelper} from "../../core/helpers/str.helper";
+import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
 
 @Component({
     selector: 'app-login',
@@ -17,6 +18,7 @@ import {StrHelper} from "../../core/helpers/str.helper";
 export class LoginComponent {
     private _store = inject(Store);
     destroyRef = inject(DestroyRef);
+    public translate = inject(GlobalTranslateService)
     faGoogle = faGoogle;
     faFacebookF = faFacebookF;
     errors:Record<string, string[]> | null = null;
@@ -41,6 +43,10 @@ export class LoginComponent {
           }
         })
     }
+
+  changeLang(lang: string) {
+    this.translate.onLangChange(lang)
+  }
 
   protected readonly RoutesName = RoutesName;
   protected readonly StrHelper = StrHelper;
