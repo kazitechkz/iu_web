@@ -8,13 +8,13 @@ import {
   faBook,
   faBookAtlas,
   faBookOpen,
-  faCalendar,
+  faCalendar, faCheckCircle, faDiagramProject,
   faHandsHelping,
   faInfinity,
   faLanguage,
   faMessage,
   faMoneyBill,
-  faMoneyBillWaveAlt,
+  faMoneyBillWaveAlt, faPen, faSchool,
   faShieldAlt,
   faStar,
   faTasksAlt,
@@ -29,6 +29,7 @@ import {
   initTE,
 } from "tw-elements";
 import {Store} from "@ngrx/store";
+import {getFeatureSupport} from "@angular-devkit/build-angular/src/tools/esbuild/utils";
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
@@ -64,9 +65,15 @@ export class IndexComponent implements OnInit{
   protected readonly faShieldAlt = faShieldAlt;
   protected readonly faMoneyBillWaveAlt = faMoneyBillWaveAlt;
   protected readonly faUsers = faUsers;
+  protected readonly faSchool = faSchool;
   protected readonly ImageHelper = ImageHelper;
 
   ngOnInit(): void {
     initTE({ Tab });
   }
+
+
+  protected readonly faDiagramProject = faDiagramProject;
+  protected readonly faCheckCircle = faCheckCircle;
+  protected readonly faPen = faPen;
 }
