@@ -21,7 +21,7 @@ export class StepEffect {
         this.action$.pipe(
             ofType(stepAction),
             switchMap((action) => {
-                return this._service.getSteps().pipe(
+                return this._service.getSteps(action.localeId).pipe(
                     switchMap(data => {
                             return of(
                                 stepActionSuccess({responseData: data}),

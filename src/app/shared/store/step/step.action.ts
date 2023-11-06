@@ -4,7 +4,7 @@ import {ResponseData} from "../response_data";
 import {StepModel} from "../../models/step.model";
 
 
-export const stepAction = createAction(StepActionTypes.OnStep);
+export const stepAction = createAction(StepActionTypes.OnStep, props<{localeId: number}>());
 export const stepActionSuccess = createAction(StepActionTypes.OnStepSuccess, props<{
     responseData: ResponseData<StepModel[]>
 }>());

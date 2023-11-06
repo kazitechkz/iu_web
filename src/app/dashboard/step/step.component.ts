@@ -8,6 +8,7 @@ import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {StepModel} from "../../shared/models/step.model";
 import {ImageHelper} from "../../core/helpers/image.helper";
 import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
+import {StrHelper} from "../../core/helpers/str.helper";
 
 @Component({
   selector: 'app-step',
@@ -26,7 +27,7 @@ export class StepComponent implements OnInit {
   }
 
   getSteps() {
-    this._store.dispatch(stepAction())
+    this._store.dispatch(stepAction({localeId: StrHelper.getLocaleIdByCurrentLang(this.translate.currentLang)}))
     this._store.select(getStepState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       this.steps = item.data
     })

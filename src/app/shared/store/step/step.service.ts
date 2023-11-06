@@ -14,8 +14,8 @@ import {StepModel} from "../../models/step.model";
 export class StepService {
     private _http = inject(HttpClient)
 
-    getSteps(): Observable<ResponseData<StepModel[]>> {
-        return this._http.get<ResponseData<StepModel[]>>(environment.baseUrl + APIRoutesName.getSteps);
+    getSteps(localeId:number): Observable<ResponseData<StepModel[]>> {
+        return this._http.get<ResponseData<StepModel[]>>(environment.baseUrl + APIRoutesName.getSteps + '/' + localeId);
     }
 
 }
