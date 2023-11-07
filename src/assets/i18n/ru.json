@@ -32,7 +32,10 @@
   "START_TEST_BUTTON": "Начать тест",
   "BACK_BUTTON": "Вернуться назад",
   "FORBIDDEN_MESSAGE": "К сожалению, у вас недостаточно прав!",
-  "NO_RESULTS": "Ничего не найдено"
-
-
+  "NO_RESULTS": "Ничего не найдено",
+  "TEACHER_ROLE": "Преподаватель",
+  "STUDENT_ROLE": "Студент",
+  "SELECT_ROLE": "Выберите роль",
+  "PHONE_VALID_MESSAGE": "Неправильный формат номера",
+  "EMAIL_VALID_MESSAGE": "Неправильный формат почты"
 }
