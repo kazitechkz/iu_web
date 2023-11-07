@@ -1,0 +1,80 @@
+<div class="container mx-auto">
+  <div class="grid grid-cols-12 gap-3">
+    <div class="col-span-12">
+      <form [formGroup]="createForum" (submit)="onSubmit()">
+        <div class="my-2 p-3">
+          <tw-select
+            class="w-full flex"
+            [formControlName]="'subject_id'"
+            [placeholder]="'SELECT_SUBJECT' | translate"
+          >
+            <tw-option class="cursor-pointer" *ngFor="let subject of subjects" value="{{subject.id}}">
+              {{subject.title_ru}}
+            </tw-option>
+
+          </tw-select>
+          <section class="p-0 m-0" *ngIf="errors">
+            <div
+              *ngIf="errors['subject_id']"
+              class="my-1 rounded-lg px-6 py-1 text-base text-danger-700"
+              role="alert">
+              <p *ngFor="let error of errors['subject_id']">
+                {{error}}
+              </p>
+            </div>
+          </section>
+        </div>
+        <div class="my-2 p-3">
+          <!--Name input-->
+          <app-input-field
+            [formControlName]="'text'"
+            [input_name]="'text'"
+            [type]="'text'"
+            [placeholder]="'Title' | translate"
+            [label]="'Title' | translate"
+            [error_message]="'title_is_not_right'"
+            [backErrors]="errors"
+            ngDefaultControl
+          />
+        </div>
+        <div class="my-2 p-3">
+          <ckeditor (ready)="onReadyCkeditor($event)" [formControlName]="'attachment'" [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+          <section class="p-0 m-0" *ngIf="errors">
+            <div
+              *ngIf="errors['attachment']"
+              class="my-1 rounded-lg px-6 py-1 text-base text-danger-700"
+              role="alert">
+              <p *ngFor="let error of errors['attachment']">
+                {{error}}
+              </p>
+            </div>
+          </section>
+        </div>
+        <div class="my-2 p-3 text-right" *ngIf="createForum.valid">
+          <button type="button" class="
+            mt-4
+            text-lg
+            font-bold
+            inline
+            main-green-bg
+            text-white
+            focus:outline-none focus:ring-4
+            focus:ring-green-500 font-medium
+            rounded-lg text-sm px-5 py-5
+            text-center mr-2 mb-2"
+                  (click)="onSubmit()"
+          >
+            Создать
+            <fa-icon [icon]="faCheck" class="mx-2 text-lg"></fa-icon>
+          </button>
+        </div>
+      </form>
+
+    </div>
+
+
+  </div>
+
+
+
+</div>

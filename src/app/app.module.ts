@@ -25,6 +25,7 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {MarkdownModule} from "ngx-markdown";
 import {NgxPaginationModule} from "ngx-pagination";
 import {NgChartsModule} from "ng2-charts";
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import {TwNotificationModule} from "ng-tw";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -35,6 +36,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    CKEditorModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,

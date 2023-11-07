@@ -23,6 +23,7 @@ import {StatByAttemptIdComponent} from "./stat/stat-by-attempt-id/stat-by-attemp
 import {StatBySubjectIdComponent} from "./stat/stat-by-subject-id/stat-by-subject-id.component";
 import {UntPlanComponent} from "./plan/unt-plan/unt-plan.component";
 import {ContentPlanComponent} from "./plan/content-plan/content-plan.component";
+import {CreateForumComponent} from "./forum/create-forum/create-forum.component";
 import {studentGuard} from "../core/guards/student.guard";
 
 
@@ -115,6 +116,10 @@ const routes: Routes = [
       {
         path: 'my-profile',
         component: MyProfileComponent
+      },
+      {
+        path: 'create-forum',
+        component: CreateForumComponent,
       },
     ]
   }

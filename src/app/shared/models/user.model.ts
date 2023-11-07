@@ -22,3 +22,12 @@ export interface Me {
     gender:Gender|null,
     birth_date: Date|null
 }
+
+export interface OrdinaryUser {
+  name: string,
+  email: string,
+  phone: string,
+  file:Image|null,
+  gender:Gender|null,
+  birth_date: Date|null
+}

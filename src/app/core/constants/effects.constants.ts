@@ -37,6 +37,7 @@ import {StatByAttemptIdEffect} from "../../shared/store/stat/statByAttemptId/sta
 import {StatBySubjectIdEffect} from "../../shared/store/stat/statBySubjectId/statBySubjectId.effect";
 import {GetUntPlanEffect} from "../../shared/store/plan/getUntPlan/getUntPlan.effect";
 import {GetLearningPlanEffect} from "../../shared/store/plan/getLearningPlan/getLearningPlan.effect";
+import {CreateForumEffect} from "../../shared/store/forum/createForum/createForum.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -80,4 +81,5 @@ export const EffectsConstants = [
     StatBySubjectIdEffect,
     GetUntPlanEffect,
     GetLearningPlanEffect,
+    CreateForumEffect,
 ]

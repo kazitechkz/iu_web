@@ -38,6 +38,7 @@ import {statBySubjectIdReducer} from "../../shared/store/stat/statBySubjectId/st
 import {statByAttemptIdReducer} from "../../shared/store/stat/statByAttemptId/statByAttemptId.reducer";
 import {getUntPlanReducer} from "../../shared/store/plan/getUntPlan/getUntPlan.reducer";
 import {getLearningPlanReducer} from "../../shared/store/plan/getLearningPlan/getLearningPlan.reducer";
+import {createForumReducer} from "../../shared/store/forum/createForum/createForum.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -81,4 +82,5 @@ export const ReducersConstants = {
   statBySubjectId:statBySubjectIdReducer,
   getUntPlan:getUntPlanReducer,
   getLearningPlan:getLearningPlanReducer,
+  createForum:createForumReducer,
 }

@@ -36,6 +36,9 @@ import { StatBySubjectIdComponent } from './stat/stat-by-subject-id/stat-by-subj
 import { UntPlanComponent } from './plan/unt-plan/unt-plan.component';
 import {MathJaxPipe} from "../core/pipes/mathJax.pipe";
 import { ContentPlanComponent } from './plan/content-plan/content-plan.component';
+import { CreateForumComponent } from './forum/create-forum/create-forum.component';
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import {TwOptionModule, TwSelectModule} from "ng-tw";
 
 
 @NgModule({
@@ -64,24 +67,28 @@ import { ContentPlanComponent } from './plan/content-plan/content-plan.component
         StatBySubjectIdComponent,
         UntPlanComponent,
         ContentPlanComponent,
+        CreateForumComponent,
     ],
-    imports: [
-        CommonModule,
-        DashboardRoutingModule,
-        SharedModule,
-        FontAwesomeModule,
-        SlickCarouselModule,
-        Select2Module,
-        UiSwitchModule,
-        CountdownComponent,
-        MarkdownModule,
-        NgxSmartModalModule,
-        CoreModule,
-        YouTubePlayerModule,
-        NgxPaginationModule,
-        NgChartsModule,
-        CountdownModule,
-    ],
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    SharedModule,
+    FontAwesomeModule,
+    SlickCarouselModule,
+    Select2Module,
+    UiSwitchModule,
+    CountdownComponent,
+    MarkdownModule,
+    NgxSmartModalModule,
+    CoreModule,
+    YouTubePlayerModule,
+    NgxPaginationModule,
+    NgChartsModule,
+    CountdownModule,
+    CKEditorModule,
+    TwOptionModule,
+    TwSelectModule,
+  ],
   providers: [MathJaxPipe]
 })
 export class DashboardModule {
