@@ -1,7 +1,8 @@
 export enum RoutesName {
     loginRoute = "auth/login",
     registerRoute = "auth/register",
-    dashboard = "dashboard",
+    dashboard = "dashboard/index",
+    teacher = "teacher/index",
     resetRoute = "auth/reset",
     notFound = "not-found",
     untMode = "dashboard/unt-mode",

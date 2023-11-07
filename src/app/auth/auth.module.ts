@@ -14,7 +14,7 @@ import {RegisterEffect} from "../shared/store/auth/register/Register.effect";
 import {StoreModule} from "@ngrx/store";
 import {registerReducer} from "../shared/store/auth/register/Register.reducer";
 import {RxReactiveFormsModule} from "@rxweb/reactive-form-validators";
-import {TwSelectModule} from "ng-tw";
+import {TwNotification, TwSelectModule} from "ng-tw";
 
 
 @NgModule({
@@ -33,7 +33,8 @@ import {TwSelectModule} from "ng-tw";
     RxReactiveFormsModule,
     TwSelectModule,
 
-  ]
+  ],
+  providers: [TwNotification]
 })
 export class AuthModule {
 }

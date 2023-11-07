@@ -42,6 +42,8 @@ const _subStepDetailReducer = createReducer(
     on(subStepAction, (state, action) => {
         return {
             ...state,
+          errors: null,
+          data: null
         }
     }),
     on(subStepDetailActionSuccess, (state, action) => {

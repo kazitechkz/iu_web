@@ -7,12 +7,14 @@ import {ToastrModule} from "ngx-toastr";
 import { TruncatePipe } from './pipes/truncate.pipe';
 import {GlobalTranslatePipe} from "./pipes/globalTranslate.pipe";
 import {MathJaxPipe} from "./pipes/mathJax.pipe";
+import { GetYoutubeIDPipe } from './pipes/get-youtube-id.pipe';
 
 @NgModule({
     declarations: [
     GlobalTranslatePipe,
     TruncatePipe,
       MathJaxPipe,
+      GetYoutubeIDPipe,
   ],
     imports: [
         CommonModule,
@@ -23,6 +25,7 @@ import {MathJaxPipe} from "./pipes/mathJax.pipe";
     TranslateModule,
     GlobalTranslatePipe,
     MathJaxPipe,
+    GetYoutubeIDPipe,
   ]
 })
 export class CoreModule {

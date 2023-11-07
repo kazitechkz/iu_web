@@ -25,6 +25,7 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {MarkdownModule} from "ngx-markdown";
 import {NgxPaginationModule} from "ngx-pagination";
 import {NgChartsModule} from "ng2-charts";
+import {TwNotificationModule} from "ng-tw";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -48,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     StoreModule.forRoot(ReducersConstants),
     EffectsModule.forRoot(EffectsConstants),
     NgxSmartModalModule.forRoot(),
+    TwNotificationModule.forRoot(),
     NgChartsModule,
     TranslateModule.forRoot({
       loader: {

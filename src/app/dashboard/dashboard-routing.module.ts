@@ -23,14 +23,14 @@ import {StatByAttemptIdComponent} from "./stat/stat-by-attempt-id/stat-by-attemp
 import {StatBySubjectIdComponent} from "./stat/stat-by-subject-id/stat-by-subject-id.component";
 import {UntPlanComponent} from "./plan/unt-plan/unt-plan.component";
 import {ContentPlanComponent} from "./plan/content-plan/content-plan.component";
+import {studentGuard} from "../core/guards/student.guard";
 
 
 const routes: Routes = [
   {
     path: "",
     component: LayoutComponent,
-    canActivate: [authGuard],
-    canActivateChild: [authGuard],
+    canActivate: [authGuard, studentGuard],
     children: [
       {
         path: 'index',
@@ -78,43 +78,43 @@ const routes: Routes = [
       },
       {
         path: 'step/:id',
-        component: StepDetailComponent,
+        component: StepDetailComponent
       },
       {
         path: 'sub-step/:id',
-        component: SubStepComponent,
+        component: SubStepComponent
       },
       {
         path: 'sub-step-exam/:sub_step_test_id/:locale_id',
-        component: ExamComponent,
+        component: ExamComponent
       },
       {
         path: 'result-exam/:sub_step_id/:locale_id',
-        component: ResultExamComponent,
+        component: ResultExamComponent
       },
       {
         path: 'result-attempt/:id',
-        component: ResultByAttemptIdComponent,
+        component: ResultByAttemptIdComponent
       },
       {
         path: 'stat-attempt/:id',
-        component: StatByAttemptIdComponent,
+        component: StatByAttemptIdComponent
       },
       {
         path: 'plan-unt',
-        component: UntPlanComponent,
+        component: UntPlanComponent
       },
       {
         path: 'plan-content',
-        component: ContentPlanComponent,
+        component: ContentPlanComponent
       },
       {
         path: 'stat-subject/:id',
-        component: StatBySubjectIdComponent,
+        component: StatBySubjectIdComponent
       },
       {
         path: 'my-profile',
-        component: MyProfileComponent,
+        component: MyProfileComponent
       },
     ]
   }

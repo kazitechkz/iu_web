@@ -65,7 +65,6 @@ export class SubStepComponent implements OnInit {
     this.checkResult()
     this.getSubStep()
     this.onYoutubePlayer()
-    this.result$.pipe().subscribe(item => console.log(item))
   }
 
   getWidth(width: number) {
@@ -79,7 +78,6 @@ export class SubStepComponent implements OnInit {
       this.subStep$.pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         //@ts-ignore
         this.content = item.data?.sub_step_content
-        this.videoId = this.getId(item.data?.sub_step_video?.url)
       })
     })
   }

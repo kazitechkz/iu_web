@@ -6,11 +6,13 @@ import {RegisterComponent} from "./register/register.component";
 import {ResetComponent} from "./reset/reset.component";
 import {RoutesName} from "../core/constants/routes.constants";
 import {authGuard} from "../core/guards/auth.guard";
+import {guestGuard} from "../core/guards/guest.guard";
 
 const routes: Routes = [
     {
         path: "",
         component: AuthLayoutComponent,
+        canActivate: [guestGuard],
         children: [
             {
                 path: RoutesName.loginRoute,

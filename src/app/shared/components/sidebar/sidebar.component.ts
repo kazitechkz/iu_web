@@ -14,10 +14,8 @@ import {StrHelper} from "../../../core/helpers/str.helper";
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit, OnDestroy {
-  ngOnDestroy(): void {
-      throw new Error('Method not implemented.');
-  }
+export class SidebarComponent implements OnInit {
+
   //@ts-ignore
   isOpen$: Observable<boolean>;
   //@ts-ignore
