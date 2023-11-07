@@ -4,6 +4,8 @@ import {authGuard} from "../core/guards/auth.guard";
 import {IndexComponent} from "./index/index.component";
 import {LayoutComponent} from "./layout/layout.component";
 import {teacherGuard} from "../core/guards/teacher.guard";
+import {RoutesName} from "../core/constants/routes.constants";
+import {ClassroomsComponent} from "./classrooms/classrooms.component";
 
 const routes: Routes = [
   {
@@ -14,6 +16,10 @@ const routes: Routes = [
       {
         path: 'index',
         component: IndexComponent
+      },
+      {
+        path: RoutesName.teacherClassrooms,
+        component: ClassroomsComponent
       }
     ]
   }

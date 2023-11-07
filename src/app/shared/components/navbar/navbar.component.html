@@ -36,8 +36,11 @@
     </div>
   </header>
 
-  <div class="transition delay-150 ease-in-out lg:hidden mobile:block">
+  <div *ngIf="user?.role == 'student'" class="transition delay-150 ease-in-out lg:hidden mobile:block">
     <app-sidebar/>
+  </div>
+  <div *ngIf="user?.role == 'teacher'" class="transition delay-150 ease-in-out lg:hidden mobile:block">
+    <app-teacher-sidebar />
   </div>
 
 </div>

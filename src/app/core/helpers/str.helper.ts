@@ -7,6 +7,9 @@ export class StrHelper {
   public static getDashboardRouteName(route: string): string {
     return '/dashboard/' + route;
   }
+  public static getTeacherRouteName(route: string): string {
+    return '/teacher/' + route;
+  }
 
   public static getLocaleIdByCurrentLang(lang: string | null): number {
     if (lang != null) {

@@ -16,6 +16,6 @@ export class AuthService {
   logout() {
     this._session.removeDataFromLocalStorage(LocalKeysConstants.token)
     this._session.removeDataFromLocalStorage(LocalKeysConstants.user)
-    window.location.reload()
+    this._router.navigateByUrl(RoutesName.loginRoute).then(null)
   }
 }

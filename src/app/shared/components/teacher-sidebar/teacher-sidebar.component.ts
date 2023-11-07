@@ -5,13 +5,7 @@ import {selectSidenavIsOpen} from "../../store/core/sidebar/sidebar.selector";
 import {Router} from "@angular/router";
 import {closeSidebarAction} from "../../store/core/sidebar/sidebar.action";
 import {
-  faBolt,
-  faChartLine, faF,
-  faGamepad,
-  faGraduationCap,
-  faHandPointRight,
-  faHome,
-  faMale, faUser
+  faHome, faSitemap
 } from "@fortawesome/free-solid-svg-icons";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import {StrHelper} from "../../../core/helpers/str.helper";
@@ -47,6 +41,11 @@ export class TeacherSidebarComponent implements OnInit {
       title: 'HOME',
       path: RoutesName.teacher,
       icon: faHome as IconProp
+    },
+    {
+      title: 'MY_CLASSROOMS',
+      path: StrHelper.getTeacherRouteName(RoutesName.teacherClassrooms),
+      icon: faSitemap as IconProp
     },
   ]
 }

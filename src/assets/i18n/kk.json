@@ -37,5 +37,12 @@
   "STUDENT_ROLE": "Студент",
   "SELECT_ROLE": "Рольді таңдаңыз",
   "PHONE_VALID_MESSAGE": "Дұрыс емес форматтағы нөмір",
-  "EMAIL_VALID_MESSAGE": "Дұрыс емес форматтағы пошта"
+  "EMAIL_VALID_MESSAGE": "Дұрыс емес форматтағы пошта",
+  "MY_CLASSROOMS": "Менің сыныптарым",
+  "CREATE_CLASSROOM": "Сынып қосу",
+  "ADD_CLASSROOM": "Сыныпқа қосылу",
+  "TITLE": "Атауы",
+  "COUNT_OF_STUDENTS": "Оқушылар саны",
+  "PROMO_CODE": "Промокод",
+  "ACTION": "Әрекет"
 }
