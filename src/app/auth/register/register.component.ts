@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit,OnDestroy{
   destroyRef = inject(DestroyRef);
   private store = inject(Store<RegisterComponent>)
   ngOnDestroy(): void {
+
     }
 
   ngOnInit(): void {

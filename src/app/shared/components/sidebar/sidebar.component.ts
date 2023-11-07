@@ -42,7 +42,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   public menuLists = [
     {
       title: 'HOME',
-      path: '#',
+      path: RoutesName.dashboard,
       icon: faHome as IconProp
     },
     {
@@ -57,7 +57,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     },
     {
       title: 'BATTLE_ENT',
-      path: '#',
+      path: RoutesName.untMode,
       icon: faBolt as IconProp
     },
     {
@@ -77,12 +77,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
     },
     {
       title: 'PROFILE',
-      path: RoutesName.untStats,
+      path: RoutesName.myProfile,
       icon: faUser as IconProp
     },
     {
       title: 'FORUM',
-      path: RoutesName.untStats,
+      path: RoutesName.myProfile,
       icon: faF as IconProp
     }
   ]
