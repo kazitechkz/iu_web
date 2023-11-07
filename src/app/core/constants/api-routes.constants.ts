@@ -42,4 +42,5 @@ export enum APIRoutesName {
     uploadImage = "upload-image",
     forumCreate = "forum/create",
     teacherClassrooms = "teacher/classrooms",
+    allForum = "forum/index",
 }

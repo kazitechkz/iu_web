@@ -39,6 +39,7 @@ import {GetUntPlanEffect} from "../../shared/store/plan/getUntPlan/getUntPlan.ef
 import {GetLearningPlanEffect} from "../../shared/store/plan/getLearningPlan/getLearningPlan.effect";
 import {CreateForumEffect} from "../../shared/store/forum/createForum/createForum.effect";
 import {ClassroomsGroupEffect} from "../../shared/store/teacher/classrooms/classrooms.effect";
+import {AllForumEffect} from "../../shared/store/forum/allForum/allForum.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -84,4 +85,5 @@ export const EffectsConstants = [
     GetLearningPlanEffect,
     CreateForumEffect,
     ClassroomsGroupEffect,
+    AllForumEffect,
 ]

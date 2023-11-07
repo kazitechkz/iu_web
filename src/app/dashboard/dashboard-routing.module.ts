@@ -25,6 +25,7 @@ import {UntPlanComponent} from "./plan/unt-plan/unt-plan.component";
 import {ContentPlanComponent} from "./plan/content-plan/content-plan.component";
 import {CreateForumComponent} from "./forum/create-forum/create-forum.component";
 import {studentGuard} from "../core/guards/student.guard";
+import {ForumListComponent} from "./forum/forum-list/forum-list.component";
 
 
 const routes: Routes = [
@@ -120,6 +121,10 @@ const routes: Routes = [
       {
         path: 'create-forum',
         component: CreateForumComponent,
+      },
+      {
+        path: 'forum-list',
+        component: ForumListComponent,
       },
     ]
   }

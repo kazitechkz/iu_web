@@ -40,6 +40,7 @@ import {getUntPlanReducer} from "../../shared/store/plan/getUntPlan/getUntPlan.r
 import {getLearningPlanReducer} from "../../shared/store/plan/getLearningPlan/getLearningPlan.reducer";
 import {createForumReducer} from "../../shared/store/forum/createForum/createForum.reducer";
 import {classroomsGroupReducer} from "../../shared/store/teacher/classrooms/classrooms.reducer";
+import {allForumReducer} from "../../shared/store/forum/allForum/allForum.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -85,4 +86,5 @@ export const ReducersConstants = {
   getLearningPlan:getLearningPlanReducer,
   createForum:createForumReducer,
   classroomsGroup: classroomsGroupReducer,
+  allForum:allForumReducer,
 }

@@ -7,6 +7,8 @@ export interface Forum{
   subject_id:number
   text:string
   attachment:string
+  discusses_count:number|null
+  discuss_rating_count:number|null
   subject:Subject|null,
   user:OrdinaryUser|null,
 

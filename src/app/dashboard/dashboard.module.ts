@@ -39,6 +39,7 @@ import { ContentPlanComponent } from './plan/content-plan/content-plan.component
 import { CreateForumComponent } from './forum/create-forum/create-forum.component';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import {TwOptionModule, TwSelectModule} from "ng-tw";
+import { ForumListComponent } from './forum/forum-list/forum-list.component';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import {TwOptionModule, TwSelectModule} from "ng-tw";
         UntPlanComponent,
         ContentPlanComponent,
         CreateForumComponent,
+        ForumListComponent,
     ],
   imports: [
     CommonModule,
