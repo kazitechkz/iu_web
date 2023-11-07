@@ -1,4 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {Subject} from "../../shared/models/subject.model";
+
 import {TranslateService} from "@ngx-translate/core";
 import {
   faArrowCircleRight,
@@ -6,13 +8,13 @@ import {
   faBook,
   faBookAtlas,
   faBookOpen,
-  faCalendar,
+  faCalendar, faCheckCircle, faDiagramProject,
   faHandsHelping,
   faInfinity,
   faLanguage,
   faMessage,
   faMoneyBill,
-  faMoneyBillWaveAlt,
+  faMoneyBillWaveAlt, faPen, faSchool,
   faShieldAlt,
   faStar,
   faTasksAlt,
@@ -22,14 +24,26 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {faDumbbell} from "@fortawesome/free-solid-svg-icons/faDumbbell";
 import {ImageHelper} from "../../core/helpers/image.helper";
-
+import {
+  Tab,
+  initTE,
+} from "tw-elements";
+import {Store} from "@ngrx/store";
+import {getFeatureSupport} from "@angular-devkit/build-angular/src/tools/esbuild/utils";
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.scss']
 })
-export class IndexComponent {
+export class IndexComponent implements OnInit{
+//Injection Start
+  private _store = inject(Store);
+  private destroyRef:DestroyRef = inject(DestroyRef);
+  //Injection End
 
+  //Data
+  subjects:Subject[] = [];
+  //Data
 
   protected readonly faArrowCircleRight = faArrowCircleRight;
   protected readonly faArrowRight = faArrowRight;
@@ -51,5 +65,15 @@ export class IndexComponent {
   protected readonly faShieldAlt = faShieldAlt;
   protected readonly faMoneyBillWaveAlt = faMoneyBillWaveAlt;
   protected readonly faUsers = faUsers;
+  protected readonly faSchool = faSchool;
   protected readonly ImageHelper = ImageHelper;
+
+  ngOnInit(): void {
+    initTE({ Tab });
+  }
+
+
+  protected readonly faDiagramProject = faDiagramProject;
+  protected readonly faCheckCircle = faCheckCircle;
+  protected readonly faPen = faPen;
 }
