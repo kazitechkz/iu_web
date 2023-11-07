@@ -32,5 +32,10 @@
   "START_TEST_BUTTON": "Тестті бастау",
   "BACK_BUTTON": "Артқа қайту",
   "FORBIDDEN_MESSAGE": "Өкінішке орай, Сіздің құқықтарыңыз жеткіліксіз!",
-  "NO_RESULTS": "Ещтеңе табылмады"
+  "NO_RESULTS": "Ещтеңе табылмады",
+  "TEACHER_ROLE": "Мұғалім",
+  "STUDENT_ROLE": "Студент",
+  "SELECT_ROLE": "Рольді таңдаңыз",
+  "PHONE_VALID_MESSAGE": "Дұрыс емес форматтағы нөмір",
+  "EMAIL_VALID_MESSAGE": "Дұрыс емес форматтағы пошта"
 }

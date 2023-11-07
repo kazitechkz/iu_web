@@ -11,6 +11,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.2.5",
+    "@angular/cdk": "^16.2.11",
     "@angular/common": "^16.1.0",
     "@angular/compiler": "^16.1.0",
     "@angular/core": "^16.1.0",
@@ -42,6 +43,7 @@
     "marked": "^4.3.0",
     "moment": "^2.29.4",
     "ng-select2-component": "^13.0.9",
+    "ng-tw": "^0.0.16",
     "ng2-charts": "^5.0.3",
     "ngu-carousel": "^1.5.3",
     "ngx-countdown": "^16.0.0",

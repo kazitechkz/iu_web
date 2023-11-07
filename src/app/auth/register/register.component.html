@@ -1,49 +1,61 @@
 <div class="container mx-auto min-h-[100vh] py-5 flex justify-center items-center">
-    <div class="w-full md:w-10/12 grid grid-cols-12 bg-white card mx-5 py-12 min-h-[640px]">
-        <div class="visible:none md:d-block md:col-span-6 bg-[#C4C4C4] rounded-l-lg">
-
-        </div>
-        <div class="col-span-12 md:col-span-6 visible:none md:d-block bg-red-50 py-4 px-5 md:px-12 py-5 md:py-12  rounded-r-lg">
-            <p class="text-sm md:text-2xl md:text-4xl capitalize text-dark ">{{ 'sign_up' | translate }}</p>
-            <div class="mt-8 mb-4">
-        <span class="text-xl text-dark">
-          {{ 'sign_in_with' | translate }}
-            <app-rounded-social-button [icon]="faGoogle" [bg_color]="'bg-[#FF904D]'"/>
-          <app-rounded-social-button [icon]="faFacebookF" [bg_color]="'bg-[#3B5998]'"/>
-            {{ 'or' | translate }}
-        </span>
+    <div class="w-full md:w-10/12 grid grid-cols-12 card mx-5 py-12 min-h-[640px]">
+      <div class="visible:none md:d-block md:col-span-6 bg-[#C4C4C4] rounded-l-lg bg-center bg-cover bg-no-repeat" style='background-image: url("assets/images/bg-login.jpg")'>
+      </div>
+        <div class="col-span-12 md:col-span-6 visible:none md:d-block bg-red-50 py-4 px-5 md:px-12 md:py-12  rounded-r-lg">
+          <h1 class="text-green-500 text-xl font-bold">I-UNION</h1>
+          <div class="flex justify-between w-full my-4 items-center">
+            <p class="text-sm md:text-2xl capitalize text-dark my-4">{{ 'REGISTER' | translate }}</p>
+            <div class="flex">
+              <p class="text-dark mx-2 cursor-pointer" [ngClass]="this.translate.currentLang == 'kk' ? 'text-green-500' : ''" (click)="this.translate.onLangChange('kk')">Kaz</p>
+              <p class="text-dark mx-2 cursor-pointer" [ngClass]="this.translate.currentLang == 'ru' ? 'text-green-500' : ''" (click)="this.translate.onLangChange('ru')">Rus</p>
             </div>
+          </div>
+
+<!--          <div class="mt-8 mb-4">-->
+<!--            <span class="text-xl text-dark">-->
+<!--              {{ 'sign_in_with' | translate }}-->
+<!--              <app-rounded-social-button [icon]="faGoogle" [bg_color]="'bg-[#FF904D]'"/>-->
+<!--              <app-rounded-social-button [icon]="faFacebookF" [bg_color]="'bg-[#3B5998]'"/>-->
+<!--              {{ 'or' | translate }}-->
+<!--            </span>-->
+<!--          </div>-->
             <form (ngSubmit)="onSubmit()" [formGroup]="register_form">
+              <div class="w-full my-3">
+                <tw-select
+                  class="w-full flex"
+                  [formControlName]="'role'"
+                  [placeholder]="'SELECT_ROLE' | translate"
+                >
+                  <tw-option value="teacher">
+                    {{'TEACHER_ROLE' | translate}}
+                  </tw-option>
+                  <tw-option value="student">
+                    {{'STUDENT_ROLE' | translate}}
+                  </tw-option>
+
+                </tw-select>
+              </div>
                 <!--Name input-->
                 <app-input-field
                         [formControlName]="'name'"
                         [input_name]="'name'"
                         [type]="'text'"
-                        [placeholder]="'name'"
-                        [label]="'name'"
+                        [placeholder]="'NAME' | translate"
+                        [label]="'NAME' | translate"
                         [error_message]="'name_is_not_right'"
                         [backErrors]="errors"
                         ngDefaultControl
                 />
-                <!--Username input-->
-                <app-input-field
-                        [formControlName]="'username'"
-                        [input_name]="'username'"
-                        [type]="'text'"
-                        [placeholder]="'username'"
-                        [label]="'username'"
-                        [error_message]="'username_is_not_right'"
-                        [backErrors]="errors"
-                        ngDefaultControl
-                />
+
                 <!--Email input-->
                 <app-input-field
                         [formControlName]="'email'"
                         [input_name]="'email'"
                         [type]="'email'"
-                        [placeholder]="'email'"
-                        [label]="'email'"
-                        [error_message]="'email_is_not_right'"
+                        [placeholder]="'EMAIL' | translate"
+                        [label]="'EMAIL' | translate"
+                        [error_message]="'EMAIL_VALID_MESSAGE' | translate"
                         [backErrors]="errors"
                         ngDefaultControl
                 />
@@ -52,9 +64,9 @@
                         [formControlName]="'phone'"
                         [input_name]="'phone'"
                         [type]="'text'"
-                        [placeholder]="'phone'"
-                        [label]="'phone'"
-                        [error_message]="'phone_is_not_right'"
+                        [placeholder]="'PHONE' | translate"
+                        [label]="'PHONE' | translate"
+                        [error_message]="'PHONE_VALID_MESSAGE' | translate"
                         [backErrors]="errors"
                         ngDefaultControl
                 />
@@ -63,8 +75,8 @@
                         [formControlName]="'password'"
                         [input_name]="'password'"
                         [type]="'password'"
-                        [placeholder]="'password'"
-                        [label]="'password'"
+                        [placeholder]="'PASSWORD' | translate"
+                        [label]="'PASSWORD' | translate"
                         [error_message]="'password_is_not_right'"
                         [backErrors]="errors"
                         ngDefaultControl
@@ -73,24 +85,26 @@
                 <!--Terms and condition-->
                 <div class="mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
                     <input
+                      [formControlName]="'cb'"
                             class="relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] checked:!bg-[#4DC591] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ml-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent dark:border-neutral-600 dark:checked:border-[#4DC591] dark:checked:bg-[#4DC591] dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
                             type="checkbox"
-                            value=""
                             id="terms_condition"
                             checked/>
                     <label
                             class="inline-block pl-[0.15rem] hover:cursor-pointer text-md body-text"
                             for="terms_condition">
-                        I agree with the <a class="main-tertiary-color" href="">terms and conditions</a>
+                      {{'TERMS_AND_CONDITIONS' | translate}}
                     </label>
                 </div>
 
                 <!--Send Button -->
                 <div class="flex my-4">
                     <button
+                      [ngClass]="!register_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
+                      [disabled]="!register_form.valid"
                             type="submit"
                             class="cursor-pointer w-full inline-block rounded main-green-bg px-6 py-4 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]">
-                        {{"sign_up"|translate}}
+                        {{"REGISTER" | translate}}
                     </button>
                 </div>
                 <!-- Login -->
@@ -98,7 +112,9 @@
                     <label
                             class="inline-block pl-[0.15rem] hover:cursor-pointer text-md main-text"
                             for="terms_condition">
-                        Already have account? <a class="main-tertiary-color" [routerLink]="StrHelper.getRouteName(RoutesName.loginRoute)">LogIn</a>
+                      {{'ALREADY_HAVE_ACCOUNT' | translate}} <a class="main-tertiary-color" [routerLink]="StrHelper.getRouteName(RoutesName.loginRoute)">
+                      {{'LOGIN' | translate}}
+                    </a>
                     </label>
                 </div>
             </form>
