@@ -37,5 +37,12 @@
   "STUDENT_ROLE": "Студент",
   "SELECT_ROLE": "Выберите роль",
   "PHONE_VALID_MESSAGE": "Неправильный формат номера",
-  "EMAIL_VALID_MESSAGE": "Неправильный формат почты"
+  "EMAIL_VALID_MESSAGE": "Неправильный формат почты",
+  "MY_CLASSROOMS": "Мои классы",
+  "CREATE_CLASSROOM": "Создать класс",
+  "ADD_CLASSROOM": "Добавить класс",
+  "TITLE": "Наименование",
+  "COUNT_OF_STUDENTS": "Количество школьников",
+  "PROMO_CODE": "Промокод",
+  "ACTION": "Действие"
 }

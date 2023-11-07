@@ -39,4 +39,5 @@ export enum APIRoutesName {
     statBySubjectId = "statistics/subject-stats",
     getUntPlan = "plan/unt",
     getLearningPlan = "plan/learning",
+    teacherClassrooms = "teacher/classrooms"
 }
