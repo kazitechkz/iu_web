@@ -44,6 +44,7 @@ import {
   getClassroomsGroupByIDReducer, updateClassroomsGroupReducer
 } from "../../shared/store/teacher/classrooms/classrooms.reducer";
 import {allForumReducer} from "../../shared/store/forum/allForum/allForum.reducer";
+import {deleteRoomsReducer, joinRoomsReducer, roomsReducer} from "../../shared/store/room/rooms.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -94,5 +95,8 @@ export const ReducersConstants = {
   createClassroomsGroup: createClassroomsGroupReducer,
   updateClassroomsGroup: updateClassroomsGroupReducer,
   deleteClassroomsGroup: deleteClassroomsGroupReducer,
+  rooms: roomsReducer,
+  joinRooms: joinRoomsReducer,
+  deleteRooms: deleteRoomsReducer
 }
 

@@ -1,6 +1,17 @@
 import {Component, inject, Input, OnDestroy, OnInit} from '@angular/core';
 import {RoutesName} from "../../../core/constants/routes.constants";
-import {faGraduationCap, faHome, faHandPointRight, faBolt, faGamepad, faMale, faChartLine, faUser, faF} from "@fortawesome/free-solid-svg-icons";
+import {
+  faGraduationCap,
+  faHome,
+  faHandPointRight,
+  faBolt,
+  faGamepad,
+  faMale,
+  faChartLine,
+  faUser,
+  faF,
+  faSitemap
+} from "@fortawesome/free-solid-svg-icons";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import {Router} from "@angular/router";
 import {select, Store} from "@ngrx/store";
@@ -74,9 +85,9 @@ export class SidebarComponent implements OnInit {
       icon: faChartLine as IconProp
     },
     {
-      title: 'PROFILE',
-      path: RoutesName.myProfile,
-      icon: faUser as IconProp
+      title: 'MY_CLASSROOMS',
+      path: StrHelper.getDashboardRouteName(RoutesName.studentClassrooms),
+      icon: faSitemap as IconProp
     },
     {
       title: 'FORUM',

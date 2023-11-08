@@ -25,10 +25,16 @@
             <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400" alt="">
           </button>
 
-          <div *ngIf="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 md:mt-44 mobile:mt-48 sm:mt-48 z-[999] mobile:right-0 sm:right-0">
+          <div *ngIf="isOpen" class="absolute lg:w-48 w-32 bg-white rounded-lg shadow-lg py-2 md:mt-44 mobile:mt-48 sm:mt-48 z-[999] mobile:right-0 sm:right-0">
 <!--            <a routerLink="index" class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white">Account</a>-->
-<!--            <a href="#" class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white">Support</a>-->
-            <a (click)="logout()" class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white">Sign Out</a>
+            <a [routerLink]="StrHelper.getRouteByRole(user?.role, RoutesName.myProfile)" class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white">
+              <i class="fa fa-user mr-3" aria-hidden="true"></i>
+              {{'PROFILE' | translate}}
+            </a>
+            <a (click)="logout()" class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white">
+              <i class="fa fa-sign-out mr-3" aria-hidden="true"></i>
+              {{'LOGOUT' | translate}}
+            </a>
           </div>
         </div>
       </div>

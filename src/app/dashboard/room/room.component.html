@@ -1,0 +1,78 @@
+<div class="w-full flex justify-end items-center">
+  <button
+    class="ml-auto"
+    tw-button
+    layout="flat"
+    color="primary"
+    (click)="openDialog('0')"
+  >
+    {{'ENTER_PROMO_CODE' | translate}}
+    <i class="fa fa-plus ml-3" aria-hidden="true"></i>
+  </button>
+</div>
+<div class="flex">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="min-w-full text-left text-sm font-light">
+          <thead class="border-b font-medium dark:border-neutral-500">
+          <tr>
+            <th scope="col" class="px-6 py-4">#</th>
+            <th scope="col" class="px-6 py-4">{{'TITLE' | translate}}</th>
+            <th scope="col" class="px-6 py-4">{{'COUNT_OF_STUDENTS' | translate}}</th>
+            <th scope="col" class="px-6 py-4">{{'PROMO_CODE' | translate}}</th>
+            <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let classRoom of classrooms | keys"
+              class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
+            <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(classRoom.key) + 1}}</td>
+            <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.classroom_group | globalTranslate: 'title' : this.translate.currentLang}}</td>
+            <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.user_count}}</td>
+            <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.classroom_group.promo_code}}</td>
+            <td class="whitespace-nowrap px-6 py-4">
+              <div class="flex">
+                <button
+                  class="mx-2 text-red-600"
+                  tw-button
+                  layout="flat"
+                  (click)="onDelete(classRoom.value.id)"
+                >
+                  <i class="fa fa-sign-out" aria-hidden="true"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <ngx-smart-modal identifier="{{classroomID}}">
+    <div>
+      <form (ngSubmit)="onSubmit()" [formGroup]="classroom_form">
+        <app-input-field
+          [formControlName]="'promo_code'"
+          [input_name]="'promo_code'"
+          [type]="'text'"
+          [placeholder]="'PROMO_CODE' | translate"
+          [label]="'PROMO_CODE' | translate"
+          [error_message]="'REQUIRED_MESSAGE' | translate"
+          [backErrors]="errors"
+          ngDefaultControl
+        />
+        <button
+          tw-button
+          layout="raised"
+          color="primary"
+          type="submit"
+          [ngClass]="!classroom_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
+          [disabled]="!classroom_form.valid"
+        >
+          {{'SEND_BUTTON' | translate}}
+        </button>
+      </form>
+    </div>
+  </ngx-smart-modal>
+</div>

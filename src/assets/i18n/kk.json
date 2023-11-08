@@ -1,5 +1,6 @@
 {
   "LOGIN": "Кіру",
+  "LOGOUT": "Шығу",
   "REGISTER": "Тіркелу",
   "OR": "Немесе",
   "NAME": "Аты-жөні",
@@ -48,5 +49,8 @@
   "REQUIRED_MESSAGE": "Міндетті түрде толтыру қажет*",
   "COUNT_OF_STUDENTS": "Оқушылар саны",
   "PROMO_CODE": "Промокод",
-  "ACTION": "Әрекет"
+  "ACTION": "Әрекет",
+  "ENTER_PROMO_CODE": "Промокод енгізу",
+  "SUCCESS": "Сәтті",
+  "DONE": "Орындалды"
 }

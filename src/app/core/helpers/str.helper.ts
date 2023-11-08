@@ -11,6 +11,18 @@ export class StrHelper {
     return '/teacher/' + route;
   }
 
+  public static getRouteByRole(role: string | undefined, route: string) {
+    if (role) {
+      if (role == 'student') {
+        return this.getDashboardRouteName(route)
+      } else {
+        return this.getTeacherRouteName(route)
+      }
+    } else {
+      return this.getDashboardRouteName(route)
+    }
+  }
+
   public static getLocaleIdByCurrentLang(lang: string | null): number {
     if (lang != null) {
       if (lang == 'kk') {

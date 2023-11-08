@@ -4,6 +4,7 @@ export enum RoutesName {
     dashboard = "dashboard/index",
     teacher = "teacher/index",
     teacherClassrooms = "classrooms",
+    studentClassrooms = "classrooms",
     resetRoute = "auth/reset",
     notFound = "not-found",
     untMode = "dashboard/unt-mode",
@@ -22,5 +23,5 @@ export enum RoutesName {
     resultByAttemptId = "dashboard/result-attempt",
     statByAttemptId = "dashboard/stat-attempt",
     statBySubjectId = "dashboard/stat-subject",
-    myProfile = "dashboard/my-profile",
+    myProfile = "my-profile",
 }

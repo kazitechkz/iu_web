@@ -13,6 +13,7 @@ import {GlobalTranslateService} from "../../services/globalTranslate.service";
 import {Observable} from "rxjs";
 import {selectSidenavIsOpen} from "../../store/core/sidebar/sidebar.selector";
 import {openSidebarAction} from "../../store/core/sidebar/sidebar.action";
+import {StrHelper} from "../../../core/helpers/str.helper";
 
 @Component({
   selector: 'app-navbar',
@@ -54,4 +55,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this._authService.logout()
   }
+
+    protected readonly StrHelper = StrHelper;
+  protected readonly RoutesName = RoutesName;
 }

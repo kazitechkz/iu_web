@@ -38,8 +38,10 @@ import {MathJaxPipe} from "../core/pipes/mathJax.pipe";
 import { ContentPlanComponent } from './plan/content-plan/content-plan.component';
 import { CreateForumComponent } from './forum/create-forum/create-forum.component';
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
-import {TwOptionModule, TwSelectModule} from "ng-tw";
+import {TwButtonModule, TwOptionModule, TwSelectModule} from "ng-tw";
 import { ForumListComponent } from './forum/forum-list/forum-list.component';
+import { RoomComponent } from './room/room.component';
+import {TranslatePipe} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -70,28 +72,30 @@ import { ForumListComponent } from './forum/forum-list/forum-list.component';
         ContentPlanComponent,
         CreateForumComponent,
         ForumListComponent,
+        RoomComponent,
     ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    SharedModule,
-    FontAwesomeModule,
-    SlickCarouselModule,
-    Select2Module,
-    UiSwitchModule,
-    CountdownComponent,
-    MarkdownModule,
-    NgxSmartModalModule,
-    CoreModule,
-    YouTubePlayerModule,
-    NgxPaginationModule,
-    NgChartsModule,
-    CountdownModule,
-    CKEditorModule,
-    TwOptionModule,
-    TwSelectModule,
-  ],
-  providers: [MathJaxPipe]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        SharedModule,
+        FontAwesomeModule,
+        SlickCarouselModule,
+        Select2Module,
+        UiSwitchModule,
+        CountdownComponent,
+        MarkdownModule,
+        NgxSmartModalModule,
+        CoreModule,
+        YouTubePlayerModule,
+        NgxPaginationModule,
+        NgChartsModule,
+        CountdownModule,
+        CKEditorModule,
+        TwOptionModule,
+        TwSelectModule,
+        TwButtonModule,
+    ],
+  providers: [MathJaxPipe, TranslatePipe]
 })
 export class DashboardModule {
 }
