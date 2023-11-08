@@ -39,10 +39,14 @@ import {statByAttemptIdReducer} from "../../shared/store/stat/statByAttemptId/st
 import {getUntPlanReducer} from "../../shared/store/plan/getUntPlan/getUntPlan.reducer";
 import {getLearningPlanReducer} from "../../shared/store/plan/getLearningPlan/getLearningPlan.reducer";
 import {createForumReducer} from "../../shared/store/forum/createForum/createForum.reducer";
-import {classroomsGroupReducer} from "../../shared/store/teacher/classrooms/classrooms.reducer";
+import {
+  classroomsGroupReducer, createClassroomsGroupReducer, deleteClassroomsGroupReducer,
+  getClassroomsGroupByIDReducer, updateClassroomsGroupReducer
+} from "../../shared/store/teacher/classrooms/classrooms.reducer";
 import {allForumReducer} from "../../shared/store/forum/allForum/allForum.reducer";
 import {getForumReducer} from "../../shared/store/forum/getForum/getForum.reducer";
 import {getForumDiscussReducer} from "../../shared/store/forum/getForumDiscuss/getForumDiscuss.reducer";
+import {deleteRoomsReducer, joinRoomsReducer, roomsReducer} from "../../shared/store/room/rooms.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -87,8 +91,16 @@ export const ReducersConstants = {
   getUntPlan:getUntPlanReducer,
   getLearningPlan:getLearningPlanReducer,
   createForum:createForumReducer,
-  classroomsGroup: classroomsGroupReducer,
   allForum:allForumReducer,
   getForum:getForumReducer,
   getForumDiscuss:getForumDiscussReducer,
+  classroomsGroup: classroomsGroupReducer,
+  getClassroomsGroupByID: getClassroomsGroupByIDReducer,
+  createClassroomsGroup: createClassroomsGroupReducer,
+  updateClassroomsGroup: updateClassroomsGroupReducer,
+  deleteClassroomsGroup: deleteClassroomsGroupReducer,
+  rooms: roomsReducer,
+  joinRooms: joinRoomsReducer,
+  deleteRooms: deleteRoomsReducer,
 }
+

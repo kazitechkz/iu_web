@@ -1,5 +1,6 @@
 {
   "LOGIN": "Кіру",
+  "LOGOUT": "Шығу",
   "REGISTER": "Тіркелу",
   "OR": "Немесе",
   "NAME": "Аты-жөні",
@@ -26,6 +27,7 @@
   "LEVEL": "Деңгей",
   "SAVE_BUTTON": "Сақтау",
   "SEND_BUTTON": "Жіберу",
+  "UPDATE_BUTTON": "Жаңарту",
   "CANCEL_BUTTON": "Болдырмау",
   "RESTART_BUTTON": "Қайта тапсыру",
   "SHOW_RESULT_BUTTON": "Нәтижесін көру",
@@ -42,7 +44,13 @@
   "CREATE_CLASSROOM": "Сынып қосу",
   "ADD_CLASSROOM": "Сыныпқа қосылу",
   "TITLE": "Атауы",
+  "TITLE_KK": "Қазақша атауы",
+  "TITLE_RU": "Орысша атауы",
+  "REQUIRED_MESSAGE": "Міндетті түрде толтыру қажет*",
   "COUNT_OF_STUDENTS": "Оқушылар саны",
   "PROMO_CODE": "Промокод",
-  "ACTION": "Әрекет"
+  "ACTION": "Әрекет",
+  "ENTER_PROMO_CODE": "Промокод енгізу",
+  "SUCCESS": "Сәтті",
+  "DONE": "Орындалды"
 }

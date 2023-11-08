@@ -1,5 +1,6 @@
 {
   "LOGIN": "Войти",
+  "LOGOUT": "Выход",
   "REGISTER": "Зарегистрироваться",
   "OR": "ИЛИ",
   "NAME": "Имя",
@@ -26,6 +27,7 @@
   "LEVEL": "Уровень",
   "SAVE_BUTTON": "Сохранить",
   "SEND_BUTTON": "Отправить",
+  "UPDATE_BUTTON": "Обновить",
   "CANCEL_BUTTON": "Отмена",
   "RESTART_BUTTON": "Пройти снова",
   "SHOW_RESULT_BUTTON": "Просмотреть результат",
@@ -42,7 +44,14 @@
   "CREATE_CLASSROOM": "Создать класс",
   "ADD_CLASSROOM": "Добавить класс",
   "TITLE": "Наименование",
+  "TITLE_KK": "Наименование на казахском",
+  "TITLE_RU": "Наименование на русском",
+  "REQUIRED_MESSAGE": "Объязательное поле*",
   "COUNT_OF_STUDENTS": "Количество школьников",
   "PROMO_CODE": "Промокод",
-  "ACTION": "Действие"
+  "ACTION": "Действие",
+  "ENTER_PROMO_CODE": "Ввести промокод",
+  "SUCCESS": "Успешно",
+  "DONE": "Выполнено"
+
 }

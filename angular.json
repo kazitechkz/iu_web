@@ -31,6 +31,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
               "node_modules/slick-carousel/slick/slick.scss",
               "node_modules/slick-carousel/slick/slick-theme.scss",
               "./node_modules/ngx-ui-switch/ui-switch.component.css",

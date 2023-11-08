@@ -12,7 +12,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ReducersConstants} from "./core/constants/reducers.constants";
 import {EffectsConstants} from "./core/constants/effects.constants";
 import {LoadingInterceptor} from "./core/interceptors/loading.interceptor";
-import {NgxSpinnerModule} from "ngx-spinner";
+import {NgxSpinnerModule, NgxSpinnerService} from "ngx-spinner";
 import {JwtInterceptor} from "./core/interceptors/jwt.interceptor";
 import {SlickCarouselModule} from 'ngx-slick-carousel';
 import {UiSwitchModule} from "ngx-ui-switch";
@@ -53,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxSmartModalModule.forRoot(),
     TwNotificationModule.forRoot(),
     NgChartsModule,
+    NgxSpinnerModule.forRoot({type: 'mySpinner'}),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
