@@ -84,6 +84,6 @@ export const EffectsConstants = [
     GetUntPlanEffect,
     GetLearningPlanEffect,
     CreateForumEffect,
-    ClassroomsGroupEffect,
     AllForumEffect,
+    ClassroomsGroupEffect,
 ]
