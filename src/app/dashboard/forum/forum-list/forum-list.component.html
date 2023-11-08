@@ -1,8 +1,8 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12 gap-3">
-    <div class="col-span-12 p-4 my-3">
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 p-4">
       <tw-select
-        class="w-full flex"
+        class="w-full flex h-full items-center"
         [ngModel]="params.type"
         (ngModelChange)="setForumType($event)"
         [placeholder]="'SELECT_TYPE' | translate"
@@ -18,30 +18,52 @@
         </tw-option>
       </tw-select>
     </div>
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 p-4">
+        <label for="default-search" class="mb-2 text-sm font-medium sr-only">Search</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+            </svg>
+          </div>
+          <input [(ngModel)]="params.search" type="search" id="default-search" class="block w-full p-4 pl-10 text-sm border-gray-300  rounded-lg " placeholder="Поиск" required>
+          <button (click)="searchPage()" type="submit" class="text-white absolute right-2.5 bottom-2.5 main-secondary-bg  font-bold rounded-lg text-sm px-4 py-2">Search</button>
+        </div>
+    </div>
 
-    <div class="col-span-12 md:col-span-12 lg:col-span-9" *ngIf="forumData">
-      <div class="p-3 border-2 border-green-500 shadow-lg rounded-2xl md:flex my-5 cursor-pointer" *ngFor="let forum of forumData.data | paginate: { itemsPerPage: forumData.per_page, currentPage: forumData.current_page,totalItems:forumData.total }">
-          <div class="md:w-3/12 text-center flex justify-center items-center">
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-9 order-2 lg:order-1" *ngIf="forumData">
+      <div class="p-3 border-2 border-green-500 shadow-lg rounded-2xl md:flex my-5 cursor-pointer"
+           *ngFor="let forum of forumData.data | paginate: { itemsPerPage: forumData.per_page, currentPage: forumData.current_page,totalItems:forumData.total }"
+           [routerLink]="['/' + RoutesName.forumDetail + '/' + forum.id]"
+      >
+          <div class="lg:w-3/12 text-center flex justify-center items-center">
             <div>
               <div class="w-16 h-16 rounded-full inline-block border-2 border-green-300 bg-cover bg-no-repeat mr-2"
                    [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(forum.user?.file?.url)+ ')'}"
               ></div>
+              <p class="text-md font-bold">
+                {{forum.user?.name}}
+              </p>
               <p class="text-xl font-bold">
-                {{forum.discuss_rating_count ?? 0}}
+                {{forum.discuss_rating_sum_rating??0 > 0 ? '+' : (forum.discuss_rating_sum_rating??0 != 0 ? "-" :"")}} {{forum.discuss_rating_sum_rating ?? 0}}
               </p>
             </div>
           </div>
-        <div class="md:w-6/12 text-left flex items-center">
-          <div>
+        <div class="lg:w-6/12 text-center lg:text-left flex items-center">
+          <div class="w-full">
             <p class="text-lg md:text-xl lg:text-2xl font-bold main-darken-blue-color">
               {{forum.text}}
             </p>
             <p class="inline-block mt-3 text-md main-text main-green-color">
               {{forum.subject?.title_ru}}
             </p>
+            <br>
+            <p class="inline-block mt-3 text-md main-text main-green-color">
+              {{moment(forum.created_at).format('HH:mm DD/MM/YYYY')}}
+            </p>
           </div>
         </div>
-        <div class="md:w-3/12 text-center flex justify-center items-center">
+        <div class="lg:w-3/12 text-center flex justify-center items-center">
           <div>
             <fa-icon class="text-lg md:text-xl lg:text-2xl xl:text-4xl font-bold main-secondary-color" [icon]="faMessage"></fa-icon>
             <p class="text-xl font-bold main-secondary-color">
@@ -54,9 +76,9 @@
         <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
       </div>
     </div>
-    <div class="col-span-12 md:col-span-12 lg:col-span-3">
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-3 order-1 lg:order-2">
       <div class="p-3">
-        <a  routerLink="/dashboard/create-forum"
+        <a [routerLink]="['/' + RoutesName.createForum]"
           class="
             cursor-pointer
             w-full
@@ -73,21 +95,70 @@
         </a>
       </div>
       <hr/>
-      <div class="p-3" *ngIf="subjects">
-        <ul class="w-full">
-          <li class="w-full rounded-lg p-4 cursor-pointer"
-              *ngFor="let subject of subjects"
-              (click)="setActiveSubject(subject.id)"
-              [ngClass]="{'main-secondary-bg':params.subject_id == subject.id, 'text-white':params.subject_id == subject.id}">
-            <div class="flex items-center">
-              <div class="w-8 h-8 rounded-full border-2 border-green-300 bg-cover bg-no-repeat mr-2"
-                   [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(subject.image?.url)+ ')'}"
-              ></div>
-              {{subject.title_ru}}
+      <div class="p-3">
+        <div id="accordionFlushExample">
+          <div
+            class="rounded-lg">
+            <h2 class="mb-0" id="flush-headingThree">
+              <button
+                class="group relative flex w-full items-center rounded-lg border-0 bg-white px-5 py-4 text-left text-base transition main-secondary-bg text-white font-bold"
+                type="button"
+                data-te-collapse-init
+                data-te-collapse-collapsed
+                data-te-target="#flush-collapseThree"
+                aria-expanded="false"
+                aria-controls="flush-collapseThree">
+                Фильтры
+                <span
+                  class="-mr-1 ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          </svg>
+        </span>
+              </button>
+            </h2>
+            <div
+              *ngIf="subjects"
+              id="flush-collapseThree"
+              class="!visible hidden p-3"
+              data-te-collapse-item
+              aria-labelledby="flush-headingThree"
+              data-te-parent="#accordionFlushExample">
+              <ul class="w-full">
+                <li class="w-full rounded-lg p-4 cursor-pointer"
+                    (click)="setActiveSubject(0)"
+                    [ngClass]="{'main-secondary-bg':params.subject_id == 0, 'text-white':params.subject_id == 0}">
+                  <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-full border-2 border-green-300 bg-cover bg-no-repeat mr-2"
+                         [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(null)+ ')'}"
+                    ></div>
+                    Все
+                  </div>
+                </li>
+                <li class="w-full rounded-lg p-4 cursor-pointer"
+                    *ngFor="let subject of subjects"
+                    (click)="setActiveSubject(subject.id)"
+                    [ngClass]="{'main-secondary-bg':params.subject_id == subject.id, 'text-white':params.subject_id == subject.id}">
+                  <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-full border-2 border-green-300 bg-cover bg-no-repeat mr-2"
+                         [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(subject.image?.url)+ ')'}"
+                    ></div>
+                    {{subject.title_ru}}
+                  </div>
+                </li>
+              </ul>
             </div>
-          </li>
-        </ul>
-
+          </div>
+        </div>
       </div>
 
     </div>

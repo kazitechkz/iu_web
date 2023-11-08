@@ -1,0 +1,112 @@
+<div class="container mx-auto">
+    <div class="grid grid-cols-12 gap-2">
+        <div class="col-span-12" *ngIf="forumDetail">
+            <div class="p-3 border-2 border-green-500 shadow-lg rounded-2xl md:flex my-5">
+                <div class="lg:w-3/12 text-center flex justify-center items-start">
+                    <div>
+                        <div class="w-16 h-16 rounded-full inline-block border-2 border-green-300 bg-cover bg-no-repeat mr-2"
+                             [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(forumDetail.forum.user?.file?.url)+ ')'}"
+                        ></div>
+                        <p class="text-md font-bold">
+                            {{forumDetail.forum.user?.name}}
+                        </p>
+                        <p class="text-xl font-bold">
+                            {{forumDetail.forum.discuss_rating_sum_rating??0 > 0 ? '+' : (forumDetail.forum.discuss_rating_sum_rating??0 != 0 ? "-" :"")}} {{forumDetail.forum.discuss_rating_sum_rating ?? 0}}
+                        </p>
+                    </div>
+                </div>
+                <div class="lg:w-9/12 text-center lg:text-left flex items-center">
+                    <div class="w-full">
+                        <p class="text-lg md:text-xl lg:text-2xl font-bold main-darken-blue-color">
+                            {{forumDetail.forum.text}}
+                        </p>
+                        <p class="inline-block mt-3 text-md main-text main-green-color">
+                            {{forumDetail.forum.subject?.title_ru}}
+                        </p>
+                        <br>
+                        <p class="inline-block mt-3 text-md main-text main-green-color">
+                            {{moment(forumDetail.forum.created_at).format('HH:mm DD/MM/YYYY')}}
+                        </p>
+                        <div class="my-3" [innerHTML]="forumDetail.forum.attachment">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div >
+
+        <div class="col-span-12">
+            <hr>
+            <div id="accordionFlushExample">
+                <div
+                        class="rounded-lg">
+                    <h2 class="mb-0" id="flush-headingThree">
+                        <button
+                                class="group relative flex w-full items-center rounded-lg border-0 bg-white px-5 py-4 text-left text-base transition main-green-bg text-white font-bold"
+                                type="button"
+                                data-te-collapse-init
+                                data-te-collapse-collapsed
+                                data-te-target="#flush-collapseThree"
+                                aria-expanded="false"
+                                aria-controls="flush-collapseThree">
+                            Посмотреть комментарии
+                            <span
+                                    class="-mr-1 ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+                  <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          class="h-6 w-6">
+                    <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                    </span>
+                        </button>
+                    </h2>
+                    <div
+                            *ngIf="forumDiscuss"
+                            id="flush-collapseThree"
+                            class="!visible hidden p-3"
+                            data-te-collapse-item
+                            aria-labelledby="flush-headingThree"
+                            data-te-parent="#accordionFlushExample">
+                        <div class="p-3" *ngFor="let discuss of forumDiscuss.discusses.data | paginate: { itemsPerPage: forumDiscuss.discusses.per_page, currentPage: forumDiscuss.discusses.current_page,totalItems:forumDiscuss.discusses.total }">
+                            <div class="p-3 border-2 border-green-500 shadow-lg rounded-2xl md:flex my-2">
+                                <div class="lg:w-3/12 text-center flex justify-center items-start">
+                                    <div>
+                                        <div class="w-16 h-16 rounded-full inline-block border-2 border-green-300 bg-cover bg-no-repeat mr-2"
+                                             [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(discuss.user?.file?.url)+ ')'}"
+                                        ></div>
+                                        <p class="text-md font-bold">
+                                            {{discuss.user?.name}}
+                                        </p>
+                                        <p class="text-xl font-bold">
+                                            {{discuss.discuss_rating_sum_rating??0 > 0 ? '+' : (discuss.discuss_rating_sum_rating??0 != 0 ? "-" :"")}} {{discuss.discuss_rating_sum_rating ?? 0}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="lg:w-9/12 text-center lg:text-left flex items-center">
+                                    <div class="w-full">
+                                        <p class="inline-block mt-3 text-md main-text main-green-color">
+                                            {{moment(forumDetail.forum.created_at).format('HH:mm DD/MM/YYYY')}}
+                                        </p>
+                                        <div class="my-3" [innerHTML]="discuss.text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-2 flex justify-center">
+                            <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

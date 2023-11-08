@@ -33,6 +33,7 @@ export class CreateForumComponent implements OnInit,OnDestroy{
   public Editor = ClassicEditor;
   //@ts-ignore
   subjects:Subject[];
+
   //Data
   createForum:FormGroup = this.fb.group({
     text:new FormControl("",[

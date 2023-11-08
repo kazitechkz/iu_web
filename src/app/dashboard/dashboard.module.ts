@@ -40,6 +40,8 @@ import { CreateForumComponent } from './forum/create-forum/create-forum.componen
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import {TwOptionModule, TwSelectModule} from "ng-tw";
 import { ForumListComponent } from './forum/forum-list/forum-list.component';
+import { ForumShowComponent } from './forum/forum-show/forum-show.component';
+import { ForumDetailComponent } from './forum/forum-detail/forum-detail.component';
 
 
 @NgModule({
@@ -70,6 +72,8 @@ import { ForumListComponent } from './forum/forum-list/forum-list.component';
         ContentPlanComponent,
         CreateForumComponent,
         ForumListComponent,
+        ForumShowComponent,
+        ForumDetailComponent,
     ],
   imports: [
     CommonModule,

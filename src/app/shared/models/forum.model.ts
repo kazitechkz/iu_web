@@ -8,8 +8,9 @@ export interface Forum{
   text:string
   attachment:string
   discusses_count:number|null
-  discuss_rating_count:number|null
+  discuss_rating_sum_rating:number|null
   subject:Subject|null,
   user:OrdinaryUser|null,
-
+  created_at:Date,
+  updated_at:Date|null,
 }

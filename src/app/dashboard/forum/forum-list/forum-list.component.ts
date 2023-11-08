@@ -11,7 +11,13 @@ import {Pagination} from "../../../shared/store/pagination";
 import {allForumAction} from "../../../shared/store/forum/allForum/allForum.action";
 import {AllForumRequest} from "../../../shared/store/forum/allForum/allForum.request";
 import {allForumSelector} from "../../../shared/store/forum/allForum/allForum.selector";
-
+import * as moment from 'moment';
+// Initialization for ES Users
+import {
+  Collapse,
+  initTE,
+} from "tw-elements";
+import {RoutesName} from "../../../core/constants/routes.constants";
 @Component({
   selector: 'app-forum-list',
   templateUrl: './forum-list.component.html',
@@ -26,10 +32,11 @@ export class ForumListComponent implements OnInit {
   subjects:Subject[] = [];
   //@ts-ignore
   forumData: Pagination<Forum[]>;
-  params = {page:1,subject_id:0,type:""};
+  params = {page:1,subject_id:0,type:"",search:""};
   //Data
 
   ngOnInit(): void {
+    initTE({ Collapse });
     this.getSubjects();
     this.getAllForums();
   }
@@ -71,10 +78,16 @@ export class ForumListComponent implements OnInit {
     this.getAllForums();
   }
 
+  searchPage(){
+    this.getAllForums();
+  }
+
   protected readonly faCheck = faCheck;
   protected readonly faPencil = faPencil;
 
 
   protected readonly ImageHelper = ImageHelper;
   protected readonly faMessage = faMessage;
+  protected readonly moment = moment;
+  protected readonly RoutesName = RoutesName;
 }

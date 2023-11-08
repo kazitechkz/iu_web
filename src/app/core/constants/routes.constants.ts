@@ -23,4 +23,7 @@ export enum RoutesName {
     statByAttemptId = "dashboard/stat-attempt",
     statBySubjectId = "dashboard/stat-subject",
     myProfile = "dashboard/my-profile",
+    forumList = "dashboard/forum-list",
+    forumDetail = "dashboard/forum-detail",
+    createForum = "dashboard/create-forum",
 }

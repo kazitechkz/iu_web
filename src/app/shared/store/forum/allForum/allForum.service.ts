@@ -23,6 +23,9 @@ export class AllForumService {
     if(requestData.subject_id){
       formData = formData.append("subject_id",requestData.subject_id.toString());
     }
+    if(requestData.search){
+      formData = formData.append("search",requestData.search.toString());
+    }
     if(requestData.type){
       formData = formData.append("type",requestData.type.toString());
     }

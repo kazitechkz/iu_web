@@ -80,7 +80,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       title: 'FORUM',
-      path: RoutesName.myProfile,
+      path: RoutesName.forumList,
       icon: faF as IconProp
     }
   ]

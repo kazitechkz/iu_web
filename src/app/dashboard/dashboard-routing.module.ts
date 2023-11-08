@@ -26,6 +26,7 @@ import {ContentPlanComponent} from "./plan/content-plan/content-plan.component";
 import {CreateForumComponent} from "./forum/create-forum/create-forum.component";
 import {studentGuard} from "../core/guards/student.guard";
 import {ForumListComponent} from "./forum/forum-list/forum-list.component";
+import {ForumDetailComponent} from "./forum/forum-detail/forum-detail.component";
 
 
 const routes: Routes = [
@@ -125,6 +126,10 @@ const routes: Routes = [
       {
         path: 'forum-list',
         component: ForumListComponent,
+      },
+      {
+        path: 'forum-detail/:id',
+        component: ForumDetailComponent
       },
     ]
   }
