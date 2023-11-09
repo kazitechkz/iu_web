@@ -47,6 +47,8 @@ import {allForumReducer} from "../../shared/store/forum/allForum/allForum.reduce
 import {getForumReducer} from "../../shared/store/forum/getForum/getForum.reducer";
 import {getForumDiscussReducer} from "../../shared/store/forum/getForumDiscuss/getForumDiscuss.reducer";
 import {deleteRoomsReducer, joinRoomsReducer, roomsReducer} from "../../shared/store/room/rooms.reducer";
+import {ratingForumReducer} from "../../shared/store/forum/ratingForum/ratingForum.reducer";
+import {createDiscussReducer} from "../../shared/store/forum/createDiscuss/createDiscuss.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -102,5 +104,7 @@ export const ReducersConstants = {
   rooms: roomsReducer,
   joinRooms: joinRoomsReducer,
   deleteRooms: deleteRoomsReducer,
+  ratingForum:ratingForumReducer,
+  createDiscuss:createDiscussReducer,
 }
 

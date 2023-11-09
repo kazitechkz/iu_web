@@ -43,6 +43,8 @@ import {AllForumEffect} from "../../shared/store/forum/allForum/allForum.effect"
 import {GetForumEffect} from "../../shared/store/forum/getForum/getForum.effect";
 import {GetForumDiscussEffect} from "../../shared/store/forum/getForumDiscuss/getForumDiscuss.effect";
 import {RoomsEffect} from "../../shared/store/room/rooms.effect";
+import {RatingForumEffect} from "../../shared/store/forum/ratingForum/ratingForum.effect";
+import {CreateDiscussEffect} from "../../shared/store/forum/createDiscuss/createDiscuss.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -91,5 +93,7 @@ export const EffectsConstants = [
     GetForumEffect,
     GetForumDiscussEffect,
     ClassroomsGroupEffect,
-    RoomsEffect
+    RoomsEffect,
+    RatingForumEffect,
+    CreateDiscussEffect,
 ]

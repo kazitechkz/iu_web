@@ -40,7 +40,6 @@ import { CreateForumComponent } from './forum/create-forum/create-forum.componen
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import {TwButtonModule, TwOptionModule, TwSelectModule} from "ng-tw";
 import { ForumListComponent } from './forum/forum-list/forum-list.component';
-import { ForumShowComponent } from './forum/forum-show/forum-show.component';
 import { ForumDetailComponent } from './forum/forum-detail/forum-detail.component';
 import { RoomComponent } from './room/room.component';
 import {TranslatePipe} from "@ngx-translate/core";
@@ -74,7 +73,6 @@ import {TranslatePipe} from "@ngx-translate/core";
         ContentPlanComponent,
         CreateForumComponent,
         ForumListComponent,
-        ForumShowComponent,
         ForumDetailComponent,
         RoomComponent,
     ],

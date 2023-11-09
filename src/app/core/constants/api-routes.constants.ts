@@ -46,4 +46,6 @@ export enum APIRoutesName {
     allForum = "forum/index",
     getForum = "forum/show",
     getForumDiscuss = "forum/discuss",
+    ratingForum = "forum/rating",
+    createDiscuss = "discuss/create",
 }

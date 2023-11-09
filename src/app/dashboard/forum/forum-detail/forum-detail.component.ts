@@ -7,7 +7,15 @@ import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {getForumAction} from "../../../shared/store/forum/getForum/getForum.action";
 import {getForumSelector} from "../../../shared/store/forum/getForum/getForum.selector";
 import {GetForumModel} from "../../../shared/store/forum/getForum/getForum.model";
-import {faMessage} from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheck,
+  faMessage,
+  faMinus,
+  faPlus,
+  faPlusCircle,
+  faThumbsDown,
+  faThumbsUp
+} from "@fortawesome/free-solid-svg-icons";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import * as moment from "moment/moment";
 import {ImageHelper} from "../../../core/helpers/image.helper";
@@ -17,6 +25,18 @@ import {AllForumRequest} from "../../../shared/store/forum/allForum/allForum.req
 import {GetForumDiscussRequest} from "../../../shared/store/forum/getForumDiscuss/getForumDiscuss.request";
 import {getForumDiscussSelector} from "../../../shared/store/forum/getForumDiscuss/getForumDiscuss.selector";
 import {Collapse, initTE} from "tw-elements";
+import _default from "chart.js/dist/plugins/plugin.tooltip";
+import numbers = _default.defaults.animations.numbers;
+import {RatingForumRequest} from "../../../shared/store/forum/ratingForum/ratingForum.request";
+import {ratingForumAction} from "../../../shared/store/forum/ratingForum/ratingForum.action";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {CreateForumRequest} from "../../../shared/store/forum/createForum/createForum.request";
+import {createForumAction} from "../../../shared/store/forum/createForum/createForum.action";
+import {createForumSelector} from "../../../shared/store/forum/createForum/createForum.selector";
+import {createDiscussAction} from "../../../shared/store/forum/createDiscuss/createDiscuss.action";
+import {CreateDiscussRequest} from "../../../shared/store/forum/createDiscuss/createDiscuss.request";
+import {createDiscussSelector} from "../../../shared/store/forum/createDiscuss/createDiscuss.selector";
 
 @Component({
   selector: 'app-forum-detail',
@@ -35,6 +55,13 @@ export class ForumDetailComponent implements OnInit,OnDestroy{
   //@ts-ignore
     forumDiscuss:GetForumDiscussModel;
     params = {forum_id:0, type:"", page:1}
+    public Editor = ClassicEditor;
+    createDiscuss:FormGroup = new FormGroup({
+      text:new FormControl("",[
+        Validators.required,
+        Validators.max(255),
+      ]),
+    })
   //Data
   ngOnInit(): void {
     initTE({ Collapse });
@@ -71,9 +98,45 @@ export class ForumDetailComponent implements OnInit,OnDestroy{
   ngOnDestroy(): void {
   }
 
+  ratingForum(rating:number,forum_id:number|null = null,discuss_id:number|null = null){
+      if(forum_id || discuss_id){
+        let request = {};
+        if(forum_id){
+          request = {rating:rating,forum_id:forum_id,discuss_id:null} as RatingForumRequest;
+        }
+        if(discuss_id){
+          request = {rating:rating,discuss_id:discuss_id,forum_id:null} as RatingForumRequest;
+        }
+        // @ts-ignore
+        this._store.dispatch(ratingForumAction({requestData:request}));
+        if(forum_id){
+          this.getForumDetail(forum_id);
+        }
+        if(discuss_id){
+          this.getForumDiscusses();
+        }
+      }
+  }
 
+
+  onSubmit(){
+    if(this.createDiscuss.valid){
+      let requestData = {forum_id:this.forumDetail.forum.id,...this.createDiscuss.getRawValue()} as CreateDiscussRequest;
+      this._store.dispatch(createDiscussAction({requestData: requestData}));
+      this._store.select(createDiscussSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe((item) => {
+        if (item.data) {
+         this.getForumDiscusses();
+        }
+      });
+      this.createDiscuss.reset();
+    }
+  }
   protected readonly faMessage = faMessage;
   protected readonly RoutesName = RoutesName;
   protected readonly moment = moment;
   protected readonly ImageHelper = ImageHelper;
+  protected readonly faThumbsDown = faThumbsDown;
+  protected readonly faThumbsUp = faThumbsUp;
+  protected readonly ClassicEditor = ClassicEditor;
+  protected readonly faCheck = faCheck;
 }
