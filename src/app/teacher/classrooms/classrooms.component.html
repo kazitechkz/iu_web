@@ -37,6 +37,14 @@
                   class="mx-2 text-black"
                   tw-button
                   layout="flat"
+                  [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherDetailClassroom) + '/' + classRoom.value.id"
+                >
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </button>
+                <button
+                  class="mx-2 text-black"
+                  tw-button
+                  layout="flat"
                   (click)="openDialog(String(classRoom.value.id))"
                 >
                   <i class="fa fa-pencil" aria-hidden="true"></i>

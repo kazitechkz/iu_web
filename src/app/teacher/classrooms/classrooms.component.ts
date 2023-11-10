@@ -19,6 +19,8 @@ import {NgxSmartModalService} from "ngx-smart-modal";
 import {ClassroomsRequest} from "../../shared/store/teacher/classrooms/classrooms.request";
 import {updateClassroomsGroupState} from "../../shared/store/teacher/classrooms/classrooms.selector";
 import {deleteClassroomsGroupState} from "../../shared/store/teacher/classrooms/classrooms.selector";
+import {RoutesName} from "../../core/constants/routes.constants";
+import {StrHelper} from "../../core/helpers/str.helper";
 
 @Component({
   selector: 'app-classrooms',
@@ -104,4 +106,6 @@ export class ClassroomsComponent implements OnInit {
 
   protected readonly String = String;
   protected readonly parseInt = parseInt;
+    protected readonly RoutesName = RoutesName;
+  protected readonly StrHelper = StrHelper;
 }

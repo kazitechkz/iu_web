@@ -6,6 +6,7 @@ import {LayoutComponent} from "./layout/layout.component";
 import {teacherGuard} from "../core/guards/teacher.guard";
 import {RoutesName} from "../core/constants/routes.constants";
 import {ClassroomsComponent} from "./classrooms/classrooms.component";
+import {DetailClassroomComponent} from "./classrooms/detail-classroom/detail-classroom.component";
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path: RoutesName.teacherClassrooms,
         component: ClassroomsComponent
+      },
+      {
+        path: 'detail-classroom/:id',
+        component: DetailClassroomComponent
       }
     ]
   }

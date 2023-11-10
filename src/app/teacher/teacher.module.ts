@@ -12,13 +12,15 @@ import {TwButtonModule} from "ng-tw";
 import {NgxSmartModalModule} from "ngx-smart-modal";
 import {UiSwitchModule} from "ngx-ui-switch";
 import {ReactiveFormsModule} from "@angular/forms";
+import { DetailClassroomComponent } from './classrooms/detail-classroom/detail-classroom.component';
 
 
 @NgModule({
   declarations: [
     IndexComponent,
     LayoutComponent,
-    ClassroomsComponent
+    ClassroomsComponent,
+    DetailClassroomComponent,
   ],
     imports: [
         CommonModule,
