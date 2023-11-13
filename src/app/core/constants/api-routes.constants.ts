@@ -17,6 +17,7 @@ export enum APIRoutesName {
     finishAttempt = "finish",
     createAttempt = "attempt",
     createTournamentAttempt = "tournament-attempt",
+    createAttemptSettings = "create-attempt-settings",
     answer = "answer",
     answerResult = "answer-result",
     getFiftyFifty = "get-fifty-fifty",
@@ -49,4 +50,9 @@ export enum APIRoutesName {
     getForumDiscuss = "forum/discuss",
     ratingForum = "forum/rating",
     createDiscuss = "discuss/create",
+    getAllAttemptSettings="my-attempt-settings",
+    getAttemptByPromoCode="attempt-by-promo-code",
+    getCategoryQuestionCount="get-category-question-count",
+    getSubCategoryQuestionCount="get-sub-category-question-count",
+
 }

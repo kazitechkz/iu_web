@@ -50,6 +50,21 @@ import {deleteRoomsReducer, joinRoomsReducer, roomsReducer} from "../../shared/s
 import {ratingForumReducer} from "../../shared/store/forum/ratingForum/ratingForum.reducer";
 import {createDiscussReducer} from "../../shared/store/forum/createDiscuss/createDiscuss.reducer";
 import {detailClassroomReducer} from "../../shared/store/teacher/classrooms/detail-classroom/detail-classroom.reducer";
+import {
+  getAttemptByPromoCodeReducer
+} from "../../shared/store/attempt/getAttemptByPromoCode/getAttemptByPromoCode.reducer";
+import {
+  createAttemptSettingsReducer
+} from "../../shared/store/attemptSettings/createAttemptSettings/createAttemptSettings.reducer";
+import {
+  getAllAttemptSettingsReducer
+} from "../../shared/store/attemptSettings/getAllAttemptSettings/getAllAttemptSettings.reducer";
+import {
+  getCategoryQuestionCountReducer
+} from "../../shared/store/question/getCategoryQuestionCount/getCategoryQuestionCount.reducer";
+import {
+  getSubCategoryQuestionCountReducer
+} from "../../shared/store/question/getSubCategoryQuestionCount/getSubCategoryQuestionCount.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -107,6 +122,12 @@ export const ReducersConstants = {
   deleteRooms: deleteRoomsReducer,
   ratingForum:ratingForumReducer,
   createDiscuss:createDiscussReducer,
-  detailClassroom: detailClassroomReducer
+  detailClassroom: detailClassroomReducer,
+  getAttemptByPromoCode:getAttemptByPromoCodeReducer,
+  createAttemptSettings:createAttemptSettingsReducer,
+  getAllAttemptSettings:getAllAttemptSettingsReducer,
+  getCategoryQuestionCount:getCategoryQuestionCountReducer,
+  getSubCategoryQuestionCount:getSubCategoryQuestionCountReducer,
+
 }
 

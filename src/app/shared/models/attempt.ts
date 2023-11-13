@@ -2,6 +2,7 @@ import {AttemptType} from "./attemptType.model";
 import {Locale} from "./locale.model";
 import {Subject} from "./subject.model";
 import {TournamentUser} from "./tournamentUser.model";
+import {OrdinaryUser} from "./user.model";
 
 export interface AttemptModel{
   id: number
@@ -16,7 +17,7 @@ export interface AttemptModel{
   time_left: number
   attempt_type:AttemptType|null
   subjects:Subject[]|null
-  user:TournamentUser|null
+  user:OrdinaryUser|null
   locale:Locale|null
   deleted_at: Date|null
   created_at: Date

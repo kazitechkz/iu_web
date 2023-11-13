@@ -46,6 +46,21 @@ import {RoomsEffect} from "../../shared/store/room/rooms.effect";
 import {RatingForumEffect} from "../../shared/store/forum/ratingForum/ratingForum.effect";
 import {CreateDiscussEffect} from "../../shared/store/forum/createDiscuss/createDiscuss.effect";
 import {DetailClassroomEffect} from "../../shared/store/teacher/classrooms/detail-classroom/detail-classroom.effect";
+import {
+  GetAttemptByPromoCodeEffect
+} from "../../shared/store/attempt/getAttemptByPromoCode/getAttemptByPromoCode.effect";
+import {
+  CreateAttemptSettingsEffect
+} from "../../shared/store/attemptSettings/createAttemptSettings/createAttemptSettings.effect";
+import {
+  GetAllAttemptSettingsEffect
+} from "../../shared/store/attemptSettings/getAllAttemptSettings/getAllAttemptSettings.effect";
+import {
+  GetCategoryQuestionCountEffect
+} from "../../shared/store/question/getCategoryQuestionCount/getCategoryQuestionCount.effect";
+import {
+  GetSubCategoryQuestionCountEffect
+} from "../../shared/store/question/getSubCategoryQuestionCount/getSubCategoryQuestionCount.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -97,5 +112,10 @@ export const EffectsConstants = [
     RoomsEffect,
     RatingForumEffect,
     CreateDiscussEffect,
-    DetailClassroomEffect
+    DetailClassroomEffect,
+    GetAttemptByPromoCodeEffect,
+    CreateAttemptSettingsEffect,
+    GetAllAttemptSettingsEffect,
+    GetCategoryQuestionCountEffect,
+    GetSubCategoryQuestionCountEffect,
 ]
