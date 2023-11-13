@@ -65,6 +65,7 @@ import {
 import {
   getSubCategoryQuestionCountReducer
 } from "../../shared/store/question/getSubCategoryQuestionCount/getSubCategoryQuestionCount.reducer";
+import {getMySubjectsReducer} from "../../shared/store/subject/getMySubjects/getMySubjects.reducer";
 import {categoryReducer} from "../../shared/store/category/category.reducer";
 
 export const ReducersConstants = {
@@ -129,7 +130,8 @@ export const ReducersConstants = {
   getAllAttemptSettings:getAllAttemptSettingsReducer,
   getCategoryQuestionCount:getCategoryQuestionCountReducer,
   getSubCategoryQuestionCount:getSubCategoryQuestionCountReducer,
-  categories: categoryReducer
+  categories: categoryReducer,
+  getMySubjects:getMySubjectsReducer,
 
 }
 

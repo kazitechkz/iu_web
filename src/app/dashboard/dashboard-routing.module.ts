@@ -28,6 +28,7 @@ import {studentGuard} from "../core/guards/student.guard";
 import {ForumListComponent} from "./forum/forum-list/forum-list.component";
 import {ForumDetailComponent} from "./forum/forum-detail/forum-detail.component";
 import {RoomComponent} from "./room/room.component";
+import {CustomizableUntComponent} from "./unt/customizable-unt/customizable-unt.component";
 
 
 const routes: Routes = [
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: 'single-subject-unt',
         component: SingleSubjectComponent
+      },
+      {
+        path: 'customizable-unt',
+        component: CustomizableUntComponent
       },
       {
         path: 'pass-unt-exam/:id',
