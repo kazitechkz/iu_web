@@ -8,7 +8,7 @@ import {SharedModule} from "../shared/shared.module";
 import { ClassroomsComponent } from './classrooms/classrooms.component';
 import {CoreModule} from "../core/core.module";
 import {MathJaxPipe} from "../core/pipes/mathJax.pipe";
-import {TwButtonModule} from "ng-tw";
+import {TwButtonModule, TwSelectModule} from "ng-tw";
 import {NgxSmartModalModule} from "ngx-smart-modal";
 import {UiSwitchModule} from "ngx-ui-switch";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -30,7 +30,8 @@ import { DetailClassroomComponent } from './classrooms/detail-classroom/detail-c
         TwButtonModule,
         NgxSmartModalModule.forChild(),
         UiSwitchModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TwSelectModule
     ],
   providers: [MathJaxPipe]
 })

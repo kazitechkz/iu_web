@@ -1,65 +1,174 @@
-<div class="w-full flex justify-end items-center">
+<div class="w-full flex justify-end items-center" *ngIf="checkedList.length > 0">
   <button
-    class="ml-auto"
+    class="mr-5 bg-[#4DC591] text-white"
     tw-button
     layout="flat"
-    color="primary"
+    (click)="submit()"
   >
-    {{'CREATE_CLASSROOM' | translate}}
-    <i class="fa fa-plus ml-3" aria-hidden="true"></i>
+    <ngx-smart-modal identifier="0" customClass="large-modal">
+      <div class="my-3 text-black">
+
+      </div>
+    </ngx-smart-modal>
+    {{'CREATE_SINGLE_TEST' | translate}}
+    <i class="fa fa-cube ml-3" aria-hidden="true"></i>
+  </button>
+  <button
+    class="bg-[#4DC591] text-white"
+    tw-button
+    layout="flat"
+  >
+    {{'CREATE_UNT' | translate}}
+    <i class="fa fa-cubes ml-3" aria-hidden="true"></i>
   </button>
 </div>
 <div class="flex">
   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
     <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
       <div class="overflow-hidden">
-        <table class="min-w-full text-left text-sm font-light">
-          <thead class="border-b font-medium dark:border-neutral-500">
-          <tr>
-            <th scope="col" class="px-6 py-4">#</th>
-            <th scope="col" class="px-6 py-4">{{'NAME' | translate}}</th>
-            <th scope="col" class="px-6 py-4">{{'COUNT_OF_STUDENTS' | translate}}</th>
-            <th scope="col" class="px-6 py-4">{{'PROMO_CODE' | translate}}</th>
-            <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let item of (detailClassroom$ | async)?.data | keys"
-              class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
-            <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{item.value.user.name}}</td>
-            <td class="whitespace-nowrap px-6 py-4"></td>
-            <td class="whitespace-nowrap px-6 py-4"></td>
-            <td class="whitespace-nowrap px-6 py-4">
-              <div class="flex">
-                <button
-                  class="mx-2 text-black"
-                  tw-button
-                  layout="flat"
-                >
-                  <i class="fa fa-eye" aria-hidden="true"></i>
-                </button>
-                <button
-                  class="mx-2 text-black"
-                  tw-button
-                  layout="flat"
-                >
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                </button>
-                <button
-                  class="mx-2 text-red-600"
-                  tw-button
-                  layout="flat"
-                >
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+        <form [formGroup]="checkbox_form">
+          <table class="min-w-full text-center text-sm font-light table-auto">
+            <thead class="border-b font-medium dark:border-neutral-500">
+            <tr>
+              <th scope="col" class="px-6 py-4">
+                <div class="flex items-center">
+                  <input  (change)="changeCheckbox($event, true)" id="default-checkbox" type="checkbox" value="0" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 focus:ring-2">
+                </div>
+              </th>
+              <th scope="col" class="px-6 py-4">#</th>
+              <th scope="col" class="px-6 py-4">{{'NAME' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'GENDER' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'PHONE' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'EMAIL' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of data | keys"
+                class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
+              <td class="whitespace-nowrap px-6 py-4 font-medium">
+                <div class="flex items-center mb-4">
+                  <input type="checkbox" [checked]="isAllChecked" [value]="item.value.user.email" (change)="changeCheckbox($event, false)" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 focus:ring-2">
+                </div>
+              </td>
+              <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{item.value.user.name}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{item.value.user.gender != null ? (item.value.user.gender | globalTranslate: 'title': this.translate.currentLang) : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{item.value.user.phone != null ? item.value.user.phone : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{item.value.user.email != null ? item.value.user.email : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
+              <td class="whitespace-nowrap px-6 py-4">
+                <div class="flex justify-center">
+                  <button
+                    class="mx-2 text-black"
+                    tw-button
+                    layout="flat"
+                  >
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                  </button>
+                  <button
+                    class="mx-2 text-black"
+                    tw-button
+                    layout="flat"
+                  >
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button
+                    class="mx-2 text-red-600"
+                    tw-button
+                    layout="flat"
+                  >
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </form>
       </div>
     </div>
   </div>
+</div>
 
+<div class="py-4" *ngIf="isSingleTest">
+  <div class="my-2">
+    <tw-select
+      class="w-full flex"
+      [placeholder]="'SELECT_SUBJECT' | translate"
+    >
+      <tw-option>{{'SELECT_SUBJECT' | translate}}</tw-option>
+      <tw-option [value]="subject.id" *ngFor="let subject of subjects" class="cursor-pointer" (click)="getCategories(subject.id)">
+        {{subject | globalTranslate: 'title': translate.currentLang}}
+      </tw-option>
+    </tw-select>
+  </div>
+  <div class="my-2">
+    <div class="flex">
+      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
+        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div class="overflow-hidden">
+            <form>
+              <div *ngFor="let cat of categories"
+                class="block w-full rounded-lg bg-[#FF7648] text-left shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+                <div class="p-6 my-2 flex justify-between">
+                  <div class="flex items-center">
+                    <div class="flex items-center mr-2">
+                      <input type="checkbox" value="0" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 focus:ring-2">
+                    </div>
+                    <p class="text-base text-white">
+                      {{cat | globalTranslate: 'title': translate.currentLang: 40}}
+                    </p>
+                  </div>
+                  <div class="ml-2 flex justify-between">
+                    <div class="mx-1">
+                      <label
+                        for="customRange1"
+                        class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
+                      >Single</label
+                      >
+                      <input
+                        type="range"
+                        class="transparent h-[4px] w-full cursor-pointer
+                      appearance-none border-transparent bg-neutral-200 dark:bg-neutral-600"
+                        min="0"
+                        max="5"
+                        id="customRange1" />
+                    </div>
+                    <div class="mx-1">
+                      <label
+                        for="customRange2"
+                        class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
+                      >Context</label
+                      >
+                      <input
+                        type="range"
+                        class="transparent h-[4px] w-full cursor-pointer
+                      appearance-none border-transparent bg-neutral-200 dark:bg-neutral-600"
+                        min="0"
+                        max="5"
+                        id="customRange2" />
+                    </div>
+                    <div class="mx-1">
+                      <label
+                        for="customRange3"
+                        class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
+                      >Multi</label
+                      >
+                      <input
+                        type="range"
+                        class="transparent h-[4px] w-full cursor-pointer accent-amber-500
+                        appearance-none border-transparent bg-neutral-200 dark:bg-neutral-600"
+                        min="0"
+                        max="5"
+                        id="customRange3" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

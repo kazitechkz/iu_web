@@ -52,5 +52,12 @@
   "ACTION": "Әрекет",
   "ENTER_PROMO_CODE": "Промокод енгізу",
   "SUCCESS": "Сәтті",
-  "DONE": "Орындалды"
+  "DONE": "Орындалды",
+  "CREATE_SINGLE_TEST": "Бір пәннен тест жүргізу",
+  "CREATE_UNT": "Толық ҰБТ жүргізу",
+  "GENDER": "Жынысы",
+  "NOT_SPECIFIED_MESSAGE": "Көрсетілмеген",
+  "SELECT_ALL": "Барлығын таңдау",
+  "SELECT_SUBJECT": "Пәнді таңдаңыз",
+  "SELECT_CATEGORIES": "Категорияны таңдаңыз"
 }

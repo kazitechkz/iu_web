@@ -148,3 +148,6 @@ body{
     margin: auto;
   }
 }
+.large-modal {
+  max-width: calc(100vw * 0.9)!important;
+}

@@ -52,6 +52,13 @@
   "ACTION": "Действие",
   "ENTER_PROMO_CODE": "Ввести промокод",
   "SUCCESS": "Успешно",
-  "DONE": "Выполнено"
+  "DONE": "Выполнено",
+  "CREATE_SINGLE_TEST": "Проводить тест по одному предмету",
+  "CREATE_UNT": "Проводить полное тестирование",
+  "GENDER": "Пол",
+  "NOT_SPECIFIED_MESSAGE": "Не указано",
+  "SELECT_ALL": "Выбрать все",
+  "SELECT_SUBJECT": "Выберите предмет",
+  "SELECT_CATEGORIES": "Выберите категорию"
 
 }

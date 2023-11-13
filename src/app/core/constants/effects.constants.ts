@@ -61,6 +61,7 @@ import {
 import {
   GetSubCategoryQuestionCountEffect
 } from "../../shared/store/question/getSubCategoryQuestionCount/getSubCategoryQuestionCount.effect";
+import {CategoryEffect} from "../../shared/store/category/category.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -68,6 +69,7 @@ export const EffectsConstants = [
     ResetEffect,
     AccountEffect,
     SubjectEffect,
+    CategoryEffect,
     GetAttemptEffect,
     SubjectEffect,
     StepEffect,
