@@ -1,0 +1,65 @@
+<div class="container mx-auto">
+  <div class="grid grid-cols-12 py-5 my-3 main-tertiary-bg rounded-2xl">
+    <div class="col-span-12 md:col-span-6 flex justify-center">
+      <img src="/assets/images/customizable.png" class="max-h-[400px]"/>
+    </div>
+    <div class="col-span-12 md:col-span-6 px-5 md:flex items-center text-center md:text-left">
+      <div>
+        <p class="md:text-5xl text-white font-bold">
+          Тренировка по выбранной теме
+        </p>
+        <div class="my-4">
+          <p class="md:text-xl text-white my-2 px-1">
+            <fa-icon [icon]="faClock" class="ml-2"></fa-icon> Настраиваете время и кол-во вопросов сами!
+          </p>
+          <p class="md:text-xl text-white my-2 px-1">
+            <fa-icon [icon]="faBook" class="ml-2"></fa-icon> Предметы, приобретенные в рамках плана подписки <br>
+          </p>
+          <p class="md:text-xl text-white my-2 px-1">
+            <fa-icon [icon]="faBoxesPacking" class="ml-2"></fa-icon> Широкий выбор вопросов по предложенными темам <br>
+          </p>
+          <p class="md:text-xl text-white my-2 px-1">
+            <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon> Два основных языка: Казахский и Русский <br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-12 gap-3 py-5 my-3 ">
+    <div class="col-span-12 md:col-span-12 card md:flex items-center justify-center text-center">
+      <p class="md:text-lg font-bold py-4 md:mr-2">
+        Выберите язык:
+      </p>
+      <ui-switch
+        class="inline"
+        checkedLabel="Қазақ тілі"
+        defaultBgColor = '#9BA1FF'
+        (valueChange)="changeLanguage($event)"
+        size="large"
+        uncheckedLabel="Русский язык"
+        defaultBoColor="white"
+        [checked]="locale_id == 1"
+        checkedTextColor="white"
+        switchColor="#fcfcfc"
+        uncheckedTextColor="white"
+      ></ui-switch>
+    </div>
+  </div>
+  <div class="col-span-12 md:col-span-12 card px-4">
+    <p class="text-2xl md:text-4xl font-bold py-4 text-center md:text-left">
+      Выберите предметы:
+    </p>
+  </div>
+  <ngx-slick-carousel class="carousel"
+                      [config]="slideConfig">
+    <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer relative" (click)="chooseSubject(subject.id)">
+      <fa-icon *ngIf="chosenSubject.includes(subject.id)" [icon]="faCircleCheck" class="main-green-color absolute right-1.5 top-1.5 text-4xl"></fa-icon>
+      <div class=" min-h-[250px] max-h-[350px] bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
+      <p class="text-center text-xl font-bold py-4">
+        {{subject.title_ru}}
+      </p>
+    </div>
+  </ngx-slick-carousel>
+
+
+</div>

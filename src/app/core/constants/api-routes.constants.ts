@@ -54,5 +54,6 @@ export enum APIRoutesName {
     getAttemptByPromoCode="attempt-by-promo-code",
     getCategoryQuestionCount="get-category-question-count",
     getSubCategoryQuestionCount="get-sub-category-question-count",
+    getMySubjects="get-my-subjects",
 
 }
