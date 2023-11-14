@@ -62,6 +62,7 @@
   "SELECT_CATEGORIES": "Выберите категорию",
   "SINGLE_QUESTIONS": "Одинарный ответ",
   "CONTEXT_QUESTIONS": "Контекстный вопрос",
-  "MULTI_QUESTIONS": "Множественный ответ"
+  "MULTI_QUESTIONS": "Множественный ответ",
+  "WALLET": "Кошелек"
 
 }

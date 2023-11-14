@@ -44,6 +44,8 @@ import { ForumDetailComponent } from './forum/forum-detail/forum-detail.componen
 import { RoomComponent } from './room/room.component';
 import {TranslatePipe} from "@ngx-translate/core";
 import { CustomizableUntComponent } from './unt/customizable-unt/customizable-unt.component';
+import { WalletIndexComponent } from './wallet/wallet-index/wallet-index.component';
+import { WalletTransferComponent } from './wallet/wallet-transfer/wallet-transfer.component';
 
 
 @NgModule({
@@ -77,6 +79,8 @@ import { CustomizableUntComponent } from './unt/customizable-unt/customizable-un
         ForumDetailComponent,
         RoomComponent,
         CustomizableUntComponent,
+        WalletIndexComponent,
+        WalletTransferComponent,
     ],
     imports: [
         CommonModule,

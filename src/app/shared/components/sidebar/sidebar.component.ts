@@ -10,7 +10,7 @@ import {
   faChartLine,
   faUser,
   faF,
-  faSitemap
+  faSitemap, faWallet
 } from "@fortawesome/free-solid-svg-icons";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import {Router} from "@angular/router";
@@ -78,6 +78,11 @@ export class SidebarComponent implements OnInit {
       title: 'COUCHERS',
       path: RoutesName.tournamentList,
       icon: faMale as IconProp
+    },
+    {
+      title: 'WALLET',
+      path: RoutesName.walletIndex,
+      icon: faWallet as IconProp
     },
     {
       title: 'STATISTICS',

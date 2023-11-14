@@ -64,6 +64,7 @@ import {
 import {CategoryEffect} from "../../shared/store/category/category.effect";
 import {GetMySubjectsEffect} from "../../shared/store/subject/getMySubjects/getMySubjects.effect";
 import {SubCategoryEffect} from "../../shared/store/category/subCategory/subCategory.effect";
+import {WalletIndexEffect} from "../../shared/store/wallet/walletIndex/walletIndex.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -123,4 +124,5 @@ export const EffectsConstants = [
     GetCategoryQuestionCountEffect,
     GetSubCategoryQuestionCountEffect,
     GetMySubjectsEffect,
+    WalletIndexEffect,
 ]
