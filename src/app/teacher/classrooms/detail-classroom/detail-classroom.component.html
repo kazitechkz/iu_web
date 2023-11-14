@@ -1,6 +1,6 @@
 <div class="w-full flex justify-end items-center" *ngIf="checkedList.length > 0">
   <button
-    class="mr-5 bg-[#4DC591] text-white"
+    class="mr-5 bg-amber-400"
     tw-button
     layout="flat"
     (click)="submit()"
@@ -14,7 +14,7 @@
     <i class="fa fa-cube ml-3" aria-hidden="true"></i>
   </button>
   <button
-    class="bg-[#4DC591] text-white"
+    class="bg-amber-400"
     tw-button
     layout="flat"
   >
@@ -91,18 +91,19 @@
 </div>
 
 <div class="py-4" *ngIf="isSingleTest">
-  <div class="my-2">
-    <tw-select
-      class="w-full flex"
-      [placeholder]="'SELECT_SUBJECT' | translate"
-    >
-      <tw-option>{{'SELECT_SUBJECT' | translate}}</tw-option>
-      <tw-option [value]="subject.id" *ngFor="let subject of subjects" class="cursor-pointer" (click)="getCategories(subject.id)">
-        {{subject | globalTranslate: 'title': translate.currentLang}}
-      </tw-option>
-    </tw-select>
+  <div class="my-2 flex justify-between items-center">
+    <select data-te-select-init>
+      <option (click)="getCategories(0)">{{'SELECT_SUBJECT' | translate}}</option>
+      <option (click)="getCategories(subject.id)" [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': translate.currentLang}}</option>
+    </select>
+    <div class="flex">
+      <span>
+        {{basket.singleQ}} / {{basket.contextQ}} / {{basket.multiQ}}
+        <i class="fa fa-basket-shopping ml-3"></i>
+      </span>
+    </div>
   </div>
-  <div class="my-2">
+  <div class="my-2" *ngIf="isShowCategoryContent">
     <div class="flex">
       <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
         <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -111,56 +112,56 @@
               <div *ngFor="let cat of categories"
                 class="block w-full rounded-lg bg-[#FF7648] text-left shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                 <div class="p-6 my-2 flex justify-between">
-                  <div class="flex items-center">
-                    <div class="flex items-center mr-2">
-                      <input type="checkbox" value="0" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 focus:ring-2">
-                    </div>
+                  <div class="flex items-center justify-between">
                     <p class="text-base text-white">
-                      {{cat | globalTranslate: 'title': translate.currentLang: 40}}
+                      {{cat | globalTranslate: 'title': translate.currentLang}}
                     </p>
                   </div>
-                  <div class="ml-2 flex justify-between">
-                    <div class="mx-1">
-                      <label
-                        for="customRange1"
-                        class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
-                      >Single</label
-                      >
-                      <input
-                        type="range"
-                        class="transparent h-[4px] w-full cursor-pointer
-                      appearance-none border-transparent bg-neutral-200 dark:bg-neutral-600"
-                        min="0"
-                        max="5"
-                        id="customRange1" />
-                    </div>
-                    <div class="mx-1">
-                      <label
-                        for="customRange2"
-                        class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
-                      >Context</label
-                      >
-                      <input
-                        type="range"
-                        class="transparent h-[4px] w-full cursor-pointer
-                      appearance-none border-transparent bg-neutral-200 dark:bg-neutral-600"
-                        min="0"
-                        max="5"
-                        id="customRange2" />
-                    </div>
-                    <div class="mx-1">
-                      <label
-                        for="customRange3"
-                        class="mb-2 inline-block text-neutral-700 dark:text-neutral-200"
-                      >Multi</label
-                      >
-                      <input
-                        type="range"
-                        class="transparent h-[4px] w-full cursor-pointer accent-amber-500
-                        appearance-none border-transparent bg-neutral-200 dark:bg-neutral-600"
-                        min="0"
-                        max="5"
-                        id="customRange3" />
+                  <button (click)="getSubCategories(cat.id)" class="rounded-full border ml-auto w-[20px] h-[20px] flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
+                    <i class="fa fa-arrow-down" *ngIf="subCategoryContentID != cat.id"></i>
+                    <i class="fa fa-arrow-up" *ngIf="subCategoryContentID == cat.id"></i>
+                  </button>
+
+                </div>
+                <div *ngIf="subCategoryContentID == cat.id">
+                  <div class="flex justify-between p-3">
+                    <button [ngClass]="isSelectAllCategoryID == cat.id ? 'border-[#3b71ca] text-[#3b71ca]' : ''" (click)="selectAllCategoryByID(cat.id)" class="px-2 border flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
+                      {{isSelectAllCategoryID != cat.id ? ('SELECT_ALL' | translate) : 'CANCEL_BUTTON' | translate}}
+                      <i class="fa fa-check ml-3" *ngIf="isSelectAllCategoryID != cat.id"></i>
+                      <i class="fa fa-ban ml-3" *ngIf="isSelectAllCategoryID == cat.id"></i>
+                    </button>
+                    <form [formGroup]="category_form" (ngSubmit)="categoryFormSubmit(cat)">
+                      <div class="ml-2 flex justify-between" *ngIf="isSelectAllCategoryID == cat.id">
+                        <div *ngIf="cat.s_questions_count != 0">
+                          <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="range-slider__range">
+                          <span class="range-slider__value">{{cat.s_questions_count}}</span>
+                        </div>
+                        <div *ngIf="cat.c_questions_count != 0">
+                          <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="range-slider__range">
+                          <span class="range-slider__value">{{cat.c_questions_count}}</span>
+                        </div>
+                        <div *ngIf="cat.m_questions_count != 0">
+                          <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="range-slider__range">
+                          <span class="range-slider__value">{{cat.m_questions_count}}</span>
+                        </div>
+                        <button [disabled]="!category_form.valid" [ngClass]="category_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" type="submit" class="px-2 border flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
+                          {{'SAVE_BUTTON' | translate}}
+                          <i class="fa fa-check ml-3"></i>
+                        </button>
+                      </div>
+                    </form>
+
+                  </div>
+                  <div class="px-3 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8 py-3" *ngIf="isSelectAllCategoryID != cat.id">
+                    <div *ngFor="let subCat of subCategories"
+                         class="group relative shadow cursor-pointer bg-white">
+                      <div class="p-6 my-2 flex justify-between">
+                        <div class="flex items-center">
+                          <p class="text-base text-black">
+                            {{subCat | globalTranslate: 'title': translate.currentLang: 40}}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

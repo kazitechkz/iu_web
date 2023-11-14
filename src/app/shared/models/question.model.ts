@@ -46,3 +46,9 @@ export interface SubStepExamResult {
   is_right: boolean
   user_answer: string
 }
+
+export interface QuestionTypesWithCount {
+  s_questions_count: number
+  c_questions_count: number
+  m_questions_count: number
+}

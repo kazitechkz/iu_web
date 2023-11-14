@@ -6,6 +6,7 @@ export enum APIRoutesName {
     me = "me",
     getSubjects = "subjects",
     getCategories = "categories",
+    getSubCategories = "sub-categories",
     getSteps = "steps",
     getStepDetail = "step-detail",
     getSubSteps = "sub-steps",

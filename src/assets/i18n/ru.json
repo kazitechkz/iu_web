@@ -59,6 +59,9 @@
   "NOT_SPECIFIED_MESSAGE": "Не указано",
   "SELECT_ALL": "Выбрать все",
   "SELECT_SUBJECT": "Выберите предмет",
-  "SELECT_CATEGORIES": "Выберите категорию"
+  "SELECT_CATEGORIES": "Выберите категорию",
+  "SINGLE_QUESTIONS": "Одинарный ответ",
+  "CONTEXT_QUESTIONS": "Контекстный вопрос",
+  "MULTI_QUESTIONS": "Множественный ответ"
 
 }

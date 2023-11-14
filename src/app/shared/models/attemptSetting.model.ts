@@ -23,3 +23,22 @@ export interface AttemptSetting{
     attempt_settings_results:AttemptSettingResult[]|null
     classroom_group:ClassroomsGroupModel|null
 }
+interface AttemptSettingsQuestionTypes {
+  s_questions?: number;
+  c_questions?: number;
+  m_questions?: number;
+  // You might have more properties here if needed
+}
+
+interface AttemptSettingsSubCategoryIDS {
+  [subCategoryId: number]: AttemptSettingsQuestionTypes;
+}
+
+export interface AttemptSettingsData {
+  [categoryId: number]: {
+    sub_category_ids?: AttemptSettingsSubCategoryIDS;
+    s_questions?: number;
+    c_questions?: number;
+    m_questions?: number;
+  };
+}
