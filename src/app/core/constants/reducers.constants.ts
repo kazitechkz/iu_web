@@ -67,6 +67,7 @@ import {
 } from "../../shared/store/question/getSubCategoryQuestionCount/getSubCategoryQuestionCount.reducer";
 import {getMySubjectsReducer} from "../../shared/store/subject/getMySubjects/getMySubjects.reducer";
 import {categoryReducer} from "../../shared/store/category/category.reducer";
+import {walletIndexReducer} from "../../shared/store/wallet/walletIndex/walletIndex.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -132,6 +133,7 @@ export const ReducersConstants = {
   getSubCategoryQuestionCount:getSubCategoryQuestionCountReducer,
   categories: categoryReducer,
   getMySubjects:getMySubjectsReducer,
+  walletIndex:walletIndexReducer,
 
 }
 

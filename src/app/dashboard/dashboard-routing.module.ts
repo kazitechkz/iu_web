@@ -29,6 +29,8 @@ import {ForumListComponent} from "./forum/forum-list/forum-list.component";
 import {ForumDetailComponent} from "./forum/forum-detail/forum-detail.component";
 import {RoomComponent} from "./room/room.component";
 import {CustomizableUntComponent} from "./unt/customizable-unt/customizable-unt.component";
+import {WalletIndexComponent} from "./wallet/wallet-index/wallet-index.component";
+import {WalletTransferComponent} from "./wallet/wallet-transfer/wallet-transfer.component";
 
 
 const routes: Routes = [
@@ -136,6 +138,14 @@ const routes: Routes = [
       {
         path: 'forum-detail/:id',
         component: ForumDetailComponent
+      },
+      {
+        path: 'wallet',
+        component: WalletIndexComponent
+      },
+      {
+        path: 'wallet-transfer',
+        component: WalletTransferComponent
       },
       {
         path: 'classrooms',

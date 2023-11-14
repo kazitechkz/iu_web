@@ -56,5 +56,6 @@ export enum APIRoutesName {
     getCategoryQuestionCount="get-category-question-count",
     getSubCategoryQuestionCount="get-sub-category-question-count",
     getMySubjects="get-my-subjects",
+    walletIndex="wallet",
 
 }

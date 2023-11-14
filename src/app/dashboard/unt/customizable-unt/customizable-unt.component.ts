@@ -8,6 +8,9 @@ import {getSubjectsState} from "../../../shared/store/subject/subject.selector";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {getMySubjectsAction} from "../../../shared/store/subject/getMySubjects/getMySubjects.action";
 import {getMySubjectsSelector} from "../../../shared/store/subject/getMySubjects/getMySubjects.selector";
+import {GetCategoriesAction} from "../../../shared/store/category/category.action";
+import {getCategoriesState} from "../../../shared/store/category/category.selector";
+import {CategoryModel} from "../../../shared/models/category.model";
 
 @Component({
   selector: 'app-customizable-unt',
@@ -21,8 +24,9 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
   //Injection
   //Data
   subjects:Subject[] = [];
+  public categories: CategoryModel[] = []
   protected readonly ImageHelper = ImageHelper;
-  chosenSubject:number[] = [];
+  chosenSubject:number = 0;
   locale_id:number = 1;
   //Data
 
@@ -33,16 +37,8 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
   }
 
   chooseSubject(id:number){
-    const index = this.chosenSubject.indexOf(id); // Check if target exists in the array
-    if (index === -1) {
-      if(this.chosenSubject.length >=2){
-        this.chosenSubject.splice(0, 1);
-      }
-      this.chosenSubject.push(id);
-    } else {
-      // If target exists, remove it from the array
-      this.chosenSubject.splice(index, 1);
-    }
+    this.chosenSubject = id;
+    this.getCategories();
   }
 
   getMySubjects(){
@@ -51,6 +47,14 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
       if(item.data){
         this.subjects = item.data;
       }
+    })
+  }
+
+  getCategories() {
+    this._store.dispatch(GetCategoriesAction({subjectID: this.chosenSubject}));
+    this._store.select(getCategoriesState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      // @ts-ignore
+      this.categories = item.data
     })
   }
 
@@ -93,6 +97,8 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
       }
     ]
   };
+
+
 
   protected readonly faClock = faClock;
   protected readonly faBook = faBook;

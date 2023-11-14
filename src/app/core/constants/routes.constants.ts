@@ -28,4 +28,5 @@ export enum RoutesName {
     forumList = "dashboard/forum-list",
     forumDetail = "dashboard/forum-detail",
     createForum = "dashboard/create-forum",
+    walletIndex = "dashboard/wallet"
 }
