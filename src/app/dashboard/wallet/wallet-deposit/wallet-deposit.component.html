@@ -1,0 +1,202 @@
+<div class="container mx-auto">
+  <div class="w-full py-5 my-3 gap-4 flex justify-center" *ngIf="wallet">
+    <div class="w-full xl:w-8/12 2xl:w-6/12">
+      <div class="lg:flex items-center main-green-bg rounded-2xl shadow-2xl p-4">
+        <div class="lg:w-full px-2 text-center lg:text-left">
+          <div class="my-2 text-right">
+            <p class="text-md md:text-lg xl:text-2xl font-bold text-white">
+              IU WALLET
+            </p>
+          </div>
+          <div class="my-2 lg:flex items-center justify-between">
+              <qrcode class="flex justify-center" [colorDark]="'#ffffff'"
+                      [colorLight]="'#4DC591'"
+                      [qrdata]="wallet.uuid" [width]="96" [errorCorrectionLevel]="'M'"></qrcode>
+            <p class="text-lg md:text-xl lg:text-2xl font-bold text-white">
+              {{wallet.balance}} IU COINS
+            </p>
+          </div>
+          <div class="my-2 text-center">
+            <p class="text-lg md:text-xl lg:text-2xl font-bold text-white">
+              {{wallet.uuid}}
+            </p>
+          </div>
+          <div class="mt-8 mb-10 lg:flex justify-between">
+            <p class="text-lg md:text-xl lg:text-2xl xl:text-4xl 2xl:text-4xl font-bold text-white" *ngIf="wallet.holder">
+              {{wallet.holder.name}}
+            </p>
+            <p class="text-lg md:text-xl lg:text-2xl xl:text-4xl 2xl:text-4xl font-bold text-white">
+              {{moment(wallet.created_at).format("MM/YY")}}
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr/>
+
+  <div class="grid grid-cols-12">
+    <div class="col-span-12">
+      <div class="col-span-12 bg-white rounded-xl shadow-lg">
+        <div class="p-4">
+          <!--Tabs navigation-->
+          <ul
+            class="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0"
+            role="tablist"
+            data-te-nav-ref>
+            <li role="presentation">
+              <a
+                class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+                data-te-toggle="pill"
+                data-te-target="#tabs-current"
+                data-te-nav-active
+                role="tab"
+                aria-controls="tabs-current"
+                aria-selected="true"
+              >Оплата картой</a
+              >
+            </li>
+            <li role="presentation">
+              <a
+                class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+                data-te-toggle="pill"
+                data-te-target="#tabs-kaspi"
+                role="tab"
+                aria-controls="tabs-kaspi"
+                aria-selected="false"
+              >KASPI</a
+              >
+            </li>
+            <li role="presentation">
+              <a
+                class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+                data-te-toggle="pill"
+                data-te-target="#tabs-freedom"
+                role="tab"
+                aria-controls="tabs-freedom"
+                aria-selected="false"
+              >Freedom Finance</a
+              >
+            </li>
+          </ul>
+
+          <!--Tabs content-->
+          <div class="mb-6">
+            <div
+              class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+              id="tabs-current"
+              role="tabpanel"
+              aria-labelledby="tabs-home-tab"
+              data-te-tab-active>
+              <div class="max-w-sm mx-auto mt-20 bg-white rounded-md shadow-md overflow-hidden">
+                <div class="px-6 py-4 main-green-bg text-white">
+                  <h1 class="text-lg font-bold">Credit Card</h1>
+                </div>
+                <div class="px-6 py-4">
+
+                  <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2" for="card-number">
+                      Номер Карты
+                    </label>
+                    <input
+                      class="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="card-number" type="text" placeholder="**** **** **** ****">
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2" for="expiration-date">
+                      Expiration Date
+                    </label>
+                    <input
+                      class="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="expiration-date" type="text" placeholder="MM/YY">
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2" for="cvv">
+                      CVV
+                    </label>
+                    <input
+                      class="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      id="cvv" type="text" placeholder="***">
+                  </div>
+
+                  <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2" for="cvv">
+                      ФИО Держателя карты
+                    </label>
+                    <input
+                      class="appearance-none border border-gray-400 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      type="text" placeholder="Full Name">
+                  </div>
+
+                  <button class="main-green-bg text-white font-bold py-2 px-4 rounded-full">
+                    Оплатить
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+              id="tabs-kaspi"
+              role="tabpanel"
+              aria-labelledby="tabs-profile-tab">
+              <div class="flex justify-center items-center">
+                <div class="w-full lg:w-6/12 xl:w-4/12">
+                  <div class="header">
+                    <p class="text-lg md:text-xl lg:text-2xl xl:text-4xl 2xl:text-4xl font-bold">
+                      Оплачивайте с Kaspi QR
+                    </p>
+                  </div>
+                  <div class="my-3">
+                    <qrcode class="flex justify-center" [colorDark]="'#000000'"
+                            [colorLight]="'#ffffff'"
+                            [qrdata]="'30deb101-5522-498a-b4d9-1a51d7ca4c4a '" [width]="300" [errorCorrectionLevel]="'M'"></qrcode>
+                  </div>
+                  <div class="body text-center">
+                    <p class="text-md md:text-lg inline-block my-2">
+                      Вы оплачивает услуги ТОО "I-UNION"
+                    </p>
+                  </div>
+                  <div class="body text-center my-3 pt-3">
+                    <a href="" class="bg-[#d5ae6c] text-white font-bold px-4 rounded-lg py-4">
+                      GOLD
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+              id="tabs-freedom"
+              role="tabpanel"
+              aria-labelledby="tabs-profile-tab">
+              <div class="flex justify-center items-center">
+                <div class="w-full lg:w-6/12 xl:w-4/12">
+                  <div class="header text-center">
+                    <p class="text-md md:text-lg lg:text-xl xl:text-2xl font-bold main-green-color">
+                      QR код на оплату услуг и пополнение
+                    </p>
+                    <p class="text-md inline-block my-2">
+                      Используйте мобильное приложение Freedom чтобы оплачивать услуги онлайн
+                    </p>
+                  </div>
+                  <div class="my-3">
+                    <qrcode class="flex justify-center" [colorDark]="'#000000'"
+                            [colorLight]="'#ffffff'"
+                            [qrdata]="'30deb101-5522-498a-b4d9-1a51d7ca4c4a '" [width]="300" [errorCorrectionLevel]="'M'"></qrcode>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
+

@@ -27,6 +27,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {NgChartsModule} from "ng2-charts";
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import {TwNotificationModule} from "ng-tw";
+import {QRCodeModule} from "angularx-qrcode";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -53,6 +54,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgxSmartModalModule.forRoot(),
     TwNotificationModule.forRoot(),
     NgChartsModule,
+    QRCodeModule,
     NgxSpinnerModule.forRoot({type: 'mySpinner'}),
     TranslateModule.forRoot({
       loader: {

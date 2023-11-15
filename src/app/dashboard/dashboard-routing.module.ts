@@ -31,6 +31,8 @@ import {RoomComponent} from "./room/room.component";
 import {CustomizableUntComponent} from "./unt/customizable-unt/customizable-unt.component";
 import {WalletIndexComponent} from "./wallet/wallet-index/wallet-index.component";
 import {WalletTransferComponent} from "./wallet/wallet-transfer/wallet-transfer.component";
+import {WalletDepositComponent} from "./wallet/wallet-deposit/wallet-deposit.component";
+import {WalletStatisticsComponent} from "./wallet/wallet-statistics/wallet-statistics.component";
 
 
 const routes: Routes = [
@@ -146,6 +148,14 @@ const routes: Routes = [
       {
         path: 'wallet-transfer',
         component: WalletTransferComponent
+      },
+      {
+        path: 'wallet-deposit',
+        component: WalletDepositComponent
+      },
+      {
+        path: 'wallet-statistics',
+        component: WalletStatisticsComponent
       },
       {
         path: 'classrooms',

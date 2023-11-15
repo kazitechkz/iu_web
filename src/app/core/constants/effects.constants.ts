@@ -68,6 +68,7 @@ import {WalletIndexEffect} from "../../shared/store/wallet/walletIndex/walletInd
 import {WalletTransferEffect} from "../../shared/store/wallet/walletTransfer/walletTransfer.effect";
 import {MyBalanceEffect} from "../../shared/store/wallet/myBalance/myBalance.effect";
 import {FindUserByEmailEffect} from "../../shared/store/user/findUserByEmail/findUserByEmail.effect";
+import {MyWalletEffect} from "../../shared/store/wallet/myWallet/myWallet.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -131,4 +132,5 @@ export const EffectsConstants = [
     WalletTransferEffect,
     MyBalanceEffect,
     FindUserByEmailEffect,
+    MyWalletEffect,
 ]

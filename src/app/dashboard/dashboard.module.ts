@@ -46,6 +46,9 @@ import {TranslatePipe} from "@ngx-translate/core";
 import { CustomizableUntComponent } from './unt/customizable-unt/customizable-unt.component';
 import { WalletIndexComponent } from './wallet/wallet-index/wallet-index.component';
 import { WalletTransferComponent } from './wallet/wallet-transfer/wallet-transfer.component';
+import { WalletDepositComponent } from './wallet/wallet-deposit/wallet-deposit.component';
+import {QRCodeModule} from "angularx-qrcode";
+import { WalletStatisticsComponent } from './wallet/wallet-statistics/wallet-statistics.component';
 
 
 @NgModule({
@@ -81,28 +84,31 @@ import { WalletTransferComponent } from './wallet/wallet-transfer/wallet-transfe
         CustomizableUntComponent,
         WalletIndexComponent,
         WalletTransferComponent,
+        WalletDepositComponent,
+        WalletStatisticsComponent,
     ],
-    imports: [
-        CommonModule,
-        DashboardRoutingModule,
-        SharedModule,
-        FontAwesomeModule,
-        SlickCarouselModule,
-        Select2Module,
-        UiSwitchModule,
-        CountdownComponent,
-        MarkdownModule,
-        NgxSmartModalModule,
-        CoreModule,
-        YouTubePlayerModule,
-        NgxPaginationModule,
-        NgChartsModule,
-        CountdownModule,
-        CKEditorModule,
-        TwOptionModule,
-        TwSelectModule,
-        TwButtonModule,
-    ],
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    SharedModule,
+    FontAwesomeModule,
+    SlickCarouselModule,
+    Select2Module,
+    UiSwitchModule,
+    CountdownComponent,
+    MarkdownModule,
+    NgxSmartModalModule,
+    CoreModule,
+    YouTubePlayerModule,
+    NgxPaginationModule,
+    NgChartsModule,
+    CountdownModule,
+    CKEditorModule,
+    TwOptionModule,
+    TwSelectModule,
+    TwButtonModule,
+    QRCodeModule,
+  ],
   providers: [MathJaxPipe, TranslatePipe]
 })
 export class DashboardModule {
