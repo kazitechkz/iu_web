@@ -20,6 +20,8 @@ import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {walletIndexAction} from "../../../shared/store/wallet/walletIndex/walletIndex.action";
 import {walletIndexSelector} from "../../../shared/store/wallet/walletIndex/walletIndex.selector";
 import * as moment from "moment";
+import {RoutesName} from "../../../core/constants/routes.constants";
+import {StrHelper} from "../../../core/helpers/str.helper";
 
 @Component({
   selector: 'app-wallet-index',
@@ -35,6 +37,14 @@ export class WalletIndexComponent implements OnInit,OnDestroy{
   //Data
   //@ts-ignore
   wallet:WalletIndexModel;
+  walletRoutes = [
+    {title:"Оплата с помощью QR кода",icon:faQrcode,route:StrHelper.getRouteName(RoutesName.walletIndex)},
+    {title:"Пополнить кошелек",icon:faCoins,route:StrHelper.getRouteName(RoutesName.walletIndex)},
+    {title:"Переводы",icon:faRightLeft,route:StrHelper.getRouteName(RoutesName.walletTransfer)},
+    {title:"Аналитика расходов и доходов",icon:faChartBar,route:StrHelper.getRouteName(RoutesName.walletIndex)},
+    {title:"Часто задаваемые вопросы",icon:faMessage,route:StrHelper.getRouteName(RoutesName.walletIndex)},
+
+  ]
   //Data
   ngOnInit(): void {
     this.getWalletInfo();
@@ -58,16 +68,16 @@ export class WalletIndexComponent implements OnInit,OnDestroy{
             }
             else{
               // @ts-ignore
-              this.barChartData.datasets[0].data.push(item.data.week_transaction_stats[date].deposit.amount)
+              this.barChartData.datasets[0].data.push(0)
             }
             // @ts-ignore
             if(item.data.week_transaction_stats[date].withdraw){
               // @ts-ignore
-              this.barChartData.datasets[1].data.push(item.data.week_transaction_stats[date].deposit.amount)
+              this.barChartData.datasets[1].data.push(item.data.week_transaction_stats[date].withdraw.amount)
             }
             else{
               // @ts-ignore
-              this.barChartData.datasets[1].data.push(item.data.week_transaction_stats[date].deposit.amount)
+              this.barChartData.datasets[1].data.push(0)
             }
           }
         }
@@ -94,27 +104,15 @@ export class WalletIndexComponent implements OnInit,OnDestroy{
   public barChartType: ChartType = 'bar';
 
   public barChartData: ChartData<'bar'> = {
-    labels: ["11.11.23","12.11.23","13.11.23","14.11.23","15.11.23",],
+    labels: [],
     datasets: [
       {
-        data: [
-            1000,
-            2000,
-            3000,
-            400,
-            500
-        ],
+        data: [],
         label: 'Пополнение',
         backgroundColor:"#4DC591"
       },
       {
-        data: [
-          -500,
-          -600,
-          -770,
-          -1800,
-          0
-        ],
+        data: [],
         label: 'Расходы',
         backgroundColor:"#EF4444"
       },

@@ -69,6 +69,9 @@ import {getMySubjectsReducer} from "../../shared/store/subject/getMySubjects/get
 import {categoryReducer} from "../../shared/store/category/category.reducer";
 import {subCategoryReducer} from "../../shared/store/category/subCategory/subCategory.reducer";
 import {walletIndexReducer} from "../../shared/store/wallet/walletIndex/walletIndex.reducer";
+import {findUserByEmailReducer} from "../../shared/store/user/findUserByEmail/findUserByEmail.reducer";
+import {myBalanceReducer} from "../../shared/store/wallet/myBalance/myBalance.reducer";
+import {walletTransferReducer} from "../../shared/store/wallet/walletTransfer/walletTransfer.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -135,7 +138,10 @@ export const ReducersConstants = {
   categories: categoryReducer,
   getMySubjects:getMySubjectsReducer,
   walletIndex:walletIndexReducer,
+  walletTransfer:walletTransferReducer,
   subCategories: subCategoryReducer,
+  findUserByEmail:findUserByEmailReducer,
+  myBalance:myBalanceReducer,
 
 }
 

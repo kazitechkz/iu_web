@@ -22,58 +22,17 @@
     <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6 2xl:col-span-6">
       <div class="w-full">
         <span
+          *ngFor="let route of walletRoutes"
+          [routerLink]="route.route"
           class="block border-[#4DC591] border-2 w-full my-3 main-green-color font-bold
           text-md lg:text-lg xl:text-xl
           cursor-pointer rounded-lg p-4 transition duration-500
           hover:bg-[#4DC591] hover:border-[#4DC591] hover:text-white flex items-center justify-between">
           <div class="flex">
-            <fa-icon [icon]="faQrcode" class="mr-2"></fa-icon> <p>Оплата с помощью QR кода</p>
+            <fa-icon [icon]="route.icon" class="mr-2"></fa-icon> <p>{{route.title}}</p>
           </div>
           <fa-icon [icon]="faChevronRight" class="mr-2"></fa-icon>
         </span>
-        <span
-          class="block border-[#4DC591] border-2 w-full my-3 main-green-color font-bold
-          text-md lg:text-lg xl:text-xl
-          cursor-pointer rounded-lg p-4 transition duration-500
-          hover:bg-[#4DC591] hover:border-[#4DC591] hover:text-white flex items-center justify-between">
-          <div class="flex">
-            <fa-icon [icon]="faCoins" class="mr-2"></fa-icon> <p>Пополнить кошелек</p>
-          </div>
-          <fa-icon [icon]="faChevronRight" class="mr-2"></fa-icon>
-        </span>
-        <span
-          class="block border-[#4DC591] border-2 w-full my-3 main-green-color font-bold
-          text-md lg:text-lg xl:text-xl
-          cursor-pointer rounded-lg p-4 transition duration-500
-          hover:bg-[#4DC591] hover:border-[#4DC591] hover:text-white flex items-center justify-between">
-          <div class="flex">
-            <fa-icon [icon]="faRightLeft" class="mr-2"></fa-icon> <p>Переводы</p>
-          </div>
-          <fa-icon [icon]="faChevronRight" class="mr-2"></fa-icon>
-        </span>
-        <span
-          class="block border-[#4DC591] border-2 w-full my-3 main-green-color font-bold
-          text-md lg:text-lg xl:text-xl
-          cursor-pointer rounded-lg p-4 transition duration-500
-          hover:bg-[#4DC591] hover:border-[#4DC591] hover:text-white flex items-center justify-between">
-          <div class="flex">
-            <fa-icon [icon]="faChartBar" class="mr-2"></fa-icon> <p>Аналитика расходов и доходов</p>
-          </div>
-          <fa-icon [icon]="faChevronRight" class="mr-2"></fa-icon>
-        </span>
-        <span
-          class="block border-[#4DC591] border-2 w-full my-3 main-green-color font-bold
-          text-md lg:text-lg xl:text-xl
-          cursor-pointer rounded-lg p-4 transition duration-500
-          hover:bg-[#4DC591] hover:border-[#4DC591] hover:text-white flex items-center justify-between">
-          <div class="flex">
-            <fa-icon [icon]="faMessage" class="mr-2"></fa-icon> <p>F.A.Q</p>
-          </div>
-          <fa-icon [icon]="faChevronRight" class="mr-2"></fa-icon>
-        </span>
-      </div>
-      <div class="w-full my-4">
-
       </div>
     </div>
   </div>

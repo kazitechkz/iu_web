@@ -65,6 +65,9 @@ import {CategoryEffect} from "../../shared/store/category/category.effect";
 import {GetMySubjectsEffect} from "../../shared/store/subject/getMySubjects/getMySubjects.effect";
 import {SubCategoryEffect} from "../../shared/store/category/subCategory/subCategory.effect";
 import {WalletIndexEffect} from "../../shared/store/wallet/walletIndex/walletIndex.effect";
+import {WalletTransferEffect} from "../../shared/store/wallet/walletTransfer/walletTransfer.effect";
+import {MyBalanceEffect} from "../../shared/store/wallet/myBalance/myBalance.effect";
+import {FindUserByEmailEffect} from "../../shared/store/user/findUserByEmail/findUserByEmail.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -125,4 +128,7 @@ export const EffectsConstants = [
     GetSubCategoryQuestionCountEffect,
     GetMySubjectsEffect,
     WalletIndexEffect,
+    WalletTransferEffect,
+    MyBalanceEffect,
+    FindUserByEmailEffect,
 ]

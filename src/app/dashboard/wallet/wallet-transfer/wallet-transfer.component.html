@@ -5,29 +5,34 @@
       <div class="bg-white rounded-2xl shadow-2xl p-3 border-green-300 h-full min-h-[150px] px-3">
         <!--Email input-->
         <div class="relative mb-3">
-          <input
-            type="email"
-            class="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-400 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal transition duration-200 ease-linear placeholder:text-transparent focus:pb-[0.625rem] focus:pt-[1.625rem]  [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
-            id="email"
-            placeholder="Search user by email" />
-          <label
-            for="email"
-            class="pointer-events-none absolute left-0 top-0 origin-[0_0] border border-solid border-transparent px-3 py-4 text-gray-500 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2 peer-focus:translate-x-[0.15rem] peer-focus:scale-[0.85] peer-focus:text-primary peer-[:not(:placeholder-shown)]:-translate-y-2 peer-[:not(:placeholder-shown)]:translate-x-[0.15rem] peer-[:not(:placeholder-shown)]:scale-[0.85] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-            >Search User By Email</label
-          >
+          <form [formGroup]="findUserForm">
+            <app-input-field
+              [formControlName]="'email'"
+              [input_name]="'email'"
+              [type]="'email'"
+              [placeholder]="'EMAIL' | translate"
+              [label]="'EMAIL' | translate"
+              [error_message]="'email_is_not_right'"
+              [backErrors]="errors"
+              ngDefaultControl
+            />
           <div class="py-3 text-right">
-            <a  type="button" class="cursor-pointer text-white main-secondary-bg  focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+            <a *ngIf="findUserForm.valid" (click)="findUserByEmail()"  type="button" class="cursor-pointer text-white main-secondary-bg  focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
               Найти
             </a>
           </div>
+          </form>
 
-          <div class="find-user my-4">
+          <div class="find-user my-4" *ngIf="toUser">
             <div class="flex items-center gap-4">
-              <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2">
-              <img class="w-10 h-10 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="">
+              <input id="default-checkbox"
+                     [ngModel]="toUser.id"
+                     (ngModelChange)="selectUser(toUser.id)"
+                     type="checkbox"  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2">
+              <div class="rounded-full w-10 h-10 bg-center bg-no-repeat bg-cover" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(toUser.file?.url) +')'}"></div>
               <div class="font-medium dark:text-white">
-                <div class="text-black">Jese Leos</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400">email@gmail.com</div>
+                <div class="text-black">{{toUser.name}}</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">{{toUser.email}}</div>
               </div>
             </div>
           </div>
@@ -36,41 +41,84 @@
 
       </div>
     </div>
-    <div class="col-span-12 lg:col-span-6 p-3">
+    <div class="col-span-12 lg:col-span-6 p-3" *ngIf="toUserId && toUser">
       <div class="bg-white rounded-2xl shadow-2xl p-3 border-green-300 h-full min-h-[150px]">
         <!--Email input-->
         <div class="relative mb-3">
           <div class="find-user my-4">
             <div class="flex items-center gap-4">
               <img class="w-10 h-10 rounded-full" src="/assets/images/coin.png" alt="">
-              <div class="font-medium">
+              <div class="font-medium" *ngIf="balance">
                 <div class="text-xl text-black">Кошелек IU COINS, доступно:</div>
-                <div class="text-lg xl:text-2xl 2xl:text-3xl main-green-color font-bold">12500</div>
+                <div class="text-lg xl:text-2xl 2xl:text-3xl main-green-color font-bold">{{balance}}</div>
               </div>
             </div>
           </div>
           <div class="my-2">
-            <input
-              type="number"
-              class="peer m-0 block h-[58px] w-full rounded border border-solid border-gray-400 bg-transparent bg-clip-padding px-3 py-4 text-base font-normal transition duration-200 ease-linear placeholder:text-transparent focus:pb-[0.625rem] focus:pt-[1.625rem]  [&:not(:placeholder-shown)]:pb-[0.625rem] [&:not(:placeholder-shown)]:pt-[1.625rem]"
-              id="coins"
-              placeholder="IU COINS" />
-
-            <div class="py-3 text-right">
-              <a  type="button" class="cursor-pointer text-white main-green-bg  focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                Перевести
-              </a>
-            </div>
+            <form [formGroup]="walletTransferGroup">
+              <app-input-field
+                [formControlName]="'amount'"
+                [input_name]="'amount'"
+                [type]="'number'"
+                [placeholder]="'IU COINS' | translate"
+                [label]="'IU COINS' | translate"
+                [error_message]="'amount_is_not_right'"
+                [backErrors]="errors"
+                ngDefaultControl
+              />
+              <div class="py-3 text-right" *ngIf="walletTransferGroup.valid">
+                <a (click)="showModal()" type="button" class="cursor-pointer text-white main-green-bg  focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                  Перевести
+                </a>
+              </div>
+            </form>
           </div>
-
         </div>
-
       </div>
     </div>
-
-
-
-
+  </div>
+  <div class="grid grid-cols-12 bg-white gap-3" *ngIf="openModal && toUserId && walletTransferGroup.valid && toUser">
+    <div class="col-span-12 lg:col-span-6 xl:col-span-5">
+      <div class="bg-white rounded-2xl shadow-2xl p-5 border-green-300 h-full min-h-[150px] flex items-center justify-center">
+        <div class="p-3">
+          <img class="w-16 h-16 rounded-full" src="/assets/images/coin.png" alt="">
+        </div>
+        <div class="p-3">
+          <div class="transfer-header text-md lg:text-lg font-bold body-text my-2">
+            Вы переводите
+          </div>
+          <div class="text-lg xl:text-2xl 2xl:text-3xl main-green-color font-bold">
+            {{walletTransferGroup.controls["amount"].getRawValue()}} IU COINS
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hidden xl:block xl:col-span-2">
+      <div class="bg-white rounded-2xl shadow-2xl p-3 border-green-300 h-full min-h-[150px] px-3 text-center flex items-center justify-center">
+        <fa-icon [icon]="faArrowsRotate" class="main-green-color text-xl lg:text-2xl xl:text-4xl 2xl:text-6xl font-bold"></fa-icon>
+      </div>
+    </div>
+    <div class="col-span-12 lg:col-span-6 xl:col-span-5">
+      <div class="bg-white rounded-2xl shadow-2xl p-5 border-green-300 h-full min-h-[150px] flex items-center justify-center">
+        <div class="p-3">
+          <div class="rounded-full w-16 h-16 bg-center bg-no-repeat bg-cover" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(toUser.file?.url) +')'}"></div>
+        </div>
+        <div class="p-3">
+          <div class="transfer-header text-md lg:text-lg font-bold body-text my-2">
+            На кошелек пользователя
+          </div>
+          <div class="text-lg xl:text-2xl 2xl:text-3xl main-green-color font-bold">
+            <div class="text-black">{{toUser.name}}</div>
+            <div class="text-sm text-gray-500 dark:text-gray-400">{{toUser.email}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-12 text-center p-3">
+      <a (click)="walletTransfer()" type="button" class="shadow-2xl cursor-pointer text-white main-green-bg  focus:outline-none focus:ring-4 font-bold rounded-full text-lg px-10 py-4 text-center">
+        Перевести
+      </a>
+    </div>
 
   </div>
 

@@ -83,7 +83,6 @@ export class CreateForumComponent implements OnInit,OnDestroy{
         }
       })
     }
-
   }
 
 
