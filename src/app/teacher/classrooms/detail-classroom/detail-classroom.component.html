@@ -169,15 +169,15 @@
                     <form [formGroup]="category_form" (ngSubmit)="categoryFormSubmit(cat)">
                       <div class="ml-2 flex justify-between" *ngIf="isSelectAllCategoryID == cat.id">
                         <div>
-                          <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="range-slider__range">
+                          <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-3 range-slider__range">
                           <span class="range-slider__value">{{cat.s_questions_count}}</span>
                         </div>
                         <div>
-                          <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="range-slider__range">
+                          <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="!pl-3 range-slider__range">
                           <span class="range-slider__value">{{cat.c_questions_count}}</span>
                         </div>
                         <div>
-                          <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="range-slider__range">
+                          <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="!pl-3 range-slider__range">
                           <span class="range-slider__value">{{cat.m_questions_count}}</span>
                         </div>
                         <button [disabled]="!category_form.valid" [ngClass]="category_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" type="submit" class="px-2 border flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
@@ -203,15 +203,15 @@
                           <form [formGroup]="sub_category_form" (ngSubmit)="subCategoryFormSubmit(subCat, cat)">
                             <div class="">
                               <div class="my-2">
-                                <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="range-slider__range">
+                                <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-3 range-slider__range">
                                 <span class="range-slider__value">{{subCat.s_questions_count}}</span>
                               </div>
                               <div class="my-2">
-                                <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="range-slider__range">
+                                <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="!pl-3 range-slider__range">
                                 <span class="range-slider__value">{{subCat.c_questions_count}}</span>
                               </div>
                               <div class="my-2">
-                                <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="range-slider__range">
+                                <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="!pl-3 range-slider__range">
                                 <span class="range-slider__value">{{subCat.m_questions_count}}</span>
                               </div>
                               <button [disabled]="!sub_category_form.valid" [ngClass]="sub_category_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" type="submit" class="px-2 border rounded-[7px] flex justify-center items-center text-black hover:border-[#3b71ca] hover:text-[#3b71ca]">
