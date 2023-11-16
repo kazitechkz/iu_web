@@ -49,6 +49,7 @@ import { WalletTransferComponent } from './wallet/wallet-transfer/wallet-transfe
 import { WalletDepositComponent } from './wallet/wallet-deposit/wallet-deposit.component';
 import {QRCodeModule} from "angularx-qrcode";
 import { WalletStatisticsComponent } from './wallet/wallet-statistics/wallet-statistics.component';
+import {DpDatePickerModule} from "ng2-date-picker";
 
 
 @NgModule({
@@ -108,6 +109,7 @@ import { WalletStatisticsComponent } from './wallet/wallet-statistics/wallet-sta
     TwSelectModule,
     TwButtonModule,
     QRCodeModule,
+    DpDatePickerModule,
   ],
   providers: [MathJaxPipe, TranslatePipe]
 })

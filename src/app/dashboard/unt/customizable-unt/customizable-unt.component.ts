@@ -11,6 +11,22 @@ import {getMySubjectsSelector} from "../../../shared/store/subject/getMySubjects
 import {GetCategoriesAction} from "../../../shared/store/category/category.action";
 import {getCategoriesState} from "../../../shared/store/category/category.selector";
 import {CategoryModel} from "../../../shared/models/category.model";
+import {AttemptSettingsData, Basket} from "../../../shared/models/attemptSetting.model";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {StrHelper} from "../../../core/helpers/str.helper";
+import {GetSubCategoriesAction} from "../../../shared/store/category/subCategory/subCategory.action";
+import {getSubCategoriesState} from "../../../shared/store/category/subCategory/subCategory.selector";
+import {QuestionTypesWithCount} from "../../../shared/models/question.model";
+import {NgxSmartModalService} from "ngx-smart-modal";
+import {SubCategoryModel} from "../../../shared/models/subCategory.model";
+import {Me} from "../../../shared/models/user.model";
+import {getAccountState} from "../../../shared/store/user/account/account.selector";
+import {
+  getAttemptByPromoCodeAction
+} from "../../../shared/store/attempt/getAttemptByPromoCode/getAttemptByPromoCode.action";
+import {
+  getAttemptByPromoCodeSelector
+} from "../../../shared/store/attempt/getAttemptByPromoCode/getAttemptByPromoCode.selector";
 
 @Component({
   selector: 'app-customizable-unt',
@@ -21,16 +37,50 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
   //Injection
   private _store = inject(Store);
   destroyRef = inject(DestroyRef);
+  dialog = inject(NgxSmartModalService)
   //Injection
   //Data
+  //@ts-ignore
+  me:Me;
   subjects:Subject[] = [];
   public categories: CategoryModel[] = []
   protected readonly ImageHelper = ImageHelper;
   chosenSubject:number = 0;
   locale_id:number = 1;
+  subCategoryContentID: number = 0
+  isSelectedSubCategory: number = 0
+  isSelectAllCategoryID: number = 0
+  public subCategories: SubCategoryModel[] = []
+  public basket: Basket = {
+    singleQ: 0,
+    contextQ: 0,
+    multiQ: 0,
+    data: []
+  };
+  attempt_settings_form: FormGroup = new FormGroup({
+    users: new FormControl(null, [Validators.required]),
+    time: new FormControl(60, [Validators.required]),
+    settings: new FormControl(null, [Validators.required]),
+    locale_id: new FormControl(null, [Validators.required]),
+    subject_id: new FormControl(null, [Validators.required]),
+    hidden_fields: new FormControl(null),
+  })
+  category_form: FormGroup = new FormGroup({
+    s_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)]),
+    c_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)]),
+    m_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)])
+  })
+  sub_category_form: FormGroup = new FormGroup({
+    s_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)]),
+    c_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)]),
+    m_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)])
+  })
+  isShowCategoryContent: boolean = false
+  initialData: AttemptSettingsData = []
   //Data
 
   ngOnInit(): void {
+    this.getUserInfo();
     this.getMySubjects();
   }
   ngOnDestroy(): void {
@@ -40,7 +90,13 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
     this.chosenSubject = id;
     this.getCategories();
   }
-
+  getUserInfo(){
+    this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      if (item.data){
+        this.me = item.data;
+      }
+    });
+  }
   getMySubjects(){
     this._store.dispatch(getMySubjectsAction());
     this._store.select(getMySubjectsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
@@ -50,16 +106,192 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
     })
   }
 
-  getCategories() {
-    this._store.dispatch(GetCategoriesAction({subjectID: this.chosenSubject}));
-    this._store.select(getCategoriesState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
-      // @ts-ignore
-      this.categories = item.data
-    })
-  }
+
 
   changeLanguage(value:any){
     this.locale_id = value ? 1 : 2;
+    this.getCategories();
+  }
+
+
+  getCategories() {
+    if (this.chosenSubject == 0) {
+      this.isShowCategoryContent = false
+    } else {
+      this.attempt_settings_form.patchValue({
+        locale_id: this.locale_id,
+        subject_id: this.chosenSubject,
+        users: [this.me.id]
+      })
+      this.isShowCategoryContent = true
+      this._store.dispatch(GetCategoriesAction({subjectID: this.chosenSubject, localeID: this.locale_id}));
+      this._store.select(getCategoriesState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+        // @ts-ignore
+        this.categories = item.data
+      })
+    }
+    this.initialData = []
+    this.updateBasket()
+  }
+
+  getSubCategories(categoryID: number) {
+    if (this.subCategoryContentID == categoryID) {
+      this.subCategoryContentID = 0
+    } else {
+      this.subCategoryContentID = categoryID
+    }
+    this._store.dispatch(GetSubCategoriesAction({categoryID: categoryID, localeID: this.locale_id}));
+    this._store.select(getSubCategoriesState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      // @ts-ignore
+      this.subCategories = item.data
+    })
+  }
+  selectAllCategoryByID(categoryID: number) {
+    if (this.isSelectAllCategoryID == categoryID) {
+      this.isSelectAllCategoryID = 0
+      if (this.initialData.hasOwnProperty(categoryID)) {
+        delete this.initialData[categoryID]
+        this.isSelectedSubCategory = 0
+        this.updateBasket()
+      }
+      this.category_form.reset()
+    } else {
+      this.isSelectAllCategoryID = categoryID
+    }
+  }
+  updateBasket() {
+    this.basket.singleQ = 0
+    this.basket.contextQ = 0
+    this.basket.multiQ = 0
+    Object.entries(this.initialData).forEach(([key, value], index) => {
+      this.basket.singleQ += value.s_questions ? parseInt(String(value.s_questions)) : 0
+      this.basket.contextQ += value.c_questions ? parseInt(String(value.c_questions)) : 0
+      this.basket.multiQ += value.m_questions ? parseInt(String(value.m_questions)) : 0
+      if (value.sub_category_ids) {
+        Object.entries(value.sub_category_ids).forEach(([sub_key, sub_value], index) => {
+          // @ts-ignore
+          this.basket.singleQ += sub_value.s_questions ? parseInt(String(sub_value.s_questions)) : 0
+          // @ts-ignore
+          this.basket.contextQ += sub_value.c_questions ? parseInt(String(sub_value.c_questions)) : 0
+          // @ts-ignore
+          this.basket.multiQ += sub_value.m_questions ? parseInt(String(sub_value.m_questions)) : 0
+        })
+      }
+    });
+    this.attempt_settings_form.patchValue({
+      settings: JSON.stringify(this.initialData)
+    })
+  }
+
+  onPassByPromo(promo:string) {
+      this._store.dispatch(getAttemptByPromoCodeAction({requestData: promo}))
+      this._store.select(getAttemptByPromoCodeSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+        this.dialog.closeLatestModal()
+      })
+
+  }
+
+  categoryFormSubmit(category: CategoryModel) {
+    const categoryID: number = category.id
+    let formData = this.category_form.getRawValue() as QuestionTypesWithCount
+    if (formData.s_questions_count > category.s_questions_count) {
+      formData.s_questions_count = category.s_questions_count
+    }
+    if (formData.c_questions_count > category.c_questions_count) {
+      formData.c_questions_count = category.c_questions_count
+    }
+    if (formData.m_questions_count > category.m_questions_count) {
+      formData.m_questions_count = category.m_questions_count
+    }
+    if (formData.s_questions_count < 0) {
+      formData.s_questions_count = 0
+    }
+    if (formData.c_questions_count < 0) {
+      formData.c_questions_count = 0
+    }
+    if (formData.m_questions_count < 0) {
+      formData.m_questions_count = 0
+    }
+    let newData = {
+      [categoryID]: {
+        c_questions: formData.c_questions_count,
+        s_questions: formData.s_questions_count,
+        m_questions: formData.m_questions_count
+      }
+    }
+    this.initialData = {...this.initialData, ...newData}
+    this.category_form.reset()
+    this.subCategoryContentID = 0
+    this.updateBasket()
+  }
+  checkExistSubCategoryFromSelectedList(categoryID: number, subCategoryID: number): boolean {
+    if (this.initialData.hasOwnProperty(categoryID)) {
+      if (this.initialData[categoryID].sub_category_ids) {
+        //@ts-ignore
+        return this.initialData[categoryID].sub_category_ids.hasOwnProperty(subCategoryID);
+      } else {
+        return false
+      }
+    } else {
+      return false
+    }
+  }
+  subCategoryFormSubmit(subCategory: SubCategoryModel, category: CategoryModel) {
+    const subCategoryID: number = subCategory.id
+    const categoryID: number = category.id
+    let formData = this.sub_category_form.getRawValue() as QuestionTypesWithCount
+    if (formData.s_questions_count > subCategory.s_questions_count) {
+      formData.s_questions_count = subCategory.s_questions_count
+    }
+    if (formData.c_questions_count > subCategory.c_questions_count) {
+      formData.c_questions_count = subCategory.c_questions_count
+    }
+    if (formData.m_questions_count > subCategory.m_questions_count) {
+      formData.m_questions_count = subCategory.m_questions_count
+    }
+    if (formData.s_questions_count < 0) {
+      formData.s_questions_count = 0
+    }
+    if (formData.c_questions_count < 0) {
+      formData.c_questions_count = 0
+    }
+    if (formData.m_questions_count < 0) {
+      formData.m_questions_count = 0
+    }
+
+    if (this.initialData[categoryID] !== undefined) {
+      this.initialData[categoryID].s_questions = 0
+      this.initialData[categoryID].c_questions = 0
+      this.initialData[categoryID].m_questions = 0
+      this.initialData[categoryID].sub_category_ids = {
+        ...this.initialData[categoryID].sub_category_ids, ...{
+          [subCategoryID]: {
+            c_questions: formData.c_questions_count,
+            s_questions: formData.s_questions_count,
+            m_questions: formData.m_questions_count
+          }
+        }
+      }
+    } else {
+      let newData = {
+        [categoryID]: {
+          s_questions: 0,
+          c_questions: 0,
+          m_questions: 0,
+          sub_category_ids: {
+            [subCategoryID]: {
+              c_questions: formData.c_questions_count,
+              s_questions: formData.s_questions_count,
+              m_questions: formData.m_questions_count
+            }
+          }
+        }
+      }
+      this.initialData = {...this.initialData, ...newData}
+    }
+    this.dialog.closeLatestModal()
+    this.sub_category_form.reset()
+    this.updateBasket()
   }
 
   slideConfig = {
@@ -98,12 +330,11 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
     ]
   };
 
-
-
   protected readonly faClock = faClock;
   protected readonly faBook = faBook;
   protected readonly faLanguage = faLanguage;
   protected readonly faBoxesPacking = faBoxesPacking;
-
   protected readonly faCircleCheck = faCircleCheck;
+  protected readonly StrHelper = StrHelper;
+  protected readonly String = String;
 }

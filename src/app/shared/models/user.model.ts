@@ -13,6 +13,7 @@ export interface UserModel extends EntityState<Users> {
 
 }
 export interface Me {
+    id:string
     name: string
     email: string
     phone: string

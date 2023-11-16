@@ -51,6 +51,7 @@
     "ng-select2-component": "^13.0.9",
     "ng-tw": "^0.0.16",
     "ng2-charts": "^5.0.3",
+    "ng2-date-picker": "^16.0.0",
     "ngu-carousel": "^1.5.3",
     "ngx-countdown": "^16.0.0",
     "ngx-markdown": "^16.0.0",

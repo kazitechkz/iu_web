@@ -1,9 +1,82 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12 py-5 my-3 gap-4">
-    <div class="col-span-12 md:col-span-12 lg:col-span-9 xl:col-span-9 2xl:col-span-9">
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6">
+      <label class="text-md lg:text-lg body-text font-bold my-2 block" for="from_data_input">Дата с</label>
+      <input (ngModelChange)="changeFromDate($event)" [ngModel]="from_date" [dpDayPicker]="from_config" id="from_data_input" class="block border w-full rounded-md text-gray-500 font-normal p-2 focus:outline-none focus:border-blue-500" />
     </div>
-    <div class="col-span-12 md:col-span-12 lg:col-span-3 xl:col-span-3 2xl:col-span-3">
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6">
+      <label class="text-md lg:text-lg body-text font-bold my-2 block" for="to_data_input">Дата по</label>
+      <input (ngModelChange)="changeToDate($event)"  [ngModel]="to_date" [dpDayPicker]="to_config" id="to_data_input" class="block border w-full rounded-md p-2 text-gray-500 font-normal focus:outline-none focus:border-blue-500" />
+    </div>
+  </div>
+  <div class="grid grid-cols-12 py-5 my-3 gap-4" *ngIf="wallet">
+    <div class="col-span-12 md:col-span-12 lg:col-span-8 xl:col-span-7 2xl:col-span-7">
+      <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
+        <div class="relative overflow-x-auto">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 capitalize">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-center">
+                Сумма
+              </th>
+              <th scope="col" class="px-6 py-3 text-center">
+                Подвтерждена
+              </th>
+              <th scope="col" class="px-6 py-3 text-center">
+                Владелец Карты
+              </th>
+              <th scope="col" class="px-6 py-3 text-center">
+                Дата транзакции
+              </th>
+              <th scope="col" class="px-6 py-3 text-center">
+                ID транзакции
+              </th>
+              <th scope="col" class="px-6 py-3 text-center">
+                Действия
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let transaction of wallet.week_transaction">
+              <td class="px-6 py-4 text-center">
+                <p class="text-black ml-2 font-bold" [ngClass]="{'text-red-400': transaction.amount < 0, 'text-green-400':transaction.amount > 0}">{{transaction.amount}}</p>
+              </td>
+              <td class="px-6 py-4 text-center">
+                <fa-icon [icon]="faCheckCircle" class="text-xl main-green-color" *ngIf="transaction.confirmed"></fa-icon>
+                <fa-icon [icon]="faWindowClose" class="text-xl main-green-color" *ngIf="!transaction.confirmed"></fa-icon>
+              </td>
+              <td class="px-6 py-4 text-center" *ngIf="transaction.wallet">
+                <p class="text-black ml-2 font-bold" *ngIf="transaction.wallet.holder">{{transaction.wallet.holder.name}}</p>
+              </td>
+              <td class="px-6 py-4 text-center">
+                <p class="text-black ml-2 font-bold">{{moment(transaction.created_at).format("HH:mm DD/MM/YYYY")}}</p>
+              </td>
+              <td class="px-6 py-4 text-center" *ngIf="transaction.uuid">
+                <small>
+                  {{transaction.uuid}}
+                </small>
+              </td>
+              <td class="px-6 py-4 text-center" *ngIf="transaction.uuid">
+                <a type="button" class="cursor-pointer text-white main-green-bg focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                  <fa-icon [icon]="faEye"></fa-icon>
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
 
+      </div>
+    </div>
+    <div class="col-span-12 md:col-span-12 lg:col-span-4 xl:col-span-5 2xl:col-span-5" *ngIf="wallet.week_transaction_stats">
+      <canvas
+        baseChart
+        class="chart"
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [type]="barChartType"
+      >
+      </canvas>
     </div>
   </div>
 </div>

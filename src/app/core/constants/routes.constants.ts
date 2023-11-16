@@ -31,5 +31,6 @@ export enum RoutesName {
     createForum = "dashboard/create-forum",
     walletIndex = "dashboard/wallet",
     walletTransfer = "dashboard/wallet-transfer",
-    walletDeposit = "dashboard/wallet-deposit"
+    walletDeposit = "dashboard/wallet-deposit",
+    walletStatistics = "dashboard/wallet-statistics",
 }

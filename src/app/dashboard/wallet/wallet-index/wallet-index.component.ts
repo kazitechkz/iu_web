@@ -41,9 +41,8 @@ export class WalletIndexComponent implements OnInit,OnDestroy{
     {title:"Оплата с помощью QR кода",icon:faQrcode,route:StrHelper.getRouteName(RoutesName.walletIndex)},
     {title:"Пополнить кошелек",icon:faCoins,route:StrHelper.getRouteName(RoutesName.walletDeposit)},
     {title:"Переводы",icon:faRightLeft,route:StrHelper.getRouteName(RoutesName.walletTransfer)},
-    {title:"Аналитика расходов и доходов",icon:faChartBar,route:StrHelper.getRouteName(RoutesName.walletIndex)},
+    {title:"Аналитика расходов и доходов",icon:faChartBar,route:StrHelper.getRouteName(RoutesName.walletStatistics)},
     {title:"Часто задаваемые вопросы",icon:faMessage,route:StrHelper.getRouteName(RoutesName.walletIndex)},
-
   ]
   //Data
   ngOnInit(): void {

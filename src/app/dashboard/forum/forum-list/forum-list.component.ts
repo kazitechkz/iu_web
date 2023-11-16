@@ -67,7 +67,6 @@ export class ForumListComponent implements OnInit {
     this.getAllForums();
   }
   setForumType(type:string){
-    // @ts-ignore
     this.params.page = 1;
     this.params.type = type;
     this.getAllForums();
