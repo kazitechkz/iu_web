@@ -222,11 +222,11 @@ export class DetailClassroomComponent implements OnInit {
   sendQuery() {
     if (this.attempt_settings_form.get('hidden_fields')?.value) {
       this.attempt_settings_form.patchValue({
-        hidden_fields: 'prompt'
+        hidden_fields: null
       })
     } else {
       this.attempt_settings_form.patchValue({
-        hidden_fields: null
+        hidden_fields: 'prompt'
       })
     }
     if (this.attempt_settings_form.valid) {
