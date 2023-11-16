@@ -64,6 +64,14 @@
   "CONTEXT_QUESTIONS": "Контекстный вопрос",
   "MULTI_QUESTIONS": "Множественный ответ",
   "WALLET": "Кошелек",
-  "PROMPT": "Подсказка"
+  "PROMPT": "Подсказка",
+  "ARE_YOU_SURE": "Вы уверены ?",
+  "YES": "Да",
+  "NO": "Нет",
+  "MY_TESTS": "Мои тесты",
+  "TIME": "Время",
+  "LANGUAGE": "Язык",
+  "PREVIOUS_PAGINATION": "Пред",
+  "NEXT_PAGINATION": "След"
 
 }

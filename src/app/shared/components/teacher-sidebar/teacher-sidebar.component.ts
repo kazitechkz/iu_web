@@ -5,7 +5,7 @@ import {selectSidenavIsOpen} from "../../store/core/sidebar/sidebar.selector";
 import {Router} from "@angular/router";
 import {closeSidebarAction} from "../../store/core/sidebar/sidebar.action";
 import {
-  faHome, faSitemap
+  faHome, faSitemap, faTextWidth
 } from "@fortawesome/free-solid-svg-icons";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import {StrHelper} from "../../../core/helpers/str.helper";
@@ -46,6 +46,11 @@ export class TeacherSidebarComponent implements OnInit {
       title: 'MY_CLASSROOMS',
       path: StrHelper.getTeacherRouteName(RoutesName.teacherClassrooms),
       icon: faSitemap as IconProp
+    },
+    {
+      title: 'MY_TESTS',
+      path: StrHelper.getTeacherRouteName(RoutesName.teacherTests),
+      icon: faTextWidth as IconProp
     },
   ]
 }

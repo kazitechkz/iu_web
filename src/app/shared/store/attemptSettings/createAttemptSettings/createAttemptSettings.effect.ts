@@ -15,8 +15,6 @@ export class CreateAttemptSettingsEffect {
 
   private _service = inject(CreateAttemptSettingsService);
   private action$ = inject(Actions);
-  private _toastr = inject(ToastrService);
-  private _route = inject(Router);
 
   _onCreateAttemptSettings = createEffect((): any =>
     this.action$.pipe(

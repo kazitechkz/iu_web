@@ -53,7 +53,7 @@
               </td>
               <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
               <td class="whitespace-nowrap px-6 py-4">{{item.value.user.name}}</td>
-              <td class="whitespace-nowrap px-6 py-4">{{item.value.user.gender != null ? (item.value.user.gender | globalTranslate: 'title': this.translate.currentLang) : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{item.value.user.gender != null ? (item.value.user.gender | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID)) : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
               <td class="whitespace-nowrap px-6 py-4">{{item.value.user.phone != null ? item.value.user.phone : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
               <td class="whitespace-nowrap px-6 py-4">{{item.value.user.email != null ? item.value.user.email : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
               <td class="whitespace-nowrap px-6 py-4">
@@ -65,14 +65,10 @@
                   >
                     <i class="fa fa-eye" aria-hidden="true"></i>
                   </button>
+
                   <button
-                    class="mx-2 text-black"
-                    tw-button
-                    layout="flat"
-                  >
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                  </button>
-                  <button
+                    [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
+                    (confirm)="deleteUserFromClassroom(item.value.id)"
                     class="mx-2 text-red-600"
                     tw-button
                     layout="flat"
@@ -93,15 +89,15 @@
 <div class="py-4" *ngIf="isSingleTest">
   <div class="my-2 flex justify-between items-center">
     <div class="flex">
-      <select data-te-select-init class="mx-2">
-        <option (click)="getCategories(0)">{{'SELECT_SUBJECT' | translate}}</option>
-        <option (click)="getCategories(subject.id)" [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': translate.currentLang}}</option>
+      <select data-te-select-init class="mx-2" (change)="getCategories($event)">
+        <option value="0">{{'SELECT_SUBJECT' | translate}}</option>
+        <option [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID)}}</option>
       </select>
-      <select data-te-select-init *ngIf="isShowCategoryContent">
-        <option (click)="getCategories(subjectLocaleID, 1, true)">
+      <select data-te-select-init *ngIf="isShowCategoryContent" (change)="selectLanguage($event)">
+        <option [selected]="localeID == 1" value="1">
           Қазақ тілі
         </option>
-        <option (click)="getCategories(subjectLocaleID, 2, true)">
+        <option [selected]="localeID == 2" value="2">
           Русский язык
         </option>
       </select>
@@ -131,8 +127,10 @@
           <i class="fa fa-basket-shopping ml-3"></i>
       </span>
         <button
+          [disabled]="!attempt_settings_form.valid"
           type="submit"
           class="ml-5 !bg-[#4DC591] text-white"
+          [ngClass]="attempt_settings_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'"
           tw-button
           layout="flat"
         >
@@ -152,7 +150,7 @@
                 <div class="p-3 my-2 flex justify-between">
                   <div class="flex items-center justify-between">
                     <p class="text-base text-white">
-                      {{cat | globalTranslate: 'title': translate.currentLang}}
+                      {{cat | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID)}}
                     </p>
                   </div>
                   <button (click)="getSubCategories(cat.id)" class="rounded-full border ml-auto w-[30px] h-[30px] flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
@@ -196,7 +194,7 @@
                       <div class="p-6 my-2 flex justify-between">
                         <div class="flex items-center">
                           <p class="text-base text-black">
-                            {{subCat | globalTranslate: 'title': translate.currentLang: 40}}
+                            {{subCat | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID): 40}}
                           </p>
                         </div>
                       </div>

@@ -18,4 +18,8 @@ export enum ClassroomsActionTypes {
     OnDeleteClassroom = "[DeleteClassroom Action] On DeleteClassroom",
     OnDeleteClassroomSuccess = "[DeleteClassroom Action] On DeleteClassroom Success",
     OnDeleteClassroomFailure = "[DeleteClassroom Action] On DeleteClassroom Failure",
+
+    OnDeleteClassroomByID = "[DeleteClassroomByID Action] On DeleteClassroomByID",
+    OnDeleteClassroomByIDSuccess = "[DeleteClassroomByID Action] On DeleteClassroomByID Success",
+    OnDeleteClassroomByIDFailure = "[DeleteClassroomByID Action] On DeleteClassroomByID Failure",
 }

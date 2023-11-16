@@ -40,7 +40,7 @@ import {getUntPlanReducer} from "../../shared/store/plan/getUntPlan/getUntPlan.r
 import {getLearningPlanReducer} from "../../shared/store/plan/getLearningPlan/getLearningPlan.reducer";
 import {createForumReducer} from "../../shared/store/forum/createForum/createForum.reducer";
 import {
-  classroomsGroupReducer, createClassroomsGroupReducer, deleteClassroomsGroupReducer,
+  classroomsGroupReducer, createClassroomsGroupReducer, deleteClassroomByIDReducer, deleteClassroomsGroupReducer,
   getClassroomsGroupByIDReducer, updateClassroomsGroupReducer
 } from "../../shared/store/teacher/classrooms/classrooms.reducer";
 import {allForumReducer} from "../../shared/store/forum/allForum/allForum.reducer";
@@ -144,6 +144,7 @@ export const ReducersConstants = {
   findUserByEmail:findUserByEmailReducer,
   myBalance:myBalanceReducer,
   myWallet:myWalletReducer,
+  deleteClassroomByID: deleteClassroomByIDReducer
 
 }
 

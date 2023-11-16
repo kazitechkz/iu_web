@@ -15,4 +15,6 @@ export const updateClassroomsGroupState: EntityState<boolean> = updateClassrooms
 
 export const deleteClassroomsGroupAdapter = createEntityAdapter<boolean>();
 export const deleteClassroomsGroupState: EntityState<boolean> = deleteClassroomsGroupAdapter.getInitialState();
+export const deleteClassroomByIDAdapter = createEntityAdapter<boolean>();
+export const deleteClassroomByIDState: EntityState<boolean> = deleteClassroomByIDAdapter.getInitialState();
 

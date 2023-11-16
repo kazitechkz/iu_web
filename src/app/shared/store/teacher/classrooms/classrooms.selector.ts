@@ -26,3 +26,8 @@ const delete_classrooms_groups_state = createFeatureSelector<ResponseData<boolea
 export const deleteClassroomsGroupState = createSelector(delete_classrooms_groups_state, (state) => {
     return state;
 })
+
+const delete_classroom_by_id_state = createFeatureSelector<ResponseData<boolean>>('deleteClassroomByID');
+export const deleteClassroomByIDStateSelector = createSelector(delete_classroom_by_id_state, (state) => {
+    return state;
+})

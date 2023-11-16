@@ -1,5 +1,15 @@
 <div class="w-full flex justify-end items-center">
   <button
+    class="ml-auto mr-3"
+    tw-button
+    layout="flat"
+    color="primary"
+    (click)="openDialog('pass_test')"
+  >
+    Сдать тест
+    <i class="fa fa-plus ml-3" aria-hidden="true"></i>
+  </button>
+  <button
     class="ml-auto"
     tw-button
     layout="flat"
@@ -69,6 +79,32 @@
           type="submit"
           [ngClass]="!classroom_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
           [disabled]="!classroom_form.valid"
+        >
+          {{'SEND_BUTTON' | translate}}
+        </button>
+      </form>
+    </div>
+  </ngx-smart-modal>
+  <ngx-smart-modal identifier="pass_test">
+    <div>
+      <form (ngSubmit)="onPassTest()" [formGroup]="pass_test_form">
+        <app-input-field
+          [formControlName]="'promo_code'"
+          [input_name]="'promo_code'"
+          [type]="'text'"
+          [placeholder]="'PROMO_CODE' | translate"
+          [label]="'PROMO_CODE' | translate"
+          [error_message]="'REQUIRED_MESSAGE' | translate"
+          [backErrors]="errors"
+          ngDefaultControl
+        />
+        <button
+          tw-button
+          layout="raised"
+          color="primary"
+          type="submit"
+          [ngClass]="!pass_test_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
+          [disabled]="!pass_test_form.valid"
         >
           {{'SEND_BUTTON' | translate}}
         </button>

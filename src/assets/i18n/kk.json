@@ -64,5 +64,13 @@
   "CONTEXT_QUESTIONS": "Контекстті сұрақ",
   "MULTI_QUESTIONS": "Бірнеше жауапты",
   "WALLET": "ӘМИЯН",
-  "PROMPT": "Кеңес"
+  "PROMPT": "Кеңес",
+  "ARE_YOU_SURE": "Сенімдісіз бе ?",
+  "YES": "Ия",
+  "NO": "Жоқ",
+  "MY_TESTS": "Менің тесттерім",
+  "TIME": "Уақыты",
+  "LANGUAGE": "Тіл",
+  "PREVIOUS_PAGINATION": "Алдыңғы",
+  "NEXT_PAGINATION": "Келесі"
 }

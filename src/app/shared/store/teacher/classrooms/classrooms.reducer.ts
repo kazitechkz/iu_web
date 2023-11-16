@@ -1,7 +1,7 @@
 import {createReducer, on} from "@ngrx/store";
 import {
   classroomsGroupState,
-  createClassroomsGroupState, deleteClassroomsGroupState,
+  createClassroomsGroupState, deleteClassroomByIDState, deleteClassroomsGroupState,
   getClassroomsGroupByIDState,
   updateClassroomsGroupState
 } from "./classrooms.state";
@@ -12,6 +12,9 @@ import {
   createClassroomsGroupAction,
   createClassroomsGroupActionFailure,
   createClassroomsGroupActionSuccess,
+  deleteClassroomByIDAction,
+  deleteClassroomByIDActionFailure,
+  deleteClassroomByIDActionSuccess,
   deleteClassroomsGroupAction,
   deleteClassroomsGroupActionFailure,
   deleteClassroomsGroupActionSuccess,
@@ -166,4 +169,33 @@ const _deleteClassroomsGroupReducer = createReducer(
 
 export function deleteClassroomsGroupReducer(state: any, action: any) {
     return _deleteClassroomsGroupReducer(state, action);
+}
+
+const _deleteClassroomByIDReducer = createReducer(
+    deleteClassroomByIDState,
+    on(deleteClassroomByIDAction, (state, action) => {
+        return {
+            ...state,
+          data: null
+        }
+    }),
+    on(deleteClassroomByIDActionSuccess, (state, action) => {
+        return {
+            ...state,
+            success: true,
+            errors: null,
+            data: action.responseData.data
+        }
+    }),
+    on(deleteClassroomByIDActionFailure, (state, action) => {
+        return {
+            ...state,
+            success: false,
+            errors: action.errors
+        }
+    })
+);
+
+export function deleteClassroomByIDReducer(state: any, action: any) {
+    return _deleteClassroomByIDReducer(state, action);
 }

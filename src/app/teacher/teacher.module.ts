@@ -13,6 +13,9 @@ import {NgxSmartModalModule} from "ngx-smart-modal";
 import {UiSwitchModule} from "ngx-ui-switch";
 import {ReactiveFormsModule} from "@angular/forms";
 import { DetailClassroomComponent } from './classrooms/detail-classroom/detail-classroom.component';
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import { ExamsComponent } from './exams/exams.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -21,18 +24,21 @@ import { DetailClassroomComponent } from './classrooms/detail-classroom/detail-c
     LayoutComponent,
     ClassroomsComponent,
     DetailClassroomComponent,
+    ExamsComponent,
   ],
-    imports: [
-        CommonModule,
-        TeacherRoutingModule,
-        SharedModule,
-        CoreModule,
-        TwButtonModule,
-        NgxSmartModalModule.forChild(),
-        UiSwitchModule,
-        ReactiveFormsModule,
-        TwSelectModule
-    ],
+  imports: [
+    CommonModule,
+    TeacherRoutingModule,
+    SharedModule,
+    CoreModule,
+    TwButtonModule,
+    NgxSmartModalModule.forChild(),
+    UiSwitchModule,
+    ReactiveFormsModule,
+    TwSelectModule,
+    SweetAlert2Module.forRoot(),
+    NgxPaginationModule
+  ],
   providers: [MathJaxPipe]
 })
 export class TeacherModule { }

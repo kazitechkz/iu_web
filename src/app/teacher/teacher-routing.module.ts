@@ -7,6 +7,7 @@ import {teacherGuard} from "../core/guards/teacher.guard";
 import {RoutesName} from "../core/constants/routes.constants";
 import {ClassroomsComponent} from "./classrooms/classrooms.component";
 import {DetailClassroomComponent} from "./classrooms/detail-classroom/detail-classroom.component";
+import {ExamsComponent} from "./exams/exams.component";
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
       {
         path: 'detail-classroom/:id',
         component: DetailClassroomComponent
+      },
+      {
+        path: 'tests',
+        component: ExamsComponent
       }
     ]
   }

@@ -1,5 +1,5 @@
 import {Component, DestroyRef, inject, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {Store} from "@ngrx/store";
 import {detailClassroomAction} from "../../../shared/store/teacher/classrooms/detail-classroom/detail-classroom.action";
@@ -24,17 +24,15 @@ import {GetSubCategoriesAction} from "../../../shared/store/category/subCategory
 import {SubCategoryModel} from "../../../shared/models/subCategory.model";
 import {getSubCategoriesState} from "../../../shared/store/category/subCategory/subCategory.selector";
 import {QuestionTypesWithCount} from "../../../shared/models/question.model";
-import {AttemptSetting, AttemptSettingsData, Basket} from "../../../shared/models/attemptSetting.model";
-import {Locale} from "../../../shared/models/locale.model";
-import {json} from "@rxweb/reactive-form-validators";
+import {AttemptSettingsData, Basket} from "../../../shared/models/attemptSetting.model";
 import {
   CreateAttemptSettingsRequest
 } from "../../../shared/store/attemptSettings/createAttemptSettings/createAttemptSettings.request";
-import {createAttemptAction} from "../../../shared/store/attempt/createAttempt/createAttempt.action";
 import {
   createAttemptSettingsAction
 } from "../../../shared/store/attemptSettings/createAttemptSettings/createAttemptSettings.action";
 import {TwNotification} from "ng-tw";
+import {deleteClassroomByIDAction} from "../../../shared/store/teacher/classrooms/classrooms.action";
 
 @Component({
   selector: 'app-detail-classroom',
@@ -42,7 +40,6 @@ import {TwNotification} from "ng-tw";
   styleUrls: ['./detail-classroom.component.scss']
 })
 export class DetailClassroomComponent implements OnInit {
-  isPrompt: boolean = false
   localeID: number = 1
   subjectLocaleID: number = 0
   isAllChecked: boolean = false
@@ -67,10 +64,9 @@ export class DetailClassroomComponent implements OnInit {
     users: new FormControl(null, [Validators.required]),
     time: new FormControl(60, [Validators.required]),
     settings: new FormControl(null, [Validators.required]),
-    class_id: new FormControl(null, [Validators.required]),
     locale_id: new FormControl(null, [Validators.required]),
     subject_id: new FormControl(null, [Validators.required]),
-    hidden_fields: new FormControl(null, [Validators.required]),
+    hidden_fields: new FormControl(null),
   })
   checkbox_form: FormGroup = new FormGroup({
     users: new FormControl([], [Validators.required])
@@ -88,21 +84,25 @@ export class DetailClassroomComponent implements OnInit {
   initialData: AttemptSettingsData = []
 
   private _route = inject(ActivatedRoute)
+  private _router = inject(Router)
   public translate = inject(GlobalTranslateService)
   destroyRef = inject(DestroyRef);
   private _store = inject(Store)
   dialog = inject(NgxSmartModalService)
   private _notification = inject(TwNotification)
+
   ngOnInit(): void {
     this.getDetailClassroom()
+    this.localeID = StrHelper.getLocaleIdByCurrentLang(this.translate.currentLang)
   }
 
   getDetailClassroom() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(detailClassroomAction({id: params['id']}))
-      this._store.select(getDetailClassroomState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item =>
-        //@ts-ignore
-        this.data = item.data
+      this._store.select(getDetailClassroomState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+          //@ts-ignore
+          this.data = item.data
+        }
       )
     })
   }
@@ -218,6 +218,7 @@ export class DetailClassroomComponent implements OnInit {
     this.isSingleTest = true
     this.getSubjects()
   }
+
   sendQuery() {
     if (this.attempt_settings_form.get('hidden_fields')?.value) {
       this.attempt_settings_form.patchValue({
@@ -228,15 +229,18 @@ export class DetailClassroomComponent implements OnInit {
         hidden_fields: null
       })
     }
-    this.attempt_settings_form.patchValue({
-      settings: JSON.stringify(this.initialData),
-      locale_id: this.localeID,
-      subject_id: this.subjectLocaleID,
-      users: this.checkbox_form.get('users')?.value
-    })
-    let formData = this.attempt_settings_form.getRawValue() as CreateAttemptSettingsRequest
-    this._store.dispatch(createAttemptSettingsAction({requestData: formData}))
-    this._notification.show({ type: 'danger', title: 'Error', text: 'LALALA' })
+    if (this.attempt_settings_form.valid) {
+      let formData = this.attempt_settings_form.getRawValue() as CreateAttemptSettingsRequest
+      this._store.dispatch(createAttemptSettingsAction({requestData: formData}))
+      this._notification.show({ type: 'success', title: 'Успешно создан' })
+      this._router.navigateByUrl(StrHelper.getTeacherRouteName(RoutesName.teacherTests)).then(r => null)
+    }
+  }
+
+  deleteUserFromClassroom(classroom_id: number) {
+    this._store.dispatch(deleteClassroomByIDAction({id: classroom_id}))
+    this._notification.show({ type: 'danger', title: 'Удалено', text: '' })
+    this.getDetailClassroom()
   }
 
   getSubjects() {
@@ -247,18 +251,30 @@ export class DetailClassroomComponent implements OnInit {
     })
   }
 
-  getCategories(subjectID: number, localeID: number = 1, isLanguageSelect: boolean = false) {
+  selectLanguage(event: any) {
+    this.localeID = parseInt((event.target as HTMLInputElement).value)
+    this.getCategories(this.subjectLocaleID, true)
+  }
+
+  getCategories(event: any, isLanguageSelect: boolean = false) {
+    let subjectID = 0
+    if (isLanguageSelect) {
+      this.subCategoryContentID = 0
+      subjectID = event;
+    } else {
+      subjectID = parseInt((event.target as HTMLInputElement).value);
+    }
     if (subjectID == 0) {
       this.isShowCategoryContent = false
     } else {
-      if (isLanguageSelect) {
-        this.subCategoryContentID = 0
-      }
-      this.localeID = localeID
-      this.translate.onLangChange(StrHelper.getCurrentLangByLocaleID(localeID))
+      this.attempt_settings_form.patchValue({
+        locale_id: this.localeID,
+        subject_id: this.subjectLocaleID,
+        users: this.checkbox_form.get('users')?.value
+      })
       this.subjectLocaleID = subjectID
       this.isShowCategoryContent = true
-      this._store.dispatch(GetCategoriesAction({subjectID: subjectID, localeID: localeID}));
+      this._store.dispatch(GetCategoriesAction({subjectID: subjectID, localeID: this.localeID}));
       this._store.select(getCategoriesState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         // @ts-ignore
         this.categories = item.data
@@ -325,6 +341,7 @@ export class DetailClassroomComponent implements OnInit {
       return false
     }
   }
+
   updateBasket() {
     this.basket.singleQ = 0
     this.basket.contextQ = 0
@@ -344,6 +361,9 @@ export class DetailClassroomComponent implements OnInit {
         })
       }
     });
+    this.attempt_settings_form.patchValue({
+      settings: JSON.stringify(this.initialData)
+    })
   }
 
   protected readonly parseInt = parseInt;

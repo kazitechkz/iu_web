@@ -4,6 +4,7 @@ export enum RoutesName {
     dashboard = "dashboard/index",
     teacher = "teacher/index",
     teacherClassrooms = "classrooms",
+    teacherTests = "tests",
     teacherDetailClassroom = "detail-classroom",
     studentClassrooms = "classrooms",
     resetRoute = "auth/reset",

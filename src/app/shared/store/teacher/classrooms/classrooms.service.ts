@@ -29,4 +29,7 @@ export class ClassroomsService {
     deleteClassroomsGroup(id: number): Observable<ResponseData<boolean>> {
       return this._http.delete<ResponseData<boolean>>(environment.baseUrl + APIRoutesName.teacherClassrooms + '/' + id)
     }
+    deleteClassroomByID(id: number): Observable<ResponseData<boolean>> {
+      return this._http.delete<ResponseData<boolean>>(environment.baseUrl + APIRoutesName.teacherDeleteClassroomByID + '/' + id)
+    }
 }

@@ -11,6 +11,12 @@ import {getClassroomsGroupByIDAction} from "../../shared/store/teacher/classroom
 import {getClassroomsGroupByIDState} from "../../shared/store/teacher/classrooms/classrooms.selector";
 import {TwNotification} from "ng-tw";
 import {TranslatePipe} from "@ngx-translate/core";
+import {
+  getAttemptByPromoCodeAction
+} from "../../shared/store/attempt/getAttemptByPromoCode/getAttemptByPromoCode.action";
+import {
+  getAttemptByPromoCodeSelector
+} from "../../shared/store/attempt/getAttemptByPromoCode/getAttemptByPromoCode.selector";
 
 @Component({
   selector: 'app-room',
@@ -32,6 +38,11 @@ export class RoomComponent implements OnInit {
       Validators.required
     ]),
   });
+  pass_test_form: FormGroup = new FormGroup({
+    promo_code: new FormControl("", [
+      Validators.required
+    ]),
+  });
 
   ngOnInit(): void {
     this.getClassrooms()
@@ -45,6 +56,15 @@ export class RoomComponent implements OnInit {
           if (item.data) {
             this.getClassrooms()
           }
+          this.dialog.closeLatestModal()
+      })
+    }
+  }
+  onPassTest() {
+    if (this.pass_test_form.valid) {
+      let promo = this.pass_test_form.get('promo_code')?.value as string
+      this._store.dispatch(getAttemptByPromoCodeAction({requestData: promo}))
+      this._store.select(getAttemptByPromoCodeSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
           this.dialog.closeLatestModal()
       })
     }

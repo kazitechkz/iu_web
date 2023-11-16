@@ -35,3 +35,9 @@ export const deleteClassroomsGroupActionSuccess = createAction(ClassroomsActionT
     responseData: ResponseData<boolean>
 }>());
 export const deleteClassroomsGroupActionFailure = createAction(ClassroomsActionTypes.OnDeleteClassroomFailure, props<{ errors: any }>());
+
+export const deleteClassroomByIDAction = createAction(ClassroomsActionTypes.OnDeleteClassroomByID, props<{id: number}>());
+export const deleteClassroomByIDActionSuccess = createAction(ClassroomsActionTypes.OnDeleteClassroomByIDSuccess, props<{
+    responseData: ResponseData<boolean>
+}>());
+export const deleteClassroomByIDActionFailure = createAction(ClassroomsActionTypes.OnDeleteClassroomByIDFailure, props<{ errors: any }>());

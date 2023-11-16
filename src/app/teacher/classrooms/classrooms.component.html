@@ -53,7 +53,8 @@
                   class="mx-2 text-red-600"
                   tw-button
                   layout="flat"
-                  (click)="onDeleteSubmit(classRoom.value.id)"
+                  [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
+                  (confirm)="onDeleteSubmit(classRoom.value.id)"
                 >
                   <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>

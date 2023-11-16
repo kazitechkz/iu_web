@@ -14,7 +14,7 @@ export class GetAttemptByPromoCodeService {
   private _http = inject(HttpClient)
 
   getAttemptByPromoCode(promoCode:string): Observable<ResponseData<AttemptModel>> {
-    return this._http.get<ResponseData<AttemptModel>>(environment.baseUrl + APIRoutesName.getAttemptByPromoCode + "/" + promoCode.toString());
+    return this._http.get<ResponseData<AttemptModel>>(environment.baseUrl + APIRoutesName.getAttemptByPromoCode + "/" + promoCode);
   }
 
 }

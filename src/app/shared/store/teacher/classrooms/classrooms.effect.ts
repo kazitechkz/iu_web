@@ -9,6 +9,9 @@ import {
   createClassroomsGroupAction,
   createClassroomsGroupActionFailure,
   createClassroomsGroupActionSuccess,
+  deleteClassroomByIDAction,
+  deleteClassroomByIDActionFailure,
+  deleteClassroomByIDActionSuccess,
   deleteClassroomsGroupAction,
   deleteClassroomsGroupActionFailure,
   deleteClassroomsGroupActionSuccess,
@@ -116,6 +119,25 @@ export class ClassroomsGroupEffect {
                     ),
                     catchError((_error) =>
                         of(deleteClassroomsGroupActionFailure({errors: _error}))
+                    )
+                )
+            }),
+        ),
+    );
+
+    _onDeleteClassroomByID = createEffect((): any =>
+        this.action$.pipe(
+            ofType(deleteClassroomByIDAction),
+            switchMap((action) => {
+                return this._service.deleteClassroomByID(action.id).pipe(
+                    switchMap(data => {
+                            return of(
+                                deleteClassroomByIDActionSuccess({responseData: data}),
+                            )
+                        }
+                    ),
+                    catchError((_error) =>
+                        of(deleteClassroomByIDActionFailure({errors: _error}))
                     )
                 )
             }),
