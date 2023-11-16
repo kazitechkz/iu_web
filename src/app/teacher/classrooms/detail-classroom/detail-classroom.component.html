@@ -1,6 +1,6 @@
 <div class="w-full flex justify-end items-center" *ngIf="checkedList.length > 0">
   <button
-    class="mr-5 bg-amber-400"
+    class="mr-5 !bg-[#4DC591] text-white"
     tw-button
     layout="flat"
     (click)="submit()"
@@ -14,7 +14,7 @@
     <i class="fa fa-cube ml-3" aria-hidden="true"></i>
   </button>
   <button
-    class="bg-amber-400"
+    class="!bg-[#4DC591] text-white"
     tw-button
     layout="flat"
   >
@@ -48,7 +48,7 @@
                 class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
               <td class="whitespace-nowrap px-6 py-4 font-medium">
                 <div class="flex items-center mb-4">
-                  <input type="checkbox" [checked]="isAllChecked" [value]="item.value.user.email" (change)="changeCheckbox($event, false)" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 focus:ring-2">
+                  <input type="checkbox" [checked]="isAllChecked" [value]="item.value.user.id" (change)="changeCheckbox($event, false)" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 focus:ring-2">
                 </div>
               </td>
               <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
@@ -92,32 +92,70 @@
 
 <div class="py-4" *ngIf="isSingleTest">
   <div class="my-2 flex justify-between items-center">
-    <select data-te-select-init>
-      <option (click)="getCategories(0)">{{'SELECT_SUBJECT' | translate}}</option>
-      <option (click)="getCategories(subject.id)" [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': translate.currentLang}}</option>
-    </select>
     <div class="flex">
-      <span>
-        {{basket.singleQ}} / {{basket.contextQ}} / {{basket.multiQ}}
-        <i class="fa fa-basket-shopping ml-3"></i>
-      </span>
+      <select data-te-select-init class="mx-2">
+        <option (click)="getCategories(0)">{{'SELECT_SUBJECT' | translate}}</option>
+        <option (click)="getCategories(subject.id)" [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': translate.currentLang}}</option>
+      </select>
+      <select data-te-select-init *ngIf="isShowCategoryContent">
+        <option (click)="getCategories(subjectLocaleID, 1, true)">
+          Қазақ тілі
+        </option>
+        <option (click)="getCategories(subjectLocaleID, 2, true)">
+          Русский язык
+        </option>
+      </select>
     </div>
+
+    <form [formGroup]="attempt_settings_form" (ngSubmit)="sendQuery()">
+      <div class="my-2 flex items-center">
+        <div class="flex mx-2">
+          <input [formControlName]="'time'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-2 !w-full range-slider__range">
+          <span class="range-slider__value !w-[80px]">(минут)</span>
+        </div>
+        <div class="flex mx-2">
+          <input
+            class="mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-primary checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:bg-primary checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:bg-neutral-600 dark:after:bg-neutral-400 dark:checked:bg-primary dark:checked:after:bg-primary dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca]"
+            type="checkbox"
+            [formControlName]="'hidden_fields'"
+            role="switch"
+            id="flexSwitchCheckDefault" />
+          <label
+            class="inline-block pl-[0.15rem] hover:cursor-pointer"
+            for="flexSwitchCheckDefault"
+          >{{'PROMPT' | translate}}</label
+          >
+        </div>
+        <span>
+        {{basket.singleQ}} / {{basket.contextQ}} / {{basket.multiQ}}
+          <i class="fa fa-basket-shopping ml-3"></i>
+      </span>
+        <button
+          type="submit"
+          class="ml-5 !bg-[#4DC591] text-white"
+          tw-button
+          layout="flat"
+        >
+          {{'SEND_BUTTON' | translate}}
+        </button>
+      </div>
+    </form>
   </div>
   <div class="my-2" *ngIf="isShowCategoryContent">
     <div class="flex">
-      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
-        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <div class="overflow-x-auto w-full">
+        <div class="inline-block min-w-full py-2">
           <div class="overflow-hidden">
             <form>
               <div *ngFor="let cat of categories"
-                class="block w-full rounded-lg bg-[#FF7648] text-left shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-                <div class="p-6 my-2 flex justify-between">
+                class="block w-full rounded-lg bg-[#9295A3] text-left shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+                <div class="p-3 my-2 flex justify-between">
                   <div class="flex items-center justify-between">
                     <p class="text-base text-white">
                       {{cat | globalTranslate: 'title': translate.currentLang}}
                     </p>
                   </div>
-                  <button (click)="getSubCategories(cat.id)" class="rounded-full border ml-auto w-[20px] h-[20px] flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
+                  <button (click)="getSubCategories(cat.id)" class="rounded-full border ml-auto w-[30px] h-[30px] flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
                     <i class="fa fa-arrow-down" *ngIf="subCategoryContentID != cat.id"></i>
                     <i class="fa fa-arrow-up" *ngIf="subCategoryContentID == cat.id"></i>
                   </button>
@@ -132,15 +170,15 @@
                     </button>
                     <form [formGroup]="category_form" (ngSubmit)="categoryFormSubmit(cat)">
                       <div class="ml-2 flex justify-between" *ngIf="isSelectAllCategoryID == cat.id">
-                        <div *ngIf="cat.s_questions_count != 0">
+                        <div>
                           <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="range-slider__range">
                           <span class="range-slider__value">{{cat.s_questions_count}}</span>
                         </div>
-                        <div *ngIf="cat.c_questions_count != 0">
+                        <div>
                           <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="range-slider__range">
                           <span class="range-slider__value">{{cat.c_questions_count}}</span>
                         </div>
-                        <div *ngIf="cat.m_questions_count != 0">
+                        <div>
                           <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="range-slider__range">
                           <span class="range-slider__value">{{cat.m_questions_count}}</span>
                         </div>
@@ -153,8 +191,8 @@
 
                   </div>
                   <div class="px-3 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8 py-3" *ngIf="isSelectAllCategoryID != cat.id">
-                    <div *ngFor="let subCat of subCategories"
-                         class="group relative shadow cursor-pointer bg-white">
+                    <div *ngFor="let subCat of subCategories" (click)="dialog.getModal(String(subCat.id)).open()"
+                         class="group relative shadow cursor-pointer bg-white hover:bg-[#9BA1FF]/90" [ngClass]="checkExistSubCategoryFromSelectedList(cat.id, subCat.id) ? '!bg-[#9BA1FF]' : ''">
                       <div class="p-6 my-2 flex justify-between">
                         <div class="flex items-center">
                           <p class="text-base text-black">
@@ -162,6 +200,30 @@
                           </p>
                         </div>
                       </div>
+                      <ngx-smart-modal identifier="{{subCat.id}}">
+                        <div class="my-3 text-black">
+                          <form [formGroup]="sub_category_form" (ngSubmit)="subCategoryFormSubmit(subCat, cat)">
+                            <div class="">
+                              <div class="my-2">
+                                <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="range-slider__range">
+                                <span class="range-slider__value">{{subCat.s_questions_count}}</span>
+                              </div>
+                              <div class="my-2">
+                                <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="range-slider__range">
+                                <span class="range-slider__value">{{subCat.c_questions_count}}</span>
+                              </div>
+                              <div class="my-2">
+                                <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="range-slider__range">
+                                <span class="range-slider__value">{{subCat.m_questions_count}}</span>
+                              </div>
+                              <button [disabled]="!sub_category_form.valid" [ngClass]="sub_category_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" type="submit" class="px-2 border rounded-[7px] flex justify-center items-center text-black hover:border-[#3b71ca] hover:text-[#3b71ca]">
+                                {{'SAVE_BUTTON' | translate}}
+                                <i class="fa fa-check ml-3"></i>
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </ngx-smart-modal>
                     </div>
                   </div>
                 </div>

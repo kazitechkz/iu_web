@@ -63,6 +63,7 @@
   "SINGLE_QUESTIONS": "Одинарный ответ",
   "CONTEXT_QUESTIONS": "Контекстный вопрос",
   "MULTI_QUESTIONS": "Множественный ответ",
-  "WALLET": "Кошелек"
+  "WALLET": "Кошелек",
+  "PROMPT": "Подсказка"
 
 }

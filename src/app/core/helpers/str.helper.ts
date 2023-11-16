@@ -35,6 +35,14 @@ export class StrHelper {
     }
   }
 
+  public static getCurrentLangByLocaleID(localeID: number): string {
+    if (localeID == 1) {
+      return 'kk'
+    } else {
+      return 'ru'
+    }
+  }
+
   public static getProgressByCurrentLang(value: any, lang: string | null): number {
     if (lang != null) {
       if (lang == 'kk') {

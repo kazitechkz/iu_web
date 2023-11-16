@@ -13,8 +13,8 @@ import {APIRoutesName} from "../../../../core/constants/api-routes.constants";
 export class SubCategoryService {
   private _http = inject(HttpClient)
 
-  getSubCategories(categoryID: number): Observable<ResponseData<SubCategoryModel[]>> {
-    return this._http.get<ResponseData<SubCategoryModel[]>>(environment.baseUrl + APIRoutesName.getSubCategories + '/' + categoryID);
+  getSubCategories(categoryID: number, localeID?: number): Observable<ResponseData<SubCategoryModel[]>> {
+    return this._http.get<ResponseData<SubCategoryModel[]>>(environment.baseUrl + APIRoutesName.getSubCategories + '/' + categoryID + '/' + localeID);
   }
 
 }

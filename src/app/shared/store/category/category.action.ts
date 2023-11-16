@@ -3,7 +3,7 @@ import {ResponseData} from "../response_data";
 import {CategoryActionTypes} from "./category.action.types";
 import {CategoryModel} from "../../models/category.model";
 
-export const GetCategoriesAction = createAction(CategoryActionTypes.OnGetCategories, props<{subjectID: number}>());
+export const GetCategoriesAction = createAction(CategoryActionTypes.OnGetCategories, props<{subjectID: number, localeID?: number}>());
 export const GetCategoriesActionSuccess = createAction(CategoryActionTypes.OnGetCategoriesSuccess, props<{
   responseData: ResponseData<CategoryModel[]>
 }>());

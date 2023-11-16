@@ -63,5 +63,6 @@
   "SINGLE_QUESTIONS": "Бір жауапты",
   "CONTEXT_QUESTIONS": "Контекстті сұрақ",
   "MULTI_QUESTIONS": "Бірнеше жауапты",
-  "WALLET": "ӘМИЯН"
+  "WALLET": "ӘМИЯН",
+  "PROMPT": "Кеңес"
 }

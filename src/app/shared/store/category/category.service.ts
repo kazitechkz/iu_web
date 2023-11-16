@@ -15,8 +15,8 @@ import {CategoryModel} from "../../models/category.model";
 export class CategoryService {
   private _http = inject(HttpClient)
 
-  getCategories(subjectID: number): Observable<ResponseData<CategoryModel[]>> {
-    return this._http.get<ResponseData<CategoryModel[]>>(environment.baseUrl + APIRoutesName.getCategories + '/' + subjectID);
+  getCategories(subjectID: number, localeID?: number): Observable<ResponseData<CategoryModel[]>> {
+    return this._http.get<ResponseData<CategoryModel[]>>(environment.baseUrl + APIRoutesName.getCategories + '/' + subjectID + '/' + localeID);
   }
 
 }

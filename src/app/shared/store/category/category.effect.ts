@@ -15,7 +15,7 @@ export class CategoryEffect {
     this.action$.pipe(
       ofType(GetCategoriesAction),
       switchMap((action) => {
-        return this._service.getCategories(action.subjectID).pipe(
+        return this._service.getCategories(action.subjectID, action.localeID).pipe(
           switchMap(data => {
               return of(
                 GetCategoriesActionSuccess({responseData: data}),

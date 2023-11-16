@@ -3,7 +3,7 @@ import {SubCategoryActionTypes} from "./subCategory.action.types";
 import {ResponseData} from "../../response_data";
 import {SubCategoryModel} from "../../../models/subCategory.model";
 
-export const GetSubCategoriesAction = createAction(SubCategoryActionTypes.OnGetSubCategories, props<{categoryID: number}>());
+export const GetSubCategoriesAction = createAction(SubCategoryActionTypes.OnGetSubCategories, props<{categoryID: number, localeID?: number}>());
 export const GetSubCategoriesActionSuccess = createAction(SubCategoryActionTypes.OnGetSubCategoriesSuccess, props<{
   responseData: ResponseData<SubCategoryModel[]>
 }>());

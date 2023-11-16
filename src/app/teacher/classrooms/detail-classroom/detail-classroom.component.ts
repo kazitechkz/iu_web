@@ -24,7 +24,17 @@ import {GetSubCategoriesAction} from "../../../shared/store/category/subCategory
 import {SubCategoryModel} from "../../../shared/models/subCategory.model";
 import {getSubCategoriesState} from "../../../shared/store/category/subCategory/subCategory.selector";
 import {QuestionTypesWithCount} from "../../../shared/models/question.model";
-import {AttemptSettingsData} from "../../../shared/models/attemptSetting.model";
+import {AttemptSetting, AttemptSettingsData, Basket} from "../../../shared/models/attemptSetting.model";
+import {Locale} from "../../../shared/models/locale.model";
+import {json} from "@rxweb/reactive-form-validators";
+import {
+  CreateAttemptSettingsRequest
+} from "../../../shared/store/attemptSettings/createAttemptSettings/createAttemptSettings.request";
+import {createAttemptAction} from "../../../shared/store/attempt/createAttempt/createAttempt.action";
+import {
+  createAttemptSettingsAction
+} from "../../../shared/store/attemptSettings/createAttemptSettings/createAttemptSettings.action";
+import {TwNotification} from "ng-tw";
 
 @Component({
   selector: 'app-detail-classroom',
@@ -32,32 +42,45 @@ import {AttemptSettingsData} from "../../../shared/models/attemptSetting.model";
   styleUrls: ['./detail-classroom.component.scss']
 })
 export class DetailClassroomComponent implements OnInit {
+  isPrompt: boolean = false
+  localeID: number = 1
+  subjectLocaleID: number = 0
   isAllChecked: boolean = false
   isSingleTest: boolean = false
+  isSelectedSubCategory: number = 0
   subCategoryContentID: number = 0
   isShowCategoryContent: boolean = false
   isSelectAllCategoryID: number = 0
   public checkedList: any[] = []
+  public subCategoryIDSList: number[] = []
   public data: DetailClassroomModel[] = []
   public subjects: Subject[] = []
   public categories: CategoryModel[] = []
   public subCategories: SubCategoryModel[] = []
-  public basket: {
-    singleQ: number;
-    contextQ: number;
-    multiQ: number;
-    data: AttemptSettingsData;
-  } = {
+  public basket: Basket = {
     singleQ: 0,
     contextQ: 0,
     multiQ: 0,
     data: []
   };
-
+  attempt_settings_form: FormGroup = new FormGroup({
+    users: new FormControl(null, [Validators.required]),
+    time: new FormControl(60, [Validators.required]),
+    settings: new FormControl(null, [Validators.required]),
+    class_id: new FormControl(null, [Validators.required]),
+    locale_id: new FormControl(null, [Validators.required]),
+    subject_id: new FormControl(null, [Validators.required]),
+    hidden_fields: new FormControl(null, [Validators.required]),
+  })
   checkbox_form: FormGroup = new FormGroup({
     users: new FormControl([], [Validators.required])
   });
   category_form: FormGroup = new FormGroup({
+    s_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)]),
+    c_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)]),
+    m_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)])
+  })
+  sub_category_form: FormGroup = new FormGroup({
     s_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)]),
     c_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)]),
     m_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)])
@@ -69,9 +92,11 @@ export class DetailClassroomComponent implements OnInit {
   destroyRef = inject(DestroyRef);
   private _store = inject(Store)
   dialog = inject(NgxSmartModalService)
+  private _notification = inject(TwNotification)
   ngOnInit(): void {
     this.getDetailClassroom()
   }
+
   getDetailClassroom() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(detailClassroomAction({id: params['id']}))
@@ -87,16 +112,17 @@ export class DetailClassroomComponent implements OnInit {
       this.isSelectAllCategoryID = 0
       if (this.initialData.hasOwnProperty(categoryID)) {
         delete this.initialData[categoryID]
+        this.isSelectedSubCategory = 0
+        this.updateBasket()
       }
       this.category_form.reset()
-      console.log(this.initialData)
     } else {
       this.isSelectAllCategoryID = categoryID
     }
   }
 
   categoryFormSubmit(category: CategoryModel) {
-    const categoryID:number = category.id
+    const categoryID: number = category.id
     let formData = this.category_form.getRawValue() as QuestionTypesWithCount
     if (formData.s_questions_count > category.s_questions_count) {
       formData.s_questions_count = category.s_questions_count
@@ -117,64 +143,156 @@ export class DetailClassroomComponent implements OnInit {
       formData.m_questions_count = 0
     }
     let newData = {
-      [categoryID] : {
+      [categoryID]: {
         c_questions: formData.c_questions_count,
         s_questions: formData.s_questions_count,
         m_questions: formData.m_questions_count
       }
     }
-    this.initialData = {...this.initialData,...newData}
+    this.initialData = {...this.initialData, ...newData}
     this.category_form.reset()
     this.subCategoryContentID = 0
     this.updateBasket()
   }
-  submit(){
+
+  subCategoryFormSubmit(subCategory: SubCategoryModel, category: CategoryModel) {
+    const subCategoryID: number = subCategory.id
+    const categoryID: number = category.id
+    let formData = this.sub_category_form.getRawValue() as QuestionTypesWithCount
+    if (formData.s_questions_count > subCategory.s_questions_count) {
+      formData.s_questions_count = subCategory.s_questions_count
+    }
+    if (formData.c_questions_count > subCategory.c_questions_count) {
+      formData.c_questions_count = subCategory.c_questions_count
+    }
+    if (formData.m_questions_count > subCategory.m_questions_count) {
+      formData.m_questions_count = subCategory.m_questions_count
+    }
+    if (formData.s_questions_count < 0) {
+      formData.s_questions_count = 0
+    }
+    if (formData.c_questions_count < 0) {
+      formData.c_questions_count = 0
+    }
+    if (formData.m_questions_count < 0) {
+      formData.m_questions_count = 0
+    }
+
+    if (this.initialData[categoryID] !== undefined) {
+      this.initialData[categoryID].s_questions = 0
+      this.initialData[categoryID].c_questions = 0
+      this.initialData[categoryID].m_questions = 0
+      this.initialData[categoryID].sub_category_ids = {
+        ...this.initialData[categoryID].sub_category_ids, ...{
+          [subCategoryID]: {
+            c_questions: formData.c_questions_count,
+            s_questions: formData.s_questions_count,
+            m_questions: formData.m_questions_count
+          }
+        }
+      }
+    } else {
+      let newData = {
+        [categoryID]: {
+          s_questions: 0,
+          c_questions: 0,
+          m_questions: 0,
+          sub_category_ids: {
+            [subCategoryID]: {
+              c_questions: formData.c_questions_count,
+              s_questions: formData.s_questions_count,
+              m_questions: formData.m_questions_count
+            }
+          }
+        }
+      }
+      this.initialData = {...this.initialData, ...newData}
+    }
+    this.dialog.closeLatestModal()
+    this.sub_category_form.reset()
+    this.updateBasket()
+
+  }
+
+  submit() {
     this.isSingleTest = true
     this.getSubjects()
   }
+  sendQuery() {
+    if (this.attempt_settings_form.get('hidden_fields')?.value) {
+      this.attempt_settings_form.patchValue({
+        hidden_fields: 'prompt'
+      })
+    } else {
+      this.attempt_settings_form.patchValue({
+        hidden_fields: null
+      })
+    }
+    this.attempt_settings_form.patchValue({
+      settings: JSON.stringify(this.initialData),
+      locale_id: this.localeID,
+      subject_id: this.subjectLocaleID,
+      users: this.checkbox_form.get('users')?.value
+    })
+    let formData = this.attempt_settings_form.getRawValue() as CreateAttemptSettingsRequest
+    this._store.dispatch(createAttemptSettingsAction({requestData: formData}))
+    this._notification.show({ type: 'danger', title: 'Error', text: 'LALALA' })
+  }
+
   getSubjects() {
     this._store.dispatch(subjectGetAction());
-    this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+    this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       // @ts-ignore
       this.subjects = item.data
     })
   }
-  getCategories(subjectID: number) {
+
+  getCategories(subjectID: number, localeID: number = 1, isLanguageSelect: boolean = false) {
     if (subjectID == 0) {
       this.isShowCategoryContent = false
     } else {
+      if (isLanguageSelect) {
+        this.subCategoryContentID = 0
+      }
+      this.localeID = localeID
+      this.translate.onLangChange(StrHelper.getCurrentLangByLocaleID(localeID))
+      this.subjectLocaleID = subjectID
       this.isShowCategoryContent = true
-      this._store.dispatch(GetCategoriesAction({subjectID: subjectID}));
-      this._store.select(getCategoriesState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      this._store.dispatch(GetCategoriesAction({subjectID: subjectID, localeID: localeID}));
+      this._store.select(getCategoriesState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         // @ts-ignore
         this.categories = item.data
       })
     }
+    this.initialData = []
+    this.updateBasket()
   }
+
   getSubCategories(categoryID: number) {
     if (this.subCategoryContentID == categoryID) {
       this.subCategoryContentID = 0
     } else {
       this.subCategoryContentID = categoryID
     }
-    this._store.dispatch(GetSubCategoriesAction({categoryID: categoryID}));
-    this._store.select(getSubCategoriesState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=> {
+    this._store.dispatch(GetSubCategoriesAction({categoryID: categoryID, localeID: this.localeID}));
+    this._store.select(getSubCategoriesState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       // @ts-ignore
       this.subCategories = item.data
     })
   }
+
   changeCheckbox(event: any, isAll: boolean) {
     if (isAll) {
       if (event.target.checked) {
         this.isAllChecked = true
         this.data.map(arr => {
-          if(this.checkedList.includes(arr.user.email)) {
+          if (this.checkedList.includes(arr.user.id)) {
             this.checkedList = this.checkedList.filter((arrChild) => {
-              return arrChild !== arr.user.email
+              return arrChild !== arr.user.id
             })
-            this.checkedList.push(arr.user.email)
+            this.checkedList.push(arr.user.id)
           } else {
-            this.checkedList.push(arr.user.email)
+            this.checkedList.push(arr.user.id)
           }
         })
       } else {
@@ -182,7 +300,7 @@ export class DetailClassroomComponent implements OnInit {
         this.checkedList = []
       }
     } else {
-      if(this.checkedList.includes(event.target.value)) {
+      if (this.checkedList.includes(event.target.value)) {
         this.checkedList = this.checkedList.filter((arr) => {
           return arr !== event.target.value
         })
@@ -195,16 +313,43 @@ export class DetailClassroomComponent implements OnInit {
     })
   }
 
+  checkExistSubCategoryFromSelectedList(categoryID: number, subCategoryID: number): boolean {
+    if (this.initialData.hasOwnProperty(categoryID)) {
+      if (this.initialData[categoryID].sub_category_ids) {
+        //@ts-ignore
+        return this.initialData[categoryID].sub_category_ids.hasOwnProperty(subCategoryID);
+      } else {
+        return false
+      }
+    } else {
+      return false
+    }
+  }
   updateBasket() {
+    this.basket.singleQ = 0
+    this.basket.contextQ = 0
+    this.basket.multiQ = 0
     Object.entries(this.initialData).forEach(([key, value], index) => {
-      this.basket.singleQ += parseInt(String(value.s_questions))
-      this.basket.contextQ += parseInt(String(value.c_questions))
-      this.basket.multiQ += parseInt(String(value.m_questions))
+      this.basket.singleQ += value.s_questions ? parseInt(String(value.s_questions)) : 0
+      this.basket.contextQ += value.c_questions ? parseInt(String(value.c_questions)) : 0
+      this.basket.multiQ += value.m_questions ? parseInt(String(value.m_questions)) : 0
+      if (value.sub_category_ids) {
+        Object.entries(value.sub_category_ids).forEach(([sub_key, sub_value], index) => {
+          // @ts-ignore
+          this.basket.singleQ += sub_value.s_questions ? parseInt(String(sub_value.s_questions)) : 0
+          // @ts-ignore
+          this.basket.contextQ += sub_value.c_questions ? parseInt(String(sub_value.c_questions)) : 0
+          // @ts-ignore
+          this.basket.multiQ += sub_value.m_questions ? parseInt(String(sub_value.m_questions)) : 0
+        })
+      }
     });
   }
+
   protected readonly parseInt = parseInt;
   protected readonly StrHelper = StrHelper;
   protected readonly ColorConstants = ColorConstants;
   protected readonly RoutesName = RoutesName;
   protected readonly ImageHelper = ImageHelper;
+  protected readonly String = String;
 }
