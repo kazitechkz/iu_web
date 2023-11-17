@@ -144,6 +144,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
   }
 
   changeSubject(subject_id:any){
+    this.active_slider = 0;
     this.slickModal.slickGoTo(0);
     this.loading = true;
       subject_id = subject_id.target.value;

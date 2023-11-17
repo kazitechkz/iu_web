@@ -27,6 +27,15 @@ import {
 import {
   getAttemptByPromoCodeSelector
 } from "../../../shared/store/attempt/getAttemptByPromoCode/getAttemptByPromoCode.selector";
+import {
+  CreateAttemptSettingsRequest
+} from "../../../shared/store/attemptSettings/createAttemptSettings/createAttemptSettings.request";
+import {
+  createAttemptSettingsAction
+} from "../../../shared/store/attemptSettings/createAttemptSettings/createAttemptSettings.action";
+import {
+  createAttemptSettingsSelector
+} from "../../../shared/store/attemptSettings/createAttemptSettings/createAttemptSettings.selector";
 
 @Component({
   selector: 'app-customizable-unt',
@@ -104,6 +113,27 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
         this.subjects = item.data;
       }
     })
+  }
+
+  sendQuery() {
+    if (this.attempt_settings_form.get('hidden_fields')?.value) {
+      this.attempt_settings_form.patchValue({
+        hidden_fields: null
+      })
+    } else {
+      this.attempt_settings_form.patchValue({
+        hidden_fields: 'prompt'
+      })
+    }
+    if (this.attempt_settings_form.valid) {
+      let formData = this.attempt_settings_form.getRawValue() as CreateAttemptSettingsRequest
+      this._store.dispatch(createAttemptSettingsAction({requestData: formData}));
+      this._store.select(createAttemptSettingsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+        if(item.data){
+          this.onPassByPromo(item.data.promo_code);
+        }
+      })
+    }
   }
 
 

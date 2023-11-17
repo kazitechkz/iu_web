@@ -4,17 +4,30 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'mathjaxTransform'
 })
 export class MathJaxPipe implements PipeTransform {
-  transform(value: string, args?: any): string {
+  transform(value: string|null|undefined, katex:boolean = false): string {
+    if(value){
+      value = value.replaceAll("<pre>", "$$")
+      value = value.replaceAll("</pre>", "$$")
+      value = value.replaceAll("<br>", "")
+      value = value.replaceAll("</br>", "")
+      if(katex){
+        value = this.getStaticKatex(value);
+      }
+      value = value.replaceAll("width=\"100%\"", "")
+    }
+    else{
+      value = "";
+    }
 
-    value = value.replaceAll("<pre>", "$$")
-    value = value.replaceAll("</pre>", "$$")
-    value = value.replaceAll("<br>", "")
-    value = value.replaceAll("</br>", "")
+    return value;
+  }
+
+  private  getStaticKatex(value:string){
     value = value.replaceAll("\\left{\\", "")
     value = value.replaceAll("\\left", "")
     value = value.replaceAll("{\\begin", "\\begin")
+    value = value.replaceAll("{\\\\begin/g", "\\begin")
     value = value.replaceAll("\\right", "")
-    value = value.replaceAll("width=\"100%\"", "")
     return value;
   }
 }
