@@ -18,7 +18,7 @@ export class FinishAttemptEffect {
       switchMap((action) => {
         return this._service.finishAttempt(action.requestData).pipe(
           switchMap(data => {
-              this._route.navigate([RoutesName.resultUnt + "/" + data.data]).then(r => true);
+              this._route.navigate([RoutesName.resultAttempt + "/" + data.data]).then(r => true);
               return of(
                   finishAttemptActionSuccess({responseData: data}),
               )

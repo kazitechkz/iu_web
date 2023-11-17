@@ -117,7 +117,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     this._store.select(answerSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         if(item.data.is_finished === true){
-         this._router.navigate([RoutesName.resultUnt + "/" + this.attempt.attempt_id]).then(r => true);
+         this._router.navigate([RoutesName.resultAttempt + "/" + this.attempt.attempt_id]).then(r => true);
         }
       }
     });

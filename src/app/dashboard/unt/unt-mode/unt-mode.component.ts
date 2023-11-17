@@ -4,10 +4,11 @@ import {
   faBook,
   faBullseye,
   faCircleQuestion,
-  faGraduationCap,
+  faGraduationCap, faLanguage,
   faStar
 } from "@fortawesome/free-solid-svg-icons";
 import {RoutesName} from "../../../core/constants/routes.constants";
+import {ImageHelper} from "../../../core/helpers/image.helper";
 
 @Component({
   selector: 'app-unt-mode',
@@ -23,4 +24,6 @@ export class UntModeComponent {
   protected readonly RoutesName = RoutesName;
   protected readonly faArrowRightArrowLeft = faArrowRightArrowLeft;
   protected readonly faGraduationCap = faGraduationCap;
+  protected readonly ImageHelper = ImageHelper;
+  protected readonly faLanguage = faLanguage;
 }

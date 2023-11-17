@@ -1,115 +1,205 @@
-<div class="container mx-auto min-h-[100vh] flex  items-center">
-
-  <div class="grid grid-cols-12 w-full">
-
-    <div [routerLink]="'/'+[RoutesName.passUntSingle]"  class="col-span-12 xl:col-span-6 my-2  xl:mx-2 md:p-3 flex justify-center cursor-pointer">
-      <div class="main-secondary-bg grid w-full lg:w-10/12 xl:w-12/12 2xl:w-9/12 shadow-2xl rounded-2xl p-3 ">
-        <div class=" text-center my-4">
-          <p class="text-lg md:text-2xl text-white font-bold"> Тестирование выбранного предмета</p>
-        </div>
-        <div class="relative text-right xl:min-h-[500px] xl:grid xl:items-center xl:justify-center">
-          <div class="right-0 inline-block  justify-end my-5 hidden md:flex">
-            <div class="bubble bubble-bottom-left text-white font-bold italic w-8/12 md:w-6/12 text-sm" contenteditable>Я не боюсь того кто знает все 16 предметов, я боюсь того кто проходит 1 предмет 10000 раз</div>
-          </div>
-          <div class="flex justify-center my-2">
-            <img class="max-w-[80%] md:max-w-[300px]" src="assets/images/single-mode.png"/>
+<div class="container mx-auto">
+  <div class="grid grid-cols-12 gap-3 w-full">
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6 2xl:col-span-4 shadow-2xl rounded-2xl bg-white my-2 p-3 border-solid border-2 border-[#4DC591] cursor-pointer">
+      <div class="card-unt-mode px-3 py-2 ">
+        <div class="ml-20 h-[130px]">
+          <div class="bubble-2 bubble-bottom-left-2 text-white font-bold italic w-8/12 md:w-6/12 text-sm">
+            Хочешь гранта готовься к ЕНТ
           </div>
         </div>
-        <div class="grid grid-cols-12 p-4">
-          <div class="col-span-12 md:col-span-6 my-2">
-            <span class="text-sm text-white flex">
-              <fa-icon [icon]="faBullseye" class="mx-2"></fa-icon>
-              <p>Для тех кто нацелен на определенный предмет</p>
-            </span>
-          </div>
-          <div class="col-span-12 md:col-span-6 my-2">
-            <span class="text-sm text-white flex">
-              <fa-icon [icon]="faBook" class="mx-2"></fa-icon>
-              <p>Широкий выбор из 16 предметов</p>
-            </span>
-          </div>
-          <div class="col-span-12 md:col-span-6 my-2">
-            <span class="text-sm text-white flex">
-              <fa-icon [icon]="faStar" class="mx-2"></fa-icon>
-              <p>Работа над слабыми местами</p>
-            </span>
-          </div>
-          <div class="col-span-12 md:col-span-6 my-2">
-            <span class="text-sm text-white flex">
-              <fa-icon [icon]="faCircleQuestion" class="mx-2"></fa-icon>
-              <p>База из более чем 100к вопросов</p>
-            </span>
-          </div>
+        <div class="header-image bg-white">
+          <div class="rounded-xl h-24 w-24 bg-center bg-no-repeat bg-contain bg-[url('assets/images/many-mode.png')]"></div>
         </div>
-        <div class="text-center flex justify-center items-end">
-          <a [routerLink]="'/'+[RoutesName.passUntSingle]" class="focus:outline-none
-          inline-block my-2
-          text-white bg-[#ffa19b]
-          cursor-pointer
-          hover:!bg-[#eee]
-          font-bold
-          rounded-lg text-md md:text-lg px-5 py-2.5 mb-2">
-            🧠 Одна дисциплина, одна страсть
-          </a>
+        <div class="header-title my-5">
+          <p class="text-md lg:text-lg xl:text-xl font-bold uppercase">
+            Для тех кто хочет полноценно подготовиться к <b class="main-green-color">ЕНТ</b>
+          </p>
+        </div>
+        <div class="header-body">
+           <div class="flex items-center my-3">
+             <span class="h-8 w-8 rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faGraduationCap"></fa-icon>
+             </span>
+              <p>Полноценная сдача ЕНТ</p>
+           </div>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faBook"></fa-icon>
+             </span>
+            <p>Широкий выбор из 16 предметов</p>
+          </div>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faGraduationCap"></fa-icon>
+             </span>
+            <p>Работа над ошибками, подсказки и решения</p>
+          </div>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faLanguage"></fa-icon>
+             </span>
+            <p>Поддержка казахского и русских языков</p>
+          </div>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faStar"></fa-icon>
+             </span>
+            <p>Анализ слабых мест</p>
+          </div>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faCircleQuestion"></fa-icon>
+             </span>
+            <p>Актуальная База из более чем 1.000.000 вопросов</p>
+          </div>
+          <div class="text-center  flex justify-center items-end">
+              <a [routerLink]="'/'+[RoutesName.passUnt]" class="focus:outline-none
+                   inline-block my-2
+                   text-white main-green-bg
+                   cursor-pointer
+                   hover:!bg-green-700
+                   font-bold
+                   rounded-2xl text-md md:text-lg px-5 py-2.5 mb-2">
+               🏆 Сдать ЕНТ!
+             </a>
+          </div>
         </div>
       </div>
     </div>
-
-
-    <div [routerLink]="'/'+[RoutesName.passUnt]" class="col-span-12 xl:col-span-6 my-2  xl:mx-2 md:p-3 flex justify-center cursor-pointer">
-      <div class="main-green-bg grid w-full lg:w-10/12 xl:w-12/12 2xl:w-9/12 shadow-2xl rounded-2xl p-3 ">
-        <div class=" text-center my-4">
-          <p class="text-lg md:text-2xl text-white font-bold">Полное тестировние</p>
-        </div>
-        <div class="relative text-right xl:min-h-[500px] xl:grid xl:items-center xl:justify-center">
-          <div class="right-0 inline-block  justify-end my-5 hidden md:flex">
-            <div class="bubble-2 bubble-bottom-left-2 text-white font-bold italic w-8/12 md:w-6/12 text-sm" contenteditable>
-              Хочешь гранта готовься к ЕНТ
-            </div>
-          </div>
-          <div class="flex justify-center my-2">
-            <img class="max-w-[80%] md:max-w-[300px]" src="assets/images/many-mode.png"/>
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6 2xl:col-span-4 shadow-2xl rounded-2xl bg-white my-2 p-3 border-solid border-2 border-[#FF7648] cursor-pointer">
+      <div class="card-unt-mode px-3 py-2 ">
+        <div class="ml-20 h-[130px]">
+          <div class="bubble bubble-bottom-left text-white font-bold italic w-full text-sm">
+            Я не боюсь того кто знает все 16 предметов, я боюсь того кто проходит 1 предмет 10000 раз
           </div>
         </div>
-        <div class="grid grid-cols-12 p-4">
-          <div class="col-span-12 md:col-span-6 my-2">
-            <span class="text-sm text-white flex">
-              <fa-icon [icon]="faGraduationCap" class="mx-2"></fa-icon>
-              <p>Для тех кто хочет полноценно подготовиться к ЕНТ</p>
-            </span>
+        <div class="header-image bg-white">
+          <div class="rounded-xl h-24 w-24 bg-center bg-no-repeat bg-contain bg-[url('assets/images/single-mode.png')]"></div>
+        </div>
+        <div class="header-title my-5">
+          <p class="text-md lg:text-lg xl:text-xl font-bold uppercase">
+            Сдача одного из 16 предметов <b class="main-tertiary-color">ЕНТ</b>
+          </p>
+        </div>
+        <div class="header-body">
+           <div class="flex items-center my-3">
+             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faGraduationCap"></fa-icon>
+             </span>
+              <p>Целенаправленная тренировка 1 дисциплины ЕНТ</p>
+           </div>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faBook"></fa-icon>
+             </span>
+            <p>Широкий выбор из 16 предметов</p>
           </div>
-          <div class="col-span-12 md:col-span-6 my-2">
-            <span class="text-sm text-white flex">
-              <fa-icon [icon]="faBook" class="mx-2"></fa-icon>
-              <p>Широкий выбор из 16 предметов</p>
-            </span>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faGraduationCap"></fa-icon>
+             </span>
+            <p>Работа над ошибками, подсказки и решения</p>
           </div>
-          <div class="col-span-12 md:col-span-6 my-2">
-            <span class="text-sm text-white flex">
-              <fa-icon [icon]="faStar" class="mx-2"></fa-icon>
-              <p>Работа над слабыми местами</p>
-            </span>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faLanguage"></fa-icon>
+             </span>
+            <p>Поддержка казахского и русских языков</p>
           </div>
-          <div class="col-span-12 md:col-span-6 my-2">
-            <span class="text-sm text-white flex">
-              <fa-icon [icon]="faCircleQuestion" class="mx-2"></fa-icon>
-              <p>База из более чем 100к вопросов</p>
-            </span>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faStar"></fa-icon>
+             </span>
+            <p>Анализ слабых мест</p>
+          </div>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faCircleQuestion"></fa-icon>
+             </span>
+            <p>Актуальная База из более чем 1.000.000 вопросов</p>
+          </div>
+          <div class="text-center  flex justify-center items-end">
+              <a [routerLink]="'/'+[RoutesName.passUntSingle]" class="focus:outline-none
+                   inline-block my-2
+                   text-white main-tertiary-bg
+                   cursor-pointer
+                   hover:!bg-orange-700
+                   font-bold
+                   rounded-2xl text-md md:text-lg px-5 py-2.5 mb-2">
+                🧠 Одна дисциплина, одна страсть
+             </a>
           </div>
         </div>
-        <div class="text-center  flex justify-center items-end">
-          <a [routerLink]="'/'+[RoutesName.passUnt]" class="focus:outline-none
-          inline-block my-2
-          text-white main-tertiary-bg
-          cursor-pointer
-          hover:!bg-[#eee]
-          font-bold
-          rounded-lg text-md md:text-lg px-5 py-2.5 mb-2">
-            🏆 Место, где выигрывают гранты!
-          </a>
+      </div>
+    </div>
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6 2xl:col-span-4 shadow-2xl rounded-2xl bg-white my-2 p-3 border-solid border-2 border-[#9BA1FF] cursor-pointer">
+      <div class="card-unt-mode px-3 py-2 ">
+        <div class="ml-20 h-[130px]">
+          <div class="bubble-3 bubble-bottom-left-3 text-white font-bold italic w-full text-sm">
+            Пора укрепить слабые связки и подтянуть слабые темы
+          </div>
+        </div>
+        <div class="header-image bg-white">
+          <div class="rounded-xl h-24 w-24 bg-center bg-no-repeat bg-contain bg-[url('assets/images/thinking.png')]"></div>
+        </div>
+        <div class="header-title my-5">
+          <p class="text-md lg:text-lg xl:text-xl font-bold uppercase">
+            Сдача одного из 16 предметов <b class="main-tertiary-color">ЕНТ</b>
+          </p>
+        </div>
+        <div class="header-body">
+           <div class="flex items-center my-3">
+             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faGraduationCap"></fa-icon>
+             </span>
+              <p>Целенаправленная тренировка 1 дисциплины ЕНТ</p>
+           </div>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faBook"></fa-icon>
+             </span>
+            <p>Широкий выбор из 16 предметов</p>
+          </div>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faGraduationCap"></fa-icon>
+             </span>
+            <p>Работа над ошибками, подсказки и решения</p>
+          </div>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faLanguage"></fa-icon>
+             </span>
+            <p>Поддержка казахского и русских языков</p>
+          </div>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faStar"></fa-icon>
+             </span>
+            <p>Анализ слабых мест</p>
+          </div>
+          <div class="flex  items-center my-3">
+             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faCircleQuestion"></fa-icon>
+             </span>
+            <p>Актуальная База из более чем 1.000.000 вопросов</p>
+          </div>
+          <div class="text-center  flex justify-center items-end">
+              <a [routerLink]="'/'+[RoutesName.passUntSingle]" class="focus:outline-none
+                   inline-block my-2
+                   text-white main-tertiary-bg
+                   cursor-pointer
+                   hover:!bg-orange-700
+                   font-bold
+                   rounded-2xl text-md md:text-lg px-5 py-2.5 mb-2">
+                🧠 Одна дисциплина, одна страсть
+             </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
+
+
+

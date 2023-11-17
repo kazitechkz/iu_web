@@ -14,6 +14,7 @@ export enum RoutesName {
     passUntSingle = "dashboard/single-subject-unt",
     passUntExam = "dashboard/pass-unt-exam",
     resultUnt = "dashboard/unt-result",
+    resultAttempt = "dashboard/result-attempt",
     stepRoute = "step",
     subStepRoute = "sub-step",
     subStepExam = "sub-step-exam",
