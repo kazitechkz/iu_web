@@ -11,6 +11,7 @@ export enum RoutesName {
     notFound = "not-found",
     untMode = "dashboard/unt-mode",
     passUnt = "dashboard/pass-unt",
+    passCustomizableUnt = "dashboard/customizable-unt",
     passUntSingle = "dashboard/single-subject-unt",
     passUntExam = "dashboard/pass-unt-exam",
     resultUnt = "dashboard/unt-result",
