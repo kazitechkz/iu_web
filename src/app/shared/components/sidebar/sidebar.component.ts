@@ -10,7 +10,7 @@ import {
   faChartLine,
   faUser,
   faF,
-  faSitemap, faWallet
+  faSitemap, faWallet, faRobot, faChess, faCartShopping, faHandshake, faMessage, faNewspaper, faUserCircle
 } from "@fortawesome/free-solid-svg-icons";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import {Router} from "@angular/router";
@@ -55,6 +55,11 @@ export class SidebarComponent implements OnInit {
       icon: faHome as IconProp
     },
     {
+      title: 'PROFILE',
+      path: StrHelper.getDashboardRouteName(RoutesName.myProfile),
+      icon: faUserCircle as IconProp
+    },
+    {
       title: 'STEPS',
       path: StrHelper.getDashboardRouteName(RoutesName.stepRoute),
       icon: faGraduationCap as IconProp
@@ -80,6 +85,16 @@ export class SidebarComponent implements OnInit {
       icon: faMale as IconProp
     },
     {
+      title: 'SHOP',
+      path: RoutesName.forumList,
+      icon: faCartShopping as IconProp
+    },
+    {
+      title: 'SUBSCRIPTION',
+      path: RoutesName.forumList,
+      icon: faHandshake as IconProp
+    },
+    {
       title: 'WALLET',
       path: RoutesName.walletIndex,
       icon: faWallet as IconProp
@@ -95,9 +110,30 @@ export class SidebarComponent implements OnInit {
       icon: faSitemap as IconProp
     },
     {
+      title: 'NEWS',
+      path: RoutesName.walletIndex,
+      icon: faNewspaper as IconProp
+    },
+    {
+      title: 'NOTIFICATION',
+      path: RoutesName.walletIndex,
+      icon: faMessage as IconProp
+    },
+    {
       title: 'FORUM',
       path: RoutesName.forumList,
       icon: faF as IconProp
-    }
+    },
+    {
+      title: 'AI_ADVISE',
+      path: RoutesName.forumList,
+      icon: faRobot as IconProp
+    },
+    {
+      title: 'GAMES',
+      path: RoutesName.forumList,
+      icon: faChess as IconProp
+    },
+
   ]
 }

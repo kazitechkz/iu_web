@@ -70,15 +70,11 @@
                     Вопрос № {{active_slider+1}}
                   </div>
                   <div class="p-5 text-black font-bold content-question">
-                    <markdown katex>
-                      {{question.text | mathjaxTransform}}
-                    </markdown>
+                    <div [mathjax]="question.text | mathjaxTransform"></div>
                   </div>
                   <section *ngIf="question.context">
                     <div class="p-5 text-black content-question" *ngIf="question.context.context">
-                      <markdown katex>
-                        {{question.context.context | mathjaxTransform}}
-                      </markdown>
+                      <div [mathjax]="question.context.context | mathjaxTransform"></div>
                     </div>
                   </section>
                   <!--    Answer Modal-->
@@ -89,9 +85,7 @@
                         [ngClass]="get_answer_style('a')"
                         class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                         *ngIf="questions[active_slider].answer_a">
-                        <markdown katex>
-                          {{question.answer_a | mathjaxTransform}}
-                        </markdown>
+                        <div [mathjax]="question.answer_a | mathjaxTransform"></div>
                       </div>
                     </section>
                     <!-- A Answer-->
@@ -101,9 +95,7 @@
                         [ngClass]="get_answer_style('b')"
                         class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                         *ngIf="questions[active_slider].answer_b">
-                        <markdown katex>
-                          {{question.answer_b | mathjaxTransform}}
-                        </markdown>
+                        <div [mathjax]="question.answer_b | mathjaxTransform"></div>
                       </div>
                     </section>
                     <!-- B Answer-->
@@ -113,9 +105,7 @@
                         [ngClass]="get_answer_style('c')"
                         class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                         *ngIf="questions[active_slider].answer_c">
-                        <markdown katex>
-                          {{question.answer_c | mathjaxTransform}}
-                        </markdown>
+                        <div [mathjax]="question.answer_c | mathjaxTransform"></div>
                       </div>
                     </section>
                     <!-- C Answer-->
@@ -125,9 +115,7 @@
                         [ngClass]="get_answer_style('d')"
                         class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                         *ngIf="questions[active_slider].answer_d">
-                        <markdown katex>
-                          {{question.answer_d | mathjaxTransform}}
-                        </markdown>
+                        <div [mathjax]="question.answer_d | mathjaxTransform"></div>
                       </div>
                     </section>
                     <!-- D Answer-->
@@ -138,9 +126,7 @@
 
                         class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                         *ngIf="questions[active_slider].answer_e">
-                        <markdown katex>
-                          {{question.answer_e | mathjaxTransform}}
-                        </markdown>
+                        <div [mathjax]="question.answer_e | mathjaxTransform"></div>
                       </div>
                     </section>
                     <!-- E Answer-->
@@ -150,9 +136,7 @@
                         [ngClass]="get_answer_style('f')"
                         class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                         *ngIf="questions[active_slider].answer_f">
-                        <markdown katex>
-                          {{question.answer_f | mathjaxTransform}}
-                        </markdown>
+                        <div [mathjax]="question.answer_f | mathjaxTransform"></div>
                       </div>
                     </section>
                     <!-- F Answer-->
@@ -162,7 +146,7 @@
                         [ngClass]="get_answer_style('g')"
                         class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                         *ngIf="questions[active_slider].answer_g">
-                        <div [innerHTML]="questions[active_slider].answer_g"></div>
+                        <div [mathjax]="question.answer_g | mathjaxTransform"></div>
                       </div>
                     </section>
                     <!-- G Answer-->
@@ -172,9 +156,7 @@
                         [ngClass]="get_answer_style('h')"
                         class="border border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex"
                         *ngIf="questions[active_slider].answer_h">
-                        <markdown katex>
-                          {{question.answer_h | mathjaxTransform}}
-                        </markdown>
+                        <div [mathjax]="question.answer_h | mathjaxTransform"></div>
                       </div>
                     </section>
                     <!-- H Answer-->
@@ -225,8 +207,7 @@
           </div>
         </div>
         <div class="my-2 p-4" *ngIf="questions[active_slider].explanation">
-          <markdown katex [data]="questions[active_slider].explanation | mathjaxTransform" *ngIf="questions[active_slider].explanation"></markdown>
-
+          <div [mathjax]="questions[active_slider].explanation | mathjaxTransform" *ngIf="questions[active_slider].explanation"></div>
         </div>
 
       </div>
@@ -298,13 +279,16 @@
         <fa-icon class="inline-block text-4xl text-yellow-300 my-3" [icon]="faLightbulb"></fa-icon>
       </div>
       <p class="text-lg md:text-3xl inline-block my-2">Подсказка к вопросу номер № {{active_slider + 1}}</p>
-      <markdown katex [data]="questions[active_slider].prompt | mathjaxTransform" *ngIf="questions[active_slider].prompt ; else no_prompt"></markdown>
-
+      <section *ngIf="questions[active_slider].prompt;else no_prompt">
+        <markdown katex [data]="questions[active_slider].prompt | mathjaxTransform:true" *ngIf="questions[active_slider].prompt ; else no_prompt"></markdown>
+      </section>
       <ng-template #no_prompt>
+        <br/>
         <span>
           <fa-icon class="text-yellow-300 mr-2" [icon]="faFaceFrownOpen"></fa-icon>
           К сожалению, подсказок нет
         </span>
+        <br/>
       </ng-template>
       <button (click)="closeModal('promptModal')" type="button" class="focus:outline-none my-4 font-bold text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-500">
         Понятно!

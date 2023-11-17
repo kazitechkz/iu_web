@@ -29,6 +29,7 @@ import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import {TwNotificationModule} from "ng-tw";
 import {QRCodeModule} from "angularx-qrcode";
 import {DpDatePickerModule} from "ng2-date-picker";
+import {MathjaxModule} from "mathjax-angular";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -56,6 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TwNotificationModule.forRoot(),
     NgChartsModule,
     QRCodeModule,
+    MathjaxModule.forRoot(/*Optional Config*/),
     DpDatePickerModule,
     NgxSpinnerModule.forRoot({type: 'mySpinner'}),
     TranslateModule.forRoot({

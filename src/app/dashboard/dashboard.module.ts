@@ -50,6 +50,7 @@ import { WalletDepositComponent } from './wallet/wallet-deposit/wallet-deposit.c
 import {QRCodeModule} from "angularx-qrcode";
 import { WalletStatisticsComponent } from './wallet/wallet-statistics/wallet-statistics.component';
 import {DpDatePickerModule} from "ng2-date-picker";
+import {MathjaxModule} from "mathjax-angular";
 
 
 @NgModule({
@@ -88,29 +89,30 @@ import {DpDatePickerModule} from "ng2-date-picker";
         WalletDepositComponent,
         WalletStatisticsComponent,
     ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    SharedModule,
-    FontAwesomeModule,
-    SlickCarouselModule,
-    Select2Module,
-    UiSwitchModule,
-    CountdownComponent,
-    MarkdownModule,
-    NgxSmartModalModule,
-    CoreModule,
-    YouTubePlayerModule,
-    NgxPaginationModule,
-    NgChartsModule,
-    CountdownModule,
-    CKEditorModule,
-    TwOptionModule,
-    TwSelectModule,
-    TwButtonModule,
-    QRCodeModule,
-    DpDatePickerModule,
-  ],
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        SharedModule,
+        FontAwesomeModule,
+        SlickCarouselModule,
+        Select2Module,
+        UiSwitchModule,
+        CountdownComponent,
+        MarkdownModule,
+        NgxSmartModalModule,
+        CoreModule,
+        YouTubePlayerModule,
+        NgxPaginationModule,
+        NgChartsModule,
+        CountdownModule,
+        CKEditorModule,
+        TwOptionModule,
+        TwSelectModule,
+        TwButtonModule,
+        QRCodeModule,
+        DpDatePickerModule,
+        MathjaxModule,
+    ],
   providers: [MathJaxPipe, TranslatePipe]
 })
 export class DashboardModule {

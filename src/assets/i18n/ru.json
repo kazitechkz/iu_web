@@ -72,6 +72,13 @@
   "TIME": "Время",
   "LANGUAGE": "Язык",
   "PREVIOUS_PAGINATION": "Пред",
-  "NEXT_PAGINATION": "След"
+  "NEXT_PAGINATION": "След",
+  "AI_ADVISE": "Спроси у AI",
+  "GAMES": "Игры",
+  "SHOP": "Магазин",
+  "NOTIFICATION": "Объявление",
+  "SUBSCRIPTION": "Подписки",
+  "NEWS": "Новости",
+  "PROFILE": "Профиль"
 
 }
