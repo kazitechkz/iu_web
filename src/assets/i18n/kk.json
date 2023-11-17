@@ -72,5 +72,12 @@
   "TIME": "Уақыты",
   "LANGUAGE": "Тіл",
   "PREVIOUS_PAGINATION": "Алдыңғы",
-  "NEXT_PAGINATION": "Келесі"
+  "NEXT_PAGINATION": "Келесі",
+  "AI_ADVISE": "AI Кенесі",
+  "GAMES": "Ойындар",
+  "SHOP": "Дүкен",
+  "NOTIFICATION": "Хабарландыру",
+  "SUBSCRIPTION": "Жазылым",
+  "NEWS": "Жаналықтар",
+  "PROFILE": "Профиль"
 }
