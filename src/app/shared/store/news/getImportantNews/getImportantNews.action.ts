@@ -5,7 +5,7 @@ import {Pagination} from "../../pagination";
 import {Forum} from "../../../models/forum.model";
 import {GetForumModel} from "./getForum.model";
 
-export const getForumAction = createAction(GetImportantNewsActionTypes.GetForum,props<{requestData:number}>());
+export const getImportantNewsAction = createAction(GetImportantNewsActionTypes.GetForum,props<{requestData:number}>());
 export const getForumActionSuccess = createAction(GetImportantNewsActionTypes.GetForumSuccess, props<{
   responseData: ResponseData<GetForumModel>
 }>());

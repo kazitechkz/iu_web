@@ -1,12 +1,12 @@
 import {createReducer, on} from "@ngrx/store";
 import {getImportantNewsState} from "./getImportantNews.state";
 import {
-  getForumAction, getForumActionSuccess, getForumActionFailure,
-} from "./getForum.action";
+  getImportantNewsAction, getForumActionSuccess, getForumActionFailure,
+} from "./getImportantNews.action";
 
 const _getForumReducer = createReducer(
   getImportantNewsState,
-  on(getForumAction, (state, action) => {
+  on(getImportantNewsAction, (state, action) => {
     return {
       ...state,
       data:null,
@@ -29,6 +29,6 @@ const _getForumReducer = createReducer(
   })
 );
 
-export function getForumReducer(state: any, action: any) {
+export function getImportantNewsReducer(state: any, action: any) {
   return _getForumReducer(state, action);
 }

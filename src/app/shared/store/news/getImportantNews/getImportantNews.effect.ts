@@ -3,18 +3,18 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {catchError, of, switchMap} from "rxjs";
 import {GetImportantNewsService} from "./getImportantNews.service";
 import {
-    getForumAction, getForumActionFailure, getForumActionSuccess
-} from "./getForum.action";
+    getImportantNewsAction, getForumActionFailure, getForumActionSuccess
+} from "./getImportantNews.action";
 
 @Injectable()
-export class GetForumEffect {
+export class GetImportantNewsEffect {
 
   private _service = inject(GetImportantNewsService);
   private action$ = inject(Actions);
 
   _onGetForum = createEffect((): any =>
     this.action$.pipe(
-      ofType(getForumAction),
+      ofType(getImportantNewsAction),
       switchMap((action) => {
         return this._service.getForumById(action.requestData).pipe(
           switchMap(data => {
