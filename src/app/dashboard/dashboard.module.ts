@@ -51,6 +51,7 @@ import {QRCodeModule} from "angularx-qrcode";
 import { WalletStatisticsComponent } from './wallet/wallet-statistics/wallet-statistics.component';
 import {DpDatePickerModule} from "ng2-date-picker";
 import {MathjaxModule} from "mathjax-angular";
+import { NewsListComponent } from './news/news-list/news-list.component';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import {MathjaxModule} from "mathjax-angular";
         WalletTransferComponent,
         WalletDepositComponent,
         WalletStatisticsComponent,
+        NewsListComponent,
     ],
     imports: [
         CommonModule,

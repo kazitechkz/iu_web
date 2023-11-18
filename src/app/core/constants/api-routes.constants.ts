@@ -64,5 +64,7 @@ export enum APIRoutesName {
     walletTransfer="wallet-transfer",
     walletStatistics="my-wallet-transaction",
     findUserByEmail="find-user-by-email",
+    getImportantNews="important-news",
+    getAllNews="all-news",
 
 }
