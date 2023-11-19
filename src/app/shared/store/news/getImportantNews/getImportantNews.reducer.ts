@@ -1,10 +1,10 @@
 import {createReducer, on} from "@ngrx/store";
 import {getImportantNewsState} from "./getImportantNews.state";
 import {
-  getImportantNewsAction, getForumActionSuccess, getForumActionFailure,
+  getImportantNewsAction, getImportantNewsActionSuccess, getImportantNewsActionFailure,
 } from "./getImportantNews.action";
 
-const _getForumReducer = createReducer(
+const _getImportantNewsReducer = createReducer(
   getImportantNewsState,
   on(getImportantNewsAction, (state, action) => {
     return {
@@ -12,7 +12,7 @@ const _getForumReducer = createReducer(
       data:null,
     }
   }),
-  on(getForumActionSuccess, (state, action) => {
+  on(getImportantNewsActionSuccess, (state, action) => {
     return {
       ...state,
       success: true,
@@ -20,7 +20,7 @@ const _getForumReducer = createReducer(
       data: action.responseData.data
     }
   }),
-  on(getForumActionFailure, (state, action) => {
+  on(getImportantNewsActionFailure, (state, action) => {
     return {
       ...state,
       success: false,
@@ -30,5 +30,5 @@ const _getForumReducer = createReducer(
 );
 
 export function getImportantNewsReducer(state: any, action: any) {
-  return _getForumReducer(state, action);
+  return _getImportantNewsReducer(state, action);
 }

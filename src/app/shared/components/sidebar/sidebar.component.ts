@@ -91,7 +91,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       title: 'SUBSCRIPTION',
-      path: RoutesName.forumList,
+      path: RoutesName.planContent,
       icon: faHandshake as IconProp
     },
     {
@@ -111,7 +111,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       title: 'NEWS',
-      path: RoutesName.walletIndex,
+      path: RoutesName.allNews,
       icon: faNewspaper as IconProp
     },
     {

@@ -66,5 +66,6 @@ export enum APIRoutesName {
     findUserByEmail="find-user-by-email",
     getImportantNews="important-news",
     getAllNews="all-news",
+    getSingleNews="single-news",
 
 }

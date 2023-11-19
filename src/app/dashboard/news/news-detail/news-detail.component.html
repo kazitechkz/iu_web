@@ -1,0 +1,24 @@
+<div class="container mx-auto">
+  <div class="grid grid-col-12 gap-3 my-5" *ngIf="news">
+    <div class="col-span-12"  >
+      <div class="min-h-[350px] lg:min-h-[550px] py-5 px-3 rounded-lg flex items-center bg-cover bg-center bg-fixed bg-no-repeat"
+           [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(news.image!.url) + ')'}">
+      </div>
+    </div>
+    <div class="col-span-12 text-black p-5">
+        <span class="block my-3 text-md lg:text-lg font-bold">
+            <fa-icon [icon]="faClock" class="mr-2"></fa-icon>{{moment(news.published_at).format("HH:mm DD/MM/YYYY")}}
+          </span>
+      <p class="inline-block my-3 text-lg lg:text-xl xl:text-3xl 2xl:text-5xl font-bold">
+        {{news.title}}
+      </p>
+      <p class="inline-block my-3 text-md md:text-lg lg:text-xl">
+        {{news.subtitle}}
+      </p>
+      <span class="block my-3 text-md lg:text-lg font-bold" *ngIf="news.user">
+            <fa-icon [icon]="faUser" class="mr-2"></fa-icon>{{news.user.name}}
+      </span>
+      <div class="my-3" [innerHTML]="news.description"></div>
+    </div>
+  </div>
+</div>

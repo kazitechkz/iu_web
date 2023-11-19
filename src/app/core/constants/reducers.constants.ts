@@ -74,6 +74,9 @@ import {myBalanceReducer} from "../../shared/store/wallet/myBalance/myBalance.re
 import {walletTransferReducer} from "../../shared/store/wallet/walletTransfer/walletTransfer.reducer";
 import {myWalletReducer} from "../../shared/store/wallet/myWallet/myWallet.reducer";
 import {walletStatisticsReducer} from "../../shared/store/wallet/walletStatistics/walletStatistics.reducer";
+import {getImportantNewsReducer} from "../../shared/store/news/getImportantNews/getImportantNews.reducer";
+import {allNewsReducer} from "../../shared/store/news/allNews/allNews.reducer";
+import {getSingleNewsReducer} from "../../shared/store/news/getSingleNews/getSingleNews.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -146,7 +149,10 @@ export const ReducersConstants = {
   findUserByEmail:findUserByEmailReducer,
   myBalance:myBalanceReducer,
   myWallet:myWalletReducer,
-  deleteClassroomByID: deleteClassroomByIDReducer
+  deleteClassroomByID: deleteClassroomByIDReducer,
+  getImportantNews:getImportantNewsReducer,
+  allNews:allNewsReducer,
+  getSingleNews:getSingleNewsReducer,
 
 }
 

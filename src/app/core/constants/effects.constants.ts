@@ -70,6 +70,9 @@ import {MyBalanceEffect} from "../../shared/store/wallet/myBalance/myBalance.eff
 import {FindUserByEmailEffect} from "../../shared/store/user/findUserByEmail/findUserByEmail.effect";
 import {MyWalletEffect} from "../../shared/store/wallet/myWallet/myWallet.effect";
 import {WalletStatisticsEffect} from "../../shared/store/wallet/walletStatistics/walletStatistics.effect";
+import {AllNewsEffect} from "../../shared/store/news/allNews/allNews.effect";
+import {GetImportantNewsEffect} from "../../shared/store/news/getImportantNews/getImportantNews.effect";
+import {GetSingleNewsEffect} from "../../shared/store/news/getSingleNews/getSingleNews.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -135,4 +138,7 @@ export const EffectsConstants = [
     FindUserByEmailEffect,
     MyWalletEffect,
     WalletStatisticsEffect,
+    GetImportantNewsEffect,
+    AllNewsEffect,
+    GetSingleNewsEffect,
 ]

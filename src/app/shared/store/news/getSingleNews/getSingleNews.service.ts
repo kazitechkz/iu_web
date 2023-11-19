@@ -10,11 +10,11 @@ import {News} from "../../../models/news.model";
   providedIn: 'root'
 })
 
-export class GetImportantNewsService {
+export class GetSingleNewsService {
   private _http = inject(HttpClient)
 
-  getImportantNews(): Observable<ResponseData<News>> {
-    return this._http.get<ResponseData<News>>(environment.baseUrl + APIRoutesName.getImportantNews);
+  getSingleNews(requestData:any): Observable<ResponseData<News>> {
+    return this._http.get<ResponseData<News>>(environment.baseUrl + APIRoutesName.getSingleNews + '/' +requestData.toString());
   }
 
 }

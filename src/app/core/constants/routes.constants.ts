@@ -35,4 +35,8 @@ export enum RoutesName {
     walletTransfer = "dashboard/wallet-transfer",
     walletDeposit = "dashboard/wallet-deposit",
     walletStatistics = "dashboard/wallet-statistics",
+    allNews = "dashboard/news",
+    newsDetail = "dashboard/news-detail",
+    planContent = "dashboard/plan-content",
+    planUNT = "dashboard/plan-unt",
 }

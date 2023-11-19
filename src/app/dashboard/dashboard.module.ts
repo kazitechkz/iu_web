@@ -52,6 +52,7 @@ import { WalletStatisticsComponent } from './wallet/wallet-statistics/wallet-sta
 import {DpDatePickerModule} from "ng2-date-picker";
 import {MathjaxModule} from "mathjax-angular";
 import { NewsListComponent } from './news/news-list/news-list.component';
+import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 
 
 @NgModule({
@@ -90,6 +91,7 @@ import { NewsListComponent } from './news/news-list/news-list.component';
         WalletDepositComponent,
         WalletStatisticsComponent,
         NewsListComponent,
+        NewsDetailComponent,
     ],
     imports: [
         CommonModule,

@@ -33,6 +33,8 @@ import {WalletIndexComponent} from "./wallet/wallet-index/wallet-index.component
 import {WalletTransferComponent} from "./wallet/wallet-transfer/wallet-transfer.component";
 import {WalletDepositComponent} from "./wallet/wallet-deposit/wallet-deposit.component";
 import {WalletStatisticsComponent} from "./wallet/wallet-statistics/wallet-statistics.component";
+import {NewsListComponent} from "./news/news-list/news-list.component";
+import {NewsDetailComponent} from "./news/news-detail/news-detail.component";
 
 
 const routes: Routes = [
@@ -156,6 +158,14 @@ const routes: Routes = [
       {
         path: 'wallet-statistics',
         component: WalletStatisticsComponent
+      },
+      {
+        path: 'news',
+        component: NewsListComponent
+      },
+      {
+        path: 'news-detail/:id',
+        component: NewsDetailComponent
       },
       {
         path: 'classrooms',
