@@ -30,6 +30,8 @@ import {TwNotificationModule} from "ng-tw";
 import {QRCodeModule} from "angularx-qrcode";
 import {DpDatePickerModule} from "ng2-date-picker";
 import {MathjaxModule} from "mathjax-angular";
+import {CalendarModule, DateAdapter} from "angular-calendar";
+import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -67,6 +69,10 @@ export function HttpLoaderFactory(http: HttpClient) {
         deps: [HttpClient]
       },
       defaultLanguage: 'ru'
+    }),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
     }),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()})
   ],
