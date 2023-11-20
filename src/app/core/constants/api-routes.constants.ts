@@ -20,6 +20,7 @@ export enum APIRoutesName {
     createAttempt = "attempt",
     createTournamentAttempt = "tournament-attempt",
     createAttemptSettings = "create-attempt-settings",
+    createAttemptSettingsUNT = "create-attempt-settings-unt",
     answer = "answer",
     answerResult = "answer-result",
     getFiftyFifty = "get-fifty-fifty",

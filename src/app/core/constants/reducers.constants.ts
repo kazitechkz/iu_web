@@ -77,6 +77,9 @@ import {walletStatisticsReducer} from "../../shared/store/wallet/walletStatistic
 import {getImportantNewsReducer} from "../../shared/store/news/getImportantNews/getImportantNews.reducer";
 import {allNewsReducer} from "../../shared/store/news/allNews/allNews.reducer";
 import {getSingleNewsReducer} from "../../shared/store/news/getSingleNews/getSingleNews.reducer";
+import {
+  createAttemptSettingsUNTReducer
+} from "../../shared/store/attemptSettings/createAttemptSettingsUNT/createAttemptSettingsUNT.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -137,6 +140,7 @@ export const ReducersConstants = {
   detailClassroom: detailClassroomReducer,
   getAttemptByPromoCode:getAttemptByPromoCodeReducer,
   createAttemptSettings:createAttemptSettingsReducer,
+  createAttemptSettingsUNT:createAttemptSettingsUNTReducer,
   getAllAttemptSettings:getAllAttemptSettingsReducer,
   getCategoryQuestionCount:getCategoryQuestionCountReducer,
   getSubCategoryQuestionCount:getSubCategoryQuestionCountReducer,
