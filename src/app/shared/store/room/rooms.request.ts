@@ -1,4 +1,5 @@
 export interface RoomsRequest {
-  title_kk: string
-  title_ru: string
+  promo_code: string
+  subject_first: number
+  subject_second: number
 }

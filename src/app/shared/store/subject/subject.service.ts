@@ -18,4 +18,8 @@ export class SubjectService{
     return this._http.get<ResponseData<Subject[]>>(environment.baseUrl + APIRoutesName.getSubjects);
   }
 
+  getSubjectsWithoutRequired(): Observable<ResponseData<Subject[]>> {
+    return this._http.get<ResponseData<Subject[]>>(environment.baseUrl + APIRoutesName.getSubjectsWithoutRequired);
+  }
+
 }

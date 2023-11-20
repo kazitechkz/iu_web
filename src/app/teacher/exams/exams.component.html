@@ -1,14 +1,4 @@
-<div class="w-full flex justify-end items-center">
-  <button
-    class="ml-auto"
-    tw-button
-    layout="flat"
-    color="primary"
-  >
-    {{'CREATE_CLASSROOM' | translate}}
-    <i class="fa fa-plus ml-3" aria-hidden="true"></i>
-  </button>
-</div>
+
 <div class="flex">
   <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
     <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -44,13 +34,8 @@
                   <i class="fa fa-eye" aria-hidden="true"></i>
                 </button>
                 <button
-                  class="mx-2 text-black"
-                  tw-button
-                  layout="flat"
-                >
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                </button>
-                <button
+                  [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
+                  (confirm)="deleteExamById(item.value.id)"
                   class="mx-2 text-red-600"
                   tw-button
                   layout="flat"

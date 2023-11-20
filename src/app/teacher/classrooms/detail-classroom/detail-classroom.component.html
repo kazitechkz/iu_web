@@ -122,10 +122,10 @@
             <i class="fa fa-basket-shopping ml-2"></i>
           </button>
           <button
-            [disabled]="!attempt_settings_form.valid"
+            [disabled]="Object.keys(initialData).length === 0"
             type="submit"
             class="ml-5 !bg-[#4DC591] text-white"
-            [ngClass]="attempt_settings_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'"
+            [ngClass]="attempt_settings_form.valid && Object.keys(initialData).length > 0 ? 'cursor-pointer' : 'cursor-not-allowed'"
             tw-button
             layout="flat"
           >

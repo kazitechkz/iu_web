@@ -11,6 +11,8 @@ import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {AllAttemptRequest} from "../../shared/store/attempt/allAttempt/allAttempt.request";
 import {Pagination} from "../../shared/store/pagination";
 import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
+import {deleteExamByIdAction} from "../../shared/store/teacher/exams/exams.action";
+import {TwNotification} from "ng-tw";
 
 @Component({
   selector: 'app-exams',
@@ -21,7 +23,7 @@ export class ExamsComponent implements OnInit {
   public translate = inject(GlobalTranslateService)
   private _store = inject(Store)
   private destroyRef:DestroyRef = inject(DestroyRef);
-  protected readonly parseInt = parseInt;
+  private _notification = inject(TwNotification)
   //@ts-ignore
   myTests: Pagination<AttemptSetting[]>;
   params = {page:1};
@@ -38,10 +40,17 @@ export class ExamsComponent implements OnInit {
       }
     })
   }
+
+  deleteExamById(id: number) {
+    this._store.dispatch(deleteExamByIdAction({id: id}))
+    this._notification.show({ type: 'success', title: 'Успешно удален' })
+    this.getMyTests()
+  }
   pageChanged($event:number){
     this.params.page = $event;
     this.getMyTests();
   }
 
   protected readonly JSON = JSON;
+  protected readonly parseInt = parseInt;
 }

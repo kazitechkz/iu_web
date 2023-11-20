@@ -5,6 +5,7 @@ import {ClassroomModel} from "../../models/classroom.model";
 import {ResponseData} from "../response_data";
 import {environment} from "../../../../environments/environment";
 import {APIRoutesName} from "../../../core/constants/api-routes.constants";
+import {RoomsRequest} from "./rooms.request";
 
 @Injectable({
     providedIn: 'root'
@@ -17,8 +18,8 @@ export class RoomsService {
         return this._http.get<ResponseData<ClassroomModel[]>>(environment.baseUrl + APIRoutesName.studentClassrooms);
     }
 
-    joinRooms(promo_code: string): Observable<ResponseData<boolean>> {
-        return this._http.post<ResponseData<boolean>>(environment.baseUrl + APIRoutesName.studentClassrooms, promo_code);
+    joinRooms(req: RoomsRequest): Observable<ResponseData<boolean>> {
+        return this._http.post<ResponseData<boolean>>(environment.baseUrl + APIRoutesName.studentClassrooms, req);
     }
 
     deleteRooms(id: number): Observable<ResponseData<boolean>> {

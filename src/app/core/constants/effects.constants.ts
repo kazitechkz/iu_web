@@ -73,6 +73,7 @@ import {WalletStatisticsEffect} from "../../shared/store/wallet/walletStatistics
 import {AllNewsEffect} from "../../shared/store/news/allNews/allNews.effect";
 import {GetImportantNewsEffect} from "../../shared/store/news/getImportantNews/getImportantNews.effect";
 import {GetSingleNewsEffect} from "../../shared/store/news/getSingleNews/getSingleNews.effect";
+import {ExamsEffect} from "../../shared/store/teacher/exams/exams.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -141,4 +142,5 @@ export const EffectsConstants = [
     GetImportantNewsEffect,
     AllNewsEffect,
     GetSingleNewsEffect,
+    ExamsEffect
 ]

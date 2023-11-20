@@ -1,6 +1,6 @@
 import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {NgxSmartModalService} from "ngx-smart-modal";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {ClassroomModel} from "../../shared/models/classroom.model";
 import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
 import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
@@ -17,6 +17,11 @@ import {
 import {
   getAttemptByPromoCodeSelector
 } from "../../shared/store/attempt/getAttemptByPromoCode/getAttemptByPromoCode.selector";
+import {StrHelper} from "../../core/helpers/str.helper";
+import {subjectGetAction, subjectsWithoutRequiredGetAction} from "../../shared/store/subject/subject.action";
+import {getSubjectsState, getSubjectsWithoutRequiredStateSelector} from "../../shared/store/subject/subject.selector";
+import {Subject} from "../../shared/models/subject.model";
+import {RoomsRequest} from "../../shared/store/room/rooms.request";
 
 @Component({
   selector: 'app-room',
@@ -31,13 +36,33 @@ export class RoomComponent implements OnInit {
   public _notification = inject(TwNotification)
   private _store = inject(Store)
   public classrooms: ClassroomModel[] = []
+  public subjects: Subject[] = []
   errors: Record<string, string[]> | null = null;
   dialog = inject(NgxSmartModalService)
   classroom_form: FormGroup = new FormGroup({
     promo_code: new FormControl("", [
       Validators.required
     ]),
-  });
+    subject_first: new FormControl(0, [Validators.required]),
+    subject_second: new FormControl(0, [Validators.required]),
+  }, {validators: this.subjectsNotEqualValidator()});
+  subjectsNotEqualValidator(): ValidatorFn {
+    // @ts-ignore
+    return (formGroup: FormGroup): ValidationErrors | null => {
+      const subjectFirst = formGroup.get('subject_first')?.value;
+      const subjectSecond = formGroup.get('subject_second')?.value;
+      if (subjectFirst === subjectSecond) {
+        return { subjectsEqual: true };
+      }
+      if (subjectFirst == 0) {
+        return { subjectsEqual: true };
+      }
+      if (subjectSecond == 0) {
+        return { subjectsEqual: true };
+      }
+      return null;
+    };
+  }
   pass_test_form: FormGroup = new FormGroup({
     promo_code: new FormControl("", [
       Validators.required
@@ -50,8 +75,8 @@ export class RoomComponent implements OnInit {
 
   onSubmit() {
     if (this.classroom_form.valid) {
-      let promo = this.classroom_form.getRawValue() as string
-      this._store.dispatch(joinRoomsAction({promo_code: promo}))
+      let promo = this.classroom_form.getRawValue() as RoomsRequest
+      this._store.dispatch(joinRoomsAction({req: promo}))
       this._store.select(joinRoomsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
           if (item.data) {
             this.getClassrooms()
@@ -59,6 +84,7 @@ export class RoomComponent implements OnInit {
           this.dialog.closeLatestModal()
       })
     }
+    this.classroom_form.reset()
   }
   onPassTest() {
     if (this.pass_test_form.valid) {
@@ -81,6 +107,7 @@ export class RoomComponent implements OnInit {
   }
 
   openDialog(id: string) {
+    this.getSubjectsWithoutRequired()
     this.classroom_form.reset()
     this.dialog.getModal(id).open(true)
   }
@@ -93,5 +120,15 @@ export class RoomComponent implements OnInit {
     })
   }
 
+  getSubjectsWithoutRequired() {
+    this._store.dispatch(subjectsWithoutRequiredGetAction())
+    this._store.select(getSubjectsWithoutRequiredStateSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      if (item.data) {
+        this.subjects = item.data
+      }
+    })
+  }
+
   protected readonly parseInt = parseInt;
+    protected readonly StrHelper = StrHelper;
 }

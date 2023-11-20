@@ -11,7 +11,7 @@ export const RoomsActionSuccess = createAction(RoomsActionTypes.OnRoomSuccess, p
 }>());
 export const RoomsActionFailure = createAction(RoomsActionTypes.OnRoomFailure, props<{ errors: any }>());
 
-export const joinRoomsAction = createAction(RoomsActionTypes.OnJoinRoom, props<{promo_code: string}>());
+export const joinRoomsAction = createAction(RoomsActionTypes.OnJoinRoom, props<{req: RoomsRequest}>());
 export const joinRoomsActionSuccess = createAction(RoomsActionTypes.OnJoinRoomSuccess, props<{
     responseData: ResponseData<boolean>
 }>());

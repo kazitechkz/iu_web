@@ -229,7 +229,7 @@ export class DetailClassroomComponent implements OnInit {
         hidden_fields: 'prompt'
       })
     }
-    if (this.attempt_settings_form.valid) {
+    if (this.attempt_settings_form.valid && Object.keys(this.initialData).length > 0) {
       let formData = this.attempt_settings_form.getRawValue() as CreateAttemptSettingsRequest
       this._store.dispatch(createAttemptSettingsAction({requestData: formData}))
       this._notification.show({ type: 'success', title: 'Успешно создан' })
@@ -372,4 +372,5 @@ export class DetailClassroomComponent implements OnInit {
   protected readonly RoutesName = RoutesName;
   protected readonly ImageHelper = ImageHelper;
   protected readonly String = String;
+  protected readonly Object = Object;
 }

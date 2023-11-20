@@ -40,7 +40,7 @@ export class RoomsEffect {
         this.action$.pipe(
             ofType(joinRoomsAction),
             switchMap((action) => {
-                return this._service.joinRooms(action.promo_code).pipe(
+                return this._service.joinRooms(action.req).pipe(
                     switchMap(data => {
                             return of(
                                 joinRoomsActionSuccess({responseData: data}),

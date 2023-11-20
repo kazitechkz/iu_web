@@ -10,7 +10,12 @@ import {LocalKeysConstants} from "../../../core/constants/local-keys.constants";
 import {Me} from "../../models/user.model";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {SubjectService} from "./subject.service";
-import {subjectGetAction, subjectGetActionFailure, subjectGetActionSuccess} from "./subject.action";
+import {
+  subjectGetAction,
+  subjectGetActionFailure,
+  subjectGetActionSuccess,
+  subjectsWithoutRequiredGetAction, subjectsWithoutRequiredGetActionFailure, subjectsWithoutRequiredGetActionSuccess
+} from "./subject.action";
 
 @Injectable()
 export class SubjectEffect {
@@ -31,6 +36,24 @@ export class SubjectEffect {
           ),
           catchError((_error) =>
             of(subjectGetActionFailure({errors: _error}))
+          )
+        )
+      }),
+    ),
+  );
+  _onSubjectsWithoutRequired = createEffect((): any =>
+    this.action$.pipe(
+      ofType(subjectsWithoutRequiredGetAction),
+      switchMap((action) => {
+        return this._service.getSubjectsWithoutRequired().pipe(
+          switchMap(data => {
+              return of(
+                subjectsWithoutRequiredGetActionSuccess({responseData: data}),
+              )
+            }
+          ),
+          catchError((_error) =>
+            of(subjectsWithoutRequiredGetActionFailure({errors: _error}))
           )
         )
       }),

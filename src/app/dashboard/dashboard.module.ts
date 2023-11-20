@@ -54,6 +54,7 @@ import {MathjaxModule} from "mathjax-angular";
 import { NewsListComponent } from './news/news-list/news-list.component';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import {CalendarCommonModule, CalendarDayModule, CalendarMonthModule} from "angular-calendar";
+import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 
 @NgModule({
@@ -94,33 +95,34 @@ import {CalendarCommonModule, CalendarDayModule, CalendarMonthModule} from "angu
         NewsListComponent,
         NewsDetailComponent,
     ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    SharedModule,
-    FontAwesomeModule,
-    SlickCarouselModule,
-    Select2Module,
-    UiSwitchModule,
-    CountdownComponent,
-    MarkdownModule,
-    NgxSmartModalModule,
-    CoreModule,
-    YouTubePlayerModule,
-    NgxPaginationModule,
-    NgChartsModule,
-    CountdownModule,
-    CKEditorModule,
-    TwOptionModule,
-    TwSelectModule,
-    TwButtonModule,
-    QRCodeModule,
-    DpDatePickerModule,
-    MathjaxModule,
-    CalendarDayModule,
-    CalendarMonthModule,
-    CalendarCommonModule,
-  ],
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        SharedModule,
+        FontAwesomeModule,
+        SlickCarouselModule,
+        Select2Module,
+        UiSwitchModule,
+        CountdownComponent,
+        MarkdownModule,
+        NgxSmartModalModule,
+        CoreModule,
+        YouTubePlayerModule,
+        NgxPaginationModule,
+        NgChartsModule,
+        CountdownModule,
+        CKEditorModule,
+        TwOptionModule,
+        TwSelectModule,
+        TwButtonModule,
+        QRCodeModule,
+        DpDatePickerModule,
+        MathjaxModule,
+        CalendarDayModule,
+        CalendarMonthModule,
+        CalendarCommonModule,
+        SweetAlert2Module.forRoot(),
+    ],
   providers: [MathJaxPipe, TranslatePipe]
 })
 export class DashboardModule {

@@ -10,11 +10,11 @@
     <i class="fa fa-plus ml-3" aria-hidden="true"></i>
   </button>
   <button
-    class="ml-auto"
+    class="ml-2"
     tw-button
     layout="flat"
     color="primary"
-    (click)="openDialog('0')"
+    (click)="openDialog('join_to_class')"
   >
     {{'ENTER_PROMO_CODE' | translate}}
     <i class="fa fa-plus ml-3" aria-hidden="true"></i>
@@ -44,10 +44,11 @@
             <td class="whitespace-nowrap px-6 py-4">
               <div class="flex">
                 <button
+                  [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
+                  (confirm)="onDelete(classRoom.value.id)"
                   class="mx-2 text-red-600"
                   tw-button
                   layout="flat"
-                  (click)="onDelete(classRoom.value.id)"
                 >
                   <i class="fa fa-sign-out" aria-hidden="true"></i>
                 </button>
@@ -59,7 +60,7 @@
       </div>
     </div>
   </div>
-  <ngx-smart-modal identifier="{{classroomID}}">
+  <ngx-smart-modal identifier="join_to_class">
     <div>
       <form (ngSubmit)="onSubmit()" [formGroup]="classroom_form">
         <app-input-field
@@ -72,6 +73,19 @@
           [backErrors]="errors"
           ngDefaultControl
         />
+        <div class="my-2">
+          {{'SELECT_PROFILE_SUBJECTS' | translate}}
+        </div>
+        <div class="lg:flex my-2">
+          <select [formControlName]="'subject_first'" data-te-select-init class="mr-2 mobile:my-1 w-full">
+            <option selected [value]="0">{{'SELECT_SUBJECT' | translate}}</option>
+            <option [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': translate.currentLang}}</option>
+          </select>
+          <select [formControlName]="'subject_second'" data-te-select-init class="ml-2 mobile:my-1 w-full">
+            <option selected [value]="0">{{'SELECT_SUBJECT' | translate}}</option>
+            <option [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': translate.currentLang}}</option>
+          </select>
+        </div>
         <button
           tw-button
           layout="raised"
