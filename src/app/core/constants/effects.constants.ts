@@ -74,6 +74,9 @@ import {AllNewsEffect} from "../../shared/store/news/allNews/allNews.effect";
 import {GetImportantNewsEffect} from "../../shared/store/news/getImportantNews/getImportantNews.effect";
 import {GetSingleNewsEffect} from "../../shared/store/news/getSingleNews/getSingleNews.effect";
 import {ExamsEffect} from "../../shared/store/teacher/exams/exams.effect";
+import {
+  CreateAttemptSettingsUNTEffect
+} from "../../shared/store/attemptSettings/createAttemptSettingsUNT/createAttemptSettingsUNT.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -129,6 +132,7 @@ export const EffectsConstants = [
     DetailClassroomEffect,
     GetAttemptByPromoCodeEffect,
     CreateAttemptSettingsEffect,
+    CreateAttemptSettingsUNTEffect,
     GetAllAttemptSettingsEffect,
     GetCategoryQuestionCountEffect,
     GetSubCategoryQuestionCountEffect,
@@ -142,5 +146,5 @@ export const EffectsConstants = [
     GetImportantNewsEffect,
     AllNewsEffect,
     GetSingleNewsEffect,
-    ExamsEffect
+    ExamsEffect,
 ]
