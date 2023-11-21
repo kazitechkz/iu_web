@@ -1,7 +1,7 @@
 import {OrdinaryUser} from "./user.model";
 import {NotificationType} from "./notificationType.model";
 
-export interface Notification {
+export interface NotificationModel {
   id: number
   type_id: number
   class_id: any

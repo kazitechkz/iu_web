@@ -89,6 +89,9 @@ import {MyNotificationIdsEffect} from "../../shared/store/notification/myNotific
 import {
   GetAllAnnouncementsEffect
 } from "../../shared/store/announcement/getAllAnnouncements/getAllAnnouncements.effect";
+import {
+  GetNotificationTypeAllEffect
+} from "../../shared/store/notification/getNotificationTypeAll/getNotificationTypeAll.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -164,5 +167,6 @@ export const EffectsConstants = [
     GetUnreadMessageCountEffect,
     MyNotificationIdsEffect,
     GetAllAnnouncementsEffect,
-    GetArraySettingsUNTEffect
+    GetArraySettingsUNTEffect,
+    GetNotificationTypeAllEffect,
 ]

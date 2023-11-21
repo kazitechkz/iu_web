@@ -93,6 +93,9 @@ import {
   getUnreadMessageCountReducer
 } from "../../shared/store/notification/getUnreadMessageCount/getUnreadMessageCount.reducer";
 import {myNotificationIdsReducer} from "../../shared/store/notification/myNotificationIds/myNotificationIds.reducer";
+import {
+  getNotificationTypeAllReducer
+} from "../../shared/store/notification/getNotificationTypeAll/getNotificationTypeAll.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -178,5 +181,6 @@ export const ReducersConstants = {
   getNotificationAll:getNotificationAllReducer,
   getUnreadMessageCount:getUnreadMessageCountReducer,
   myNotificationIds:myNotificationIdsReducer,
+  getNotificationTypeAll:getNotificationTypeAllReducer,
 }
 

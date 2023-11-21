@@ -73,6 +73,7 @@ export enum APIRoutesName {
     getSingleNews="single-news",
     getUnreadMessageCount="notification/unread-count",
     getNotificationAll="notification/all",
+    getNotificationTypeAll="notification/notification-types",
     myNotificationIds="notification/my-notification-ids",
     checkNotification="notification/check-notification",
     getAllAnnouncements="announcement",
