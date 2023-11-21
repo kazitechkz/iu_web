@@ -173,7 +173,6 @@ export const ReducersConstants = {
   deleteExamById: deleteExamByIdReducer,
   subjectsWithoutRequired: subjectsWithoutRequiredReducer,
   getArraySettingsUNT: getArraySettingsUNTReducer,
-  subjectsWithoutRequired: subjectsWithoutRequiredReducer,
   getAllAnnouncements:getAllAnnouncementsReducer,
   checkNotification:checkNotificationReducer,
   getNotificationAll:getNotificationAllReducer,
