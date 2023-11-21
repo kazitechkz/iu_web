@@ -82,6 +82,9 @@ import {
   createAttemptSettingsUNTReducer
 } from "../../shared/store/attemptSettings/createAttemptSettingsUNT/createAttemptSettingsUNT.reducer";
 import {
+  getArraySettingsUNTReducer
+} from "../../shared/store/attemptSettings/getArraySettingsForUNT/getArraySettingsUNT.reducer";
+import {
   getAllAnnouncementsReducer
 } from "../../shared/store/announcement/getAllAnnouncements/getAllAnnouncements.reducer";
 import {checkNotificationReducer} from "../../shared/store/notification/checkNotification/checkNotification.reducer";
@@ -168,6 +171,8 @@ export const ReducersConstants = {
   allNews:allNewsReducer,
   getSingleNews:getSingleNewsReducer,
   deleteExamById: deleteExamByIdReducer,
+  subjectsWithoutRequired: subjectsWithoutRequiredReducer,
+  getArraySettingsUNT: getArraySettingsUNTReducer,
   subjectsWithoutRequired: subjectsWithoutRequiredReducer,
   getAllAnnouncements:getAllAnnouncementsReducer,
   checkNotification:checkNotificationReducer,

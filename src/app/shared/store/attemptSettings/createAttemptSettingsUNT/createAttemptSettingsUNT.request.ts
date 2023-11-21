@@ -7,3 +7,7 @@ export interface CreateAttemptSettingsUNTRequest {
   users:number[]|null
   class_id:number|null
 }
+
+export interface CreateAttemptSettingsUNTRequestData {
+  data: string
+}

@@ -33,6 +33,26 @@ import {
 } from "../../../shared/store/attemptSettings/createAttemptSettings/createAttemptSettings.action";
 import {TwNotification} from "ng-tw";
 import {deleteClassroomByIDAction} from "../../../shared/store/teacher/classrooms/classrooms.action";
+import {
+  getArraySettingsUNTState
+} from "../../../shared/store/attemptSettings/getArraySettingsForUNT/getArraySettingsUNT.state";
+import {
+  getArraySettingsUNTAction
+} from "../../../shared/store/attemptSettings/getArraySettingsForUNT/getArraySettingsUNT.action";
+import {
+  GetArraySettingsUNT
+} from "../../../shared/store/attemptSettings/getArraySettingsForUNT/getArraySettingsUNT.request";
+import {
+  getArraySettingsUNTSelector
+} from "../../../shared/store/attemptSettings/getArraySettingsForUNT/getArraySettingsUNT.selector";
+import {getLocaleId} from "@angular/common";
+import {
+  CreateAttemptSettingsUNTRequest, CreateAttemptSettingsUNTRequestData
+} from "../../../shared/store/attemptSettings/createAttemptSettingsUNT/createAttemptSettingsUNT.request";
+import {
+  createAttemptSettingsUNTAction
+} from "../../../shared/store/attemptSettings/createAttemptSettingsUNT/createAttemptSettingsUNT.action";
+import {defer} from "rxjs";
 
 @Component({
   selector: 'app-detail-classroom',
@@ -40,6 +60,7 @@ import {deleteClassroomByIDAction} from "../../../shared/store/teacher/classroom
   styleUrls: ['./detail-classroom.component.scss']
 })
 export class DetailClassroomComponent implements OnInit {
+  class_id: number = 0
   localeID: number = 1
   subjectLocaleID: number = 0
   isAllChecked: boolean = false
@@ -68,8 +89,17 @@ export class DetailClassroomComponent implements OnInit {
     subject_id: new FormControl(null, [Validators.required]),
     hidden_fields: new FormControl(null),
   })
+  unt_form: FormGroup = new FormGroup({
+    users: new FormControl(null, [Validators.required]),
+    time: new FormControl(60, [Validators.required]),
+    settings: new FormControl(null),
+    locale_id: new FormControl(this.localeID),
+    subjects: new FormControl(null, [Validators.required]),
+    hidden_fields: new FormControl('prompt'),
+  })
   checkbox_form: FormGroup = new FormGroup({
-    users: new FormControl([], [Validators.required])
+    users: new FormControl([], [Validators.required]),
+    class_id: new FormControl(null)
   });
   category_form: FormGroup = new FormGroup({
     s_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)]),
@@ -82,7 +112,7 @@ export class DetailClassroomComponent implements OnInit {
     m_questions_count: new FormControl(null, [Validators.pattern(/^[0-9]+$/)])
   })
   initialData: AttemptSettingsData = []
-
+  initialDataForUNT: Record<any, any>[] = []
   private _route = inject(ActivatedRoute)
   private _router = inject(Router)
   public translate = inject(GlobalTranslateService)
@@ -100,8 +130,10 @@ export class DetailClassroomComponent implements OnInit {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(detailClassroomAction({id: params['id']}))
       this._store.select(getDetailClassroomState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-          //@ts-ignore
-          this.data = item.data
+          if (item.data) {
+            this.data = item.data
+            this.class_id = item.data[0].class_id
+          }
         }
       )
     })
@@ -214,9 +246,44 @@ export class DetailClassroomComponent implements OnInit {
 
   }
 
-  submit() {
+  singleSubjectSubmit() {
     this.isSingleTest = true
     this.getSubjects()
+  }
+
+  untInitialData() {
+    this.dialog.get('open-unt').open()
+    this.checkbox_form.patchValue({
+      class_id: this.class_id
+    })
+    let data = this.checkbox_form.getRawValue() as GetArraySettingsUNT
+    // console.log(data)
+    this._store.dispatch(getArraySettingsUNTAction({requestData: data}))
+    this._store.select(getArraySettingsUNTSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      if (item.data) {
+        this.initialDataForUNT = item.data
+      }
+    })
+  }
+  untSubmit() {
+    let data = []
+    this.unt_form.patchValue({
+      locale_id: this.localeID
+    });
+    const entries = Object.entries(this.initialDataForUNT);
+    for (let i = 0; i < entries.length; i++) {
+      const [key, value] = entries[i];
+      this.unt_form.patchValue({
+        users: value,
+        subjects: JSON.parse(key)
+      });
+      const params = this.unt_form.getRawValue() as CreateAttemptSettingsUNTRequest;
+      data.push(params)
+    }
+    let sendData = {data: JSON.stringify(data)} as CreateAttemptSettingsUNTRequestData
+    this._store.dispatch(createAttemptSettingsUNTAction({requestData: sendData}))
+    this._notification.show({ type: 'success', title: 'Успешно создан' })
+    this._router.navigateByUrl(StrHelper.getTeacherRouteName(RoutesName.teacherTests)).then(r => null)
   }
 
   sendQuery() {
@@ -254,6 +321,21 @@ export class DetailClassroomComponent implements OnInit {
   selectLanguage(event: any) {
     this.localeID = parseInt((event.target as HTMLInputElement).value)
     this.getCategories(this.subjectLocaleID, true)
+  }
+  selectLanguageForUNT(event: any) {
+    this.localeID = parseInt((event.target as HTMLInputElement).value)
+  }
+
+  changePrompt(event: any) {
+    if (event.target.checked) {
+      this.unt_form.patchValue({
+        hidden_fields: null
+      })
+    } else {
+      this.unt_form.patchValue({
+        hidden_fields: 'prompt'
+      })
+    }
   }
 
   getCategories(event: any, isLanguageSelect: boolean = false) {

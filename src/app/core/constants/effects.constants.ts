@@ -77,6 +77,9 @@ import {ExamsEffect} from "../../shared/store/teacher/exams/exams.effect";
 import {
   CreateAttemptSettingsUNTEffect
 } from "../../shared/store/attemptSettings/createAttemptSettingsUNT/createAttemptSettingsUNT.effect";
+import {
+  GetArraySettingsUNTEffect
+} from "../../shared/store/attemptSettings/getArraySettingsForUNT/getArraySettingsUNT.effect";
 import {CheckNotificationEffect} from "../../shared/store/notification/checkNotification/checkNotification.effect";
 import {GetNotificationAllEffect} from "../../shared/store/notification/getNotificationAll/getNotificationAll.effect";
 import {

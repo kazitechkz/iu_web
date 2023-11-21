@@ -15,4 +15,5 @@ export interface DetailClassroomModel {
   user_id: number
   user: OrdinaryUser
   classroom_group: ClassroomsGroupModel
+  subjects: []
 }

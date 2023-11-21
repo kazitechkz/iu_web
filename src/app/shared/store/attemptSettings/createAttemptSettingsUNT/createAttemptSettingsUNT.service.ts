@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {ResponseData} from "../../response_data";
 import {environment} from "../../../../../environments/environment";
 import {APIRoutesName} from "../../../../core/constants/api-routes.constants";
-import {CreateAttemptSettingsUNTRequest} from "./createAttemptSettingsUNT.request";
+import {CreateAttemptSettingsUNTRequest, CreateAttemptSettingsUNTRequestData} from "./createAttemptSettingsUNT.request";
 import {AttemptSetting} from "../../../models/attemptSetting.model";
 import {AttemptSettingUNT} from "../../../models/attemptSettingUNT.model";
 
@@ -15,7 +15,7 @@ import {AttemptSettingUNT} from "../../../models/attemptSettingUNT.model";
 export class CreateAttemptSettingsUNTService {
   private _http = inject(HttpClient)
 
-  createAttemptSettingsUNT(data: CreateAttemptSettingsUNTRequest): Observable<ResponseData<AttemptSettingUNT>> {
+  createAttemptSettingsUNT(data: CreateAttemptSettingsUNTRequestData): Observable<ResponseData<AttemptSettingUNT>> {
     return this._http.post<ResponseData<AttemptSettingUNT>>(environment.baseUrl + APIRoutesName.createAttemptSettingsUNT, data);
   }
 
