@@ -81,6 +81,15 @@ import {deleteExamByIdReducer} from "../../shared/store/teacher/exams/exams.redu
 import {
   createAttemptSettingsUNTReducer
 } from "../../shared/store/attemptSettings/createAttemptSettingsUNT/createAttemptSettingsUNT.reducer";
+import {
+  getAllAnnouncementsReducer
+} from "../../shared/store/announcement/getAllAnnouncements/getAllAnnouncements.reducer";
+import {checkNotificationReducer} from "../../shared/store/notification/checkNotification/checkNotification.reducer";
+import {getNotificationAllReducer} from "../../shared/store/notification/getNotificationAll/getNotificationAll.reducer";
+import {
+  getUnreadMessageCountReducer
+} from "../../shared/store/notification/getUnreadMessageCount/getUnreadMessageCount.reducer";
+import {myNotificationIdsReducer} from "../../shared/store/notification/myNotificationIds/myNotificationIds.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -159,6 +168,11 @@ export const ReducersConstants = {
   allNews:allNewsReducer,
   getSingleNews:getSingleNewsReducer,
   deleteExamById: deleteExamByIdReducer,
-  subjectsWithoutRequired: subjectsWithoutRequiredReducer
+  subjectsWithoutRequired: subjectsWithoutRequiredReducer,
+  getAllAnnouncements:getAllAnnouncementsReducer,
+  checkNotification:checkNotificationReducer,
+  getNotificationAll:getNotificationAllReducer,
+  getUnreadMessageCount:getUnreadMessageCountReducer,
+  myNotificationIds:myNotificationIdsReducer,
 }
 

@@ -14,6 +14,11 @@ import {Observable} from "rxjs";
 import {selectSidenavIsOpen} from "../../store/core/sidebar/sidebar.selector";
 import {openSidebarAction} from "../../store/core/sidebar/sidebar.action";
 import {StrHelper} from "../../../core/helpers/str.helper";
+import {faBell, faMessage} from "@fortawesome/free-solid-svg-icons";
+import {getUnreadMessageCountAction} from "../../store/notification/getUnreadMessageCount/getUnreadMessageCount.action";
+import {
+  getUnreadMessageCountSelector
+} from "../../store/notification/getUnreadMessageCount/getUnreadMessageCount.selector";
 
 @Component({
   selector: 'app-navbar',
@@ -30,9 +35,11 @@ export class NavbarComponent implements OnInit {
   private _store = inject(Store)
   destroyRef = inject(DestroyRef);
   public user?: Me | null;
+  countMessage: number | null = null;
   ngOnInit(): void {
     this.sideBar$ = this._store.pipe(autoUnsubscribe(this.destroyRef), select(selectSidenavIsOpen))
     this.translate.getCurrentLang()
+    this.getUnreadMessage();
     this.me()
   }
 
@@ -47,6 +54,13 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  getUnreadMessage(){
+    this._store.dispatch(getUnreadMessageCountAction())
+    this._store.select(getUnreadMessageCountSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      this.countMessage = item.data
+    })
+  }
+
   changeLang(lang: string) {
     this.translate.onLangChange(lang)
     this.localeDropdown = !this.localeDropdown
@@ -58,4 +72,6 @@ export class NavbarComponent implements OnInit {
 
     protected readonly StrHelper = StrHelper;
   protected readonly RoutesName = RoutesName;
+  protected readonly faMessage = faMessage;
+  protected readonly faBell = faBell;
 }

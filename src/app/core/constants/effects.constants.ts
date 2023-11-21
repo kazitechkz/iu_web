@@ -77,6 +77,15 @@ import {ExamsEffect} from "../../shared/store/teacher/exams/exams.effect";
 import {
   CreateAttemptSettingsUNTEffect
 } from "../../shared/store/attemptSettings/createAttemptSettingsUNT/createAttemptSettingsUNT.effect";
+import {CheckNotificationEffect} from "../../shared/store/notification/checkNotification/checkNotification.effect";
+import {GetNotificationAllEffect} from "../../shared/store/notification/getNotificationAll/getNotificationAll.effect";
+import {
+  GetUnreadMessageCountEffect
+} from "../../shared/store/notification/getUnreadMessageCount/getUnreadMessageCount.effect";
+import {MyNotificationIdsEffect} from "../../shared/store/notification/myNotificationIds/myNotificationIds.effect";
+import {
+  GetAllAnnouncementsEffect
+} from "../../shared/store/announcement/getAllAnnouncements/getAllAnnouncements.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -147,4 +156,9 @@ export const EffectsConstants = [
     AllNewsEffect,
     GetSingleNewsEffect,
     ExamsEffect,
+    CheckNotificationEffect,
+    GetNotificationAllEffect,
+    GetUnreadMessageCountEffect,
+    MyNotificationIdsEffect,
+    GetAllAnnouncementsEffect,
 ]
