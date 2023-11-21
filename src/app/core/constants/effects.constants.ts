@@ -164,4 +164,5 @@ export const EffectsConstants = [
     GetUnreadMessageCountEffect,
     MyNotificationIdsEffect,
     GetAllAnnouncementsEffect,
+    GetArraySettingsUNTEffect
 ]

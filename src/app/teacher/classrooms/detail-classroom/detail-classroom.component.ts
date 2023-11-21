@@ -257,7 +257,6 @@ export class DetailClassroomComponent implements OnInit {
       class_id: this.class_id
     })
     let data = this.checkbox_form.getRawValue() as GetArraySettingsUNT
-    // console.log(data)
     this._store.dispatch(getArraySettingsUNTAction({requestData: data}))
     this._store.select(getArraySettingsUNTSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       if (item.data) {
