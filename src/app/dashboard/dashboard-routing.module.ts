@@ -35,6 +35,7 @@ import {WalletDepositComponent} from "./wallet/wallet-deposit/wallet-deposit.com
 import {WalletStatisticsComponent} from "./wallet/wallet-statistics/wallet-statistics.component";
 import {NewsListComponent} from "./news/news-list/news-list.component";
 import {NewsDetailComponent} from "./news/news-detail/news-detail.component";
+import {NotificationListComponent} from "./notification/notification-list/notification-list.component";
 
 
 const routes: Routes = [
@@ -166,6 +167,10 @@ const routes: Routes = [
       {
         path: 'news-detail/:id',
         component: NewsDetailComponent
+      },
+      {
+        path: 'notifications',
+        component: NotificationListComponent
       },
       {
         path: 'classrooms',

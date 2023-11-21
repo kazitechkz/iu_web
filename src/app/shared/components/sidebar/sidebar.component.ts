@@ -116,7 +116,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       title: 'NOTIFICATION',
-      path: RoutesName.walletIndex,
+      path: RoutesName.notification,
       icon: faMessage as IconProp
     },
     {

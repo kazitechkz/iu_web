@@ -55,6 +55,7 @@ import { NewsListComponent } from './news/news-list/news-list.component';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import {CalendarCommonModule, CalendarDayModule, CalendarMonthModule} from "angular-calendar";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import { NotificationListComponent } from './notification/notification-list/notification-list.component';
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
         WalletStatisticsComponent,
         NewsListComponent,
         NewsDetailComponent,
+        NotificationListComponent,
     ],
     imports: [
         CommonModule,

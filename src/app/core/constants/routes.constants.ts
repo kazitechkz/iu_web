@@ -38,5 +38,6 @@ export enum RoutesName {
     allNews = "dashboard/news",
     newsDetail = "dashboard/news-detail",
     planContent = "dashboard/plan-content",
+    notification = "dashboard/notifications",
     planUNT = "dashboard/plan-unt",
 }
