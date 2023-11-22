@@ -6,20 +6,27 @@
     <div class="col-span-12 md:col-span-6 px-5 md:flex items-center text-center md:text-left">
       <div>
         <p class="md:text-5xl text-white font-bold">
-          Тренировка по выбранной теме
+          {{"TRAINING_UNT_FOR_CATEGORY"|translate}}
         </p>
         <div class="my-4">
           <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faClock" class="ml-2"></fa-icon> Настраиваете время и кол-во вопросов сами!
+            <fa-icon [icon]="faClock" class="ml-2"></fa-icon>
+            {{"CUSTOMIZE_TIME_AND_QUANTITY"|translate}}
           </p>
           <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faBook" class="ml-2"></fa-icon> Предметы, приобретенные в рамках плана подписки <br>
+            <fa-icon [icon]="faBook" class="ml-2"></fa-icon>
+            {{"BOUGHT_CONTENT_FOR_UNT"|translate}}
+            <br>
           </p>
           <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faBoxesPacking" class="ml-2"></fa-icon> Широкий выбор вопросов по предложенными темам <br>
+            <fa-icon [icon]="faBoxesPacking" class="ml-2"></fa-icon>
+            {{"VARIOUS_QUESTION_ON_CATEGORY"|translate}}
+            <br>
           </p>
           <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon> Два основных языка: Казахский и Русский <br>
+            <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon>
+            {{"SUPPORT_MULTI_LANGUAGE"|translate}}
+            <br>
           </p>
         </div>
       </div>
@@ -28,7 +35,7 @@
   <div class="grid grid-cols-12 gap-3 py-5 my-3 ">
     <div class="col-span-12 md:col-span-12 card md:flex items-center justify-center text-center">
       <p class="md:text-lg font-bold py-4 md:mr-2">
-        Выберите язык:
+       {{"CHOOSE_LANGUAGE"|translate}}
       </p>
       <ui-switch
         class="inline"
@@ -47,7 +54,7 @@
   </div>
   <div class="col-span-12 md:col-span-12 card px-4">
     <p class="text-2xl md:text-4xl font-bold py-4 text-center md:text-left">
-      Выберите предмет:
+      {{"CHOOSE_SUBJECT"|translate}}
     </p>
   </div>
   <ngx-slick-carousel class="carousel"
@@ -56,7 +63,7 @@
       <fa-icon *ngIf="chosenSubject == subject.id" [icon]="faCircleCheck" class="main-green-color absolute right-1.5 top-1.5 text-4xl"></fa-icon>
       <div class=" min-h-[250px] max-h-[350px] bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
       <p class="text-center text-xl font-bold py-4">
-        {{subject.title_ru}}
+        {{subject | globalTranslate:"title": translate.currentLang}}
       </p>
     </div>
   </ngx-slick-carousel>

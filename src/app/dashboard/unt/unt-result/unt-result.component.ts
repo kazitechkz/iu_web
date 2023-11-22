@@ -28,6 +28,7 @@ import {AttemptQuestion} from "../../../shared/models/attemptQuestion.model";
 import {Subscription} from "rxjs";
 import {AttemptModel} from "../../../shared/models/attempt";
 import {CountdownConfig} from "ngx-countdown";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 
 @Component({
   selector: 'app-unt-result',
@@ -37,7 +38,8 @@ import {CountdownConfig} from "ngx-countdown";
 export class UntResultComponent implements  OnInit, OnDestroy{
   private subscription:Subscription = new Subscription();
   private _store = inject(Store);
-  private _route = inject(ActivatedRoute)
+  private _route = inject(ActivatedRoute);
+  public translate = inject(GlobalTranslateService);
   public active_slider = 0;
   dialog = inject(NgxSmartModalService)
   public answeredResult:AnsweredResult = {};

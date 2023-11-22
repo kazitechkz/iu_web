@@ -3,14 +3,14 @@
     <div class="grid grid-cols-12 py-5 my-3 main-green-bg rounded-2xl">
       <div class="col-span-12 md:col-span-12 text-center">
         <p class="md:text-5xl font-bold text-white my-2 px-1">
-          Результат ЕНТ
+          {{"RESULT"|translate}}
         </p>
         <div class="md:text-5xl font-bold text-white mb-2 mt-5 px-1 flex justify-center">
           <fa-icon [icon]="faClock" class="mr-3"></fa-icon>
           <countdown  [config]="timeConfig"></countdown>
         </div>
         <p class="md:text-3xl font-bold text-white my-2 px-1">
-          {{result.points}} верных из {{result.max_points}}
+          {{result.points}} {{"RIGHT_FROM"|translate}} {{result.max_points}}
         </p>
       </div>
     </div>
@@ -19,7 +19,7 @@
         <div class="w-[300px]">
           <select class="w-full rounded-2xl" (change)="changeSubject($event)">
             <option  *ngFor="let subject of attempt.subject_questions" value="{{subject.attempt_subject_id}}">
-              {{subject.title_ru}}
+              {{subject | globalTranslate:"title": translate.currentLang}}
             </option>
           </select>
         </div>
@@ -67,7 +67,7 @@
                      bg-white
                     relative  rounded-2xl shadow-2xl overflow-y-scroll">
                   <div class="my-4 text-xl text-black p-5 font-bold">
-                    Вопрос № {{active_slider+1}}
+                    {{"QUESTION_NUMBER"|translate}} {{active_slider+1}}
                   </div>
                   <div class="p-5 text-black font-bold content-question">
                     <div [mathjax]="question.text | mathjaxTransform"></div>
@@ -182,7 +182,9 @@
                 <fa-icon [icon]="faLightbulb" class="text-white text-2xl"></fa-icon>
               </button>
               <br>
-              <small class="text-yellow-400 font-bold">Подсказка</small>
+              <small class="text-yellow-400 font-bold">
+                {{"PROMPT"|translate}}
+              </small>
             </div>
             <div>
               <button
@@ -192,7 +194,9 @@
                 <fa-icon [icon]="faStar"></fa-icon>
               </button>
               <br>
-              <small class="main-green-color font-bold">Закладки</small>
+              <small class="main-green-color font-bold">
+                {{"SAVED"|translate}}
+              </small>
             </div>
             <div>
               <button
@@ -202,7 +206,9 @@
                 <fa-icon [icon]="faBug"></fa-icon>
               </button>
               <br>
-              <small class="text-red-500 font-bold">Ошибка</small>
+              <small class="text-red-500 font-bold">
+                {{"FIND_ERROR"|translate}}
+              </small>
             </div>
           </div>
         </div>
@@ -219,23 +225,22 @@
     <div class="grid grid-cols-12 mt-8 mb-4">
       <div class="col-span-12 md:col-span-4 p-4">
         <button type="button" class="
-      mt-4
-      text-lg
-      w-full
-      font-bold
-      inline
-      main-secondary-bg
-      text-white
-      focus:outline-none focus:ring-4
-      focus:ring-violet-500 font-medium
-      rounded-lg text-sm px-5 py-5
-      text-center mr-2 mb-2
-   "
+            mt-4
+            text-lg
+            w-full
+            font-bold
+            inline
+            main-secondary-bg
+            text-white
+            focus:outline-none focus:ring-4
+            focus:ring-violet-500 font-medium
+            rounded-lg text-sm px-5 py-5
+            text-center mr-2 mb-2
+         "
                 (click)="prev()"
         >
           <fa-icon [icon]="faBackwardFast" class="mx-2 text-lg"></fa-icon>
-          Предыдущий вопрос
-
+          {{"PREV_QUESTION"|translate}}
         </button>
       </div>
       <div class="col-span-12 md:col-span-4 p-4 flex justify-center">
@@ -263,7 +268,7 @@
                 (click)="next()"
 
         >
-          Следующий вопрос
+          {{"NEXT_QUESTION"|translate}}
           <fa-icon [icon]="faForwardFast" class="mx-2 text-lg"></fa-icon>
         </button>
       </div>
@@ -278,7 +283,7 @@
       <div>
         <fa-icon class="inline-block text-4xl text-yellow-300 my-3" [icon]="faLightbulb"></fa-icon>
       </div>
-      <p class="text-lg md:text-3xl inline-block my-2">Подсказка к вопросу номер № {{active_slider + 1}}</p>
+      <p class="text-lg md:text-3xl inline-block my-2">{{"PROMPT_TO_QUESTION"|translate}} {{active_slider + 1}}</p>
       <section *ngIf="questions[active_slider].prompt;else no_prompt">
         <markdown katex [data]="questions[active_slider].prompt | mathjaxTransform:true" *ngIf="questions[active_slider].prompt ; else no_prompt"></markdown>
       </section>
@@ -286,12 +291,12 @@
         <br/>
         <span>
           <fa-icon class="text-yellow-300 mr-2" [icon]="faFaceFrownOpen"></fa-icon>
-          К сожалению, подсказок нет
+          {{"UNFORTUNATELY_NO_PROMPT"|translate}}
         </span>
         <br/>
       </ng-template>
       <button (click)="closeModal('promptModal')" type="button" class="focus:outline-none my-4 font-bold text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-500">
-        Понятно!
+        {{"UNDERSTAND"|translate}}
       </button>
     </div>
   </ngx-smart-modal>
@@ -302,17 +307,17 @@
       <div>
         <fa-icon class="inline-block text-4xl text-red-700 my-3" [icon]="faBug"></fa-icon>
       </div>
-      <p class="text-lg md:text-3xl inline-block my-2">Аппеляция на вопрос № {{active_slider + 1}}</p>
+      <p class="text-lg md:text-3xl inline-block my-2">{{"APPEAL_TO_QUESTION"|translate}} {{active_slider + 1}}</p>
       <div class="my-4">
         <div class="my-2">
           <select class="w-full rounded-lg my-2" [(ngModel)]="appealRequest.type_id">
             <option  *ngFor="let type of appealTypes" value="{{type.id}}">
-              {{type.title_ru}}
+              {{type | globalTranslate:"title": translate.currentLang}}
             </option>
           </select>
         </div>
         <div class="my-2 text-left">
-          <label>Опишите проблему</label>
+          <label>{{"DESCRIBE_YOUR_PROBLEM"|translate}}</label>
           <textarea class="w-full" [(ngModel)]="appealRequest.message" maxlength="255">
 
           </textarea>
@@ -320,10 +325,10 @@
 
       </div>
       <button (click)="createAppeal()" type="button" class="focus:outline-none my-4 mx-2 font-bold text-white bg-red-500 focus:ring-4 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-        Отправить
+        {{"SEND"|translate}}
       </button>
       <button (click)="closeModal('appealModal')" type="button" class="focus:outline-none my-4 font-bold text-white main-secondary-bg focus:ring-4 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
-        Отмена
+        {{"CANCEL"|translate}}
       </button>
     </div>
   </ngx-smart-modal>

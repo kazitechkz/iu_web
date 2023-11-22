@@ -31,6 +31,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {createDiscussAction} from "../../../shared/store/forum/createDiscuss/createDiscuss.action";
 import {CreateDiscussRequest} from "../../../shared/store/forum/createDiscuss/createDiscuss.request";
 import {createDiscussSelector} from "../../../shared/store/forum/createDiscuss/createDiscuss.selector";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 
 @Component({
   selector: 'app-forum-detail',
@@ -41,6 +42,7 @@ export class ForumDetailComponent implements OnInit,OnDestroy{
   //Injection
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
+  public translate = inject(GlobalTranslateService);
   private _route = inject(ActivatedRoute)
   //Injection
   //Data

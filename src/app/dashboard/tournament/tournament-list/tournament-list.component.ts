@@ -22,6 +22,7 @@ import {getAttemptSelector} from "../../../shared/store/attempt/getAttempt/getAt
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {getAllTournamentSelector} from "../../../shared/store/tournament/getAllTournament/getAllTournament.selector";
 import * as moment from "moment";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 
 @Component({
   selector: 'app-tournament-list',
@@ -29,7 +30,7 @@ import * as moment from "moment";
   styleUrls: ['./tournament-list.component.scss']
 })
 export class TournamentListComponent implements OnInit{
-
+  public translate = inject(GlobalTranslateService);
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
   //@ts-ignore

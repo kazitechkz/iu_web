@@ -17,6 +17,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import * as moment from "moment";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 
 @Component({
   selector: 'app-my-profile',
@@ -26,6 +27,7 @@ import * as moment from "moment";
 export class MyProfileComponent implements OnInit{
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
+  public translate = inject(GlobalTranslateService);
 
   //Data
   //@ts-ignore

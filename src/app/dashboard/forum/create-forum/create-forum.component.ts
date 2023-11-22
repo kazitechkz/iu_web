@@ -18,6 +18,7 @@ import {createForumAction} from "../../../shared/store/forum/createForum/createF
 import {createForumState} from "../../../shared/store/forum/createForum/createForum.state";
 import {createForumSelector} from "../../../shared/store/forum/createForum/createForum.selector";
 import {faCheck} from "@fortawesome/free-solid-svg-icons";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 @Component({
   selector: 'app-create-forum',
   templateUrl: './create-forum.component.html',
@@ -33,6 +34,7 @@ export class CreateForumComponent implements OnInit,OnDestroy{
   public Editor = ClassicEditor;
   //@ts-ignore
   subjects:Subject[];
+  public translate = inject(GlobalTranslateService);
 
   //Data
   createForum:FormGroup = this.fb.group({

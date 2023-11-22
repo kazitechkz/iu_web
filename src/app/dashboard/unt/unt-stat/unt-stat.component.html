@@ -7,7 +7,7 @@
         </div>
         <div class="md:w-8/12 p-2">
           <p class="text-lg md:text-xl text-center md:text-left text-white font-bold">
-            Статистика по вашим результатам тестирования доступна тут
+            {{"STATS_BY_RESULT_IS_AVAILABLE"|translate}}
           </p>
         </div>
       </div>
@@ -24,7 +24,7 @@
                 {{untStat.attempt_count}}
               </p>
               <p class="text-sm md:text-md text-center md:text-left text-gray-400">
-                Всего
+                {{"TOTAL"|translate}}
               </p>
             </div>
           </div>
@@ -41,7 +41,7 @@
                 {{untStat.attempt_question_count}}
               </p>
               <p class="text-sm md:text-md text-center md:text-left text-gray-400">
-                Вопросов пройдено
+                {{"TOTAL_QUESTION_PASSED"|translate}}
               </p>
             </div>
           </div>
@@ -58,7 +58,7 @@
                 {{untStat.attempt_count_unfinished}}
               </p>
               <p class="text-sm md:text-md text-center md:text-left text-gray-400">
-                Незавершенно
+                {{"UNFINISHED"|translate}}
               </p>
             </div>
           </div>
@@ -75,7 +75,7 @@
                 {{untStat.average}}
               </p>
               <p class="text-sm md:text-md text-center md:text-left text-gray-400">
-                Средний результат
+                {{"AVERAGE_RATING"|translate}}
               </p>
             </div>
           </div>
@@ -104,25 +104,25 @@
                 #
               </th>
               <th scope="col" class="px-6 py-3">
-                Предметы
+                {{"SUBJECTS"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
-                Результат
+                {{"RESULT"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
-                Тип сдачи
+                {{"UNT_TYPE"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
-                Язык сдачи
+                {{"UNT_LANGUAGE"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
-                Дата начала
+                {{"START_AT"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
-                Завершен
+                {{"END_AT"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
-                Действия
+                {{"ACTION"|translate}}
               </th>
             </tr>
             </thead>
@@ -135,7 +135,7 @@
               <td class="px-6 py-4">
                 <ul class="text-black ml-2" *ngIf="attempt.subjects">
                   <li class="text-sm list-item list-decimal" *ngFor="let subject of attempt.subjects">
-                    {{subject.title_ru}}
+                    {{subject | globalTranslate:"title": translate.currentLang}}
                   </li>
                 </ul>
               </td>
@@ -143,7 +143,7 @@
                 <p class="text-black ml-2 font-bold">{{attempt.points}} из {{attempt.max_points}}</p>
               </td>
               <td class="px-6 py-4">
-                <p class="text-black ml-2">{{attempt.attempt_type != null ? attempt.attempt_type.title_ru : ""}}</p>
+                <p class="text-black ml-2">{{attempt.attempt_type != null ? (attempt.attempt_type| globalTranslate:"title": translate.currentLang) : ""}}</p>
               </td>
               <td class="px-6 py-4">
                 <p class="text-black ml-2">{{attempt.locale != null ? attempt.locale.title : ""}}</p>
@@ -159,11 +159,11 @@
               </td>
               <td class="px-6 py-4">
                 <a *ngIf="attempt.end_at;else notEnded" [routerLink]="['/' + RoutesName.resultByAttemptId + '/' + attempt.id.toString()]" type="button" class="cursor-pointer text-white bg-green-300 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
-                  Результаты
+                  {{"RESULT"|translate}}
                 </a>
                 <ng-template #notEnded>
                   <a  [routerLink]="['/' + RoutesName.passUntExam + '/' + attempt.id.toString()]" type="button" class="cursor-pointer text-white bg-red-300 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-500 dark:hover:bg-red-500 dark:focus:ring-red-500">
-                    Пройти
+                    {{"PASS"|translate}}
                   </a>
                 </ng-template>
               </td>

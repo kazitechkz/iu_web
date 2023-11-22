@@ -43,6 +43,7 @@ import {appealTypeSelector} from "../../../shared/store/appeal/appealTypes/appea
 import {onCreateAppealAction} from "../../../shared/store/appeal/createAppeal/createAppeal.action";
 import {answerSelector} from "../../../shared/store/attempt/answer/answer.selector";
 import {finishAttemptAction} from "../../../shared/store/attempt/finishAttempt/finishAttempt.action";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 
 @Component({
   selector: 'app-pass-unt-exam',
@@ -59,6 +60,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     protected readonly faForwardFast = faForwardFast;
     protected readonly RoutesName = RoutesName;
     protected readonly faCheck = faCheck;
+    public translate = inject(GlobalTranslateService);
     private subscription:Subscription = new Subscription();
     private _store = inject(Store);
     private _route = inject(ActivatedRoute)

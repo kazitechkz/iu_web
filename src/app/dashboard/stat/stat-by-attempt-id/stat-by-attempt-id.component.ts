@@ -9,6 +9,7 @@ import {statByAttemptIdSelector} from "../../../shared/store/stat/statByAttemptI
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import {faChartBar, faCoins} from "@fortawesome/free-solid-svg-icons";
 import {RoutesName} from "../../../core/constants/routes.constants";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 
 @Component({
   selector: 'app-stat-by-attempt-id',
@@ -21,6 +22,8 @@ export class StatByAttemptIdComponent implements OnInit,OnDestroy{
   private _store = inject(Store);
   private _route = inject(ActivatedRoute);
   private destroyRef:DestroyRef = inject(DestroyRef);
+  public translate = inject(GlobalTranslateService);
+
   //Injection End
   //Data
   //@ts-ignore

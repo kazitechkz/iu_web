@@ -23,6 +23,7 @@ import {getUntStatAction} from "../../../shared/store/attempt/getUntStat/getUntS
 import {getUntStatSelector} from "../../../shared/store/attempt/getUntStat/getUntStat.selector";
 import {ChartConfiguration, ChartData, ChartType} from "chart.js";
 import {BaseChartDirective} from "ng2-charts";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 @Component({
   selector: 'app-unt-stat',
   templateUrl: './unt-stat.component.html',
@@ -35,7 +36,9 @@ export class UntStatComponent implements OnInit{
   public attempts:Pagination<AttemptModel[]>;
   //@ts-ignore
   public untStat: UntStatModel;
-  public pagination = {page:1}
+  public pagination = {page:1};
+  public translate = inject(GlobalTranslateService);
+
   ngOnInit(): void {
     this.getUserAttempts();
     this.getUNTStat();
@@ -65,7 +68,7 @@ export class UntStatComponent implements OnInit{
           this.barChartData.labels = Object.keys(item.data.stat_by_week);
           // @ts-ignore
           this.barChartData.datasets[0].data = Object.values(item.data.stat_by_week)
-          this.barChartData.datasets[0].label = "Результаты ЕНТ"
+          this.barChartData.datasets[0].label = "Результат"
 
         }
       }

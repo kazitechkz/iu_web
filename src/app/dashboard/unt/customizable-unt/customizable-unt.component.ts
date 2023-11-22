@@ -36,6 +36,7 @@ import {
 import {
   createAttemptSettingsSelector
 } from "../../../shared/store/attemptSettings/createAttemptSettings/createAttemptSettings.selector";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 
 @Component({
   selector: 'app-customizable-unt',
@@ -46,7 +47,8 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
   //Injection
   private _store = inject(Store);
   destroyRef = inject(DestroyRef);
-  dialog = inject(NgxSmartModalService)
+  dialog = inject(NgxSmartModalService);
+  public translate = inject(GlobalTranslateService);
   //Injection
   //Data
   //@ts-ignore

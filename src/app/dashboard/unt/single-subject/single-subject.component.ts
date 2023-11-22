@@ -9,6 +9,7 @@ import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {CreateAttemptRequest} from "../../../shared/store/attempt/createAttempt/createAttempt.request";
 import {createAttemptAction} from "../../../shared/store/attempt/createAttempt/createAttempt.action";
 import {ImageHelper} from "../../../core/helpers/image.helper";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 
 @Component({
   selector: 'app-single-subject',
@@ -21,9 +22,10 @@ export class SingleSubjectComponent implements OnInit{
     protected readonly faClock = faClock;
     protected readonly faBook = faBook;
     protected readonly faLanguage = faLanguage;
+    public translate = inject(GlobalTranslateService);
     subjects:Subject[] = [];
     locale_id:number = 1;
-  chosenSubject:number[] = [];
+    chosenSubject:number[] = [];
 
   ngOnInit(): void {
     this._store.dispatch(subjectGetAction());

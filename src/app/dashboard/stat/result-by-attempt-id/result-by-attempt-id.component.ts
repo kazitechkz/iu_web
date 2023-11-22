@@ -14,6 +14,7 @@ import {CountdownConfig} from "ngx-countdown";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import {faChartBar, faCheckCircle, faPencilAlt} from "@fortawesome/free-solid-svg-icons";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 @Component({
   selector: 'app-result-by-attempt-id',
   templateUrl: './result-by-attempt-id.component.html',
@@ -25,6 +26,8 @@ export class ResultByAttemptIdComponent implements OnInit,OnDestroy{
   private _store = inject(Store);
   private _route = inject(ActivatedRoute);
   private destroyRef:DestroyRef = inject(DestroyRef);
+  public translate = inject(GlobalTranslateService);
+
   //Injection End
   //Data
   //@ts-ignore

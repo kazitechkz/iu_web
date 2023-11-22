@@ -18,6 +18,7 @@ import {
   initTE,
 } from "tw-elements";
 import {RoutesName} from "../../../core/constants/routes.constants";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 @Component({
   selector: 'app-forum-list',
   templateUrl: './forum-list.component.html',
@@ -27,6 +28,8 @@ export class ForumListComponent implements OnInit {
   //Injection
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
+  public translate = inject(GlobalTranslateService);
+
   //Injection
   //Data
   subjects:Subject[] = [];

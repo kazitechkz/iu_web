@@ -23,7 +23,7 @@
               <div class="text-center" *ngIf="sub_tournament.is_current && !sub_tournament.is_finished && (moment(sub_tournament.start_at).isBefore(moment.now()) && moment(sub_tournament.end_at).isAfter(moment.now()));else passed">
                 <p
                   class="text-danger text-xl lg:text-2xl font-bold inline-block">
-                  До окончания регистрации:
+                  {{"EXPIRATION_DATE_REGISTER"|translate}}
                 </p>
                 <div class="my-4">
                   <countdown class="text-danger text-2xl lg:text-5xl font-bold inline-block" [config]="{leftTime:moment(sub_tournament.end_at).diff(moment.now(),'seconds'),format:'dd/HH:mm:ss'}"></countdown>
@@ -33,7 +33,7 @@
                   type="button"
                   class="inline-block main-green-bg border-0 rounded-full px-3 lg:px-4 py-2 lg:py-3 text-md lg:text-2xl font-bold uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0 my-2"
                   data-te-ripple-init>
-                  Хочу участвовать
+                  {{"WANT_TO_PARTICIPATE"|translate}}
                 </a>
               </div>
               <ng-template #passed>
@@ -42,14 +42,18 @@
               *ngIf="moment(sub_tournament.end_at).isAfter(moment.now())"
             >
               <fa-icon [icon]="faSadTear"></fa-icon>
-                <p>К сожалению, дата регистрации турнира уже прошла</p>
+                <p>
+                  {{"UNFORTUNATELY_DATE_REGISTER_EXPIRED"|translate}}
+                </p>
             </span>
                 <span
                   class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3"
                   *ngIf="moment(sub_tournament.start_at).isBefore(moment.now())"
                 >
               <fa-icon [icon]="faSadTear"></fa-icon>
-                <p>К сожалению, дата регистрации турнира еще не началась</p>
+                <p>
+                   {{"UNFORTUNATELY_DATE_REGISTER_NOT_YET"|translate}}
+                </p>
             </span>
               </ng-template>
             </section>
@@ -58,7 +62,9 @@
                   <span
                     class="main-green-color md:text-2xl xl:text-3xl inline-block text-center w-full m-3" *ngIf="my_result">
                   <fa-icon [icon]="faSmileWink"></fa-icon>
-                  <p>Вы являетесь участником данного турнира</p>
+                  <p>
+                    {{"YOU_ARE_NOT_PARTICIPANT"|translate}}
+                  </p>
                 </span>
                 <section *ngIf="!my_result">
                   <div class="card md:flex items-center justify-center text-center">
@@ -82,7 +88,7 @@
                     type="button"
                     class="inline-block main-green-bg border-0 rounded-full px-3 lg:px-4 py-2 lg:py-3 text-md lg:text-xl font-bold uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0 my-2"
                     data-te-ripple-init>
-                    Сдать экзамен
+                    {{"YOU_ARE_PARTICIPANT"|translate}}
                   </a>
                 </section>
               </div>
@@ -90,7 +96,7 @@
                 <span
                   class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3">
               <fa-icon [icon]="faSadTear"></fa-icon>
-                <p>К сожалению, вы не участник</p>
+                <p>{{"YOU_ARE_NOT_PARTICIPANT"|translate}}</p>
             </span>
               </ng-template>
 
@@ -120,7 +126,9 @@
                 role="tab"
                 aria-controls="pills-participants"
                 aria-selected="true"
-              >Участники</a
+              >
+                {{"PARTICIPANTS"|translate}}
+              </a
               >
             </li>
             <li role="presentation" *ngIf="sub_tournament">
@@ -147,7 +155,9 @@
                 role="tab"
                 aria-controls="pills-results"
                 aria-selected="false"
-              >Результаты</a
+              >
+                {{"RESULTS"|translate}}
+              </a
               >
             </li>
             <li role="presentation">
@@ -160,7 +170,9 @@
                 role="tab"
                 aria-controls="pills-winners"
                 aria-selected="false"
-              >Победители</a
+              >
+                {{"WINNERS"|translate}}
+              </a
               >
             </li>
           </ul>
@@ -186,16 +198,16 @@
                         #
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Имя
+                        {{"NAME"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Никнейм
+                        {{"NICKNAME"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
                         Email
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Дата регистрации
+                        {{"PARTICIPATED_DATE"|translate}}
                       </th>
                     </tr>
                     </thead>
@@ -243,22 +255,22 @@
                     <thead class="text-xs text-gray-700 capitalize">
                     <tr>
                       <th scope="col" class="px-6 py-3">
-                        Первый игрок
+                        {{"FIRST_PLAYER"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Баллы
+                        {{"POINTS"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Время
+                        {{"TIME"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Второй игрок
+                        {{"SECOND_PLAYER"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Баллы
+                        {{"POINTS"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Время
+                        {{"TIME"|translate}}
                       </th>
                     </tr>
                     </thead>
@@ -295,7 +307,7 @@
                     <thead class="text-xs text-gray-700 capitalize">
                     <tr>
                       <th scope="col" class="px-6 py-3">
-                        Победитель
+                        {{"WINNER"|translate}}
                       </th>
                     </tr>
                     </thead>
@@ -330,19 +342,19 @@
                         #
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Имя
+                        {{"NAME"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Никнейм
+                        {{"NICKNAME"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
                         Email
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Баллы
+                        {{"POINTS"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Время
+                        {{"TIME"|translate}}
                       </th>
                     </tr>
                     </thead>
@@ -384,19 +396,19 @@
                         #
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Имя
+                        {{"NAME"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Никнейм
+                        {{"NICKNAME"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
                         Email
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Баллы
+                        {{"POINTS"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Время
+                        {{"TIME"|translate}}
                       </th>
                     </tr>
                     </thead>
@@ -449,10 +461,10 @@
                         #
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Имя
+                        {{"NAME"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
-                        Никнейм
+                        {{"NICKNAME"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
                         Email

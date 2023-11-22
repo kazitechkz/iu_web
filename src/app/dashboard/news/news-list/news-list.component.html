@@ -14,7 +14,7 @@
             {{news.subtitle}}
           </p>
           <a [routerLink]="['/'+ RoutesName.newsDetail + '/' + news.id]" class="inline-block my-3 cursor-pointer text-white hover:text-black border border-white hover:bg-white focus:ring-4 focus:outline-none focus:ring-white font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:hover:text-white">
-            Подробнее
+            {{"MORE_INFO"|translate}}
           </a>
           <span class="block my-3 text-md lg:text-lg text-white font-bold" *ngIf="news.user">
             <fa-icon [icon]="faUser" class="mr-2"></fa-icon>{{news.user.name}}
@@ -44,7 +44,7 @@
           </p>
           <div class="text-center lg:text-right">
             <a [routerLink]="['/'+ RoutesName.newsDetail + '/' + newsItem.id]" class="inline-block my-3 cursor-pointer text-black hover:text-white border border-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-              Подробнее
+              {{"MORE_INFO"|translate}}
             </a>
           </div>
         </div>

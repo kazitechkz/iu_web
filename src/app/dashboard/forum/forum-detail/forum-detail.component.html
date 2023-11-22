@@ -41,7 +41,7 @@
                   {{forumDetail.forum.text}}
                 </p>
                 <p class="inline-block mt-3 text-md main-text main-green-color">
-                  {{forumDetail.forum.subject?.title_ru}}
+                  {{forumDetail.forum.subject | globalTranslate:"title": translate.currentLang}}
                 </p>
                 <br>
                 <p class="inline-block mt-3 text-md main-text main-green-color">
@@ -67,7 +67,7 @@
                   data-te-target="#flush-collapseThree"
                   aria-expanded="false"
                   aria-controls="flush-collapseThree">
-                  Посмотреть комментарии
+                  {{"SHOW_ALL_COMMENTS"|translate}}
                   <span
                     class="-mr-1 ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
                   <svg
@@ -171,7 +171,7 @@
             text-center mr-2 mb-2"
               (click)="onSubmit()"
             >
-              Написать
+              {{"WRITE"|translate}}
               <fa-icon [icon]="faCheck" class="mx-2 text-lg"></fa-icon>
             </button>
           </div>

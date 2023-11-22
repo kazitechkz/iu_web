@@ -8,25 +8,25 @@
         [placeholder]="'SELECT_TYPE' | translate"
       >
         <tw-option class="cursor-pointer" value="newest">
-          Newest
+          {{"NEWEST"|translate}}
         </tw-option>
         <tw-option class="cursor-pointer" value="popular">
-          Popular
+          {{"POPULAR"|translate}}
         </tw-option>
         <tw-option class="cursor-pointer" value="discussed">
-          Discussed
+          {{"DISCUSSED"|translate}}
         </tw-option>
       </tw-select>
     </div>
     <div class="col-span-12 md:col-span-12 lg:col-span-6 p-4">
-        <label for="default-search" class="mb-2 text-sm font-medium sr-only">Search</label>
+        <label for="default-search" class="mb-2 text-sm font-medium sr-only">{{"SEARCH"|translate}}</label>
         <div class="relative">
           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
           </div>
-          <input [(ngModel)]="params.search" type="search" id="default-search" class="block w-full p-4 pl-10 text-sm border-gray-300  rounded-lg " placeholder="Поиск" required>
+          <input [(ngModel)]="params.search" type="search" id="default-search" class="block w-full p-4 pl-10 text-sm border-gray-300  rounded-lg " placeholder="{{('SEARCH'|translate)}}" required>
           <button (click)="searchPage()" type="submit" class="text-white absolute right-2.5 bottom-2.5 main-secondary-bg  font-bold rounded-lg text-sm px-4 py-2">Search</button>
         </div>
     </div>
@@ -55,7 +55,7 @@
               {{forum.text}}
             </p>
             <p class="inline-block mt-3 text-md main-text main-green-color">
-              {{forum.subject?.title_ru}}
+              {{forum.subject | globalTranslate:"title": translate.currentLang}}
             </p>
             <br>
             <p class="inline-block mt-3 text-md main-text main-green-color">
@@ -141,7 +141,7 @@
                     <div class="w-8 h-8 rounded-full border-2 border-green-300 bg-cover bg-no-repeat mr-2"
                          [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(null)+ ')'}"
                     ></div>
-                    Все
+                    {{"ALL"|translate}}
                   </div>
                 </li>
                 <li class="w-full rounded-lg p-4 cursor-pointer"
@@ -152,7 +152,7 @@
                     <div class="w-8 h-8 rounded-full border-2 border-green-300 bg-cover bg-no-repeat mr-2"
                          [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(subject.image?.url)+ ')'}"
                     ></div>
-                    {{subject.title_ru}}
+                    {{subject | globalTranslate:"title": translate.currentLang}}
                   </div>
                 </li>
               </ul>

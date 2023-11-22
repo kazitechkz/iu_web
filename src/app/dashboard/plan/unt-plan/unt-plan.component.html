@@ -3,7 +3,9 @@
     <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-5 p-3 m-2 flex items-center justify-center rounded-lg shadow-2xl border-[#9BA1FF] border-2">
      <div class="w-full">
        <div class="my-2 py-3 px-4 rounded-full main-secondary-bg text-center">
-         <p class="text-md md:text-sm md:text-lg lg:text-xl xl:text-2xl text-white font-bold">Купить доступ к тренажеру ЕНТ</p>
+         <p class="text-md md:text-sm md:text-lg lg:text-xl xl:text-2xl text-white font-bold">
+           {{"BUY_FULL_ACCESS_TO_UNT"|translate}}
+         </p>
        </div>
        <div class="mt-5 mb-2 p-3">
          <div class="relative overflow-x-auto">
@@ -11,7 +13,9 @@
              <tbody>
              <tr class="bg-white rounded-2xl my-3">
                <td class="py-3">
-                 <p class="text-black text-sm md:text-lg ml-2 font-bold">Безлимитная сдача ЕНТ</p>
+                 <p class="text-black text-sm md:text-lg ml-2 font-bold">
+                   {{"UNLIMITED_PASS_UNT"|translate}}
+                 </p>
                </td>
                <td class="py-3">
                  <fa-icon [icon]="faCheckCircle" class="main-secondary-color text-sm md:text-lg"></fa-icon>
@@ -19,7 +23,9 @@
              </tr>
              <tr class="bg-white rounded-2xl my-3">
                <td class="py-3">
-                 <p class="text-black text-sm md:text-lg ml-2 font-bold">Выбор из более чем 16 предметов</p>
+                 <p class="text-black text-sm md:text-lg ml-2 font-bold">
+                   {{"CHOICE_OF_SIXTEEN_SUBJECTS"|translate}}
+                 </p>
                </td>
                <td class="py-3">
                  <fa-icon [icon]="faCheckCircle" class="main-secondary-color text-sm md:text-lg"></fa-icon>
@@ -27,7 +33,9 @@
              </tr>
              <tr class="bg-white rounded-2xl my-3">
                <td class="py-3">
-                 <p class="text-black text-sm md:text-lg ml-2 font-bold">Мультиязычная поддержка</p>
+                 <p class="text-black text-sm md:text-lg ml-2 font-bold">
+                   {{"SUPPORT_MULTI_LANGUAGE"|translate}}
+                 </p>
                </td>
                <td class="py-3">
                  <fa-icon [icon]="faCheckCircle" class="main-secondary-color text-sm md:text-lg"></fa-icon>
@@ -35,7 +43,9 @@
              </tr>
              <tr class="bg-white rounded-2xl my-3">
                <td class="py-3">
-                 <p class="text-black text-sm md:text-lg ml-2 font-bold">Самые актуальные вопросы</p>
+                 <p class="text-black text-sm md:text-lg ml-2 font-bold">
+                   {{"ACTUAL_QUESTION_MILLION"|translate}}
+                 </p>
                </td>
                <td class="py-3">
                  <fa-icon [icon]="faCheckCircle" class="main-secondary-color text-sm md:text-lg"></fa-icon>
@@ -43,7 +53,9 @@
              </tr>
              <tr class="bg-white rounded-2xl my-3">
                <td class="py-3">
-                 <p class="text-black text-sm md:text-lg ml-2 font-bold">Более 1.000.000 вопросов</p>
+                 <p class="text-black text-sm md:text-lg ml-2 font-bold">
+                   {{"WORK_OVER_FAILURE"|translate}}
+                 </p>
                </td>
                <td class="py-3">
                  <fa-icon [icon]="faCheckCircle" class="main-secondary-color text-sm md:text-lg"></fa-icon>
@@ -51,7 +63,9 @@
              </tr>
              <tr class="bg-white rounded-2xl my-3">
                <td class="py-3">
-                 <p class="text-black text-sm md:text-lg ml-2 font-bold">Различные режимы тренировок</p>
+                 <p class="text-black text-sm md:text-lg ml-2 font-bold">
+                   {{"VARIOUS_TRAINING_REGIME"|translate}}
+                 </p>
                </td>
                <td class="py-3">
                  <fa-icon [icon]="faCheckCircle" class="main-secondary-color text-sm md:text-lg"></fa-icon>
@@ -59,7 +73,9 @@
              </tr>
              <tr class="bg-white rounded-2xl my-3">
                <td class="py-3">
-                 <p class="text-black text-sm md:text-lg ml-2 font-bold">Полная статистика по предмету</p>
+                 <p class="text-black text-sm md:text-lg ml-2 font-bold">
+                   {{"FULL_SUBJECTS_RESULT"|translate}}
+                 </p>
                </td>
                <td class="py-3">
                  <fa-icon [icon]="faCheckCircle" class="main-secondary-color text-sm md:text-lg"></fa-icon>
@@ -67,7 +83,9 @@
              </tr>
              <tr class="bg-white rounded-2xl my-3">
                <td class="py-3">
-                 <p class="text-black text-sm md:text-lg ml-2 font-bold">Подарки и ценные призы</p>
+                 <p class="text-black text-sm md:text-lg ml-2 font-bold">
+                   {{"GIFT_AND_PRISE"|translate}}
+                 </p>
                </td>
                <td class="py-3">
                  <fa-icon [icon]="faCheckCircle" class="main-secondary-color text-sm md:text-lg"></fa-icon>
@@ -105,7 +123,7 @@
         </div>
         <div class="w-full lg:w-3/12">
           <div>
-            <p class="text-lg lg:text-2xl xl:text-2xl font-bold">{{plan.price/plan.invoice_period}} {{plan.currency}} за 1 месяц</p>
+            <p class="text-lg lg:text-2xl xl:text-2xl font-bold">{{plan.price/plan.invoice_period}} {{plan.currency}} / 1 {{"MONTH"|translate}}</p>
           </div>
           <div class="mt-5 mb-2">
             <p class="text-md md:text-lg">{{plan.invoice_period}} {{plan.invoice_interval}}</p>

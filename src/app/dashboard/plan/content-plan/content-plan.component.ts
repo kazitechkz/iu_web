@@ -14,6 +14,7 @@ import {getSubjectsState} from "../../../shared/store/subject/subject.selector";
 import {Subject} from "../../../shared/models/subject.model";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import {faCheckCircle, faCoins} from "@fortawesome/free-solid-svg-icons";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 
 @Component({
   selector: 'app-content-plan',
@@ -26,6 +27,8 @@ export class ContentPlanComponent implements OnInit,OnDestroy{
   private _store = inject(Store);
   private _route = inject(ActivatedRoute);
   private destroyRef:DestroyRef = inject(DestroyRef);
+  public translate = inject(GlobalTranslateService);
+
   //Injection End
 
   //Data

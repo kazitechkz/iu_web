@@ -2,32 +2,32 @@
   <div class="grid grid-cols-12 gap-2 bg-white rounded-xl shadow-lg p-3 my-3 justify-center items-center" *ngIf="resultByAttempt.attempt">
     <div class="col-span-12 md:col-span-3 my-2">
       <p class="text-md md:text-xl lg:text-xl xl:text-2xl text-center uppercase bg-blue-400 rounded-lg text-white p-3">
-        {{resultByAttempt.attempt.attempt_type?.title_ru}}
+        {{resultByAttempt.attempt.attempt_type  | globalTranslate:"title": translate.currentLang}}
       </p>
     </div>
     <div class="col-span-12 md:col-span-6 my-2">
       <p class="text-lg md:text-2xl lg:text-3xl xl:text-4xl text-center uppercase font-bold">
-        Результат тестирования
+        {{"EXAMINATION_RESULT"|translate}}
       </p>
     </div>
     <div class="col-span-12 md:col-span-3 my-2">
       <p class="text-md md:text-xl lg:text-xl xl:text-2xl text-center uppercase bg-blue-400 rounded-lg text-white p-3">
-        Попытка № {{resultByAttempt.attempt.id}}
+        {{"ATTEMPT_NUMBER"|translate}} {{resultByAttempt.attempt.id}}
       </p>
     </div>
     <div class="col-span-12 mt-[40px] mb-2">
       <p class="text-md md:text-xl lg:text-2xl xl:text-3xl text-center uppercase font-bold">
-        {{resultByAttempt.attempt.user?.name}} набрал(-a)
+        {{resultByAttempt.attempt.user?.name}} {{"TOTAL_RESULT"|translate}}
       </p>
     </div>
     <div class="col-span-12 my-2 my-2">
       <p class="text-lg md:text-4xl lg:text-5xl xl:text-6xl text-center uppercase font-bold">
-        {{resultByAttempt.attempt.points}} из {{resultByAttempt.attempt.max_points}} баллов
+        {{resultByAttempt.attempt.points}} / {{resultByAttempt.attempt.max_points}}  {{"POINTS"|translate}}
       </p>
     </div>
     <div class="col-span-12 mt-2 mb-[40px]">
       <p class="text-md md:text-xl lg:text-2xl xl:text-3xl text-center uppercase font-bold">
-        За  <countdown  [config]="timeConfig"></countdown>
+        {{"TIME_PASS"|translate}}  <countdown  [config]="timeConfig"></countdown>
       </p>
     </div>
     <div class="col-span-12 lg:col-span-6 my-4">
@@ -35,15 +35,15 @@
         <table class="w-full md:w-10/12 lg:w-8/12">
         <tbody>
         <tr>
-          <td colspan="2" class="font-bold">Тип сдачи:</td>
-          <td class="font-bold text-blue-400">{{resultByAttempt.attempt.attempt_type?.title_ru}}</td>
+          <td colspan="2" class="font-bold">{{"START_AT"|translate}}:</td>
+          <td class="font-bold text-blue-400">{{resultByAttempt.attempt.attempt_type | globalTranslate:"title": translate.currentLang}}</td>
         </tr>
         <tr>
-          <td colspan="2" class="font-bold">Дата начала:</td>
+          <td colspan="2" class="font-bold">{{"UNT_TYPE"|translate}}:</td>
           <td class="font-bold text-blue-400">{{moment(resultByAttempt.attempt.start_at).format('HH:mm:ss DD/MM/YYYY')}}</td>
         </tr>
         <tr>
-          <td colspan="2" class="font-bold">Дата окончания:</td>
+          <td colspan="2" class="font-bold">{{"END_AT"|translate}}:</td>
           <td class="font-bold text-blue-400">{{moment(resultByAttempt.attempt.end_at).format('HH:mm:ss DD/MM/YYYY')}}</td>
         </tr>
         </tbody>
@@ -55,15 +55,15 @@
         <table class="w-full md:w-10/12 lg:w-8/12">
           <tbody>
           <tr>
-            <td colspan="2" class="font-bold">Язык сдачи:</td>
+            <td colspan="2" class="font-bold">{{"UNT_LANGUAGE"|translate}}:</td>
             <td class="font-bold text-blue-400">{{resultByAttempt.attempt.locale?.title}}</td>
           </tr>
           <tr>
-            <td colspan="2" class="font-bold">Максимальный балл:</td>
+            <td colspan="2" class="font-bold">{{"MAX_POINTS"|translate}}:</td>
             <td class="font-bold text-blue-400">{{resultByAttempt.attempt.max_points}}</td>
           </tr>
           <tr>
-            <td colspan="2" class="font-bold">Набранный балл:</td>
+            <td colspan="2" class="font-bold">{{"TOTAL_POINT"|translate}}:</td>
             <td class="font-bold text-blue-400">{{resultByAttempt.attempt.points}}</td>
           </tr>
           </tbody>
@@ -79,19 +79,19 @@
                 №
               </th>
               <th scope="col" class="px-6 py-3">
-                Предметы
+                {{"SUBJECTS"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
-                Всего вопросов
+                {{"TOTAL_QUESTION"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
-                Верно отвеченно
+                {{"RIGHT_TOTAL"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
-                Неверно отвеченно
+                {{"WRONG_TOTAL"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
-                Набранно
+                {{"TOTAL"|translate}}
               </th>
             </tr>
             </thead>
@@ -102,7 +102,7 @@
                 <p class="font-bold text-black ml-2 inline-block">#{{subject.id}}</p>
               </th>
               <td class="px-6 py-4">
-                <p class="text-black ml-2 font-bold">{{subject.title_ru}}</p>
+                <p class="text-black ml-2 font-bold">{{subject | globalTranslate:"title": translate.currentLang}}</p>
               </td>
               <td class="px-6 py-4">
                 <p class="text-black ml-2 font-bold">
@@ -135,7 +135,7 @@
           [routerLink]="'/'+RoutesName.statByAttemptId + '/' + resultByAttempt.attempt.id"
           class="cursor-pointer text-white main-secondary-bg hover:bg-violet-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-500 dark:hover:bg-blue-700 dark:focus:ring-blue-700">
           <fa-icon class="mr-1 text-white" [icon]="faChartBar"></fa-icon>
-         Посмотреть полную статистику
+          {{"SHOW_DETAILED_STAT"|translate}}
         </a>
       </div>
     </div>
@@ -145,7 +145,7 @@
           [routerLink]="'/'+RoutesName.resultUnt + '/' + resultByAttempt.attempt.id"
           class="cursor-pointer text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-lg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-700">
           <fa-icon class="mr-1 text-white" [icon]="faCheckCircle"></fa-icon>
-          Работа над ошибками
+          {{"WORK_OVER_FAILURES"|translate}}
         </a>
       </div>
     </div>

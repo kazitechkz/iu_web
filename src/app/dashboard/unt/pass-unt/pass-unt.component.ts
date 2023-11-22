@@ -15,9 +15,7 @@ import {Select2Data} from "ng-select2-component";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {CreateAttemptRequest} from "../../../shared/store/attempt/createAttempt/createAttempt.request";
 import {createAttemptAction} from "../../../shared/store/attempt/createAttempt/createAttempt.action";
-
-
-
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 @Component({
   selector: 'app-pass-unt',
   templateUrl: './pass-unt.component.html',
@@ -36,6 +34,7 @@ export class PassUntComponent implements OnInit{
   protected readonly ImageHelper = ImageHelper;
   chosenSubject:number[] = [];
   locale_id:number = 1;
+  public translate = inject(GlobalTranslateService);
   ngOnInit(): void {
     this._store.dispatch(subjectGetAction());
     this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{

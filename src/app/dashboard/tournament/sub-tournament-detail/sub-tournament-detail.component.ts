@@ -111,6 +111,7 @@ export class SubTournamentDetailComponent implements OnInit{
   //@ts-ignore
   sub_tournament_winners:SubTournamentWinner[];
   public paginationWinner = {id:0}
+
   locale_id:number = 1;
   //Some Data End
   ngOnInit(): void {

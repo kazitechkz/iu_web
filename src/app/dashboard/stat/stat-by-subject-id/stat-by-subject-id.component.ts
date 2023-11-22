@@ -8,6 +8,7 @@ import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {StatBySubjectIdModel} from "../../../shared/store/stat/statBySubjectId/statBySubjectId.action.model";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import {faCoins} from "@fortawesome/free-solid-svg-icons";
+import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 
 @Component({
   selector: 'app-stat-by-subject-id',
@@ -20,6 +21,8 @@ export class StatBySubjectIdComponent implements OnInit,OnDestroy{
   private _store = inject(Store);
   private _route = inject(ActivatedRoute);
   private destroyRef:DestroyRef = inject(DestroyRef);
+  public translate = inject(GlobalTranslateService);
+
   //Injection End
   //Data
   //@ts-ignore

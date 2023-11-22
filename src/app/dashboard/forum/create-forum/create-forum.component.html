@@ -9,7 +9,7 @@
             [placeholder]="'SELECT_SUBJECT' | translate"
           >
             <tw-option class="cursor-pointer" *ngFor="let subject of subjects" value="{{subject.id}}">
-              {{subject.title_ru}}
+              {{subject| globalTranslate:"title": translate.currentLang}}
             </tw-option>
 
           </tw-select>
@@ -64,7 +64,7 @@
             text-center mr-2 mb-2"
                   (click)="onSubmit()"
           >
-            Создать
+            {{"CREATE"|translate}}
             <fa-icon [icon]="faCheck" class="mx-2 text-lg"></fa-icon>
           </button>
         </div>
