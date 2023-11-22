@@ -36,6 +36,7 @@ import {WalletStatisticsComponent} from "./wallet/wallet-statistics/wallet-stati
 import {NewsListComponent} from "./news/news-list/news-list.component";
 import {NewsDetailComponent} from "./news/news-detail/news-detail.component";
 import {NotificationListComponent} from "./notification/notification-list/notification-list.component";
+import {PassUntByPromoComponent} from "./unt/pass-unt-by-promo/pass-unt-by-promo.component";
 
 
 const routes: Routes = [
@@ -123,6 +124,10 @@ const routes: Routes = [
       {
         path: 'plan-content',
         component: ContentPlanComponent
+      },
+      {
+        path: 'pass-unt-by-promo/:promo_code',
+        component: PassUntByPromoComponent
       },
       {
         path: 'stat-subject/:id',

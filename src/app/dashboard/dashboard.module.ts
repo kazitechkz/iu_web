@@ -56,6 +56,7 @@ import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import {CalendarCommonModule, CalendarDayModule, CalendarMonthModule} from "angular-calendar";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import { NotificationListComponent } from './notification/notification-list/notification-list.component';
+import { PassUntByPromoComponent } from './unt/pass-unt-by-promo/pass-unt-by-promo.component';
 
 
 @NgModule({
@@ -96,6 +97,7 @@ import { NotificationListComponent } from './notification/notification-list/noti
         NewsListComponent,
         NewsDetailComponent,
         NotificationListComponent,
+        PassUntByPromoComponent,
     ],
     imports: [
         CommonModule,
