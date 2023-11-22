@@ -69,6 +69,7 @@ export class StepDetailComponent implements OnInit {
       this._store.dispatch(stepDetailAction({ requestData: params['id'] }))
       this._store.select(getStepDetailState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         this.steps = item.data
+        console.log(item.data)
       })
     })
   }
@@ -121,7 +122,7 @@ export class StepDetailComponent implements OnInit {
   protected readonly ImageHelper = ImageHelper;
   protected readonly ColorConstants = ColorConstants;
   protected readonly Array = Array;
-    protected readonly faCircleCheck = faCircleCheck;
+  protected readonly faCircleCheck = faCircleCheck;
   protected readonly RoutesName = RoutesName;
   protected readonly console = console;
   protected readonly StrHelper = StrHelper;

@@ -1,13 +1,12 @@
-import {AfterViewInit, Component, DestroyRef, DoCheck, inject, OnInit} from '@angular/core';
+import {Component, DestroyRef, DoCheck, inject, OnInit} from '@angular/core';
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {Store} from "@ngrx/store";
 import {ActivatedRoute, Router} from "@angular/router";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {passSubStepExamAction, subStepExamAction} from "../../../shared/store/step/exam/subStepExam.action";
 import {getSubStepExamState, passSubStepExamState} from "../../../shared/store/step/exam/subStepExam.selector";
-import {SubStepExamModel} from "../../../shared/models/question.model";
+import {Question, SubStepExamModel} from "../../../shared/models/question.model";
 import {distinctUntilChanged} from "rxjs";
-import {StrHelper} from "../../../core/helpers/str.helper";
 
 @Component({
   selector: 'app-exam',
@@ -41,15 +40,60 @@ export class ExamComponent implements OnInit, DoCheck {
         }
       })
     } else {
-      this.answers.push({sub_step_test_id: questionId, answer: answer, locale_id: StrHelper.getLocaleIdByCurrentLang(this.translate.currentLang)})
+      this.answers.push({sub_step_test_id: questionId, answer: answer, locale_id: 1})
     }
+  }
+
+  getCountAnswers(question: Question) {
+    return [
+      {
+        index: 1,
+        key: 'a',
+        value: question.answer_a
+      },
+      {
+        index: 2,
+        key: 'b',
+        value: question.answer_b
+      },
+      {
+        index: 3,
+        key: 'c',
+        value: question.answer_c
+      },
+      {
+        index: 4,
+        key: 'd',
+        value: question.answer_d
+      },
+      {
+        index: 5,
+        key: 'e',
+        value: question.answer_e
+      },
+      {
+        index: 6,
+        key: 'f',
+        value: question.answer_f
+      },
+      {
+        index: 7,
+        key: 'g',
+        value: question.answer_g
+      },
+      {
+        index: 8,
+        key: 'h',
+        value: question.answer_h
+      },
+    ]
   }
 
   getAnswers() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(passSubStepExamAction({requestData: this.answers}))
       this._store.select(passSubStepExamState).pipe(distinctUntilChanged(), autoUnsubscribe(this.destroyRef)).subscribe(item => {
-        this._router.navigateByUrl('/dashboard/result-exam/'+params['sub_step_test_id']+'/'+params['locale_id'])
+        this._router.navigateByUrl('/dashboard/result-exam/'+params['sub_step_test_id']+'/'+1)
       })
     })
   }

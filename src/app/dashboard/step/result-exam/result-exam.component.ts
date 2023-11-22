@@ -46,12 +46,16 @@ export class ResultExamComponent implements OnInit {
     })
   }
 
-  checkAnswer(answer: string, user_answer: string, is_right: boolean): string {
-    if (answer == user_answer && is_right) {
-      return 'green'
-    } else if (answer == user_answer && !is_right) {
-      return 'red'
-    }else {
+  checkAnswer(answer: string, user_answer: string | null, is_right: boolean | null): string {
+    if (user_answer) {
+      if (answer == user_answer && is_right) {
+        return 'green'
+      } else if (answer == user_answer && !is_right) {
+        return 'red'
+      } else {
+        return ''
+      }
+    } else {
       return ''
     }
   }
