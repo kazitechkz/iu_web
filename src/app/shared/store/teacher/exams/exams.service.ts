@@ -16,4 +16,7 @@ export class ExamsService {
     deleteExamByID(id: number): Observable<ResponseData<boolean>> {
       return this._http.delete<ResponseData<boolean>>(environment.baseUrl + APIRoutesName.teacherDeleteExamByID + '/' + id)
     }
+    deleteUNTExamByID(id: number): Observable<ResponseData<boolean>> {
+      return this._http.delete<ResponseData<boolean>>(environment.baseUrl + APIRoutesName.teacherDeleteUNTExamByID + '/' + id)
+    }
 }

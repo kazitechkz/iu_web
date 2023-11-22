@@ -11,8 +11,15 @@ import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {AllAttemptRequest} from "../../shared/store/attempt/allAttempt/allAttempt.request";
 import {Pagination} from "../../shared/store/pagination";
 import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
-import {deleteExamByIdAction} from "../../shared/store/teacher/exams/exams.action";
+import {deleteExamByIdAction, deleteUNTExamByIdAction} from "../../shared/store/teacher/exams/exams.action";
 import {TwNotification} from "ng-tw";
+import {
+  getAllAttemptSettingsUNTAction
+} from "../../shared/store/attemptSettings/getAllAttemptSettingsUNT/getAllAttemptSettingsUNT.action";
+import {
+  getAllAttemptSettingsUNTSelector
+} from "../../shared/store/attemptSettings/getAllAttemptSettingsUNT/getAllAttemptSettingsUNT.selector";
+import {AttemptSettingUNT} from "../../shared/models/attemptSettingUNT.model";
 
 @Component({
   selector: 'app-exams',
@@ -26,9 +33,12 @@ export class ExamsComponent implements OnInit {
   private _notification = inject(TwNotification)
   //@ts-ignore
   myTests: Pagination<AttemptSetting[]>;
+  // @ts-ignore
+  myUNTTests: Pagination<AttemptSettingUNT[]>;
   params = {page:1};
   ngOnInit(): void {
     this.getMyTests()
+    this.getMyUNTTests()
   }
 
   getMyTests() {
@@ -40,11 +50,25 @@ export class ExamsComponent implements OnInit {
       }
     })
   }
+  getMyUNTTests() {
+    let request = Object.assign({}, this.params) as AllAttemptRequest;
+    this._store.dispatch(getAllAttemptSettingsUNTAction({requestData: request}))
+    this._store.select(getAllAttemptSettingsUNTSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      if (item.data) {
+        this.myUNTTests = item.data
+      }
+    })
+  }
 
   deleteExamById(id: number) {
     this._store.dispatch(deleteExamByIdAction({id: id}))
     this._notification.show({ type: 'success', title: 'Успешно удален' })
     this.getMyTests()
+  }
+  deleteUNTExamById(id: number) {
+    this._store.dispatch(deleteUNTExamByIdAction({id: id}))
+    this._notification.show({ type: 'success', title: 'Успешно удален' })
+    this.getMyUNTTests()
   }
   pageChanged($event:number){
     this.params.page = $event;

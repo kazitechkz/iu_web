@@ -92,6 +92,9 @@ import {
 import {
   GetNotificationTypeAllEffect
 } from "../../shared/store/notification/getNotificationTypeAll/getNotificationTypeAll.effect";
+import {
+  GetAllAttemptSettingsUNTEffect
+} from "../../shared/store/attemptSettings/getAllAttemptSettingsUNT/getAllAttemptSettingsUNT.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -149,6 +152,7 @@ export const EffectsConstants = [
     CreateAttemptSettingsEffect,
     CreateAttemptSettingsUNTEffect,
     GetAllAttemptSettingsEffect,
+    GetAllAttemptSettingsUNTEffect,
     GetCategoryQuestionCountEffect,
     GetSubCategoryQuestionCountEffect,
     GetMySubjectsEffect,

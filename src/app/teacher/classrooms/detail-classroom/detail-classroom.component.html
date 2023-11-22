@@ -84,18 +84,18 @@
 <div class="py-4" *ngIf="isSingleTest">
   <div class="my-2 2xl:flex 2xl:justify-between 2xl:items-center">
     <div class="lg:flex">
-      <select data-te-select-init class="mx-2 mobile:my-1" (change)="getCategories($event)">
+      <select data-te-select-init class="mx-2 mobile:my-1" (change)="selectSubject($event)">
         <option value="0">{{'SELECT_SUBJECT' | translate}}</option>
-        <option [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID)}}</option>
+        <option [value]="subject.id" *ngFor="let subject of subjects">{{subject.title_kk}}</option>
       </select>
-      <select data-te-select-init class="mx-2 mobile:my-1" *ngIf="isShowCategoryContent" (change)="selectLanguage($event)">
-        <option [selected]="localeID == 1" value="1">
-          Қазақ тілі
-        </option>
-        <option [selected]="localeID == 2" value="2">
-          Русский язык
-        </option>
-      </select>
+<!--      <select data-te-select-init class="mx-2 mobile:my-1" *ngIf="isShowCategoryContent" (change)="selectLanguage($event)">-->
+<!--        <option [selected]="localeID == 1" value="1">-->
+<!--          Қазақ тілі-->
+<!--        </option>-->
+<!--        <option [selected]="localeID == 2" value="2">-->
+<!--          Русский язык-->
+<!--        </option>-->
+<!--      </select>-->
     </div>
 
     <form [formGroup]="attempt_settings_form" (ngSubmit)="sendQuery()">
@@ -148,7 +148,7 @@
                 <div class="p-3 my-2 flex justify-between">
                   <div class="flex items-center justify-between">
                     <p class="mobile:text-xs lg:text-base text-white">
-                      {{cat | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID)}}
+                      {{cat.title_kk}}
                     </p>
                   </div>
                   <button (click)="getSubCategories(cat.id)" class="rounded-full border ml-auto w-[30px] h-[30px] flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
@@ -192,7 +192,7 @@
                       <div class="lg:p-6 mobile:p-2 my-2 flex justify-between">
                         <div class="flex items-center">
                           <p class="mobile:text-xs text-base text-black">
-                            {{subCat | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID): 40}}
+                            {{subCat.title_kk}}
                           </p>
                         </div>
                       </div>
@@ -243,16 +243,16 @@
 <ngx-smart-modal identifier="open-unt">
   <div class="my-3 text-black">
     <form [formGroup]="unt_form" (ngSubmit)="untSubmit()">
-      <div>
-        <select data-te-select-init class="mx-2 mobile:my-1 w-full" (change)="selectLanguageForUNT($event)">
-          <option [selected]="localeID == 1" value="1">
-            Қазақ тілі
-          </option>
-          <option [selected]="localeID == 2" value="2">
-            Русский язык
-          </option>
-        </select>
-      </div>
+<!--      <div>-->
+<!--        <select data-te-select-init class="mx-2 mobile:my-1 w-full" (change)="selectLanguageForUNT($event)">-->
+<!--          <option [selected]="localeID == 1" value="1">-->
+<!--            Қазақ тілі-->
+<!--          </option>-->
+<!--          <option [selected]="localeID == 2" value="2">-->
+<!--            Русский язык-->
+<!--          </option>-->
+<!--        </select>-->
+<!--      </div>-->
       <div class="my-2 lg:flex lg:items-center mobile:my-3">
         <div class="flex mx-2 mobile:my-2">
           <input [formControlName]="'time'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-2 !w-full range-slider__range">
