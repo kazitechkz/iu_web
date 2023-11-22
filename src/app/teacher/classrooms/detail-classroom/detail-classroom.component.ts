@@ -123,7 +123,7 @@ export class DetailClassroomComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDetailClassroom()
-    this.localeID = StrHelper.getLocaleIdByCurrentLang(this.translate.currentLang)
+    // this.localeID = StrHelper.getLocaleIdByCurrentLang(this.translate.currentLang)
   }
 
   getDetailClassroom() {
@@ -337,14 +337,19 @@ export class DetailClassroomComponent implements OnInit {
     }
   }
 
+  selectSubject(event: any) {
+    this.subjectLocaleID = event.target.value
+    this.getCategories(this.subjectLocaleID)
+  }
   getCategories(event: any, isLanguageSelect: boolean = false) {
-    let subjectID = 0
-    if (isLanguageSelect) {
-      this.subCategoryContentID = 0
-      subjectID = event;
-    } else {
-      subjectID = parseInt((event.target as HTMLInputElement).value);
-    }
+    // let subjectID = 0
+    // if (isLanguageSelect) {
+    //   this.subCategoryContentID = 0
+    //   subjectID = event;
+    // } else {
+    //   subjectID = parseInt((event.target as HTMLInputElement).value);
+    // }
+    let subjectID = event
     if (subjectID == 0) {
       this.isShowCategoryContent = false
     } else {

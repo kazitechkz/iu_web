@@ -27,7 +27,7 @@ export class StepComponent implements OnInit {
   }
 
   getSteps() {
-    this._store.dispatch(stepAction({localeId: StrHelper.getLocaleIdByCurrentLang(this.translate.currentLang)}))
+    this._store.dispatch(stepAction({localeId: 1}))
     this._store.select(getStepState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       this.steps = item.data
     })

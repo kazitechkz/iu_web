@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {LayoutComponent} from './layout/layout.component';
 import {DashboardRoutingModule} from "./dashboard-routing.module";
 import {SharedModule} from "../shared/shared.module";
@@ -126,6 +126,7 @@ import { PassUntByPromoComponent } from './unt/pass-unt-by-promo/pass-unt-by-pro
         CalendarMonthModule,
         CalendarCommonModule,
         SweetAlert2Module.forRoot(),
+        NgOptimizedImage,
     ],
   providers: [MathJaxPipe, TranslatePipe]
 })

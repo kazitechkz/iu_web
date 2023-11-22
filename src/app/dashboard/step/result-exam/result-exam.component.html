@@ -21,42 +21,56 @@
     <div class="content-question">
       <h5
         class="mb-2 text-xl font-medium leading-tight text-neutral-800">
-        <markdown katex>
-          {{question.question.text | mathjaxTransform}}
-        </markdown>
+        <div [mathjax]="question.question.text | mathjaxTransform"></div>
       </h5>
       <div class="my-2" *ngIf="question.question.context" [innerHTML]="question.question.context.context"></div>
       <div class="my-5">
         <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
           <label
-            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('a', question.result.user_answer, question.result.is_right)}">
-            <markdown katex>
-              a. {{question.question.answer_a | mathjaxTransform}}
-            </markdown>
+            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('a', question.result ? question.result.user_answer : null, question.result ? question.result.is_right : null)}">
+            <div [mathjax]="'a.' + question.question.answer_a | mathjaxTransform"></div>
           </label>
         </div>
         <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
           <label
-            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('b', question.result.user_answer, question.result.is_right)}">
-            <markdown katex>
-              b. {{question.question.answer_b | mathjaxTransform}}
-            </markdown>
+            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('b', question.result ? question.result.user_answer : null, question.result ? question.result.is_right : null)}">
+            <div [mathjax]="'b.' + question.question.answer_b | mathjaxTransform"></div>
           </label>
         </div>
         <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
           <label
-            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('c', question.result.user_answer, question.result.is_right)}">
-            <markdown katex>
-              c. {{question.question.answer_c | mathjaxTransform}}
-            </markdown>
+            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('c', question.result ? question.result.user_answer : null, question.result ? question.result.is_right : null)}">
+            <div [mathjax]="'c.' + question.question.answer_c | mathjaxTransform"></div>
           </label>
         </div>
         <div  class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
           <label
-            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('d', question.result.user_answer, question.result.is_right)}">
-            <markdown katex>
-              d. {{question.question.answer_d | mathjaxTransform}}
-            </markdown>
+            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('d', question.result ? question.result.user_answer : null, question.result ? question.result.is_right : null)}">
+            <div [mathjax]="'d.' + question.question.answer_d | mathjaxTransform"></div>
+          </label>
+        </div>
+        <div *ngIf="question.question.answer_e" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+          <label
+            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('e', question.result ? question.result.user_answer : null, question.result ? question.result.is_right : null)}">
+            <div [mathjax]="'e.' + question.question.answer_e | mathjaxTransform"></div>
+          </label>
+        </div>
+        <div *ngIf="question.question.answer_f" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+          <label
+            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('f', question.result ? question.result.user_answer : null, question.result ? question.result.is_right : null)}">
+            <div [mathjax]="'f.' + question.question.answer_f | mathjaxTransform"></div>
+          </label>
+        </div>
+        <div *ngIf="question.question.answer_g" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+          <label
+            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('g', question.result ? question.result.user_answer : null, question.result ? question.result.is_right : null)}">
+            <div [mathjax]="'g.' + question.question.answer_g | mathjaxTransform"></div>
+          </label>
+        </div>
+        <div *ngIf="question.question.answer_h" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+          <label
+            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('h', question.result ? question.result.user_answer : null, question.result ? question.result.is_right : null)}">
+            <div [mathjax]="'h.' + question.question.answer_h | mathjaxTransform"></div>
           </label>
         </div>
       </div>

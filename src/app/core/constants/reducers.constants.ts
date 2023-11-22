@@ -96,6 +96,9 @@ import {myNotificationIdsReducer} from "../../shared/store/notification/myNotifi
 import {
   getNotificationTypeAllReducer
 } from "../../shared/store/notification/getNotificationTypeAll/getNotificationTypeAll.reducer";
+import {
+  getAllAttemptSettingsUNTReducer
+} from "../../shared/store/attemptSettings/getAllAttemptSettingsUNT/getAllAttemptSettingsUNT.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -158,6 +161,7 @@ export const ReducersConstants = {
   createAttemptSettings:createAttemptSettingsReducer,
   createAttemptSettingsUNT:createAttemptSettingsUNTReducer,
   getAllAttemptSettings:getAllAttemptSettingsReducer,
+  getAllAttemptSettingsUNT:getAllAttemptSettingsUNTReducer,
   getCategoryQuestionCount:getCategoryQuestionCountReducer,
   getSubCategoryQuestionCount:getSubCategoryQuestionCountReducer,
   categories: categoryReducer,
