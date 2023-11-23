@@ -79,5 +79,7 @@
   "NOTIFICATION": "Хабарландыру",
   "SUBSCRIPTION": "Жазылым",
   "NEWS": "Жаналықтар",
-  "SELECT_PROFILE_SUBJECTS": "Өзіңіздің профиль пәндеріңізді таңдаңыз"
+  "SELECT_PROFILE_SUBJECTS": "Өзіңіздің профиль пәндеріңізді таңдаңыз",
+  "PASSED": "Тапсырды",
+  "POINT": "Ұпай"
 }

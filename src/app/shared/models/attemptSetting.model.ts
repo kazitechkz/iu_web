@@ -1,15 +1,16 @@
 import {Locale} from "./locale.model";
-import {OrdinaryUser} from "./user.model";
+import {OrdinaryUser, OrdinaryUserForExam} from "./user.model";
 import {Subject} from "./subject.model";
-import {AttemptSettingResult} from "./AttemptSettingResult.model";
 import {ClassroomsGroupModel} from "./classroomsGroup.model";
+import {AttemptSettingResult} from "./attemptSettingResult.model";
 
 export interface AttemptSetting {
   id: number
   subject_id: number
   promo_code: string
   class_id: number | null
-  users: string | null
+  users: string | OrdinaryUserForExam | null
+  attempt_users: string | OrdinaryUserForExam | null
   owner_id: number | null
   settings: string
   locale_id: number

@@ -16,6 +16,9 @@ import { DetailClassroomComponent } from './classrooms/detail-classroom/detail-c
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import { ExamsComponent } from './exams/exams.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import { DetailExamComponent } from './exams/detail-exam/detail-exam.component';
+import { AttemptStatsComponent } from './stats/attempt-stats/attempt-stats.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 
 @NgModule({
@@ -25,6 +28,8 @@ import {NgxPaginationModule} from "ngx-pagination";
     ClassroomsComponent,
     DetailClassroomComponent,
     ExamsComponent,
+    DetailExamComponent,
+    AttemptStatsComponent,
   ],
   imports: [
     CommonModule,
@@ -37,7 +42,8 @@ import {NgxPaginationModule} from "ngx-pagination";
     ReactiveFormsModule,
     TwSelectModule,
     SweetAlert2Module.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    FontAwesomeModule
   ],
   providers: [MathJaxPipe]
 })

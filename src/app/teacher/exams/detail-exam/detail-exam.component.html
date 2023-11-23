@@ -1,0 +1,74 @@
+<div class="flex">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="min-w-full text-left text-sm font-light">
+          <thead class="border-b font-medium dark:border-neutral-500">
+          <tr>
+            <th scope="col" class="px-6 py-4">#</th>
+            <th scope="col" class="px-6 py-4">{{'NAME' | translate}}</th>
+            <th scope="col" class="px-6 py-4">{{'PASSED' | translate}}</th>
+            <th scope="col" class="px-6 py-4">{{'POINT' | translate}}</th>
+            <th scope="col" class="px-6 py-4">{{'START_AT' | translate}}</th>
+            <th scope="col" class="px-6 py-4">{{'END_AT' | translate}}</th>
+            <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
+          </tr>
+          </thead>
+          <tbody *ngIf="exam">
+          <tr *ngFor="let item of exam.attempt_settings_results | keys"
+              class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
+            <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
+            <td class="whitespace-nowrap px-6 py-4">{{item.value.user.name }}</td>
+            <td class="whitespace-nowrap px-6 py-4">
+              <span [ngClass]="item.value.attempt ? 'text-green-400' : 'text-red-700'">{{'YES'|translate}}</span>
+            </td>
+            <td class="whitespace-nowrap px-6 py-4">
+              {{item.value.attempt.points}} / {{item.value.attempt.max_points}}
+            </td>
+            <td class="whitespace-nowrap px-6 py-4">
+              {{item.value.attempt.start_at | date: 'dd/MM/yyyy hh:mm': 'Asia/Almaty'}}
+            </td>
+            <td class="whitespace-nowrap px-6 py-4">
+              {{item.value.attempt.end_at | date: 'dd/MM/yyyy hh:mm': 'Asia/Almaty'}}
+            </td>
+            <td class="whitespace-nowrap px-6 py-4">
+              <div class="flex">
+                <a
+                  [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherStatsAttempt) + '/' + item.value.attempt.id + '/' + item.value.user.id"
+                  class="mx-2 text-black"
+                  tw-button
+                  layout="flat"
+                >
+                  <i class="fa fa-line-chart" aria-hidden="true"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+          <tr *ngFor="let item of exam.attempt_users | keys"
+              class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
+            <td *ngIf="!item.value.attempt_settings_result" class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(String(exam.attempt_settings_results ? exam.attempt_settings_results.length : 0)) + 1}}</td>
+            <td *ngIf="!item.value.attempt_settings_result" class="whitespace-nowrap px-6 py-4">{{item.value.name }}</td>
+            <td *ngIf="!item.value.attempt_settings_result" class="whitespace-nowrap px-6 py-4">
+              <span class="text-red-700">{{'NO'|translate}}</span>
+            </td>
+            <td *ngIf="!item.value.attempt_settings_result" class="whitespace-nowrap px-6 py-4">
+              -
+            </td>
+            <td *ngIf="!item.value.attempt_settings_result" class="whitespace-nowrap px-6 py-4">
+              -
+            </td>
+            <td *ngIf="!item.value.attempt_settings_result" class="whitespace-nowrap px-6 py-4">
+              -
+            </td>
+            <td *ngIf="!item.value.attempt_settings_result" class="whitespace-nowrap px-6 py-4">
+              <div class="flex">
+
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

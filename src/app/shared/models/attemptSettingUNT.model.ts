@@ -1,6 +1,7 @@
 import {Locale} from "./locale.model";
 import {OrdinaryUser} from "./user.model";
 import {ClassroomsGroupModel} from "./classroomsGroup.model";
+import {Subject} from "./subject.model";
 
 export interface AttemptSettingUNT{
   id:number
@@ -9,7 +10,7 @@ export interface AttemptSettingUNT{
   sender_id:number
   class_id:number|null
   users : number[] | null
-  subjects : number[]|null,
+  subjects : Subject[],
   settings :string
   time:number
   hidden_fields:string

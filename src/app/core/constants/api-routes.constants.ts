@@ -49,6 +49,8 @@ export enum APIRoutesName {
     teacherClassrooms = "teacher/classrooms",
     teacherDeleteClassroomByID = "teacher/detail-classroom",
     teacherDeleteExamByID = "teacher/delete-attempt-settings",
+    teacherStatExamByID = "teacher/statistics/attempt-stats",
+    teacherGetDetailExamByID = "teacher/get-single-test-statistics",
     teacherDeleteUNTExamByID = "teacher/delete-attempt-settings-unt",
     teacherDetailClassroom = "teacher/detail-classroom",
     studentClassrooms = "classrooms",

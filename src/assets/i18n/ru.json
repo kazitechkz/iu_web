@@ -206,7 +206,9 @@
   "TOURNAMENT_SIXTEEN_SUBJECTS": "Турниры по 16 различным предметам",
   "REGISTRATION": "Регистрация",
   "CURRENT": "Текущий",
-  "PARTICIPATED": "Я Участвую"
+  "PARTICIPATED": "Я Участвую",
+  "PASSED": "Сдал",
+  "POINT": "Балл"
 
 
 }
