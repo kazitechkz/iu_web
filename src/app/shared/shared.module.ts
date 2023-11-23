@@ -13,6 +13,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import { HomeNavbarComponent } from './components/home-navbar/home-navbar.component';
 import { TeacherSidebarComponent } from './components/teacher-sidebar/teacher-sidebar.component';
+import { AnnouncementListComponent } from './components/announcement-list/announcement-list.component';
+import {SlickCarouselModule} from "ngx-slick-carousel";
+import {NgxSmartModalModule} from "ngx-smart-modal";
 
 @NgModule({
   declarations: [
@@ -22,17 +25,20 @@ import { TeacherSidebarComponent } from './components/teacher-sidebar/teacher-si
     SidebarComponent,
     NavbarComponent,
     HomeNavbarComponent,
-    TeacherSidebarComponent
+    TeacherSidebarComponent,
+    AnnouncementListComponent
   ],
-    imports: [
-        CommonModule,
-        FontAwesomeModule,
-        HttpClientModule,
-        CoreModule,
-        ReactiveFormsModule,
-        RouterLink,
-        RouterLinkActive,
-    ],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    HttpClientModule,
+    CoreModule,
+    ReactiveFormsModule,
+    RouterLink,
+    RouterLinkActive,
+    SlickCarouselModule,
+    NgxSmartModalModule,
+  ],
   exports: [
     InputFieldComponent,
     RoundedSocialButtonComponent,
@@ -42,6 +48,7 @@ import { TeacherSidebarComponent } from './components/teacher-sidebar/teacher-si
     NavbarComponent,
     HomeNavbarComponent,
     TeacherSidebarComponent,
+    AnnouncementListComponent,
 
   ],
   providers:[TranslateStore ],
