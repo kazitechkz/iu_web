@@ -5,6 +5,8 @@ export enum RoutesName {
     teacher = "teacher/index",
     teacherClassrooms = "classrooms",
     teacherTests = "tests",
+    teacherDetailTest = "detail-test",
+    teacherStatsAttempt = "stats-attempt",
     teacherDetailClassroom = "detail-classroom",
     studentClassrooms = "classrooms",
     resetRoute = "auth/reset",

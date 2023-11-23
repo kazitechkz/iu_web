@@ -8,6 +8,8 @@ import {RoutesName} from "../core/constants/routes.constants";
 import {ClassroomsComponent} from "./classrooms/classrooms.component";
 import {DetailClassroomComponent} from "./classrooms/detail-classroom/detail-classroom.component";
 import {ExamsComponent} from "./exams/exams.component";
+import {DetailExamComponent} from "./exams/detail-exam/detail-exam.component";
+import {AttemptStatsComponent} from "./stats/attempt-stats/attempt-stats.component";
 
 const routes: Routes = [
   {
@@ -30,6 +32,14 @@ const routes: Routes = [
       {
         path: 'tests',
         component: ExamsComponent
+      },
+      {
+        path: 'detail-test/:id',
+        component: DetailExamComponent
+      },
+      {
+        path: 'stats-attempt/:attempt_id/:user_id',
+        component: AttemptStatsComponent
       }
     ]
   }

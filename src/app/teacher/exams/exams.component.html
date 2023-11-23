@@ -21,20 +21,21 @@
           <tr *ngFor="let item of myTests.data | paginate: { itemsPerPage: myTests.per_page, currentPage: myTests.current_page, totalItems:myTests.total } | keys"
               class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
             <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{item.value.subject | globalTranslate: 'title': this.translate.currentLang }}</td>
+            <td class="whitespace-nowrap px-6 py-4">{{item.value.subject.title_kk }}</td>
             <td class="whitespace-nowrap px-6 py-4">{{item.value.locale.title}}</td>
             <td class="whitespace-nowrap px-6 py-4">{{item.value.time}}</td>
             <td class="whitespace-nowrap px-6 py-4">{{item.value.promo_code}}</td>
             <td class="whitespace-nowrap px-6 py-4">{{item.value.users.length}}</td>
             <td class="whitespace-nowrap px-6 py-4">
               <div class="flex">
-<!--                <button-->
-<!--                  class="mx-2 text-black"-->
-<!--                  tw-button-->
-<!--                  layout="flat"-->
-<!--                >-->
-<!--                  <i class="fa fa-eye" aria-hidden="true"></i>-->
-<!--                </button>-->
+                <a
+                  class="mx-2 text-black"
+                  tw-button
+                  layout="flat"
+                  [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherDetailTest) + '/' + item.value.id"
+                >
+                  <i class="fa fa-line-chart" aria-hidden="true"></i>
+                </a>
                 <button
                   [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
                   (confirm)="deleteExamById(item.value.id)"
@@ -73,6 +74,7 @@
           <thead class="border-b font-medium dark:border-neutral-500">
           <tr>
             <th scope="col" class="px-6 py-4">#</th>
+            <th scope="col" class="px-6 py-4">{{'SUBJECTS' | translate}}</th>
             <th scope="col" class="px-6 py-4">{{'LANGUAGE' | translate}}</th>
             <th scope="col" class="px-6 py-4">{{'TIME' | translate}}</th>
             <th scope="col" class="px-6 py-4">{{'PROMO_CODE' | translate}}</th>
@@ -84,19 +86,14 @@
           <tr *ngFor="let item of myUNTTests.data | paginate: { itemsPerPage: myUNTTests.per_page, currentPage: myUNTTests.current_page, totalItems: myUNTTests.total } | keys"
               class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
             <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
+            <td class="whitespace-nowrap px-6 py-4">{{item.value.subjects[0].title_kk}} , {{item.value.subjects[1].title_kk}}</td>
             <td class="whitespace-nowrap px-6 py-4">{{item.value.locale.title}}</td>
             <td class="whitespace-nowrap px-6 py-4">{{item.value.time}}</td>
             <td class="whitespace-nowrap px-6 py-4">{{item.value.promo_code}}</td>
             <td class="whitespace-nowrap px-6 py-4">{{item.value.users.length}}</td>
             <td class="whitespace-nowrap px-6 py-4">
               <div class="flex">
-<!--                <button-->
-<!--                  class="mx-2 text-black"-->
-<!--                  tw-button-->
-<!--                  layout="flat"-->
-<!--                >-->
-<!--                  <i class="fa fa-eye" aria-hidden="true"></i>-->
-<!--                </button>-->
+
                 <button
                   [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
                   (confirm)="deleteUNTExamById(item.value.id)"

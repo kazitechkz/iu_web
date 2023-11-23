@@ -20,6 +20,8 @@ import {
   getAllAttemptSettingsUNTSelector
 } from "../../shared/store/attemptSettings/getAllAttemptSettingsUNT/getAllAttemptSettingsUNT.selector";
 import {AttemptSettingUNT} from "../../shared/models/attemptSettingUNT.model";
+import {StrHelper} from "../../core/helpers/str.helper";
+import {RoutesName} from "../../core/constants/routes.constants";
 
 @Component({
   selector: 'app-exams',
@@ -77,4 +79,6 @@ export class ExamsComponent implements OnInit {
 
   protected readonly JSON = JSON;
   protected readonly parseInt = parseInt;
+  protected readonly StrHelper = StrHelper;
+  protected readonly RoutesName = RoutesName;
 }

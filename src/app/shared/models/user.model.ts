@@ -1,6 +1,7 @@
 import {EntityState} from "@ngrx/entity";
 import {Image} from "./image.model";
 import {Gender} from "./gender.model";
+import {AttemptSettingResult} from "./attemptSettingResult.model";
 
 export interface Users {
     name: string
@@ -32,4 +33,14 @@ export interface OrdinaryUser {
   file:Image|null
   gender:Gender|null
   birth_date: Date|null
+}
+export interface OrdinaryUserForExam {
+  id:number
+  name: string
+  email: string
+  phone: string
+  file:Image|null
+  gender:Gender|null
+  birth_date: Date|null
+  attempt_settings_result: AttemptSettingResult
 }
