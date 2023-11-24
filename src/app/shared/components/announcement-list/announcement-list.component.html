@@ -2,23 +2,21 @@
   <ngx-slick-carousel class="carousel"
                       [config]="slideConfig">
     <div ngxSlickItem *ngFor="let announcement of announcements" class="slide cursor-pointer relative">
-      <div class="w-full flex justify-center items-center">
+      <div class="w-full flex justify-center">
         <div class="w-16 md:w-24 lg:w-32 text-center">
-          <div  class="rounded-full circle-wrapper flex justify-center items-center h-20 w-20 md:h-28 md:w-28 lg:h-36 lg:w-36 border-dashed border-4 border-[#4DC591]">
-            <div
-              (click)="openDialog(announcement.id.toString())"
-              class="inner-circle rounded-full h-16 w-16 md:h-24 md:w-24 lg:h-32 lg:w-32 bg-center bg-cover bg-no-repeat"
-              [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(announcement.file?.url) +')'}"
-            ></div>
-          </div>
-            <p class="text-sm font-bold">
-              {{announcement.title_ru}}
-            </p>
+          <div
+            (click)="openDialog(announcement.id.toString())"
+            class="rounded-full mb-1 h-16 w-16 md:h-24 md:w-24 lg:h-32 lg:w-32 bg-center bg-cover bg-no-repeat border-2 border-[#4DC591]"
+            [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(announcement.file?.url) +')'}"
+          ></div>
+          <p class="text-sm font-bold">
+            {{announcement.title_ru}}
+          </p>
         </div>
       </div>
     </div>
   </ngx-slick-carousel>
-  </div>
+</div>
 <section *ngIf="announcements">
   <div  class="[direction:ltr] w-full no-scroll" *ngFor="let announcement of announcements">
     <ngx-smart-modal class="storyModal" identifier="announcement-model-{{announcement.id}}">
@@ -40,9 +38,9 @@
                             class="carousel no-scroll"
                             (afterChange)="changeSlider($event)"
                             [config]="slideModalConfig">
-          <div ngxSlickItem *ngFor="let announcementItem of announcement.announcements" class="slide">
+          <div ngxSlickItem *ngFor="let announcementItem of announcement.announcements" class="slide" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(announcementItem.image?.url) +')'}">
               <div class="h-[100vh] w-full relative rounded-xl">
-                <div class="absolute z-20 bottom-[10%] px-3">
+                <div class="absolute bottom-[10%] w-[544px] z-20 bottom-[10%] px-3">
                   <p class="inline-block my-3 text-md lg:text-lg xl:text-2xl font-bold text-white">
                     {{announcementItem.title}}
                   </p>
@@ -57,12 +55,6 @@
                       {{announcementItem.url_text ??("MORE_INFO"|translate)}}
                     </a>
                   </div>
-                </div>
-                <div
-                  (click)="openDialog(announcement.id.toString())"
-                  class="h-full w-full bg-center bg-cover bg-no-repeat bg-blend-darken brightness-50 fixed bg-contain z-10 rounded-lg"
-                  [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(announcementItem.image?.url) +')'}"
-                >
                 </div>
               </div>
             </div>
