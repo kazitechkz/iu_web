@@ -93,7 +93,14 @@
             <td class="whitespace-nowrap px-6 py-4">{{item.value.users.length}}</td>
             <td class="whitespace-nowrap px-6 py-4">
               <div class="flex">
-
+                <a
+                  class="mx-2 text-black"
+                  tw-button
+                  layout="flat"
+                  [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherDetailUNTTest) + '/' + item.value.id"
+                >
+                  <i class="fa fa-line-chart" aria-hidden="true"></i>
+                </a>
                 <button
                   [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
                   (confirm)="deleteUNTExamById(item.value.id)"

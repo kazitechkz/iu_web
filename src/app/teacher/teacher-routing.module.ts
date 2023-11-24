@@ -10,6 +10,7 @@ import {DetailClassroomComponent} from "./classrooms/detail-classroom/detail-cla
 import {ExamsComponent} from "./exams/exams.component";
 import {DetailExamComponent} from "./exams/detail-exam/detail-exam.component";
 import {AttemptStatsComponent} from "./stats/attempt-stats/attempt-stats.component";
+import {DetailUntExamComponent} from "./exams/detail-unt-exam/detail-unt-exam.component";
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'detail-test/:id',
         component: DetailExamComponent
+      },
+      {
+        path: 'detail-unt-test/:id',
+        component: DetailUntExamComponent
       },
       {
         path: 'stats-attempt/:attempt_id/:user_id',

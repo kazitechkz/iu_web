@@ -99,7 +99,10 @@ import {
 import {
   getAllAttemptSettingsUNTReducer
 } from "../../shared/store/attemptSettings/getAllAttemptSettingsUNT/getAllAttemptSettingsUNT.reducer";
-import {getDetailExamByIdReducer} from "../../shared/store/teacher/exams/detail-exam/detail-exam.reducer";
+import {
+  getDetailExamByIdReducer,
+  getDetailUNTByIdReducer
+} from "../../shared/store/teacher/exams/detail-exam/detail-exam.reducer";
 import {statExamByIdReducer} from "../../shared/store/teacher/stats/stat-by-attempt.reducer";
 
 export const ReducersConstants = {
@@ -189,6 +192,7 @@ export const ReducersConstants = {
   myNotificationIds:myNotificationIdsReducer,
   getNotificationTypeAll:getNotificationTypeAllReducer,
   getDetailExamById: getDetailExamByIdReducer,
-  statExamById: statExamByIdReducer
+  statExamById: statExamByIdReducer,
+  getDetailUNTById: getDetailUNTByIdReducer
 }
 
