@@ -2,13 +2,15 @@
   <ngx-slick-carousel class="carousel"
                       [config]="slideConfig">
     <div ngxSlickItem *ngFor="let announcement of announcements" class="slide cursor-pointer relative">
-      <div class="w-full flex justify-center">
+      <div class="w-full flex justify-center items-center">
         <div class="w-16 md:w-24 lg:w-32 text-center">
-          <div
-            (click)="openDialog(announcement.id.toString())"
-            class="rounded-full mb-1 h-16 w-16 md:h-24 md:w-24 lg:h-32 lg:w-32 bg-center bg-cover bg-no-repeat border-2 border-[#4DC591]"
-            [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(announcement.file?.url) +')'}"
-          ></div>
+          <div  class="rounded-full circle-wrapper flex justify-center items-center h-20 w-20 md:h-28 md:w-28 lg:h-36 lg:w-36 border-dashed border-4 border-[#4DC591]">
+            <div
+              (click)="openDialog(announcement.id.toString())"
+              class="inner-circle rounded-full h-16 w-16 md:h-24 md:w-24 lg:h-32 lg:w-32 bg-center bg-cover bg-no-repeat"
+              [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(announcement.file?.url) +')'}"
+            ></div>
+          </div>
             <p class="text-sm font-bold">
               {{announcement.title_ru}}
             </p>
@@ -16,20 +18,53 @@
       </div>
     </div>
   </ngx-slick-carousel>
-</div>
+  </div>
 <section *ngIf="announcements">
-  <div  class="[direction:ltr] w-full" customClass="w-full h-full p-0" *ngFor="let announcement of announcements">
-    <ngx-smart-modal  identifier="announcement-model-{{announcement.id}}">
-      <div class="h-[90vh] w-full overflow-x-hidden">
+  <div  class="[direction:ltr] w-full no-scroll" *ngFor="let announcement of announcements">
+    <ngx-smart-modal class="storyModal" identifier="announcement-model-{{announcement.id}}">
+      <div class="h-[100vh] max-h-[1000px] w-full overflow-x-hidden rounded-xl justify-center px-2 py-2 lg:py-0">
+        <div class="flex justify-center">
+          <div class="flex w-[90%] h-2 top-[2%] absolute z-30">
+            <div class="rounded-xl h-2 mx-1 my-4 cursor-pointer"
+                 *ngFor="let items of Object.keys(announcement.announcements)"
+                 [ngStyle]="{'width':100/announcement.announcements.length + '%'}"
+                 [ngClass]="{
+                       'bg-white':items != active_slider.toString(),
+                       'main-green-bg':items == active_slider.toString(),
+                       }"
+            ></div>
+          </div>
+        </div>
+
         <ngx-slick-carousel #slickModal="slick-carousel"
-                            class="carousel"
+                            class="carousel no-scroll"
+                            (afterChange)="changeSlider($event)"
                             [config]="slideModalConfig">
-          <div ngxSlickItem *ngFor="let announcementItem of announcement.announcements" class="slide cursor-pointer relative">
-              <div
-                (click)="openDialog(announcement.id.toString())"
-                class="min-h-[300px] h-[90vh] w-full bg-center bg-cover bg-no-repeat bg-blend-darken"
-                [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(announcementItem.image?.url) +')'}"
-              ></div>
+          <div ngxSlickItem *ngFor="let announcementItem of announcement.announcements" class="slide">
+              <div class="h-[100vh] w-full relative rounded-xl">
+                <div class="absolute z-20 bottom-[10%] px-3">
+                  <p class="inline-block my-3 text-md lg:text-lg xl:text-2xl font-bold text-white">
+                    {{announcementItem.title}}
+                  </p>
+                  <p class="text-md lg:text-lg font-bold text-white">
+                    {{announcementItem.sub_title}}
+                  </p>
+                  <div class="max-h-[200px] my-2 overflow-y-scroll no-scrollbar" *ngIf="announcementItem.description">
+                    <small class="text-xs text-white" [innerHTML]="announcementItem.description"></small>
+                  </div>
+                  <div class="text-left" *ngIf="announcementItem.url">
+                    <a href="{{announcementItem.url}}" class="inline-block my-3 cursor-pointer text-white border-white  border  focus:ring-4 focus:outline-none  font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+                      {{announcementItem.url_text ??("MORE_INFO"|translate)}}
+                    </a>
+                  </div>
+                </div>
+                <div
+                  (click)="openDialog(announcement.id.toString())"
+                  class="h-full w-full bg-center bg-cover bg-no-repeat bg-blend-darken brightness-50 fixed bg-contain z-10 rounded-lg"
+                  [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(announcementItem.image?.url) +')'}"
+                >
+                </div>
+              </div>
             </div>
         </ngx-slick-carousel>
       </div>

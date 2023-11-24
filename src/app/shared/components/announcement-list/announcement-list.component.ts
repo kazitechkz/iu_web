@@ -13,6 +13,7 @@ import {RoutesName} from "../../../core/constants/routes.constants";
 import {ColorConstants} from "../../../core/constants/color.constants";
 import {StrHelper} from "../../../core/helpers/str.helper";
 import {SlickCarouselComponent} from "ngx-slick-carousel";
+import {Announcement} from "../../models/announcement.model";
 
 
 @Component({
@@ -27,6 +28,7 @@ export class AnnouncementListComponent implements OnInit {
   private _route = inject(ActivatedRoute);
   public translate = inject(GlobalTranslateService);
   dialog = inject(NgxSmartModalService)
+  active_slider:number = 0;
   //Injection
   //Data
   announcements:AnnouncementGroup[] = [];
@@ -47,8 +49,13 @@ export class AnnouncementListComponent implements OnInit {
     });
   }
   openDialog(id: string) {
+    this.slickModal.unslick();
+    this.slickModal.initSlick();
     this.dialog.getModal('announcement-model-'+id).open();
-    this.slickModal.slickGoTo(0);
+  }
+
+  changeSlider($event:any){
+    this.active_slider = $event.currentSlide;
   }
   //@ts-ignore
   slideConfig = {
@@ -94,15 +101,21 @@ export class AnnouncementListComponent implements OnInit {
     ]
   };
   slideModalConfig = {
-    "slidesToShow": 1,
-    "slidesToScroll": 1,
-    "dots": true,
-    "arrows":true,
-    "infinite": false,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    dots: false,
+    arrows:true,
+    infinite: true,
+    fade: true,
+    center:true,
+    rtl: false,
+    variableWidth: true,
+    float:"left"
   }
   protected readonly ImageHelper = ImageHelper;
   protected readonly faCircleCheck = faCircleCheck;
   protected readonly RoutesName = RoutesName;
   protected readonly ColorConstants = ColorConstants;
   protected readonly StrHelper = StrHelper;
+  protected readonly Object = Object;
 }

@@ -14,7 +14,21 @@ $main_tertiary : #FF7648;
 $Main_Text : #191B32;
 $Body_Text : #9295A3;
 
+// Hide Scrollbar
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
 
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+  }
+}
 * {
   scrollbar-width: thin;
   scrollbar-color: var($main_green) var($main_secondary);
@@ -200,5 +214,29 @@ body{
   @media only screen and (max-width: 640px) {
     min-height: 40px!important;
     font-size: 8px!important;
+  }
+}
+.storyModal {
+  .nsm-content {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent!important;
+  }
+  .nsm-dialog-btn-close{
+    padding-top:12px;
+    padding-right: 12px;
+    color: white;
+    font-size: 12px;
+  }
+  .slick-prev {
+    z-index: 40;
+    left: 25px;
+  }
+  .slick-next {
+    z-index: 40;
+    right: 25px;
+  }
+  .overlay.nsm-overlay-open {
+    background-color: rgba(0, 0, 0, 1)!important;
   }
 }
