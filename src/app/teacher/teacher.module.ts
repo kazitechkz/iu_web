@@ -20,6 +20,7 @@ import { DetailExamComponent } from './exams/detail-exam/detail-exam.component';
 import { AttemptStatsComponent } from './stats/attempt-stats/attempt-stats.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { DetailUntExamComponent } from './exams/detail-unt-exam/detail-unt-exam.component';
+import {NgChartsModule} from "ng2-charts";
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { DetailUntExamComponent } from './exams/detail-unt-exam/detail-unt-exam.
     TwSelectModule,
     SweetAlert2Module.forRoot(),
     NgxPaginationModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgChartsModule
   ],
   providers: [MathJaxPipe]
 })
