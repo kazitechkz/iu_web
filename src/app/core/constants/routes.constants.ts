@@ -6,6 +6,7 @@ export enum RoutesName {
     teacherClassrooms = "classrooms",
     teacherTests = "tests",
     teacherDetailTest = "detail-test",
+    teacherDetailUNTTest = "detail-unt-test",
     teacherStatsAttempt = "stats-attempt",
     teacherDetailClassroom = "detail-classroom",
     studentClassrooms = "classrooms",

@@ -19,6 +19,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import { DetailExamComponent } from './exams/detail-exam/detail-exam.component';
 import { AttemptStatsComponent } from './stats/attempt-stats/attempt-stats.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { DetailUntExamComponent } from './exams/detail-unt-exam/detail-unt-exam.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     ExamsComponent,
     DetailExamComponent,
     AttemptStatsComponent,
+    DetailUntExamComponent,
   ],
   imports: [
     CommonModule,
