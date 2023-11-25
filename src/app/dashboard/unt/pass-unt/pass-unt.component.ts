@@ -48,18 +48,26 @@ export class PassUntComponent implements OnInit{
   }
   //@ts-ignore
   slideConfig = {
-    "slidesToShow": 5,
-    "slidesToScroll": 1,
-    "dots": true,
-    "arrows":true,
-    "infinite": false,
-    "responsive": [
+    slidesToShow: 5,
+    swipeToSlide:true,
+    dots: true,
+    arrows:true,
+    infinite: false,
+    touchThreshold:100,
+    responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 3,
-          infinite: true,
+          infinite: false,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 1020,
+        settings: {
+          slidesToShow: 3,
+          infinite: false,
           dots: false
         }
       },
@@ -67,7 +75,6 @@ export class PassUntComponent implements OnInit{
         breakpoint: 900,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
           dots: false
         }
       },
@@ -75,7 +82,6 @@ export class PassUntComponent implements OnInit{
         breakpoint: 700,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
           dots: true
         }
       }

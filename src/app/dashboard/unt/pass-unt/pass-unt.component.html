@@ -55,7 +55,7 @@
         </p>
       </div>
       <div class="col-span-12 md:col-span-4 card rounded-2xl shadow-xl" *ngFor="let complusory_subject of complusory_subjects">
-        <div class="caret-danger min-h-[450px] max-h-[500px] bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(complusory_subject.image?.url) + ')'}"></div>
+        <div class="caret-danger min-h-[200px] max-h-[250px] md:min-h-[250px] md:max-h-[300px] lg:min-h-[300px] lg:max-h-[450px] xl:min-h-[300px]  xl:max-h-[400px] 2xl:min-h-[450px] 2xl:max-h-[500px] bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(complusory_subject.image?.url) + ')'}"></div>
         <p class="text-center text-xl font-bold py-4">
           {{complusory_subject | globalTranslate:"title": translate.currentLang}}
         </p>
@@ -68,9 +68,16 @@
     </div>
     <ngx-slick-carousel class="carousel"
                         [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer relative" (click)="chooseSubject(subject.id)">
-        <fa-icon *ngIf="chosenSubject.includes(subject.id)" [icon]="faCircleCheck" class="main-green-color absolute right-1.5 top-1.5 text-4xl"></fa-icon>
-        <div class=" min-h-[250px] max-h-[350px] bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
+      <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg relative">
+        <fa-icon *ngIf="chosenSubject.includes(subject.id)" [icon]="faCircleCheck" class="main-green-color z-40 absolute right-1.5 top-1.5 text-4xl"></fa-icon>
+        <div class="min-h-[200px] max-h-[250px] relative  md:min-h-[250px] md:max-h-[300px] lg:min-h-[150px] lg:max-h-[200px] xl:min-h-[180px] xl:max-h-[250px] 2xl:min-h-[250px] 2xl:max-h-[350px] bg-cover bg-center rounded-2xl"
+             [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}">
+          <div class="p-3 absolute z-30 w-full bottom-0 flex justify-center items-center cursor-pointer">
+            <button class="main-green-bg text-white font-bold py-2 px-4 rounded-full text-sm" (click)="chooseSubject(subject.id)">
+              {{"CHOOSE"|translate}}
+            </button>
+          </div>
+        </div>
         <p class="text-center text-xl font-bold py-4">
           {{subject | globalTranslate:"title": translate.currentLang}}
         </p>

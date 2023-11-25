@@ -49,20 +49,22 @@ export class AnnouncementListComponent implements OnInit {
     });
   }
   openDialog(id: string) {
-    this.slickModal.unslick();
-    this.slickModal.initSlick();
     this.dialog.getModal('announcement-model-'+id).open();
+    this.slickModal.initSlick();
   }
 
   changeSlider($event:any){
     this.active_slider = $event.currentSlide;
+  }
+  trackById(index: number, announcement: Announcement) { // 👈
+    return announcement.id;
   }
   //@ts-ignore
   slideConfig = {
     "slidesToShow": 5,
     "slidesToScroll": 1,
     "dots": true,
-    "arrows":true,
+    "arrows":false,
     "infinite": false,
     "responsive": [
       {
@@ -104,13 +106,12 @@ export class AnnouncementListComponent implements OnInit {
     slidesToShow: 1,
     slidesToScroll: 1,
     dots: false,
+    draggable:true,
     arrows:true,
-    infinite: true,
+    infinite: false,
     fade: true,
-    center:true,
-    rtl: false,
-    variableWidth: true,
-    float:"left"
+    center:false,
+    autoplay: false,
   }
   protected readonly ImageHelper = ImageHelper;
   protected readonly faCircleCheck = faCircleCheck;

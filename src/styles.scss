@@ -223,10 +223,11 @@ body{
     background: transparent!important;
   }
   .nsm-dialog-btn-close{
-    padding-top:12px;
-    padding-right: 12px;
+    padding-top:8px;
+    padding-right: 8px;
     color: white;
-    font-size: 12px;
+    font-size: 8px;
+    font-weight: bold;
   }
   .slick-prev {
     z-index: 40;
@@ -235,6 +236,10 @@ body{
   .slick-next {
     z-index: 40;
     right: 25px;
+  }
+  .slick-track{
+    display: flex!important;
+    width: 100%!important;
   }
 }
 .storyModal {
