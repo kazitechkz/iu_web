@@ -27,6 +27,9 @@ export class GetNotificationAllService {
     if(requestData.search){
       params = params.append("search",requestData.search.toString());
     }
+    if(requestData.notification_type){
+      params = params.append("notification_type",requestData.notification_type.toString());
+    }
     return this._http.get<ResponseData<Pagination<NotificationModel[]>>>(environment.baseUrl + APIRoutesName.getNotificationAll,{params:params});
   }
 

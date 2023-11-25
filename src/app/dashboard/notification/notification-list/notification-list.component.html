@@ -1,7 +1,22 @@
 <div class="container mx-auto">
 
   <div class="grid grid-cols-12 gap-3">
-    <div class="col-span-12 md:col-span-12 lg:col-span-4 p-4">
+    <div class="col-span-12 md:col-span-12 lg:col-span-3 p-4">
+      <tw-select
+        class="w-full flex h-full items-center"
+        [ngModel]="params.notification_type"
+        (ngModelChange)="setNotificationType($event)"
+        [placeholder]="'SELECT_NOTIFICATION_TYPE' | translate"
+      >
+        <tw-option class="cursor-pointer" value="{{null}}">
+          Personal
+        </tw-option>
+        <tw-option class="cursor-pointer" value="all">
+          To All Users
+        </tw-option>
+      </tw-select>
+    </div>
+    <div class="col-span-12 md:col-span-12 lg:col-span-3 p-4">
       <tw-select
         class="w-full flex h-full items-center"
         [ngModel]="params.status"
@@ -16,7 +31,7 @@
         </tw-option>
       </tw-select>
     </div>
-    <div class="col-span-12 md:col-span-12 lg:col-span-4 p-4">
+    <div class="col-span-12 md:col-span-12 lg:col-span-3 p-4">
       <label for="default-search" class="mb-2 text-sm font-medium sr-only">Search</label>
       <div class="relative">
         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -28,7 +43,7 @@
         <button (click)="searchPage()" type="submit" class="text-white absolute right-2.5 bottom-2.5 main-secondary-bg  font-bold rounded-lg text-sm px-4 py-2">Search</button>
       </div>
     </div>
-    <div class="col-span-12 md:col-span-12 lg:col-span-4 p-4">
+    <div class="col-span-12 md:col-span-12 lg:col-span-3 p-4">
       <tw-select
         class="w-full flex h-full items-center"
         [ngModel]="params.type_id"

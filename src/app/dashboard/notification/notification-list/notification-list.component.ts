@@ -48,7 +48,7 @@ export class NotificationListComponent implements OnInit,OnDestroy{
   private destroyRef:DestroyRef = inject(DestroyRef);
   //Injection End
   //Data
-  public params = {page:1,status:null,search:null,type_id:null}
+  public params = {page:1,status:null,search:null,type_id:null,notification_type:null}
   //@ts-ignore
   public notificationPagination:Pagination<NotificationModel[]>
   public notificationIds:number[] = [];
@@ -93,6 +93,7 @@ export class NotificationListComponent implements OnInit,OnDestroy{
       status:null,
       search:null,
       type_id:null,
+      notification_type:null,
     };
     pageRequest = Object.assign(pageRequest,this.params);
     pageRequest = pageRequest as GetNotificationAllRequest;
@@ -116,6 +117,16 @@ export class NotificationListComponent implements OnInit,OnDestroy{
     }
     else{
       this.params.type_id = null;
+    }
+    this.getAllNotification();
+  }
+  setNotificationType($event:number){
+    if($event){
+      // @ts-ignore
+      this.params.notification_type = $event;
+    }
+    else{
+      this.params.notification_type = null;
     }
     this.getAllNotification();
   }
