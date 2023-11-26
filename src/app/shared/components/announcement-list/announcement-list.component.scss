@@ -1,0 +1,48 @@
+@keyframes pulsate {
+
+  100% {
+
+    box-shadow: 0 0 .4rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem #4DC591,
+    0 0 1.0rem #4DC591,
+    0 0 1.0rem #4DC591,
+    inset 0 0 0.8rem #4DC591;
+
+  }
+
+  0% {
+
+    box-shadow: 0 0 .1rem #fff,
+    0 0 .1rem #fff,
+    0 0 1rem #4DC591,
+    0 0 0.4rem #4DC591,
+    0 0 0.4rem #4DC591,
+    inset 0 0 0.2rem #4DC591;
+
+  }
+}
+.neon-border-text{
+  color: #fff;
+  text-shadow:
+    0 0 0.3px #fff,
+    0 0 0.3px #fff,
+    0 0 0.3px #fff,
+    0 0 8px #4DC591,
+    0 0 8px #4DC591,
+    0 0 2px #4DC591,
+    0 0 12px #4DC591,
+    0 0 12px #4DC591
+}
+
+.neon-border{
+  animation: pulsate 1.5s infinite alternate;
+  border: 0.2rem solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 .2rem #fff,
+  0 0 .2rem #fff,
+  0 0 2rem #4DC591,
+  0 0 0.8rem #4DC591,
+  0 0 0.8rem #4DC591,
+  inset 0 0 0.4rem #4DC591;
+}

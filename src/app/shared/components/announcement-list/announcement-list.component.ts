@@ -50,12 +50,14 @@ export class AnnouncementListComponent implements OnInit {
   }
   openDialog(id: string) {
     this.dialog.getModal('announcement-model-'+id).open();
-    this.slickModal.initSlick();
+    this.slickModal.slickGoTo(0);
   }
 
   changeSlider($event:any){
     this.active_slider = $event.currentSlide;
   }
+
+
   trackById(index: number, announcement: Announcement) { // 👈
     return announcement.id;
   }
@@ -108,7 +110,7 @@ export class AnnouncementListComponent implements OnInit {
     dots: false,
     draggable:true,
     arrows:true,
-    infinite: false,
+    infinite: true,
     fade: true,
     center:false,
     autoplay: false,
@@ -119,4 +121,5 @@ export class AnnouncementListComponent implements OnInit {
   protected readonly ColorConstants = ColorConstants;
   protected readonly StrHelper = StrHelper;
   protected readonly Object = Object;
+  protected readonly parseInt = parseInt;
 }

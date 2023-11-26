@@ -2,14 +2,14 @@
   <ngx-slick-carousel class="carousel"
                       [config]="slideConfig">
     <div ngxSlickItem *ngFor="let announcement of announcements" class="slide cursor-pointer relative">
-      <div class="w-full flex justify-center">
-        <div class="w-16 md:w-24 lg:w-32 text-center">
+      <div class="w-full flex justify-center py-4">
+        <div class="text-center py-3">
           <div
             (click)="openDialog(announcement.id.toString())"
-            class="rounded-full mb-1 h-16 w-16 md:h-24 md:w-24 lg:h-32 lg:w-32 bg-center bg-cover bg-no-repeat border-2 border-[#4DC591]"
+            class="inline-block rounded-full mb-1 h-16 w-16 md:h-24 md:w-24 lg:h-32 lg:w-32 bg-center bg-cover bg-no-repeat neon-border"
             [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(announcement.file?.url) +')'}"
           ></div>
-          <p class="text-sm font-bold">
+          <p class="inline-block w-full my-3 text-sm font-bold neon-border-text">
             {{announcement.title_ru}}
           </p>
         </div>
@@ -22,7 +22,7 @@
     <ngx-smart-modal class="storyModal" identifier="announcement-model-{{announcement.id}}">
       <div class="flex justify-center">
         <div class="flex w-[90%] h-2 top-[2%] absolute z-30">
-          <div class="rounded-xl h-2 mx-1 my-4 cursor-pointer"
+          <div class="rounded-xl h-2 mx-1 my-4"
                *ngFor="let items of Object.keys(announcement.announcements)"
                [ngStyle]="{'width':100/announcement.announcements.length + '%'}"
                [ngClass]="{
