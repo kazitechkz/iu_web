@@ -1,0 +1,117 @@
+<div class="container mx-auto">
+    <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-12">
+            <form [formGroup]="createTicket">
+                <div class="m-3" *ngIf="ticketTypes">
+                    <label class="text-md text-black">
+                        {{"CHOOSE_TYPE" | translate}}
+                    </label>
+                    <tw-select
+                            class="w-full flex h-full items-center"
+                            formControlName="type_id"
+                            [placeholder]="'SELECT_TYPE' | translate"
+                    >
+                        <tw-option class="cursor-pointer" *ngFor="let ticketType of ticketTypes" value="{{ticketType.id}}">
+                            {{ticketType | globalTranslate:"title": translate.currentLang}}
+                        </tw-option>
+                    </tw-select>
+                    <div
+                            *ngIf="(createTicket.controls['type_id'].invalid && createTicket.controls['type_id'].touched)"
+                            class="my-1 rounded-lg px-6 py-1 text-base text-danger-700"
+                            role="alert">
+                        {{"type_id_is_not_right"|translate}}
+                    </div>
+                    <section class="p-0 m-0" *ngIf="errors">
+                        <div
+                                *ngIf="errors['type_id']"
+                                class="my-1 rounded-lg px-6 py-1 text-base text-danger-700"
+                                role="alert">
+                            <p *ngFor="let error of errors['type_id']">
+                                {{error}}
+                            </p>
+                        </div>
+                    </section>
+                </div>
+                <div class="m-3" *ngIf="ticketCategories">
+                    <label class="text-md text-black">
+                        {{"CHOOSE_CATEGORY" | translate}}
+                    </label>
+                    <tw-select
+                            class="w-full flex h-full items-center"
+                            formControlName="category_id"
+                            [placeholder]="'SELECT_CATEGORY' | translate"
+                    >
+                        <tw-option class="cursor-pointer" *ngFor="let ticketCategory of ticketCategories" value="{{ticketCategory.id}}">
+                            {{ticketCategory | globalTranslate:"title": translate.currentLang}}
+                        </tw-option>
+                    </tw-select>
+                    <div
+                            *ngIf="(createTicket.controls['category_id'].invalid && createTicket.controls['category_id'].touched)"
+                            class="my-1 rounded-lg px-6 py-1 text-base text-danger-700"
+                            role="alert">
+                        {{"category_id_is_not_right"|translate}}
+                    </div>
+                    <section class="p-0 m-0" *ngIf="errors">
+                        <div
+                                *ngIf="errors['category_id']"
+                                class="my-1 rounded-lg px-6 py-1 text-base text-danger-700"
+                                role="alert">
+                            <p *ngFor="let error of errors['category_id']">
+                                {{error}}
+                            </p>
+                        </div>
+                    </section>
+                </div>
+                <div class="m-3">
+                    <app-input-field
+                            [formControlName]="'title'"
+                            [input_name]="'title'"
+                            [type]="'text'"
+                            [placeholder]="'Title' | translate"
+                            [label]="'Title' | translate"
+                            [error_message]="'title_is_not_right'"
+                            [backErrors]="errors"
+                            ngDefaultControl
+                    />
+                </div>
+                <div class="m-3">
+                    <ckeditor [formControlName]="'message'" [editor]="Editor"></ckeditor>
+                    <div
+                            *ngIf="(createTicket.controls['message'].invalid && createTicket.controls['message'].touched)"
+                            class="my-1 rounded-lg px-6 py-1 text-base text-danger-700"
+                            role="alert">
+                        {{"message_is_not_right"|translate}}
+                    </div>
+                    <section class="p-0 m-0" *ngIf="errors">
+                        <div
+                                *ngIf="errors['message']"
+                                class="my-1 rounded-lg px-6 py-1 text-base text-danger-700"
+                                role="alert">
+                            <p *ngFor="let error of errors['message']">
+                                {{error}}
+                            </p>
+                        </div>
+                    </section>
+                </div>
+                <div class="my-2 p-3 text-right" *ngIf="createTicket.valid">
+                    <button type="button" class="
+                        mt-4
+                        text-lg
+                        font-bold
+                        inline
+                        main-green-bg
+                        text-white
+                        focus:outline-none focus:ring-4
+                        focus:ring-green-500 font-medium
+                        rounded-lg text-sm px-5 py-5
+                        text-center mr-2 mb-2"
+                            (click)="onSubmit()"
+                    >
+                        {{"CREATE"|translate}}
+                        <fa-icon [icon]="faCheck" class="mx-2 text-lg"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

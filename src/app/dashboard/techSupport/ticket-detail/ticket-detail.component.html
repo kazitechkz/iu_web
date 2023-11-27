@@ -1,0 +1,33 @@
+<div class="container mx-auto" *ngIf="ticketMessageModel">
+    <div class="grid grid-cols-12 gap-3 py-3">
+        <div class="col-span-12" *ngIf="ticketMessageModel.ticket">
+            <div class="card shadow-lg rounded-lg p-3 main-green-bg border-2 border-white">
+                <div class="my-2 flex justify-between mx-2">
+                    <p class="text-white font-bold text-md md:text-lg lg:text-xl xl:text-2xl">
+                        {{ticketMessageModel.ticket.title}}
+                    </p>
+                    <p class="text-white font-bold text-md md:text-lg ">
+                        {{moment(ticketMessageModel.ticket.created_at).format('HH:mm DD/MM/YYYY')}}
+                    </p>
+                </div>
+                <div class="my-2 py-3">
+                    <div class="inline-block shadow-xl mx-2 whitespace-nowrap rounded-full bg-white p-4 text-center align-baseline text-sm font-bold leading-none text-white">
+                        <span *ngIf="ticketMessageModel.ticket.tech_support_category" class="text-green-500">  {{ticketMessageModel.ticket.tech_support_category | globalTranslate:"title": translate.currentLang}}</span>
+                    </div>
+                    <div class="inline-block shadow-xl mx-2 whitespace-nowrap rounded-full bg-white p-4 text-center align-baseline text-sm font-bold leading-none text-white">
+                        <span *ngIf="ticketMessageModel.ticket.tech_support_type" class="text-green-500">  {{ticketMessageModel.ticket.tech_support_type | globalTranslate:"title": translate.currentLang}}</span>
+                    </div>
+                    <div class="inline-block shadow-xl mx-2 whitespace-nowrap rounded-full bg-white p-4 text-center align-baseline text-sm font-bold leading-none text-white">
+                        <span *ngIf="ticketMessageModel.ticket.is_closed" class="text-green-500"><fa-icon [icon]="faLock"> </fa-icon> {{"CLOSED_TICKET"|translate}}</span>
+                        <span *ngIf="!ticketMessageModel.ticket.is_closed" class="text-red-500"><fa-icon [icon]="faUnlock"> </fa-icon> {{"NOT_CLOSED_TICKET"|translate}}</span>
+                    </div>
+                    <div class="inline-block shadow-xl mx-2 whitespace-nowrap rounded-full bg-white p-4 text-center align-baseline text-sm font-bold leading-none text-white">
+                        <span *ngIf="ticketMessageModel.ticket.is_resolved" class="text-green-500"><fa-icon [icon]="faCheckCircle"> </fa-icon> {{"RESOLVED_TICKET"|translate}}</span>
+                        <span *ngIf="!ticketMessageModel.ticket.is_resolved" class="text-red-500"><fa-icon [icon]="faTimesCircle"> </fa-icon> {{"NOT_RESOLVED_TICKET"|translate}}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

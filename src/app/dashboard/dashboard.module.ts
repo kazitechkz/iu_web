@@ -57,6 +57,9 @@ import {CalendarCommonModule, CalendarDayModule, CalendarMonthModule} from "angu
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 import { NotificationListComponent } from './notification/notification-list/notification-list.component';
 import { PassUntByPromoComponent } from './unt/pass-unt-by-promo/pass-unt-by-promo.component';
+import { MyTicketsComponent } from './techSupport/my-tickets/my-tickets.component';
+import { CreateTicketComponent } from './techSupport/create-ticket/create-ticket.component';
+import { TicketDetailComponent } from './techSupport/ticket-detail/ticket-detail.component';
 
 
 @NgModule({
@@ -98,6 +101,9 @@ import { PassUntByPromoComponent } from './unt/pass-unt-by-promo/pass-unt-by-pro
         NewsDetailComponent,
         NotificationListComponent,
         PassUntByPromoComponent,
+        MyTicketsComponent,
+        CreateTicketComponent,
+        TicketDetailComponent,
     ],
     imports: [
         CommonModule,

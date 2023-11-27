@@ -82,5 +82,11 @@ export enum APIRoutesName {
     myNotificationIds="notification/my-notification-ids",
     checkNotification="notification/check-notification",
     getAllAnnouncements="announcement",
-
+    getTechSupportTypes="tech-support-types",
+    getTechSupportCategories="tech-support-categories",
+    getMyTechSupportTickets="my-tech-support-tickets",
+    getTechSupportTicketDetail="get-tech-support-ticket-detail",
+    createTechSupportTicket="tech-support-create-ticket",
+    createTechSupportMessage="tech-support-create-message",
+    closeTechSupportTicket="tech-support-close-ticket",
 }

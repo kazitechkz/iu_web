@@ -1,0 +1,262 @@
+<div class="container mx-auto">
+    <div class="grid grid-cols-12 gap-3 py-3">
+        <div class="col-span-12 text-left md:text-right">
+            <a
+                    [routerLink]="'/' + RoutesName.createTicket"
+                    class="ml-auto main-green-bg text-white cursor-pointer"
+                    tw-button
+                    layout="flat"
+            >
+                {{'CREATE_TICKET' | translate}}
+                <i class="fa fa-plus ml-3" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+    <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-12">
+            <div class="border border-t-0 bg-white">
+                <h2 class="mb-0" id="headingFilterTickets">
+                    <button
+                            class="group relative flex w-full items-center rounded-lg border-0 bg-white px-5 py-4 text-left text-base
+                            text-white transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none main-green-bg"
+                            type="button"
+                            data-te-collapse-init
+                            data-te-collapse-collapsed
+                            data-te-target="#filterTickets"
+                            aria-expanded="false"
+                            aria-controls="collapseTwo">
+                        {{"FILTER"|translate}}
+                        <span class="-mr-1 ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                          </svg>
+                        </span>
+                    </button>
+                </h2>
+                <div
+                        id="filterTickets"
+                        class="!visible hidden"
+                        data-te-collapse-item
+                        aria-labelledby="headingFilterTickets"
+                        data-te-parent="#accordionFilterTickets">
+                    <div class="px-5 py-4">
+                        <div class="grid grid-cols-12 gap-3">
+                        <div class="col-span-12 md:col-span-12 lg:col-span-4 p-4" *ngIf="ticketTypes">
+                            <tw-select
+                                    class="w-full flex h-full items-center"
+                                    [ngModel]="requestData.type_id"
+                                    (ngModelChange)="setType($event)"
+                                    [placeholder]="'SELECT_TYPE' | translate"
+                            >
+                                <tw-option class="cursor-pointer" value="{{null}}">
+                                    {{"ALL"|translate}}
+                                </tw-option>
+                                <tw-option class="cursor-pointer" *ngFor="let ticketType of ticketTypes" value="{{ticketType.id}}">
+                                    {{ticketType | globalTranslate:"title": translate.currentLang}}
+                                </tw-option>
+                            </tw-select>
+                        </div>
+                        <div class="col-span-12 md:col-span-12 lg:col-span-4 p-4" *ngIf="ticketCategories">
+                            <tw-select
+                                    class="w-full flex h-full items-center"
+                                    [ngModel]="requestData.category_id"
+                                    (ngModelChange)="setCategory($event)"
+                                    [placeholder]="'SELECT_CATEGORY' | translate"
+                            >
+                                <tw-option class="cursor-pointer" value="{{null}}">
+                                    {{"ALL"|translate}}
+                                </tw-option>
+                                <tw-option class="cursor-pointer" *ngFor="let ticketCategory of ticketCategories" value="{{ticketCategory.id}}">
+                                    {{ticketCategory | globalTranslate:"title": translate.currentLang}}
+                                </tw-option>
+                            </tw-select>
+                        </div>
+                        <div class="col-span-12 md:col-span-12 lg:col-span-4 p-4">
+                            <tw-select
+                                    class="w-full flex h-full items-center"
+                                    [ngModel]="requestData.is_answered"
+                                    (ngModelChange)="setIsAnswered($event)"
+                                    [placeholder]="'IS_ANSWERED_TYPE' | translate"
+                            >
+                                <tw-option class="cursor-pointer" value="{{null}}">
+                                    {{"NO_MATTER"|translate}}
+                                </tw-option>
+                                <tw-option class="cursor-pointer" value="{{true}}">
+                                    {{"YES"|translate}}
+                                </tw-option>
+                                <tw-option class="cursor-pointer" value="{{false}}">
+                                    {{"NO"|translate}}
+                                </tw-option>
+                            </tw-select>
+                        </div>
+                        <div class="col-span-12 md:col-span-12 lg:col-span-4 p-4">
+                            <tw-select
+                                    class="w-full flex h-full items-center"
+                                    [ngModel]="requestData.is_closed"
+                                    (ngModelChange)="setIsClosed($event)"
+                                    [placeholder]="'IS_CLOSED_TYPE' | translate"
+                            >
+                                <tw-option class="cursor-pointer" value="{{null}}">
+                                    {{"NO_MATTER"|translate}}
+                                </tw-option>
+                                <tw-option class="cursor-pointer" value="{{true}}">
+                                    {{"YES"|translate}}
+                                </tw-option>
+                                <tw-option class="cursor-pointer" value="{{false}}">
+                                    {{"NO"|translate}}
+                                </tw-option>
+                            </tw-select>
+                        </div>
+                        <div class="col-span-12 md:col-span-12 lg:col-span-4 p-4">
+                            <tw-select
+                                    class="w-full flex h-full items-center"
+                                    [ngModel]="requestData.is_resolved"
+                                    (ngModelChange)="setIsResolved($event)"
+                                    [placeholder]="'IS_RESOLVED_TYPE' | translate"
+                            >
+                                <tw-option class="cursor-pointer" value="{{null}}">
+                                    {{"NO_MATTER"|translate}}
+                                </tw-option>
+                                <tw-option class="cursor-pointer" value="{{true}}">
+                                    {{"YES"|translate}}
+                                </tw-option>
+                                <tw-option class="cursor-pointer" value="{{false}}">
+                                    {{"NO"|translate}}
+                                </tw-option>
+                            </tw-select>
+                        </div>
+                        <div class="col-span-12 md:col-span-12 lg:col-span-4 p-4">
+                            <label for="default-search" class="mb-2 text-sm font-medium sr-only">Search</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                    </svg>
+                                </div>
+                                <input [(ngModel)]="requestData.search" type="search" id="default-search" class="block w-full p-3 pl-10 text-sm border-gray-300  rounded-lg " required>
+                                <button (click)="getMyTickets()" type="submit" class="text-white absolute right-2.5 bottom-2.5 main-secondary-bg  font-bold rounded-lg text-xs p-[5px]">{{"SEARCH"|translate}}</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-12" *ngIf="tickets">
+            <div class="bg-white rounded-2xl shadow-2xl">
+                <div class="relative overflow-x-auto" *ngIf="tickets.data.length">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 my-4 rounded-lg">
+                        <thead class="text-xs text-white main-green-bg capitalize">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                #
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{"TYPE"|translate}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{"CATEGORY"|translate}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{"TITLE"|translate}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{"IS_CLOSED"|translate}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{"IS_RESOLVED"|translate}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{"IS_ANSWERED"|translate}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{"CREATED_AT"|translate}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{"UPDATED_AT"|translate}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{"ACTION"|translate}}
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let ticket of tickets.data | paginate: { itemsPerPage: tickets.per_page, currentPage: tickets.current_page,totalItems:tickets.total }">
+                            <td class="px-6 py-4">
+                                <p class="text-black ml-2 font-bold">
+                                    {{ticket.id}}
+                                </p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="text-black ml-2 font-bold" *ngIf="ticket.tech_support_type">
+                                    {{ticket.tech_support_type | globalTranslate:"title": translate.currentLang}}
+                                </p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="text-black ml-2 font-bold" *ngIf="ticket.tech_support_category">
+                                    {{ticket.tech_support_category | globalTranslate:"title": translate.currentLang}}
+                                </p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="text-black ml-2 font-bold">
+                                    {{ticket.title}}
+                                </p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span *ngIf="ticket.is_closed" class="inline-block whitespace-nowrap rounded-[0.27rem] bg-green-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">
+                                    {{"YES"|translate}}
+                                </span>
+                                <span *ngIf="!ticket.is_closed" class="inline-block whitespace-nowrap rounded-[0.27rem] bg-red-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">
+                                    {{"NO"|translate}}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span *ngIf="ticket.is_resolved" class="inline-block whitespace-nowrap rounded-[0.27rem] bg-green-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">
+                                    {{"YES"|translate}}
+                                </span>
+                                <span *ngIf="!ticket.is_resolved" class="inline-block whitespace-nowrap rounded-[0.27rem] bg-red-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">
+                                    {{"NO"|translate}}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <span *ngIf="ticket.is_answered" class="inline-block whitespace-nowrap rounded-[0.27rem] bg-green-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">
+                                    {{"YES"|translate}}
+                                </span>
+                                <span *ngIf="!ticket.is_answered" class="inline-block whitespace-nowrap rounded-[0.27rem] bg-red-500 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none text-white">
+                                    {{"NO"|translate}}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="text-black ml-2 font-bold" *ngIf="ticket.created_at">
+                                    {{moment(ticket.created_at).format('HH:mm DD/MM/YYYY')}}
+                                </p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <p class="text-black ml-2 font-bold" *ngIf="ticket.updated_at">
+                                    {{moment(ticket.updated_at).format('HH:mm DD/MM/YYYY')}}
+                                </p>
+                            </td>
+                            <td class="px-6 py-4">
+                                <a
+                                        routerLink="{{'/' + RoutesName.ticketDetail + '/' + ticket.id}}"
+                                        class="mx-2 text-white main-green-bg"
+                                        tw-button
+                                        layout="flat"
+                                >
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="my-2 flex justify-center">
+                        <pagination-controls class="rounded-full" (pageChange)="changePage($event)"></pagination-controls>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

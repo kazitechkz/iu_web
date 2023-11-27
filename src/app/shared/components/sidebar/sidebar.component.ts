@@ -9,6 +9,7 @@ import {
   faMale,
   faChartLine,
   faUser,
+  faToolbox,
   faF,
   faSitemap, faWallet, faRobot, faChess, faCartShopping, faHandshake, faMessage, faNewspaper, faUserCircle
 } from "@fortawesome/free-solid-svg-icons";
@@ -123,6 +124,11 @@ export class SidebarComponent implements OnInit {
       title: 'FORUM',
       path: RoutesName.forumList,
       icon: faF as IconProp
+    },
+    {
+      title: 'TECH_SUPPORT',
+      path: RoutesName.myTickets,
+      icon: faToolbox as IconProp
     },
     {
       title: 'AI_ADVISE',

@@ -208,7 +208,22 @@
   "CURRENT": "Текущий",
   "PARTICIPATED": "Я Участвую",
   "PASSED": "Сдал",
-  "POINT": "Балл"
+  "POINT": "Балл",
+  "TECH_SUPPORT": "Техподдержка",
+  "TYPE": "Тип",
+  "USER": "Пользователь",
+  "NO_MATTER": "Не имеет значения",
+  "IS_CLOSED": "Закрыт",
+  "IS_RESOLVED": "Решен",
+  "IS_ANSWERED": "Отвечен",
+  "IS_CLOSED_TYPE": "Закрыт ли тикет?",
+  "IS_RESOLVED_TYPE": "Решен ли тикет?",
+  "IS_ANSWERED_TYPE": "Получен ли ответ на последний вопрос",
+  "CREATED_AT": "Создан",
+  "UPDATED_AT": "Обновлен",
+  "TECH_SUPPORT_TYPE": "Тип технической поддержки",
+  "TECH_SUPPORT_CATEGORY": "Категория технической поддержки",
+  "FILTER": "Фильтры"
 
 
 }

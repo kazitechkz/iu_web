@@ -37,6 +37,9 @@ import {NewsListComponent} from "./news/news-list/news-list.component";
 import {NewsDetailComponent} from "./news/news-detail/news-detail.component";
 import {NotificationListComponent} from "./notification/notification-list/notification-list.component";
 import {PassUntByPromoComponent} from "./unt/pass-unt-by-promo/pass-unt-by-promo.component";
+import {MyTicketsComponent} from "./techSupport/my-tickets/my-tickets.component";
+import {CreateTicketComponent} from "./techSupport/create-ticket/create-ticket.component";
+import {TicketDetailComponent} from "./techSupport/ticket-detail/ticket-detail.component";
 
 
 const routes: Routes = [
@@ -180,6 +183,18 @@ const routes: Routes = [
       {
         path: 'classrooms',
         component: RoomComponent
+      },
+      {
+        path: 'my-tickets',
+        component: MyTicketsComponent
+      },
+      {
+        path: 'create-ticket',
+        component: CreateTicketComponent
+      },
+      {
+        path: 'ticket-detail/:id',
+        component: TicketDetailComponent
       }
     ]
   }

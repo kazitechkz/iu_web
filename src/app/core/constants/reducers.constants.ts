@@ -104,6 +104,27 @@ import {
   getDetailUNTByIdReducer
 } from "../../shared/store/teacher/exams/detail-exam/detail-exam.reducer";
 import {statExamByIdReducer} from "../../shared/store/teacher/stats/stat-by-attempt.reducer";
+import {
+  getTechSupportTypesReducer
+} from "../../shared/store/techSupport/getTechSupportTypes/getTechSupportTypes.reducer";
+import {
+  getTechSupportCategoriesReducer
+} from "../../shared/store/techSupport/getTechSupportCategories/getTechSupportCategories.reducer";
+import {
+  getMyTechSupportTicketsReducer
+} from "../../shared/store/techSupport/getMyTechSupportTickets/getMyTechSupportTickets.reducer";
+import {
+  getTechSupportTicketDetailReducer
+} from "../../shared/store/techSupport/getTechSupportTicketDetail/getTechSupportTicketDetail.reducer";
+import {
+  createTechSupportTicketReducer
+} from "../../shared/store/techSupport/createTechSupportTicket/createTechSupportTicket.reducer";
+import {
+  createTechSupportMessageReducer
+} from "../../shared/store/techSupport/createTechSupportMessage/createTechSupportMessage.reducer";
+import {
+  closeTechSupportTicketReducer
+} from "../../shared/store/techSupport/closeTechSupportTicket/closeTechSupportTicket.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -193,6 +214,13 @@ export const ReducersConstants = {
   getNotificationTypeAll:getNotificationTypeAllReducer,
   getDetailExamById: getDetailExamByIdReducer,
   statExamById: statExamByIdReducer,
-  getDetailUNTById: getDetailUNTByIdReducer
+  getDetailUNTById: getDetailUNTByIdReducer,
+  getTechSupportTypes:getTechSupportTypesReducer,
+  getTechSupportCategories:getTechSupportCategoriesReducer,
+  getMyTechSupportTickets:getMyTechSupportTicketsReducer,
+  getTechSupportTicketDetail:getTechSupportTicketDetailReducer,
+  createTechSupportTicket:createTechSupportTicketReducer,
+  createTechSupportMessage:createTechSupportMessageReducer,
+  closeTechSupportTicket:closeTechSupportTicketReducer,
 }
 

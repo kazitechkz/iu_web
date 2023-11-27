@@ -97,6 +97,25 @@ import {
 } from "../../shared/store/attemptSettings/getAllAttemptSettingsUNT/getAllAttemptSettingsUNT.effect";
 import {DetailExamEffect} from "../../shared/store/teacher/exams/detail-exam/detail-exam.effect";
 import {StatByAttemptEffect} from "../../shared/store/teacher/stats/stat-by-attempt.effect";
+import {GetTechSupportTypesEffect} from "../../shared/store/techSupport/getTechSupportTypes/getTechSupportTypes.effect";
+import {
+    GetTechSupportCategoriesEffect
+} from "../../shared/store/techSupport/getTechSupportCategories/getTechSupportCategories.effect";
+import {
+    GetMyTechSupportTicketsEffect
+} from "../../shared/store/techSupport/getMyTechSupportTickets/getMyTechSupportTickets.effect";
+import {
+    GetTechSupportTicketDetailEffect
+} from "../../shared/store/techSupport/getTechSupportTicketDetail/getTechSupportTicketDetail.effect";
+import {
+    CreateTechSupportTicketEffect
+} from "../../shared/store/techSupport/createTechSupportTicket/createTechSupportTicket.effect";
+import {
+    CreateTechSupportMessageEffect
+} from "../../shared/store/techSupport/createTechSupportMessage/createTechSupportMessage.effect";
+import {
+    CloseTechSupportTicketEffect
+} from "../../shared/store/techSupport/closeTechSupportTicket/closeTechSupportTicket.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -176,5 +195,12 @@ export const EffectsConstants = [
     GetArraySettingsUNTEffect,
     GetNotificationTypeAllEffect,
     DetailExamEffect,
-    StatByAttemptEffect
+    StatByAttemptEffect,
+    GetTechSupportTypesEffect,
+    GetTechSupportCategoriesEffect,
+    GetMyTechSupportTicketsEffect,
+    GetTechSupportTicketDetailEffect,
+    CreateTechSupportTicketEffect,
+    CreateTechSupportMessageEffect,
+    CloseTechSupportTicketEffect,
 ]
