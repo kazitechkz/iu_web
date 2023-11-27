@@ -282,7 +282,7 @@ export class DetailClassroomComponent implements OnInit {
     let sendData = {data: JSON.stringify(data)} as CreateAttemptSettingsUNTRequestData
     this._store.dispatch(createAttemptSettingsUNTAction({requestData: sendData}))
     this._notification.show({ type: 'success', title: 'Успешно создан' })
-    this._router.navigateByUrl(StrHelper.getTeacherRouteName(RoutesName.teacherTests)).then(r => null)
+    this._router.navigateByUrl(StrHelper.getTeacherRouteName(RoutesName.teacherUNTTests)).then(r => null)
   }
 
   sendQuery() {
@@ -299,7 +299,7 @@ export class DetailClassroomComponent implements OnInit {
       let formData = this.attempt_settings_form.getRawValue() as CreateAttemptSettingsRequest
       this._store.dispatch(createAttemptSettingsAction({requestData: formData}))
       this._notification.show({ type: 'success', title: 'Успешно создан' })
-      this._router.navigateByUrl(StrHelper.getTeacherRouteName(RoutesName.teacherTests)).then(r => null)
+      this._router.navigateByUrl(StrHelper.getTeacherRouteName(RoutesName.teacherSingleTests)).then(r => null)
     }
   }
 

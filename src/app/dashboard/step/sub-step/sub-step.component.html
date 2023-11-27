@@ -16,26 +16,66 @@
                 d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
         </svg> {{'LEVEL' | translate}} {{(subStep$ | async)?.data?.level}}
       </p>
-      <div *ngIf="(subStep$ | async)?.data?.sub_step_video">
-        <div class="rounded-[2rem] w-full shadow p-3 sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden mobile:flex justify-center" #mobileElement>
-          <youtube-player [width]="getWidth(mobileElement.offsetWidth)" [videoId]="(subStep$ | async)?.data?.sub_step_video?.url | getYoutubeID"></youtube-player>
-        </div>
-        <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden lg:hidden xl:hidden 2xl:hidden sm:flex justify-center" #smElement>
-          <youtube-player [width]="getWidth(smElement.offsetWidth)" [videoId]="(subStep$ | async)?.data?.sub_step_video?.url | getYoutubeID"></youtube-player>
-        </div>
-        <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden sm:hidden lg:hidden xl:hidden 2xl:hidden md:flex justify-center" #mdElement>
-          <youtube-player [width]="getWidth(mdElement.offsetWidth)" [videoId]="(subStep$ | async)?.data?.sub_step_video?.url | getYoutubeID"></youtube-player>
-        </div>
-        <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden sm:hidden xl:hidden 2xl:hidden lg:flex justify-center" #lgElement>
-          <youtube-player [width]="getWidth(lgElement.offsetWidth)" [videoId]="(subStep$ | async)?.data?.sub_step_video?.url | getYoutubeID"></youtube-player>
-        </div>
-        <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden lg:hidden sm:hidden 2xl:hidden xl:flex justify-center" #xlElement>
-          <youtube-player [width]="getWidth(xlElement.offsetWidth)" [videoId]="(subStep$ | async)?.data?.sub_step_video?.url | getYoutubeID"></youtube-player>
-        </div>
-        <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden lg:hidden xl:hidden sm:hidden 2xl:flex justify-center" #xxlElement>
-          <youtube-player [width]="getWidth(xxlElement.offsetWidth)" [videoId]="(subStep$ | async)?.data?.sub_step_video?.url | getYoutubeID"></youtube-player>
-        </div>
-      </div>
+            <div>
+              <div class="rounded-[2rem] w-full shadow p-3 sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden mobile:flex justify-center" #mobileElement>
+                <youtube-player [width]="getWidth(mobileElement.offsetWidth)" [videoId]="videoId"></youtube-player>
+              </div>
+              <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden lg:hidden xl:hidden 2xl:hidden sm:flex justify-center" #smElement>
+                <youtube-player [width]="getWidth(smElement.offsetWidth)" [videoId]="videoId"></youtube-player>
+              </div>
+              <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden sm:hidden lg:hidden xl:hidden 2xl:hidden md:flex justify-center" #mdElement>
+                <youtube-player [width]="getWidth(mdElement.offsetWidth)" [videoId]="videoId"></youtube-player>
+              </div>
+              <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden sm:hidden xl:hidden 2xl:hidden lg:flex justify-center" #lgElement>
+                <youtube-player [width]="getWidth(lgElement.offsetWidth)" [videoId]="videoId"></youtube-player>
+              </div>
+              <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden lg:hidden sm:hidden 2xl:hidden xl:flex justify-center" #xlElement>
+                <youtube-player [width]="getWidth(xlElement.offsetWidth)" [videoId]="videoId"></youtube-player>
+              </div>
+              <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden lg:hidden xl:hidden sm:hidden 2xl:flex justify-center" #xxlElement>
+                <youtube-player [width]="getWidth(xxlElement.offsetWidth)" [videoId]="videoId"></youtube-player>
+              </div>
+            </div>
+            <div class="my-3">
+              <div class="rounded-[2rem] w-full shadow p-3 sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden mobile:flex justify-center" #mobileElement>
+                <youtube-player [width]="getWidth(mobileElement.offsetWidth)" [videoId]="shortVideoId"></youtube-player>
+              </div>
+              <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden lg:hidden xl:hidden 2xl:hidden sm:flex justify-center" #smElement>
+                <youtube-player [width]="getWidth(smElement.offsetWidth)" [videoId]="shortVideoId"></youtube-player>
+              </div>
+              <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden sm:hidden lg:hidden xl:hidden 2xl:hidden md:flex justify-center" #mdElement>
+                <youtube-player [width]="getWidth(mdElement.offsetWidth)" [videoId]="shortVideoId"></youtube-player>
+              </div>
+              <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden sm:hidden xl:hidden 2xl:hidden lg:flex justify-center" #lgElement>
+                <youtube-player [width]="getWidth(lgElement.offsetWidth)" [videoId]="shortVideoId"></youtube-player>
+              </div>
+              <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden lg:hidden sm:hidden 2xl:hidden xl:flex justify-center" #xlElement>
+                <youtube-player [width]="getWidth(xlElement.offsetWidth)" [videoId]="shortVideoId"></youtube-player>
+              </div>
+              <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden lg:hidden xl:hidden sm:hidden 2xl:flex justify-center" #xxlElement>
+                <youtube-player [width]="getWidth(xxlElement.offsetWidth)" [videoId]="shortVideoId"></youtube-player>
+              </div>
+            </div>
+<!--      <div *ngIf="(subStep$ | async)?.data?.sub_step_video">-->
+<!--        <div class="rounded-[2rem] w-full shadow p-3 sm:hidden md:hidden lg:hidden xl:hidden 2xl:hidden mobile:flex justify-center" #mobileElement>-->
+<!--          <youtube-player [width]="getWidth(mobileElement.offsetWidth)" [videoId]="(subStep$ | async)?.data?.sub_step_video?.url | getYoutubeID"></youtube-player>-->
+<!--        </div>-->
+<!--        <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden lg:hidden xl:hidden 2xl:hidden sm:flex justify-center" #smElement>-->
+<!--          <youtube-player [width]="getWidth(smElement.offsetWidth)" [videoId]="(subStep$ | async)?.data?.sub_step_video?.url | getYoutubeID"></youtube-player>-->
+<!--        </div>-->
+<!--        <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden sm:hidden lg:hidden xl:hidden 2xl:hidden md:flex justify-center" #mdElement>-->
+<!--          <youtube-player [width]="getWidth(mdElement.offsetWidth)" [videoId]="(subStep$ | async)?.data?.sub_step_video?.url | getYoutubeID"></youtube-player>-->
+<!--        </div>-->
+<!--        <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden sm:hidden xl:hidden 2xl:hidden lg:flex justify-center" #lgElement>-->
+<!--          <youtube-player [width]="getWidth(lgElement.offsetWidth)" [videoId]="(subStep$ | async)?.data?.sub_step_video?.url | getYoutubeID"></youtube-player>-->
+<!--        </div>-->
+<!--        <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden lg:hidden sm:hidden 2xl:hidden xl:flex justify-center" #xlElement>-->
+<!--          <youtube-player [width]="getWidth(xlElement.offsetWidth)" [videoId]="(subStep$ | async)?.data?.sub_step_video?.url | getYoutubeID"></youtube-player>-->
+<!--        </div>-->
+<!--        <div class="rounded-[2rem] w-full shadow p-3 mobile:hidden md:hidden lg:hidden xl:hidden sm:hidden 2xl:flex justify-center" #xxlElement>-->
+<!--          <youtube-player [width]="getWidth(xxlElement.offsetWidth)" [videoId]="(subStep$ | async)?.data?.sub_step_video?.url | getYoutubeID"></youtube-player>-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="my-3" *ngIf="content">
         <div [mathjax]="content.text_kk | mathjaxTransform"></div>
 <!--        <markdown katex>-->

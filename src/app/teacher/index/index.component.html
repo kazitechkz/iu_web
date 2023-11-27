@@ -1,5 +1,5 @@
 <div>
-  <div class="">
+  <div class="" *ngIf="dashboardStat">
     <div class="container mx-auto">
 
       <div class="mt-4 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8 py-3">
@@ -11,7 +11,7 @@
               </div>
               <div class="p-3 flex justify-start items-center">
                 <div>
-                  <h1 class="font-bold text-[20px]">35</h1>
+                  <h1 class="font-bold text-[20px]">{{dashboardStat.users}}</h1>
                   <div>
                     <span class="text-gray-400 italic">Студентов</span>
                   </div>
@@ -29,7 +29,7 @@
               </div>
               <div class="p-3 flex justify-start items-center">
                 <div>
-                  <h1 class="font-bold text-[20px]">52</h1>
+                  <h1 class="font-bold text-[20px]">{{dashboardStat.single_tests}}</h1>
                   <div>
                     <span class="text-gray-400 italic">Одинарных тестов</span>
                   </div>
@@ -47,7 +47,7 @@
               </div>
               <div class="p-3 flex justify-start items-center">
                 <div>
-                  <h1 class="font-bold text-[20px]">25</h1>
+                  <h1 class="font-bold text-[20px]">{{dashboardStat.unt_tests}}</h1>
                   <div>
                     <span class="text-gray-400 italic">ЕНТ тестов</span>
                   </div>
@@ -65,7 +65,7 @@
               </div>
               <div class="p-3 flex justify-start items-center">
                 <div>
-                  <h1 class="font-bold text-[20px]">2</h1>
+                  <h1 class="font-bold text-[20px]">{{dashboardStat.classrooms}}</h1>
                   <div>
                     <span class="text-gray-400 italic">групп</span>
                   </div>
@@ -92,24 +92,22 @@
             </div>
           </div>
           <div class="w-[30%] p-3">
-            <h1>TOP Users</h1>
-            <div class="flex items-center shadow bg-white px-5 py-3 rounded-[10px] w-full my-2">
+            <h1>{{'TOP_SINGLE_TEST' | translate}}</h1>
+            <div class="flex items-center shadow bg-white px-5 py-3 rounded-[10px] w-full my-2" *ngFor="let user of dashboardStat.top_single_users | keys">
               <div class="text-white flex justify-center items-center w-[30px] h-[30px] rounded-full border-[#3b71ca] bg-[#FF5374]">
                 <i class="fa fa-graduation-cap"></i>
               </div>
-              <div class="px-3">Arthur Jack</div>
+              <div class="px-3">{{user.key}}</div>
+              <div class="px-3">{{user.value.points}} / {{user.value.max_points}}</div>
+              <div class="px-3">{{user.value.subject}}</div>
             </div>
-            <div class="flex items-center shadow bg-white px-5 py-3 rounded-[10px] w-full my-2">
+            <h1>{{'TOP_SINGLE_TEST' | translate}}</h1>
+            <div class="flex items-center shadow bg-white px-5 py-3 rounded-[10px] w-full my-2" *ngFor="let user of dashboardStat.top_unt_users | keys">
               <div class="text-white flex justify-center items-center w-[30px] h-[30px] rounded-full border-[#3b71ca] bg-[#FF5374]">
                 <i class="fa fa-graduation-cap"></i>
               </div>
-              <div class="px-3">Arthur Jack</div>
-            </div>
-            <div class="flex items-center shadow bg-white px-5 py-3 rounded-[10px] w-full my-2">
-              <div class="text-white flex justify-center items-center w-[30px] h-[30px] rounded-full border-[#3b71ca] bg-[#FF5374]">
-                <i class="fa fa-graduation-cap"></i>
-              </div>
-              <div class="px-3">Arthur Jack</div>
+              <div class="px-3">{{user.key}}</div>
+              <div class="px-3">{{user.value.points}} / {{user.value.max_points}}</div>
             </div>
           </div>
         </div>

@@ -10,6 +10,8 @@ import {
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import {StrHelper} from "../../../core/helpers/str.helper";
 import {RoutesName} from "../../../core/constants/routes.constants";
+import {faCube} from "@fortawesome/free-solid-svg-icons/faCube";
+import {faCubes} from "@fortawesome/free-solid-svg-icons/faCubes";
 
 @Component({
   selector: 'app-teacher-sidebar',
@@ -48,9 +50,14 @@ export class TeacherSidebarComponent implements OnInit {
       icon: faSitemap as IconProp
     },
     {
-      title: 'MY_TESTS',
-      path: StrHelper.getTeacherRouteName(RoutesName.teacherTests),
-      icon: faTextWidth as IconProp
+      title: 'LIST_SINGLE_TEST',
+      path: StrHelper.getTeacherRouteName(RoutesName.teacherSingleTests),
+      icon: faCube as IconProp
+    },
+    {
+      title: 'LIST_UNT_TEST',
+      path: StrHelper.getTeacherRouteName(RoutesName.teacherUNTTests),
+      icon: faCubes as IconProp
     },
   ]
 }

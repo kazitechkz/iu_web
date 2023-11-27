@@ -125,6 +125,7 @@ import {
 import {
   closeTechSupportTicketReducer
 } from "../../shared/store/techSupport/closeTechSupportTicket/closeTechSupportTicket.reducer";
+import {statDashboardReducer} from "../../shared/store/teacher/dashboard/dashboard.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -214,6 +215,8 @@ export const ReducersConstants = {
   getNotificationTypeAll:getNotificationTypeAllReducer,
   getDetailExamById: getDetailExamByIdReducer,
   statExamById: statExamByIdReducer,
+  getDetailUNTById: getDetailUNTByIdReducer,
+  statDashboard: statDashboardReducer,
   getDetailUNTById: getDetailUNTByIdReducer,
   getTechSupportTypes:getTechSupportTypesReducer,
   getTechSupportCategories:getTechSupportCategoriesReducer,

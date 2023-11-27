@@ -21,6 +21,8 @@ import { AttemptStatsComponent } from './stats/attempt-stats/attempt-stats.compo
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { DetailUntExamComponent } from './exams/detail-unt-exam/detail-unt-exam.component';
 import {NgChartsModule} from "ng2-charts";
+import { SingleTestsComponent } from './exams/single-tests/single-tests.component';
+import { UntTestsComponent } from './exams/unt-tests/unt-tests.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import {NgChartsModule} from "ng2-charts";
     DetailExamComponent,
     AttemptStatsComponent,
     DetailUntExamComponent,
+    SingleTestsComponent,
+    UntTestsComponent,
   ],
   imports: [
     CommonModule,
