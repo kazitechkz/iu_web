@@ -97,6 +97,7 @@ import {
 } from "../../shared/store/attemptSettings/getAllAttemptSettingsUNT/getAllAttemptSettingsUNT.effect";
 import {DetailExamEffect} from "../../shared/store/teacher/exams/detail-exam/detail-exam.effect";
 import {StatByAttemptEffect} from "../../shared/store/teacher/stats/stat-by-attempt.effect";
+import {TeacherDashboardEffect} from "../../shared/store/teacher/dashboard/dashboard.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -176,5 +177,6 @@ export const EffectsConstants = [
     GetArraySettingsUNTEffect,
     GetNotificationTypeAllEffect,
     DetailExamEffect,
-    StatByAttemptEffect
+    StatByAttemptEffect,
+    TeacherDashboardEffect,
 ]

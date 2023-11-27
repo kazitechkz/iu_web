@@ -60,11 +60,14 @@ export class SubStepComponent implements OnInit {
   //@ts-ignore
   public content: SubStepContentModel
   videoId: string = ''
+  shortVideoId: string = ''
 
   ngOnInit(): void {
     this.checkResult()
     this.getSubStep()
     this.onYoutubePlayer()
+    this.videoId = 'UZxEkiwEQT0'
+    this.shortVideoId = '6xsHB6qbjwM'
   }
 
   getWidth(width: number) {

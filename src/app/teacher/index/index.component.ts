@@ -1,18 +1,52 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit, ViewChild} from '@angular/core';
 import {ImageHelper} from "../../core/helpers/image.helper";
 import {ColorConstants} from "../../core/constants/color.constants";
 import {RoutesName} from "../../core/constants/routes.constants";
 import {StrHelper} from "../../core/helpers/str.helper";
 import {BaseChartDirective} from "ng2-charts";
 import {ChartConfiguration, ChartData, ChartType} from "chart.js";
+import {Store} from "@ngrx/store";
+import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
+import {TwNotification} from "ng-tw";
+import {StatDashboardAction} from "../../shared/store/teacher/dashboard/dashboard.action";
+import {statDashboardStateSelector} from "../../shared/store/teacher/dashboard/dashboard.selector";
+import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
+import {TeacherDashboardStatisticModel} from "../../shared/models/teacherDashboardStatistic.model";
 
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
-export class IndexComponent {
+export class IndexComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  public translate = inject(GlobalTranslateService)
+  private _store = inject(Store)
+  private destroyRef:DestroyRef = inject(DestroyRef);
+  private _notification = inject(TwNotification)
+  public singleChartLabels: string[] = []
+  public singleChartData: number[] = []
+  //@ts-ignore
+  public dashboardStat: TeacherDashboardStatisticModel
+  ngOnInit(): void {
+    this.getStats()
+  }
+
+  getStats() {
+    this._store.dispatch(StatDashboardAction())
+    this._store.select(statDashboardStateSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      if (item.data) {
+        this.dashboardStat = item.data
+        Object.keys(this.dashboardStat.top_single_users).forEach(arr => {
+          this.singleChartLabels.push(arr)
+        })
+        Object.values(this.dashboardStat.top_single_users).forEach(arr => {
+          // @ts-ignore
+          this.singleChartData.push(arr.percentage)
+        })
+      }
+    })
+  }
 
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -32,9 +66,9 @@ export class IndexComponent {
   public barChartType: ChartType = 'bar';
 
   public barChartData: ChartData<'bar'> = {
-    labels: [],
+    labels: this.singleChartLabels,
     datasets: [
-      { data: [  ], label: '',backgroundColor:"#4DC591" },
+      { data: this.singleChartData, label: 'Результат',backgroundColor:"#4DC591" },
     ],
   };
   protected readonly ImageHelper = ImageHelper;

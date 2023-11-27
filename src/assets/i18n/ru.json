@@ -208,7 +208,11 @@
   "CURRENT": "Текущий",
   "PARTICIPATED": "Я Участвую",
   "PASSED": "Сдал",
-  "POINT": "Балл"
+  "POINT": "Балл",
+  "LIST_SINGLE_TEST": "Тесты по предметам",
+  "LIST_UNT_TEST": "Тесты по ЕНТ",
+  "TOP_SINGLE_TEST": "Топ студентов по одному предмету",
+  "TOP_UNT_TEST": "Топ студентов по ЕНТ"
 
 
 }

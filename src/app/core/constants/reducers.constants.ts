@@ -104,6 +104,7 @@ import {
   getDetailUNTByIdReducer
 } from "../../shared/store/teacher/exams/detail-exam/detail-exam.reducer";
 import {statExamByIdReducer} from "../../shared/store/teacher/stats/stat-by-attempt.reducer";
+import {statDashboardReducer} from "../../shared/store/teacher/dashboard/dashboard.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -193,6 +194,7 @@ export const ReducersConstants = {
   getNotificationTypeAll:getNotificationTypeAllReducer,
   getDetailExamById: getDetailExamByIdReducer,
   statExamById: statExamByIdReducer,
-  getDetailUNTById: getDetailUNTByIdReducer
+  getDetailUNTById: getDetailUNTByIdReducer,
+  statDashboard: statDashboardReducer
 }
 
