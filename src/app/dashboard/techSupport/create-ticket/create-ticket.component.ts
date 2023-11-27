@@ -94,7 +94,6 @@ export class CreateTicketComponent implements OnInit{
       this._store.dispatch(createTechSupportTicketAction({requestData:request}));
       this._store.select(createTechSupportTicketSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
         if(item.data){
-          console.log(item.data);
           this.createTicket.reset();
         }
       });

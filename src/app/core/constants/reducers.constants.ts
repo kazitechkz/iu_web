@@ -217,7 +217,6 @@ export const ReducersConstants = {
   statExamById: statExamByIdReducer,
   getDetailUNTById: getDetailUNTByIdReducer,
   statDashboard: statDashboardReducer,
-  getDetailUNTById: getDetailUNTByIdReducer,
   getTechSupportTypes:getTechSupportTypesReducer,
   getTechSupportCategories:getTechSupportCategoriesReducer,
   getMyTechSupportTickets:getMyTechSupportTicketsReducer,

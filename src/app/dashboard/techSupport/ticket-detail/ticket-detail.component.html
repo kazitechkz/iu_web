@@ -1,33 +1,142 @@
 <div class="container mx-auto" *ngIf="ticketMessageModel">
+  <div [ngClass]="{'max-h-[70vh] overflow-y-scroll':!ticketMessageModel.ticket.is_closed}">
     <div class="grid grid-cols-12 gap-3 py-3">
-        <div class="col-span-12" *ngIf="ticketMessageModel.ticket">
-            <div class="card shadow-lg rounded-lg p-3 main-green-bg border-2 border-white">
-                <div class="my-2 flex justify-between mx-2">
-                    <p class="text-white font-bold text-md md:text-lg lg:text-xl xl:text-2xl">
-                        {{ticketMessageModel.ticket.title}}
-                    </p>
-                    <p class="text-white font-bold text-md md:text-lg ">
-                        {{moment(ticketMessageModel.ticket.created_at).format('HH:mm DD/MM/YYYY')}}
-                    </p>
-                </div>
-                <div class="my-2 py-3">
-                    <div class="inline-block shadow-xl mx-2 whitespace-nowrap rounded-full bg-white p-4 text-center align-baseline text-sm font-bold leading-none text-white">
-                        <span *ngIf="ticketMessageModel.ticket.tech_support_category" class="text-green-500">  {{ticketMessageModel.ticket.tech_support_category | globalTranslate:"title": translate.currentLang}}</span>
-                    </div>
-                    <div class="inline-block shadow-xl mx-2 whitespace-nowrap rounded-full bg-white p-4 text-center align-baseline text-sm font-bold leading-none text-white">
-                        <span *ngIf="ticketMessageModel.ticket.tech_support_type" class="text-green-500">  {{ticketMessageModel.ticket.tech_support_type | globalTranslate:"title": translate.currentLang}}</span>
-                    </div>
-                    <div class="inline-block shadow-xl mx-2 whitespace-nowrap rounded-full bg-white p-4 text-center align-baseline text-sm font-bold leading-none text-white">
-                        <span *ngIf="ticketMessageModel.ticket.is_closed" class="text-green-500"><fa-icon [icon]="faLock"> </fa-icon> {{"CLOSED_TICKET"|translate}}</span>
-                        <span *ngIf="!ticketMessageModel.ticket.is_closed" class="text-red-500"><fa-icon [icon]="faUnlock"> </fa-icon> {{"NOT_CLOSED_TICKET"|translate}}</span>
-                    </div>
-                    <div class="inline-block shadow-xl mx-2 whitespace-nowrap rounded-full bg-white p-4 text-center align-baseline text-sm font-bold leading-none text-white">
-                        <span *ngIf="ticketMessageModel.ticket.is_resolved" class="text-green-500"><fa-icon [icon]="faCheckCircle"> </fa-icon> {{"RESOLVED_TICKET"|translate}}</span>
-                        <span *ngIf="!ticketMessageModel.ticket.is_resolved" class="text-red-500"><fa-icon [icon]="faTimesCircle"> </fa-icon> {{"NOT_RESOLVED_TICKET"|translate}}</span>
-                    </div>
+      <div class="col-span-12" *ngIf="ticketMessageModel.ticket">
+        <div class="card shadow-lg rounded-lg p-3 main-green-bg border-2 border-white">
+          <div class="my-2 mx-2  text-center lg:text-left" *ngIf="ticketMessageModel.ticket.user">
+            <div class="inline-block w-16 h-16 rounded-full border-2 border-white bg-cover bg-no-repeat mr-2"
+                 [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(ticketMessageModel.ticket.user.file?.url)+ ')'}"
+            ></div>
+            <p class="text-white font-bold text-md md:text-lg">
+              {{ticketMessageModel.ticket.user.name}}
+            </p>
+          </div>
 
-                </div>
+          <div class="my-2 text-center lg:text-left lg:flex justify-between mx-2">
+            <p class="text-white font-bold text-md md:text-lg lg:text-xl xl:text-2xl">
+              {{ticketMessageModel.ticket.title}}
+            </p>
+            <p class="text-white font-bold text-md md:text-lg">
+              {{moment(ticketMessageModel.ticket.created_at).format('HH:mm DD/MM/YYYY')}}
+            </p>
+          </div>
+          <div class="my-2 py-3 text-center lg:text-left">
+            <div class="inline-block shadow-xl my-2 mx-2 whitespace-nowrap rounded-full bg-white p-4 text-center align-baseline text-sm font-bold leading-none text-white">
+              <span *ngIf="ticketMessageModel.ticket.tech_support_category" class="text-green-500">  {{ticketMessageModel.ticket.tech_support_category | globalTranslate:"title": translate.currentLang}}</span>
             </div>
+            <div class="inline-block shadow-xl my-2 mx-2 whitespace-nowrap rounded-full bg-white p-4 text-center align-baseline text-sm font-bold leading-none text-white">
+              <span *ngIf="ticketMessageModel.ticket.tech_support_type" class="text-green-500">  {{ticketMessageModel.ticket.tech_support_type | globalTranslate:"title": translate.currentLang}}</span>
+            </div>
+            <div class="inline-block shadow-xl my-2 mx-2 whitespace-nowrap rounded-full bg-white p-4 text-center align-baseline text-sm font-bold leading-none text-white">
+              <span *ngIf="ticketMessageModel.ticket.is_closed" class="text-green-500"><fa-icon [icon]="faLock"> </fa-icon> {{"CLOSED_TICKET"|translate}}</span>
+              <span *ngIf="!ticketMessageModel.ticket.is_closed" class="text-red-500"><fa-icon [icon]="faUnlock"> </fa-icon> {{"NOT_CLOSED_TICKET"|translate}}</span>
+            </div>
+            <div class="inline-block shadow-xl my-2 mx-2 whitespace-nowrap rounded-full bg-white p-4 text-center align-baseline text-sm font-bold leading-none text-white">
+              <span *ngIf="ticketMessageModel.ticket.is_resolved" class="text-green-500"><fa-icon [icon]="faCheckCircle"> </fa-icon> {{"RESOLVED_TICKET"|translate}}</span>
+              <span *ngIf="!ticketMessageModel.ticket.is_resolved" class="text-red-500"><fa-icon [icon]="faTimesCircle"> </fa-icon> {{"NOT_RESOLVED_TICKET"|translate}}</span>
+            </div>
+
+          </div>
         </div>
+      </div>
     </div>
+    <div class="grid grid-cols-12 gap-3 py-3" *ngIf="ticketMessageModel.messages">
+      <div class="col-span-12" *ngFor="let message of ticketMessageModel.messages.data  | paginate: { itemsPerPage: ticketMessageModel.messages.per_page, currentPage: ticketMessageModel.messages.current_page,totalItems:ticketMessageModel.messages.total }">
+        <div class="card shadow-lg rounded-lg p-3 bg-white border-2 border-[#4DC591]">
+          <div class="my-2 mx-2  text-center lg:text-left" *ngIf="message.user">
+            <div class="lg:flex justify-between items-end">
+              <div>
+                <div class="inline-block w-16 h-16 rounded-full border-2 border-[#4DC591]  bg-cover bg-no-repeat mr-2"
+                     [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(message.user.file?.url)+ ')'}"
+                ></div>
+                <p class="main-green-color font-bold text-md md:text-lg">
+                  {{message.user.name}}
+                </p>
+              </div>
+              <p class="main-green-color font-bold text-md md:text-lg">
+                {{moment(message.created_at).format('HH:mm DD/MM/YYYY')}}
+              </p>
+            </div>
+
+          </div>
+          <div class="my-2 text-center lg:text-left lg:flex justify-between mx-2">
+            <div class="main-green-color text-sm" [innerHTML]="message.message"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-12">
+        <div class="my-2 w-full flex justify-center">
+          <pagination-controls class="rounded-full" (pageChange)="changePage($event)"></pagination-controls>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="!ticketMessageModel.ticket.is_closed">
+    <div class="grid grid-cols-12 gap-2 ">
+      <div class="col-span-12 my-3 py-3">
+        <form [formGroup]="createMessageForm" (submit)="onSubmit()">
+          <ckeditor [formControlName]="'message'" [editor]="Editor"></ckeditor>
+          <div class="my-2 p-3 text-right">
+            <button
+              *ngIf="createMessageForm.valid"
+              type="button" class="
+            mt-4
+            text-lg
+            font-bold
+            inline
+            main-green-bg
+            text-white
+            focus:outline-none focus:ring-4
+            focus:ring-green-500 font-medium
+            rounded-lg text-sm px-4 py-2
+            text-center mr-2 mb-2"
+              (click)="onSubmit()"
+            >
+              {{"SEND"|translate}}
+              <fa-icon [icon]="faCheck" class="mx-2 text-lg"></fa-icon>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-span-12 my-2 p-3 lg:flex justify-around">
+            <button
+              type="button" class="
+            mt-4
+            text-lg
+            font-bold
+            inline
+            main-green-bg
+            text-white
+            focus:outline-none focus:ring-4
+            focus:ring-green-500 font-medium
+            rounded-lg text-sm px-4 py-2
+            text-center mr-2 mb-2"
+              (click)="closeAndMarkResolved(true)"
+            >
+              {{"MARK_RESOLVED_AND_CLOSE"|translate}}
+              <fa-icon [icon]="faCheck" class="mx-2 text-lg"></fa-icon>
+            </button>
+            <button
+              type="button" class="
+              mt-4
+              text-lg
+              font-bold
+              inline
+              main-tertiary-bg
+              text-white
+              focus:outline-none focus:ring-4
+              focus:ring-[#FF7648] font-medium
+              rounded-lg text-sm px-4 py-2
+              text-center mr-2 mb-2"
+              (click)="closeAndMarkResolved(false)"
+            >
+              {{"JUST_CLOSE_TICKET"|translate}}
+              <fa-icon [icon]="faCheck" class="mx-2 text-lg"></fa-icon>
+            </button>
+      </div>
+    </div>
+  </div>
+
 </div>

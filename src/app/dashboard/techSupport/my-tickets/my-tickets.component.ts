@@ -86,6 +86,9 @@ export class MyTicketsComponent implements OnInit{
       }
     });
   };
+
+
+
   setType(type_id:number|null){
     this.requestData.type_id = type_id;
     this.getMyTickets();
