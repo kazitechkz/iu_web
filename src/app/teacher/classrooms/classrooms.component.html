@@ -1,141 +1,144 @@
-<div class="w-full flex justify-end items-center">
-  <button
-    class="ml-auto"
-    tw-button
-    layout="flat"
-    color="primary"
-    (click)="openDialog('0')"
-  >
-    {{'CREATE_CLASSROOM' | translate}}
-    <i class="fa fa-plus ml-3" aria-hidden="true"></i>
-  </button>
-</div>
-<div class="flex">
-  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
-    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-      <div class="overflow-hidden">
-        <table class="min-w-full text-left text-sm font-light">
-          <thead class="border-b font-medium dark:border-neutral-500">
-          <tr>
-            <th scope="col" class="px-6 py-4">#</th>
-            <th scope="col" class="px-6 py-4">{{'TITLE' | translate}}</th>
-            <th scope="col" class="px-6 py-4">{{'COUNT_OF_STUDENTS' | translate}}</th>
-            <th scope="col" class="px-6 py-4">{{'PROMO_CODE' | translate}}</th>
-            <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let classRoom of classroomsGroups | keys"
-            class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
-            <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(classRoom.key) + 1}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{classRoom.value | globalTranslate: 'title' : this.translate.currentLang}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.classrooms_count}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.promo_code}}</td>
-            <td class="whitespace-nowrap px-6 py-4">
-              <div class="flex">
-                <button
-                  class="mx-2 text-black"
-                  tw-button
-                  layout="flat"
-                  [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherDetailClassroom) + '/' + classRoom.value.id"
-                >
-                  <i class="fa fa-eye" aria-hidden="true"></i>
-                </button>
-                <button
-                  class="mx-2 text-black"
-                  tw-button
-                  layout="flat"
-                  (click)="openDialog(String(classRoom.value.id))"
-                >
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                </button>
-                <button
-                  class="mx-2 text-red-600"
-                  tw-button
-                  layout="flat"
-                  [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
-                  (confirm)="onDeleteSubmit(classRoom.value.id)"
-                >
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-              </div>
-            </td>
-            <ngx-smart-modal identifier="{{classRoom.value.id}}">
-              <div>
-                <form (ngSubmit)="onUpdateSubmit(classRoom.value.id)" [formGroup]="classroom_form">
-                  <app-input-field
-                    [formControlName]="'title_kk'"
-                    [input_name]="'title_kk'"
-                    [type]="'text'"
-                    [placeholder]="'TITLE_KK' | translate"
-                    [label]="'TITLE_KK' | translate"
-                    [error_message]="'REQUIRED_MESSAGE' | translate"
-                    [backErrors]="errors"
-                    ngDefaultControl
-                  />
-                  <app-input-field
-                    [formControlName]="'title_ru'"
-                    [input_name]="'title_ru'"
-                    [type]="'text'"
-                    [placeholder]="'TITLE_RU' | translate"
-                    [label]="'TITLE_RU' | translate"
-                    [error_message]="'REQUIRED_MESSAGE' | translate"
-                    [backErrors]="errors"
-                    ngDefaultControl
-                  />
+<div class="mobile:p-1.5 p-5 rounded-[10px] bg-white">
+  <div class="w-full flex justify-end items-center">
+    <button
+      class="ml-auto"
+      tw-button
+      layout="flat"
+      color="primary"
+      (click)="openDialog('0')"
+    >
+      {{'CREATE_CLASSROOM' | translate}}
+      <i class="fa fa-plus ml-3" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="flex">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
+      <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+        <div class="overflow-hidden">
+          <table class="min-w-full text-left text-sm font-light">
+            <thead class="border-b font-medium dark:border-neutral-500">
+            <tr>
+              <th scope="col" class="px-6 py-4">#</th>
+              <th scope="col" class="px-6 py-4">{{'TITLE' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'COUNT_OF_STUDENTS' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'PROMO_CODE' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let classRoom of classroomsGroups | keys"
+                class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
+              <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(classRoom.key) + 1}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{classRoom.value | globalTranslate: 'title' : this.translate.currentLang}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.classrooms_count}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.promo_code}}</td>
+              <td class="whitespace-nowrap px-6 py-4">
+                <div class="flex">
                   <button
+                    class="mx-2 text-black"
                     tw-button
-                    layout="raised"
-                    color="primary"
-                    type="submit"
-                    [ngClass]="!classroom_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
-                    [disabled]="!classroom_form.valid"
+                    layout="flat"
+                    [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherDetailClassroom) + '/' + classRoom.value.id"
                   >
-                    {{'UPDATE_BUTTON' | translate}}
+                    <i class="fa fa-eye" aria-hidden="true"></i>
                   </button>
-                </form>
-              </div>
-            </ngx-smart-modal>
-          </tr>
-          </tbody>
-        </table>
+                  <button
+                    class="mx-2 text-black"
+                    tw-button
+                    layout="flat"
+                    (click)="openDialog(String(classRoom.value.id))"
+                  >
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button
+                    class="mx-2 text-red-600"
+                    tw-button
+                    layout="flat"
+                    [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
+                    (confirm)="onDeleteSubmit(classRoom.value.id)"
+                  >
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </td>
+              <ngx-smart-modal identifier="{{classRoom.value.id}}">
+                <div>
+                  <form (ngSubmit)="onUpdateSubmit(classRoom.value.id)" [formGroup]="classroom_form">
+                    <app-input-field
+                      [formControlName]="'title_kk'"
+                      [input_name]="'title_kk'"
+                      [type]="'text'"
+                      [placeholder]="'TITLE_KK' | translate"
+                      [label]="'TITLE_KK' | translate"
+                      [error_message]="'REQUIRED_MESSAGE' | translate"
+                      [backErrors]="errors"
+                      ngDefaultControl
+                    />
+                    <app-input-field
+                      [formControlName]="'title_ru'"
+                      [input_name]="'title_ru'"
+                      [type]="'text'"
+                      [placeholder]="'TITLE_RU' | translate"
+                      [label]="'TITLE_RU' | translate"
+                      [error_message]="'REQUIRED_MESSAGE' | translate"
+                      [backErrors]="errors"
+                      ngDefaultControl
+                    />
+                    <button
+                      tw-button
+                      layout="raised"
+                      color="primary"
+                      type="submit"
+                      [ngClass]="!classroom_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
+                      [disabled]="!classroom_form.valid"
+                    >
+                      {{'UPDATE_BUTTON' | translate}}
+                    </button>
+                  </form>
+                </div>
+              </ngx-smart-modal>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
+    <ngx-smart-modal identifier="{{this.classroomGroupID}}">
+      <div>
+        <form (ngSubmit)="onCreateSubmit()" [formGroup]="classroom_form">
+          <app-input-field
+            [formControlName]="'title_kk'"
+            [input_name]="'title_kk'"
+            [type]="'text'"
+            [placeholder]="'TITLE_KK' | translate"
+            [label]="'TITLE_KK' | translate"
+            [error_message]="'REQUIRED_MESSAGE' | translate"
+            [backErrors]="errors"
+            ngDefaultControl
+          />
+          <app-input-field
+            [formControlName]="'title_ru'"
+            [input_name]="'title_ru'"
+            [type]="'text'"
+            [placeholder]="'TITLE_RU' | translate"
+            [label]="'TITLE_RU' | translate"
+            [error_message]="'REQUIRED_MESSAGE' | translate"
+            [backErrors]="errors"
+            ngDefaultControl
+          />
+          <button
+            tw-button
+            layout="raised"
+            color="primary"
+            type="submit"
+            [ngClass]="!classroom_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
+            [disabled]="!classroom_form.valid"
+          >
+            {{'SEND_BUTTON' | translate}}
+          </button>
+        </form>
+      </div>
+    </ngx-smart-modal>
   </div>
-  <ngx-smart-modal identifier="{{this.classroomGroupID}}">
-    <div>
-      <form (ngSubmit)="onCreateSubmit()" [formGroup]="classroom_form">
-        <app-input-field
-          [formControlName]="'title_kk'"
-          [input_name]="'title_kk'"
-          [type]="'text'"
-          [placeholder]="'TITLE_KK' | translate"
-          [label]="'TITLE_KK' | translate"
-          [error_message]="'REQUIRED_MESSAGE' | translate"
-          [backErrors]="errors"
-          ngDefaultControl
-        />
-        <app-input-field
-          [formControlName]="'title_ru'"
-          [input_name]="'title_ru'"
-          [type]="'text'"
-          [placeholder]="'TITLE_RU' | translate"
-          [label]="'TITLE_RU' | translate"
-          [error_message]="'REQUIRED_MESSAGE' | translate"
-          [backErrors]="errors"
-          ngDefaultControl
-        />
-        <button
-          tw-button
-          layout="raised"
-          color="primary"
-          type="submit"
-          [ngClass]="!classroom_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
-          [disabled]="!classroom_form.valid"
-        >
-          {{'SEND_BUTTON' | translate}}
-        </button>
-      </form>
-    </div>
-  </ngx-smart-modal>
 </div>
+

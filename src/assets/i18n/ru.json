@@ -212,7 +212,6 @@
   "LIST_UNT_TEST": "Тесты по ЕНТ",
   "TOP_SINGLE_TEST": "Топ студентов по одному предмету",
   "TOP_UNT_TEST": "Топ студентов по ЕНТ",
-  "POINT": "Балл",
   "TECH_SUPPORT": "Техподдержка",
   "TYPE": "Тип",
   "USER": "Пользователь",
@@ -227,6 +226,8 @@
   "UPDATED_AT": "Обновлен",
   "TECH_SUPPORT_TYPE": "Тип технической поддержки",
   "TECH_SUPPORT_CATEGORY": "Категория технической поддержки",
+  "FILTER": "Фильтры",
+  "RESULT_IN_PERCENTAGE": "Результат в процентах %"
   "FILTER": "Фильтры",
   "SELECT_CATEGORY": "Выберите категорию",
   "SELECT_TYPE_ID": "Выберите тип",

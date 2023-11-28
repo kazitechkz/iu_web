@@ -126,6 +126,7 @@ import {
   closeTechSupportTicketReducer
 } from "../../shared/store/techSupport/closeTechSupportTicket/closeTechSupportTicket.reducer";
 import {statDashboardReducer} from "../../shared/store/teacher/dashboard/dashboard.reducer";
+import {factReducer} from "../../shared/store/fact/fact.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -224,5 +225,6 @@ export const ReducersConstants = {
   createTechSupportTicket:createTechSupportTicketReducer,
   createTechSupportMessage:createTechSupportMessageReducer,
   closeTechSupportTicket:closeTechSupportTicketReducer,
+  facts: factReducer
 }
 

@@ -1,5 +1,5 @@
-<div>
-  <div class="" *ngIf="dashboardStat">
+<div class="mobile:p-1.5 p-5 rounded-[10px]">
+  <div *ngIf="dashboardStat">
     <div class="container mx-auto">
 
       <div class="mt-4 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8 py-3">
@@ -78,8 +78,8 @@
       </div>
 
       <div class="rounded-[10px] bg-white w-full">
-        <div class="w-full flex">
-          <div class="w-[70%] p-3">
+        <div class="w-full 2xl:flex mobile:block sm:block md:block lg:block xl:block">
+          <div class="2xl:w-[60%] p-3">
             <div class="col-span-12 bg-white rounded-2xl p-4 shadow-lg md:flex items-center text-red-500">
               <canvas
                 baseChart
@@ -91,17 +91,38 @@
               </canvas>
             </div>
           </div>
-          <div class="w-[30%] p-3">
+          <div class="2xl:w-[40%] p-3">
             <h1>{{'TOP_SINGLE_TEST' | translate}}</h1>
             <div class="flex items-center shadow bg-white px-5 py-3 rounded-[10px] w-full my-2" *ngFor="let user of dashboardStat.top_single_users | keys">
               <div class="text-white flex justify-center items-center w-[30px] h-[30px] rounded-full border-[#3b71ca] bg-[#FF5374]">
                 <i class="fa fa-graduation-cap"></i>
               </div>
-              <div class="px-3">{{user.key}}</div>
-              <div class="px-3">{{user.value.points}} / {{user.value.max_points}}</div>
-              <div class="px-3">{{user.value.subject}}</div>
+              <div class="flex justify-between items-center">
+                <div class="px-3">{{user.key}}</div>
+                <div class="px-3">{{user.value.points}} / {{user.value.max_points}}</div>
+                <div class="px-3">{{user.value.subject}}</div>
+              </div>
             </div>
-            <h1>{{'TOP_SINGLE_TEST' | translate}}</h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-[10px] bg-white w-full">
+        <div class="w-full 2xl:flex mobile:block sm:block md:block lg:block xl:block">
+          <div class="2xl:w-[60%] p-3">
+            <div class="col-span-12 bg-white rounded-2xl p-4 shadow-lg md:flex items-center text-red-500">
+              <canvas
+                baseChart
+                class="chart"
+                [data]="barUNTChartData"
+                [options]="barUNTChartOptions"
+                [type]="barUNTChartType"
+              >
+              </canvas>
+            </div>
+          </div>
+          <div class="2xl:w-[40%] p-3">
+            <h1>{{'TOP_UNT_TEST' | translate}}</h1>
             <div class="flex items-center shadow bg-white px-5 py-3 rounded-[10px] w-full my-2" *ngFor="let user of dashboardStat.top_unt_users | keys">
               <div class="text-white flex justify-center items-center w-[30px] h-[30px] rounded-full border-[#3b71ca] bg-[#FF5374]">
                 <i class="fa fa-graduation-cap"></i>
@@ -112,7 +133,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
   </div>

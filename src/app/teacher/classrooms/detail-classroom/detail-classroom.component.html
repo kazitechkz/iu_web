@@ -1,230 +1,232 @@
-<div class="w-full flex justify-end items-center" *ngIf="checkedList.length > 0">
-  <button
-    class="mr-5 !bg-[#4DC591] text-white !px-2 mobile:!text-xs"
-    tw-button
-    layout="flat"
-    (click)="singleSubjectSubmit()"
-  >
-    {{'CREATE_SINGLE_TEST' | translate}}
-    <i class="fa fa-cube ml-3" aria-hidden="true"></i>
-  </button>
-  <button
-    class="!bg-[#4DC591] text-white !px-2 mobile:!text-xs"
-    tw-button
-    layout="flat"
-    (click)="untInitialData()"
-  >
-    {{'CREATE_UNT' | translate}}
-    <i class="fa fa-cubes ml-3" aria-hidden="true"></i>
-  </button>
-</div>
-<div class="flex">
-  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
-    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-      <div class="overflow-hidden">
-        <form [formGroup]="checkbox_form">
-          <table class="min-w-full text-center text-sm font-light table-auto">
-            <thead class="border-b font-medium dark:border-neutral-500">
-            <tr>
-              <th scope="col" class="px-6 py-4">
-                <div class="flex items-center">
-                  <input  (change)="changeCheckbox($event, true)" id="default-checkbox" type="checkbox" value="0" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 focus:ring-2">
-                </div>
-              </th>
-              <th scope="col" class="px-6 py-4">#</th>
-              <th scope="col" class="px-6 py-4">{{'NAME' | translate}}</th>
-              <th scope="col" class="px-6 py-4">{{'GENDER' | translate}}</th>
-              <th scope="col" class="px-6 py-4">{{'PHONE' | translate}}</th>
-              <th scope="col" class="px-6 py-4">{{'EMAIL' | translate}}</th>
-              <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let item of data | keys"
-                class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
-              <td class="whitespace-nowrap px-6 py-4 font-medium">
-                <div class="flex items-center mb-4">
-                  <input type="checkbox" [checked]="isAllChecked" [value]="item.value.user.id" (change)="changeCheckbox($event, false)" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 focus:ring-2">
-                </div>
-              </td>
-              <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
-              <td class="whitespace-nowrap px-6 py-4">{{item.value.user.name}}</td>
-              <td class="whitespace-nowrap px-6 py-4">{{item.value.user.gender != null ? (item.value.user.gender | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID)) : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
-              <td class="whitespace-nowrap px-6 py-4">{{item.value.user.phone != null ? item.value.user.phone : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
-              <td class="whitespace-nowrap px-6 py-4">{{item.value.user.email != null ? item.value.user.email : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
-              <td class="whitespace-nowrap px-6 py-4">
-                <div class="flex justify-center">
-                  <button
-                    class="mx-2 text-black"
-                    tw-button
-                    layout="flat"
-                  >
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                  </button>
-
-                  <button
-                    [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
-                    (confirm)="deleteUserFromClassroom(item.value.id)"
-                    class="mx-2 text-red-600"
-                    tw-button
-                    layout="flat"
-                  >
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </form>
-      </div>
-    </div>
+<div class="mobile:p-1.5 p-5 rounded-[10px] bg-white">
+  <div class="w-full flex justify-end items-center" *ngIf="checkedList.length > 0">
+    <button
+      class="mr-5 !bg-[#4DC591] text-white !px-2 mobile:!text-xs"
+      tw-button
+      layout="flat"
+      (click)="singleSubjectSubmit()"
+    >
+      {{'CREATE_SINGLE_TEST' | translate}}
+      <i class="fa fa-cube ml-3" aria-hidden="true"></i>
+    </button>
+    <button
+      class="!bg-[#4DC591] text-white !px-2 mobile:!text-xs"
+      tw-button
+      layout="flat"
+      (click)="untInitialData()"
+    >
+      {{'CREATE_UNT' | translate}}
+      <i class="fa fa-cubes ml-3" aria-hidden="true"></i>
+    </button>
   </div>
-</div>
-<div class="py-4" *ngIf="isSingleTest">
-  <div class="my-2 2xl:flex 2xl:justify-between 2xl:items-center">
-    <div class="lg:flex">
-      <select data-te-select-init class="mx-2 mobile:my-1" (change)="selectSubject($event)">
-        <option value="0">{{'SELECT_SUBJECT' | translate}}</option>
-        <option [value]="subject.id" *ngFor="let subject of subjects">{{subject.title_kk}}</option>
-      </select>
-<!--      <select data-te-select-init class="mx-2 mobile:my-1" *ngIf="isShowCategoryContent" (change)="selectLanguage($event)">-->
-<!--        <option [selected]="localeID == 1" value="1">-->
-<!--          Қазақ тілі-->
-<!--        </option>-->
-<!--        <option [selected]="localeID == 2" value="2">-->
-<!--          Русский язык-->
-<!--        </option>-->
-<!--      </select>-->
-    </div>
-
-    <form [formGroup]="attempt_settings_form" (ngSubmit)="sendQuery()">
-      <div class="my-2 lg:flex lg:items-center mobile:my-3">
-        <div class="flex mx-2 mobile:my-2">
-          <input [formControlName]="'time'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-2 !w-full range-slider__range">
-          <span class="range-slider__value !w-[80px]">(минут)</span>
-        </div>
-        <div class="flex mx-2 mobile:my-2">
-          <input
-            class="mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-primary checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:bg-primary checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:bg-neutral-600 dark:after:bg-neutral-400 dark:checked:bg-primary dark:checked:after:bg-primary dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca]"
-            type="checkbox"
-            [formControlName]="'hidden_fields'"
-            role="switch"
-            id="flexSwitchCheckDefault" />
-          <label
-            class="inline-block pl-[0.15rem] hover:cursor-pointer"
-            for="flexSwitchCheckDefault"
-          >{{'PROMPT' | translate}}</label
-          >
-        </div>
-        <div class="mobile:flex mobile:justify-between">
-          <button class="border p-1 rounded-[5px]" type="button" (click)="dialog.get('open-basket').open()">
-            {{basket.singleQ + basket.contextQ + basket.multiQ}}
-            <i class="fa fa-basket-shopping ml-2"></i>
-          </button>
-          <button
-            [disabled]="Object.keys(initialData).length === 0"
-            type="submit"
-            class="ml-5 !bg-[#4DC591] text-white"
-            [ngClass]="attempt_settings_form.valid && Object.keys(initialData).length > 0 ? 'cursor-pointer' : 'cursor-not-allowed'"
-            tw-button
-            layout="flat"
-          >
-            {{'SEND_BUTTON' | translate}}
-          </button>
-        </div>
-
-      </div>
-    </form>
-  </div>
-  <div class="my-2" *ngIf="isShowCategoryContent">
-    <div class="flex">
-      <div class="overflow-x-auto w-full">
-        <div class="inline-block min-w-full py-2">
-          <div class="overflow-hidden">
-            <form>
-              <div *ngFor="let cat of categories"
-                   class="block w-full rounded-lg bg-[#9295A3] text-left shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-                <div class="p-3 my-2 flex justify-between">
-                  <div class="flex items-center justify-between">
-                    <p class="mobile:text-xs lg:text-base text-white">
-                      {{cat.title_kk}}
-                    </p>
+  <div class="flex">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
+      <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+        <div class="overflow-hidden">
+          <form [formGroup]="checkbox_form">
+            <table class="min-w-full text-center text-sm font-light table-auto">
+              <thead class="border-b font-medium dark:border-neutral-500">
+              <tr>
+                <th scope="col" class="px-6 py-4">
+                  <div class="flex items-center">
+                    <input  (change)="changeCheckbox($event, true)" id="default-checkbox" type="checkbox" value="0" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 focus:ring-2">
                   </div>
-                  <button (click)="getSubCategories(cat.id)" class="rounded-full border ml-auto w-[30px] h-[30px] flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
-                    <i class="fa fa-arrow-down" *ngIf="subCategoryContentID != cat.id"></i>
-                    <i class="fa fa-arrow-up" *ngIf="subCategoryContentID == cat.id"></i>
-                  </button>
-
-                </div>
-                <div *ngIf="subCategoryContentID == cat.id">
-                  <div class="mobile:my-2 lg:flex lg:justify-between p-3">
-                    <button [ngClass]="isSelectAllCategoryID == cat.id ? 'border-[#3b71ca] text-[#3b71ca]' : ''" (click)="selectAllCategoryByID(cat.id)" class="mobile:text-xs px-2 border flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
-                      {{isSelectAllCategoryID != cat.id ? ('SELECT_ALL' | translate) : 'CANCEL_BUTTON' | translate}}
-                      <i class="fa fa-check ml-3" *ngIf="isSelectAllCategoryID != cat.id"></i>
-                      <i class="fa fa-ban ml-3" *ngIf="isSelectAllCategoryID == cat.id"></i>
+                </th>
+                <th scope="col" class="px-6 py-4">#</th>
+                <th scope="col" class="px-6 py-4">{{'NAME' | translate}}</th>
+                <th scope="col" class="px-6 py-4">{{'GENDER' | translate}}</th>
+                <th scope="col" class="px-6 py-4">{{'PHONE' | translate}}</th>
+                <th scope="col" class="px-6 py-4">{{'EMAIL' | translate}}</th>
+                <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of data | keys"
+                  class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
+                <td class="whitespace-nowrap px-6 py-4 font-medium">
+                  <div class="flex items-center mb-4">
+                    <input type="checkbox" [checked]="isAllChecked" [value]="item.value.user.id" (change)="changeCheckbox($event, false)" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500 focus:ring-2">
+                  </div>
+                </td>
+                <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{item.value.user.name}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{item.value.user.gender != null ? (item.value.user.gender | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID)) : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{item.value.user.phone != null ? item.value.user.phone : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{item.value.user.email != null ? item.value.user.email : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
+                <td class="whitespace-nowrap px-6 py-4">
+                  <div class="flex justify-center">
+                    <button
+                      class="mx-2 text-black"
+                      tw-button
+                      layout="flat"
+                    >
+                      <i class="fa fa-eye" aria-hidden="true"></i>
                     </button>
-                    <form [formGroup]="category_form" (ngSubmit)="categoryFormSubmit(cat)">
-                      <div class="ml-2 mobile:my-2 lg:flex lg:justify-between" *ngIf="isSelectAllCategoryID == cat.id">
-                        <div class="mobile:my-2">
-                          <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-3 range-slider__range">
-                          <span class="range-slider__value">{{cat.s_questions_count}}</span>
-                        </div>
-                        <div class="mobile:my-2">
-                          <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="!pl-3 range-slider__range">
-                          <span class="range-slider__value">{{cat.c_questions_count}}</span>
-                        </div>
-                        <div class="mobile:my-2">
-                          <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="!pl-3 range-slider__range">
-                          <span class="range-slider__value">{{cat.m_questions_count}}</span>
-                        </div>
-                        <button [disabled]="!category_form.valid" [ngClass]="category_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" type="submit" class="mobile:text-xs px-2 border flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
-                          {{'SAVE_BUTTON' | translate}}
-                          <i class="fa fa-check ml-3"></i>
-                        </button>
-                      </div>
-                    </form>
+
+                    <button
+                      [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
+                      (confirm)="deleteUserFromClassroom(item.value.id)"
+                      class="mx-2 text-red-600"
+                      tw-button
+                      layout="flat"
+                    >
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-4" *ngIf="isSingleTest">
+    <div class="my-2 2xl:flex 2xl:justify-between 2xl:items-center">
+      <div class="lg:flex">
+        <select data-te-select-init class="mx-2 mobile:my-1" (change)="selectSubject($event)">
+          <option value="0">{{'SELECT_SUBJECT' | translate}}</option>
+          <option [value]="subject.id" *ngFor="let subject of subjects">{{subject.title_kk}}</option>
+        </select>
+        <!--      <select data-te-select-init class="mx-2 mobile:my-1" *ngIf="isShowCategoryContent" (change)="selectLanguage($event)">-->
+        <!--        <option [selected]="localeID == 1" value="1">-->
+        <!--          Қазақ тілі-->
+        <!--        </option>-->
+        <!--        <option [selected]="localeID == 2" value="2">-->
+        <!--          Русский язык-->
+        <!--        </option>-->
+        <!--      </select>-->
+      </div>
+
+      <form [formGroup]="attempt_settings_form" (ngSubmit)="sendQuery()">
+        <div class="my-2 lg:flex lg:items-center mobile:my-3">
+          <div class="flex mx-2 mobile:my-2">
+            <input [formControlName]="'time'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-2 !w-full range-slider__range">
+            <span class="range-slider__value !w-[80px]">(минут)</span>
+          </div>
+          <div class="flex mx-2 mobile:my-2">
+            <input
+              class="mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-primary checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:bg-primary checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:bg-neutral-600 dark:after:bg-neutral-400 dark:checked:bg-primary dark:checked:after:bg-primary dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca]"
+              type="checkbox"
+              [formControlName]="'hidden_fields'"
+              role="switch"
+              id="flexSwitchCheckDefault" />
+            <label
+              class="inline-block pl-[0.15rem] hover:cursor-pointer"
+              for="flexSwitchCheckDefault"
+            >{{'PROMPT' | translate}}</label
+            >
+          </div>
+          <div class="mobile:flex mobile:justify-between">
+            <button class="border p-1 rounded-[5px]" type="button" (click)="dialog.get('open-basket').open()">
+              {{basket.singleQ + basket.contextQ + basket.multiQ}}
+              <i class="fa fa-basket-shopping ml-2"></i>
+            </button>
+            <button
+              [disabled]="Object.keys(initialData).length === 0"
+              type="submit"
+              class="ml-5 !bg-[#4DC591] text-white"
+              [ngClass]="attempt_settings_form.valid && Object.keys(initialData).length > 0 ? 'cursor-pointer' : 'cursor-not-allowed'"
+              tw-button
+              layout="flat"
+            >
+              {{'SEND_BUTTON' | translate}}
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+    <div class="my-2" *ngIf="isShowCategoryContent">
+      <div class="flex">
+        <div class="overflow-x-auto w-full">
+          <div class="inline-block min-w-full py-2">
+            <div class="overflow-hidden">
+              <form>
+                <div *ngFor="let cat of categories"
+                     class="block w-full rounded-lg bg-[#9295A3] text-left shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+                  <div class="p-3 my-2 flex justify-between">
+                    <div class="flex items-center justify-between">
+                      <p class="mobile:text-xs lg:text-base text-white">
+                        {{cat.title_kk}}
+                      </p>
+                    </div>
+                    <button (click)="getSubCategories(cat.id)" class="rounded-full border ml-auto w-[30px] h-[30px] flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
+                      <i class="fa fa-arrow-down" *ngIf="subCategoryContentID != cat.id"></i>
+                      <i class="fa fa-arrow-up" *ngIf="subCategoryContentID == cat.id"></i>
+                    </button>
 
                   </div>
-                  <div class="px-3 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8 py-3" *ngIf="isSelectAllCategoryID != cat.id">
-                    <div *ngFor="let subCat of subCategories" (click)="dialog.getModal(String(subCat.id)).open()"
-                         class="group relative shadow cursor-pointer bg-white hover:bg-[#9BA1FF]/90" [ngClass]="checkExistSubCategoryFromSelectedList(cat.id, subCat.id) ? '!bg-[#9BA1FF]' : ''">
-                      <div class="lg:p-6 mobile:p-2 my-2 flex justify-between">
-                        <div class="flex items-center">
-                          <p class="mobile:text-xs text-base text-black">
-                            {{subCat.title_kk}}
-                          </p>
+                  <div *ngIf="subCategoryContentID == cat.id">
+                    <div class="mobile:my-2 lg:flex lg:justify-between p-3">
+                      <button [ngClass]="isSelectAllCategoryID == cat.id ? 'border-[#3b71ca] text-[#3b71ca]' : ''" (click)="selectAllCategoryByID(cat.id)" class="mobile:text-xs px-2 border flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
+                        {{isSelectAllCategoryID != cat.id ? ('SELECT_ALL' | translate) : 'CANCEL_BUTTON' | translate}}
+                        <i class="fa fa-check ml-3" *ngIf="isSelectAllCategoryID != cat.id"></i>
+                        <i class="fa fa-ban ml-3" *ngIf="isSelectAllCategoryID == cat.id"></i>
+                      </button>
+                      <form [formGroup]="category_form" (ngSubmit)="categoryFormSubmit(cat)">
+                        <div class="ml-2 mobile:my-2 lg:flex lg:justify-between" *ngIf="isSelectAllCategoryID == cat.id">
+                          <div class="mobile:my-2">
+                            <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-3 range-slider__range">
+                            <span class="range-slider__value">{{cat.s_questions_count}}</span>
+                          </div>
+                          <div class="mobile:my-2">
+                            <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="!pl-3 range-slider__range">
+                            <span class="range-slider__value">{{cat.c_questions_count}}</span>
+                          </div>
+                          <div class="mobile:my-2">
+                            <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="!pl-3 range-slider__range">
+                            <span class="range-slider__value">{{cat.m_questions_count}}</span>
+                          </div>
+                          <button [disabled]="!category_form.valid" [ngClass]="category_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" type="submit" class="mobile:text-xs px-2 border flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
+                            {{'SAVE_BUTTON' | translate}}
+                            <i class="fa fa-check ml-3"></i>
+                          </button>
                         </div>
+                      </form>
+
+                    </div>
+                    <div class="px-3 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8 py-3" *ngIf="isSelectAllCategoryID != cat.id">
+                      <div *ngFor="let subCat of subCategories" (click)="dialog.getModal(String(subCat.id)).open()"
+                           class="group relative shadow cursor-pointer bg-white hover:bg-[#9BA1FF]/90" [ngClass]="checkExistSubCategoryFromSelectedList(cat.id, subCat.id) ? '!bg-[#9BA1FF]' : ''">
+                        <div class="lg:p-6 mobile:p-2 my-2 flex justify-between">
+                          <div class="flex items-center">
+                            <p class="mobile:text-xs text-base text-black">
+                              {{subCat.title_kk}}
+                            </p>
+                          </div>
+                        </div>
+                        <ngx-smart-modal identifier="{{subCat.id}}">
+                          <div class="my-3 text-black">
+                            <form [formGroup]="sub_category_form" (ngSubmit)="subCategoryFormSubmit(subCat, cat)">
+                              <div class="">
+                                <div class="my-2">
+                                  <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-3 range-slider__range">
+                                  <span class="range-slider__value">{{subCat.s_questions_count}}</span>
+                                </div>
+                                <div class="my-2">
+                                  <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="!pl-3 range-slider__range">
+                                  <span class="range-slider__value">{{subCat.c_questions_count}}</span>
+                                </div>
+                                <div class="my-2">
+                                  <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="!pl-3 range-slider__range">
+                                  <span class="range-slider__value">{{subCat.m_questions_count}}</span>
+                                </div>
+                                <button [disabled]="!sub_category_form.valid" [ngClass]="sub_category_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" type="submit" class="px-2 border rounded-[7px] flex justify-center items-center text-black hover:border-[#3b71ca] hover:text-[#3b71ca]">
+                                  {{'SAVE_BUTTON' | translate}}
+                                  <i class="fa fa-check ml-3"></i>
+                                </button>
+                              </div>
+                            </form>
+                          </div>
+                        </ngx-smart-modal>
                       </div>
-                      <ngx-smart-modal identifier="{{subCat.id}}">
-                        <div class="my-3 text-black">
-                          <form [formGroup]="sub_category_form" (ngSubmit)="subCategoryFormSubmit(subCat, cat)">
-                            <div class="">
-                              <div class="my-2">
-                                <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-3 range-slider__range">
-                                <span class="range-slider__value">{{subCat.s_questions_count}}</span>
-                              </div>
-                              <div class="my-2">
-                                <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="!pl-3 range-slider__range">
-                                <span class="range-slider__value">{{subCat.c_questions_count}}</span>
-                              </div>
-                              <div class="my-2">
-                                <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="!pl-3 range-slider__range">
-                                <span class="range-slider__value">{{subCat.m_questions_count}}</span>
-                              </div>
-                              <button [disabled]="!sub_category_form.valid" [ngClass]="sub_category_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" type="submit" class="px-2 border rounded-[7px] flex justify-center items-center text-black hover:border-[#3b71ca] hover:text-[#3b71ca]">
-                                {{'SAVE_BUTTON' | translate}}
-                                <i class="fa fa-check ml-3"></i>
-                              </button>
-                            </div>
-                          </form>
-                        </div>
-                      </ngx-smart-modal>
                     </div>
                   </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>
@@ -243,16 +245,16 @@
 <ngx-smart-modal identifier="open-unt">
   <div class="my-3 text-black">
     <form [formGroup]="unt_form" (ngSubmit)="untSubmit()">
-<!--      <div>-->
-<!--        <select data-te-select-init class="mx-2 mobile:my-1 w-full" (change)="selectLanguageForUNT($event)">-->
-<!--          <option [selected]="localeID == 1" value="1">-->
-<!--            Қазақ тілі-->
-<!--          </option>-->
-<!--          <option [selected]="localeID == 2" value="2">-->
-<!--            Русский язык-->
-<!--          </option>-->
-<!--        </select>-->
-<!--      </div>-->
+      <!--      <div>-->
+      <!--        <select data-te-select-init class="mx-2 mobile:my-1 w-full" (change)="selectLanguageForUNT($event)">-->
+      <!--          <option [selected]="localeID == 1" value="1">-->
+      <!--            Қазақ тілі-->
+      <!--          </option>-->
+      <!--          <option [selected]="localeID == 2" value="2">-->
+      <!--            Русский язык-->
+      <!--          </option>-->
+      <!--        </select>-->
+      <!--      </div>-->
       <div class="my-2 lg:flex lg:items-center mobile:my-3">
         <div class="flex mx-2 mobile:my-2">
           <input [formControlName]="'time'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-2 !w-full range-slider__range">
