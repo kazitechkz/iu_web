@@ -117,6 +117,7 @@ import {
     CloseTechSupportTicketEffect
 } from "../../shared/store/techSupport/closeTechSupportTicket/closeTechSupportTicket.effect";
 import {TeacherDashboardEffect} from "../../shared/store/teacher/dashboard/dashboard.effect";
+import {FactEffect} from "../../shared/store/fact/fact.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -206,4 +207,5 @@ export const EffectsConstants = [
     CloseTechSupportTicketEffect,
     StatByAttemptEffect,
     TeacherDashboardEffect,
+    FactEffect
 ]

@@ -23,6 +23,7 @@ import { DetailUntExamComponent } from './exams/detail-unt-exam/detail-unt-exam.
 import {NgChartsModule} from "ng2-charts";
 import { SingleTestsComponent } from './exams/single-tests/single-tests.component';
 import { UntTestsComponent } from './exams/unt-tests/unt-tests.component';
+import {TranslatePipe} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -53,6 +54,6 @@ import { UntTestsComponent } from './exams/unt-tests/unt-tests.component';
     FontAwesomeModule,
     NgChartsModule
   ],
-  providers: [MathJaxPipe]
+  providers: [MathJaxPipe, TranslatePipe]
 })
 export class TeacherModule { }

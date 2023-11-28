@@ -18,6 +18,9 @@ import {subStepAction} from "../../../shared/store/step/subStep/subStep.action";
 import {getSubStepState} from "../../../shared/store/step/subStep/subStep.selector";
 import {StrHelper} from "../../../core/helpers/str.helper";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
+import {factAction} from "../../../shared/store/fact/fact.action";
+import {getFactStateSelector} from "../../../shared/store/fact/fact.selector";
+import {FactModel} from "../../../shared/models/fact.model";
 
 @Component({
   selector: 'app-step-detail',
@@ -32,12 +35,15 @@ export class StepDetailComponent implements OnInit {
   destroyRef = inject(DestroyRef);
   public steps?: Steps[] | null;
   subjects:Subject[] = [];
+  //@ts-ignore
+  fact:FactModel;
   dialog = inject(NgxSmartModalService)
   public subSteps: SubStepModel[] | null = []
 
   ngOnInit(): void {
-    this.getStepDetail();
-    this.getSubjects();
+    this.getStepDetail()
+    this.getSubjects()
+    this.getFacts()
     this.onScrollX()
   }
 
@@ -69,7 +75,6 @@ export class StepDetailComponent implements OnInit {
       this._store.dispatch(stepDetailAction({ requestData: params['id'] }))
       this._store.select(getStepDetailState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         this.steps = item.data
-        console.log(item.data)
       })
     })
   }
@@ -80,6 +85,38 @@ export class StepDetailComponent implements OnInit {
       if(item.data){
         this.subjects = item.data;
       }
+    })
+  }
+
+  getFacts() {
+    this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
+      this._store.dispatch(factAction({subjectId: params['id']}))
+      this._store.select(getFactStateSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+        if (item.data) {
+          this.fact = item.data
+        } else {
+          //@ts-ignore
+          this.fact = {
+            subject: {
+              title_kk: '',
+              title_ru: '',
+              id: 0,
+              image_url: 0,
+              is_compulsory: false,
+              max_questions_quantity: 0,
+              enable: false,
+              questions_step: 0,
+              created_at: '',
+              updated_at: '',
+              deleted_at: '',
+              image: null
+            },
+            text_kk: '',
+            text_ru: '',
+            subjectId: 0
+          }
+        }
+      })
     })
   }
 
