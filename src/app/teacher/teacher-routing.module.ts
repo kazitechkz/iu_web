@@ -13,6 +13,7 @@ import {AttemptStatsComponent} from "./stats/attempt-stats/attempt-stats.compone
 import {DetailUntExamComponent} from "./exams/detail-unt-exam/detail-unt-exam.component";
 import {SingleTestsComponent} from "./exams/single-tests/single-tests.component";
 import {UntTestsComponent} from "./exams/unt-tests/unt-tests.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: 'stats-attempt/:attempt_id/:user_id',
         component: AttemptStatsComponent
+      },
+      {
+        path: 'my-profile',
+        component: ProfileComponent
       }
     ]
   }

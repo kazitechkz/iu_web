@@ -24,6 +24,7 @@ import {NgChartsModule} from "ng2-charts";
 import { SingleTestsComponent } from './exams/single-tests/single-tests.component';
 import { UntTestsComponent } from './exams/unt-tests/unt-tests.component';
 import {TranslatePipe} from "@ngx-translate/core";
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {TranslatePipe} from "@ngx-translate/core";
     DetailUntExamComponent,
     SingleTestsComponent,
     UntTestsComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,

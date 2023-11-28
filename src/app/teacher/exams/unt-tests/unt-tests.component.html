@@ -1,65 +1,68 @@
-<div class="my-2">
-  <h2>{{'LIST_UNT_TEST' | translate}}</h2>
-</div>
-<div class="flex my-3">
-  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
-    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-      <div class="overflow-hidden">
-        <table class="min-w-full text-left text-sm font-light">
-          <thead class="border-b font-medium dark:border-neutral-500">
-          <tr>
-            <th scope="col" class="px-6 py-4">#</th>
-            <th scope="col" class="px-6 py-4">{{'SUBJECTS' | translate}}</th>
-            <th scope="col" class="px-6 py-4">{{'LANGUAGE' | translate}}</th>
-            <th scope="col" class="px-6 py-4">{{'TIME' | translate}}</th>
-            <th scope="col" class="px-6 py-4">{{'PROMO_CODE' | translate}}</th>
-            <th scope="col" class="px-6 py-4">{{'COUNT_OF_STUDENTS' | translate}}</th>
-            <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
-          </tr>
-          </thead>
-          <tbody *ngIf="myUNTTests">
-          <tr *ngFor="let item of myUNTTests.data | paginate: { itemsPerPage: myUNTTests.per_page, currentPage: myUNTTests.current_page, totalItems: myUNTTests.total } | keys"
-              class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
-            <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{item.value.subjects[0].title_kk}} , {{item.value.subjects[1].title_kk}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{item.value.locale.title}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{item.value.time}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{item.value.promo_code}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{item.value.users.length}}</td>
-            <td class="whitespace-nowrap px-6 py-4">
-              <div class="flex">
-                <a
-                  class="mx-2 text-black"
-                  tw-button
-                  layout="flat"
-                  [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherDetailUNTTest) + '/' + item.value.id"
-                >
-                  <i class="fa fa-line-chart" aria-hidden="true"></i>
-                </a>
-                <button
-                  [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
-                  (confirm)="deleteUNTExamById(item.value.id)"
-                  class="mx-2 text-red-600"
-                  tw-button
-                  layout="flat"
-                >
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-        <div *ngIf="myUNTTests">
-          <div class="my-2 flex justify-center" *ngIf="myUNTTests.total > myUNTTests.per_page">
-            <pagination-controls
-              [previousLabel]="'PREVIOUS_PAGINATION' | translate"
-              [nextLabel]="'NEXT_PAGINATION' | translate"
-              [responsive]="true"
-              class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
+<div class="mobile:p-1.5 p-5 rounded-[10px] bg-white">
+  <div class="my-2">
+    <h2>{{'LIST_UNT_TEST' | translate}}</h2>
+  </div>
+  <div class="flex my-3">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
+      <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+        <div class="overflow-hidden">
+          <table class="min-w-full text-left text-sm font-light">
+            <thead class="border-b font-medium dark:border-neutral-500">
+            <tr>
+              <th scope="col" class="px-6 py-4">#</th>
+              <th scope="col" class="px-6 py-4">{{'SUBJECTS' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'LANGUAGE' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'TIME' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'PROMO_CODE' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'COUNT_OF_STUDENTS' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="myUNTTests">
+            <tr *ngFor="let item of myUNTTests.data | paginate: { itemsPerPage: myUNTTests.per_page, currentPage: myUNTTests.current_page, totalItems: myUNTTests.total } | keys"
+                class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
+              <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{item.value.subjects[0].title_kk}} , {{item.value.subjects[1].title_kk}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{item.value.locale.title}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{item.value.time}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{item.value.promo_code}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{item.value.users.length}}</td>
+              <td class="whitespace-nowrap px-6 py-4">
+                <div class="flex">
+                  <a
+                    class="mx-2 text-black"
+                    tw-button
+                    layout="flat"
+                    [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherDetailUNTTest) + '/' + item.value.id"
+                  >
+                    <i class="fa fa-line-chart" aria-hidden="true"></i>
+                  </a>
+                  <button
+                    [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
+                    (confirm)="deleteUNTExamById(item.value.id)"
+                    class="mx-2 text-red-600"
+                    tw-button
+                    layout="flat"
+                  >
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div *ngIf="myUNTTests">
+            <div class="my-2 flex justify-center" *ngIf="myUNTTests.total > myUNTTests.per_page">
+              <pagination-controls
+                [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                [nextLabel]="'NEXT_PAGINATION' | translate"
+                [responsive]="true"
+                class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
