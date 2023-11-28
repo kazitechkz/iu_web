@@ -11,10 +11,11 @@
             <tr>
               <th scope="col" class="px-6 py-4">#</th>
               <th scope="col" class="px-6 py-4">{{'SUBJECTS' | translate}}</th>
-              <th scope="col" class="px-6 py-4">{{'LANGUAGE' | translate}}</th>
+<!--              <th scope="col" class="px-6 py-4">{{'LANGUAGE' | translate}}</th>-->
               <th scope="col" class="px-6 py-4">{{'TIME' | translate}}</th>
               <th scope="col" class="px-6 py-4">{{'PROMO_CODE' | translate}}</th>
               <th scope="col" class="px-6 py-4">{{'COUNT_OF_STUDENTS' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'CREATED_AT' | translate}}</th>
               <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
             </tr>
             </thead>
@@ -23,10 +24,11 @@
                 class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
               <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
               <td class="whitespace-nowrap px-6 py-4">{{item.value.subjects[0].title_kk}} , {{item.value.subjects[1].title_kk}}</td>
-              <td class="whitespace-nowrap px-6 py-4">{{item.value.locale.title}}</td>
+<!--              <td class="whitespace-nowrap px-6 py-4">{{item.value.locale.title}}</td>-->
               <td class="whitespace-nowrap px-6 py-4">{{item.value.time}}</td>
               <td class="whitespace-nowrap px-6 py-4">{{item.value.promo_code}}</td>
               <td class="whitespace-nowrap px-6 py-4">{{item.value.users.length}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{item.value.created_at | date: 'dd.MM.yyyy H:mm': 'Asia/Almaty'}}</td>
               <td class="whitespace-nowrap px-6 py-4">
                 <div class="flex">
                   <a
