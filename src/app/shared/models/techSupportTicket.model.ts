@@ -11,6 +11,7 @@ export interface TechSupportTicket{
     is_closed:boolean
     is_resolved:boolean
     is_answered:boolean
+    tech_support_messages_count:number|null
     tech_support_category:TechSupportCategory|null
     tech_support_type:TechSupportType|null
     user:OrdinaryUser|null

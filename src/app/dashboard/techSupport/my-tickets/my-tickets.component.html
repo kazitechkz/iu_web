@@ -172,6 +172,9 @@
                                 {{"IS_ANSWERED"|translate}}
                             </th>
                             <th scope="col" class="px-6 py-3">
+                              {{"COUNT_MESSAGES"|translate}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 {{"CREATED_AT"|translate}}
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -228,6 +231,11 @@
                                     {{"NO"|translate}}
                                 </span>
                             </td>
+                          <td class="px-6 py-4">
+                            <p class="text-black ml-2 font-bold">
+                              {{ticket.tech_support_messages_count ? ticket.tech_support_messages_count.toString() : 0}}
+                            </p>
+                          </td>
                             <td class="px-6 py-4">
                                 <p class="text-black ml-2 font-bold" *ngIf="ticket.created_at">
                                     {{moment(ticket.created_at).format('HH:mm DD/MM/YYYY')}}

@@ -9,10 +9,10 @@
         [placeholder]="'SELECT_NOTIFICATION_TYPE' | translate"
       >
         <tw-option class="cursor-pointer" value="{{null}}">
-          Personal
+          {{"PERSONAL"|translate}}
         </tw-option>
         <tw-option class="cursor-pointer" value="all">
-          To All Users
+          {{"TO_ALL_USERS"|translate}}
         </tw-option>
       </tw-select>
     </div>
@@ -24,10 +24,10 @@
         [placeholder]="'SELECT_STATUS' | translate"
       >
         <tw-option class="cursor-pointer" value="all">
-          All
+          {{"ALL"|translate}}
         </tw-option>
         <tw-option class="cursor-pointer" value="new">
-          New
+          {{"NEW"|translate}}
         </tw-option>
       </tw-select>
     </div>
@@ -51,7 +51,7 @@
         [placeholder]="'SELECT_TYPE_ID' | translate"
       >
         <tw-option class="cursor-pointer" value="{{0}}">
-          All
+          {{"ALL"|translate}}
         </tw-option>
         <tw-option class="cursor-pointer" value="{{types.id}}" *ngFor="let types of notificationType">
           {{types.title_ru}}

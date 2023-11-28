@@ -8,7 +8,7 @@
         <div class="lg:w-8/12 px-2 text-center lg:text-left">
           <div class="my-2">
             <p class="text-md lg:text-lg xl:text-xl 2xl:text-2xl text-white">
-              Баланс
+              {{"BALANCE"|translate}}
             </p>
           </div>
           <div class="my-2">
@@ -29,7 +29,7 @@
           cursor-pointer rounded-lg p-4 transition duration-500
           hover:bg-[#4DC591] hover:border-[#4DC591] hover:text-white flex items-center justify-between">
           <div class="flex">
-            <fa-icon [icon]="route.icon" class="mr-2"></fa-icon> <p>{{route.title}}</p>
+            <fa-icon [icon]="route.icon" class="mr-2"></fa-icon> <p>{{route.title | translate}}</p>
           </div>
           <fa-icon [icon]="faChevronRight" class="mr-2"></fa-icon>
         </span>
@@ -62,7 +62,7 @@
              }"
       >
           <div class="my-2 lg:flex">
-            <p>{{transaction.amount > 0 ? 'Пополнение на +' : 'Снятие на '}}{{transaction.amount}} IU COINS</p>
+            <p>{{transaction.amount > 0 ? ("DEPOSIT"|translate) : ("WITHDRAW"|translate)}} {{transaction.amount}} IU COINS</p>
           </div>
         <div class="my-2 lg:flex">
             <p>{{moment(transaction.created_at).format("HH:mm DD/MM/YYYY")}}</p>

@@ -70,26 +70,26 @@ export class SidebarComponent implements OnInit {
       path: RoutesName.untMode,
       icon: faHandPointRight as IconProp
     },
-    {
-      title: 'BATTLE_ENT',
-      path: RoutesName.untMode,
-      icon: faBolt as IconProp
-    },
+    // {
+    //   title: 'BATTLE_ENT',
+    //   path: RoutesName.untMode,
+    //   icon: faBolt as IconProp
+    // },
     {
       title: 'TOURNAMENT',
       path: RoutesName.tournamentList,
       icon: faGamepad as IconProp
     },
-    {
-      title: 'COUCHERS',
-      path: RoutesName.tournamentList,
-      icon: faMale as IconProp
-    },
-    {
-      title: 'SHOP',
-      path: RoutesName.forumList,
-      icon: faCartShopping as IconProp
-    },
+    // {
+    //   title: 'COUCHERS',
+    //   path: RoutesName.tournamentList,
+    //   icon: faMale as IconProp
+    // },
+    // {
+    //   title: 'SHOP',
+    //   path: RoutesName.forumList,
+    //   icon: faCartShopping as IconProp
+    // },
     {
       title: 'SUBSCRIPTION',
       path: RoutesName.planContent,
@@ -130,16 +130,16 @@ export class SidebarComponent implements OnInit {
       path: RoutesName.myTickets,
       icon: faToolbox as IconProp
     },
-    {
-      title: 'AI_ADVISE',
-      path: RoutesName.forumList,
-      icon: faRobot as IconProp
-    },
-    {
-      title: 'GAMES',
-      path: RoutesName.forumList,
-      icon: faChess as IconProp
-    },
+    // {
+    //   title: 'AI_ADVISE',
+    //   path: RoutesName.forumList,
+    //   icon: faRobot as IconProp
+    // },
+    // {
+    //   title: 'GAMES',
+    //   path: RoutesName.forumList,
+    //   icon: faChess as IconProp
+    // },
 
   ]
 }

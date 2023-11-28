@@ -80,7 +80,6 @@
   "SUBSCRIPTION": "Подписки",
   "NEWS": "Новости",
   "SELECT_PROFILE_SUBJECTS": "Выберите профильные предметы",
-
   "UNT_MODE_BE_READY_FOR_GRANT": "Хочешь гранта готовься к ЕНТ",
   "UNT_WORD": "ЕНТ",
   "FOR_THEM_WHO_WANTS_GRANT": "Для тех кто хочет полноценно подготовиться к",
@@ -228,7 +227,34 @@
   "UPDATED_AT": "Обновлен",
   "TECH_SUPPORT_TYPE": "Тип технической поддержки",
   "TECH_SUPPORT_CATEGORY": "Категория технической поддержки",
-  "FILTER": "Фильтры"
+  "FILTER": "Фильтры",
+  "SELECT_CATEGORY": "Выберите категорию",
+  "SELECT_TYPE_ID": "Выберите тип",
+  "CHOOSE_TYPE": "Выберите тип",
+  "SELECT_NOTIFICATION_TYPE": "Выберите тип уведомления",
+  "SELECT_STATUS": "Выберите статус",
+  "NEW": "Новые",
+  "PERSONAL": "Личные",
+  "TO_ALL_USERS": "Всем пользователям",
+  "CHOOSE_CATEGORY": "Выберите категорию",
+  "CREATE_TICKET": "Создать тикет",
+  "MALE": "Мужчина",
+  "FEMALE": "Женщина",
+  "MARK_RESOLVED_AND_CLOSE": "Посчитать решенным и закрыть",
+  "JUST_CLOSE_TICKET": "Закрыть тикет и оставить тикет нерешенным",
+  "COUNT_MESSAGES": "Кол-во ответов-вопросов",
+  "NOT_CLOSED_TICKET": "Незакрытый тикет",
+  "CLOSED_TICKET": "Закрытый тикет",
+  "RESOLVED_TICKET": "Решенный тикет",
+  "NOT_RESOLVED_TICKET": "Нерешенный тикет",
+  "BALANCE": "Баланс",
+  "DEPOSIT": "Пополнение",
+  "WITHDRAW": "Снятие",
+  "PAY_WITH_QR": "Оплата с помощью QR кода",
+  "PAY_WITH_WALLET": "Пополнить кошелек",
+  "TRANSFER": "Переводы",
+  "DEPOSIT_WITHDRAWS_ANALYTICS": "Аналитика расходов и доходов",
+  "FAQ": "Часто задаваемые вопросы"
 
 
 }
