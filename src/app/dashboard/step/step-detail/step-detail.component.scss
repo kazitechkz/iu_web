@@ -17,10 +17,11 @@
   flex-direction: column-reverse;
   justify-content: flex-start;
   overflow-y: auto;
-  direction: rtl;
+  //direction: rtl;
   position: relative;
   scroll-behavior: smooth;
-  scrollbar-width: none;
+  scrollbar-color: #4DC591 #ffffff;
+  //scrollbar-width: none;
   width: 100%;
 }
 .bg-pos-top {
@@ -104,8 +105,8 @@
 
 
 .circle {
-  height: 100px;
-  width: 100px;
+  height: 140px;
+  width: 140px;
   border-radius: 100%;
   box-shadow: 0 1px 0 0 rgba(255, 192, 0, 0.25), 0 -1px 0 0 rgba(255, 64, 0, 0.25), 1px 0 0 0 rgba(255, 192, 0, 0.25), -1px 0 0 0 rgba(255, 64, 0, 0.25), 1px -1px 0 0 rgba(255, 128, 0, 0.5), -1px 1px 0 0 rgba(255, 128, 0, 0.5), 1px 1px 0 0 rgba(255, 255, 0, 0.75), -1px -1px 0 0 rgba(255, 0, 0, 0.75);
 }
@@ -118,8 +119,8 @@
   box-shadow: 0 1px 0 0 rgba(192, 63, 153, 0.25), 0 -1px 0 0 rgba(214, 69, 99, 0.25), 1px 0 0 0 rgba(192, 63, 153, 0.25), -1px 0 0 0 rgba(214, 69, 99, 0.25), 1px -1px 0 0 rgba(203, 66, 126, 0.5), -1px 1px 0 0 rgba(203, 66, 126, 0.5), 1px 1px 0 0 rgba(181, 59, 180, 0.75), -1px -1px 0 0 rgba(225, 72, 71, 0.75);
 }
 .circle-multiple {
-  height: 90px;
-  width: 90px;
+  height: 140px;
+  width: 140px;
 }
 .circle-multiple .circle {
   position: absolute;
@@ -171,24 +172,6 @@
 }
 .slick-dots{
   bottom: -60px!important;
-}
-
-
-@media only screen and (min-width: 320px) and (max-width: 640px) {
-  .step-button-left {
-    left: 7px;
-    top: -26px;
-  }
-
-  .step-button {
-    width: 320px;
-    height: 185px;
-  }
-
-  .step-button-right {
-    right: 8px;
-    top: -14px;
-  }
 }
 
 .slide {
@@ -267,4 +250,40 @@
   border-bottom: 20px solid transparent;
   left: 32px;
   bottom: -24px;
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1535px) {
+  .bubble-2 {
+    width: 100%;
+    position: relative;
+    font-family: sans-serif;
+    line-height: 14px;
+    background: #4DC591;
+    border-radius: 40px;
+    padding: 14px;
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 1536px) {
+  .bubble-bottom-left-2::before {
+    left: 138px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 640px) {
+  .step-button-left {
+    left: 7px;
+    top: -26px;
+  }
+  .step-button {
+    width: 320px;
+    height: 185px;
+  }
+  .step-button-right {
+    right: 8px;
+    top: -14px;
+  }
+  .circle {
+    width: 90px;
+    height: 90px;
+  }
 }

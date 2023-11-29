@@ -1,4 +1,9 @@
-import {Component, DestroyRef, inject, OnInit, ViewContainerRef} from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  inject,
+  OnInit,
+} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {ActivatedRoute, Router} from "@angular/router";
 import {StepModel, Steps} from "../../../shared/models/step.model";
@@ -32,6 +37,7 @@ export class StepDetailComponent implements OnInit {
   public translate = inject(GlobalTranslateService)
   private _store = inject(Store)
   private _route = inject(ActivatedRoute)
+  private _router = inject(Router)
   destroyRef = inject(DestroyRef);
   public steps?: Steps[] | null;
   subjects:Subject[] = [];
@@ -71,6 +77,7 @@ export class StepDetailComponent implements OnInit {
   }
 
   getStepDetail() {
+    this.resetScroll()
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(stepDetailAction({ requestData: params['id'] }))
       this._store.select(getStepDetailState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
@@ -78,7 +85,6 @@ export class StepDetailComponent implements OnInit {
       })
     })
   }
-
   getSubjects(){
     this._store.dispatch(subjectGetAction());
     this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=> {
@@ -120,6 +126,16 @@ export class StepDetailComponent implements OnInit {
     })
   }
 
+  getStepDetailBySubjectID(subjectID: number) {
+    this.resetScroll()
+    this._router.navigateByUrl('/dashboard/step/' + subjectID).then(r  => null)
+  }
+  resetScroll() {
+    const scrollableDiv = document.getElementById('scrollableDiv')
+    if (scrollableDiv) {
+      scrollableDiv.scrollTo({top: 0, behavior: 'smooth'})
+    }
+  }
   //@ts-ignore
   slideConfig = {
     "slidesToShow": 5,
