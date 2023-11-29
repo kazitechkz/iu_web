@@ -1,20 +1,9 @@
-import {Component, DestroyRef, inject, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {ColorConstants} from "../../core/constants/color.constants";
-import {faHome} from "@fortawesome/free-solid-svg-icons";
-import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import {faChevronLeft, faChevronRight, faEye} from "@fortawesome/free-solid-svg-icons";
 import {RoutesName} from "../../core/constants/routes.constants";
 import {StrHelper} from "../../core/helpers/str.helper";
-import {
-  faEye,
-  faChevronRight,
-  faChevronLeft,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
-  CalendarView,
-} from 'angular-calendar';
+import {CalendarView,} from 'angular-calendar';
 import * as moment from "moment/moment";
 import {Pagination} from "../../shared/store/pagination";
 import {AttemptModel} from "../../shared/models/attempt";
@@ -25,6 +14,7 @@ import {AllAttemptRequest} from "../../shared/store/attempt/allAttempt/allAttemp
 import {allAttemptAction} from "../../shared/store/attempt/allAttempt/allAttempt.action";
 import {allAttemptSelector} from "../../shared/store/attempt/allAttempt/allAttempt.selector";
 import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
+
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
@@ -67,42 +57,42 @@ export class IndexComponent implements OnInit{
 
   public menuLists = [
     {
-      title: 'Подготовка к ЕНТ',
+      title: 'DASHBOARD_CONTENT_TO_UNT',
       path: StrHelper.getDashboardRouteName(RoutesName.stepRoute),
       imageUrl: "assets/images/icons/content.png"
     },
     {
-      title: 'Тренажер ЕНТ',
+      title: 'DASHBOARD_TRAINING_TO_UNT',
       path: RoutesName.untMode,
       imageUrl: "assets/images/icons/unt.png"
     },
     {
-      title: 'Турниры по ЕНТ',
+      title: 'DASHBOARD_TOURNAMENT_TO_UNT',
       path: RoutesName.tournamentList,
       imageUrl: "assets/images/icons/tournament.png"
     },
     {
-      title: 'Игры по ЕНТ',
-      path: RoutesName.tournamentList,
+      title: 'DASHBOARD_GAME_TO_UNT',
+      path: RoutesName.noPageIndex,
       imageUrl: "assets/images/icons/gamepad.png"
     },
     {
-      title: 'IU Кошелек',
+      title: 'DASHBOARD_WALLET',
       path: RoutesName.walletIndex,
       imageUrl: "assets/images/icons/wallet.png"
     },
     {
-      title: 'IU Shop',
-      path: RoutesName.walletIndex,
+      title: 'DASHBOARD_SHOP',
+      path: RoutesName.noPageIndex,
       imageUrl: "assets/images/icons/shopping.png"
     },
     {
-      title: 'Репититоры',
-      path: RoutesName.untMode,
+      title: 'DASHBOARD_COUCHERS',
+      path: RoutesName.noPageIndex,
       imageUrl: "assets/images/icons/tutor.png"
     },
     {
-      title: 'Форум',
+      title: 'DASHBOARD_FORUM',
       path: RoutesName.forumList,
       imageUrl: "assets/images/icons/forum.png"
     },

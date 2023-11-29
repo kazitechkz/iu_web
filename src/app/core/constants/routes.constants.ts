@@ -47,4 +47,5 @@ export enum RoutesName {
     myTickets = "dashboard/my-tickets",
     createTicket = "dashboard/create-ticket",
     ticketDetail = "dashboard/ticket-detail",
+    noPageIndex = "dashboard/no-page-ready",
 }

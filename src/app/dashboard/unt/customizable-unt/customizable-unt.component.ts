@@ -327,7 +327,7 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
   }
 
   slideConfig = {
-    "slidesToShow": 5,
+    "slidesToShow": 4,
     "slidesToScroll": 1,
     "dots": true,
     "arrows":true,
@@ -335,11 +335,10 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
     "center":false,
     "responsive": [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 3,
           slidesToScroll: 3,
-          infinite: true,
           dots: false
         }
       },

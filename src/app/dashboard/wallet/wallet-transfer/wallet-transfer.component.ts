@@ -71,10 +71,13 @@ export class WalletTransferComponent implements OnInit,OnDestroy {
           if(item.data){
             this.toUser = item.data;
             this.toUserId = item.data.id;
+            this.walletTransferGroup.controls["toUserId"].setValue(item.data.id);
+
           }
           if (item.errors) {
+            this.walletTransferGroup.reset();
             this.errors = item.errors;
-            this.toUserId = 0;
+            this.toUserId = null;
             this.openModal = false;
             this.toUser = null;
           }
@@ -85,7 +88,7 @@ export class WalletTransferComponent implements OnInit,OnDestroy {
     selectUser(id:number){
       if(this.toUserId){
         this.toUserId = null;
-        this.findUserForm.controls["toUserId"].setValue(0);
+        this.walletTransferGroup.controls["toUserId"].setValue(null);
       }
       else{
         this.toUserId = id;
@@ -143,4 +146,5 @@ export class WalletTransferComponent implements OnInit,OnDestroy {
   protected readonly ImageHelper = ImageHelper;
   protected readonly faArrowRight = faArrowRight;
   protected readonly faArrowsRotate = faArrowsRotate;
+  protected readonly JSON = JSON;
 }

@@ -1,24 +1,24 @@
 <div class="container mx-auto">
-  <div class="grid grid-cols-12 py-5 my-3 main-green-bg rounded-2xl">
+  <div class="grid grid-cols-12 py-2 my-3 main-green-bg rounded-2xl">
     <div class="col-span-12 md:col-span-6">
       <img src="assets/images/bear_office.png"/>
     </div>
     <div class="col-span-12 md:col-span-6 px-5 md:flex items-center text-center md:text-left">
       <div>
-        <p class="md:text-5xl text-white font-bold">
+        <p class="text-lg md:text-lg lg:text-2xl xl:text-3xl 2xl:text-5xl text-white font-bold">
           {{"PASS_FULL_UNT"|translate}}
         </p>
         <div class="my-4">
-          <p class="md:text-xl text-white my-2 px-1">
+          <p class="text-sm md:text-md lg:text-lg xl:text-xl text-white my-2 px-1">
             <fa-icon [icon]="faClock" class="ml-2"></fa-icon>
             {{"PASS_FULL_UNT_TIME"|translate}}
           </p>
-          <p class="md:text-xl text-white my-2 px-1">
+          <p class="text-sm md:text-md lg:text-lg xl:text-xl  text-white my-2 px-1">
             <fa-icon [icon]="faBook" class="ml-2"></fa-icon>
             {{"PASS_FULL_UNT_SUBJECTS"|translate}}
             <br>
           </p>
-          <p class="md:text-xl text-white my-2 px-1">
+          <p class="text-sm md:text-md lg:text-lg xl:text-xl  text-white my-2 px-1">
             <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon>
               {{"SUPPORT_MULTI_LANGUAGE"|translate}}
             <br>
@@ -50,43 +50,26 @@
   <section *ngIf="subjects">
     <div class="grid grid-cols-12 gap-3 py-5 my-3 ">
       <div class="col-span-12 md:col-span-12 card px-4">
-        <p class="text-2xl md:text-4xl font-bold py-4 text-center md:text-left">
+        <p class="text-lg md:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold py-4 text-center md:text-left">
           {{"COMPLUSORY_LANGUAGE"|translate}}
         </p>
       </div>
-      <div class="col-span-12 md:col-span-4 card rounded-2xl shadow-xl" *ngFor="let complusory_subject of complusory_subjects">
-        <div class="caret-danger min-h-[200px] max-h-[250px] md:min-h-[250px] md:max-h-[300px] lg:min-h-[300px] lg:max-h-[450px] xl:min-h-[300px]  xl:max-h-[400px] 2xl:min-h-[450px] 2xl:max-h-[500px] bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(complusory_subject.image?.url) + ')'}"></div>
-        <p class="text-center text-xl font-bold py-4">
-          {{complusory_subject | globalTranslate:"title": translate.currentLang}}
-        </p>
+      <div class="col-span-12 md:flex justify-center md:col-span-4 card rounded-2xl shadow-xl" *ngFor="let complusory_subject of complusory_subjects">
+        <div class="md:max-w-[340px] w-full p-2">
+          <div class="caret-danger min-h-[200px] max-h-[250px] md:min-h-[150px] md:max-h-[200px] lg:min-h-[200px] lg:max-h-[350px] xl:min-h-[250px]  xl:max-h-[300px] 2xl:min-h-[250px] 2xl:max-h-[350px] bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(complusory_subject.image?.url) + ')'}"></div>
+          <p class="text-center  text-md lg:text-lg xl:text-xl font-bold py-4">
+            {{complusory_subject | globalTranslate:"title": translate.currentLang}}
+          </p>
+        </div>
       </div>
     </div>
     <div class="col-span-12 md:col-span-12 card px-4">
-      <p class="text-2xl md:text-4xl font-bold py-4 text-center md:text-left">
+      <p class="text-lg md:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold py-4 text-center md:text-left">
         {{"CHOOSE_SUBJECT"|translate}}
       </p>
     </div>
-    <ngx-slick-carousel class="carousel"
-                        [config]="slideConfig">
-      <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg relative">
-        <fa-icon *ngIf="chosenSubject.includes(subject.id)" [icon]="faCircleCheck" class="main-green-color z-40 absolute right-1.5 top-1.5 text-4xl"></fa-icon>
-        <div class="min-h-[200px] max-h-[250px] relative  md:min-h-[250px] md:max-h-[300px] lg:min-h-[150px] lg:max-h-[200px] xl:min-h-[180px] xl:max-h-[250px] 2xl:min-h-[250px] 2xl:max-h-[350px] bg-cover bg-center rounded-2xl"
-             [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}">
-          <div class="p-3 absolute z-30 w-full bottom-0 flex justify-center items-center cursor-pointer">
-            <button class="main-green-bg text-white font-bold py-2 px-4 rounded-full text-sm" (click)="chooseSubject(subject.id)">
-              {{"CHOOSE"|translate}}
-            </button>
-          </div>
-        </div>
-        <p class="text-center text-xl font-bold py-4">
-          {{subject | globalTranslate:"title": translate.currentLang}}
-        </p>
-      </div>
-    </ngx-slick-carousel>
-  </section>
-  <div class="grid grid-cols-12 gap-3 py-5 my-3 text-right" *ngIf="locale_id && chosenSubject.length == 2">
-    <div class="col-span-12 flex justify-center">
-      <button type="button" class=" inline
+      <div class="col-span-12 flex justify-center" *ngIf="locale_id && chosenSubject.length == 2">
+        <button type="button" class=" inline
       mt-4
       text-lg
       min-w-[225px]
@@ -100,15 +83,34 @@
       rounded-full text-sm px-5 py-5
       text-center mr-2 mb-2
    "
-              (click)="createAttempt()"
-      >
-        {{"START_UNT"|translate}}
-        <fa-icon [icon]="faForwardFast" class="mx-2 text-lg"></fa-icon>
-      </button>
+                (click)="createAttempt()"
+        >
+          {{"START_UNT"|translate}}
+          <fa-icon [icon]="faForwardFast" class="mx-2 text-lg"></fa-icon>
+        </button>
+      </div>
+
+    <div class="col-span-12">
+      <ngx-slick-carousel class="carousel carousel-pass-unt max-w-full"
+                          [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg relative">
+          <fa-icon *ngIf="chosenSubject.includes(subject.id)" [icon]="faCircleCheck" class="main-green-color z-40 absolute right-1.5 top-1.5 text-4xl"></fa-icon>
+          <div (click)="chooseSubject(subject.id)" class="cursor-pointer min-h-[200px] max-h-[250px] relative  md:min-h-[250px] md:max-h-[300px] lg:min-h-[150px] lg:max-h-[200px] xl:min-h-[180px] xl:max-h-[250px] 2xl:min-h-[250px] 2xl:max-h-[350px] bg-cover bg-center rounded-2xl"
+               [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}">
+            <div class="p-3 absolute z-30 w-full bottom-0 flex justify-center items-center cursor-pointer">
+            </div>
+          </div>
+          <div>
+            <p class="text-center text-md font-bold py-4 px-3">
+              {{subject | globalTranslate:"title": translate.currentLang}}
+            </p>
+          </div>
+        </div>
+      </ngx-slick-carousel>
     </div>
 
+  </section>
 
-  </div>
 
 
 </div>

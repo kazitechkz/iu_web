@@ -40,6 +40,7 @@ import {PassUntByPromoComponent} from "./unt/pass-unt-by-promo/pass-unt-by-promo
 import {MyTicketsComponent} from "./techSupport/my-tickets/my-tickets.component";
 import {CreateTicketComponent} from "./techSupport/create-ticket/create-ticket.component";
 import {TicketDetailComponent} from "./techSupport/ticket-detail/ticket-detail.component";
+import {ShopIndexComponent} from "./shop/shop-index/shop-index.component";
 
 
 const routes: Routes = [
@@ -195,6 +196,10 @@ const routes: Routes = [
       {
         path: 'ticket-detail/:id',
         component: TicketDetailComponent
+      },
+      {
+        path:"no-page-ready",
+        component:ShopIndexComponent
       }
     ]
   }

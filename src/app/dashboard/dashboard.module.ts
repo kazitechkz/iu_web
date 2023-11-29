@@ -60,6 +60,7 @@ import { PassUntByPromoComponent } from './unt/pass-unt-by-promo/pass-unt-by-pro
 import { MyTicketsComponent } from './techSupport/my-tickets/my-tickets.component';
 import { CreateTicketComponent } from './techSupport/create-ticket/create-ticket.component';
 import { TicketDetailComponent } from './techSupport/ticket-detail/ticket-detail.component';
+import { ShopIndexComponent } from './shop/shop-index/shop-index.component';
 
 
 @NgModule({
@@ -104,6 +105,7 @@ import { TicketDetailComponent } from './techSupport/ticket-detail/ticket-detail
         MyTicketsComponent,
         CreateTicketComponent,
         TicketDetailComponent,
+        ShopIndexComponent,
     ],
     imports: [
         CommonModule,

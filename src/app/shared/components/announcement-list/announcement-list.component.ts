@@ -65,7 +65,7 @@ export class AnnouncementListComponent implements OnInit {
   slideConfig = {
     "slidesToShow": 5,
     "slidesToScroll": 1,
-    "dots": true,
+    "dots": false,
     "arrows":false,
     "infinite": false,
     "responsive": [
