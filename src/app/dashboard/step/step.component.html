@@ -6,9 +6,9 @@
       <div *ngIf="steps" class="mt-4 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8 py-3">
           <div class="group relative shadow cursor-pointer" *ngFor="let step of steps">
             <a [routerLink]="[step.id]">
-              <div class="p-5 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-52">
+              <div class="p-5 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-64">
                 <div class="flex justify-center items-center">
-                  <div class="h-16 w-16 rounded-full bg-no-repeat bg-cover bg-center" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(step.image?.url) + ')'}"></div>
+                  <div class="h-28 w-28 rounded-full bg-no-repeat bg-cover bg-center" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(step.image?.url) + ')'}"></div>
                 </div>
                 <div>
                   <p class="mx-2 sm:text-xs lg:text-base text-center">
@@ -21,7 +21,7 @@
                     {{step.steps_count}} {{'STEP' | translate}}
                   </div>
                   <div class="flex items-center">
-                    <i class="fa fa-terminal mr-3" aria-hidden="true"></i>
+                    <i class="fa fa-swatchbook mr-3" aria-hidden="true"></i>
                     {{step.sub_steps_count}} {{'SUB_STEP' | translate}}
                   </div>
                 </div>

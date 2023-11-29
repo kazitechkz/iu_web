@@ -14,7 +14,7 @@
             <thead class="text-xs text-gray-700 capitalize">
             <tr>
               <th scope="col" class="px-6 py-3">
-                {{"CATEGORY"|translate}}
+                {{"SUB_CATEGORY"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
                 {{"TOTAL_QUESTION"|translate}}
@@ -33,11 +33,71 @@
             <tbody>
             <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let result of getSubjectResult(subject.id)">
               <td class="p-4">
-                <p class="text-black ml-2 font-bold" *ngIf="result.sub_category;else no_category">
+                <p (click)="openDialog(String(result.sub_category.id))" class="text-black ml-2 font-bold cursor-pointer" *ngIf="result.sub_category;else no_category">
                   {{result.sub_category.title_kk}}
-                  ({{result.sub_category.category?.title_kk
-                  }})
                 </p>
+                <ngx-smart-modal identifier="{{result.sub_category?.id}}">
+                  <div *ngFor="let question of result.questions"
+                       class="block rounded-lg bg-white p-6 my-3 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+                    <div class="content-question">
+                      <h5
+                        class="mb-2 text-xl font-medium leading-tight text-neutral-800">
+                        <div [mathjax]="question.text | mathjaxTransform"></div>
+                      </h5>
+                      <div class="my-2" *ngIf="question.context" [innerHTML]="question.context.context"></div>
+                      <div class="my-5">
+                        <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                          <label
+                            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('a', question.attempt_questions ? question.attempt_questions[0].user_answer : '', question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
+                            <div [mathjax]="'a.' + question.answer_a | mathjaxTransform"></div>
+                          </label>
+                        </div>
+                        <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                          <label
+                            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('b', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
+                            <div [mathjax]="'b.' + question.answer_b | mathjaxTransform"></div>
+                          </label>
+                        </div>
+                        <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                          <label
+                            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('c', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
+                            <div [mathjax]="'c.' + question.answer_c | mathjaxTransform"></div>
+                          </label>
+                        </div>
+                        <div  class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                          <label
+                            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('d', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
+                            <div [mathjax]="'d.' + question.answer_d | mathjaxTransform"></div>
+                          </label>
+                        </div>
+                        <div *ngIf="question.answer_e" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                          <label
+                            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('e', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
+                            <div [mathjax]="'e.' + question.answer_e | mathjaxTransform"></div>
+                          </label>
+                        </div>
+                        <div *ngIf="question.answer_f" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                          <label
+                            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('f', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
+                            <div [mathjax]="'f.' + question.answer_f | mathjaxTransform"></div>
+                          </label>
+                        </div>
+                        <div *ngIf="question.answer_g" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                          <label
+                            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('g', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
+                            <div [mathjax]="'g.' + question.answer_g | mathjaxTransform"></div>
+                          </label>
+                        </div>
+                        <div *ngIf="question.answer_h" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                          <label
+                            class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('h', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
+                            <div [mathjax]="'h.' + question.answer_h | mathjaxTransform"></div>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ngx-smart-modal>
                 <ng-template #no_category>
                   <p>-</p>
                 </ng-template>

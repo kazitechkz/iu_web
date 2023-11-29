@@ -25,6 +25,7 @@ import { SingleTestsComponent } from './exams/single-tests/single-tests.componen
 import { UntTestsComponent } from './exams/unt-tests/unt-tests.component';
 import {TranslatePipe} from "@ngx-translate/core";
 import { ProfileComponent } from './profile/profile.component';
+import {MathjaxModule} from "mathjax-angular";
 
 
 @NgModule({
@@ -41,21 +42,22 @@ import { ProfileComponent } from './profile/profile.component';
     UntTestsComponent,
     ProfileComponent,
   ],
-  imports: [
-    CommonModule,
-    TeacherRoutingModule,
-    SharedModule,
-    CoreModule,
-    TwButtonModule,
-    NgxSmartModalModule.forChild(),
-    UiSwitchModule,
-    ReactiveFormsModule,
-    TwSelectModule,
-    SweetAlert2Module.forRoot(),
-    NgxPaginationModule,
-    FontAwesomeModule,
-    NgChartsModule
-  ],
+    imports: [
+        CommonModule,
+        TeacherRoutingModule,
+        SharedModule,
+        CoreModule,
+        TwButtonModule,
+        NgxSmartModalModule.forChild(),
+        UiSwitchModule,
+        ReactiveFormsModule,
+        TwSelectModule,
+        SweetAlert2Module.forRoot(),
+        NgxPaginationModule,
+        FontAwesomeModule,
+        NgChartsModule,
+        MathjaxModule
+    ],
   providers: [MathJaxPipe, TranslatePipe]
 })
 export class TeacherModule { }

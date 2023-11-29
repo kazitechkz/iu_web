@@ -31,7 +31,6 @@ export class DetailExamComponent implements OnInit {
       this._store.select(getDetailExamByIdStateSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         if (item.data) {
           this.exam = item.data
-          console.log(item.data)
         }
       })
     })

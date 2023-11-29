@@ -1,3 +1,5 @@
+import {AttemptQuestion} from "./attemptQuestion.model";
+
 export interface Question {
   id:              number;
   text:            string;
@@ -22,6 +24,7 @@ export interface Question {
   context_id:      number;
   sub_category_id: null;
   context:         Context;
+  attempt_questions: AttemptQuestion[] | null
 }
 
 export interface Context {

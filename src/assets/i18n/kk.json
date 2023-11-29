@@ -60,6 +60,8 @@
   "SELECT_ALL": "Барлығын таңдау",
   "SELECT_SUBJECT": "Пәнді таңдаңыз",
   "SELECT_CATEGORIES": "Категорияны таңдаңыз",
+  "CATEGORY": "Категория",
+  "SUB_CATEGORY": "Суб категория",
   "SINGLE_QUESTIONS": "Бір жауапты",
   "CONTEXT_QUESTIONS": "Контекстті сұрақ",
   "MULTI_QUESTIONS": "Бірнеше жауапты",
