@@ -1,13 +1,14 @@
 <div class="w-full flex">
   <div class="w-full lg:p-4 sm:pl-2 mobile:p-1.5">
     <div class="w-full flex">
-      <div class="st mobile:w-full sm:w-full md:w-full  lg:w-[70%]">
-        <div class="stepper">
-          <div class="step-button flex justify-start bg-pos-bottom" >
-            <button class="step-first">
-              <!--            <div class="st-content"></div>-->
-            </button>
-          </div>
+
+      <div class="st mobile:w-full sm:w-full md:w-full lg:w-full xl:w-[70%]">
+        <div class="stepper" id="scrollableDiv">
+<!--          <div class="step-button flex justify-start bg-pos-bottom" >-->
+<!--            <button class="step-first">-->
+<!--              &lt;!&ndash;            <div class="st-content"></div>&ndash;&gt;-->
+<!--            </button>-->
+<!--          </div>-->
 
           <div *ngIf="steps">
             <div *ngFor="let step of steps">
@@ -114,9 +115,9 @@
           </div>
         </div>
       </div>
-      <div class="lg:w-[30%] container px-2 mobile:hidden sm:hidden md:hidden lg:block">
+      <div class="xl:w-[30%] container px-2 mobile:hidden sm:hidden md:hidden lg:hidden xl:block">
         <div *ngIf="fact">
-          <div class="ml-20 h-[130px]">
+          <div class="ml-5 w-full 2xl:w-3/4 2xl:ml-20 h-[130px]">
             <div class="bubble-2 bubble-bottom-left-2 text-white font-bold italic w-8/12 md:w-3/4 text-sm" [innerHTML]="fact.text_kk"></div>
           </div>
           <div
@@ -137,7 +138,7 @@
 <!--        </div>-->
 <!--      </ngx-slick-carousel>-->
       <div class="flex overflow-x-auto overscroll-none scroll-smooth will-change-scroll scrollbar-color py-3" id="scroll-x">
-        <div *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer flex-shrink-0" routerLink="/dashboard/step/{{subject.id}}">
+        <div *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer flex-shrink-0" (click)="getStepDetailBySubjectID(subject.id)">
           <div class=" min-h-[250px]  bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
           <p class="text-center text-md font-bold py-4">
             {{subject.title_kk}}
