@@ -1,6 +1,6 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12">
-    <div class="col-span-12 md:col-span-6 py-5 my-3 main-tertiary-bg rounded-2xl px-5 md:flex items-center text-center md:text-left px-3">
+    <div class="col-span-12 xl:col-span-6 py-5 my-3 main-tertiary-bg rounded-2xl px-5 md:flex items-center text-center md:text-left px-3">
       <div class="md:pl-4 text-center">
         <p class="text-xl md:text-5xl text-white font-bold">
           {{"SINGLE_SUBJECT_PASS_UNT"|translate}}
@@ -26,13 +26,14 @@
         </div>
       </div>
     </div>
-    <div class="col-span-12 md:col-span-6 py-5 my-3 px-3 mx-3 md:py-[15%]">
+    <div class="col-span-12 xl:col-span-6 py-5 my-3 px-3 mx-3 lg:py-[15px]">
       <div class="relative">
-      <ngx-slick-carousel class="carousel"
+      <ngx-slick-carousel class="carousel pass-single-unt-carousel"
                           [config]="slideConfig">
         <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer relative" (click)="chooseSubject(subject.id)">
           <fa-icon *ngIf="chosenSubject.includes(subject.id)" [icon]="faCircleCheck" class="main-green-color absolute right-1.5 top-1.5 text-4xl"></fa-icon>
-          <div class="h-[300px] md:h-[500px] bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
+          <div class="h-[200px] md:h-[250px] lg:h-[300px] xl:h-[400px] w-full bg-cover bg-center rounded-2xl"
+               [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
           <p class="text-center text-xl font-bold py-4">
             {{subject | globalTranslate:"title": translate.currentLang}}
           </p>

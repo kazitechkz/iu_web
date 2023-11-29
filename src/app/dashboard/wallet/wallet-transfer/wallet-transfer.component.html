@@ -18,7 +18,7 @@
             />
           <div class="py-3 text-right">
             <a *ngIf="findUserForm.valid" (click)="findUserByEmail()"  type="button" class="cursor-pointer text-white main-secondary-bg  focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
-              Найти
+              {{"SEARCH"|translate}}
             </a>
           </div>
           </form>
@@ -49,7 +49,7 @@
             <div class="flex items-center gap-4">
               <img class="w-10 h-10 rounded-full" src="/assets/images/coin.png" alt="">
               <div class="font-medium" *ngIf="balance">
-                <div class="text-xl text-black">Кошелек IU COINS, доступно:</div>
+                <div class="text-xl text-black">{{"AVAILABLE_ON_WALLET"|translate}}</div>
                 <div class="text-lg xl:text-2xl 2xl:text-3xl main-green-color font-bold">{{balance}}</div>
               </div>
             </div>
@@ -68,7 +68,7 @@
               />
               <div class="py-3 text-right" *ngIf="walletTransferGroup.valid">
                 <a (click)="showModal()" type="button" class="cursor-pointer text-white main-green-bg  focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                  Перевести
+                  {{"TRANSFER_ACTION"|translate}}
                 </a>
               </div>
             </form>
@@ -85,7 +85,7 @@
         </div>
         <div class="p-3">
           <div class="transfer-header text-md lg:text-lg font-bold body-text my-2">
-            Вы переводите
+            {{"YOU_TRANSFER"|translate}}
           </div>
           <div class="text-lg xl:text-2xl 2xl:text-3xl main-green-color font-bold">
             {{walletTransferGroup.controls["amount"].getRawValue()}} IU COINS
@@ -105,7 +105,7 @@
         </div>
         <div class="p-3">
           <div class="transfer-header text-md lg:text-lg font-bold body-text my-2">
-            На кошелек пользователя
+            {{"TRANSFER_TO_USER"|translate}}
           </div>
           <div class="text-lg xl:text-2xl 2xl:text-3xl main-green-color font-bold">
             <div class="text-black">{{toUser.name}}</div>
@@ -116,7 +116,7 @@
     </div>
     <div class="col-span-12 text-center p-3">
       <a (click)="walletTransfer()" type="button" class="shadow-2xl cursor-pointer text-white main-green-bg  focus:outline-none focus:ring-4 font-bold rounded-full text-lg px-10 py-4 text-center">
-        Перевести
+        {{"TRANSFER_ACTION"|translate}}
       </a>
     </div>
 

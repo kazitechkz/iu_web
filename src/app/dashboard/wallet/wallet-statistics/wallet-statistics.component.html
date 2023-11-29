@@ -1,11 +1,11 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12 py-5 my-3 gap-4">
     <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6">
-      <label class="text-md lg:text-lg body-text font-bold my-2 block" for="from_data_input">Дата с</label>
+      <label class="text-md lg:text-lg body-text font-bold my-2 block" for="from_data_input">   {{"TRANSACTION_FROM"|translate}}</label>
       <input (ngModelChange)="changeFromDate($event)" [ngModel]="from_date" [dpDayPicker]="from_config" id="from_data_input" class="block border w-full rounded-md text-gray-500 font-normal p-2 focus:outline-none focus:border-blue-500" />
     </div>
     <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6">
-      <label class="text-md lg:text-lg body-text font-bold my-2 block" for="to_data_input">Дата по</label>
+      <label class="text-md lg:text-lg body-text font-bold my-2 block" for="to_data_input">{{"TRANSACTION_TO"|translate}}</label>
       <input (ngModelChange)="changeToDate($event)"  [ngModel]="to_date" [dpDayPicker]="to_config" id="to_data_input" class="block border w-full rounded-md p-2 text-gray-500 font-normal focus:outline-none focus:border-blue-500" />
     </div>
   </div>
@@ -17,22 +17,22 @@
             <thead class="text-xs text-gray-700 capitalize">
             <tr>
               <th scope="col" class="px-6 py-3 text-center">
-                Сумма
+                {{"AMOUNT"|translate}}
               </th>
               <th scope="col" class="px-6 py-3 text-center">
-                Подвтерждена
+                {{"IS_CONFIRMED"|translate}}
               </th>
               <th scope="col" class="px-6 py-3 text-center">
-                Владелец Карты
+                {{"OWNER_CARD"|translate}}
               </th>
               <th scope="col" class="px-6 py-3 text-center">
-                Дата транзакции
+                {{"TRANSACTION_DATE"|translate}}
               </th>
               <th scope="col" class="px-6 py-3 text-center">
-                ID транзакции
+                {{"TRANSACTION_ID"|translate}}
               </th>
               <th scope="col" class="px-6 py-3 text-center">
-                Действия
+                {{"ACTION"|translate}}
               </th>
             </tr>
             </thead>

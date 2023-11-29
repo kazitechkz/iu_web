@@ -67,36 +67,9 @@ export class SingleSubjectComponent implements OnInit{
     "slidesToShow": 1,
     "slidesToScroll": 1,
     "dots": true,
-    "arrows":true,
+    "arrows":false,
     "infinite": false,
     "center":true,
-    "responsive": [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: false
-        }
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          dots: false
-        }
-      },
-      {
-        breakpoint: 700,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: true
-        }
-      }
-    ]
   };
 
   protected readonly faForwardFast = faForwardFast;

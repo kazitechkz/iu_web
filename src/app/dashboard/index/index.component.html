@@ -1,3 +1,4 @@
+
 <div class="container mx-auto">
     <main class="grid grid-cols-12 p-6 gap-4">
         <!--    main content-->
@@ -8,10 +9,10 @@
                 <div class="relative flex p-3 items-center overflow-hidden bg-cover bg-no-repeat">
                   <div class="p-3 text-white">
                     <p class="inline-block my-3  text-md lg:text-xl xl:text-2xl 2xl:text-4xl font-bold">
-                      👋 Привет, Дорогой Абитуриент!
+                     {{"HELLO_STUDENT"|translate}}
                     </p>
                     <p class="inline-block my-3 py-5  text-sm lg:text-lg xl:text-xl 2xl:text-2xl">
-                      Добро пожаловать на нашу образовательную платформу, где мы предлагаем вам уникальный опыт подготовки к ЕНТ и множество возможностей для развития и общения.
+                      {{"HELLO_STUDENT_SUBTITLE"|translate}}
                     </p>
                   </div>
                 </div>
@@ -37,13 +38,13 @@
     </main>
 </div>
 <div class="container mx-auto">
-      <app-announcement-list/>
+  <app-announcement-list/>
 </div>
 
 <div class="container mx-auto">
   <div class="grid grid-cols-12 p-6 gap-4">
     <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 lg:col-span-3" *ngFor="let menuItem of menuLists">
-      <div class="card bg-white p-3 shadow-2xl rounded-lg min-h-[150px]
+      <div class="card bg-white p-3 shadow-2xl rounded-lg h-full min-h-[150px]
       border-2 border-[#4DC591] cursor-pointer
       text-black
       hover:bg-[#4DC591] hover:text-white
@@ -52,8 +53,8 @@
         <div class="service-card-header flex items-center justify-center">
           <img src="{{menuItem.imageUrl}}" class="h-[80px]">
         </div>
-        <div class="text-center p-3 text-md lg:text-lg font-bold">
-          {{menuItem.title}}
+        <div class="text-center p-3 text-md lg:text-lg break-words font-bold">
+          {{menuItem.title | translate}}
         </div>
       </div>
     </div>
