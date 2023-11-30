@@ -27,6 +27,13 @@ export class GlobalTranslatePipe implements PipeTransform {
             return this.mathJax.transform(value.description_kk)
           }
         }
+        if (target == 'rule') {
+          if (limit != null) {
+            return this.truncate.transform(value.rule_kk, limit)
+          } else {
+            return this.mathJax.transform(value.rule_kk)
+          }
+        }
         if (target == 'text') {
           if (limit != null) {
             return this.truncate.transform(value.text_kk, limit)
@@ -55,6 +62,13 @@ export class GlobalTranslatePipe implements PipeTransform {
             return this.truncate.transform(value.description_ru, limit)
           } else {
             return this.mathJax.transform(value.description_ru)
+          }
+        }
+        if (target == 'rule') {
+          if (limit != null) {
+            return this.truncate.transform(value.rule_ru, limit)
+          } else {
+            return this.mathJax.transform(value.rule_ru)
           }
         }
         if (target == 'text') {

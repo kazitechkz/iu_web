@@ -1,7 +1,7 @@
 <div class="container mx-auto">
   <div class="grid grid-col-12 gap-3 my-5">
     <div class="col-span-12" *ngIf="news" >
-      <div class="min-h-[350px] lg:min-h-[550px] py-5 px-3 rounded-lg flex items-center"
+      <div class="min-h-[350px] lg:min-h-[550px] py-5 px-3 rounded-lg flex items-center bg-cover bg-no-repeat"
            [ngStyle]="{'background':'linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url(' + ImageHelper.getImage(news.poster!.url) + ')'}">
         <div class="z-20 px-10 w-full lg:w-8/12 xl:w-6/12 text-center lg:text-left">
           <span class="block my-3 text-md lg:text-lg text-white font-bold">
