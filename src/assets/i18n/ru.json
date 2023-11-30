@@ -282,7 +282,10 @@
   "TRANSACTION_DATE": "Дата транзакции",
   "TRANSACTION_ID": "ID транзакции",
   "TRANSACTION_FROM": "Дата транзакций с",
-  "TRANSACTION_TO": "Дата транзакций по"
+  "TRANSACTION_TO": "Дата транзакций по",
+  "CORRECT_ANSWER": "Правильный ответ",
+  "CREATE_TEST": "Создать тест",
+  "SELECT_A_USER": "Выберите хотя бы одного школьника"
 
 
 }

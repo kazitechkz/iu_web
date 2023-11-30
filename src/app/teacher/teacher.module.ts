@@ -26,6 +26,7 @@ import { UntTestsComponent } from './exams/unt-tests/unt-tests.component';
 import {TranslatePipe} from "@ngx-translate/core";
 import { ProfileComponent } from './profile/profile.component';
 import {MathjaxModule} from "mathjax-angular";
+import {MarkdownModule} from "ngx-markdown";
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import {MathjaxModule} from "mathjax-angular";
         NgxPaginationModule,
         FontAwesomeModule,
         NgChartsModule,
-        MathjaxModule
+        MathjaxModule,
+        MarkdownModule
     ],
   providers: [MathJaxPipe, TranslatePipe]
 })

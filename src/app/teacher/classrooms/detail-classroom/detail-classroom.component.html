@@ -1,5 +1,5 @@
 <div class="mobile:p-1.5 p-5 rounded-[10px] bg-white">
-  <div class="w-full flex justify-end items-center" *ngIf="checkedList.length > 0">
+  <div class="w-full flex justify-end items-center">
     <button
       class="mr-5 !bg-[#4DC591] text-white !px-2 mobile:!text-xs"
       tw-button
@@ -55,14 +55,6 @@
                 <td class="whitespace-nowrap px-6 py-4">{{item.value.user.email != null ? item.value.user.email : 'NOT_SPECIFIED_MESSAGE' | translate}}</td>
                 <td class="whitespace-nowrap px-6 py-4">
                   <div class="flex justify-center">
-                    <button
-                      class="mx-2 text-black"
-                      tw-button
-                      layout="flat"
-                    >
-                      <i class="fa fa-eye" aria-hidden="true"></i>
-                    </button>
-
                     <button
                       [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
                       (confirm)="deleteUserFromClassroom(item.value.id)"

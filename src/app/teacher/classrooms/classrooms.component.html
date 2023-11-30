@@ -22,6 +22,7 @@
               <th scope="col" class="px-6 py-4">{{'TITLE' | translate}}</th>
               <th scope="col" class="px-6 py-4">{{'COUNT_OF_STUDENTS' | translate}}</th>
               <th scope="col" class="px-6 py-4">{{'PROMO_CODE' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'CREATE_TEST' | translate}}</th>
               <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
             </tr>
             </thead>
@@ -33,15 +34,17 @@
               <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.classrooms_count}}</td>
               <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.promo_code}}</td>
               <td class="whitespace-nowrap px-6 py-4">
+                <button
+                  class="mx-2 text-black"
+                  tw-button
+                  layout="flat"
+                  [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherDetailClassroom) + '/' + classRoom.value.id"
+                >
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+              </td>
+              <td class="whitespace-nowrap px-6 py-4">
                 <div class="flex">
-                  <button
-                    class="mx-2 text-black"
-                    tw-button
-                    layout="flat"
-                    [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherDetailClassroom) + '/' + classRoom.value.id"
-                  >
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                  </button>
                   <button
                     class="mx-2 text-black"
                     tw-button

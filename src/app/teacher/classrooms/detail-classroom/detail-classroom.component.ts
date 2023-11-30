@@ -53,6 +53,8 @@ import {
   createAttemptSettingsUNTAction
 } from "../../../shared/store/attemptSettings/createAttemptSettingsUNT/createAttemptSettingsUNT.action";
 import {defer} from "rxjs";
+import Swal from "sweetalert2";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-detail-classroom',
@@ -116,13 +118,15 @@ export class DetailClassroomComponent implements OnInit {
   private _route = inject(ActivatedRoute)
   private _router = inject(Router)
   public translate = inject(GlobalTranslateService)
+  private localeTranslate = inject(TranslateService)
   destroyRef = inject(DestroyRef);
   private _store = inject(Store)
   dialog = inject(NgxSmartModalService)
   private _notification = inject(TwNotification)
-
+  public warningText = ''
   ngOnInit(): void {
     this.getDetailClassroom()
+    this.localeTranslate.get('SELECT_A_USER').subscribe(item => this.warningText = item)
     // this.localeID = StrHelper.getLocaleIdByCurrentLang(this.translate.currentLang)
   }
 
@@ -247,20 +251,32 @@ export class DetailClassroomComponent implements OnInit {
   }
 
   singleSubjectSubmit() {
-    this.isSingleTest = true
-    this.getSubjects()
+    this.localeTranslate.get('SELECT_A_USER').subscribe(item => {
+      if (this.checkedList.length > 0) {
+        this.isSingleTest = true
+        this.getSubjects()
+      } else {
+        Swal.fire(item).then(r => null)
+      }
+    })
   }
 
   untInitialData() {
-    this.dialog.get('open-unt').open()
-    this.checkbox_form.patchValue({
-      class_id: this.class_id
-    })
-    let data = this.checkbox_form.getRawValue() as GetArraySettingsUNT
-    this._store.dispatch(getArraySettingsUNTAction({requestData: data}))
-    this._store.select(getArraySettingsUNTSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-      if (item.data) {
-        this.initialDataForUNT = item.data
+    this.localeTranslate.get('SELECT_A_USER').subscribe(item => {
+      if (this.checkedList.length > 0) {
+        this.dialog.get('open-unt').open()
+        this.checkbox_form.patchValue({
+          class_id: this.class_id
+        })
+        let data = this.checkbox_form.getRawValue() as GetArraySettingsUNT
+        this._store.dispatch(getArraySettingsUNTAction({requestData: data}))
+        this._store.select(getArraySettingsUNTSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+          if (item.data) {
+            this.initialDataForUNT = item.data
+          }
+        })
+      } else {
+        Swal.fire(item).then(r => null)
       }
     })
   }

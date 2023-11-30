@@ -42,56 +42,62 @@
                     <div class="content-question">
                       <h5
                         class="mb-2 text-xl font-medium leading-tight text-neutral-800">
-                        <div [mathjax]="question.text | mathjaxTransform"></div>
+                        <markdown katex>
+                          {{question.text | mathjaxTransform}}
+                        </markdown>
+                        <span class="text-sm">({{'CORRECT_ANSWER'|translate}}: {{question.correct_answers}})</span>
+<!--                        <div [mathjax]="question.text | mathjaxTransform"></div>-->
                       </h5>
                       <div class="my-2" *ngIf="question.context" [innerHTML]="question.context.context"></div>
                       <div class="my-5">
                         <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
                           <label
                             class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('a', question.attempt_questions ? question.attempt_questions[0].user_answer : '', question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
-                            <div [mathjax]="'a.' + question.answer_a | mathjaxTransform"></div>
+                            <markdown katex>{{'a.' + question.answer_a | mathjaxTransform}}</markdown>
+<!--                            <div [mathjax]="'a.' + question.answer_a | mathjaxTransform"></div>-->
                           </label>
                         </div>
                         <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
                           <label
                             class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('b', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
-                            <div [mathjax]="'b.' + question.answer_b | mathjaxTransform"></div>
+                            <markdown katex>{{'b.' + question.answer_b | mathjaxTransform}}</markdown>
+<!--                            <div [mathjax]="'b.' + question.answer_b | mathjaxTransform"></div>-->
                           </label>
                         </div>
                         <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
                           <label
                             class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('c', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
-                            <div [mathjax]="'c.' + question.answer_c | mathjaxTransform"></div>
+                            <markdown katex>{{'c.' + question.answer_c | mathjaxTransform}}</markdown>
                           </label>
                         </div>
                         <div  class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
                           <label
                             class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('d', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
-                            <div [mathjax]="'d.' + question.answer_d | mathjaxTransform"></div>
+                            <markdown katex>{{'d.' + question.answer_d | mathjaxTransform}}</markdown>
                           </label>
                         </div>
                         <div *ngIf="question.answer_e" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
                           <label
                             class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('e', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
-                            <div [mathjax]="'e.' + question.answer_e | mathjaxTransform"></div>
+                            <markdown katex>{{'e.' + question.answer_e | mathjaxTransform}}</markdown>
                           </label>
                         </div>
                         <div *ngIf="question.answer_f" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
                           <label
                             class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('f', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
-                            <div [mathjax]="'f.' + question.answer_f | mathjaxTransform"></div>
+                            <markdown katex>{{'f.' + question.answer_f | mathjaxTransform}}</markdown>
                           </label>
                         </div>
                         <div *ngIf="question.answer_g" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
                           <label
                             class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('g', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
-                            <div [mathjax]="'g.' + question.answer_g | mathjaxTransform"></div>
+                            <markdown katex>{{'g.' + question.answer_g | mathjaxTransform}}</markdown>
                           </label>
                         </div>
                         <div *ngIf="question.answer_h" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
                           <label
                             class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('h', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
-                            <div [mathjax]="'h.' + question.answer_h | mathjaxTransform"></div>
+                            <markdown katex>{{'h.' + question.answer_h | mathjaxTransform}}</markdown>
                           </label>
                         </div>
                       </div>
