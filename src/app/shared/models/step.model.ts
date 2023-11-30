@@ -29,7 +29,7 @@ export interface StepModel {
   deleted_at: any
   image: Image | null
   categories: CategoryModel[] | null
-  steps_count: number | null
-  sub_steps_count: number | null
+  steps_count: number
+  sub_steps_count: number
   progress: number
 }
