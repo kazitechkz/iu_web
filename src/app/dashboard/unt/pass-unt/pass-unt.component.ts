@@ -1,6 +1,14 @@
 import {Component, DestroyRef, inject, OnInit, ViewChild} from '@angular/core';
 import {ColorConstants} from "../../../core/constants/color.constants";
-import {faClock,faBook,faLanguage,faCircleCheck,faForwardFast} from "@fortawesome/free-solid-svg-icons";
+import {
+  faClock,
+  faBook,
+  faLanguage,
+  faCircleCheck,
+  faForwardFast,
+  faCheck,
+  faWindowClose, faXmark
+} from "@fortawesome/free-solid-svg-icons";
 import {Store} from "@ngrx/store";
 import {loginAction} from "../../../shared/store/auth/login/login.action";
 import {subjectGetAction} from "../../../shared/store/subject/subject.action";
@@ -16,12 +24,16 @@ import {RoutesName} from "../../../core/constants/routes.constants";
 import {CreateAttemptRequest} from "../../../shared/store/attempt/createAttempt/createAttempt.request";
 import {createAttemptAction} from "../../../shared/store/attempt/createAttempt/createAttempt.action";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
+import {OwlOptions} from "ngx-owl-carousel-o";
+import {ModalUntTrainerComponent} from "../../../shared/components/modal-unt-trainer/modal-unt-trainer.component";
 @Component({
   selector: 'app-pass-unt',
   templateUrl: './pass-unt.component.html',
   styleUrls: ['./pass-unt.component.scss']
 })
 export class PassUntComponent implements OnInit{
+  //@ts-ignore
+  @ViewChild('modalBuyUNT', { static: false }) modalBuyUNT: ModalUntTrainerComponent;
   faClock = faClock;
   faBook = faBook;
   faLanguage = faLanguage;
@@ -44,61 +56,53 @@ export class PassUntComponent implements OnInit{
       }
     })
 
-
+  }
+  customOptions: OwlOptions = {
+    loop: true,
+    margin:15,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    nav:false,
+    navText: [],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 5
+      }
+    },
   }
   //@ts-ignore
-  slideConfig = {
-    slidesToShow: 5,
-    slidesToScroll:4,
-    swipeToSlide:true,
-    dots: true,
-    arrows:false,
-    infinite: false,
-    touchThreshold:100,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll:4,
-          infinite: false,
-          dots: false
-        }
-      },
-      {
-        breakpoint: 1020,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll:3,
-          infinite: false,
-          dots: false
-        }
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll:2,
-          dots: false
-        }
-      },
-      {
-        breakpoint: 700,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll:1,
-          dots: true
-        }
-      }
-    ]
-  };
 
-  createAttempt(){
-    if (this.chosenSubject.length == 2){
+  checkIfUserHasPermission(){
+    if(true){
+      this.modalBuyUNT.openDialog();
+    }
+    else {
+      this.createAttempt(true);
+    }
+  }
+
+  createAttempt(result:boolean){
+    if (this.chosenSubject.length == 2 && result){
       let request = {subjects:this.chosenSubject, locale_id:this.locale_id, attempt_type_id:1,} as CreateAttemptRequest;
       this._store.dispatch(createAttemptAction({requestData:request}));
     }
   }
+
+
+
+
   chooseSubject(id:number){
     const index = this.chosenSubject.indexOf(id); // Check if target exists in the array
     if (index === -1) {
@@ -118,4 +122,7 @@ export class PassUntComponent implements OnInit{
 
   protected readonly faCircleCheck = faCircleCheck;
   protected readonly RoutesName = RoutesName;
+  protected readonly faCheck = faCheck;
+  protected readonly faWindowClose = faWindowClose;
+  protected readonly faXmark = faXmark;
 }

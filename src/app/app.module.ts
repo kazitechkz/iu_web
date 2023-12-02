@@ -32,6 +32,7 @@ import {DpDatePickerModule} from "ng2-date-picker";
 import {MathjaxModule} from "mathjax-angular";
 import {CalendarModule, DateAdapter} from "angular-calendar";
 import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
+import {CarouselModule} from "ngx-owl-carousel-o";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -59,6 +60,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     TwNotificationModule.forRoot(),
     NgChartsModule,
     QRCodeModule,
+    CarouselModule,
     MathjaxModule.forRoot(/*Optional Config*/),
     DpDatePickerModule,
     NgxSpinnerModule.forRoot({type: 'mySpinner'}),

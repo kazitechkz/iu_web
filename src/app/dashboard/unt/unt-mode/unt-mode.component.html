@@ -1,8 +1,8 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12 gap-3 w-full">
     <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6 2xl:col-span-4 shadow-2xl rounded-2xl bg-white my-2 p-3 border-solid border-2 border-[#4DC591] cursor-pointer">
-      <div class="card-unt-mode px-3 py-2 ">
-        <div class="ml-20 h-[130px]">
+      <div class="card-unt-mode px-3 py-2 cursor-pointer"  [routerLink]="'/'+[RoutesName.passUnt]">
+        <div class="ml-20 min-h-[150px] flex justify-start items-center">
           <div class="bubble-2 bubble-bottom-left-2 text-white font-bold italic w-8/12 md:w-6/12 text-sm">
             {{"UNT_MODE_BE_READY_FOR_GRANT"|translate}}
           </div>
@@ -15,39 +15,39 @@
             {{"FOR_THEM_WHO_WANTS_GRANT"|translate}} <b class="main-green-color">{{"UNT_WORD"|translate}}</b>
           </p>
         </div>
-        <div class="header-body">
-           <div class="flex items-center my-3">
-             <span class="h-8 w-8 rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+        <div class="header-body relative">
+           <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faGraduationCap"></fa-icon>
              </span>
               <p>{{"FULL_UNT_TRAINER"|translate}}</p>
            </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faBook"></fa-icon>
              </span>
             <p>{{"CHOICE_OF_SIXTEEN_SUBJECTS"|translate}}</p>
           </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faGraduationCap"></fa-icon>
              </span>
             <p>{{"WORK_OVER_FAILURE"|translate}}</p>
           </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faLanguage"></fa-icon>
              </span>
             <p>{{"SUPPORT_MULTI_LANGUAGE"|translate}}</p>
           </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faStar"></fa-icon>
              </span>
             <p>{{"ANALYZE_WEAK_POSITION"|translate}}</p>
           </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faCircleQuestion"></fa-icon>
              </span>
             <p>{{"ACTUAL_QUESTION_MILLION"|translate}}</p>
@@ -59,7 +59,7 @@
                    cursor-pointer
                    hover:!bg-green-700
                    font-bold
-                   rounded-2xl text-md md:text-lg px-5 py-2.5 mb-2">
+                   rounded-2xl text-sm md:text-md lg:text-lg px-5 py-2.5 mb-2">
                🏆 {{"PASS_UNT"|translate}}
              </a>
           </div>
@@ -67,8 +67,8 @@
       </div>
     </div>
     <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6 2xl:col-span-4 shadow-2xl rounded-2xl bg-white my-2 p-3 border-solid border-2 border-[#FF7648] cursor-pointer">
-      <div class="card-unt-mode px-3 py-2 ">
-        <div class="ml-20 h-[130px]">
+      <div class="card-unt-mode px-3 py-2 cursor-pointer" [routerLink]="'/'+[RoutesName.passUntSingle]">
+        <div class="ml-20 min-h-[150px] flex justify-start items-center">
           <div class="bubble bubble-bottom-left text-white font-bold italic w-full text-sm">
             {{"I_AM_NOT_AFRAID_OF_WHO_KNOWS_UNT"|translate}}
           </div>
@@ -82,48 +82,48 @@
           </p>
         </div>
         <div class="header-body">
-           <div class="flex items-center my-3">
-             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+           <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faGraduationCap"></fa-icon>
              </span>
               <p>
                 {{"PURPOSELY_TRAINING_FOR_SINGLE_SUBJECT"|translate}}
               </p>
            </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faBook"></fa-icon>
              </span>
             <p>
               {{"CHOICE_OF_SIXTEEN_SUBJECTS"|translate}}
             </p>
           </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faGraduationCap"></fa-icon>
              </span>
             <p>
               {{"WORK_OVER_FAILURE"|translate}}
             </p>
           </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faLanguage"></fa-icon>
              </span>
             <p>
               {{"SUPPORT_MULTI_LANGUAGE"|translate}}
             </p>
           </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faStar"></fa-icon>
              </span>
             <p>
               {{"ANALYZE_WEAK_POSITION"|translate}}
             </p>
           </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faCircleQuestion"></fa-icon>
              </span>
             <p>
@@ -137,7 +137,7 @@
                    cursor-pointer
                    hover:!bg-orange-700
                    font-bold
-                   rounded-2xl text-md md:text-lg px-5 py-2.5 mb-2">
+                   rounded-2xl text-sm md:text-md lg:text-lg px-5 py-2.5 mb-2">
                 🧠 {{"ONE_SUBJECT_ONE_PASSION"|translate}}
              </a>
           </div>
@@ -145,8 +145,8 @@
       </div>
     </div>
     <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6 2xl:col-span-4 shadow-2xl rounded-2xl bg-white my-2 p-3 border-solid border-2 border-[#9BA1FF] cursor-pointer">
-      <div class="card-unt-mode px-3 py-2 ">
-        <div class="ml-20 h-[130px]">
+      <div class="card-unt-mode px-3 py-2 cursor-pointer" [routerLink]="'/'+[RoutesName.passCustomizableUnt]">
+        <div class="ml-20 min-h-[150px] flex justify-start items-center">
           <div class="bubble-3 bubble-bottom-left-3 text-white font-bold italic w-full text-sm">
             {{"IT_IS_TIME_TO_BE_STRONGER"|translate}}
           </div>
@@ -160,48 +160,48 @@
           </p>
         </div>
         <div class="header-body">
-           <div class="flex items-center my-3">
-             <span class="h-8 w-8 rounded-full main-secondary-bg text-white flex justify-center items-center text-sm mr-2">
+           <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-secondary-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faGraduationCap"></fa-icon>
              </span>
               <p>
                 {{"PURPOSELY_TRAINING_FOR_SINGLE_SUBJECT"|translate}}
               </p>
            </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-secondary-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-secondary-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faBook"></fa-icon>
              </span>
             <p>
               {{"PASS_UNT_ONE_OF_SIXTEEN"|translate}}
             </p>
           </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-secondary-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-secondary-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faGraduationCap"></fa-icon>
              </span>
             <p>
               {{"WORK_OVER_FAILURE"|translate}}
             </p>
           </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-secondary-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-secondary-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faLanguage"></fa-icon>
              </span>
             <p>
               {{"SUPPORT_MULTI_LANGUAGE"|translate}}
             </p>
           </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-secondary-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-secondary-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faStar"></fa-icon>
              </span>
             <p>
               {{"ANALYZE_WEAK_POSITION"|translate}}
             </p>
           </div>
-          <div class="flex  items-center my-3">
-             <span class="h-8 w-8 rounded-full main-secondary-bg text-white flex justify-center items-center text-sm mr-2">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-secondary-bg text-white flex justify-center items-center text-sm mr-2">
                <fa-icon [icon]="faCircleQuestion"></fa-icon>
              </span>
             <p>
@@ -215,7 +215,7 @@
                    cursor-pointer
                    hover:!bg-violet-700
                    font-bold
-                   rounded-2xl text-md md:text-lg px-5 py-2.5 mb-2">
+                   rounded-2xl text-sm md:text-md lg:text-lg px-5 py-2.5 mb-2">
                 💪 {{"TRAINING_UNT_FOR_CATEGORY"|translate}}
              </a>
           </div>

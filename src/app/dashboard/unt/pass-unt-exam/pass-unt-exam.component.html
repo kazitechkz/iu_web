@@ -53,7 +53,7 @@
       <!--    Prompt-->
       <div class="col-span-12 flex justify-center items-start">
         <div class="text-center flex py-3">
-          <div *ngIf="attempt.type_id != 3">
+          <div class="w-1/2 md:w-1/4" *ngIf="attempt.type_id != 3">
             <button
               (click)="openModal('promptModal')"
               class="inline hover:rotate-0 rotate-180 hover:bg-yellow-200 rounded-full shadow-lg w-14 h-14 mx-4  bg-yellow-400 text-2xl text-white font-bold"
@@ -65,7 +65,7 @@
               {{"PROMPT"|translate}}
             </small>
           </div>
-          <div *ngIf="questions[active_slider].type_id != 3">
+          <div class="w-1/2 md:w-1/4" *ngIf="questions[active_slider].type_id != 3">
             <section *ngIf="attempt.type_id != 3">
             <section *ngIf="!fiftyFiftyResult.hasOwnProperty(questions[active_slider].id)">
               <button
@@ -81,7 +81,7 @@
             </section>
             </section>
           </div>
-          <div>
+          <div class="w-1/2 md:w-1/4">
             <button
               (click)="saveQuestion()"
               class="inline hover:rotate-0 rotate-180 main-green-bg rounded-full shadow-lg w-14 h-14 mx-4   text-2xl text-white font-bold"
@@ -93,7 +93,7 @@
               {{"SAVED"|translate}}
             </small>
           </div>
-          <div>
+          <div class="w-1/2 md:w-1/4">
           <button
             (click)="openModal('appealModal')"
             class="inline hover:rotate-0 rotate-180 bg-red-500 rounded-full shadow-lg w-14 h-14 mx-4   text-2xl text-white font-bold"
@@ -251,33 +251,30 @@
     <!--    Question Modal-->
 
     <!--    Prev, Answer, Next-->
-    <div class="grid grid-cols-12 mt-8 mb-4">
-      <div class="col-span-12 md:col-span-4 p-4">
+    <div class="grid grid-cols-12 my-2">
+      <div class="col-span-6 md:col-span-4 p-4 order-2 md:order-1">
         <button type="button" class="
-          mt-4
-          text-lg
           w-full
-          font-bold
           inline
           main-secondary-bg
           text-white
           focus:outline-none focus:ring-4
           focus:ring-violet-500 font-medium
-          rounded-lg text-sm px-5 py-5
-          text-center mr-2 mb-2
+          rounded-lg text-sm p-3
+          text-center m-2
    "
                 (click)="prev()"
         >
           <fa-icon [icon]="faBackwardFast" class="mx-2 text-lg"></fa-icon>
-          {{"PREV_QUESTION"|translate}}
-
+          <p class="inline hidden md:inline">
+            {{"PREV_QUESTION"|translate}}
+          </p>
         </button>
       </div>
 
-      <div class="col-span-12 md:col-span-4 p-4">
+      <div class="col-span-12 md:col-span-4 p-4 order-1 md:order-2">
         <button type="button" class="
             w-full
-            mt-4
             text-lg
             font-bold
             inline
@@ -285,8 +282,8 @@
             text-white
             focus:outline-none focus:ring-4
             focus:ring-green-500 font-medium
-            rounded-lg text-sm px-5 py-5
-            text-center mr-2 mb-2"
+            rounded-lg text-sm p-3
+            text-center m-2"
                 (click)="checkAnswer(questions[active_slider].id)"
                 *ngIf="answered_questions.hasOwnProperty(questions[active_slider].id) && !answeredResult[questions[active_slider].id]"
         >
@@ -295,42 +292,39 @@
         </button>
       </div>
 
-      <div class="col-span-12 md:col-span-4 p-4">
+      <div class="col-span-6 md:col-span-4 p-4 order-3 md:order-3">
         <button type="button" class="
-      w-full
-      mt-4
-      text-lg
-      font-bold
-      inline
-      main-secondary-bg
-      text-white
-      focus:outline-none focus:ring-4
-      focus:ring-violet-500 font-medium
-      rounded-lg text-sm px-5 py-5
-      text-center mr-2 mb-2"
-                (click)="next()"
+          w-full
+          inline
+          main-secondary-bg
+          text-white
+          focus:outline-none focus:ring-4
+          focus:ring-violet-500 font-medium
+          rounded-lg text-sm p-3
+          text-center m-2
+   "
+                (click)="next()">
+          <p class="inline hidden md:inline">
+            {{"NEXT_QUESTION"|translate}}
+          </p>
 
-        >
-          {{"NEXT_QUESTION"|translate}}
           <fa-icon [icon]="faForwardFast" class="mx-2 text-lg"></fa-icon>
         </button>
       </div>
 
     </div>
     <!--    Prev, Answer, Next-->
-    <div class="col-span-12 flex justify-end items-end">
+    <div class="col-span-12 md:flex justify-center items-center">
       <!--    Finish-->
       <button type="button" class="
-            mt-4
-            text-lg
-            font-bold
-            inline
+            w-full md:w-1/4
+            inline-block
             bg-red-500
             text-white
             focus:outline-none focus:ring-4
             focus:ring-red-500 font-medium
-            rounded-lg text-sm px-5 py-5
-            text-center mr-2 mb-2"
+            rounded-lg text-sm p-3
+            text-center m-2"
               (click)="finishAttempt()"
       >
         {{"FINISH_UNT"|translate}}

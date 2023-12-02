@@ -1,5 +1,13 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
-import {faBook, faCircleCheck, faClock, faForwardFast, faLanguage} from "@fortawesome/free-solid-svg-icons";
+import {Component, DestroyRef, inject, OnInit, ViewChild} from '@angular/core';
+import {
+  faBook,
+  faCheck,
+  faCircleCheck,
+  faClock,
+  faForwardFast,
+  faLanguage,
+  faXmark
+} from "@fortawesome/free-solid-svg-icons";
 import {Store} from "@ngrx/store";
 // @ts-ignore
 import {Subject} from "../../models/subject.model";
@@ -10,6 +18,8 @@ import {CreateAttemptRequest} from "../../../shared/store/attempt/createAttempt/
 import {createAttemptAction} from "../../../shared/store/attempt/createAttempt/createAttempt.action";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
+import {OwlOptions} from "ngx-owl-carousel-o";
+import {ModalUntTrainerComponent} from "../../../shared/components/modal-unt-trainer/modal-unt-trainer.component";
 
 @Component({
   selector: 'app-single-subject',
@@ -17,6 +27,8 @@ import {GlobalTranslateService} from "../../../shared/services/globalTranslate.s
   styleUrls: ['./single-subject.component.scss']
 })
 export class SingleSubjectComponent implements OnInit{
+  //@ts-ignore
+    @ViewChild('modalBuyUNT', { static: false }) modalBuyUNT: ModalUntTrainerComponent;
     private _store = inject(Store);
     destroyRef = inject(DestroyRef);
     protected readonly faClock = faClock;
@@ -50,9 +62,17 @@ export class SingleSubjectComponent implements OnInit{
     }
   }
 
+  checkIfUserHasPermission(){
+    if(true){
+      this.modalBuyUNT.openDialog();
+    }
+    else {
+      this.createAttempt(true);
+    }
+  }
 
-  createAttempt(){
-    if (this.chosenSubject.length == 1){
+  createAttempt(result:boolean){
+    if (this.chosenSubject.length == 1 && result){
       let request = {subjects:this.chosenSubject, locale_id:this.locale_id, attempt_type_id:2,} as CreateAttemptRequest;
       this._store.dispatch(createAttemptAction({requestData:request}));
     }
@@ -62,17 +82,36 @@ export class SingleSubjectComponent implements OnInit{
     this.locale_id = value ? 1 : 2;
   }
 
-//@ts-ignore
-  slideConfig = {
-    "slidesToShow": 1,
-    "slidesToScroll": 1,
-    "dots": true,
-    "arrows":false,
-    "infinite": false,
-    "center":true,
-  };
+  customOptions: OwlOptions = {
+    loop: true,
+    margin:15,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    autoHeight:true,
+    nav:false,
+    navText: ["<",">"],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 5
+      }
+    },
+  }
 
   protected readonly faForwardFast = faForwardFast;
   protected readonly faCircleCheck = faCircleCheck;
   protected readonly ImageHelper = ImageHelper;
+  protected readonly faCheck = faCheck;
+  protected readonly faXmark = faXmark;
 }

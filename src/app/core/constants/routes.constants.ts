@@ -44,6 +44,7 @@ export enum RoutesName {
     planContent = "dashboard/plan-content",
     notification = "dashboard/notifications",
     planUNT = "dashboard/plan-unt",
+    planMode = "dashboard/plan-mode",
     myTickets = "dashboard/my-tickets",
     createTicket = "dashboard/create-ticket",
     ticketDetail = "dashboard/ticket-detail",

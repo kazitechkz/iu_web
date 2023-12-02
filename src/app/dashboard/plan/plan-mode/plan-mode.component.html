@@ -1,0 +1,155 @@
+<div class="container mx-auto">
+  <div class="grid grid-cols-12 min-h-[80vh] my-[30px] gap-5">
+    <div class="col-span-12 my-2 xl:mx-3 lg:my-0 lg:col-span-6 flex justify-center xl:justify-end items-center">
+        <div class="max-w-[450px] min-h-[400px] w-full shadow-lg rounded-xl cursor-pointer" [routerLink]="'/'+[RoutesName.planUNT]">
+          <div class="header-plan min-h-[100px] main-tertiary-bg rounded-tr-lg rounded-tl-lg flex justify-center items-center">
+              <p class="text-md lg:text-lg xl:text-xl font-bold text-white">
+                {{"PLAN_UNT_MODE"|translate}}
+              </p>
+          </div>
+          <div class="header-image py-3 text-center">
+            <div class="h-24 w-24 lg:h-32 lg:w-32 xl:h-42 xl:w-42 main-tertiary-bg rounded-full inline-block"
+                 [ngStyle]="{
+                 'background-image':'url('+ '/assets/images/content-plan.png'+')',
+                 'background-size':'contain',
+                 'background-position':'center',
+                 'background-repeat':'no-repeat',
+                 }">
+            </div>
+          </div>
+          <div class="body-card px-5 py-4">
+            <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faBook"></fa-icon>
+             </span>
+              <p>
+                {{"CHOICE_OF_SIXTEEN_SUBJECTS"|translate}}
+              </p>
+            </div>
+            <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faGraduationCap"></fa-icon>
+             </span>
+              <p>
+                {{"WORK_OVER_FAILURE"|translate}}
+              </p>
+            </div>
+            <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faLanguage"></fa-icon>
+             </span>
+              <p>
+                {{"SUPPORT_MULTI_LANGUAGE"|translate}}
+              </p>
+            </div>
+            <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faStar"></fa-icon>
+             </span>
+              <p>
+                {{"ANALYZE_WEAK_POSITION"|translate}}
+              </p>
+            </div>
+            <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faCircleQuestion"></fa-icon>
+             </span>
+              <p>
+                {{"ACTUAL_QUESTION_MILLION"|translate}}
+              </p>
+            </div>
+            <div class="text-center py-5 flex justify-center items-end">
+              <a [routerLink]="'/'+[RoutesName.planUNT]" class="focus:outline-none
+                   inline-block my-2
+                   text-white main-tertiary-bg
+                   cursor-pointer
+                   hover:!bg-orange-700
+                   font-bold
+                   rounded-full text-sm md:text-md lg:text-lg px-5 py-2.5 mb-2">
+                {{"BUY_FULL_TRAINER_UNT"|translate}}
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+
+    </div>
+    <div class="col-span-12 my-2 xl:mx-3 lg:my-0 lg:col-span-6 flex justify-center xl:justify-start items-center">
+      <div class="max-w-[450px] min-h-[400px] w-full shadow-lg rounded-xl cursor-pointer" [routerLink]="'/'+[RoutesName.planContent]">
+        <div class="header-plan min-h-[100px] main-green-bg rounded-tr-lg rounded-tl-lg flex justify-center items-center">
+          <p class="text-md lg:text-lg xl:text-xl font-bold text-white">
+            {{"PLAN_UNT_CONTENT"|translate}}
+          </p>
+        </div>
+        <div class="header-image py-3 text-center">
+          <div class="h-24 w-24 lg:h-32 lg:w-32 xl:h-42 xl:w-42 main-green-bg rounded-full inline-block"
+               [ngStyle]="{
+                 'background-image':'url('+ '/assets/images/many-mode.png'+')',
+                 'background-size':'contain',
+                 'background-position':'center',
+                 'background-repeat':'no-repeat',
+                 }">
+          </div>
+        </div>
+        <div class="body-card px-5 py-4">
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faBook"></fa-icon>
+             </span>
+            <p>
+              {{"CHOICE_OF_SIXTEEN_SUBJECTS"|translate}}
+            </p>
+          </div>
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faGraduationCap"></fa-icon>
+             </span>
+            <p>
+              {{"WORK_OVER_FAILURE"|translate}}
+            </p>
+          </div>
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faLanguage"></fa-icon>
+             </span>
+            <p>
+              {{"SUPPORT_MULTI_LANGUAGE"|translate}}
+            </p>
+          </div>
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faStar"></fa-icon>
+             </span>
+            <p>
+              {{"ANALYZE_WEAK_POSITION"|translate}}
+            </p>
+          </div>
+          <div class="flex items-center my-3 text-sm md:text-md">
+             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faCircleQuestion"></fa-icon>
+             </span>
+            <p>
+              {{"ACTUAL_QUESTION_MILLION"|translate}}
+            </p>
+          </div>
+          <div class="text-center py-5 flex justify-center items-end">
+            <a [routerLink]="'/'+[RoutesName.planContent]" class="focus:outline-none
+                   inline-block my-2
+                   text-white main-green-bg
+                   cursor-pointer
+                   hover:!bg-green-700
+                   font-bold
+                   rounded-full text-sm md:text-md lg:text-lg px-5 py-2.5 mb-2">
+              {{"BUY_FULL_TRAINER_CONTENT"|translate}}
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+</div>

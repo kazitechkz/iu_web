@@ -27,26 +27,6 @@
       </div>
     </div>
   </div>
-  <div class="grid grid-cols-12 gap-3 py-5 my-3 ">
-    <div class="col-span-12 md:col-span-12 card md:flex items-center justify-center text-center">
-      <p class="md:text-lg font-bold py-4 md:mr-2">
-        {{"CHOOSE_LANGUAGE"|translate}}
-      </p>
-      <ui-switch
-        class="inline"
-        checkedLabel="Қазақ тілі"
-        defaultBgColor = '#9BA1FF'
-        (valueChange)="changeLanguage($event)"
-        size="large"
-        uncheckedLabel="Русский язык"
-        defaultBoColor="white"
-        [checked]="locale_id == 1"
-        checkedTextColor="white"
-        switchColor="#fcfcfc"
-        uncheckedTextColor="white"
-      ></ui-switch>
-    </div>
-  </div>
   <section *ngIf="subjects">
     <div class="grid grid-cols-12 gap-3 py-5 my-3 ">
       <div class="col-span-12 md:col-span-12 card px-4">
@@ -63,54 +43,79 @@
         </div>
       </div>
     </div>
-    <div class="col-span-12 md:col-span-12 card px-4">
-      <p class="text-lg md:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold py-4 text-center md:text-left">
-        {{"CHOOSE_SUBJECT"|translate}}
-      </p>
-    </div>
-      <div class="col-span-12 flex justify-center" *ngIf="locale_id && chosenSubject.length == 2">
+    <div class="grid grid-cols-12 gap-3 py-5 my-3" *ngIf="chosenSubject.length == 2">
+      <div class="col-span-12 md:col-span-12 card md:flex items-center justify-center text-center">
+        <p class="md:text-lg font-bold py-4 md:mr-2">
+          {{"CHOOSE_LANGUAGE"|translate}}
+        </p>
+        <ui-switch
+          class="inline"
+          checkedLabel="Қазақ тілі"
+          defaultBgColor = '#9BA1FF'
+          (valueChange)="changeLanguage($event)"
+          size="large"
+          uncheckedLabel="Русский язык"
+          defaultBoColor="white"
+          [checked]="locale_id == 1"
+          checkedTextColor="white"
+          switchColor="#fcfcfc"
+          uncheckedTextColor="white"
+        ></ui-switch>
+      </div>
+      <div class="col-span-12 flex justify-center">
         <button type="button" class=" inline
-      mt-4
-      text-lg
-      min-w-[225px]
-      font-bold
-      inline
-      main-green-bg
-      text-white
-      text-2xl
-      focus:outline-none focus:ring-4
-      focus:ring-green-300 font-medium
-      rounded-full text-sm px-5 py-5
-      text-center mr-2 mb-2
-   "
-                (click)="createAttempt()"
+              mt-4
+              text-lg
+              min-w-[225px]
+              font-bold
+              inline
+              main-green-bg
+              text-white
+              text-2xl
+              focus:outline-none focus:ring-4
+              focus:ring-green-300 font-medium
+              rounded-full text-sm px-5 py-5
+              text-center mr-2 mb-2
+           "
+           (click)="checkIfUserHasPermission()"
         >
           {{"START_UNT"|translate}}
           <fa-icon [icon]="faForwardFast" class="mx-2 text-lg"></fa-icon>
         </button>
       </div>
-
+    </div>
+    <div class="col-span-12 md:col-span-12 card px-4">
+      <p class="text-lg md:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold py-4 text-center md:text-left">
+        {{"CHOOSE_SUBJECT"|translate}}
+      </p>
+    </div>
     <div class="col-span-12">
-      <ngx-slick-carousel class="carousel carousel-pass-unt max-w-full"
-                          [config]="slideConfig">
-        <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg relative">
-          <fa-icon *ngIf="chosenSubject.includes(subject.id)" [icon]="faCircleCheck" class="main-green-color z-40 absolute right-1.5 top-1.5 text-4xl"></fa-icon>
-          <div (click)="chooseSubject(subject.id)" class="cursor-pointer min-h-[200px] max-h-[250px] relative  md:min-h-[250px] md:max-h-[300px] lg:min-h-[150px] lg:max-h-[200px] xl:min-h-[180px] xl:max-h-[250px] 2xl:min-h-[250px] 2xl:max-h-[350px] bg-cover bg-center rounded-2xl"
-               [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}">
-            <div class="p-3 absolute z-30 w-full bottom-0 flex justify-center items-center cursor-pointer">
+      <owl-carousel-o [options]="customOptions" class="py-2">
+        <ng-template carouselSlide *ngFor="let subject of subjects">
+          <div class="slide card rounded-2xl shadow-lg relative">
+            <fa-icon *ngIf="chosenSubject.includes(subject.id)" [icon]="faCircleCheck" class="main-green-color z-40 absolute right-1.5 top-1.5 text-4xl"></fa-icon>
+            <div class="cursor-pointer min-h-[200px] max-h-[250px] relative  md:min-h-[250px] md:max-h-[300px] lg:min-h-[150px] lg:max-h-[200px] xl:min-h-[180px] xl:max-h-[250px] 2xl:min-h-[250px] 2xl:max-h-[350px] bg-cover bg-center rounded-2xl"
+                 [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}">
+              <div class="p-3 absolute z-30 w-full bottom-0 flex justify-center items-center cursor-pointer">
+                <button (click)="chooseSubject(subject.id)" *ngIf="!chosenSubject.includes(subject.id)" type="button" class="text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
+                  <fa-icon [icon]="faCheck"></fa-icon> {{"CHOOSE"|translate}}
+                </button>
+                <button (click)="chooseSubject(subject.id)" *ngIf="chosenSubject.includes(subject.id)" type="button" class="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
+                  <fa-icon [icon]="faXmark"></fa-icon> {{"CANCEL"|translate}}
+                </button>
+              </div>
+            </div>
+            <div class="flex justify-center items-center min-h-[80px]">
+              <p class="text-center text-md lg:text-lg font-bold py-4 px-3">
+                {{subject | globalTranslate:"title": translate.currentLang}}
+              </p>
             </div>
           </div>
-          <div>
-            <p class="text-center text-md font-bold py-4 px-3">
-              {{subject | globalTranslate:"title": translate.currentLang}}
-            </p>
-          </div>
-        </div>
-      </ngx-slick-carousel>
+        </ng-template>
+      </owl-carousel-o>
     </div>
-
   </section>
 
 
-
+<app-modal-unt-trainer (dialogResult)="createAttempt($event)" #modalBuyUNT/>
 </div>

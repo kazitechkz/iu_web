@@ -92,7 +92,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       title: 'SUBSCRIPTION',
-      path: RoutesName.planContent,
+      path: RoutesName.planMode,
       icon: faHandshake as IconProp
     },
     {

@@ -61,6 +61,8 @@ import { MyTicketsComponent } from './techSupport/my-tickets/my-tickets.componen
 import { CreateTicketComponent } from './techSupport/create-ticket/create-ticket.component';
 import { TicketDetailComponent } from './techSupport/ticket-detail/ticket-detail.component';
 import { ShopIndexComponent } from './shop/shop-index/shop-index.component';
+import {CarouselModule} from "ngx-owl-carousel-o";
+import { PlanModeComponent } from './plan/plan-mode/plan-mode.component';
 
 
 @NgModule({
@@ -106,6 +108,7 @@ import { ShopIndexComponent } from './shop/shop-index/shop-index.component';
         CreateTicketComponent,
         TicketDetailComponent,
         ShopIndexComponent,
+        PlanModeComponent,
     ],
     imports: [
         CommonModule,
@@ -135,6 +138,7 @@ import { ShopIndexComponent } from './shop/shop-index/shop-index.component';
         CalendarCommonModule,
         SweetAlert2Module.forRoot(),
         NgOptimizedImage,
+        CarouselModule,
     ],
   providers: [MathJaxPipe, TranslatePipe]
 })

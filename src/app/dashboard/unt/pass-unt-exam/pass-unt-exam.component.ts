@@ -325,8 +325,32 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
       {
         breakpoint: 899,
         settings: {
+          slidesToShow: 5,
+          slidesToScroll: 5,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 620,
+        settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          dots: false
+        }
+      },
+      {
+        breakpoint: 300,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
           dots: false
         }
       }

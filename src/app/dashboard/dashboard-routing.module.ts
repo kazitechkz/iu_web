@@ -41,6 +41,7 @@ import {MyTicketsComponent} from "./techSupport/my-tickets/my-tickets.component"
 import {CreateTicketComponent} from "./techSupport/create-ticket/create-ticket.component";
 import {TicketDetailComponent} from "./techSupport/ticket-detail/ticket-detail.component";
 import {ShopIndexComponent} from "./shop/shop-index/shop-index.component";
+import {PlanModeComponent} from "./plan/plan-mode/plan-mode.component";
 
 
 const routes: Routes = [
@@ -120,6 +121,10 @@ const routes: Routes = [
       {
         path: 'stat-attempt/:id',
         component: StatByAttemptIdComponent
+      },
+      {
+        path: 'plan-mode',
+        component: PlanModeComponent
       },
       {
         path: 'plan-unt',

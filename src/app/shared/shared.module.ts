@@ -16,6 +16,8 @@ import { TeacherSidebarComponent } from './components/teacher-sidebar/teacher-si
 import { AnnouncementListComponent } from './components/announcement-list/announcement-list.component';
 import {SlickCarouselModule} from "ngx-slick-carousel";
 import {NgxSmartModalModule} from "ngx-smart-modal";
+import { ModalUntTrainerComponent } from './components/modal-unt-trainer/modal-unt-trainer.component';
+import { ModalContentOfferComponent } from './components/modal-content-offer/modal-content-offer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {NgxSmartModalModule} from "ngx-smart-modal";
     NavbarComponent,
     HomeNavbarComponent,
     TeacherSidebarComponent,
-    AnnouncementListComponent
+    AnnouncementListComponent,
+    ModalUntTrainerComponent,
+    ModalContentOfferComponent
   ],
   imports: [
     CommonModule,
@@ -49,6 +53,8 @@ import {NgxSmartModalModule} from "ngx-smart-modal";
     HomeNavbarComponent,
     TeacherSidebarComponent,
     AnnouncementListComponent,
+    ModalUntTrainerComponent,
+    ModalContentOfferComponent,
 
   ],
   providers:[TranslateStore ],

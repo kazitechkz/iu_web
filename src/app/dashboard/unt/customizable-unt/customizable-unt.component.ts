@@ -1,5 +1,13 @@
-import {Component, DestroyRef, inject, OnDestroy, OnInit} from '@angular/core';
-import {faBook, faBoxesPacking, faCircleCheck, faClock, faLanguage} from "@fortawesome/free-solid-svg-icons";
+import {Component, DestroyRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  faBook,
+  faBoxesPacking,
+  faCheck,
+  faCircleCheck,
+  faClock,
+  faLanguage, faLock,
+  faXmark
+} from "@fortawesome/free-solid-svg-icons";
 import {Store} from "@ngrx/store";
 import {Subject} from "../../../shared/models/subject.model";
 import {ImageHelper} from "../../../core/helpers/image.helper";
@@ -37,6 +45,9 @@ import {
   createAttemptSettingsSelector
 } from "../../../shared/store/attemptSettings/createAttemptSettings/createAttemptSettings.selector";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
+import {OwlOptions} from "ngx-owl-carousel-o";
+import {ModalUntTrainerComponent} from "../../../shared/components/modal-unt-trainer/modal-unt-trainer.component";
+import {ModalContentOfferComponent} from "../../../shared/components/modal-content-offer/modal-content-offer.component";
 
 @Component({
   selector: 'app-customizable-unt',
@@ -44,6 +55,9 @@ import {GlobalTranslateService} from "../../../shared/services/globalTranslate.s
   styleUrls: ['./customizable-unt.component.scss']
 })
 export class CustomizableUntComponent implements OnInit,OnDestroy{
+  //@ts-ignore
+  @ViewChild('modalBuyUNTContent', { static: false }) modalBuyUNTContent: ModalContentOfferComponent;
+
   //Injection
   private _store = inject(Store);
   destroyRef = inject(DestroyRef);
@@ -54,6 +68,7 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
   //@ts-ignore
   me:Me;
   subjects:Subject[] = [];
+  allSubjects:Subject[] = [];
   public categories: CategoryModel[] = []
   protected readonly ImageHelper = ImageHelper;
   chosenSubject:number = 0;
@@ -97,6 +112,9 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
   ngOnDestroy(): void {
   }
 
+  openBuyDialog(subject:Subject){
+    this.modalBuyUNTContent.openDialog(subject)
+  }
   chooseSubject(id:number){
     this.chosenSubject = id;
     this.getCategories();
@@ -113,6 +131,7 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
     this._store.select(getMySubjectsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         this.subjects = item.data;
+        this.getAllSubjects();
       }
     })
   }
@@ -138,7 +157,16 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
     }
   }
 
-
+  getAllSubjects(){
+    this._store.dispatch(subjectGetAction());
+    this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        let mySubjects:number[] = [];
+        this.subjects.forEach(item=>mySubjects.push(item.id));
+        this.allSubjects = item.data.filter(item=>!mySubjects.includes(item.id))
+      }
+    })
+  }
 
   changeLanguage(value:any){
     this.locale_id = value ? 1 : 2;
@@ -326,40 +354,34 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
     this.updateBasket()
   }
 
-  slideConfig = {
-    "slidesToShow": 4,
-    "slidesToScroll": 1,
-    "dots": true,
-    "arrows":true,
-    "infinite": false,
-    "center":false,
-    "responsive": [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          dots: false
-        }
+  customOptions: OwlOptions = {
+    loop: true,
+    items:5,
+    margin:15,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    autoHeight:true,
+    autoWidth:true,
+    nav:false,
+    navText: ["<",">"],
+    responsive: {
+      0: {
+        items: 1
       },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          dots: false
-        }
+      400: {
+        items: 2
       },
-      {
-        breakpoint: 700,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: true
-        }
+      740: {
+        items: 3
+      },
+      940: {
+        items: 5
       }
-    ]
-  };
+    },
+  }
 
   protected readonly faClock = faClock;
   protected readonly faBook = faBook;
@@ -368,4 +390,7 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
   protected readonly faCircleCheck = faCircleCheck;
   protected readonly StrHelper = StrHelper;
   protected readonly String = String;
+  protected readonly faCheck = faCheck;
+  protected readonly faXmark = faXmark;
+  protected readonly faLock = faLock;
 }

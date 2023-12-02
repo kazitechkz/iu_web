@@ -57,16 +57,32 @@
       {{"CHOOSE_SUBJECT"|translate}}
     </p>
   </div>
-  <ngx-slick-carousel class="carousel"
-                      [config]="slideConfig">
-    <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer relative" (click)="chooseSubject(subject.id)">
-      <fa-icon *ngIf="chosenSubject == subject.id" [icon]="faCircleCheck" class="main-green-color absolute right-1.5 top-1.5 text-4xl"></fa-icon>
-      <div class=" min-h-[250px] max-h-[350px] bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
-      <p class="text-center text-xl font-bold py-4">
-        {{subject | globalTranslate:"title": translate.currentLang}}
-      </p>
-    </div>
-  </ngx-slick-carousel>
+  <div class="col-span-12 md:col-span-12 p-3">
+  <owl-carousel-o [options]="customOptions" class="py-2">
+    <ng-template carouselSlide *ngFor="let subject of subjects">
+      <div  class="card rounded-2xl shadow-lg cursor-pointer relative" (click)="chooseSubject(subject.id)">
+        <fa-icon *ngIf="chosenSubject == subject.id" [icon]="faCircleCheck" class="main-green-color absolute right-1.5 top-1.5 text-4xl"></fa-icon>
+        <div class=" min-h-[250px] max-h-[350px] bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
+        <div class="min-h-[90px] flex justify-center items-center">
+          <p class="text-center text-xl font-bold py-4">
+            {{subject | globalTranslate:"title": translate.currentLang}}
+          </p>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template carouselSlide *ngFor="let subjectItem of allSubjects">
+      <div  class="card rounded-2xl shadow-lg cursor-pointer relative cursor-pointer" (click)="openBuyDialog(subjectItem)">
+        <fa-icon [icon]="faLock" class="text-gray-600 absolute right-1.5 top-1.5 text-4xl z-40"></fa-icon>
+        <div class=" min-h-[250px] max-h-[350px] bg-cover bg-center rounded-2xl grayscale" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subjectItem.image?.url) + ')'}"></div>
+        <div class="min-h-[90px] flex justify-center items-center">
+          <p class="text-center text-xl font-bold py-4">
+            {{subjectItem | globalTranslate:"title": translate.currentLang}}
+          </p>
+        </div>
+      </div>
+    </ng-template>
+  </owl-carousel-o>
+  </div>
 
   <div class="col-span-12 md:col-span-12 p-3">
 
@@ -205,5 +221,6 @@
 
   </div>
 
+  <app-modal-content-offer #modalBuyUNTContent/>
 
 </div>
