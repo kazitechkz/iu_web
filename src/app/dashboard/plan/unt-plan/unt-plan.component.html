@@ -110,6 +110,7 @@
       >
         <div class="w-full lg:w-3/12 ">
           <input
+              [checked]="selectedPlanId == plan.id"
                   (click)="selectPlan(plan.id)"
                   id="{{plan.tag}}" type="radio" value="" name="plan-1" class="w-8 h-8 main-secondary-color main-secondary-bg border-gray-300 checked:bg-white focus:ring-[#9BA1FF] focus:ring-2">
         </div>

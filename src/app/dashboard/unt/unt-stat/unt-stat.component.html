@@ -110,15 +110,6 @@
                 {{"RESULT"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
-                {{"UNT_TYPE"|translate}}
-              </th>
-              <th scope="col" class="px-6 py-3">
-                {{"UNT_LANGUAGE"|translate}}
-              </th>
-              <th scope="col" class="px-6 py-3">
-                {{"START_AT"|translate}}
-              </th>
-              <th scope="col" class="px-6 py-3">
                 {{"END_AT"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
@@ -141,15 +132,6 @@
               </td>
               <td class="px-6 py-4">
                 <p class="text-black ml-2 font-bold">{{attempt.points}} из {{attempt.max_points}}</p>
-              </td>
-              <td class="px-6 py-4">
-                <p class="text-black ml-2">{{attempt.attempt_type != null ? (attempt.attempt_type| globalTranslate:"title": translate.currentLang) : ""}}</p>
-              </td>
-              <td class="px-6 py-4">
-                <p class="text-black ml-2">{{attempt.locale != null ? attempt.locale.title : ""}}</p>
-              </td>
-              <td class="px-6 py-4">
-                <p class="text-black ml-2">{{moment(attempt.start_at).format('DD/MM/YYYY HH:mm')}}</p>
               </td>
               <td class="px-6 py-4">
                 <p *ngIf="attempt.end_at;else countdownTimer" class="text-black ml-2">{{moment(attempt.end_at).format('DD/MM/YYYY HH:mm')}}</p>
