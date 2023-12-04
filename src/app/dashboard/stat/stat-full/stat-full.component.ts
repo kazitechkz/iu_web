@@ -72,6 +72,11 @@ export class StatFullComponent implements OnInit {
     )
   }
 
+  getRightPercentage(right:any,not_right:any){
+    let total = (right + not_right)
+    let result = right/total * 100;
+    return ""+result + "%";
+  }
   setAttemptType($event:number){
     this.requestData.type_id = $event;
     this.getFullStat();
@@ -114,4 +119,5 @@ export class StatFullComponent implements OnInit {
   protected readonly ImageHelper = ImageHelper;
   protected readonly Object = Object;
   protected readonly Array = Array;
+  protected readonly JSON = JSON;
 }

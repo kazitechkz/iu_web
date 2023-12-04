@@ -145,10 +145,24 @@
               {{getSubjectById(subjectStat.key) | globalTranslate:"title": translate.currentLang}}
               </p>
             </div>
-            <div class="card-result-indicators py-2" *ngFor="let resultKey of Object.keys(subjectStat.value)">
-              <div class="mb-1 text-lg font-medium ">{{resultKey}}</div>
-              <div class="w-full h-2 bg-gray-200 rounded-full dark:bg-gray-700">
-                <div class="h-2 rounded-full" style="width: 45%" [ngStyle]="{'background':colors[subjectStat.key]}"></div>
+            <div class="card-result-indicators py-2 my-3" *ngFor="let resultKey of subjectStat.value | keys">
+              <div class="mb-1 text-md font-bold" *ngIf="resultKey.value">
+                <p *ngIf="resultKey.value['sub_category'];else noSubCategory">
+                  {{resultKey.value["sub_category"]["title_ru"]}}
+                </p>
+                <ng-template #noSubCategory>
+                  {{"NO_CATEGORY_QUESTION"|translate}}
+                </ng-template>
+                <p>
+                  <span class="main-green-color">{{resultKey.value['right']}}</span>/<span class="text-red-500">{{resultKey.value['not_right']}}</span>
+                  ({{getRightPercentage(resultKey.value['right'],resultKey.value['not_right'])}})
+                </p>
+              </div>
+              <p>
+
+              </p>
+              <div class="w-full h-2 bg-red-500 rounded-full">
+                <div class="h-2 rounded-full main-green-bg" [ngStyle]="{'width':getRightPercentage(resultKey.value['right'],resultKey.value['not_right'])}"></div>
               </div>
             </div>
         </div>
