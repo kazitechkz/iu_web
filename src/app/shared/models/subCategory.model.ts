@@ -12,3 +12,14 @@ export interface SubCategoryModel {
   c_questions_count: number
   m_questions_count: number
 }
+
+export interface SubCategory {
+  id: number
+  category_id: number
+  title_kk: string
+  title_ru: string
+  image_url: Image | null
+  category:CategoryModel|null
+  created_at:Date|null
+  updated_at:Date|null
+}

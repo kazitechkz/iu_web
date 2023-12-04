@@ -63,6 +63,7 @@ import { TicketDetailComponent } from './techSupport/ticket-detail/ticket-detail
 import { ShopIndexComponent } from './shop/shop-index/shop-index.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
 import { PlanModeComponent } from './plan/plan-mode/plan-mode.component';
+import { StatFullComponent } from './stat/stat-full/stat-full.component';
 
 
 @NgModule({
@@ -109,6 +110,7 @@ import { PlanModeComponent } from './plan/plan-mode/plan-mode.component';
         TicketDetailComponent,
         ShopIndexComponent,
         PlanModeComponent,
+        StatFullComponent,
     ],
     imports: [
         CommonModule,

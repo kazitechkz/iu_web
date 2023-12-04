@@ -69,6 +69,9 @@ export class ContentPlanComponent implements OnInit,OnDestroy{
     }
   }
 
+  getStat(){
+
+  }
   getSubjects(){
     this._store.dispatch(subjectGetAction());
     this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{

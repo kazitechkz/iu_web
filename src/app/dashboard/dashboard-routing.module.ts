@@ -42,6 +42,7 @@ import {CreateTicketComponent} from "./techSupport/create-ticket/create-ticket.c
 import {TicketDetailComponent} from "./techSupport/ticket-detail/ticket-detail.component";
 import {ShopIndexComponent} from "./shop/shop-index/shop-index.component";
 import {PlanModeComponent} from "./plan/plan-mode/plan-mode.component";
+import {StatFullComponent} from "./stat/stat-full/stat-full.component";
 
 
 const routes: Routes = [
@@ -141,6 +142,10 @@ const routes: Routes = [
       {
         path: 'stat-subject/:id',
         component: StatBySubjectIdComponent
+      },
+      {
+        path: 'stat-full',
+        component: StatFullComponent
       },
       {
         path: 'my-profile',

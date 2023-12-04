@@ -127,6 +127,9 @@ import {
 } from "../../shared/store/techSupport/closeTechSupportTicket/closeTechSupportTicket.reducer";
 import {statDashboardReducer} from "../../shared/store/teacher/dashboard/dashboard.reducer";
 import {factReducer} from "../../shared/store/fact/fact.reducer";
+import {allAttemptTypesReducer} from "../../shared/store/attempt/allAttemptTypes/allAttemptTypes.reducer";
+import {FullStatEffect} from "../../shared/store/stat/fullStat/fullStat.effect";
+import {fullStatReducer} from "../../shared/store/stat/fullStat/fullStat.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -225,6 +228,8 @@ export const ReducersConstants = {
   createTechSupportTicket:createTechSupportTicketReducer,
   createTechSupportMessage:createTechSupportMessageReducer,
   closeTechSupportTicket:closeTechSupportTicketReducer,
-  facts: factReducer
+  facts: factReducer,
+  allAttemptTypes:allAttemptTypesReducer,
+  fullStat:fullStatReducer,
 }
 

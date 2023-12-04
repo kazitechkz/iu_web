@@ -16,6 +16,7 @@ export enum APIRoutesName {
     getSubStepResult = "check-sub-step-result",
     getAttemptById = "attempt_by",
     userAttempts = "user-attempts",
+    allAttemptTypes = "attempt-types",
     getStatAttemptById = "statistics-attempt-by",
     getUntStat = "user-unt-statistics",
     finishAttempt = "finish",
@@ -91,4 +92,5 @@ export enum APIRoutesName {
     createTechSupportTicket="tech-support-create-ticket",
     createTechSupportMessage="tech-support-create-message",
     closeTechSupportTicket="tech-support-close-ticket",
+    fullStat="statistics/full-stats"
 }
