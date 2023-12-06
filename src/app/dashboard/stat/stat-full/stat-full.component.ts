@@ -72,10 +72,30 @@ export class StatFullComponent implements OnInit {
     )
   }
 
-  getRightPercentage(right:any,not_right:any){
-    let total = (right + not_right)
-    let result = right/total * 100;
-    return ""+result + "%";
+  getColorPercentage(right:any,not_right:any){
+    let total = (right + not_right);
+    let result:number = right/total * 100;
+    if(result >= 80){
+      return 'text-green-500';
+    }
+    if(result <  80 && result > 50){
+      return 'text-blue-500';
+    }
+    if(result <  50 && result >= 25){
+      return 'text-yellow-500';
+    }
+    else{
+      return 'text-red-500';
+    }
+  }
+  getRightPercentage(right:any,not_right:any,zero:number = 0){
+    let total = (right + not_right);
+    let result:number = right/total * 100;
+    if(result == 0){
+      result = zero;
+    }
+    let resultString = Number(result).toFixed(1);
+    return ""+resultString + "%";
   }
   setAttemptType($event:number){
     this.requestData.type_id = $event;
@@ -118,6 +138,4 @@ export class StatFullComponent implements OnInit {
   protected readonly faQuestionCircle = faQuestionCircle;
   protected readonly ImageHelper = ImageHelper;
   protected readonly Object = Object;
-  protected readonly Array = Array;
-  protected readonly JSON = JSON;
 }
