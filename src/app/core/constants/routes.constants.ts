@@ -52,4 +52,7 @@ export enum RoutesName {
     ticketDetail = "dashboard/ticket-detail",
     noPageIndex = "dashboard/no-page-ready",
     statFull = "dashboard/stat-full",
+    myQuestions = "dashboard/my-questions",
+    savedQuestions = "dashboard/saved-questions",
+    appealedQuestions = "dashboard/appealed-questions",
 }

@@ -54,10 +54,12 @@ export class MyQuestionsComponent implements OnInit{
 
   changeSavedQuestion(page:number){
     this.requestSavedQuestion.page = page;
+    this.getMySavedQuestions();
   }
 
   changeAppealQuestion(page:number){
     this.requestAppealQuestion.page = page;
+    this.getMyAppealQuestions();
   }
 
   getMySavedQuestions(){

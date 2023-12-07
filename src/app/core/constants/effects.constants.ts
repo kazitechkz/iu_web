@@ -132,6 +132,7 @@ import {
 } from "../../shared/store/appeal/getMyAppealQuestionById/getMyAppealQuestionById.effect";
 import {MyStudentsEffect} from "../../shared/store/teacher/my-students/my-students.effect";
 import {StatByUserEffect} from "../../shared/store/teacher/stats/stats-by-user/stat-by-user.effect";
+import {CheckPlanUNTEffect} from "../../shared/store/plan/checkPlanUNT/checkPlanUNT.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -232,5 +233,6 @@ export const EffectsConstants = [
     StatBySubjectEffect,
     StatByUntEffect,
     MyStudentsEffect,
-    StatByUserEffect
+    StatByUserEffect,
+    CheckPlanUNTEffect,
 ]

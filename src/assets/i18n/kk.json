@@ -301,5 +301,14 @@
   "SELECT_DATE_FROM": "Күнді таңдаңыз",
   "SELECT_DATE_TO": "Күнді таңдаңыз",
   "MY_STUDENTS": "Менің оқушыларым",
-  "CLASS": "Сынып"
+  "CLASS": "Сынып",
+  "MY_QUESTIONS":"Менің сұрақтарым",
+  "SAVED_QUESTIONS":"Сақталған сұрақтар",
+  "APPEAL_QUESTIONS": "Апелляциялық сұрақтар",
+  "WEEK":"Апта",
+  "TODAY": "Бүгін",
+  "APPEAL_TYPE": "Апелляциялық түрлері",
+  "QUESTION": "Сұрақ",
+  "SUBJECT":"Пән",
+  "EXPLANATION":"Түсіндіру"
 }

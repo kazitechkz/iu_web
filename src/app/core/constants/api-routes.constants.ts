@@ -45,6 +45,7 @@ export enum APIRoutesName {
     statByAttemptId = "statistics/attempt-stats",
     statBySubjectId = "statistics/subject-stats",
     getUntPlan = "plan/unt",
+    checkPlanUNT = "plan/check-unt-plan",
     getLearningPlan = "plan/learning",
     uploadImage = "upload-image",
     forumCreate = "forum/create",

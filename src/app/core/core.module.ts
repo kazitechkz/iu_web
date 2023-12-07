@@ -29,6 +29,7 @@ import { KeysPipe } from './pipes/keys.pipe';
         MathJaxPipe,
         GetYoutubeIDPipe,
         KeysPipe,
+        TruncatePipe,
     ]
 })
 export class CoreModule {

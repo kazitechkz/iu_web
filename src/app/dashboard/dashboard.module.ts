@@ -65,6 +65,8 @@ import {CarouselModule} from "ngx-owl-carousel-o";
 import { PlanModeComponent } from './plan/plan-mode/plan-mode.component';
 import { StatFullComponent } from './stat/stat-full/stat-full.component';
 import { MyQuestionsComponent } from './question/my-questions/my-questions.component';
+import { SavedQuestionComponent } from './question/saved-question/saved-question.component';
+import { AppealQuestionComponent } from './question/appeal-question/appeal-question.component';
 
 
 @NgModule({
@@ -113,6 +115,8 @@ import { MyQuestionsComponent } from './question/my-questions/my-questions.compo
         PlanModeComponent,
         StatFullComponent,
         MyQuestionsComponent,
+        SavedQuestionComponent,
+        AppealQuestionComponent,
     ],
     imports: [
         CommonModule,

@@ -20,6 +20,8 @@ import {ImageHelper} from "../../../core/helpers/image.helper";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {ModalUntTrainerComponent} from "../../../shared/components/modal-unt-trainer/modal-unt-trainer.component";
+import {checkPlanUNTAction} from "../../../shared/store/plan/checkPlanUNT/checkPlanUNT.action";
+import {checkPlanUNTSelector} from "../../../shared/store/plan/checkPlanUNT/checkPlanUNT.selector";
 
 @Component({
   selector: 'app-single-subject',
@@ -36,10 +38,16 @@ export class SingleSubjectComponent implements OnInit{
     protected readonly faLanguage = faLanguage;
     public translate = inject(GlobalTranslateService);
     subjects:Subject[] = [];
+    hasSubscription:boolean = false;
     locale_id:number = 1;
     chosenSubject:number[] = [];
 
   ngOnInit(): void {
+    this.checkSubscription();
+    this.getSubjects();
+  }
+
+  getSubjects(){
     this._store.dispatch(subjectGetAction());
     this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
@@ -48,6 +56,14 @@ export class SingleSubjectComponent implements OnInit{
     })
   }
 
+  checkSubscription() {
+    this._store.dispatch(checkPlanUNTAction());
+    this._store.select(checkPlanUNTSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      if (item.data) {
+        this.hasSubscription = item.data;
+      }
+    })
+  }
 
   chooseSubject(id:number){
     const index = this.chosenSubject.indexOf(id); // Check if target exists in the array
@@ -63,7 +79,7 @@ export class SingleSubjectComponent implements OnInit{
   }
 
   checkIfUserHasPermission(){
-    if(true){
+    if(!this.hasSubscription){
       this.modalBuyUNT.openDialog();
     }
     else {

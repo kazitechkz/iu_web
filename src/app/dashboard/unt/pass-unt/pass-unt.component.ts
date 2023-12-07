@@ -26,6 +26,8 @@ import {createAttemptAction} from "../../../shared/store/attempt/createAttempt/c
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {ModalUntTrainerComponent} from "../../../shared/components/modal-unt-trainer/modal-unt-trainer.component";
+import {checkPlanUNTAction} from "../../../shared/store/plan/checkPlanUNT/checkPlanUNT.action";
+import {checkPlanUNTSelector} from "../../../shared/store/plan/checkPlanUNT/checkPlanUNT.selector";
 @Component({
   selector: 'app-pass-unt',
   templateUrl: './pass-unt.component.html',
@@ -45,9 +47,15 @@ export class PassUntComponent implements OnInit{
   subjects:Subject[] = [];
   protected readonly ImageHelper = ImageHelper;
   chosenSubject:number[] = [];
+  hasSubscription:boolean = false;
   locale_id:number = 1;
   public translate = inject(GlobalTranslateService);
   ngOnInit(): void {
+    this.checkSubscription();
+    this.getSubjects();
+  }
+
+  getSubjects(){
     this._store.dispatch(subjectGetAction());
     this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
@@ -55,8 +63,17 @@ export class PassUntComponent implements OnInit{
         this.subjects = item.data.filter(item=>!item.is_compulsory);
       }
     })
-
   }
+
+  checkSubscription(){
+    this._store.dispatch(checkPlanUNTAction());
+    this._store.select(checkPlanUNTSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        this.hasSubscription = item.data;
+      }
+    })
+  }
+
   customOptions: OwlOptions = {
     loop: true,
     margin:15,
@@ -85,7 +102,7 @@ export class PassUntComponent implements OnInit{
   //@ts-ignore
 
   checkIfUserHasPermission(){
-    if(true){
+    if(!this.hasSubscription){
       this.modalBuyUNT.openDialog();
     }
     else {

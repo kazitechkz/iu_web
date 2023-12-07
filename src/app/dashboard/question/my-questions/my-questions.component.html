@@ -43,7 +43,7 @@
             role="tabpanel"
             aria-labelledby="tabs-home-tab"
             data-te-tab-active>
-            <div class="grid grid-cols-12 p-3 gap-2" >
+            <div class="grid grid-cols-12 p-3" >
               <div class="col-span-12" >
                 <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
                   <div class="relative overflow-x-auto" *ngIf="questionsPagination">
@@ -79,7 +79,7 @@
                         </td>
                         <td class="px-6 py-4">
                           <div class="text-black" *ngIf="question.text">
-                            <div class="text-black font-bold" [mathjax]="question.text"></div>
+                            <div class="text-black font-bold" [mathjax]="question.text | mathjaxTransform | truncate:30"></div>
                           </div>
                         </td>
                         <td class="px-6 py-4">
@@ -92,7 +92,7 @@
                         <td class="px-6 py-4">
                           <div class="text-black">
                             <div class="text-black font-bold">
-                              <a type="button" class="cursor-pointer text-white main-green-bg focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                              <a [routerLink]="'/' + RoutesName.savedQuestions + '/' + question.id.toString()" type="button" class="cursor-pointer text-white main-green-bg focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
                                 <fa-icon [icon]="faEye"></fa-icon>
                               </a>
                             </div>
@@ -105,7 +105,6 @@
                       <pagination-controls class="rounded-full" (pageChange)="changeSavedQuestion($event)"></pagination-controls>
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
@@ -116,9 +115,85 @@
             id="tabs-participated"
             role="tabpanel"
             aria-labelledby="tabs-profile-participated">
-            <div class="grid grid-cols-12 p-3 gap-2" >
-              <div class="col-span-12 md:col-span-4" >
-
+            <div class="grid grid-cols-12 p-3" >
+              <div class="col-span-12" >
+                <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
+                  <div class="relative overflow-x-auto" *ngIf="appealPagination">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" *ngIf="appealPagination.data">
+                      <thead class="text-xs text-gray-700 capitalize">
+                      <tr>
+                        <th scope="col" class="px-6 py-3">
+                          #
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          {{"SUBJECT"|translate}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          {{"APPEAL_TYPE"|translate}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          {{"QUESTION"|translate}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          {{"CREATED_AT"|translate}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          {{"ACTION"|translate}}
+                        </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let appeal of appealPagination.data | paginate: { itemsPerPage: appealPagination.per_page, currentPage: appealPagination.current_page,totalItems:appealPagination.total }">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex" *ngIf="appeal.question">
+                          <section *ngIf="appeal.question.subject">
+                            <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(appeal.question.subject.image?.url) +')'}"></div>
+                          </section>
+                        </th>
+                        <td class="px-6 py-4">
+                          <section *ngIf="appeal.question">
+                            <ul class="text-black" *ngIf="appeal.question.subject">
+                              <p class="text-black font-bold">{{appeal.question.subject |globalTranslate:'title':translate.currentLang}}</p>
+                            </ul>
+                          </section>
+                        </td>
+                        <td class="px-6 py-4">
+                          <section *ngIf="appeal.appeal_type">
+                            <ul class="text-black" *ngIf="appeal.appeal_type">
+                              <p class="text-black font-bold">{{appeal.appeal_type |globalTranslate:'title':translate.currentLang}}</p>
+                            </ul>
+                          </section>
+                        </td>
+                        <td class="px-6 py-4">
+                          <section *ngIf="appeal.question">
+                            <div class="text-black" *ngIf="appeal.question.text">
+                              <div class="text-black font-bold" [mathjax]="appeal.question.text | mathjaxTransform | truncate:30"></div>
+                            </div>
+                          </section>
+                        </td>
+                        <td class="px-6 py-4">
+                          <div class="text-black" *ngIf="appeal.question">
+                            <div class="text-black font-bold" *ngIf="appeal.question.created_at">
+                              {{moment(appeal.question.created_at).format("HH:mm DD/MM/YYYY")}}
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4">
+                          <div class="text-black">
+                            <div class="text-black font-bold">
+                              <a [routerLink]="'/' + RoutesName.appealedQuestions + '/' + appeal.id.toString()" type="button" class="cursor-pointer text-white main-green-bg focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                <fa-icon [icon]="faEye"></fa-icon>
+                              </a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <div class="my-2 flex justify-center">
+                      <pagination-controls class="rounded-full" (pageChange)="changeAppealQuestion($event)"></pagination-controls>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

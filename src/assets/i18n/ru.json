@@ -301,5 +301,15 @@
   "SELECT_DATE_FROM": "Выбрать дату от",
   "SELECT_DATE_TO": "Выбрать дату до",
   "MY_STUDENTS": "Мои ученики",
-  "CLASS": "Класс"
+  "CLASS": "Класс",
+  "MY_QUESTIONS": "Мои вопросы",
+  "SAVED_QUESTIONS": "Сохраненные вопросы",
+  "APPEAL_QUESTIONS": "Апеляционные вопросы",
+  "WEEK": "Неделя",
+  "TODAY": "Сегодня",
+  "APPEAL_TYPE": "Аппеляционные типы",
+  "QUESTION": "Вопрос",
+  "SUBJECT": "Дисциплина",
+  "EXPLANATION": "Объяснение"
+
 }

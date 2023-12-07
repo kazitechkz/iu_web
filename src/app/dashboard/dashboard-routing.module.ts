@@ -44,6 +44,8 @@ import {ShopIndexComponent} from "./shop/shop-index/shop-index.component";
 import {PlanModeComponent} from "./plan/plan-mode/plan-mode.component";
 import {StatFullComponent} from "./stat/stat-full/stat-full.component";
 import {MyQuestionsComponent} from "./question/my-questions/my-questions.component";
+import {SavedQuestionComponent} from "./question/saved-question/saved-question.component";
+import {AppealQuestionComponent} from "./question/appeal-question/appeal-question.component";
 
 
 const routes: Routes = [
@@ -203,6 +205,14 @@ const routes: Routes = [
       {
         path: 'my-questions',
         component: MyQuestionsComponent
+      },
+      {
+        path: 'saved-questions/:id',
+        component: SavedQuestionComponent
+      },
+      {
+        path: 'appealed-questions/:id',
+        component: AppealQuestionComponent
       },
       {
         path: 'create-ticket',

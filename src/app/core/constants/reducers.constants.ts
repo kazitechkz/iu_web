@@ -142,6 +142,7 @@ import {
 } from "../../shared/store/appeal/getMyAppealQuestionById/getMyAppealQuestionById.reducer";
 import {teacherMyStudentsReducer} from "../../shared/store/teacher/my-students/my-students.reducer";
 import {teacherStatByUserReducer} from "../../shared/store/teacher/stats/stats-by-user/stat-by-user.reducer";
+import {checkPlanUNTReducer} from "../../shared/store/plan/checkPlanUNT/checkPlanUNT.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -250,6 +251,7 @@ export const ReducersConstants = {
   getMyAppealQuestions:getMyAppealQuestionsReducer,
   getMyAppealQuestionById:getMyAppealQuestionByIdReducer,
   teacherMyStudents: teacherMyStudentsReducer,
-  teacherStatByUserId: teacherStatByUserReducer
+  teacherStatByUserId: teacherStatByUserReducer,
+  checkPlanUNT:checkPlanUNTReducer
 }
 

@@ -11,6 +11,7 @@ import {
   faUser,
   faToolbox,
   faF,
+  faCircleQuestion,
   faSitemap, faWallet, faRobot, faChess, faCartShopping, faHandshake, faMessage, faNewspaper, faUserCircle
 } from "@fortawesome/free-solid-svg-icons";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
@@ -104,6 +105,11 @@ export class SidebarComponent implements OnInit {
       title: 'STATISTICS',
       path: RoutesName.untStats,
       icon: faChartLine as IconProp
+    },
+    {
+      title: 'MY_QUESTIONS',
+      path: RoutesName.myQuestions,
+      icon: faCircleQuestion as IconProp
     },
     {
       title: 'MY_CLASSROOMS',
