@@ -11,6 +11,7 @@
 <!--          </div>-->
           <div class="my-5"></div>
           <div *ngIf="steps">
+
             <div *ngFor="let step of steps">
               <div *ngIf="step.level % 2 === 0" class="step-button flex justify-start bg-pos-bottom">
                 <button class="step-button-left" (click)="openDialog(step.id.toString())">
@@ -91,7 +92,7 @@
                         </div>
                       </div>
                     </a>
-                    <a href="javascript:void (0)" *ngIf="!subStep.is_free">
+                    <a class="cursor-pointer" (click)="openBuyContentDialog(step.subject)" *ngIf="!subStep.is_free">
                       <div
                         class="flex mobile:pl-2 sm:pl-2 mobile:items-center sm:items-center rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:max-w-xl">
                         <img
@@ -108,6 +109,7 @@
                         </div>
                       </div>
                     </a>
+
                   </div>
                 </ngx-smart-modal>
               </div>
@@ -127,54 +129,43 @@
       </div>
     </div>
 
-    <div class="container mx-auto my-3 py-2">
-<!--      <ngx-slick-carousel class="carousel"-->
-<!--                          [config]="slideConfig">-->
-<!--        <div ngxSlickItem *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer relative" routerLink="/dashboard/step/{{subject.id}}">-->
+<!--    <div class="container mx-auto my-3 py-2">-->
+<!--      <div class="flex overflow-x-auto overscroll-none scroll-smooth will-change-scroll scrollbar-color py-3" id="scroll-x">-->
+<!--        <div *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer flex-shrink-0" (click)="getStepDetailBySubjectID(subject.id)">-->
 <!--          <div class=" min-h-[250px]  bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>-->
 <!--          <p class="text-center text-md font-bold py-4">-->
-<!--            {{subject | globalTranslate: 'title': translate.currentLang}}-->
+<!--            {{subject.title_kk}}-->
 <!--          </p>-->
 <!--        </div>-->
-<!--      </ngx-slick-carousel>-->
-      <div class="flex overflow-x-auto overscroll-none scroll-smooth will-change-scroll scrollbar-color py-3" id="scroll-x">
-        <div *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer flex-shrink-0" (click)="getStepDetailBySubjectID(subject.id)">
-          <div class=" min-h-[250px]  bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
-          <p class="text-center text-md font-bold py-4">
-            {{subject.title_kk}}
-          </p>
-        </div>
-      </div>
+<!--      </div>-->
+<!--    </div>-->
+    <div class="col-span-12">
+      <owl-carousel-o [options]="customOptions" class="py-2">
+        <ng-template carouselSlide *ngFor="let subject of subjects">
+          <div class="slide card rounded-2xl shadow-lg relative">
+            <fa-icon *ngIf="chosenSubject.includes(subject.id)" [icon]="faCircleCheck" class="main-green-color z-40 absolute right-1.5 top-1.5 text-4xl"></fa-icon>
+            <div class="cursor-pointer min-h-[200px] max-h-[250px] relative  md:min-h-[250px] md:max-h-[300px] lg:min-h-[150px] lg:max-h-[200px] xl:min-h-[180px] xl:max-h-[250px] 2xl:min-h-[250px] 2xl:max-h-[350px] bg-cover bg-center rounded-2xl"
+                 [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}">
+              <div class="p-3 absolute z-30 w-full bottom-0 flex justify-center items-center cursor-pointer">
+                <button (click)="chooseSubject(subject.id)" *ngIf="!chosenSubject.includes(subject.id)" type="button" class="text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
+                  <fa-icon [icon]="faCheck"></fa-icon> {{"CHOOSE"|translate}}
+                </button>
+                <button (click)="chooseSubject(subject.id)" *ngIf="chosenSubject.includes(subject.id)" type="button" class="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
+                  <fa-icon [icon]="faXmark"></fa-icon> {{"CANCEL"|translate}}
+                </button>
+              </div>
+            </div>
+            <div class="flex justify-center items-center min-h-[80px]">
+              <p class="text-center text-md lg:text-lg font-bold py-4 px-3">
+                {{subject | globalTranslate:"title": translate.currentLang}}
+              </p>
+            </div>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
     </div>
   </div>
-
-  <!--        <div-->
-  <!--          class="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">-->
-  <!--          <a href="#!">-->
-  <!--            <img-->
-  <!--              class="rounded-t-lg"-->
-  <!--              src="https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg"-->
-  <!--              alt="" />-->
-  <!--          </a>-->
-  <!--          <div class="p-6">-->
-  <!--            <h5-->
-  <!--              class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">-->
-  <!--              Card title-->
-  <!--            </h5>-->
-  <!--            <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">-->
-  <!--              Some quick example text to build on the card title and make up the-->
-  <!--              bulk of the card's content.-->
-  <!--            </p>-->
-  <!--            <button-->
-  <!--              type="button"-->
-  <!--              class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"-->
-  <!--              data-te-ripple-init-->
-  <!--              data-te-ripple-color="light">-->
-  <!--              Button-->
-  <!--            </button>-->
-  <!--          </div>-->
-  <!--        </div>-->
-  <!--  </div>-->
 </div>
 
 
+<app-modal-content-offer #modalBuyContent/>

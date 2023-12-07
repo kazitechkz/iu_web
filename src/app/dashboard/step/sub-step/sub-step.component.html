@@ -1,5 +1,5 @@
 <!-- Container for demo purpose -->
-<div *ngIf="(subStep$ | async)?.data != null; else elseBlock">
+<div *ngIf="(subStep$ | async)?.data != null; else elseBlock" onmousedown="return false">
   <div class="container my-10 mx-auto md:px-6">
     <!-- Section: Design Block -->
     <section class="mb-12">

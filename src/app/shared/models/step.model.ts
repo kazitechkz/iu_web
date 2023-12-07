@@ -1,5 +1,6 @@
 import {Image} from "./image.model";
 import {CategoryModel} from "./category.model";
+import {Subject} from "./subject.model";
 export interface Steps {
   id: number
   title_ru: string
@@ -14,6 +15,7 @@ export interface Steps {
   image: Image | null
   progress_kk: number
   progress_ru: number
+  subject: Subject | null
 }
 export interface StepModel {
   id: number

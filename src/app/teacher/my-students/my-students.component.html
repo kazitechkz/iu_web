@@ -1,0 +1,57 @@
+<div class="mobile:p-1.5 p-5 rounded-[10px] bg-white">
+  <div class="flex">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
+      <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+        <div class="overflow-hidden">
+          <table class="min-w-full text-left text-sm font-light">
+            <thead class="border-b font-medium dark:border-neutral-500">
+            <tr>
+              <th scope="col" class="px-6 py-4">#</th>
+              <th scope="col" class="px-6 py-4"></th>
+              <th scope="col" class="px-6 py-4">{{'NAME' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'CLASS' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'PHONE' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'EMAIL' | translate}}</th>
+              <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users | keys"
+                class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
+              <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(user.key) + 1}}</td>
+              <td class="whitespace-nowrap px-6 py-4">
+                <div class="flex justify-center items-center my-2">
+                  <div class="rounded-full w-[30px] h-[30px] md:w-[60px] md:h-[60px] bg-center bg-no-repeat bg-cover" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(user.value.file?.url) +')'}"></div>
+                </div>
+              </td>
+              <td class="whitespace-nowrap px-6 py-4">{{user.value.name}}</td>
+              <td class="whitespace-nowrap px-6 py-4">
+                <span *ngFor="let classRoom of user.value.class_rooms">
+                  <span *ngIf="classRoom.classroom_group">{{classRoom.classroom_group.title_kk}} <br></span>
+                </span>
+              </td>
+              <td class="whitespace-nowrap px-6 py-4">{{user.value.phone}}</td>
+              <td class="whitespace-nowrap px-6 py-4">{{user.value.email}}</td>
+              <td class="whitespace-nowrap px-6 py-4">
+                <div class="flex">
+                  <a
+                    class="mx-2 text-black"
+                    tw-button
+                    layout="flat"
+                    [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherStatByUser) + '/' + user.value.id"
+                  >
+                    <i class="fa fa-line-chart" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </td>
+
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+

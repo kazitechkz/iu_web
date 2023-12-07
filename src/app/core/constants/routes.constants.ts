@@ -4,6 +4,8 @@ export enum RoutesName {
     dashboard = "dashboard/index",
     teacher = "teacher/index",
     teacherClassrooms = "classrooms",
+    teacherMyStudents = "my-students",
+    teacherStatByUser = "stat-by-user",
     teacherSingleTests = "single-tests",
     teacherUNTTests = "unt-tests",
     teacherDetailTest = "detail-test",

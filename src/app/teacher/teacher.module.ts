@@ -27,6 +27,9 @@ import {TranslatePipe} from "@ngx-translate/core";
 import { ProfileComponent } from './profile/profile.component';
 import {MathjaxModule} from "mathjax-angular";
 import {MarkdownModule} from "ngx-markdown";
+import { MyStudentsComponent } from './my-students/my-students.component';
+import { AllStatsComponent } from './stats/all-stats/all-stats.component';
+import {CountdownComponent} from "ngx-countdown";
 
 
 @NgModule({
@@ -42,24 +45,27 @@ import {MarkdownModule} from "ngx-markdown";
     SingleTestsComponent,
     UntTestsComponent,
     ProfileComponent,
+    MyStudentsComponent,
+    AllStatsComponent,
   ],
-    imports: [
-        CommonModule,
-        TeacherRoutingModule,
-        SharedModule,
-        CoreModule,
-        TwButtonModule,
-        NgxSmartModalModule.forChild(),
-        UiSwitchModule,
-        ReactiveFormsModule,
-        TwSelectModule,
-        SweetAlert2Module.forRoot(),
-        NgxPaginationModule,
-        FontAwesomeModule,
-        NgChartsModule,
-        MathjaxModule,
-        MarkdownModule
-    ],
+  imports: [
+    CommonModule,
+    TeacherRoutingModule,
+    SharedModule,
+    CoreModule,
+    TwButtonModule,
+    NgxSmartModalModule.forChild(),
+    UiSwitchModule,
+    ReactiveFormsModule,
+    TwSelectModule,
+    SweetAlert2Module.forRoot(),
+    NgxPaginationModule,
+    FontAwesomeModule,
+    NgChartsModule,
+    MathjaxModule,
+    MarkdownModule,
+    CountdownComponent
+  ],
   providers: [MathJaxPipe, TranslatePipe]
 })
 export class TeacherModule { }

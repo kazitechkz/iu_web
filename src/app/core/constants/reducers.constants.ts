@@ -127,9 +127,13 @@ import {
 } from "../../shared/store/techSupport/closeTechSupportTicket/closeTechSupportTicket.reducer";
 import {statDashboardReducer} from "../../shared/store/teacher/dashboard/dashboard.reducer";
 import {factReducer} from "../../shared/store/fact/fact.reducer";
+import {teacherStatBySubjectIdReducer} from "../../shared/store/teacher/stats/stats-by-subject/stat-by-subject.reducer";
+import {teacherStatByUNTReducer} from "../../shared/store/teacher/stats/stats-by-unt/stat-by-unt.reducer";
 import {allAttemptTypesReducer} from "../../shared/store/attempt/allAttemptTypes/allAttemptTypes.reducer";
 import {FullStatEffect} from "../../shared/store/stat/fullStat/fullStat.effect";
 import {fullStatReducer} from "../../shared/store/stat/fullStat/fullStat.reducer";
+import {teacherMyStudentsReducer} from "../../shared/store/teacher/my-students/my-students.reducer";
+import {teacherStatByUserReducer} from "../../shared/store/teacher/stats/stats-by-user/stat-by-user.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -229,7 +233,11 @@ export const ReducersConstants = {
   createTechSupportMessage:createTechSupportMessageReducer,
   closeTechSupportTicket:closeTechSupportTicketReducer,
   facts: factReducer,
+  teacherStatBySubjectId: teacherStatBySubjectIdReducer,
+  teacherStatByUNT: teacherStatByUNTReducer,
   allAttemptTypes:allAttemptTypesReducer,
   fullStat:fullStatReducer,
+  teacherMyStudents: teacherMyStudentsReducer,
+  teacherStatByUserId: teacherStatByUserReducer
 }
 

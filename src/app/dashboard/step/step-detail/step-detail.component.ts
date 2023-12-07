@@ -3,6 +3,7 @@ import {
   DestroyRef,
   inject,
   OnInit,
+  ViewChild
 } from '@angular/core';
 import {Store} from "@ngrx/store";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -12,7 +13,7 @@ import {getStepDetailState} from "../../../shared/store/step/detail/stepDetail.s
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import {ColorConstants} from "../../../core/constants/color.constants";
-import {faCircleCheck} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faCircleCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {subjectGetAction} from "../../../shared/store/subject/subject.action";
 import {getSubjectsState} from "../../../shared/store/subject/subject.selector";
 import {Subject} from "../../../shared/models/subject.model";
@@ -26,6 +27,7 @@ import {GlobalTranslateService} from "../../../shared/services/globalTranslate.s
 import {factAction} from "../../../shared/store/fact/fact.action";
 import {getFactStateSelector} from "../../../shared/store/fact/fact.selector";
 import {FactModel} from "../../../shared/models/fact.model";
+import {OwlOptions} from "ngx-owl-carousel-o";
 
 @Component({
   selector: 'app-step-detail',
@@ -33,7 +35,8 @@ import {FactModel} from "../../../shared/models/fact.model";
   styleUrls: ['./step-detail.component.scss']
 })
 export class StepDetailComponent implements OnInit {
-
+  //@ts-ignore
+  @ViewChild('modalBuyContent', { static: false }) modalBuyContent: ModalContentOfferComponent;
   public translate = inject(GlobalTranslateService)
   private _store = inject(Store)
   private _route = inject(ActivatedRoute)
@@ -45,28 +48,29 @@ export class StepDetailComponent implements OnInit {
   fact:FactModel;
   dialog = inject(NgxSmartModalService)
   public subSteps: SubStepModel[] | null = []
+  chosenSubject:number[] = [];
 
   ngOnInit(): void {
     this.getStepDetail()
     this.getSubjects()
     this.getFacts()
-    this.onScrollX()
+    // this.onScrollX()
   }
 
-  onScrollX() {
-    let scrollX = document.getElementById('scroll-x')
-    // @ts-ignore
-    scrollX.addEventListener("wheel", function (e) {
-      if (e.deltaY > 0) {
-        // @ts-ignore
-        scrollX.scrollLeft += 100;
-      }
-      else {
-        // @ts-ignore
-        scrollX.scrollLeft -= 100;
-      }
-    });
-  }
+  // onScrollX() {
+  //   let scrollX = document.getElementById('scroll-x')
+  //   // @ts-ignore
+  //   scrollX.addEventListener("wheel", function (e) {
+  //     if (e.deltaY > 0) {
+  //       // @ts-ignore
+  //       scrollX.scrollLeft += 100;
+  //     }
+  //     else {
+  //       // @ts-ignore
+  //       scrollX.scrollLeft -= 100;
+  //     }
+  //   });
+  // }
 
   openDialog(id: string) {
     this._store.dispatch(subStepAction({requestData: parseInt(id)}))
@@ -94,6 +98,10 @@ export class StepDetailComponent implements OnInit {
     })
   }
 
+  openBuyContentDialog(subject: Subject | null) {
+    this.dialog.closeLatestModal()
+    this.modalBuyContent.openDialog(subject)
+  }
   getFacts() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(factAction({subjectId: params['id']}))
@@ -136,49 +144,45 @@ export class StepDetailComponent implements OnInit {
       scrollableDiv.scrollTo({top: 0, behavior: 'smooth'})
     }
   }
-  //@ts-ignore
-  slideConfig = {
-    "slidesToShow": 5,
-    "slidesToScroll": 1,
-    "dots": true,
-    "arrows":false,
-    "infinite": false,
-    "responsive": [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 6,
-          infinite: true,
-          dots: false,
-        }
+  chooseSubject(id:number){
+    this.resetScroll()
+    const index = this.chosenSubject.indexOf(id); // Check if target exists in the array
+    if (index === -1) {
+      if(this.chosenSubject.length >= 1){
+        this.chosenSubject.splice(0, 1);
+      }
+      this.chosenSubject.push(id);
+      this._router.navigateByUrl('/dashboard/step/' + id).then(r => null)
+    } else {
+      // If target exists, remove it from the array
+      this.chosenSubject.splice(index, 1);
+    }
+  }
+  customOptions: OwlOptions = {
+    loop: true,
+    margin:15,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    nav:false,
+    navText: [],
+    responsive: {
+      0: {
+        items: 1
       },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 5,
-          dots: false
-        }
+      400: {
+        items: 2
       },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          dots: true
-        }
+      740: {
+        items: 3
       },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: true
-        }
-      },
-    ]
-  };
+      940: {
+        items: 5
+      }
+    },
+  }
 
   protected readonly ImageHelper = ImageHelper;
   protected readonly ColorConstants = ColorConstants;
@@ -187,4 +191,6 @@ export class StepDetailComponent implements OnInit {
   protected readonly RoutesName = RoutesName;
   protected readonly console = console;
   protected readonly StrHelper = StrHelper;
+  protected readonly faXmark = faXmark;
+  protected readonly faCheck = faCheck;
 }

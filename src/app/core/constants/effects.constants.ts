@@ -118,8 +118,12 @@ import {
 } from "../../shared/store/techSupport/closeTechSupportTicket/closeTechSupportTicket.effect";
 import {TeacherDashboardEffect} from "../../shared/store/teacher/dashboard/dashboard.effect";
 import {FactEffect} from "../../shared/store/fact/fact.effect";
+import {StatBySubjectEffect} from "../../shared/store/teacher/stats/stats-by-subject/stat-by-subject.effect";
+import {StatByUntEffect} from "../../shared/store/teacher/stats/stats-by-unt/stat-by-unt.effect";
 import {FullStatEffect} from "../../shared/store/stat/fullStat/fullStat.effect";
 import {AllAttemptTypesEffect} from "../../shared/store/attempt/allAttemptTypes/allAttemptTypes.effect";
+import {MyStudentsEffect} from "../../shared/store/teacher/my-students/my-students.effect";
+import {StatByUserEffect} from "../../shared/store/teacher/stats/stats-by-user/stat-by-user.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -212,4 +216,9 @@ export const EffectsConstants = [
     FactEffect,
     FullStatEffect,
     AllAttemptTypesEffect,
+    FactEffect,
+    StatBySubjectEffect,
+    StatByUntEffect,
+    MyStudentsEffect,
+    StatByUserEffect
 ]

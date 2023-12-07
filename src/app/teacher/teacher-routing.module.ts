@@ -14,6 +14,8 @@ import {DetailUntExamComponent} from "./exams/detail-unt-exam/detail-unt-exam.co
 import {SingleTestsComponent} from "./exams/single-tests/single-tests.component";
 import {UntTestsComponent} from "./exams/unt-tests/unt-tests.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {MyStudentsComponent} from "./my-students/my-students.component";
+import {AllStatsComponent} from "./stats/all-stats/all-stats.component";
 
 const routes: Routes = [
   {
@@ -28,6 +30,14 @@ const routes: Routes = [
       {
         path: RoutesName.teacherClassrooms,
         component: ClassroomsComponent
+      },
+      {
+        path: RoutesName.teacherMyStudents,
+        component: MyStudentsComponent
+      },
+      {
+        path: RoutesName.teacherStatByUser + '/:user_id',
+        component: AllStatsComponent
       },
       {
         path: 'detail-classroom/:id',
