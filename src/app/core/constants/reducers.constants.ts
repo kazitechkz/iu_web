@@ -132,6 +132,14 @@ import {teacherStatByUNTReducer} from "../../shared/store/teacher/stats/stats-by
 import {allAttemptTypesReducer} from "../../shared/store/attempt/allAttemptTypes/allAttemptTypes.reducer";
 import {FullStatEffect} from "../../shared/store/stat/fullStat/fullStat.effect";
 import {fullStatReducer} from "../../shared/store/stat/fullStat/fullStat.reducer";
+import {getMySavedQuestionsReducer} from "../../shared/store/question/getMySavedQuestions/getMySavedQuestions.reducer";
+import {
+  getMySavedQuestionByIdReducer
+} from "../../shared/store/question/getMySavedQuestionById/getMySavedQuestionById.reducer";
+import {getMyAppealQuestionsReducer} from "../../shared/store/appeal/getMyAppealQuestions/getMyAppealQuestions.reducer";
+import {
+  getMyAppealQuestionByIdReducer
+} from "../../shared/store/appeal/getMyAppealQuestionById/getMyAppealQuestionById.reducer";
 import {teacherMyStudentsReducer} from "../../shared/store/teacher/my-students/my-students.reducer";
 import {teacherStatByUserReducer} from "../../shared/store/teacher/stats/stats-by-user/stat-by-user.reducer";
 
@@ -237,6 +245,10 @@ export const ReducersConstants = {
   teacherStatByUNT: teacherStatByUNTReducer,
   allAttemptTypes:allAttemptTypesReducer,
   fullStat:fullStatReducer,
+  getMySavedQuestions:getMySavedQuestionsReducer,
+  getMySavedQuestionById:getMySavedQuestionByIdReducer,
+  getMyAppealQuestions:getMyAppealQuestionsReducer,
+  getMyAppealQuestionById:getMyAppealQuestionByIdReducer,
   teacherMyStudents: teacherMyStudentsReducer,
   teacherStatByUserId: teacherStatByUserReducer
 }

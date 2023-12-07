@@ -28,6 +28,7 @@ import {
   faThumbsUp
 } from "@fortawesome/free-solid-svg-icons";
 import {ImageHelper} from "../../../core/helpers/image.helper";
+import * as moment from "moment";
 @Component({
   selector: 'app-stat-full',
   templateUrl: './stat-full.component.html',
@@ -70,6 +71,11 @@ export class StatFullComponent implements OnInit {
         }
       }
     )
+  }
+
+  setStart($event:any){
+    this.requestData.start_at = $event;
+    this.getFullStat();
   }
 
   getColorPercentage(right:any,not_right:any){
@@ -138,4 +144,6 @@ export class StatFullComponent implements OnInit {
   protected readonly faQuestionCircle = faQuestionCircle;
   protected readonly ImageHelper = ImageHelper;
   protected readonly Object = Object;
+  protected readonly moment = moment;
+  protected readonly Date = Date;
 }

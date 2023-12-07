@@ -43,6 +43,7 @@ import {TicketDetailComponent} from "./techSupport/ticket-detail/ticket-detail.c
 import {ShopIndexComponent} from "./shop/shop-index/shop-index.component";
 import {PlanModeComponent} from "./plan/plan-mode/plan-mode.component";
 import {StatFullComponent} from "./stat/stat-full/stat-full.component";
+import {MyQuestionsComponent} from "./question/my-questions/my-questions.component";
 
 
 const routes: Routes = [
@@ -198,6 +199,10 @@ const routes: Routes = [
       {
         path: 'my-tickets',
         component: MyTicketsComponent
+      },
+      {
+        path: 'my-questions',
+        component: MyQuestionsComponent
       },
       {
         path: 'create-ticket',

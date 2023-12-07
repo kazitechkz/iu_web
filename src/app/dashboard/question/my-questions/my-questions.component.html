@@ -1,0 +1,134 @@
+<div class="container mx-auto">
+
+  <div class="grid grid-cols-12 py-5 my-3 rounded-2xl">
+
+    <div class="col-span-12 bg-white rounded-xl shadow-lg">
+      <div class="p-4">
+        <!--Tabs navigation-->
+        <ul
+          class="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0"
+          role="tablist"
+          data-te-nav-ref>
+          <li role="presentation">
+            <a
+              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+              data-te-toggle="pill"
+              data-te-target="#tabs-current"
+              data-te-nav-active
+              role="tab"
+              aria-controls="tabs-current"
+              aria-selected="true"
+            >{{ "SAVED_QUESTIONS"|translate}}</a
+            >
+          </li>
+          <li role="presentation">
+            <a
+              href="#tabs-profile"
+              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+              data-te-toggle="pill"
+              data-te-target="#tabs-participated"
+              role="tab"
+              aria-controls="tabs-participated"
+              aria-selected="false"
+            >  {{ "APPEAL_QUESTIONS"|translate}}</a
+            >
+          </li>
+        </ul>
+
+        <!--Tabs content-->
+        <div class="mb-6">
+          <div
+            class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+            id="tabs-current"
+            role="tabpanel"
+            aria-labelledby="tabs-home-tab"
+            data-te-tab-active>
+            <div class="grid grid-cols-12 p-3 gap-2" >
+              <div class="col-span-12" >
+                <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
+                  <div class="relative overflow-x-auto" *ngIf="questionsPagination">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" *ngIf="questionsPagination.data">
+                      <thead class="text-xs text-gray-700 capitalize">
+                      <tr>
+                        <th scope="col" class="px-6 py-3">
+                          #
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          {{"SUBJECT"|translate}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          {{"QUESTION"|translate}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          {{"CREATED_AT"|translate}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          {{"ACTION"|translate}}
+                        </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let question of questionsPagination.data | paginate: { itemsPerPage: questionsPagination.per_page, currentPage: questionsPagination.current_page,totalItems:questionsPagination.total }">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex" *ngIf="question.subject">
+                          <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(question.subject.image?.url) +')'}"></div>
+                        </th>
+                        <td class="px-6 py-4">
+                          <ul class="text-black" *ngIf="question.subject">
+                            <p class="text-black font-bold">{{question.subject |globalTranslate:'title':translate.currentLang}}</p>
+                          </ul>
+                        </td>
+                        <td class="px-6 py-4">
+                          <div class="text-black" *ngIf="question.text">
+                            <div class="text-black font-bold" [mathjax]="question.text"></div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4">
+                          <div class="text-black" *ngIf="question.created_at">
+                            <div class="text-black font-bold">
+                              {{moment(question.created_at).format("HH:mm DD/MM/YYYY")}}
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4">
+                          <div class="text-black">
+                            <div class="text-black font-bold">
+                              <a type="button" class="cursor-pointer text-white main-green-bg focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                                <fa-icon [icon]="faEye"></fa-icon>
+                              </a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <div class="my-2 flex justify-center">
+                      <pagination-controls class="rounded-full" (pageChange)="changeSavedQuestion($event)"></pagination-controls>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div
+            class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+            id="tabs-participated"
+            role="tabpanel"
+            aria-labelledby="tabs-profile-participated">
+            <div class="grid grid-cols-12 p-3 gap-2" >
+              <div class="col-span-12 md:col-span-4" >
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</div>

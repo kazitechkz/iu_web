@@ -122,6 +122,14 @@ import {StatBySubjectEffect} from "../../shared/store/teacher/stats/stats-by-sub
 import {StatByUntEffect} from "../../shared/store/teacher/stats/stats-by-unt/stat-by-unt.effect";
 import {FullStatEffect} from "../../shared/store/stat/fullStat/fullStat.effect";
 import {AllAttemptTypesEffect} from "../../shared/store/attempt/allAttemptTypes/allAttemptTypes.effect";
+import {GetMySavedQuestionsEffect} from "../../shared/store/question/getMySavedQuestions/getMySavedQuestions.effect";
+import {GetMyAppealQuestionsEffect} from "../../shared/store/appeal/getMyAppealQuestions/getMyAppealQuestions.effect";
+import {
+  GetMySavedQuestionByIdEffect
+} from "../../shared/store/question/getMySavedQuestionById/getMySavedQuestionById.effect";
+import {
+  GetMyAppealQuestionByIdEffect
+} from "../../shared/store/appeal/getMyAppealQuestionById/getMyAppealQuestionById.effect";
 import {MyStudentsEffect} from "../../shared/store/teacher/my-students/my-students.effect";
 import {StatByUserEffect} from "../../shared/store/teacher/stats/stats-by-user/stat-by-user.effect";
 
@@ -216,6 +224,10 @@ export const EffectsConstants = [
     FactEffect,
     FullStatEffect,
     AllAttemptTypesEffect,
+    GetMySavedQuestionsEffect,
+    GetMyAppealQuestionsEffect,
+    GetMySavedQuestionByIdEffect,
+    GetMyAppealQuestionByIdEffect,
     FactEffect,
     StatBySubjectEffect,
     StatByUntEffect,

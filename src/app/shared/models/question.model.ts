@@ -1,4 +1,6 @@
 import {AttemptQuestion} from "./attemptQuestion.model";
+import {Subject} from "./subject.model";
+import {SubCategory} from "./subCategory.model";
 
 export interface Question {
   id:              number;
@@ -24,6 +26,8 @@ export interface Question {
   context_id:      number;
   sub_category_id: null;
   context:         Context;
+  subject:Subject|null,
+  subcategory:SubCategory|null,
   attempt_questions: AttemptQuestion[] | null
 }
 

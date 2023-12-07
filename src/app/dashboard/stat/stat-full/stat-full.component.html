@@ -45,11 +45,31 @@
                   [ngModel]="requestData.subject_id"
                   (ngModelChange)="setSubject($event)"
                 >
-                  <option class="cursor-pointer" value="{{null}}">
+                  <option selected class="cursor-pointer" value="{{null}}">
                     {{"ALL"|translate}}
                   </option>
                   <option class="cursor-pointer" *ngFor="let subjectItem of subjects" value="{{subjectItem.id}}">
                     {{subjectItem | globalTranslate:"title": translate.currentLang}}
+                  </option>
+                </select>
+              </div>
+              <div class="col-span-12 md:col-span-12 lg:col-span-4 p-4">
+                <select
+                  class="w-full flex h-full items-center form-control"
+                  [ngModel]="requestData.start_at"
+                  (ngModelChange)="setStart($event)"
+                >
+                  <option selected class="cursor-pointer" value="{{null}}">
+                    {{"ALL"|translate}}
+                  </option>
+                  <option class="cursor-pointer" value="{{moment(moment().subtract(1, 'day')).format('DD/MM/YYYY')}}">
+                    {{"TODAY"|translate}}
+                  </option>
+                  <option class="cursor-pointer" value="{{moment(moment().subtract(7, 'day')).format('DD/MM/YYYY')}}">
+                    {{"WEEK"|translate}}
+                  </option>
+                  <option class="cursor-pointer" value="{{moment(moment().subtract(1, 'month')).format('DD/MM/YYYY')}}">
+                    {{"MONTH"|translate}}
                   </option>
                 </select>
               </div>

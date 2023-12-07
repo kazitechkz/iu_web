@@ -96,5 +96,10 @@ export enum APIRoutesName {
     createTechSupportTicket="tech-support-create-ticket",
     createTechSupportMessage="tech-support-create-message",
     closeTechSupportTicket="tech-support-close-ticket",
-    fullStat="statistics/full-stats"
+    fullStat="statistics/full-stats",
+    getMySavedQuestions="my-saved-questions",
+    getMyAppealQuestions="my-appeals-questions",
+    getMyAppealQuestionById="my-appeal-question-by",
+    getMySavedQuestionById="my-saved-question-by",
+
 }
