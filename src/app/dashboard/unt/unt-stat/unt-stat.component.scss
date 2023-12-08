@@ -1,0 +1,34 @@
+.neon-border{
+  animation: pulsate 1.5s infinite alternate;
+  border: 0.2rem solid #fff;
+  box-shadow: 0 0 .2rem #fff,
+  0 0 .2rem #fff,
+  0 0 2rem #4DC591,
+  0 0 0.8rem #4DC591,
+  0 0 0.8rem #4DC591,
+  inset 0 0 0.4rem #4DC591;
+}
+@keyframes pulsate {
+
+  100% {
+
+    box-shadow: 0 0 .4rem #fff,
+    0 0 .2rem #fff,
+    0 0 2rem #4DC591,
+    0 0 1.0rem #4DC591,
+    0 0 1.0rem #4DC591,
+    inset 0 0 0.8rem #4DC591;
+
+  }
+
+  0% {
+
+    box-shadow: 0 0 .1rem #fff,
+    0 0 .1rem #fff,
+    0 0 1rem #4DC591,
+    0 0 0.4rem #4DC591,
+    0 0 0.4rem #4DC591,
+    inset 0 0 0.2rem #4DC591;
+
+  }
+}

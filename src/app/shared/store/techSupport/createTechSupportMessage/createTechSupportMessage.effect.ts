@@ -5,12 +5,15 @@ import {CreateTechSupportMessageService} from "./createTechSupportMessage.servic
 import {
     createTechSupportMessageAction, createTechSupportMessageActionFailure, createTechSupportMessageActionSuccess
 } from "./createTechSupportMessage.action";
+import {Router} from "@angular/router";
+import {RoutesName} from "../../../../core/constants/routes.constants";
 
 @Injectable()
 export class CreateTechSupportMessageEffect {
 
   private _service = inject(CreateTechSupportMessageService);
   private action$ = inject(Actions);
+  private router = inject(Router);
 
   _onCreateTechSupportMessage = createEffect((): any =>
     this.action$.pipe(

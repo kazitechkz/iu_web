@@ -55,4 +55,6 @@ export enum RoutesName {
     myQuestions = "dashboard/my-questions",
     savedQuestions = "dashboard/saved-questions",
     appealedQuestions = "dashboard/appealed-questions",
+    myAttemptSettings = "dashboard/my-attempt-settings",
+    passByPromoCode="dashboard/pass-unt-by-promo",
 }

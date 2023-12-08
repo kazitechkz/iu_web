@@ -143,6 +143,12 @@ import {
 import {teacherMyStudentsReducer} from "../../shared/store/teacher/my-students/my-students.reducer";
 import {teacherStatByUserReducer} from "../../shared/store/teacher/stats/stats-by-user/stat-by-user.reducer";
 import {checkPlanUNTReducer} from "../../shared/store/plan/checkPlanUNT/checkPlanUNT.reducer";
+import {
+  getMyAttemptSingleSettingsReducer
+} from "../../shared/store/attemptSettings/getMyAttemptSingleSettings/getMyAttemptSingleSettings.reducer";
+import {
+  getMyAttemptUNTSettingsReducer
+} from "../../shared/store/attemptSettings/getMyAttemptUNTSettings/getMyAttemptUNTSettings.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -252,6 +258,8 @@ export const ReducersConstants = {
   getMyAppealQuestionById:getMyAppealQuestionByIdReducer,
   teacherMyStudents: teacherMyStudentsReducer,
   teacherStatByUserId: teacherStatByUserReducer,
-  checkPlanUNT:checkPlanUNTReducer
+  checkPlanUNT:checkPlanUNTReducer,
+  getMySingleSettings:getMyAttemptSingleSettingsReducer,
+  getMyUNTSettings:getMyAttemptUNTSettingsReducer,
 }
 

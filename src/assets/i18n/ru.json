@@ -310,6 +310,12 @@
   "APPEAL_TYPE": "Аппеляционные типы",
   "QUESTION": "Вопрос",
   "SUBJECT": "Дисциплина",
-  "EXPLANATION": "Объяснение"
+  "EXPLANATION": "Объяснение",
+  "ATTEMPT_SETTINGS_SINGLE": "Задание на сдачу 1 предмета",
+  "ATTEMPT_SETTINGS_UNT": "Задание на сдачу ЕНТ",
+  "CREATOR": "Создатель",
+  "PROMOCODE": "Промокод",
+  "MINUTE": "Минут",
+  "MY_ATTEMPT_SETTINGS": "Мои задания"
 
 }

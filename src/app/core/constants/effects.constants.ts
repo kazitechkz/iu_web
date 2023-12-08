@@ -133,6 +133,12 @@ import {
 import {MyStudentsEffect} from "../../shared/store/teacher/my-students/my-students.effect";
 import {StatByUserEffect} from "../../shared/store/teacher/stats/stats-by-user/stat-by-user.effect";
 import {CheckPlanUNTEffect} from "../../shared/store/plan/checkPlanUNT/checkPlanUNT.effect";
+import {
+  GetMyAttemptUNTSettingsEffect
+} from "../../shared/store/attemptSettings/getMyAttemptUNTSettings/getMyAttemptUNTSettings.effect";
+import {
+  GetMyAttemptSingleSettingsEffect
+} from "../../shared/store/attemptSettings/getMyAttemptSingleSettings/getMyAttemptSingleSettings.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -235,4 +241,6 @@ export const EffectsConstants = [
     MyStudentsEffect,
     StatByUserEffect,
     CheckPlanUNTEffect,
+    GetMyAttemptSingleSettingsEffect,
+    GetMyAttemptUNTSettingsEffect,
 ]

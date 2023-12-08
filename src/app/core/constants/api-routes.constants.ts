@@ -102,5 +102,7 @@ export enum APIRoutesName {
     getMyAppealQuestions="my-appeals-questions",
     getMyAppealQuestionById="my-appeal-question-by",
     getMySavedQuestionById="my-saved-question-by",
+    getMyAttemptSingleSettings="my-attempt-settings-single",
+    getMyAttemptUNTSettings="my-attempt-settings-unt",
 
 }

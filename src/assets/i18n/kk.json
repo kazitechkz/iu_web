@@ -310,5 +310,11 @@
   "APPEAL_TYPE": "Апелляциялық түрлері",
   "QUESTION": "Сұрақ",
   "SUBJECT":"Пән",
-  "EXPLANATION":"Түсіндіру"
+  "EXPLANATION":"Түсіндіру",
+  "ATTEMPT_SETTINGS_SINGLE": "1 пәнді тапсыруға тапсырма",
+  "ATTEMPT_SETTINGS_UNT": "ҰБТ тапсыру тапсырмасы",
+  "CREATOR": "Құрушы",
+  "PROMOCODE": "Промокод",
+  "MINUTE": "Минут",
+  "MY_ATTEMPT_SETTINGS": "Менің тапсырмаларым"
 }

@@ -11,6 +11,7 @@ import {
   faUser,
   faToolbox,
   faF,
+  faBriefcase,
   faCircleQuestion,
   faSitemap, faWallet, faRobot, faChess, faCartShopping, faHandshake, faMessage, faNewspaper, faUserCircle
 } from "@fortawesome/free-solid-svg-icons";
@@ -71,26 +72,26 @@ export class SidebarComponent implements OnInit {
       path: RoutesName.untMode,
       icon: faHandPointRight as IconProp
     },
-    {
-      title: 'BATTLE_ENT',
-      path: RoutesName.noPageIndex,
-      icon: faBolt as IconProp
-    },
+    // {
+    //   title: 'BATTLE_ENT',
+    //   path: RoutesName.noPageIndex,
+    //   icon: faBolt as IconProp
+    // },
     {
       title: 'TOURNAMENT',
       path: RoutesName.tournamentList,
       icon: faGamepad as IconProp
     },
-    {
-      title: 'COUCHERS',
-      path: RoutesName.noPageIndex,
-      icon: faMale as IconProp
-    },
-    {
-      title: 'SHOP',
-      path: RoutesName.noPageIndex,
-      icon: faCartShopping as IconProp
-    },
+    // {
+    //   title: 'COUCHERS',
+    //   path: RoutesName.noPageIndex,
+    //   icon: faMale as IconProp
+    // },
+    // {
+    //   title: 'SHOP',
+    //   path: RoutesName.noPageIndex,
+    //   icon: faCartShopping as IconProp
+    // },
     {
       title: 'SUBSCRIPTION',
       path: RoutesName.planMode,
@@ -117,6 +118,11 @@ export class SidebarComponent implements OnInit {
       icon: faSitemap as IconProp
     },
     {
+      title: 'MY_ATTEMPT_SETTINGS',
+      path: RoutesName.myAttemptSettings,
+      icon: faBriefcase as IconProp
+    },
+    {
       title: 'NEWS',
       path: RoutesName.allNews,
       icon: faNewspaper as IconProp
@@ -136,16 +142,16 @@ export class SidebarComponent implements OnInit {
       path: RoutesName.myTickets,
       icon: faToolbox as IconProp
     },
-    {
-      title: 'AI_ADVISE',
-      path: RoutesName.noPageIndex,
-      icon: faRobot as IconProp
-    },
-    {
-      title: 'GAMES',
-      path: RoutesName.noPageIndex,
-      icon: faChess as IconProp
-    },
+    // {
+    //   title: 'AI_ADVISE',
+    //   path: RoutesName.noPageIndex,
+    //   icon: faRobot as IconProp
+    // },
+    // {
+    //   title: 'GAMES',
+    //   path: RoutesName.noPageIndex,
+    //   icon: faChess as IconProp
+    // },
 
   ]
 }

@@ -46,6 +46,7 @@ import {StatFullComponent} from "./stat/stat-full/stat-full.component";
 import {MyQuestionsComponent} from "./question/my-questions/my-questions.component";
 import {SavedQuestionComponent} from "./question/saved-question/saved-question.component";
 import {AppealQuestionComponent} from "./question/appeal-question/appeal-question.component";
+import {MyAttemptSettingsComponent} from "./attemptSettings/my-attempt-settings/my-attempt-settings.component";
 
 
 const routes: Routes = [
@@ -205,6 +206,10 @@ const routes: Routes = [
       {
         path: 'my-questions',
         component: MyQuestionsComponent
+      },
+      {
+        path: 'my-attempt-settings',
+        component: MyAttemptSettingsComponent
       },
       {
         path: 'saved-questions/:id',
