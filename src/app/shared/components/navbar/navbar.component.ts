@@ -19,6 +19,7 @@ import {getUnreadMessageCountAction} from "../../store/notification/getUnreadMes
 import {
   getUnreadMessageCountSelector
 } from "../../store/notification/getUnreadMessageCount/getUnreadMessageCount.selector";
+import {ImageHelper} from "../../../core/helpers/image.helper";
 
 @Component({
   selector: 'app-navbar',
@@ -74,4 +75,6 @@ export class NavbarComponent implements OnInit {
   protected readonly RoutesName = RoutesName;
   protected readonly faMessage = faMessage;
   protected readonly faBell = faBell;
+    protected readonly Image = Image;
+  protected readonly ImageHelper = ImageHelper;
 }

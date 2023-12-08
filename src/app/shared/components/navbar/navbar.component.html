@@ -2,7 +2,7 @@
   <!-- Desktop Header -->
   <header class="w-full items-center bg-white py-2 px-6 sm:flex rounded-[10px]">
     <div class="w-1/2 mobile:hidden sm:hidden md:hidden lg:block">
-      Dashboard
+      {{"DASHBOARD"|translate}}
     </div>
 
     <div class="relative w-1/2 sm:w-full sm:justify-between mobile:w-full flex mobile:justify-between md:justify-between items-center lg:justify-end">
@@ -28,7 +28,8 @@
         <div class="flex justify-center items-center" (click)="isOpen = !isOpen">
           <p class="mx-3 mobile:hidden">{{user?.name}}</p>
           <button class="relative z-10 mobile:w-8 mobile:h-8 sm:w-12 sm:h-12 rounded-full overflow-hidden mobile:border-2 md:border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
-            <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400" alt="">
+            <img src="{{ImageHelper.getImage(user?.file?.url)}}" class="max-w-[100%]" alt="">
+<!--            <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400" alt="">-->
           </button>
 
           <div *ngIf="isOpen" class="absolute lg:w-48 w-32 bg-white rounded-lg shadow-lg py-2 md:mt-44 mobile:mt-48 sm:mt-48 z-[999] mobile:right-0 sm:right-0">
