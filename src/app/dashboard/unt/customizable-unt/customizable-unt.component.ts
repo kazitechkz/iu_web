@@ -393,4 +393,5 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
   protected readonly faCheck = faCheck;
   protected readonly faXmark = faXmark;
   protected readonly faLock = faLock;
+    protected readonly Object = Object;
 }

@@ -28,7 +28,6 @@ export class ExamComponent implements OnInit, DoCheck {
       this._store.dispatch(subStepExamAction({requestData: {sub_step_id: params['sub_step_test_id'], locale_id: params['locale_id']}}))
       this._store.select(getSubStepExamState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         this.questions = item.data
-        console.log(item.data)
       })
     })
   }
