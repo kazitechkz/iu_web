@@ -108,7 +108,7 @@ const routes: Routes = [
         component: StepDetailComponent
       },
       {
-        path: 'sub-step/:id',
+        path: 'sub-step/:id/:locale_id',
         component: SubStepComponent
       },
       {

@@ -61,8 +61,12 @@ export class SubStepComponent implements OnInit {
   public content: SubStepContentModel
   videoId: string = ''
   shortVideoId: string = ''
+  public localeID: number = 1
 
   ngOnInit(): void {
+    this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
+      this.localeID = params['locale_id']
+    })
     this.checkResult()
     this.getSubStep()
     this.onYoutubePlayer()

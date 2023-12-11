@@ -55,6 +55,18 @@ export class StrHelper {
     }
   }
 
+  public static getProgressByLocaleID(value: any, lang: number | null): number {
+    if (lang != null) {
+      if (lang == 1) {
+        return value.progress_kk
+      } else {
+        return value.progress_ru
+      }
+    } else {
+      return value.progress_kk
+    }
+  }
+
   public static toMathJax(input_string:string):string{
     let output_string = "";
     output_string = input_string.replaceAll("<pre>", "$$")

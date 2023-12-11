@@ -1,8 +1,10 @@
+
 <div class="w-full flex">
   <div class="w-full lg:p-4 sm:pl-2 mobile:p-1.5">
     <div class="w-full flex">
 
       <div class="st mobile:w-full sm:w-full md:w-full lg:w-full xl:w-[70%]">
+
         <div class="stepper" id="scrollableDiv">
 <!--          <div class="step-button flex justify-start bg-pos-bottom" >-->
 <!--            <button class="step-first">-->
@@ -24,14 +26,14 @@
                   <div *ngIf="!step.is_free" class="circle bg-no-repeat bg-bottom bg-contain"
                        [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}"></div>
                   <div class="st-content">
-                    {{step.title_kk}}
+                    {{step | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID)}}
                   </div>
                   <div class="mt-4 flex justify-between items-center px-5 w-full [direction:ltr]">
                     <div class="w-full bg-neutral-200 text-black">
                       <div
                         class="bg-primary p-0.5 text-center text-xs font-medium leading-none italic"
-                        [ngStyle]="{'width': step.progress_kk + '%', 'background-color': ColorConstants.primaryColor}">
-                        {{step.progress_kk}}%
+                        [ngStyle]="{'width': StrHelper.getProgressByLocaleID(step, localeID) + '%', 'background-color': ColorConstants.primaryColor}">
+                        {{StrHelper.getProgressByLocaleID(step, localeID)}}%
                       </div>
                     </div>
                   </div>
@@ -48,24 +50,24 @@
                   <div *ngIf="!step.is_free" class="circle bg-no-repeat bg-bottom bg-contain"
                        [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}"></div>
                   <div class="st-content">
-                    {{ step.title_kk }}
+                    {{ step | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID) }}
                   </div>
 
                   <div class="mt-4 flex justify-between items-center px-5 w-full [direction:ltr]">
                     <div class="w-full bg-neutral-200 text-black">
                       <div
                         class="bg-primary p-0.5 text-center text-xs font-medium leading-none italic"
-                        [ngStyle]="{'width': StrHelper.getProgressByCurrentLang(step, translate.currentLang) + '%', 'background-color': ColorConstants.primaryColor}">
-                        {{ step.progress_kk }}%
+                        [ngStyle]="{'width': StrHelper.getProgressByLocaleID(step, localeID) + '%', 'background-color': ColorConstants.primaryColor}">
+                        {{ StrHelper.getProgressByLocaleID(step, localeID) }}%
                       </div>
                     </div>
                   </div>
                 </button>
               </div>
               <div  class="[direction:ltr] w-full">
-                <ngx-smart-modal identifier="{{step.id}}">
+                <ngx-smart-modal identifier="{{step.id}}" [customClass]="'high-index'">
                   <div class="my-3" *ngFor="let subStep of subSteps">
-                    <a [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepRoute) + '/' + subStep.id" *ngIf="subStep.is_free">
+                    <a [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepRoute) + '/' + subStep.id + '/' + localeID" *ngIf="subStep.is_free">
                       <div
                         class="flex mobile:pl-2 sm:pl-2 mobile:items-center sm:items-center rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:max-w-xl">
                         <img
@@ -76,15 +78,15 @@
                         <div class="flex flex-col justify-start p-6 mobile:p-2 w-3/4">
                           <h5
                             class="mb-2 mobile:text-xs sm:text-xl font-medium text-neutral-800">
-                            {{subStep.title_kk}}
+                            {{subStep | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(localeID)}}
                           </h5>
                           <div class="flex justify-between items-center">
                             <div class="w-full pr-3">
                               <div class="h-1 w-full bg-neutral-200">
-                                <div class="h-1" [ngStyle]="{'width': subStep.progress_kk + '%', 'background-color': ColorConstants.primaryColor}"></div>
+                                <div class="h-1" [ngStyle]="{'width': StrHelper.getProgressByLocaleID(subStep, localeID) + '%', 'background-color': ColorConstants.primaryColor}"></div>
                               </div>
                             </div>
-                            <p class="text-sm mobile:text-xs font-medium">{{subStep.progress_kk}}%</p>
+                            <p class="text-sm mobile:text-xs font-medium">{{StrHelper.getProgressByLocaleID(subStep, localeID)}}%</p>
                           </div>
                           <!--                      <p class="text-xs text-neutral-500">-->
                           <!--                        Last updated 3 mins ago-->
@@ -103,7 +105,7 @@
                         <div class="flex justify-between items-center p-6 mobile:p-2 w-3/4">
                           <h5
                             class="mb-2 mobile:text-xs sm:text-xl font-medium text-gray-500">
-                            {{subStep.title_kk}}
+                            {{subStep | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(localeID)}}
                           </h5>
                           <i class="fa fa-lock ml-2 fa-xl text-gray-500" aria-hidden="true"></i>
                         </div>
@@ -120,7 +122,7 @@
       <div class="xl:w-[30%] container px-2 mobile:hidden sm:hidden md:hidden lg:hidden xl:block">
         <div *ngIf="fact">
           <div class="ml-5 w-full 2xl:w-3/4 2xl:ml-20 h-[130px]">
-            <div class="bubble-2 bubble-bottom-left-2 text-white font-bold italic w-8/12 md:w-3/4 2xl:w-full text-sm" [innerHTML]="fact.text_kk"></div>
+            <div class="bubble-2 bubble-bottom-left-2 text-white font-bold italic w-8/12 md:w-3/4 2xl:w-full text-sm" [innerHTML]="fact | globalTranslate: 'text': StrHelper.getCurrentLangByLocaleID(localeID)"></div>
           </div>
           <div
             style="height: calc(100vh - 430px); background-image: url('assets/images/facts_bg.png')" class="bg-bottom bg-no-repeat bg-contain">
@@ -128,7 +130,24 @@
         </div>
       </div>
     </div>
-
+    <div class="col-span-12 md:col-span-12 card md:flex items-center justify-center text-center">
+      <p class="md:text-lg font-bold py-4 md:mr-2">
+        {{"CHOOSE_LANGUAGE"|translate}}
+      </p>
+      <ui-switch
+        class="inline"
+        checkedLabel="Қазақ тілі"
+        defaultBgColor = '#9BA1FF'
+        (valueChange)="changeLang($event)"
+        size="large"
+        uncheckedLabel="Русский язык"
+        defaultBoColor="white"
+        [checked]="localeID == 1"
+        checkedTextColor="white"
+        switchColor="#fcfcfc"
+        uncheckedTextColor="white"
+      ></ui-switch>
+    </div>
 <!--    <div class="container mx-auto my-3 py-2">-->
 <!--      <div class="flex overflow-x-auto overscroll-none scroll-smooth will-change-scroll scrollbar-color py-3" id="scroll-x">-->
 <!--        <div *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer flex-shrink-0" (click)="getStepDetailBySubjectID(subject.id)">-->
@@ -157,7 +176,7 @@
             </div>
             <div class="flex justify-center items-center min-h-[80px]">
               <p class="text-center text-md lg:text-lg font-bold py-4 px-3">
-                {{subject | globalTranslate:"title": translate.currentLang}}
+                {{subject | globalTranslate:"title": StrHelper.getCurrentLangByLocaleID(this.localeID)}}
               </p>
             </div>
           </div>

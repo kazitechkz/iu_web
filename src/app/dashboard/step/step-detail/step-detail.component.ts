@@ -49,6 +49,7 @@ export class StepDetailComponent implements OnInit {
   dialog = inject(NgxSmartModalService)
   public subSteps: SubStepModel[] | null = []
   chosenSubject:number[] = [];
+  public localeID: number = 1
 
   ngOnInit(): void {
     this.getStepDetail()
@@ -97,7 +98,9 @@ export class StepDetailComponent implements OnInit {
       }
     })
   }
-
+  changeLang(event: any) {
+    this.localeID = event ? 1 : 2
+  }
   openBuyContentDialog(subject: Subject | null) {
     this.dialog.closeLatestModal()
     this.modalBuyContent.openDialog(subject)
