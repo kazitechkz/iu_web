@@ -47,23 +47,23 @@
         ></ui-switch>
       </div>
     </div>
-    <div class="col-span-12 flex justify-center">
-      <button type="button" class=" inline
-      mt-4
-      text-lg
-      min-w-[225px]
-      font-bold
-      inline
-      main-green-bg
-      text-white
-      text-2xl
-      focus:outline-none focus:ring-4
-      focus:ring-green-300 font-medium
-      rounded-full text-sm px-5 py-5
-      text-center mr-2 mb-2
-   "
-              (click)="checkIfUserHasPermission()"
-      >
+    <div class="col-span-12 flex justify-center" *ngIf="!loading">
+      <button type="button"
+              [disabled]="loading"
+        class="inline
+         mt-4
+          text-lg
+          min-w-[225px]
+          font-bold
+          inline
+          main-green-bg
+          text-white
+          text-2xl
+          focus:outline-none focus:ring-4
+          focus:ring-green-300 font-medium
+          rounded-full text-sm px-5 py-5
+          text-center mr-2 mb-2"
+              (click)="checkIfUserHasPermission()">
         {{"START_UNT"|translate}}
         <fa-icon [icon]="faForwardFast" class="mx-2 text-lg"></fa-icon>
       </button>

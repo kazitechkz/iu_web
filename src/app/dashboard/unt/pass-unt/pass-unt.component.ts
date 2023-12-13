@@ -7,7 +7,7 @@ import {
   faCircleCheck,
   faForwardFast,
   faCheck,
-  faWindowClose, faXmark
+  faWindowClose, faXmark, faSpinner
 } from "@fortawesome/free-solid-svg-icons";
 import {Store} from "@ngrx/store";
 import {loginAction} from "../../../shared/store/auth/login/login.action";
@@ -50,6 +50,7 @@ export class PassUntComponent implements OnInit{
   hasSubscription:boolean = false;
   locale_id:number = 1;
   public translate = inject(GlobalTranslateService);
+  public loading = false;
   ngOnInit(): void {
     this.checkSubscription();
     this.getSubjects();
@@ -102,12 +103,14 @@ export class PassUntComponent implements OnInit{
   //@ts-ignore
 
   checkIfUserHasPermission(){
+    this.loading = true;
     if(!this.hasSubscription){
       this.modalBuyUNT.openDialog();
     }
     else {
       this.createAttempt(true);
     }
+    this.loading = false;
   }
 
   createAttempt(result:boolean){
@@ -142,4 +145,5 @@ export class PassUntComponent implements OnInit{
   protected readonly faCheck = faCheck;
   protected readonly faWindowClose = faWindowClose;
   protected readonly faXmark = faXmark;
+  protected readonly faSpinner = faSpinner;
 }

@@ -73,6 +73,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     public appealRequest = {type_id:0,question_id:0,message:""};
     //@ts-ignore
     public actual_question:Question;
+    public loadingAnswer = false;
 
     public answered_questions:{[key: number]: any}= {};
     //@ts-ignore
@@ -87,6 +88,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     public attempt:Attempt;
   //@ts-ignore
     question_pagination:any;
+  public colors:Record<string, string> = {"1":"#b6659d","2":"#ab7fe6","3":"#c05851","4":"#709048","5":"#7e4de3","6":"#4e954f","7":"#3f83c6","8":"#a5a538","9":"#e5892d","10":"#be9e1d","11":"#5e7bdd","12":"#746def","13":"#7e7c32","14":"#b5646d","15":"#dc8e24","16":"#50b8b9"};
 
   ngOnInit(): void {
     this.getAttempt();
@@ -192,6 +194,9 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
               delete this.answered_questions[questionId];
             }
           }
+          if(this.answered_questions[questionId].answers.length > 3){
+            this.answered_questions[questionId].answers.splice(0, 1);
+          }
         }
         else{
           this.answered_questions[questionId].answers = [];
@@ -236,6 +241,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
 
 
   checkAnswer(questionId:number){
+    this.loadingAnswer = true;
     let request = Object.assign({}, this.answered_questions[questionId]);
     if(request){
       request.answers = request.answers.join(',');
@@ -244,6 +250,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
       this.checkResult();
       this.next();
     }
+    this.loadingAnswer = false;
   }
 
   finishAttempt(){
@@ -341,8 +348,8 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 4,
+          slidesToScroll: 4,
           dots: false
         }
       },

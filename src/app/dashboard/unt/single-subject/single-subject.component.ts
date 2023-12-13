@@ -41,7 +41,7 @@ export class SingleSubjectComponent implements OnInit{
     hasSubscription:boolean = false;
     locale_id:number = 1;
     chosenSubject:number[] = [];
-
+    public loading:boolean = false;
   ngOnInit(): void {
     this.checkSubscription();
     this.getSubjects();
@@ -79,12 +79,14 @@ export class SingleSubjectComponent implements OnInit{
   }
 
   checkIfUserHasPermission(){
+    this.loading = true;
     if(!this.hasSubscription){
       this.modalBuyUNT.openDialog();
     }
     else {
       this.createAttempt(true);
     }
+    this.loading = false;
   }
 
   createAttempt(result:boolean){

@@ -63,7 +63,10 @@
         ></ui-switch>
       </div>
       <div class="col-span-12 flex justify-center">
-        <button type="button" class=" inline
+        <button type="button"
+                *ngIf="!loading"
+                [disabled]="loading"
+                class="inline
               mt-4
               text-lg
               min-w-[225px]
