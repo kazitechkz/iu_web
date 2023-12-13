@@ -32,7 +32,6 @@ export class AttemptStatsComponent implements OnInit {
       this._store.select(statExamByIdStateSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
         item => {
           if (item.data) {
-            console.log(item.data)
             this.statByAttempt = item.data;
           }
         }

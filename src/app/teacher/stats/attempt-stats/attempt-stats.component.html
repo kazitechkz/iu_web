@@ -36,7 +36,27 @@
                 <p (click)="openDialog(String(result.sub_category.id))" class="text-black ml-2 font-bold cursor-pointer" *ngIf="result.sub_category;else no_category">
                   {{result.sub_category.title_kk}}
                 </p>
-                <ngx-smart-modal identifier="{{result.sub_category?.id}}">
+                <ng-template #no_category>
+                  <p class="text-red-500 ml-2 font-bold">{{"NO_CATEGORY_QUESTION"|translate}}</p>
+                </ng-template>
+              </td>
+              <td class="p-4">
+                <p class="text-black ml-2 font-bold">
+                  {{result.total}}
+                </p>
+              </td>
+              <td class="p-4">
+                <p class="text-green-400 ml-2 font-bold">
+                  {{result.right}}
+                </p>
+              </td>
+              <td class="p-4">
+                <p class="text-red-400 ml-2 font-bold">
+                  {{result.not_right}}
+                </p>
+              </td>
+              <div *ngIf="result.sub_category">
+                <ngx-smart-modal identifier="{{result.sub_category.id}}">
                   <div *ngFor="let question of result.questions"
                        class="block rounded-lg bg-white p-6 my-3 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                     <div class="content-question">
@@ -46,7 +66,7 @@
                           {{question.text | mathjaxTransform}}
                         </markdown>
                         <span class="text-sm">({{'CORRECT_ANSWER'|translate}}: {{question.correct_answers}})</span>
-<!--                        <div [mathjax]="question.text | mathjaxTransform"></div>-->
+                        <!--                        <div [mathjax]="question.text | mathjaxTransform"></div>-->
                       </h5>
                       <div class="my-2" *ngIf="question.context" [innerHTML]="question.context.context"></div>
                       <div class="my-5">
@@ -54,14 +74,14 @@
                           <label
                             class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('a', question.attempt_questions ? question.attempt_questions[0].user_answer : '', question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
                             <markdown katex>{{'a.' + question.answer_a | mathjaxTransform}}</markdown>
-<!--                            <div [mathjax]="'a.' + question.answer_a | mathjaxTransform"></div>-->
+                            <!--                            <div [mathjax]="'a.' + question.answer_a | mathjaxTransform"></div>-->
                           </label>
                         </div>
                         <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
                           <label
                             class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('b', question.attempt_questions ? question.attempt_questions[0].user_answer : null, question.attempt_questions ? question.attempt_questions[0].is_right : null)}">
                             <markdown katex>{{'b.' + question.answer_b | mathjaxTransform}}</markdown>
-<!--                            <div [mathjax]="'b.' + question.answer_b | mathjaxTransform"></div>-->
+                            <!--                            <div [mathjax]="'b.' + question.answer_b | mathjaxTransform"></div>-->
                           </label>
                         </div>
                         <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
@@ -104,25 +124,8 @@
                     </div>
                   </div>
                 </ngx-smart-modal>
-                <ng-template #no_category>
-                  <p>-</p>
-                </ng-template>
-              </td>
-              <td class="p-4">
-                <p class="text-black ml-2 font-bold">
-                  {{result.total}}
-                </p>
-              </td>
-              <td class="p-4">
-                <p class="text-green-400 ml-2 font-bold">
-                  {{result.right}}
-                </p>
-              </td>
-              <td class="p-4">
-                <p class="text-red-400 ml-2 font-bold">
-                  {{result.not_right}}
-                </p>
-              </td>
+              </div>
+
               <!--            <td class="p-4">-->
               <!--              <a-->
               <!--                class="w-[130px] flex justify-center items-center cursor-pointer text-white bg-violet-400 hover:bg-violet-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-500 dark:hover:bg-violet-700 dark:focus:ring-violet-700">-->
