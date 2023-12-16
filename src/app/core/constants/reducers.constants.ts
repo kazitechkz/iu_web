@@ -149,6 +149,14 @@ import {
 import {
   getMyAttemptUNTSettingsReducer
 } from "../../shared/store/attemptSettings/getMyAttemptUNTSettings/getMyAttemptUNTSettings.reducer";
+import {getActiveBattlesReducer} from "../../shared/store/battle/getActiveBattles/getActiveBattles.reducer";
+import {createBattleReducer} from "../../shared/store/battle/createBattle/createBattle.reducer";
+import {getBattleByPromoReducer} from "../../shared/store/battle/getBattleByPromo/getBattleByPromo.reducer";
+import {getBattleSubjectsReducer} from "../../shared/store/battle/getBattleSubjects/getBattleSubjects.reducer";
+import {getBattleStepReducer} from "../../shared/store/battle/getBattleStep/getBattleStep.reducer";
+import {joinToBattleReducer} from "../../shared/store/battle/joinToBattle/joinToBattle.reducer";
+import {createBattleStepReducer} from "../../shared/store/battle/createBattleStep/createBattleStep.reducer";
+import {answerBattleQuestionReducer} from "../../shared/store/battle/answerBattleQuestion/answerBattleQuestion.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -261,5 +269,13 @@ export const ReducersConstants = {
   checkPlanUNT:checkPlanUNTReducer,
   getMySingleSettings:getMyAttemptSingleSettingsReducer,
   getMyUNTSettings:getMyAttemptUNTSettingsReducer,
+  getActiveBattles:getActiveBattlesReducer,
+  createBattle:createBattleReducer,
+  createBattleStep:createBattleStepReducer,
+  getBattleByPromo:getBattleByPromoReducer,
+  getBattleSubjects:getBattleSubjectsReducer,
+  getBattleStep:getBattleStepReducer,
+  joinToBattle:joinToBattleReducer,
+  answerBattleQuestion:answerBattleQuestionReducer,
 }
 

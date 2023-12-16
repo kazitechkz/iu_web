@@ -139,6 +139,14 @@ import {
 import {
   GetMyAttemptSingleSettingsEffect
 } from "../../shared/store/attemptSettings/getMyAttemptSingleSettings/getMyAttemptSingleSettings.effect";
+import {GetActiveBattlesEffect} from "../../shared/store/battle/getActiveBattles/getActiveBattles.effect";
+import {CreateBattleEffect} from "../../shared/store/battle/createBattle/createBattle.effect";
+import {GetBattleByPromoEffect} from "../../shared/store/battle/getBattleByPromo/getBattleByPromo.effect";
+import {GetBattleSubjectsEffect} from "../../shared/store/battle/getBattleSubjects/getBattleSubjects.effect";
+import {GetBattleStepEffect} from "../../shared/store/battle/getBattleStep/getBattleStep.effect";
+import {JoinToBattleEffect} from "../../shared/store/battle/joinToBattle/joinToBattle.effect";
+import {AnswerBattleQuestionEffect} from "../../shared/store/battle/answerBattleQuestion/answerBattleQuestion.effect";
+import {CreateBattleStepEffect} from "../../shared/store/battle/createBattleStep/createBattleStep.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -243,4 +251,12 @@ export const EffectsConstants = [
     CheckPlanUNTEffect,
     GetMyAttemptSingleSettingsEffect,
     GetMyAttemptUNTSettingsEffect,
+    GetActiveBattlesEffect,
+    CreateBattleEffect,
+    CreateBattleStepEffect,
+    GetBattleByPromoEffect,
+    GetBattleSubjectsEffect,
+    GetBattleStepEffect,
+    JoinToBattleEffect,
+    AnswerBattleQuestionEffect,
 ]

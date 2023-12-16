@@ -18,6 +18,7 @@ export class InputFieldComponent {
     @Input({required:true}) placeholder:string = "text";
     @Input({required:true}) label:string = "text";
     @Input({required:true}) error_message:string = "text";
+    @Input({required:false}) classOptional:string = "";
     @Input() backErrors:Record<string, string[]>|null = null;
 
   formControlNameDirective = inject(FormControlName);

@@ -47,7 +47,8 @@ import {MyQuestionsComponent} from "./question/my-questions/my-questions.compone
 import {SavedQuestionComponent} from "./question/saved-question/saved-question.component";
 import {AppealQuestionComponent} from "./question/appeal-question/appeal-question.component";
 import {MyAttemptSettingsComponent} from "./attemptSettings/my-attempt-settings/my-attempt-settings.component";
-import {BattleListsComponent} from "./untBattle/battle-lists/battle-lists.component";
+import {BattleListComponent} from "./battle/battle-list/battle-list.component";
+import {BattleDetailComponent} from "./battle/battle-detail/battle-detail.component";
 
 
 const routes: Routes = [
@@ -91,6 +92,14 @@ const routes: Routes = [
       {
         path: 'tournament-list',
         component: TournamentListComponent
+      },
+      {
+        path: 'battle-list',
+        component: BattleListComponent
+      },
+      {
+        path: 'battle-detail/:promo_code',
+        component: BattleDetailComponent
       },
       {
         path: 'tournament-detail/:id',
@@ -231,10 +240,6 @@ const routes: Routes = [
       {
         path:"no-page-ready",
         component:ShopIndexComponent
-      },
-      {
-        path:"unt-battle",
-        component:BattleListsComponent
       },
     ]
   }

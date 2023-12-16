@@ -104,5 +104,13 @@ export enum APIRoutesName {
     getMySavedQuestionById="my-saved-question-by",
     getMyAttemptSingleSettings="my-attempt-settings-single",
     getMyAttemptUNTSettings="my-attempt-settings-unt",
+    getActiveBattles="battles",
+    getBattleByPromoCode="battle",
+    battleCreate="battle-create",
+    battleStepCreate="battle-step-create",
+    getBattleSubjects="battle-subjects",
+    getBattleStep="battle-by-step",
+    battleAnswer="battle-by-step-answer",
+    joinToBattle="join-to-battle-by-promo-code",
 
 }

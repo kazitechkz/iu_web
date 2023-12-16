@@ -7,6 +7,7 @@
       'text-black border-1 border-gray-400 focus:border-gray-500 focus:text-black peer-focus:text-black'  : !isInvalidInput(),
       'text-red-500 border-solid border-2 border-red-500 focus:border-red-500 focus:text-red-500 peer-focus:text-red-500' : isInvalidInput(),
     }"
+            class="{{classOptional}}"
             id="{{input_name}}"
             placeholder="{{placeholder | translate}}"
             [formControlName]="controlName"

@@ -1,0 +1,201 @@
+<div class="container mx-auto">
+  <div class="grid grid-cols-12 py-2 my-3 main-secondary-bg rounded-2xl">
+    <div class="col-span-12 md:col-span-6  md:px-10 md:flex items-center text-center md:text-left">
+      <div>
+        <p class="text-lg md:text-3xl text-white font-bold">
+          {{"PARTICIPATE_AND_WIN"}}
+        </p>
+        <div class="my-4 pt-5">
+          <p class="md:text-xl text-white my-2 px-1">
+            <fa-icon [icon]="faGift" class="ml-2"></fa-icon> {{"TOURNAMENT_PRISE_AND_AWARD"}}
+          </p>
+          <p class="md:text-xl text-white my-2 px-1">
+            <fa-icon [icon]="faUsers" class="ml-2"></fa-icon> {{"PARTICIPANTS_LIMIT"}} <br>
+          </p>
+          <p class="md:text-xl text-white my-2 px-1">
+            <fa-icon [icon]="faBook" class="ml-2"></fa-icon> {{"TOURNAMENT_SIXTEEN_SUBJECTS"}} <br>
+          </p>
+          <p class="md:text-xl text-white my-2 px-1">
+            <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon> {{"SUPPORT_MULTI_LANGUAGE"}} <br>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-12 md:col-span-6 flex justify-center">
+      <img src="assets/images/tournament.png" class=" max-h-[350px]"/>
+    </div>
+  </div>
+  <div class="grid grid-cols-12 py-2 my-3">
+    <div class="col-span-12 text-center">
+      <button type="button"
+              class="inline
+              mt-4
+              text-lg
+              min-w-[225px]
+              font-bold
+              inline
+              main-green-bg
+              text-white
+              text-2xl
+              focus:outline-none focus:ring-4
+              focus:ring-green-300 font-medium
+              rounded-full text-sm px-3 py-3
+              text-center mr-2 mb-2"
+              (click)="openDialog()"
+      >
+        {{"START_GAME"|translate}}
+        <fa-icon [icon]="faGamepad" class="mx-2 text-lg"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 py-2 my-3">
+    <div class="col-span-12 mx-3 p-4" *ngIf="battleListData">
+      <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
+        <div class="relative overflow-x-auto" *ngIf="battleListData.data">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 capitalize">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                #
+              </th>
+              <th scope="col" class="px-6 py-3">
+                {{"OWNER"|translate}}
+              </th>
+              <th scope="col" class="px-6 py-3">
+                {{"PRICE"|translate}}
+              </th>
+              <th scope="col" class="px-6 py-3">
+                {{"LOCALE"|translate}}
+              </th>
+              <th scope="col" class="px-6 py-3">
+                {{"ACTION"|translate}}
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let battleList of battleListData.data | paginate: { itemsPerPage: battleListData.per_page, currentPage: battleListData.current_page,totalItems:battleListData.total }">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
+                <section *ngIf="battleList.owner">
+                  <div
+                    [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(battleList.owner.file?.url) +')'}"
+                    class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"></div>
+                  <p class="font-bold text-black ml-2 inline-block">#{{battleList.owner.name}}</p>
+                </section>
+
+              </th>
+              <td class="px-6 py-4">
+                <p class="font-bold text-black ml-2 inline-block">#{{battleList.price}}</p>
+              </td>
+              <td class="px-6 py-4">
+                <div *ngIf="battleList.locale">
+                  <p class="font-bold text-black ml-2 inline-block">#{{battleList.locale.title}}</p>
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                  <a  type="button" class="cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
+                    {{"JOIN"|translate}}
+                  </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="my-2 flex justify-center">
+            <pagination-controls class="rounded-full" (pageChange)="changeActiveBattlePage($event)"></pagination-controls>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <section>
+    <div  class="[direction:ltr] w-full no-scroll main-tertiary-bg">
+      <ngx-smart-modal class="modalCreateGame" identifier="create-game-modal">
+        <div class="flex justify-center w-full">
+          <img src="assets/images/battle.png" class="w-[80%] max-w-[350px]"/>
+        </div>
+        <div class="my-3 text-center">
+          <p class="text-white font-bold text-md lg:text-lg xl:text-xl">
+            {{"CREATE_GAME_TITLE"|translate}}
+          </p>
+          <br/>
+        </div>
+        <div class="my-3 py-3 text-center">
+          <div class="col-span-12 md:col-span-12 card md:flex items-center justify-center text-center">
+            <p class="md:text-lg font-bold py-4 md:mr-2 text-white">
+              {{"CHOOSE_LANGUAGE"|translate}}
+            </p>
+            <ui-switch
+              class="inline"
+              checkedLabel="Қазақ тілі"
+              defaultBgColor = '#9BA1FF'
+              (valueChange)="changeLanguage($event)"
+              size="large"
+              uncheckedLabel="Русский язык"
+              defaultBoColor="white"
+              [checked]="locale_id == 1"
+              checkedTextColor="white"
+              switchColor="#fcfcfc"
+              uncheckedTextColor="white"
+            ></ui-switch>
+          </div>
+          <div class="col-span-12 text-center">
+            <p class="inline-block text-white font-bold my-3" *ngIf="myBalance">
+              <span>{{myBalance}}</span>
+              <fa-icon class="text-yellow-200" [icon]="faCoins"></fa-icon>
+            </p>
+          <form [formGroup]="createBattle" (submit)="onCreateBattle()">
+            <!--Price input-->
+            <app-input-field
+              [formControlName]="'price'"
+              [input_name]="'price'"
+              [type]="'number'"
+              [placeholder]="'PRICE' | translate"
+              [label]="('PRICE' | translate) + '*'"
+              [error_message]="'price_is_not_right'"
+              [backErrors]="errors"
+              [classOptional]="'text-white border-white  focus:text-white peer-focus:text-white'"
+              ngDefaultControl
+            />
+            <!--Name input-->
+            <app-input-field
+              [formControlName]="'pass_code'"
+              [input_name]="'pass_code'"
+              [type]="'text'"
+              [placeholder]="'PASS_CODE' | translate"
+              [label]="'PASS_CODE' | translate"
+              [error_message]="'pass_code_is_not_right'"
+              [backErrors]="errors"
+              [classOptional]="'text-white border-white  focus:text-white peer-focus:text-white'"
+              ngDefaultControl
+            />
+            <div class="col-span-12 text-center" *ngIf="createBattle.valid && loading == false">
+              <button type="button"
+                      (click)="onCreateBattle()"
+                      class="inline
+                      mt-4
+                      text-lg
+                      min-w-[225px]
+                      font-bold
+                      inline
+                      main-green-bg
+                      text-white
+                      text-2xl
+                      focus:outline-none focus:ring-4
+                      focus:ring-green-300 font-medium
+                      rounded-full text-sm px-3 py-3
+                      text-center mr-2 mb-2">
+                {{"START_GAME"|translate}}
+                <fa-icon [icon]="faGamepad" class="mx-2 text-lg"></fa-icon>
+              </button>
+            </div>
+          </form>
+          </div>
+        </div>
+
+      </ngx-smart-modal>
+    </div>
+  </section>
+</div>
