@@ -70,6 +70,7 @@ import { AppealQuestionComponent } from './question/appeal-question/appeal-quest
 import { MyAttemptSettingsComponent } from './attemptSettings/my-attempt-settings/my-attempt-settings.component';
 import { BattleListComponent } from './battle/battle-list/battle-list.component';
 import { BattleDetailComponent } from './battle/battle-detail/battle-detail.component';
+import { BattleGameComponent } from './battle/battle-game/battle-game.component';
 
 
 @NgModule({
@@ -123,6 +124,7 @@ import { BattleDetailComponent } from './battle/battle-detail/battle-detail.comp
         MyAttemptSettingsComponent,
         BattleListComponent,
         BattleDetailComponent,
+        BattleGameComponent,
     ],
     imports: [
         CommonModule,

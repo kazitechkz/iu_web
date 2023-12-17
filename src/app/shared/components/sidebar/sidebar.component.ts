@@ -72,11 +72,11 @@ export class SidebarComponent implements OnInit {
       path: RoutesName.untMode,
       icon: faHandPointRight as IconProp
     },
-    // {
-    //   title: 'BATTLE_ENT',
-    //   path: RoutesName.noPageIndex,
-    //   icon: faBolt as IconProp
-    // },
+    {
+      title: 'BATTLE_ENT',
+      path: RoutesName.battleList,
+      icon: faBolt as IconProp
+    },
     {
       title: 'TOURNAMENT',
       path: RoutesName.tournamentList,

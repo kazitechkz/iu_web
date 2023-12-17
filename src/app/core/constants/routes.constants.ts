@@ -58,5 +58,6 @@ export enum RoutesName {
     myAttemptSettings = "dashboard/my-attempt-settings",
     passByPromoCode="dashboard/pass-unt-by-promo",
     battleList="dashboard/battle-list",
-    battleDetail="dashboard/battle-detail/",
+    battleDetail="dashboard/battle-detail",
+    battleGame="dashboard/battle-game",
 }

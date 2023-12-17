@@ -2,6 +2,34 @@
   <div class="grid grid-cols-12" *ngIf="battle">
     <div class="col-span-12 m-3 p-3">
       <div class="card shadow-xl rounded-lg">
+        <div class="result-card my-3" *ngIf="battle.is_finished;else notFinished">
+          <section class="text-center" *ngIf="battle.winner && battle.winner_id; else notWinner">
+            <div class="flex justify-center items-center">
+              <div [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(battle.winner.file?.url) +')'}"
+                   class="h-12 w-12 md:h-16 md:w-16 xl:w-24 xl:h-24 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"></div>
+              </div>
+            <p class="font-bold text-black my-2">{{battle.winner.name}}</p>
+            <p
+              class="font-bold my-2"
+              *ngIf="user"
+              [ngClass]="{'text-green-400':user.id == battle.owner_id,'text-red-400': user.id == battle.guest_id}"
+            >{{user.id == battle.winner.id ? ('YOU_ARE_WINNER'|translate):("YOU_LOSE"|translate)}}</p>
+          </section>
+          <ng-template #notWinner>
+            <div class="result-card my-3 text-center">
+              <p class="font-bold text-black my-2">{{'DRAFT'|translate}}</p>
+            </div>
+          </ng-template>
+        </div>
+        <ng-template #notFinished>
+          <div class="result-card my-3 text-center flex justify-center items-center">
+            <div class="p-3 text-white font-bold rounded-2xl text-2xl main-green-bg w-full max-w-[320px]">
+              <p class="font-bold block my-2" *ngIf="battle.locale">{{battle.locale.title}}</p>
+              <p class="font-bold block my-2">{{("TIME_LEFT"|translate)}}:</p>
+              <countdown class="text-4xl" (event)="handleCountDownEvent($event)" [config]="timeConfig"></countdown>
+            </div>
+          </div>
+        </ng-template>
         <div class="flex rivals-card">
           <div class="w-1/2">
             <section class="text-center" *ngIf="battle.owner">
@@ -39,10 +67,16 @@
         </div>
         <section *ngIf="battle.battle_steps">
           <div class="my-3 p-3" *ngFor="let battleStep of battle.battle_steps">
+            <div class="w-full text-center my-3">
+              <p *ngIf="battleStep.subject">
+                {{battleStep.subject | globalTranslate:"title": translate.currentLang}}
+              </p>
+            </div>
             <div class="flex rival-card">
-              <div class="w-5/12 p-3 mx-2 shadow-lg rounded-full min-h-[40px] border-2 border-gray-200">
-                <div class="flex justify-center items-center" *ngIf="getBattleQuestion(battleStep,battle.owner_id) as ownerQuestions;else notOwnerBattleQuestions">
-                  <section *ngIf="ownerQuestions.length;else notOwnerBattleQuestionsLengthZero">
+              <div class="w-5/12 p-3 mx-2 shadow-lg rounded-full min-h-[40px] border-2 border-gray-200"
+                    [ngClass]="{'main-secondary-bg text-white':battleStep.is_current}">
+                <div *ngIf="getBattleQuestion(battleStep,battle.owner_id) as ownerQuestions;else notOwnerBattleQuestions">
+                  <section class="flex justify-center items-center" *ngIf="ownerQuestions.length;else notOwnerBattleQuestionsLengthZero">
                     <div class="mx-3 h-8 w-8 rounded-full"
                          *ngFor="let ownerQuestion of ownerQuestions"
                          [ngClass]="{
@@ -53,18 +87,21 @@
                   </section>
                   <ng-template #notOwnerBattleQuestionsLengthZero>
                     <div class="flex justify-center items-center">
-                      <div class="mx-3 h-8 w-8 rounded-full bg-gray-400" *ngFor="let i of [1,2,3]"></div>
+                      <div class="mx-3 h-8 w-8 rounded-full bg-gray-200" *ngFor="let i of [1,2,3]"></div>
                     </div>
                   </ng-template>
                 </div>
                 <ng-template #notOwnerBattleQuestions>
                   <div class="flex justify-center items-center">
-                    <div class="mx-3 h-8 w-8 rounded-full bg-gray-400" *ngFor="let i of [1,2,3]"></div>
+                    <div class="mx-3 h-8 w-8 rounded-full bg-gray-200" *ngFor="let i of [1,2,3]"></div>
                   </div>
                 </ng-template>
               </div>
               <!--Battle Step Result-->
-              <div class="w-2/12 flex justify-center items-center p-3 mx-2 shadow-lg rounded-full min-h-[40px] border-2 border-gray-200 text-center">
+              <div
+                class="w-2/12 flex justify-center items-center p-3 mx-2 shadow-lg rounded-full min-h-[40px] border-2 border-gray-200 text-center"
+                [ngClass]="{'main-secondary-bg text-white':battleStep.is_current}"
+              >
                 <p class="inline text-md lg:text-xl xl:text-2xl 2xl:text-4xl" *ngIf="getBattleResult(battleStep,battle.owner_id) as ownerResult;else ownerResultBlock">
                   {{ownerResult.result}}
                 </p>
@@ -87,9 +124,11 @@
               </div>
               <!--Battle Step Result-->
 
-              <div class="w-5/12 p-3 mx-2 shadow-lg rounded-full min-h-[40px] border-2 border-gray-200">
-                <div class="flex justify-center items-center" *ngIf="getBattleQuestion(battleStep,battle.guest_id) as guestQuestions;else notGuestBattleQuestions">
-                  <section *ngIf="guestQuestions.length;else notGuestBattleQuestionsLengthZero">
+              <div class="w-5/12 p-3 mx-2 shadow-lg rounded-full min-h-[40px] border-2 border-gray-200"
+                   [ngClass]="{'main-secondary-bg text-white':battleStep.is_current}"
+              >
+                <div *ngIf="getBattleQuestion(battleStep,battle.guest_id) as guestQuestions;else notGuestBattleQuestions">
+                  <section class="flex justify-center items-center" *ngIf="guestQuestions.length;else notGuestBattleQuestionsLengthZero">
                     <div class="mx-3 h-8 w-8 rounded-full"
                          *ngFor="let guestQuestion of guestQuestions"
                          [ngClass]="{
@@ -100,28 +139,26 @@
                   </section>
                   <ng-template #notGuestBattleQuestionsLengthZero>
                     <div class="flex justify-center items-center">
-                      <div class="mx-3 h-8 w-8 rounded-full bg-gray-400" *ngFor="let i of [1,2,3]"></div>
+                      <div class="mx-3 h-8 w-8 rounded-full bg-gray-200" *ngFor="let i of [1,2,3]"></div>
                     </div>
                   </ng-template>
                 </div>
                 <ng-template #notGuestBattleQuestions>
                   <div class="flex justify-center items-center">
-                    <div class="mx-3 h-8 w-8 rounded-full bg-gray-400" *ngFor="let i of [1,2,3]"></div>
+                    <div class="mx-3 h-8 w-8 rounded-full bg-gray-200" *ngFor="let i of [1,2,3]"></div>
                   </div>
                 </ng-template>
               </div>
             </div>
           </div>
           <div class="my-3 p-3 text-center" *ngIf="getActiveStep(battle.battle_steps) as active">
-            <a  type="button" class="min-w-[100px] inline-block my-3 cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
+            <a [routerLink]="['/' + RoutesName.battleGame + '/' + active.id]"  type="button" class="min-w-[100px] inline-block my-3 cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
               <fa-icon [icon]="faGamepad"></fa-icon>
               {{"PLAY"|translate}}
             </a>
           </div>
         </section>
-
       </div>
-
     </div>
   </div>
 </div>

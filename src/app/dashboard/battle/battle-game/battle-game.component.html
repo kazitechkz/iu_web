@@ -1,0 +1,169 @@
+<div class="container mx-auto">
+  <div class="grid grid-cols-12 gap-3" *ngIf="proposedSubjects">
+    <div class="col-span-12">
+      <div class="card shadow-2xl rounded-xl p-5 my-3 min-h-[100%]">
+        <div class="header-card my-3 text-center">
+          <p class="text-md md:text-lg lg:text-xl xl:text-2xl font-bold main-secondary-color">
+            {{"CHOOSE_ONE_SUBJECT"|translate}}
+          </p>
+          <div class="p-3 main-secondary-color text-2xl">
+            <countdown (event)="handleCountDownEvent($event)" [config]="timeConfig"></countdown>
+          </div>
+        </div>
+        <div class="subjects_item flex justify-center items-center">
+          <div class="max-w-[550px] w-full">
+            <div class="border-[2px] group cursor-pointer  rounded-full min-h-[50px] md:flex items-center my-3
+            hover:bg-[{{colors[subject.id]}}]"
+                 *ngFor="let subject of proposedSubjects"
+                 (mouseover)="changeHover(subject.id)"
+                 (mouseleave)="changeHover(null)"
+                 [ngStyle]="getStyles(subject.id)"
+                 (click)="chooseSubject(subject.id)"
+            >
+              <div class="md:w-4/12 px-3 flex items-center justify-center">
+                <div [ngStyle]="{
+                  'background-image':'url('+ ImageHelper.getImage(subject.image?.url) +')',
+                  'border-color':colors[subject.id]
+                  }"
+                     class="h-12 w-12 rounded-full border-2 bg-cover bg-no-repeat my-2"
+                ></div>
+              </div>
+              <div class="md:w-8/12 text-center my-3">
+                <p class="text-md lg:text-lg xl:text-xl 2xl:text-2xl font-bold group-hover:text-white">
+                  {{subject | globalTranslate:"title": translate.currentLang}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="percentage my-3">
+          <div id="animatedElement" class="h-5 my-2 rounded-lg bg-green-400"
+               [ngStyle]="{'width':percentage.toString() + '%'}"
+                [ngClass]="{
+                  'bg-green-400':percentage >= 75,
+                  'bg-yellow-400':percentage < 75 && percentage > 25,
+                  'bg-red-400':percentage <= 25,
+                }"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-12 gap-3" *ngIf="battleQuestion">
+
+    <div class="col-span-12 my-3">
+      <div class="result-card my-3 text-center flex justify-center items-center">
+        <div class="p-3 text-white font-bold rounded-2xl text-2xl main-green-bg w-full max-w-[320px]">
+          <p class="font-bold block my-2">{{("TIME_LEFT"|translate)}}:</p>
+          <countdown class="text-4xl" (event)="questionAnswerTimeEnds($event)" [config]="battleQuestionTime"></countdown>
+        </div>
+      </div>
+      <div class="flex justify-center items-center" *ngIf="battleStepQuestionResult">
+          <div class="mx-3 h-8 w-8 rounded-full bg-gray-400 cursor-pointer hover:bg-info-600"
+               *ngFor="let questionResult of battleStepQuestionResult;index as i"
+               (click)="toSlide(i)"
+               [ngClass]="{
+                         'bg-green-400':questionResult.is_right && questionResult.is_answered,
+                         'bg-red-400':!questionResult.is_right  && questionResult.is_answered,
+                         }"
+          ></div>
+      </div>
+    </div>
+
+    <div class="col-span-12 my-3 flex justify-center items-center">
+      <div class="max-w-[600px] w-full">
+        <ngx-slick-carousel
+          #slickModal="slick-carousel" class="carousel" [config]="questionSlider">
+          <div ngxSlickItem class="flex justify-center items-center" *ngFor="let question of battleQuestion.questions">
+            <div class="card p-3 shadow-lg rounded-lg border-t-[10px] m-3">
+              <div class="question-header py-3">
+                <div class="text-lg font-bold my-2" [ngStyle]="{'color':colors[question.subject_id]}">
+                  {{question.subject|globalTranslate:"title": translate.currentLang}}
+                </div>
+                <div class="text-sm text-gray-400 font-bold my-2">
+                  {{question.subcategory|globalTranslate:"title": translate.currentLang}}
+                </div>
+                <hr/>
+                <div class="text-sm text-black font-bold my-2">
+                  {{"QUESTION"|translate}}:
+                </div>
+                <div class="text-sm text-black my-2" [mathjax]="question.text | mathjaxTransform"></div>
+                <div class="text-md font-bold text-black my-2" *ngIf="question.context" [mathjax]="question.context.context | mathjaxTransform"></div>
+              </div>
+              <div class="question-content py-3">
+                <div class="cursor-pointer min-h-[50px] p-3 flex items-center  border-2 rounded-2xl my-2"
+                     (click)="answerQuestion(question.id,'a')"
+                     *ngIf="question.answer_a"
+                     [ngStyle]="{'border-color':colors[question.subject_id]}"
+                     [ngClass]="getAnsweredClass(question.id,'a')"
+                >
+                  <div class="" *ngIf="question.answer_a" [mathjax]="question.answer_a | mathjaxTransform"></div>
+                </div>
+                <div class="cursor-pointer min-h-[50px] p-3 flex items-center  border-2 rounded-2xl my-2"
+                     (click)="answerQuestion(question.id,'b')"
+                     *ngIf="question.answer_b"
+                     [ngStyle]="{'border-color':colors[question.subject_id]}"
+                     [ngClass]="getAnsweredClass(question.id,'b')"
+                >
+                  <div class="" *ngIf="question.answer_b" [mathjax]="question.answer_b | mathjaxTransform"></div>
+                </div>
+                <div class="cursor-pointer min-h-[50px] p-3 flex items-center  border-2 rounded-2xl my-2"
+                     (click)="answerQuestion(question.id,'c')"
+                     *ngIf="question.answer_c"
+                     [ngStyle]="{'border-color':colors[question.subject_id]}"
+                     [ngClass]="getAnsweredClass(question.id,'c')"
+
+                >
+                  <div class="" *ngIf="question.answer_c" [mathjax]="question.answer_c | mathjaxTransform"></div>
+                </div>
+                <div class="cursor-pointer min-h-[50px] p-3 flex items-center  border-2 rounded-2xl my-2"
+                     (click)="answerQuestion(question.id,'d')"
+                     *ngIf="question.answer_d"
+                     [ngStyle]="{'border-color':colors[question.subject_id]}"
+                     [ngClass]="getAnsweredClass(question.id,'d')"
+                >
+
+                  <div class="" *ngIf="question.answer_d" [mathjax]="question.answer_d | mathjaxTransform"></div>
+                </div>
+                <div class="cursor-pointer min-h-[50px] p-3 flex items-center  border-2 rounded-2xl my-2"
+                     (click)="answerQuestion(question.id,'e')"
+                     *ngIf="question.answer_e"
+                     [ngStyle]="{'border-color':colors[question.subject_id]}"
+                     [ngClass]="getAnsweredClass(question.id,'e')"
+                >
+                  <div class="" *ngIf="question.answer_e" [mathjax]="question.answer_e | mathjaxTransform"></div>
+                </div>
+                <div class="cursor-pointer min-h-[50px] p-3 flex items-center  border-2 rounded-2xl my-2"
+                     (click)="answerQuestion(question.id,'f')"
+                     *ngIf="question.answer_f"
+                     [ngStyle]="{'border-color':colors[question.subject_id]}"
+                     [ngClass]="getAnsweredClass(question.id,'f')"
+                >
+
+                  <div class="text-sm" *ngIf="question.answer_f" [mathjax]="question.answer_f | mathjaxTransform"></div>
+                </div>
+                <div class="cursor-pointer min-h-[50px] p-3 flex items-center  border-2 rounded-2xl my-2"
+                     (click)="answerQuestion(question.id,'g')"
+                     *ngIf="question.answer_g"
+                     [ngStyle]="{'border-color':colors[question.subject_id]}"
+                     [ngClass]="getAnsweredClass(question.id,'g')"
+                >
+
+                  <div class="" *ngIf="question.answer_g" [mathjax]="question.answer_g | mathjaxTransform"></div>
+                </div>
+                <div class="cursor-pointer min-h-[50px] p-3 flex items-center  border-2 rounded-2xl my-2"
+                     (click)="answerQuestion(question.id,'h')"
+                     *ngIf="question.answer_h"
+                     [ngStyle]="{'border-color':colors[question.subject_id]}"
+                     [ngClass]="getAnsweredClass(question.id,'h')"
+                >
+                  <div class="" *ngIf="question.answer_h" [mathjax]="question.answer_h | mathjaxTransform"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ngx-slick-carousel>
+      </div>
+    </div>
+  </div>
+</div>

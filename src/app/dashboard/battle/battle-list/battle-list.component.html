@@ -56,10 +56,7 @@
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 capitalize">
             <tr>
-              <th scope="col" class="px-6 py-3">
-                #
-              </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 text">
                 {{"OWNER"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
@@ -75,25 +72,25 @@
             </thead>
             <tbody>
             <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let battleList of battleListData.data | paginate: { itemsPerPage: battleListData.per_page, currentPage: battleListData.current_page,totalItems:battleListData.total }">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center">
                 <section *ngIf="battleList.owner">
                   <div
                     [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(battleList.owner.file?.url) +')'}"
                     class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"></div>
-                  <p class="font-bold text-black ml-2 inline-block">#{{battleList.owner.name}}</p>
+                  <p class="font-bold text-black ml-2 inline-block">{{battleList.owner.name}}</p>
                 </section>
 
               </th>
               <td class="px-6 py-4">
-                <p class="font-bold text-black ml-2 inline-block">#{{battleList.price}}</p>
+                <p class="font-bold text-black ml-2 inline-block">{{battleList.price}}</p>
               </td>
               <td class="px-6 py-4">
                 <div *ngIf="battleList.locale">
-                  <p class="font-bold text-black ml-2 inline-block">#{{battleList.locale.title}}</p>
+                  <p class="font-bold text-black ml-2 inline-block">{{battleList.locale.title}}</p>
                 </div>
               </td>
               <td class="px-6 py-4">
-                  <a  type="button" class="cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
+                  <a (click)="joinToBattle(battleList.promo_code)" *ngIf="battleList.price < myBalance" type="button" class="cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
                     {{"JOIN"|translate}}
                   </a>
               </td>

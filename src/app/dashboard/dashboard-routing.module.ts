@@ -49,6 +49,7 @@ import {AppealQuestionComponent} from "./question/appeal-question/appeal-questio
 import {MyAttemptSettingsComponent} from "./attemptSettings/my-attempt-settings/my-attempt-settings.component";
 import {BattleListComponent} from "./battle/battle-list/battle-list.component";
 import {BattleDetailComponent} from "./battle/battle-detail/battle-detail.component";
+import {BattleGameComponent} from "./battle/battle-game/battle-game.component";
 
 
 const routes: Routes = [
@@ -100,6 +101,10 @@ const routes: Routes = [
       {
         path: 'battle-detail/:promo_code',
         component: BattleDetailComponent
+      },
+      {
+        path: 'battle-game/:step_id',
+        component: BattleGameComponent
       },
       {
         path: 'tournament-detail/:id',

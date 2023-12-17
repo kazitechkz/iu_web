@@ -16,6 +16,7 @@ export class PusherService {
     });
   }
 
+
   public getChannel(channelName: string) {
     return this.pusher.subscribe(channelName);
   }

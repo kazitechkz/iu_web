@@ -7,6 +7,7 @@ export interface BattleStepQuestion {
   question_id:number
   user_id:number
   answer:string|null
+  right_answer:string|null
   is_right:boolean
   is_answered:boolean
   point:boolean

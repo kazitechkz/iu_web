@@ -28,6 +28,10 @@ import {myBalanceSelector} from "../../../shared/store/wallet/myBalance/myBalanc
 import {CreateBattleRequest} from "../../../shared/store/battle/createBattle/createBattle.request";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {createBattleAction} from "../../../shared/store/battle/createBattle/createBattle.action";
+import {JoinToBattleRequest} from "../../../shared/store/battle/joinToBattle/joinToBattle.request";
+import {joinToBattleAction} from "../../../shared/store/battle/joinToBattle/joinToBattle.action";
+import {joinToBattleSelector} from "../../../shared/store/battle/joinToBattle/joinToBattle.selector";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-battle-list',
@@ -41,6 +45,7 @@ export class BattleListComponent implements OnInit{
   public translate = inject(GlobalTranslateService);
   dialog = inject(NgxSmartModalService);
   fb = inject(FormBuilder);
+  private router = inject(Router);
   //Inject
   //@ts-ignore
   public battleListData:Pagination<Battle[]>;
@@ -88,6 +93,17 @@ export class BattleListComponent implements OnInit{
     }
   }
 
+  public joinToBattle(promo_code:string){
+    let request = {promo_code:promo_code,pass_code:""} as JoinToBattleRequest;
+    this._store.dispatch(joinToBattleAction({requestData:request}));
+    this._store.select(joinToBattleSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        this.router.navigate(['/'+RoutesName.battleDetail+'/'+item.data.promo_code.toString()]);
+      }
+    });
+
+
+  }
 
   public changeActiveBattlePage($event:number){
     this.battleListRequest.page = $event;

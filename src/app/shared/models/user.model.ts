@@ -17,7 +17,7 @@ export interface UserModel extends EntityState<Users> {
 }
 
 export interface Me {
-  id: string
+  id: number
   name: string
   email: string
   phone: string

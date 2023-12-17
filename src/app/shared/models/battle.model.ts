@@ -15,6 +15,7 @@ export interface Battle{
   guest_point: number
   is_open: boolean
   is_finished: boolean
+  time_left_seconds:number
   start_at: Date
   end_at: Date|null
   must_finished_at: Date|null
