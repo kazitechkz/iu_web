@@ -105,6 +105,7 @@ export enum APIRoutesName {
     getMyAttemptSingleSettings="my-attempt-settings-single",
     getMyAttemptUNTSettings="my-attempt-settings-unt",
     getActiveBattles="battles",
+    myActiveBattles="my-active-battles",
     getBattleByPromoCode="battle",
     battleCreate="battle-create",
     battleStepCreate="battle-step-create",
@@ -112,5 +113,6 @@ export enum APIRoutesName {
     getBattleStep="battle-by-step",
     battleAnswer="battle-by-step-answer",
     joinToBattle="join-to-battle-by-promo-code",
+    finishBattleResult="battle-finish-result",
 
 }

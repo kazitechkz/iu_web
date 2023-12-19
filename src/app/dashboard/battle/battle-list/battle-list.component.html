@@ -3,20 +3,20 @@
     <div class="col-span-12 md:col-span-6  md:px-10 md:flex items-center text-center md:text-left">
       <div>
         <p class="text-lg md:text-3xl text-white font-bold">
-          {{"PARTICIPATE_AND_WIN"}}
+          {{"BATTLE_AND_WIN"}}
         </p>
         <div class="my-4 pt-5">
           <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faGift" class="ml-2"></fa-icon> {{"TOURNAMENT_PRISE_AND_AWARD"}}
+            <fa-icon [icon]="faGift" class="ml-2"></fa-icon> {{"PARTICIPATE_PRISE_AND_AWARD"|translate}}
           </p>
           <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faUsers" class="ml-2"></fa-icon> {{"PARTICIPANTS_LIMIT"}} <br>
+            <fa-icon [icon]="faUsers" class="ml-2"></fa-icon> {{"PARTICIPANTS_LIMIT"|translate}} <br>
           </p>
           <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faBook" class="ml-2"></fa-icon> {{"TOURNAMENT_SIXTEEN_SUBJECTS"}} <br>
+            <fa-icon [icon]="faBook" class="ml-2"></fa-icon> {{"TOURNAMENT_SIXTEEN_SUBJECTS"|translate}} <br>
           </p>
           <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon> {{"SUPPORT_MULTI_LANGUAGE"}} <br>
+            <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon> {{"SUPPORT_MULTI_LANGUAGE"|translate}} <br>
           </p>
         </div>
       </div>
@@ -48,63 +48,212 @@
       </button>
     </div>
   </div>
+  <div class="grid grid-cols-12 py-5 my-3 rounded-2xl">
 
-  <div class="grid grid-cols-12 py-2 my-3">
-    <div class="col-span-12 mx-3 p-4" *ngIf="battleListData">
-      <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
-        <div class="relative overflow-x-auto" *ngIf="battleListData.data">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 capitalize">
-            <tr>
-              <th scope="col" class="px-6 py-3 text">
-                {{"OWNER"|translate}}
-              </th>
-              <th scope="col" class="px-6 py-3">
-                {{"PRICE"|translate}}
-              </th>
-              <th scope="col" class="px-6 py-3">
-                {{"LOCALE"|translate}}
-              </th>
-              <th scope="col" class="px-6 py-3">
-                {{"ACTION"|translate}}
-              </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let battleList of battleListData.data | paginate: { itemsPerPage: battleListData.per_page, currentPage: battleListData.current_page,totalItems:battleListData.total }">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center">
-                <section *ngIf="battleList.owner">
-                  <div
-                    [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(battleList.owner.file?.url) +')'}"
-                    class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"></div>
-                  <p class="font-bold text-black ml-2 inline-block">{{battleList.owner.name}}</p>
-                </section>
+    <div class="col-span-12 bg-white rounded-xl shadow-lg">
+      <div class="p-4">
+        <!--Tabs navigation-->
+        <ul
+          class="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0"
+          role="tablist"
+          data-te-nav-ref>
+          <li role="presentation">
+            <a
+              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+              data-te-toggle="pill"
+              data-te-target="#tabs-current"
+              data-te-nav-active
+              role="tab"
+              aria-controls="tabs-current"
+              aria-selected="true"
+            >{{ "BATTLE_LISTS"|translate}}</a
+            >
+          </li>
+          <li role="presentation">
+            <a
+              href="#tabs-profile"
+              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+              data-te-toggle="pill"
+              data-te-target="#tabs-participated"
+              role="tab"
+              aria-controls="tabs-participated"
+              aria-selected="false"
+            >  {{ "MY_ACTIVE_BATTLES"|translate}}</a>
+          </li>
+        </ul>
 
-              </th>
-              <td class="px-6 py-4">
-                <p class="font-bold text-black ml-2 inline-block">{{battleList.price}}</p>
-              </td>
-              <td class="px-6 py-4">
-                <div *ngIf="battleList.locale">
-                  <p class="font-bold text-black ml-2 inline-block">{{battleList.locale.title}}</p>
+        <!--Tabs content-->
+        <div class="mb-6">
+          <div
+            class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+            id="tabs-current"
+            role="tabpanel"
+            aria-labelledby="tabs-home-tab"
+            data-te-tab-active>
+            <div class="grid grid-cols-12 py-2 my-3">
+              <div class="col-span-12 mx-3 p-4" *ngIf="battleListData">
+                <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
+                  <div class="relative overflow-x-auto" *ngIf="battleListData.data">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                      <thead class="text-xs text-gray-700 capitalize">
+                      <tr>
+                        <th scope="col" class="px-6 py-3 text">
+                          {{"OWNER"|translate}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          {{"BET"|translate}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          {{"LOCALE"|translate}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          {{"TIME_LEFT"|translate}}
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                          {{"ACTION"|translate}}
+                        </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let battleList of battleList | paginate: { itemsPerPage: battleListData.per_page, currentPage: battleListData.current_page,totalItems:battleListData.total }">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center">
+                          <section *ngIf="battleList.owner">
+                            <div
+                              [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(battleList.owner.file?.url) +')'}"
+                              class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"></div>
+                            <p class="font-bold text-black ml-2 inline-block">{{battleList.owner.name}}</p>
+                          </section>
+                        </th>
+                        <td class="px-6 py-4">
+                          <p class="font-bold text-black ml-2 inline-block">
+                            {{battleList.price}}
+                            <fa-icon class="ml-1 text-yellow-300" [icon]="faCoins"></fa-icon>
+                          </p>
+                        </td>
+                        <td class="px-6 py-4">
+                          <div *ngIf="battleList.locale">
+                            <p class="font-bold text-black ml-2 inline-block">{{battleList.locale.title}}</p>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4">
+                          <div *ngIf="battleList.time_left_seconds">
+                            <countdown class="font-bold text-red-500" [config]="{leftTime:battleList.time_left_seconds}"></countdown>
+                          </div>
+                        </td>
+                        <td class="px-6 py-4">
+                          <a (click)="joinToBattle(battleList.promo_code)" *ngIf="battleList.price < myBalance;else cantJoin" type="button" class="cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
+                            <fa-icon class="mr-1" [icon]="battleList.pass_code ? faLock : faLockOpen"></fa-icon>
+                            {{"JOIN"|translate}}
+                          </a>
+                          <ng-template #cantJoin>
+                            <a type="button" class="cursor-pointer text-white bg-secondary hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                              <fa-icon class="mr-1" [icon]="faLock"></fa-icon>
+                              {{"YOU_CANT_JOIN"|translate}}
+                            </a>
+                          </ng-template>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                    <div class="my-2 flex justify-center">
+                      <pagination-controls class="rounded-full" (pageChange)="changeActiveBattlePage($event)"></pagination-controls>
+                    </div>
+                  </div>
+
                 </div>
-              </td>
-              <td class="px-6 py-4">
-                  <a (click)="joinToBattle(battleList.promo_code)" *ngIf="battleList.price < myBalance" type="button" class="cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
-                    {{"JOIN"|translate}}
-                  </a>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-          <div class="my-2 flex justify-center">
-            <pagination-controls class="rounded-full" (pageChange)="changeActiveBattlePage($event)"></pagination-controls>
+              </div>
+            </div>
+          </div>
+          <div
+            class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+            id="tabs-participated"
+            role="tabpanel"
+            aria-labelledby="tabs-profile-participated">
+            <div class="col-span-12 mx-3 p-4" *ngIf="myBattleList">
+              <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
+                <div class="relative overflow-x-auto">
+                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 capitalize">
+                    <tr>
+                      <th scope="col" class="px-6 py-3 text">
+                        {{"OWNER"|translate}}
+                      </th>
+                      <th scope="col" class="px-6 py-3 text">
+                        {{"GUEST_BATTLE"|translate}}
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        {{"BET"|translate}}
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        {{"LOCALE"|translate}}
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        {{"TIME_LEFT"|translate}}
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        {{"ACTION"|translate}}
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let myBattle of myBattleList">
+                      <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center">
+                        <section *ngIf="myBattle.owner">
+                          <div
+                            [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(myBattle.owner.file?.url) +')'}"
+                            class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"></div>
+                          <p class="font-bold text-black ml-2 inline-block">{{myBattle.owner.name}}</p>
+                        </section>
+                      </td>
+                      <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center">
+                        <section *ngIf="myBattle.guest;else noGuest">
+                          <div
+                            [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(myBattle.guest.file?.url) +')'}"
+                            class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"></div>
+                          <p class="font-bold text-black ml-2 inline-block">{{myBattle.guest.name}}</p>
+                        </section>
+                        <ng-template #noGuest>
+                          <p class="font-bold text-red-500 ml-2 inline-block">{{"NO_GUEST"|translate}}</p>
+                        </ng-template>
+                      </td>
+                      <td class="px-6 py-4">
+                        <p class="font-bold text-black ml-2 inline-block">
+                          {{myBattle.price}}
+                          <fa-icon class="ml-1 text-yellow-300" [icon]="faCoins"></fa-icon>
+                        </p>
+                      </td>
+                      <td class="px-6 py-4">
+                        <div *ngIf="myBattle.locale">
+                          <p class="font-bold text-black ml-2 inline-block">{{myBattle.locale.title}}</p>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4">
+                        <div *ngIf="myBattle.time_left_seconds">
+                          <countdown class="font-bold text-red-500" [config]="{leftTime:myBattle.time_left_seconds}"></countdown>
+                        </div>
+                      </td>
+                      <td class="px-6 py-4">
+                        <a [routerLink]="'/'+ RoutesName.battleDetail + '/'+ myBattle.promo_code" type="button" class="cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
+                          <fa-icon class="mr-1" [icon]="faEye"></fa-icon>
+                          {{"SHOW"|translate}}
+                        </a>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
-
       </div>
+
     </div>
+
+
   </div>
+
 
 
   <section>

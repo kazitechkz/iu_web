@@ -147,6 +147,8 @@ import {GetBattleStepEffect} from "../../shared/store/battle/getBattleStep/getBa
 import {JoinToBattleEffect} from "../../shared/store/battle/joinToBattle/joinToBattle.effect";
 import {AnswerBattleQuestionEffect} from "../../shared/store/battle/answerBattleQuestion/answerBattleQuestion.effect";
 import {CreateBattleStepEffect} from "../../shared/store/battle/createBattleStep/createBattleStep.effect";
+import {FinishBattleResultEffect} from "../../shared/store/battle/finishBattleResult/finishBattleResult.effect";
+import {MyActiveBattlesEffect} from "../../shared/store/battle/myActiveBattles/myActiveBattles.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -259,4 +261,6 @@ export const EffectsConstants = [
     GetBattleStepEffect,
     JoinToBattleEffect,
     AnswerBattleQuestionEffect,
+    FinishBattleResultEffect,
+    MyActiveBattlesEffect,
 ]

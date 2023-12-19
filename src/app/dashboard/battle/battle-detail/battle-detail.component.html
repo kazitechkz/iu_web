@@ -10,9 +10,9 @@
               </div>
             <p class="font-bold text-black my-2">{{battle.winner.name}}</p>
             <p
-              class="font-bold my-2"
+              class="font-bold my-2 text-2xl"
               *ngIf="user"
-              [ngClass]="{'text-green-400':user.id == battle.owner_id,'text-red-400': user.id == battle.guest_id}"
+              [ngClass]="{'text-green-400':user.id == battle.winner_id,'text-red-400': user.id != battle.winner_id}"
             >{{user.id == battle.winner.id ? ('YOU_ARE_WINNER'|translate):("YOU_LOSE"|translate)}}</p>
           </section>
           <ng-template #notWinner>

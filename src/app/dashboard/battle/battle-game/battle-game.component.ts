@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, OnInit, ViewChild} from '@angular/core';
+import {Component, DestroyRef, HostListener, inject, OnInit, ViewChild} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {NgxSmartModalService} from "ngx-smart-modal";
@@ -32,6 +32,11 @@ import {
   answerBattleQuestionSelector
 } from "../../../shared/store/battle/answerBattleQuestion/answerBattleQuestion.selector";
 import {items} from "fusioncharts";
+import {finishBattleResultAction} from "../../../shared/store/battle/finishBattleResult/finishBattleResult.action";
+import {getAccountState} from "../../../shared/store/user/account/account.selector";
+import {Me} from "../../../shared/models/user.model";
+import {LocalKeysConstants} from "../../../core/constants/local-keys.constants";
+import {SessionService} from "../../../shared/services/session.service";
 
 @Component({
   selector: 'app-battle-game',
@@ -58,6 +63,7 @@ export class BattleGameComponent implements OnInit{
     battle_step_id:0,
     subject_id:null
   }
+  public answeredQuestionIDS:number[] = [];
   //@ts-ignore
   @ViewChild('slickModal') slickModal: SlickCarouselComponent;
   //@ts-ignore
@@ -68,6 +74,8 @@ export class BattleGameComponent implements OnInit{
       this.battleStepId = params["step_id"];
     })
   }
+
+
 
   handleCountDownEvent(e: CountdownEvent) {
     if (e.action === 'notify') {
@@ -80,16 +88,9 @@ export class BattleGameComponent implements OnInit{
   }
 
   questionAnswerTimeEnds(e: CountdownEvent) {
-    if (e.action === 'notify') {
-      if(this.battleQuestion){
-        let answered = this.battleQuestion.answered_questions;
-        let question = this.battleQuestion.questions.find(items=>!answered.includes(items.id));
-        if(question){
-          this.answerQuestion(question.id,"");
-        }
-        else {
-          this.router.navigate(['/'+RoutesName.battleDetail+'/'+this.battleQuestion.battle_promo_code.toString()]);
-        }
+    if (e.action === 'done') {
+      if(this.battleQuestion && this.battleStepId){
+        this._store.dispatch(finishBattleResultAction({requestData:this.battleStepId}));
       }
     }
   }
@@ -194,7 +195,8 @@ export class BattleGameComponent implements OnInit{
 
   answerQuestion(questionId:number,answer:string){
     if(this.battleStepQuestionResult){
-      if(this.battleStepQuestionResult.find(item => item.question_id == questionId && item.is_answered == false)){
+      if(this.battleStepQuestionResult.find(item => item.question_id == questionId && item.is_answered == false) && !this.answeredQuestionIDS.includes(questionId)){
+        this.answeredQuestionIDS.push(questionId);
         let request = {question_id:questionId,answer:answer,battle_step_id:this.battleStepId} as AnswerBattleQuestionRequest;
         this._store.dispatch(answerBattleQuestionAction({requestData:request}));
         this._store.select(answerBattleQuestionSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{

@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, OnDestroy, OnInit} from '@angular/core';
 import {
   faArrowRight,
   faBook, faCheck,
@@ -7,7 +7,7 @@ import {
   faGift,
   faLanguage,
   faUsers,
-  faCoins
+  faCoins, faLock, faLockOpen, faClock, faMoneyBill, faEye
 } from "@fortawesome/free-solid-svg-icons";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {Store} from "@ngrx/store";
@@ -32,13 +32,21 @@ import {JoinToBattleRequest} from "../../../shared/store/battle/joinToBattle/joi
 import {joinToBattleAction} from "../../../shared/store/battle/joinToBattle/joinToBattle.action";
 import {joinToBattleSelector} from "../../../shared/store/battle/joinToBattle/joinToBattle.selector";
 import {Router} from "@angular/router";
+import {PusherService} from "../../../shared/services/pusher.service";
+import {Channel} from "pusher-js";
+import {LocalKeysConstants} from "../../../core/constants/local-keys.constants";
+import {Me} from "../../../shared/models/user.model";
+import {SessionService} from "../../../shared/services/session.service";
+import {initTE, Tab} from "tw-elements";
+import {myActiveBattlesAction} from "../../../shared/store/battle/myActiveBattles/myActiveBattles.action";
+import {myActiveBattlesSelector} from "../../../shared/store/battle/myActiveBattles/myActiveBattles.selector";
 
 @Component({
   selector: 'app-battle-list',
   templateUrl: './battle-list.component.html',
   styleUrls: ['./battle-list.component.scss']
 })
-export class BattleListComponent implements OnInit{
+export class BattleListComponent implements OnInit,OnDestroy{
 //Injection
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
@@ -49,6 +57,8 @@ export class BattleListComponent implements OnInit{
   //Inject
   //@ts-ignore
   public battleListData:Pagination<Battle[]>;
+  public battleList:Battle[] = [];
+  public myBattleList:Battle[] = [];
   public myBalance:number = 0;
   public locale_id:number = 1;
   public loading:boolean = false;
@@ -56,10 +66,23 @@ export class BattleListComponent implements OnInit{
     page:1
   }
   errors:Record<string, string[]> | null = null;
+  public pusher = inject(PusherService);
+  //@ts-ignore
+  private pusherChannel: Channel;
+  public user?: Me | null;
+  private sessionService:SessionService = inject(SessionService);
 
   ngOnInit(): void {
+    initTE({Tab});
     this.getMyBalance();
     this.getActiveBattleList();
+    this.getMyActiveBattleList();
+    this.getUser();
+    this.listenBattleAddedEvent();
+    this.listenBattleRemovedEvent();
+  }
+  ngOnDestroy(): void {
+    this.pusherChannel.unsubscribe();
   }
 
   public getActiveBattleList(){
@@ -68,6 +91,18 @@ export class BattleListComponent implements OnInit{
     this._store.select(getActiveBattlesSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         this.battleListData = item.data;
+        if(item.data.data){
+          this.battleList.push(...item.data.data);
+        }
+      }
+    });
+  }
+
+  public getMyActiveBattleList(){
+    this._store.dispatch(myActiveBattlesAction());
+    this._store.select(myActiveBattlesSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+          this.myBattleList.push(...item.data);
       }
     });
   }
@@ -93,6 +128,10 @@ export class BattleListComponent implements OnInit{
     }
   }
 
+  getUser(){
+    this.user = this.sessionService.getDataFromLocalStorage(LocalKeysConstants.user) as Me;
+  }
+
   public joinToBattle(promo_code:string){
     let request = {promo_code:promo_code,pass_code:""} as JoinToBattleRequest;
     this._store.dispatch(joinToBattleAction({requestData:request}));
@@ -101,8 +140,6 @@ export class BattleListComponent implements OnInit{
         this.router.navigate(['/'+RoutesName.battleDetail+'/'+item.data.promo_code.toString()]);
       }
     });
-
-
   }
 
   public changeActiveBattlePage($event:number){
@@ -125,6 +162,38 @@ export class BattleListComponent implements OnInit{
     pass_code:new FormControl("",),
   })
 
+  listenBattleAddedEvent(){
+    this.pusherChannel = this.pusher.getChannel('battle-list-added');
+    this.pusherChannel.bind('BattleAdded', (data: {battle:Battle}) => {
+      if(data.hasOwnProperty("battle")){
+        if(data.battle){
+          if(this.user){
+            if(data.battle.owner_id != this.user.id){
+              this.battleList.unshift(data.battle);
+            }
+          }
+          else{
+            this.battleList.unshift(data.battle);
+          }
+        }
+      }
+    });
+  }
+
+  listenBattleRemovedEvent(){
+    this.pusherChannel = this.pusher.getChannel('battle-list-joined');
+    this.pusherChannel.bind('BattleJoined', (data: {promo_code:string}) => {
+      if(data.hasOwnProperty("promo_code")){
+        if(data.promo_code){
+          let index = this.battleList.findIndex(item=>item.promo_code = data.promo_code);
+          if(index != -1){
+            this.battleList.splice(index,1);
+          }
+        }
+      }
+    });
+  }
+
   protected readonly faBook = faBook;
   protected readonly faUsers = faUsers;
   protected readonly faGift = faGift;
@@ -137,4 +206,9 @@ export class BattleListComponent implements OnInit{
   protected readonly faArrowRight = faArrowRight;
   protected readonly faCheck = faCheck;
   protected readonly faCoins = faCoins;
+  protected readonly faLock = faLock;
+  protected readonly faLockOpen = faLockOpen;
+  protected readonly faClock = faClock;
+  protected readonly faMoneyBill = faMoneyBill;
+  protected readonly faEye = faEye;
 }

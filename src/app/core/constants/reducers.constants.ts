@@ -157,6 +157,8 @@ import {getBattleStepReducer} from "../../shared/store/battle/getBattleStep/getB
 import {joinToBattleReducer} from "../../shared/store/battle/joinToBattle/joinToBattle.reducer";
 import {createBattleStepReducer} from "../../shared/store/battle/createBattleStep/createBattleStep.reducer";
 import {answerBattleQuestionReducer} from "../../shared/store/battle/answerBattleQuestion/answerBattleQuestion.reducer";
+import {finishBattleResultReducer} from "../../shared/store/battle/finishBattleResult/finishBattleResult.reducer";
+import {myActiveBattlesReducer} from "../../shared/store/battle/myActiveBattles/myActiveBattles.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -277,5 +279,7 @@ export const ReducersConstants = {
   getBattleStep:getBattleStepReducer,
   joinToBattle:joinToBattleReducer,
   answerBattleQuestion:answerBattleQuestionReducer,
+  finishBattleResult:finishBattleResultReducer,
+  myActiveBattles:myActiveBattlesReducer,
 }
 
