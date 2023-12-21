@@ -25,10 +25,11 @@ import {Channel} from "pusher-js";
   templateUrl: './battle-detail.component.html',
   styleUrls: ['./battle-detail.component.scss']
 })
-export class BattleDetailComponent implements OnInit,OnDestroy{
+export class BattleDetailComponent implements OnInit{
 //Injection
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
+  private destroyRef2:DestroyRef = inject(DestroyRef);
   public translate = inject(GlobalTranslateService);
   public pusher = inject(PusherService);
   dialog = inject(NgxSmartModalService);
@@ -44,14 +45,11 @@ export class BattleDetailComponent implements OnInit,OnDestroy{
   public promoCode:string ="";
   //Data
   ngOnInit(): void {
-    this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
-      this.getBattle(params["promo_code"])
+    this._route.params.pipe(autoUnsubscribe(this.destroyRef2)).subscribe(params => {
       this.promoCode = params["promo_code"]
+      this.getBattle(params["promo_code"])
     })
     this.me();
-  }
-  ngOnDestroy(): void {
-   this.pusherChannel.unsubscribe();
   }
   getBattle(promo_code:string){
     this._store.dispatch(getBattleByPromoAction({requestData:promo_code}));

@@ -3,17 +3,14 @@
     <div class="col-span-12 md:col-span-6  md:px-10 md:flex items-center text-center md:text-left">
       <div>
         <p class="text-lg md:text-3xl text-white font-bold">
-          {{"BATTLE_AND_WIN"}}
+          {{"BATTLE_AND_WIN" | translate}}
         </p>
         <div class="my-4 pt-5">
           <p class="md:text-xl text-white my-2 px-1">
             <fa-icon [icon]="faGift" class="ml-2"></fa-icon> {{"PARTICIPATE_PRISE_AND_AWARD"|translate}}
           </p>
           <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faUsers" class="ml-2"></fa-icon> {{"PARTICIPANTS_LIMIT"|translate}} <br>
-          </p>
-          <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faBook" class="ml-2"></fa-icon> {{"TOURNAMENT_SIXTEEN_SUBJECTS"|translate}} <br>
+            <fa-icon [icon]="faBook" class="ml-2"></fa-icon> {{"SIXTEEN_SUBJECTS"|translate}} <br>
           </p>
           <p class="md:text-xl text-white my-2 px-1">
             <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon> {{"SUPPORT_MULTI_LANGUAGE"|translate}} <br>
@@ -199,13 +196,16 @@
                     <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let myBattle of myBattleList">
                       <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center">
                         <section *ngIf="myBattle.owner">
-                          <div
-                            [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(myBattle.owner.file?.url) +')'}"
-                            class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"></div>
+                          <section class="flex justify-center items-center">
+                            <div
+                              [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(myBattle.owner.file?.url) +')'}"
+                              class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"></div>
+                          </section>
+
                           <p class="font-bold text-black ml-2 inline-block">{{myBattle.owner.name}}</p>
                         </section>
                       </td>
-                      <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center">
+                      <td class="px-6 py-4">
                         <section *ngIf="myBattle.guest;else noGuest">
                           <div
                             [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(myBattle.guest.file?.url) +')'}"
@@ -299,7 +299,7 @@
               [input_name]="'price'"
               [type]="'number'"
               [placeholder]="'PRICE' | translate"
-              [label]="('PRICE' | translate) + '*'"
+              [label]="('BET' | translate) + '*'"
               [error_message]="'price_is_not_right'"
               [backErrors]="errors"
               [classOptional]="'text-white border-white  focus:text-white peer-focus:text-white'"

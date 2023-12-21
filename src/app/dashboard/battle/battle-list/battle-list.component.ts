@@ -46,7 +46,7 @@ import {myActiveBattlesSelector} from "../../../shared/store/battle/myActiveBatt
   templateUrl: './battle-list.component.html',
   styleUrls: ['./battle-list.component.scss']
 })
-export class BattleListComponent implements OnInit,OnDestroy{
+export class BattleListComponent implements OnInit{
 //Injection
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
@@ -81,9 +81,7 @@ export class BattleListComponent implements OnInit,OnDestroy{
     this.listenBattleAddedEvent();
     this.listenBattleRemovedEvent();
   }
-  ngOnDestroy(): void {
-    this.pusherChannel.unsubscribe();
-  }
+
 
   public getActiveBattleList(){
     let request = Object.assign({},this.battleListRequest);
