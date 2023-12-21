@@ -12,16 +12,13 @@ import {ImageHelper} from "../../../core/helpers/image.helper";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {faCheckCircle, faGamepad} from "@fortawesome/free-solid-svg-icons";
 import {CountdownConfig, CountdownEvent} from "ngx-countdown";
-import {CreateBattleRequest} from "../../../shared/store/battle/createBattle/createBattle.request";
 import {CreateBattleStepRequest} from "../../../shared/store/battle/createBattleStep/createBattleStep.request";
 import {BattleStepQuestion} from "../../../shared/models/battleStepQuestion.model";
 import {getBattleStepAction} from "../../../shared/store/battle/getBattleStep/getBattleStep.action";
 import {getBattleStepSelector} from "../../../shared/store/battle/getBattleStep/getBattleStep.selector";
-import {createBattleAction} from "../../../shared/store/battle/createBattle/createBattle.action";
 import {createBattleStepAction} from "../../../shared/store/battle/createBattleStep/createBattleStep.action";
 import {createBattleStepSelector} from "../../../shared/store/battle/createBattleStep/createBattleStep.selector";
 import {SlickCarouselComponent} from "ngx-slick-carousel";
-import {BattleStepResult} from "../../../shared/models/battleStepResult.model";
 import {
   AnswerBattleQuestionRequest
 } from "../../../shared/store/battle/answerBattleQuestion/answerBattleQuestion.request";
@@ -31,12 +28,7 @@ import {
 import {
   answerBattleQuestionSelector
 } from "../../../shared/store/battle/answerBattleQuestion/answerBattleQuestion.selector";
-import {items} from "fusioncharts";
 import {finishBattleResultAction} from "../../../shared/store/battle/finishBattleResult/finishBattleResult.action";
-import {getAccountState} from "../../../shared/store/user/account/account.selector";
-import {Me} from "../../../shared/models/user.model";
-import {LocalKeysConstants} from "../../../core/constants/local-keys.constants";
-import {SessionService} from "../../../shared/services/session.service";
 
 @Component({
   selector: 'app-battle-game',
@@ -70,9 +62,10 @@ export class BattleGameComponent implements OnInit{
   public battleStepQuestionResult:BattleStepQuestion[];
   ngOnInit(): void {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
-      this.getChosenSubjects(params["step_id"]);
       this.battleStepId = params["step_id"];
     })
+    this.getChosenSubjects();
+
   }
 
 
@@ -95,7 +88,8 @@ export class BattleGameComponent implements OnInit{
     }
   }
 
-  public getChosenSubjects(step_id:number){
+  public getChosenSubjects(){
+    let step_id = this.battleStepId;
     this._store.dispatch(getBattleSubjectsAction({requestData:step_id}));
     this._store.select(getBattleSubjectsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
@@ -201,18 +195,8 @@ export class BattleGameComponent implements OnInit{
         this._store.dispatch(answerBattleQuestionAction({requestData:request}));
         this._store.select(answerBattleQuestionSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
           if(item.data){
-            this.battleStepQuestionResult = item.data.result;
-            if(item.data.is_finished){
-              if(item.data.next_step_id){
-                this.router.navigate(['/'+RoutesName.battleGame+'/'+item.data.next_step_id.toString()]);
-              }
-              else{
-                this.router.navigate(['/'+RoutesName.battleDetail+'/'+item.data.battle_promo_code.toString()]);
-              }
-            }
-            else{
-              this.changeSlider();
-            }
+            this.battleStepQuestionResult = item.data.result
+            this.changeSlider();
           }
         });
       }

@@ -47,11 +47,12 @@ export class BattleDetailComponent implements OnInit{
   ngOnInit(): void {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef2)).subscribe(params => {
       this.promoCode = params["promo_code"]
-      this.getBattle(params["promo_code"])
     })
+    this.getBattle();
     this.me();
   }
-  getBattle(promo_code:string){
+  getBattle(){
+    let promo_code = this.promoCode
     this._store.dispatch(getBattleByPromoAction({requestData:promo_code}));
     this._store.select(getBattleByPromoSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
@@ -77,10 +78,10 @@ export class BattleDetailComponent implements OnInit{
   }
   handleCountDownEvent(e: CountdownEvent) {
     if (e.action === 'notify') {
-      this.getBattle(this.promoCode);
+      this.getBattle();
     }
     if(e.action == "done"){
-      this.getBattle(this.promoCode)
+      this.getBattle()
     }
   }
   getActiveStep(steps:BattleStep[]):BattleStep|undefined{
@@ -97,7 +98,7 @@ export class BattleDetailComponent implements OnInit{
     this.pusherChannel.bind('BattleDetailEvent', (data: any) => {
       if(data.hasOwnProperty("command")){
         if(data.command == "refresh"){
-          this.getBattle(this.promoCode);
+          this.getBattle();
         }
       }
     });

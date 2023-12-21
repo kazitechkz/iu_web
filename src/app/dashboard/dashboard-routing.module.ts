@@ -104,7 +104,7 @@ const routes: Routes = [
       },
       {
         path: 'battle-game/:step_id',
-        component: BattleGameComponent
+        component: BattleGameComponent,
       },
       {
         path: 'tournament-detail/:id',
