@@ -22,6 +22,7 @@ export class LoginComponent {
     faGoogle = faGoogle;
     faFacebookF = faFacebookF;
     errors:Record<string, string[]> | null = null;
+    isSend: boolean = false
     login_form: FormGroup = new FormGroup({
         email: new FormControl("", [
             Validators.required,
@@ -35,13 +36,24 @@ export class LoginComponent {
     });
 
     onSubmit() {
-        let requestData = this.login_form.getRawValue() as LoginRequest;
-        this._store.dispatch(loginAction({requestData: requestData}));
-        this._store.select(getLoginState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-          if(item.errors){
-            this.errors = item.errors;
-          }
-        })
+      if (this.login_form.valid) {
+        this.isSend = true
+        setTimeout(() => this.sendQuery(), 1000)
+      } else {
+        this.isSend = false
+      }
+    }
+
+    sendQuery() {
+      let requestData = this.login_form.getRawValue() as LoginRequest;
+      this._store.dispatch(loginAction({requestData: requestData}));
+      this._store.select(getLoginState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+        if(item.errors){
+          this.errors = item.errors;
+          this.login_form.reset()
+          this.isSend = false
+        }
+      })
     }
 
   changeLang(lang: string) {
