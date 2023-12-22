@@ -50,6 +50,7 @@ export class BattleDetailComponent implements OnInit{
     })
     this.getBattle();
     this.me();
+    this.listenBattleDetailEvent();
   }
   getBattle(){
     let promo_code = this.promoCode
@@ -58,7 +59,6 @@ export class BattleDetailComponent implements OnInit{
       if(item.data){
         this.battle = item.data;
         this.timeConfig.leftTime = item.data.time_left_seconds;
-        this.listenBattleDetailEvent();
       }
     });
   }
@@ -94,14 +94,18 @@ export class BattleDetailComponent implements OnInit{
   }
 
   listenBattleDetailEvent(){
-    this.pusherChannel = this.pusher.getChannel('battle-channel.' + this.battle.promo_code);
-    this.pusherChannel.bind('BattleDetailEvent', (data: any) => {
-      if(data.hasOwnProperty("command")){
-        if(data.command == "refresh"){
-          this.getBattle();
+      this.pusherChannel = this.pusher.getChannel('battle-channel.' + this.promoCode);
+      this.pusherChannel.bind('BattleDetailEvent', (data: {promo_code:string}) => {
+        if(data.promo_code){
+          this._store.dispatch(getBattleByPromoAction({requestData:this.promoCode}));
+          this._store.select(getBattleByPromoSelector).subscribe(item=>{
+            if(item.data){
+              this.battle = item.data;
+              this.timeConfig.leftTime = item.data.time_left_seconds;
+            }
+          });
         }
-      }
-    });
+      });
   }
 
 

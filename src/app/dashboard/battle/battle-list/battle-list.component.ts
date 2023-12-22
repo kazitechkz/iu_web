@@ -40,6 +40,8 @@ import {SessionService} from "../../../shared/services/session.service";
 import {initTE, Tab} from "tw-elements";
 import {myActiveBattlesAction} from "../../../shared/store/battle/myActiveBattles/myActiveBattles.action";
 import {myActiveBattlesSelector} from "../../../shared/store/battle/myActiveBattles/myActiveBattles.selector";
+import {createBattleSelector} from "../../../shared/store/battle/createBattle/createBattle.selector";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-battle-list',
@@ -65,6 +67,7 @@ export class BattleListComponent implements OnInit{
   public battleListRequest:GetActiveBattlesRequest = {
     page:1
   }
+  debounceTime = 500;
   errors:Record<string, string[]> | null = null;
   public pusher = inject(PusherService);
   //@ts-ignore
@@ -117,12 +120,12 @@ export class BattleListComponent implements OnInit{
 
   public onCreateBattle(){
     if(this.createBattle.valid){
-      this.loading = true;
       let data = this.createBattle.getRawValue();
       let request = Object.assign({locale_id:this.locale_id},data);
+      this.createBattle.reset();
+      this.dialog.getModal('create-game-modal').close();
       request = request as CreateBattleRequest;
       this._store.dispatch(createBattleAction({requestData:request}));
-      this.loading = false;
     }
   }
 
@@ -130,14 +133,25 @@ export class BattleListComponent implements OnInit{
     this.user = this.sessionService.getDataFromLocalStorage(LocalKeysConstants.user) as Me;
   }
 
-  public joinToBattle(promo_code:string){
-    let request = {promo_code:promo_code,pass_code:""} as JoinToBattleRequest;
+  public async joinToBattle(promo_code:string,pass_code:string|null = null)  {
+    let password = "";
+    if(pass_code)
+    {const { value: password_input } = await Swal.fire({
+      title: "Это приватная игра",
+      input: "password",
+      inputLabel: "Введите пароль для входа",
+      inputPlaceholder: "Пароль"
+    })
+      password = password_input;
+    }
+    let request = {promo_code:promo_code,pass_code:password} as JoinToBattleRequest;
     this._store.dispatch(joinToBattleAction({requestData:request}));
     this._store.select(joinToBattleSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         this.router.navigate(['/'+RoutesName.battleDetail+'/'+item.data.promo_code.toString()]);
       }
     });
+
   }
 
   public changeActiveBattlePage($event:number){

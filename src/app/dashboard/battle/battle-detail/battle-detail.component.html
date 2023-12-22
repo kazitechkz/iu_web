@@ -72,12 +72,12 @@
                 {{battleStep.subject | globalTranslate:"title": translate.currentLang}}
               </p>
             </div>
-            <div class="flex rival-card">
-              <div class="w-5/12 p-3 mx-2 shadow-lg rounded-full min-h-[40px] border-2 border-gray-200"
+            <div class="grid grid-cols-12 rival-card">
+              <div class="col-span-6 md:col-span-5 my-2 order-1 p-3 mx-2 shadow-lg rounded-full min-h-[40px] border-2 border-gray-200"
                     [ngClass]="{'main-secondary-bg text-white':battleStep.is_current}">
                 <div *ngIf="getBattleQuestion(battleStep,battle.owner_id) as ownerQuestions;else notOwnerBattleQuestions">
                   <section class="flex justify-center items-center" *ngIf="ownerQuestions.length;else notOwnerBattleQuestionsLengthZero">
-                    <div class="mx-3 h-8 w-8 rounded-full"
+                    <div class="mx-1 md:mx-3 h-2 w-2 sm:h-3 sm:h-3 md:h-8 md:w-8 rounded-full"
                          *ngFor="let ownerQuestion of ownerQuestions"
                          [ngClass]="{
                          'bg-green-400':ownerQuestion.is_right,
@@ -87,19 +87,19 @@
                   </section>
                   <ng-template #notOwnerBattleQuestionsLengthZero>
                     <div class="flex justify-center items-center">
-                      <div class="mx-3 h-8 w-8 rounded-full bg-gray-200" *ngFor="let i of [1,2,3]"></div>
+                      <div class="mx-1 md:mx-3 h-2 w-2 sm:h-3 sm:h-3 md:h-8 md:w-8 rounded-full bg-gray-200" *ngFor="let i of [1,2,3]"></div>
                     </div>
                   </ng-template>
                 </div>
                 <ng-template #notOwnerBattleQuestions>
                   <div class="flex justify-center items-center">
-                    <div class="mx-3 h-8 w-8 rounded-full bg-gray-200" *ngFor="let i of [1,2,3]"></div>
+                    <div class="mx-1 md:mx-3 h-2 w-2 sm:h-3 sm:h-3 md:h-8 md:w-8 rounded-full bg-gray-200" *ngFor="let i of [1,2,3]"></div>
                   </div>
                 </ng-template>
               </div>
               <!--Battle Step Result-->
               <div
-                class="w-2/12 flex justify-center items-center p-3 mx-2 shadow-lg rounded-full min-h-[40px] border-2 border-gray-200 text-center"
+                class="col-span-12 md:col-span-2 my-2 order-3 md:order-2 flex justify-center items-center p-3 mx-2 shadow-lg rounded-full min-h-[40px] border-2 border-gray-200 text-center"
                 [ngClass]="{'main-secondary-bg text-white':battleStep.is_current}"
               >
                 <p class="inline text-md lg:text-xl xl:text-2xl 2xl:text-4xl" *ngIf="getBattleResult(battleStep,battle.owner_id) as ownerResult;else ownerResultBlock">
@@ -124,12 +124,12 @@
               </div>
               <!--Battle Step Result-->
 
-              <div class="w-5/12 p-3 mx-2 shadow-lg rounded-full min-h-[40px] border-2 border-gray-200"
+              <div class="col-span-6 order-2 my-2 md:order-3 md:col-span-5 p-3 mx-2 shadow-lg rounded-full min-h-[40px] border-2 border-gray-200"
                    [ngClass]="{'main-secondary-bg text-white':battleStep.is_current}"
               >
                 <div *ngIf="getBattleQuestion(battleStep,battle.guest_id) as guestQuestions;else notGuestBattleQuestions">
                   <section class="flex justify-center items-center" *ngIf="guestQuestions.length;else notGuestBattleQuestionsLengthZero">
-                    <div class="mx-3 h-8 w-8 rounded-full"
+                    <div class="mx-1 md:mx-3 h-2 w-2 sm:h-3 sm:h-3 md:h-8 md:w-8 rounded-full"
                          *ngFor="let guestQuestion of guestQuestions"
                          [ngClass]="{
                          'bg-green-400':guestQuestion.is_right,
@@ -139,13 +139,13 @@
                   </section>
                   <ng-template #notGuestBattleQuestionsLengthZero>
                     <div class="flex justify-center items-center">
-                      <div class="mx-3 h-8 w-8 rounded-full bg-gray-200" *ngFor="let i of [1,2,3]"></div>
+                      <div class="mx-1 md:mx-3 h-2 w-2 sm:h-3 sm:h-3 md:h-8 md:w-8 rounded-full bg-gray-200" *ngFor="let i of [1,2,3]"></div>
                     </div>
                   </ng-template>
                 </div>
                 <ng-template #notGuestBattleQuestions>
                   <div class="flex justify-center items-center">
-                    <div class="mx-3 h-8 w-8 rounded-full bg-gray-200" *ngFor="let i of [1,2,3]"></div>
+                    <div class="mx-1 md:mx-3 h-2 w-2 sm:h-3 sm:h-3 md:h-8 md:w-8 rounded-full bg-gray-200" *ngFor="let i of [1,2,3]"></div>
                   </div>
                 </ng-template>
               </div>

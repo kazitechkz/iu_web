@@ -138,7 +138,7 @@
                           </div>
                         </td>
                         <td class="px-6 py-4">
-                          <a (click)="joinToBattle(battleList.promo_code)" *ngIf="battleList.price < myBalance;else cantJoin" type="button" class="cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
+                          <a (click)="joinToBattle(battleList.promo_code,battleList.pass_code)" *ngIf="battleList.price < myBalance;else cantJoin" type="button" class="cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
                             <fa-icon class="mr-1" [icon]="battleList.pass_code ? faLock : faLockOpen"></fa-icon>
                             {{"JOIN"|translate}}
                           </a>
@@ -317,7 +317,7 @@
               [classOptional]="'text-white border-white  focus:text-white peer-focus:text-white'"
               ngDefaultControl
             />
-            <div class="col-span-12 text-center" *ngIf="createBattle.valid && loading == false">
+            <div class="col-span-12 text-center" *ngIf="createBattle.valid">
               <button type="button"
                       (click)="onCreateBattle()"
                       class="inline
