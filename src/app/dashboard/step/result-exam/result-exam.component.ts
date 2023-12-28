@@ -29,7 +29,24 @@ export class ResultExamComponent implements OnInit {
   public check: boolean = true
   public subStepId: number | undefined
   public localeId: number | undefined
-
+  public colors: Record<string, string> = {
+    "1": "#b6659d",
+    "2": "#ab7fe6",
+    "3": "#c05851",
+    "4": "#709048",
+    "5": "#7e4de3",
+    "6": "#4e954f",
+    "7": "#3f83c6",
+    "8": "#a5a538",
+    "9": "#e5892d",
+    "10": "#be9e1d",
+    "11": "#5e7bdd",
+    "12": "#746def",
+    "13": "#7e7c32",
+    "14": "#b5646d",
+    "15": "#dc8e24",
+    "16": "#50b8b9"
+  };
   ngOnInit(): void {
     this.getResult()
   }
