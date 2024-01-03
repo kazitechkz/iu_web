@@ -42,13 +42,15 @@ import {myActiveBattlesAction} from "../../../shared/store/battle/myActiveBattle
 import {myActiveBattlesSelector} from "../../../shared/store/battle/myActiveBattles/myActiveBattles.selector";
 import {createBattleSelector} from "../../../shared/store/battle/createBattle/createBattle.selector";
 import Swal from "sweetalert2";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-battle-list',
   templateUrl: './battle-list.component.html',
   styleUrls: ['./battle-list.component.scss']
 })
-export class BattleListComponent implements OnInit{
+export class BattleListComponent implements OnInit,OnDestroy{
+
 //Injection
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
@@ -70,6 +72,7 @@ export class BattleListComponent implements OnInit{
   debounceTime = 500;
   errors:Record<string, string[]> | null = null;
   public pusher = inject(PusherService);
+
   //@ts-ignore
   private pusherChannel: Channel;
   public user?: Me | null;
@@ -84,7 +87,9 @@ export class BattleListComponent implements OnInit{
     this.listenBattleAddedEvent();
     this.listenBattleRemovedEvent();
   }
-
+  ngOnDestroy(): void {
+    this.pusherChannel.unsubscribe();
+  }
 
   public getActiveBattleList(){
     let request = Object.assign({},this.battleListRequest);

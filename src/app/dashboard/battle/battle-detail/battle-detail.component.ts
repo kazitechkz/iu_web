@@ -25,7 +25,7 @@ import {Channel} from "pusher-js";
   templateUrl: './battle-detail.component.html',
   styleUrls: ['./battle-detail.component.scss']
 })
-export class BattleDetailComponent implements OnInit{
+export class BattleDetailComponent implements OnInit,OnDestroy{
 //Injection
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
@@ -51,6 +51,9 @@ export class BattleDetailComponent implements OnInit{
     this.getBattle();
     this.me();
     this.listenBattleDetailEvent();
+  }
+  ngOnDestroy(): void {
+    this.pusherChannel.unsubscribe();
   }
   getBattle(){
     let promo_code = this.promoCode
