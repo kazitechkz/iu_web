@@ -27,7 +27,7 @@ export class CreateAttemptEffect {
       switchMap((action) => {
         return this._service.createAttempt(action.requestData).pipe(
           switchMap(data => {
-            this._route.navigate([RoutesName.passUntExam + "/" + data.data?.attempt_id ?? 0])
+            this._route.navigate([RoutesName.passUntExam + "/" + data.data])
               return of(
                 createAttemptActionSuccess({responseData: data}),
               )

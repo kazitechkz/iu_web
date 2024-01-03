@@ -6,6 +6,6 @@ import {CreateAttemptRequest} from "./createAttempt.request";
 
 export const createAttemptAction = createAction(CreateAttemptActionTypes.OnCreateAttempt,props<{requestData:CreateAttemptRequest}>());
 export const createAttemptActionSuccess = createAction(CreateAttemptActionTypes.OnCreateAttemptSuccess, props<{
-  responseData: ResponseData<Attempt>
+  responseData: ResponseData<number>
 }>());
 export const createAttemptActionFailure = createAction(CreateAttemptActionTypes.OnCreateAttemptFailure, props<{ errors: any }>());
