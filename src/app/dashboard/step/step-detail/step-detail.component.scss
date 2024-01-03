@@ -1,8 +1,9 @@
 .st {
   background-color: #c9ecff;
-  background-image: url("https://lingualeo.com/_next/static/media/grass-left.e29e0a37a0f88866c1993299ecaad798.svg"),url("https://lingualeo.com/_next/static/media/grass-right.15a9f25dfb6a3ebf2668e2f91495ba34.svg");
+  background-image: url("/assets/images/3.png"),url("/assets/images/4.png");
+  //background-image: url("https://lingualeo.com/_next/static/media/grass-left.e29e0a37a0f88866c1993299ecaad798.svg"),url("https://lingualeo.com/_next/static/media/grass-right.15a9f25dfb6a3ebf2668e2f91495ba34.svg");
   background-repeat: no-repeat,no-repeat;
-  background-size: 102px;
+  background-size: 150px;
   border-radius: 8px;
   display: flex;
   flex-direction: row;
@@ -274,6 +275,10 @@
     width: 90px;
     height: 90px;
   }
+}
+
+@media only screen and (max-width: 900px) {
+  .st {background-image: none}
 }
 /* the slides */
 .slick-slide {

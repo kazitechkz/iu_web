@@ -91,7 +91,7 @@ export class SubStepComponent implements OnInit {
 
   checkResult() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
-      this._store.dispatch(subStepResultAction({requestData: {sub_step_id: params['id'], locale_id: 1}}))
+      this._store.dispatch(subStepResultAction({requestData: {sub_step_id: params['id'], locale_id: this.localeID}}))
       this.result$ = this._store.pipe(autoUnsubscribe(this.destroyRef), select(getSubStepResultState))
     })
   }
