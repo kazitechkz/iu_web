@@ -1,16 +1,21 @@
 import {createReducer, on} from "@ngrx/store";
 import {resultExamState} from "./resultExam.state";
 import {
-  resultExamAction, resultExamActionFailure, resultExamActionSuccess
+  resultExamAction, resultExamActionFailure, resultExamActionSuccess, resultExamClearDataAction
 } from "./resultExam.action";
-
 
 const _resultExamReducer = createReducer(
     resultExamState,
     on(resultExamAction, (state, action) => {
         return {
-            ...state,
+            ...state
         }
+    }),
+    on(resultExamClearDataAction, (state) => {
+      return {
+        ...state,
+        data: null
+      }
     }),
     on(resultExamActionSuccess, (state, action) => {
         return {

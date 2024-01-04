@@ -53,7 +53,7 @@
       <!--    Prompt-->
       <div class="col-span-12 md:col-span-2"></div>
       <div class="col-span-12 md:col-span-8">
-        <div class="grid grid-cols-12 py-3">
+        <div class="flex justify-center py-3">
             <div class="col-span-6 sm:col-span-4 md:col-span-3 flex justify-center items-start text-center p-2" *ngIf="attempt.type_id < 3">
               <section>
                 <button
@@ -68,22 +68,22 @@
                 </small>
               </section>
             </div>
-            <div class="col-span-6 sm:col-span-4 md:col-span-3  flex justify-center items-start text-center p-2" *ngIf="questions[active_slider].type_id != 3 && attempt.type_id < 3 && !answeredResult[questions[active_slider].id]">
-              <section>
-                <section *ngIf="!fiftyFiftyResult.hasOwnProperty(questions[active_slider].id)">
-                  <button
-                    (click)="getFiftyFifty()"
-                    class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 text-md md:text-2xl text-white font-bold"
-                    type="button">
-                    <fa-icon [icon]="faDice"></fa-icon>
-                  </button>
-                  <br>
-                  <small class="main-secondary-color font-bold text-xs sm:text-sm md:text-md">
-                    {{"FIFTY_FIFTY"|translate}}
-                  </small>
-                </section>
-              </section>
-            </div>
+<!--            <div class="col-span-6 sm:col-span-4 md:col-span-3  flex justify-center items-start text-center p-2" *ngIf="questions[active_slider].type_id != 3 && attempt.type_id < 3 && !answeredResult[questions[active_slider].id]">-->
+<!--              <section>-->
+<!--                <section *ngIf="!fiftyFiftyResult.hasOwnProperty(questions[active_slider].id)">-->
+<!--                  <button-->
+<!--                    (click)="getFiftyFifty()"-->
+<!--                    class="inline hover:rotate-0 rotate-180 main-secondary-bg bg-yellow-400 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 text-md md:text-2xl text-white font-bold"-->
+<!--                    type="button">-->
+<!--                    <fa-icon [icon]="faDice"></fa-icon>-->
+<!--                  </button>-->
+<!--                  <br>-->
+<!--                  <small class="main-secondary-color font-bold text-xs sm:text-sm md:text-md">-->
+<!--                    {{"FIFTY_FIFTY"|translate}}-->
+<!--                  </small>-->
+<!--                </section>-->
+<!--              </section>-->
+<!--            </div>-->
             <div class="col-span-6 sm:col-span-4 md:col-span-3  flex justify-center items-start text-center p-2">
               <section>
                 <button

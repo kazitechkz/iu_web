@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, OnDestroy, OnInit} from '@angular/core';
 import {select, Store} from "@ngrx/store";
 import {ActivatedRoute, Router} from "@angular/router";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
@@ -9,14 +9,19 @@ import {resultExamAction} from "../../../shared/store/step/resultExam/resultExam
 import {ResultExamModel} from "../../../shared/models/resultExam.model";
 import {StrHelper} from "../../../core/helpers/str.helper";
 import {RoutesName} from "../../../core/constants/routes.constants";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-result-exam',
   templateUrl: './result-exam.component.html',
   styleUrls: ['./result-exam.component.scss']
 })
-export class ResultExamComponent implements OnInit {
+export class ResultExamComponent implements OnInit, OnDestroy {
+    ngOnDestroy(): void {
+        if (this.subs) {
+          this.subs.unsubscribe()
+        }
+    }
   public translate = inject(GlobalTranslateService)
   protected readonly ColorConstants = ColorConstants
   private _store = inject(Store)
@@ -24,6 +29,8 @@ export class ResultExamComponent implements OnInit {
   destroyRef = inject(DestroyRef);
   //@ts-ignore
   results$: Observable<ResponseData<ResultExamModel>>
+  // @ts-ignore
+  subs: Subscription;
   //@ts-ignore
   public results: ResultExamModel
   public check: boolean = true
@@ -57,7 +64,7 @@ export class ResultExamComponent implements OnInit {
       this.localeId = params['locale_id']
       this._store.dispatch(resultExamAction({requestData: {sub_step_id: params['sub_step_id'], locale_id: params['locale_id']}}))
       this.results$ = this._store.pipe(autoUnsubscribe(this.destroyRef), select(getResultExamState))
-      this.results$.pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      this.subs = this.results$.pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         this.results = item.data
       })
     })

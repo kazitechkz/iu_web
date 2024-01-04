@@ -7,6 +7,8 @@ import {passSubStepExamAction, subStepExamAction} from "../../../shared/store/st
 import {getSubStepExamState, passSubStepExamState} from "../../../shared/store/step/exam/subStepExam.selector";
 import {Question, SubStepExamModel} from "../../../shared/models/question.model";
 import {distinctUntilChanged} from "rxjs";
+import {Location} from "@angular/common";
+import {resultExamAction, resultExamClearDataAction} from "../../../shared/store/step/resultExam/resultExam.action";
 
 @Component({
   selector: 'app-exam',
@@ -18,6 +20,7 @@ export class ExamComponent implements OnInit, DoCheck {
   private _store = inject(Store)
   private _route = inject(ActivatedRoute)
   private _router = inject(Router)
+  private _location = inject(Location)
   destroyRef = inject(DestroyRef);
   public questions: SubStepExamModel[] | null = []
   public localeID = 1
@@ -100,7 +103,8 @@ export class ExamComponent implements OnInit, DoCheck {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(passSubStepExamAction({requestData: this.answers}))
       this._store.select(passSubStepExamState).pipe(distinctUntilChanged(), autoUnsubscribe(this.destroyRef)).subscribe(item => {
-        this._router.navigateByUrl('/dashboard/result-exam/' + params['sub_step_test_id'] + '/' + this.localeID)
+        this._store.dispatch(resultExamClearDataAction())
+        this._router.navigateByUrl('/dashboard/result-exam/' + params['sub_step_test_id'] + '/' + this.localeID).then(r => null)
       })
     })
   }

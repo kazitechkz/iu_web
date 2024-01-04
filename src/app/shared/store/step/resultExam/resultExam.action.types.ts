@@ -1,5 +1,6 @@
 export enum ResultExamActionTypes {
     OnResultExam = "[ResultExam Action] On ResultExam",
-    OnResultExamSuccess = "[ResultExam Action] On ResultExam Success",
-    OnResultExamFailure = "[ResultExam Action] On ResultExam Failure",
+    OnResultExamSuccess = "[ResultExamSuccess Action] On ResultExamSuccess Success",
+    OnResultExamFailure = "[ResultExamFailure Action] On ResultExamFailure Failure",
+    OnResultExamClearData = "[ResultExamClearData Action] On ResultExamClearData Failure",
 }

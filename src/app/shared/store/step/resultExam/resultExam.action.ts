@@ -9,3 +9,5 @@ export const resultExamActionSuccess = createAction(ResultExamActionTypes.OnResu
     responseData: ResponseData<ResultExamModel>
 }>());
 export const resultExamActionFailure = createAction(ResultExamActionTypes.OnResultExamFailure, props<{ errors: any }>());
+
+export const resultExamClearDataAction = createAction(ResultExamActionTypes.OnResultExamClearData)
