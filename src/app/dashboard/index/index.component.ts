@@ -59,42 +59,42 @@ export class IndexComponent implements OnInit{
     {
       title: 'DASHBOARD_CONTENT_TO_UNT',
       path: StrHelper.getDashboardRouteName(RoutesName.stepRoute),
-      imageUrl: "assets/images/icons/content.png"
+      imageUrl: "assets/images/icons/content.webp"
     },
     {
       title: 'DASHBOARD_TRAINING_TO_UNT',
       path: RoutesName.untMode,
-      imageUrl: "assets/images/icons/unt.png"
+      imageUrl: "assets/images/icons/unt.webp"
     },
     {
       title: 'DASHBOARD_TOURNAMENT_TO_UNT',
       path: RoutesName.tournamentList,
-      imageUrl: "assets/images/icons/tournament.png"
+      imageUrl: "assets/images/icons/tournament.webp"
     },
     {
       title: 'DASHBOARD_GAME_TO_UNT',
       path: RoutesName.noPageIndex,
-      imageUrl: "assets/images/icons/gamepad.png"
+      imageUrl: "assets/images/icons/gamepad.webp"
     },
     {
       title: 'DASHBOARD_WALLET',
       path: RoutesName.walletIndex,
-      imageUrl: "assets/images/icons/wallet.png"
+      imageUrl: "assets/images/icons/wallet.webp"
     },
     {
       title: 'DASHBOARD_SHOP',
       path: RoutesName.noPageIndex,
-      imageUrl: "assets/images/icons/shopping.png"
+      imageUrl: "assets/images/icons/shopping.webp"
     },
     {
       title: 'DASHBOARD_COUCHERS',
       path: RoutesName.noPageIndex,
-      imageUrl: "assets/images/icons/tutor.png"
+      imageUrl: "assets/images/icons/tutor.webp"
     },
     {
       title: 'DASHBOARD_FORUM',
       path: RoutesName.forumList,
-      imageUrl: "assets/images/icons/forum.png"
+      imageUrl: "assets/images/icons/forum.webp"
     },
   ]
 

@@ -5,7 +5,7 @@ export class ImageHelper {
       return this.ImageUrl + url;
     }
     else{
-      return "assets/images/bear_office.png";
+      return "/assets/images/bear_office.webp";
     }
   }
 }

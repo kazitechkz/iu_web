@@ -1,5 +1,5 @@
 import {inject, Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ResponseData} from "../response_data";
 import {Subject} from "../../models/subject.model";
@@ -15,7 +15,8 @@ export class StepService {
     private _http = inject(HttpClient)
 
     getSteps(localeId:number): Observable<ResponseData<StepModel[]>> {
-        return this._http.get<ResponseData<StepModel[]>>(environment.baseUrl + APIRoutesName.getSteps + '/' + localeId);
+      const headers = new HttpHeaders({ 'Cache-Control': 'max-age=86400' });
+        return this._http.get<ResponseData<StepModel[]>>(environment.baseUrl + APIRoutesName.getSteps + '/' + localeId, {headers});
     }
 
 }

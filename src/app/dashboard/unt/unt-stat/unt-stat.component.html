@@ -3,7 +3,7 @@
     <div class="col-span-12 xl:col-span-5 mx-3 p-4 order-2 xl:order-1" *ngIf="untStat">
       <div [routerLink]="'/'+RoutesName.statFull" class="main-green-bg rounded-2xl p-4 shadow-lg md:flex items-center cursor-pointer neon-border">
         <div class="md:w-4/12 p-2 text-center">
-          <img class="inline" src="assets/images/medal.png">
+          <img class="inline" src="assets/images/medal.webp">
         </div>
         <div class="md:w-8/12 p-2">
           <p class="text-lg md:text-xl text-center md:text-left text-white font-bold">
@@ -120,7 +120,7 @@
             <tbody>
             <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let attempt of attempts.data | paginate: { itemsPerPage: attempts.per_page, currentPage: attempts.current_page,totalItems:attempts.total }">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
-                <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.png')] bg-cover bg-no-repeat my-2"></div>
+                <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.webp')] bg-cover bg-no-repeat my-2"></div>
                 <p class="font-bold text-black ml-2 inline-block">#{{attempt.id}}</p>
               </th>
               <td class="px-6 py-4">

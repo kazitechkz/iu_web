@@ -65,7 +65,7 @@
       <div (click)="selectActiveNotification(notification)" class="lg:flex w-full cursor-pointer  items-center min-h-[80px] border-b-2 border-neutral-200 p-3" *ngFor="let notification of notificationPagination.data | paginate: { itemsPerPage: notificationPagination.per_page, currentPage: notificationPagination.current_page,totalItems:notificationPagination.total }">
         <div class="lg:w-2/12 flex justify-center items-center">
           <div class="text-center">
-            <div class="w-12 h-12 inline-block rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.png')] bg-cover bg-no-repeat my-2"></div>
+            <div class="w-12 h-12 inline-block rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.webp')] bg-cover bg-no-repeat my-2"></div>
             <p class="text-sm font-bold text-black ml-2 inline-block">
               {{notification.owner ? notification.owner.name : "Система"}}
             </p>
