@@ -2,13 +2,11 @@
 module.exports = {
   mode:"jit",
   content: [
+    './src/**/*.{html,ts}', './projects/**/*.{html,ts}',
     "./src/**/*.{html,ts}",
     "./node_modules/flowbite/**/*.js" // add this line
   ],
-  purge: [
-    './src/**/*.{html,ts}', './projects/**/*.{html,ts}'
-  ],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: "media", // or 'media' or 'class'
   theme: {
     extend: {},
     screens: {
@@ -23,9 +21,6 @@ module.exports = {
       // => @media (min-width: 1280px) { ... }
       '2xl': '1536px',
     }
-  },
-  variants: {
-    extend: {},
   },
   plugins: [
     require('tw-elements/dist/plugin'),

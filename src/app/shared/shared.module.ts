@@ -18,6 +18,7 @@ import {SlickCarouselModule} from "ngx-slick-carousel";
 import {NgxSmartModalModule} from "ngx-smart-modal";
 import { ModalUntTrainerComponent } from './components/modal-unt-trainer/modal-unt-trainer.component';
 import { ModalContentOfferComponent } from './components/modal-content-offer/modal-content-offer.component';
+import { HomeFooterComponent } from './components/home-footer/home-footer.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ModalContentOfferComponent } from './components/modal-content-offer/mod
     TeacherSidebarComponent,
     AnnouncementListComponent,
     ModalUntTrainerComponent,
-    ModalContentOfferComponent
+    ModalContentOfferComponent,
+    HomeFooterComponent
   ],
   imports: [
     CommonModule,
@@ -43,20 +45,21 @@ import { ModalContentOfferComponent } from './components/modal-content-offer/mod
     SlickCarouselModule,
     NgxSmartModalModule,
   ],
-  exports: [
-    InputFieldComponent,
-    RoundedSocialButtonComponent,
-    TranslateModule,
-    InputFieldComponent,
-    SidebarComponent,
-    NavbarComponent,
-    HomeNavbarComponent,
-    TeacherSidebarComponent,
-    AnnouncementListComponent,
-    ModalUntTrainerComponent,
-    ModalContentOfferComponent,
+    exports: [
+        InputFieldComponent,
+        RoundedSocialButtonComponent,
+        TranslateModule,
+        InputFieldComponent,
+        SidebarComponent,
+        NavbarComponent,
+        HomeNavbarComponent,
+        TeacherSidebarComponent,
+        AnnouncementListComponent,
+        ModalUntTrainerComponent,
+        ModalContentOfferComponent,
+        HomeFooterComponent,
 
-  ],
+    ],
   providers:[TranslateStore ],
 })
 export class SharedModule { }
