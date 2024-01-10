@@ -13,7 +13,7 @@ export class MathJaxPipe implements PipeTransform {
       if(katex){
         value = this.getStaticKatex(value);
       }
-      value = value.replaceAll("width=\"100%\"", "")
+      value = value.replaceAll("width=\"100%\"", "style='max-width:100%; width:400px'")
     }
     else{
       value = "";

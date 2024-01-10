@@ -1,15 +1,22 @@
 import {createReducer, on} from "@ngrx/store";
 import {ratingForumState} from "./ratingForum.state";
 import {
+  clearRatingForumAction,
   ratingForumAction, ratingForumActionFailure, ratingForumActionSuccess,
 } from "./ratingForum.action";
 
 const _ratingForumReducer = createReducer(
   ratingForumState,
-  on(ratingForumAction, (state, action) => {
+  on(clearRatingForumAction, (state, action) => {
     return {
       ...state,
       data:null,
+    }
+  }),
+  on(ratingForumAction, (state, action) => {
+    return {
+      ...state,
+      data:null
     }
   }),
   on(ratingForumActionSuccess, (state, action) => {

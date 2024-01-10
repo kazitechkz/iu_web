@@ -88,7 +88,8 @@ export class BattleListComponent implements OnInit,OnDestroy{
     this.listenBattleRemovedEvent();
   }
   ngOnDestroy(): void {
-    this.pusherChannel.unsubscribe();
+    this.pusherChannel.unbind("BattleAdded");
+    this.pusherChannel.unbind("BattleJoined");
   }
 
   public getActiveBattleList(){
@@ -182,6 +183,7 @@ export class BattleListComponent implements OnInit,OnDestroy{
   listenBattleAddedEvent(){
     this.pusherChannel = this.pusher.getChannel('battle-list-added');
     this.pusherChannel.bind('BattleAdded', (data: {battle:Battle}) => {
+      console.log(data);
       if(data.hasOwnProperty("battle")){
         if(data.battle){
           if(this.user){

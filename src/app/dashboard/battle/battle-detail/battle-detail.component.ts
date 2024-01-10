@@ -55,6 +55,9 @@ export class BattleDetailComponent implements OnInit,OnDestroy{
   ngOnDestroy(): void {
     this.pusherChannel.unsubscribe();
   }
+  constructor() {
+
+  }
   getBattle(){
     let promo_code = this.promoCode
     this._store.dispatch(getBattleByPromoAction({requestData:promo_code}));
@@ -99,6 +102,7 @@ export class BattleDetailComponent implements OnInit,OnDestroy{
   listenBattleDetailEvent(){
       this.pusherChannel = this.pusher.getChannel('battle-channel.' + this.promoCode);
       this.pusherChannel.bind('BattleDetailEvent', (data: {promo_code:string}) => {
+        console.log("pusher!")
         if(data.promo_code){
           this._store.dispatch(getBattleByPromoAction({requestData:this.promoCode}));
           this._store.select(getBattleByPromoSelector).subscribe(item=>{

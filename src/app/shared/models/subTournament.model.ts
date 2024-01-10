@@ -12,7 +12,7 @@ export interface SubTournament{
   context_question_quantity:number,
   is_finished:boolean,
   is_current:boolean,
-  time:boolean,
+  time:number,
   start_at:Date,
   end_at:Date,
   tournament:Tournament|null

@@ -1,13 +1,15 @@
 import {inject, Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
-import {catchError, exhaustMap, of, switchMap} from "rxjs";
+import {catchError, exhaustMap, map, mergeMap, of, shareReplay, switchMap} from "rxjs";
 import {
-    ratingForumAction, ratingForumActionFailure, ratingForumActionSuccess,
+  clearRatingForumAction,
+  ratingForumAction, ratingForumActionFailure, ratingForumActionSuccess,
 } from "./ratingForum.action";
 import {RatingForumService} from "./ratingForum.service";
 import {ToastrService} from "ngx-toastr";
 import {RoutesName} from "../../../../core/constants/routes.constants";
 import {Router} from "@angular/router";
+import {registerActionSuccess} from "../../auth/register/Register.action";
 
 @Injectable()
 export class RatingForumEffect {
@@ -30,10 +32,11 @@ export class RatingForumEffect {
           ),
           catchError((_error) =>
             of(ratingForumActionFailure({errors: _error}))
-          )
+          ),
         )
       }),
     ),
   );
+
 
 }

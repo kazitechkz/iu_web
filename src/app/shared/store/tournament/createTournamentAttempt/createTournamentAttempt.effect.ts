@@ -25,7 +25,7 @@ export class CreateTournamentAttemptEffect {
       switchMap((action) => {
         return this._service.createAttempt(action.requestData).pipe(
           switchMap(data => {
-            this._route.navigate([RoutesName.passUntExam + "/" + data.data?.attempt_id ?? 0])
+            this._route.navigate([RoutesName.passUntExam + "/" + data.data ?? 0])
               return of(
                 createTournamentAttemptActionSuccess({responseData: data}),
               )
