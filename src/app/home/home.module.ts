@@ -8,13 +8,17 @@ import {SharedModule} from "../shared/shared.module";
 import {CoreModule} from "../core/core.module";
 import { NotFoundComponent } from './not-found/not-found.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { ContractOfferComponent } from './contract-offer/contract-offer.component';
 
 
 @NgModule({
     declarations: [
         HomeLayoutComponent,
         IndexComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        PrivacyPolicyComponent,
+        ContractOfferComponent
     ],
     imports: [
         CommonModule,

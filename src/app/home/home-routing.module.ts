@@ -3,6 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeLayoutComponent} from "./home-layout/home-layout.component";
 import {IndexComponent} from "./index/index.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
+import {PrivacyPolicyComponent} from "./privacy-policy/privacy-policy.component";
+import {ContractOfferComponent} from "./contract-offer/contract-offer.component";
 
 const routes: Routes = [
   {
@@ -12,6 +14,14 @@ const routes: Routes = [
       {
         path: "",
         component: IndexComponent
+      },
+      {
+        path: "private-policy",
+        component: PrivacyPolicyComponent
+      },
+      {
+        path: "contract-offer",
+        component: ContractOfferComponent
       },
       {
         path: "not-found",

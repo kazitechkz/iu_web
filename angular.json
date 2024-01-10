@@ -17,7 +17,20 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/iu_web",
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "sweetalert2",
+              "qrcode",
+              "dayjs",
+              "moment/moment",
+              "@ckeditor/ckeditor5-build-classic",
+              "@fortawesome/free-solid-svg-icons/faDumbbell",
+              "@fortawesome/free-solid-svg-icons/faCube",
+              "@fortawesome/free-solid-svg-icons/faCubes",
+              "pusher-js",
+              "moment"
+            ],
+            "outputPath": "dist/iu_web/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -35,8 +48,7 @@
               "node_modules/slick-carousel/slick/slick.scss",
               "node_modules/slick-carousel/slick/slick-theme.scss",
               "./node_modules/ngx-ui-switch/ui-switch.component.css",
-              "node_modules/katex/dist/katex.min.css",
-              "node_modules/@angular/cdk/overlay-prebuilt.css"
+              "node_modules/katex/dist/katex.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -51,7 +63,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
+                  "maximumWarning": "4mb",
                   "maximumError": "5mb"
                 },
                 {
@@ -119,6 +131,67 @@
             ],
             "scripts": []
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/iu_web/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ],
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "iu_web:build:development",
+              "serverTarget": "iu_web:server:development"
+            },
+            "production": {
+              "browserTarget": "iu_web:build:production",
+              "serverTarget": "iu_web:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "iu_web:build:production",
+              "serverTarget": "iu_web:server:production"
+            },
+            "development": {
+              "browserTarget": "iu_web:build:development",
+              "serverTarget": "iu_web:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
