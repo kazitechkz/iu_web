@@ -10,16 +10,12 @@ import {
   faWindowClose, faXmark, faSpinner
 } from "@fortawesome/free-solid-svg-icons";
 import {Store} from "@ngrx/store";
-import {loginAction} from "../../../shared/store/auth/login/login.action";
 import {subjectGetAction} from "../../../shared/store/subject/subject.action";
-import {getLoginState} from "../../../shared/store/auth/login/login.selector";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {getSubjectsState} from "../../../shared/store/subject/subject.selector";
 // @ts-ignore
 import {Subject} from "../../models/subject.model";
 import {ImageHelper} from "../../../core/helpers/image.helper";
-import {SlickCarouselComponent} from "ngx-slick-carousel";
-import {Select2Data} from "ng-select2-component";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {CreateAttemptRequest} from "../../../shared/store/attempt/createAttempt/createAttempt.request";
 import {createAttemptAction} from "../../../shared/store/attempt/createAttempt/createAttempt.action";

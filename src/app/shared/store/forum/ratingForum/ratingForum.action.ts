@@ -12,3 +12,5 @@ export const ratingForumActionSuccess = createAction(RatingForumActionTypes.Rati
   responseData: ResponseData<DiscussRating>
 }>());
 export const ratingForumActionFailure = createAction(RatingForumActionTypes.RatingForumFailure, props<{ errors: any }>());
+
+export const clearRatingForumAction = createAction(RatingForumActionTypes.ClearRatingForum);

@@ -95,7 +95,34 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     this.getAppealTypes();
     initFlowbite();
   }
+  constructor() {
+    //Answer Selector
+    this._store.select(answerSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        if(item.data.is_finished === true){
+          this._router.navigate([RoutesName.resultAttempt + "/" + this.attempt.attempt_id]).then(r => true);
+        }
+        else{
+          this.getAttemptResult(this.active_subject_id);
+        }
+        this.next();
+      }
+    });
+    //Attempt Result
+    this._store.select(answeredResultSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        this.answeredResult = Object.assign(this.answeredResult,item.data);
+      }
+    });
+    //Appeal Types
+    this._store.select(appealTypeSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        this.appealTypes = item.data;
+        this.appealRequest.type_id = item.data.find(item=>true)?.id ??0;
+      }
+    });
 
+  }
 
   getAttempt(){
     this.loading = true;
@@ -117,34 +144,14 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     this.loading = false;
   }
 
-  checkResult(){
-    this._store.select(answerSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
-      if(item.data){
-        if(item.data.is_finished === true){
-         this._router.navigate([RoutesName.resultAttempt + "/" + this.attempt.attempt_id]).then(r => true);
-        }
-      }
-    });
-  }
-
   getAttemptResult(active_subject_id:number){
     let requestAnswer = {attempt_subject_id:active_subject_id} as AnsweredResultRequest;
     this._store.dispatch(onAnsweredResultAction({requestData:requestAnswer}));
-    this._store.select(answeredResultSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
-      if(item.data){
-        this.answeredResult = item.data;
-      }
-    });
   }
 
   getAppealTypes(){
     this._store.dispatch(appealTypesAction());
-    this._store.select(appealTypeSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
-      if(item.data){
-        this.appealTypes = item.data;
-        this.appealRequest.type_id = item.data.find(item=>true)?.id ??0;
-      }
-    });
+
   }
 
   changeSubject(subject_id:any){
@@ -246,9 +253,6 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     if(request){
       request.answers = request.answers.join(',');
       this._store.dispatch(createAnswerAction({requestData:request}));
-      this.getAttemptResult(this.active_subject_id);
-      this.checkResult();
-      this.next();
     }
     this.loadingAnswer = false;
   }

@@ -138,12 +138,13 @@
                           </div>
                         </td>
                         <td class="px-6 py-4">
-                          <a (click)="joinToBattle(battleList.promo_code,battleList.pass_code)" *ngIf="battleList.price < myBalance;else cantJoin" type="button" class="cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
+                          <a (click)="joinToBattle(battleList.promo_code,battleList.pass_code)" *ngIf="battleList.price < myBalance;else cantJoin" type="button"
+                             class="block cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
                             <fa-icon class="mr-1" [icon]="battleList.pass_code ? faLock : faLockOpen"></fa-icon>
                             {{"JOIN"|translate}}
                           </a>
                           <ng-template #cantJoin>
-                            <a type="button" class="cursor-pointer text-white bg-secondary hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                            <a type="button" class="block cursor-pointer text-white bg-secondary hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
                               <fa-icon class="mr-1" [icon]="faLock"></fa-icon>
                               {{"YOU_CANT_JOIN"|translate}}
                             </a>
@@ -233,7 +234,7 @@
                         </div>
                       </td>
                       <td class="px-6 py-4">
-                        <a [routerLink]="'/'+ RoutesName.battleDetail + '/'+ myBattle.promo_code" type="button" class="cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
+                        <a [routerLink]="'/'+ RoutesName.battleDetail + '/'+ myBattle.promo_code" type="button" class="block cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
                           <fa-icon class="mr-1" [icon]="faEye"></fa-icon>
                           {{"SHOW"|translate}}
                         </a>

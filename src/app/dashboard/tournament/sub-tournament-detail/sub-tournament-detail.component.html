@@ -63,7 +63,7 @@
                     class="main-green-color md:text-2xl xl:text-3xl inline-block text-center w-full m-3" *ngIf="my_result">
                   <fa-icon [icon]="faSmileWink"></fa-icon>
                   <p>
-                    {{"YOU_ARE_NOT_PARTICIPANT"|translate}}
+                    Вы уже участвовали!
                   </p>
                 </span>
                 <section *ngIf="!my_result">
@@ -377,7 +377,7 @@
                         <p class="text-black ml-2">{{sub_tournament_results.my_result.point}}</p>
                       </td>
                       <td class="px-6 py-4">
-                        <p class="text-black ml-2">{{sub_tournament_results.my_result.time}}</p>
+                        <p class="text-black ml-2">{{((sub_tournament.time - moment.duration(sub_tournament_results.my_result.time,'milliseconds').asMinutes())*60).toFixed(1)}} секунд</p>
                       </td>
                     </tr>
                     </tbody>

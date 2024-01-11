@@ -119,6 +119,37 @@ export class SubTournamentDetailComponent implements OnInit{
     this.getSubTournamentDetail();
   }
 
+  constructor() {
+    this._store.select(getSubTournamentRivalsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
+      item => {
+        if(item.data){
+          this.sub_tournament_rivals = item.data;
+        }
+      }
+    )
+    this._store.select(getSubTournamentParticipantsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
+      item => {
+        if(item.data){
+          this.sub_tournament_participants = item.data;
+        }
+      }
+    )
+    this._store.select(getSubTournamentWinnersSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
+      item => {
+        if(item.data){
+          this.sub_tournament_winners = item.data;
+        }
+      }
+    )
+    this._store.select(getSubTournamentResultsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
+      item => {
+        if(item.data){
+          this.sub_tournament_results = item.data;
+        }
+      }
+    )
+  }
+
 
   getSubTournamentDetail(){
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
@@ -156,52 +187,26 @@ export class SubTournamentDetailComponent implements OnInit{
     Object.assign(pageRequest,this.paginationParticipants);
     pageRequest = pageRequest as GetSubTournamentParticipantsRequest;
     this._store.dispatch(getSubTournamentParticipantsAction({requestData:pageRequest}));
-    this._store.select(getSubTournamentParticipantsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
-      item => {
-        if(item.data){
-          this.sub_tournament_participants = item.data;
-        }
-      }
-    )
+
   }
   getSubTournamentWinners(){
     let pageRequest: GetSubTournamentWinnersRequest = {id:0};
     Object.assign(pageRequest,this.paginationWinner);
     pageRequest = pageRequest as GetSubTournamentWinnersRequest;
     this._store.dispatch(getSubTournamentWinnersAction({requestData:pageRequest}));
-    this._store.select(getSubTournamentWinnersSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
-      item => {
-        if(item.data){
-          this.sub_tournament_winners = item.data;
-        }
-      }
-    )
   }
   getSubTournamentResults(){
     let pageRequest: GetSubTournamentResultsRequest = {page:1,id:0};
     Object.assign(pageRequest,this.paginationResults);
     pageRequest = pageRequest as GetSubTournamentResultsRequest;
     this._store.dispatch(getSubTournamentResultsAction({requestData:pageRequest}));
-    this._store.select(getSubTournamentResultsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
-      item => {
-        if(item.data){
-          this.sub_tournament_results = item.data;
-        }
-      }
-    )
+
   }
   getSubTournamentRivals(){
     let pageRequest: GetSubTournamentRivalsRequest = {id:0};
     Object.assign(pageRequest,this.paginationWinner);
     pageRequest = pageRequest as GetSubTournamentRivalsRequest;
     this._store.dispatch(getSubTournamentRivalsAction({requestData:pageRequest}));
-    this._store.select(getSubTournamentRivalsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
-      item => {
-        if(item.data){
-          this.sub_tournament_rivals = item.data;
-        }
-      }
-    )
   }
 
   changeLanguage(value:any){

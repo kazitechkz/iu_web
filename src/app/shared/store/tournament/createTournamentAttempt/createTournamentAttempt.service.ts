@@ -15,8 +15,8 @@ import {CreateTournamentAttemptRequest} from "./createTournamentAttempt.request"
 export class CreateTournamentAttemptService {
   private _http = inject(HttpClient)
 
-  createAttempt(data:CreateTournamentAttemptRequest): Observable<ResponseData<Attempt>> {
-    return this._http.post<ResponseData<Attempt>>(environment.baseUrl + APIRoutesName.createTournamentAttempt,data);
+  createAttempt(data:CreateTournamentAttemptRequest): Observable<ResponseData<number>> {
+    return this._http.post<ResponseData<number>>(environment.baseUrl + APIRoutesName.createTournamentAttempt,data);
   }
 
 }

@@ -56,24 +56,31 @@ export class MyAttemptSettingsComponent implements OnInit{
     this.getMySingleSettings();
   }
 
-  getMySingleSettings(){
-    let request:GetMyAttemptSingleSettingsRequest = Object.assign({},this.requestSingle);
-    this._store.dispatch(getMyAttemptSingleSettingsAction({requestData:request}));
+
+  constructor() {
     this._store.select(getMyAttemptSingleSettingsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         this.attemptSingleSettings = item.data;
       }
     });
+
   }
 
-  getMyUNTSettings(){
-    let request:GetMyAttemptUNTSettingsRequest = Object.assign({},this.requestUNT);
-    this._store.dispatch(getMyAttemptUNTSettingsAction({requestData:request}));
+  getMySingleSettings(){
+    let request:GetMyAttemptSingleSettingsRequest = Object.assign({},this.requestSingle);
+    this._store.dispatch(getMyAttemptSingleSettingsAction({requestData:request}));
     this._store.select(getMyAttemptUNTSettingsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         this.attemptUNTSettings = item.data;
       }
     });
+
+  }
+
+  getMyUNTSettings(){
+    let request:GetMyAttemptUNTSettingsRequest = Object.assign({},this.requestUNT);
+    this._store.dispatch(getMyAttemptUNTSettingsAction({requestData:request}));
+
   }
   changeSingleSettingPage($event:number){
     this.requestSingle.page = $event;

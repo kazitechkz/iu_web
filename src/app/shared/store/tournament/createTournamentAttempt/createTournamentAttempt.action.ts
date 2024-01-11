@@ -6,6 +6,6 @@ import {CreateTournamentAttemptRequest} from "./createTournamentAttempt.request"
 
 export const createTournamentAttemptAction = createAction(CreateTournamentAttemptActionTypes.OnCreateTournamentAttempt,props<{requestData:CreateTournamentAttemptRequest}>());
 export const createTournamentAttemptActionSuccess = createAction(CreateTournamentAttemptActionTypes.OnCreateTournamentAttemptSuccess, props<{
-  responseData: ResponseData<Attempt>
+  responseData: ResponseData<number>
 }>());
 export const createTournamentAttemptActionFailure = createAction(CreateTournamentAttemptActionTypes.OnCreateTournamentAttemptFailure, props<{ errors: any }>());

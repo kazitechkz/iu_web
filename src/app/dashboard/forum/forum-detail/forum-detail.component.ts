@@ -25,13 +25,14 @@ import {GetForumDiscussRequest} from "../../../shared/store/forum/getForumDiscus
 import {getForumDiscussSelector} from "../../../shared/store/forum/getForumDiscuss/getForumDiscuss.selector";
 import {Collapse, initTE} from "tw-elements";
 import {RatingForumRequest} from "../../../shared/store/forum/ratingForum/ratingForum.request";
-import {ratingForumAction} from "../../../shared/store/forum/ratingForum/ratingForum.action";
+import {clearRatingForumAction, ratingForumAction} from "../../../shared/store/forum/ratingForum/ratingForum.action";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {createDiscussAction} from "../../../shared/store/forum/createDiscuss/createDiscuss.action";
 import {CreateDiscussRequest} from "../../../shared/store/forum/createDiscuss/createDiscuss.request";
 import {createDiscussSelector} from "../../../shared/store/forum/createDiscuss/createDiscuss.selector";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
+import {distinct, distinctUntilChanged} from "rxjs";
 
 @Component({
   selector: 'app-forum-detail',
@@ -68,24 +69,39 @@ export class ForumDetailComponent implements OnInit,OnDestroy{
     })
   }
 
-  getForumDetail(forum_id:number){
-    this._store.dispatch(getForumAction({requestData:forum_id}));
-    this._store.select(getForumSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+  constructor() {
+      //Forum Detail
+    this._store.select(getForumSelector).pipe(
+      autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
+        console.log(item.data.forum.discuss_rating_sum_rating);
         this.forumDetail = item.data;
       }
     })
+    //Forum Description
+    this._store.select(getForumDiscussSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        this.forumDiscuss = item.data;
+      }
+    })
+    //Get forum discuss
+    this._store.select(createDiscussSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe((item) => {
+      if (item.data) {
+        this.getForumDiscusses();
+      }
+    });
+
+
+  }
+
+  getForumDetail(forum_id:number){
+    this._store.dispatch(getForumAction({requestData:forum_id}));
   }
 
   getForumDiscusses(){
     let request = Object.assign({},this.params);
     request = request as GetForumDiscussRequest;
     this._store.dispatch(getForumDiscussAction({requestData:request}));
-    this._store.select(getForumDiscussSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
-      if(item.data){
-        this.forumDiscuss = item.data;
-      }
-    })
   }
   pageChanged($event:number){
     this.params.page = $event;
@@ -102,8 +118,7 @@ export class ForumDetailComponent implements OnInit,OnDestroy{
         }
         if(discuss_id){
           request = {rating:rating,discuss_id:discuss_id,forum_id:null} as RatingForumRequest;
-        }
-        // @ts-ignore
+        }// @ts-ignore
         this._store.dispatch(ratingForumAction({requestData:request}));
         if(forum_id){
           this.getForumDetail(forum_id);
@@ -119,11 +134,6 @@ export class ForumDetailComponent implements OnInit,OnDestroy{
     if(this.createDiscuss.valid){
       let requestData = {forum_id:this.forumDetail.forum.id,...this.createDiscuss.getRawValue()} as CreateDiscussRequest;
       this._store.dispatch(createDiscussAction({requestData: requestData}));
-      this._store.select(createDiscussSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe((item) => {
-        if (item.data) {
-         this.getForumDiscusses();
-        }
-      });
       this.createDiscuss.reset();
     }
   }

@@ -52,25 +52,29 @@ export class TournamentDetailComponent implements OnInit{
     this.getTournamentInfo();
   }
 
+  constructor() {
+    this._store.select(getTournamentDetailSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        this.tournamentDetails = item.data.tournament;
+        //@ts-ignore
+        this.firstSubTournament = item.data.tournament.sub_tournaments?.find(item=>{
+          if(item.tournament_step){
+            if(item.tournament_step.is_first){
+              return item;
+            }
+          }
+        });
+        this.subtournament_ids = item.data.subtournament_ids;
+        this.tournament_ids = item.data.tournament_ids;
+        this.steps = item.data.steps;
+      }
+    });
+  }
+
   getTournamentInfo(){
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(getTournamentDetailAction({requestData:params["id"]}));
-      this._store.select(getTournamentDetailSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
-        if(item.data){
-          this.tournamentDetails = item.data.tournament;
-          //@ts-ignore
-          this.firstSubTournament = item.data.tournament.sub_tournaments?.find(item=>{
-            if(item.tournament_step){
-              if(item.tournament_step.is_first){
-                return item;
-              }
-            }
-          });
-          this.subtournament_ids = item.data.subtournament_ids;
-          this.tournament_ids = item.data.tournament_ids;
-          this.steps = item.data.steps;
-        }
-      });
+
     });
   }
 
@@ -78,7 +82,7 @@ export class TournamentDetailComponent implements OnInit{
     let request = {locale_id:1, sub_tournament_id:this.firstSubTournament.id} as ParticipateTournamentRequest;
     if(request.sub_tournament_id){
       this._store.dispatch(OnParticipateTournamentAction({requestData:request}));
-      this.getTournamentInfo();
+      window.location.reload();
     }
   }
 
