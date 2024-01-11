@@ -159,6 +159,9 @@ import {createBattleStepReducer} from "../../shared/store/battle/createBattleSte
 import {answerBattleQuestionReducer} from "../../shared/store/battle/answerBattleQuestion/answerBattleQuestion.reducer";
 import {finishBattleResultReducer} from "../../shared/store/battle/finishBattleResult/finishBattleResult.reducer";
 import {myActiveBattlesReducer} from "../../shared/store/battle/myActiveBattles/myActiveBattles.reducer";
+import {
+  participantTournamentReducer
+} from "../../shared/store/tournament/participateTournament/participateTournament.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -189,7 +192,7 @@ export const ReducersConstants = {
   untTotalStat:getUntStatReducer,
   getAllTournament:getAllTournamentReducer,
   getTournamentDetail:getTournamentDetailReducer,
-  participateTournament:passSubStepExamReducer,
+  participateTournament:participantTournamentReducer,
   getSubTournamentDetail:getSubTournamentDetailReducer,
   subStepResult: subStepResultReducer,
   getSubTournamentParticipants:getSubTournamentParticipantsReducer,

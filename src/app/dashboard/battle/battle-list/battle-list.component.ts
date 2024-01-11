@@ -88,13 +88,10 @@ export class BattleListComponent implements OnInit,OnDestroy{
     this.listenBattleRemovedEvent();
   }
   ngOnDestroy(): void {
-    this.pusherChannel.unbind("BattleAdded");
-    this.pusherChannel.unbind("BattleJoined");
+    this.pusherChannel.unsubscribe();
   }
 
-  public getActiveBattleList(){
-    let request = Object.assign({},this.battleListRequest);
-    this._store.dispatch(getActiveBattlesAction({requestData:request}));
+  constructor() {
     this._store.select(getActiveBattlesSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         this.battleListData = item.data;
@@ -103,25 +100,39 @@ export class BattleListComponent implements OnInit,OnDestroy{
         }
       }
     });
-  }
-
-  public getMyActiveBattleList(){
-    this._store.dispatch(myActiveBattlesAction());
     this._store.select(myActiveBattlesSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
-          this.myBattleList.push(...item.data);
+        this.myBattleList.push(...item.data);
       }
     });
-  }
-
-  public getMyBalance(){
-    this._store.dispatch(myBalanceAction());
     this._store.select(myBalanceSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         this.myBalance = item.data;
         this.createBattle.controls["price"].addValidators(Validators.max(item.data))
       }
     });
+    this._store.select(joinToBattleSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        this.router.navigate(['/'+RoutesName.battleDetail+'/'+item.data.promo_code.toString()]);
+      }
+    });
+
+  }
+
+  public getActiveBattleList(){
+    let request = Object.assign({},this.battleListRequest);
+    this._store.dispatch(getActiveBattlesAction({requestData:request}));
+
+  }
+
+  public getMyActiveBattleList(){
+    this._store.dispatch(myActiveBattlesAction());
+
+  }
+
+  public getMyBalance(){
+    this._store.dispatch(myBalanceAction());
+
   }
 
   public onCreateBattle(){
@@ -152,12 +163,6 @@ export class BattleListComponent implements OnInit,OnDestroy{
     }
     let request = {promo_code:promo_code,pass_code:password} as JoinToBattleRequest;
     this._store.dispatch(joinToBattleAction({requestData:request}));
-    this._store.select(joinToBattleSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
-      if(item.data){
-        this.router.navigate(['/'+RoutesName.battleDetail+'/'+item.data.promo_code.toString()]);
-      }
-    });
-
   }
 
   public changeActiveBattlePage($event:number){
@@ -183,16 +188,21 @@ export class BattleListComponent implements OnInit,OnDestroy{
   listenBattleAddedEvent(){
     this.pusherChannel = this.pusher.getChannel('battle-list-added');
     this.pusherChannel.bind('BattleAdded', (data: {battle:Battle}) => {
-      console.log(data);
       if(data.hasOwnProperty("battle")){
         if(data.battle){
           if(this.user){
             if(data.battle.owner_id != this.user.id){
-              this.battleList.unshift(data.battle);
+              let finded = this.battleList.find(item=>item.id != data.battle.id);
+              if(!finded){
+                this.battleList.unshift(data.battle);
+              }
             }
           }
           else{
-            this.battleList.unshift(data.battle);
+            let finded = this.battleList.find(item=>item.id != data.battle.id);
+            if(!finded){
+              this.battleList.unshift(data.battle);
+            }
           }
         }
       }

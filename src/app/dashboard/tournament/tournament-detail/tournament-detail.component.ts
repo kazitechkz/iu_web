@@ -27,6 +27,9 @@ import {
   OnParticipateTournamentAction
 } from "../../../shared/store/tournament/participateTournament/participateTournament.action";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
+import {
+  participateTournamentSelector
+} from "../../../shared/store/tournament/participateTournament/participateTournament.selector";
 @Component({
   selector: 'app-tournament-detail',
   templateUrl: './tournament-detail.component.html',
@@ -46,6 +49,7 @@ export class TournamentDetailComponent implements OnInit{
   public subtournament_ids:number[] = [];
   //@ts-ignore
   public steps:TournamentStep[];
+  public tournamentId:number|null = null;
 
   ngOnInit(): void {
     initTE({Collapse});
@@ -53,6 +57,10 @@ export class TournamentDetailComponent implements OnInit{
   }
 
   constructor() {
+    this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
+
+      this.tournamentId = params["id"];
+    });
     this._store.select(getTournamentDetailSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         this.tournamentDetails = item.data.tournament;
@@ -69,20 +77,24 @@ export class TournamentDetailComponent implements OnInit{
         this.steps = item.data.steps;
       }
     });
+    this._store.select(participateTournamentSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=> {
+        if (item.data && this.tournamentId) {
+          this._store.dispatch(getTournamentDetailAction({requestData:this.tournamentId}));
+        }
+      }
+    )
   }
 
   getTournamentInfo(){
-    this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
-      this._store.dispatch(getTournamentDetailAction({requestData:params["id"]}));
-
-    });
+    if(this.tournamentId){
+      this._store.dispatch(getTournamentDetailAction({requestData: this.tournamentId}));
+    }
   }
 
   participateTournament(){
     let request = {locale_id:1, sub_tournament_id:this.firstSubTournament.id} as ParticipateTournamentRequest;
     if(request.sub_tournament_id){
       this._store.dispatch(OnParticipateTournamentAction({requestData:request}));
-      window.location.reload();
     }
   }
 

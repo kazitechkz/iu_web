@@ -130,11 +130,9 @@
           <div class="text-center" *ngIf="firstSubTournament.is_current && !firstSubTournament.is_finished && (moment(firstSubTournament.start_at).isBefore(moment.now()) && moment(firstSubTournament.end_at).isAfter(moment.now()));else passed">
             <p
               class="text-danger text-xl lg:text-2xl font-bold inline-block">
-              {{"UNTIL_PARTICIPATE_REGISTER_DATE"|translate}}
+              {{moment(firstSubTournament.start_at).format("HH:mm DD/MM/yyyy")}} - {{moment(firstSubTournament.end_at).format("HH:mm DD/MM/yyyy")}}
             </p>
-            <div class="my-4">
-              <countdown class="text-danger text-2xl lg:text-5xl font-bold inline-block" [config]="{leftTime:moment(firstSubTournament.end_at).diff(moment.now(),'seconds'),format:'dd/HH:mm:ss'}"></countdown>
-            </div>
+            <br/>
             <a
               (click)="participateTournament()"
               type="button"

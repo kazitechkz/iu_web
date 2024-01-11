@@ -21,13 +21,6 @@
           <div class="my-3" *ngIf="sub_tournament">
             <section *ngIf="!sub_tournament_ids.includes(sub_tournament.id) && sub_tournament.tournament_step?.is_first;else participated">
               <div class="text-center" *ngIf="sub_tournament.is_current && !sub_tournament.is_finished && (moment(sub_tournament.start_at).isBefore(moment.now()) && moment(sub_tournament.end_at).isAfter(moment.now()));else passed">
-                <p
-                  class="text-danger text-xl lg:text-2xl font-bold inline-block">
-                  {{"EXPIRATION_DATE_REGISTER"|translate}}
-                </p>
-                <div class="my-4">
-                  <countdown class="text-danger text-2xl lg:text-5xl font-bold inline-block" [config]="{leftTime:moment(sub_tournament.end_at).diff(moment.now(),'seconds'),format:'dd/HH:mm:ss'}"></countdown>
-                </div>
                 <a
                   (click)="participateTournament()"
                   type="button"
@@ -285,7 +278,7 @@
                         <p class="text-black ml-2 font-bold">{{rivals.point_one}}</p>
                       </td>
                       <td class="px-6 py-4">
-                        <p class="text-black ml-2 font-bold">{{rivals.time_one}}</p>
+                        <p class="text-black ml-2">{{((sub_tournament.time - moment.duration(rivals.time_one,'milliseconds').asMinutes())*60).toFixed(1)}} секунд</p>
                       </td>
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
                         <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.webp')] bg-cover bg-no-repeat my-2"></div>
@@ -296,7 +289,7 @@
                         <p class="text-black ml-2 font-bold">{{rivals.point_two}}</p>
                       </td>
                       <td class="px-6 py-4">
-                        <p class="text-black ml-2 font-bold">{{rivals.time_two}}</p>
+                        <p class="text-black ml-2">{{((sub_tournament.time - moment.duration(rivals.time_two,'milliseconds').asMinutes())*60).toFixed(1)}} секунд</p>
                       </td>
                     </tr>
                     </tbody>
@@ -431,7 +424,7 @@
                         <p class="text-black ml-2">{{result.point}}</p>
                       </td>
                       <td class="px-6 py-4">
-                        <p class="text-black ml-2">{{result.time}}</p>
+                        <p class="text-black ml-2">{{((sub_tournament.time - moment.duration(result.time,'milliseconds').asMinutes())*60).toFixed(1)}} секунд</p>
                       </td>
                     </tr>
                     </tbody>

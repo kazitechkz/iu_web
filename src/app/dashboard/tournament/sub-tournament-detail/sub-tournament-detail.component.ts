@@ -79,6 +79,12 @@ import {
 import {
   OnParticipateTournamentAction
 } from "../../../shared/store/tournament/participateTournament/participateTournament.action";
+import {
+  participateTournamentSelector
+} from "../../../shared/store/tournament/participateTournament/participateTournament.selector";
+import {
+  getTournamentDetailAction
+} from "../../../shared/store/tournament/getTournamentDetail/getTournamentDetail.action";
 @Component({
   selector: 'app-sub-tournament-detail',
   templateUrl: './sub-tournament-detail.component.html',
@@ -113,6 +119,7 @@ export class SubTournamentDetailComponent implements OnInit{
   public paginationWinner = {id:0}
 
   locale_id:number = 1;
+  subTournamentId:number|null = null;
   //Some Data End
   ngOnInit(): void {
     initTE({Tab});
@@ -120,6 +127,32 @@ export class SubTournamentDetailComponent implements OnInit{
   }
 
   constructor() {
+    this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
+      this.subTournamentId = params["id"]
+    });
+    if(this.subTournamentId !== null){
+      this._store.select(getSubTournamentDetailSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe((item)=>{
+        if(item.data){
+          this.tournament = item.data.tournament;
+          this.sub_tournament_ids = item.data.sub_tournament_ids;
+          this.sub_tournament = item.data.sub_tournament;
+          this.my_result = item.data.my_result;
+          // @ts-ignore
+          this.paginationParticipants.id = this.subTournamentId;
+          // @ts-ignore
+          this.paginationResults.id = this.subTournamentId;
+          // @ts-ignore
+          this.paginationWinner.id = this.subTournamentId;
+          // @ts-ignore
+          this.paginationRival.id = this.subTournamentId;
+          this.getSubTournamentParticipants();
+          this.getSubTournamentResults();
+          this.getSubTournamentWinners();
+          this.getSubTournamentRivals();
+        }
+      });
+    }
+
     this._store.select(getSubTournamentRivalsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
       item => {
         if(item.data){
@@ -148,29 +181,19 @@ export class SubTournamentDetailComponent implements OnInit{
         }
       }
     )
+    this._store.select(participateTournamentSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=> {
+      if (item.data && this.subTournamentId) {
+          this._store.dispatch(getSubTournamentDetailAction({requestData:this.subTournamentId}));
+        }
+      }
+    )
   }
 
 
   getSubTournamentDetail(){
-    this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
-      this._store.dispatch(getSubTournamentDetailAction({requestData:params["id"]}));
-      this._store.select(getSubTournamentDetailSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe((item)=>{
-        if(item.data){
-          this.tournament = item.data.tournament;
-          this.sub_tournament_ids = item.data.sub_tournament_ids;
-          this.sub_tournament = item.data.sub_tournament;
-          this.my_result = item.data.my_result;
-          this.paginationParticipants.id = params["id"];
-          this.paginationResults.id = params["id"];
-          this.paginationWinner.id = params["id"];
-          this.paginationRival.id = params["id"];
-          this.getSubTournamentParticipants();
-          this.getSubTournamentResults();
-          this.getSubTournamentWinners();
-          this.getSubTournamentRivals();
-        }
-      });
-    });
+    if(this.subTournamentId){
+      this._store.dispatch(getSubTournamentDetailAction({requestData:this.subTournamentId}));
+    }
   }
 
   participantPageChanged($event:number){

@@ -87,7 +87,7 @@
                         {{open_tournament.price}}{{open_tournament.currency}}
                       </p>
                       <a [routerLink]="['/'+RoutesName.tournamentDetail + '/' + open_tournament.id ]" type="button" class="inline-block cursor-pointer text-white bg-green-300 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500 my-3">
-                        {{"REGISTRATION"|translate}}
+                        {{"MORE_INFO"|translate}}
                       </a>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
                       <fa-icon [icon]="faMoneyBill" class="ml-2"></fa-icon>
                       {{participated_tournament.price}}{{participated_tournament.currency}}
                     </p>
-                    <a type="button" class="inline-block cursor-pointer text-white bg-green-300 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500 my-3">
+                    <a [routerLink]="['/'+RoutesName.tournamentDetail + '/' + participated_tournament.id ]" type="button" class="inline-block cursor-pointer text-white bg-green-300 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500 my-3">
                       {{ "MORE_INFO"|translate}}
                     </a>
                   </div>
