@@ -1,8 +1,18 @@
 <div class="container mx-auto" *ngIf="me">
   <div class="grid grid-cols-12 gap-4">
     <div class="col-span-12 lg:col-span-4 my-4  p-3 bg-white shadow-2xl rounded-lg">
-      <div class="flex justify-center items-center my-2">
-        <div class="rounded-full w-[130px] h-[130px] md:w-[260px] md:h-[260px] bg-center bg-no-repeat bg-cover" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(me.file?.url) +')'}"></div>
+      <div class="flex justify-center items-center my-2 relative">
+        <div class="rounded-full w-[130px] h-[130px] md:w-[260px] md:h-[260px] bg-center bg-no-repeat bg-cover"
+             [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(me.file?.url) +')'}">
+        </div>
+        <div class="absolute bottom-0 right-0">
+          <form>
+            <input id="img-update" type="file" class="invisible w-0" accept="image/*"/>
+          </form>
+          <label for="img-update">
+            <fa-icon class="mr-2 main-green-color" [icon]="faPencilAlt"></fa-icon>
+          </label>
+        </div>
       </div>
       <hr>
       <div *ngIf="me" class="px-3 py-4">
@@ -31,15 +41,13 @@
           <p>{{me.gender | globalTranslate:"title": translate.currentLang}}</p>
         </span>
         <div class="text-right my-2">
-          <a
+          <a (click)="openDialog('change-profile')"
             class="cursor-pointer text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-500 dark:hover:bg-blue-700 dark:focus:ring-blue-700">
             <fa-icon class="mr-1 text-white" [icon]="faPencilAlt"></fa-icon>
             {{"EDIT"|translate}}
           </a>
         </div>
       </div>
-
-
     </div>
     <div class="col-span-12 lg:col-span-8 my-4">
       <div class="relative">
@@ -56,13 +64,84 @@
 
 
     </div>
-
-
-
   </div>
-
-
-
-
-
 </div>
+
+<ngx-smart-modal identifier="change-profile">
+  <div *ngIf="me" class="px-3 py-4">
+    <form [formGroup]="profile_form" (ngSubmit)="update()">
+      <span class="flex justify-center items-center mb-2 text-sm md:text-md lg:text-lg font-normal">
+          <fa-icon class="mr-2 main-green-color" [icon]="faUser"></fa-icon>
+          <app-input-field
+            class="w-full"
+            [formControlName]="'name'"
+            [input_name]="'name'"
+            [type]="'text'"
+            [placeholder]="''"
+            [label]="'NAME' | translate"
+            [error_message]="''"
+            [backErrors]="errors"
+            ngDefaultControl
+          />
+      </span>
+      <span class="flex justify-center items-center mb-2 text-sm md:text-md lg:text-lg font-normal">
+        <fa-icon class="mr-2 main-green-color" [icon]="faCalendar"></fa-icon>
+        <app-input-field
+          class="w-full"
+          [formControlName]="'date'"
+          [input_name]="'date'"
+          [type]="'date'"
+          [placeholder]="''"
+          [label]="'OLD_YEARS' | translate"
+          [error_message]="''"
+          [backErrors]="errors"
+          ngDefaultControl
+        />
+        </span>
+      <span class="flex justify-center items-center mb-2 text-sm md:text-md lg:text-lg font-normal">
+          <fa-icon class="mr-2 main-green-color" [icon]="faPhone"></fa-icon>
+          <app-input-field
+            class="w-full"
+            [formControlName]="'phone'"
+            [input_name]="'phone'"
+            [type]="'text'"
+            [placeholder]="''"
+            [label]="'PHONE' | translate"
+            [error_message]="'PHONE_VALID_MESSAGE' | translate"
+            [backErrors]="errors"
+            ngDefaultControl
+          />
+      </span>
+      <span class="flex justify-center items-center mb-2 text-sm md:text-md lg:text-lg font-normal">
+          <fa-icon class="mr-2 main-green-color" [icon]="faLock"></fa-icon>
+          <app-input-field
+            class="w-full"
+            [formControlName]="'password'"
+            [input_name]="'password'"
+            [type]="'password'"
+            [placeholder]="''"
+            [label]="'PASSWORD' | translate"
+            [error_message]="'password_is_not_right'"
+            [backErrors]="errors"
+            ngDefaultControl
+          />
+      </span>
+      <span class="flex justify-center items-center mb-2 text-sm md:text-md lg:text-lg font-normal" *ngIf="me.gender">
+          <fa-icon class="mr-2 main-green-color" [icon]="faVenusMars"></fa-icon>
+          <select class="w-full" [formControlName]="'gender'">
+            <option value="1">{{'MALE' | translate}}</option>
+            <option value="2">{{'FEMALE' | translate}}</option>
+          </select>
+        </span>
+      <div class="text-right my-2">
+        <button type="submit"
+                [disabled]="!profile_form.valid"
+                [ngClass]="profile_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'"
+          class="text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-500 dark:hover:bg-blue-700 dark:focus:ring-blue-700">
+          <fa-icon class="mr-1 text-white" [icon]="faPencilAlt"></fa-icon>
+          {{"UPDATE"|translate}}
+        </button>
+      </div>
+    </form>
+  </div>
+</ngx-smart-modal>

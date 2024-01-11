@@ -2,7 +2,13 @@ import {inject, Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {AccountService} from "./account.service";
 import {catchError, distinct, exhaustMap, map, of, switchMap} from "rxjs";
-import {accountAction, accountActionFailure, accountActionSuccess} from "./account.action";
+import {
+  accountAction,
+  accountActionFailure,
+  accountActionSuccess,
+  accountChangeAction, accountChangeActionFailure,
+  accountChangeActionSuccess
+} from "./account.action";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {SessionService} from "../../../services/session.service";
@@ -36,6 +42,25 @@ export class AccountEffect {
                     ),
                     catchError((_error) =>
                         of(accountActionFailure({errors: _error}))
+                    )
+                )
+            }),
+        ),
+    );
+
+    _onChangeAccount = createEffect((): any =>
+        this.action$.pipe(
+            ofType(accountChangeAction),
+            switchMap((action) => {
+                return this._service.updateUser(action.request).pipe(
+                    switchMap(data => {
+                            return of(
+                                accountChangeActionSuccess({responseData: data}),
+                            )
+                        }
+                    ),
+                    catchError((_error) =>
+                        of(accountChangeActionFailure({errors: _error}))
                     )
                 )
             }),

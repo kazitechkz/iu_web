@@ -1,7 +1,7 @@
 import {loginReducer} from "../../shared/store/auth/login/login.reducer";
 import {registerReducer} from "../../shared/store/auth/register/Register.reducer";
 import {resetPasswordReducer, sendResetTokenReducer} from "../../shared/store/auth/reset/Reset.reducer";
-import {accountReducer} from "../../shared/store/user/account/account.reducer";
+import {accountReducer, changeAccountReducer} from "../../shared/store/user/account/account.reducer";
 import {subjectReducer, subjectsWithoutRequiredReducer} from "../../shared/store/subject/subject.reducer";
 import {getAttemptReducer} from "../../shared/store/attempt/getAttempt/getAttempt.reducer";
 import {stepReducer} from "../../shared/store/step/step.reducer";
@@ -166,6 +166,7 @@ export const ReducersConstants = {
   sendResetToken: sendResetTokenReducer,
   resetPassword: resetPasswordReducer,
   me: accountReducer,
+  changeProfile: changeAccountReducer,
   subjects: subjectReducer,
   getAttempt: getAttemptReducer,
   steps: stepReducer,

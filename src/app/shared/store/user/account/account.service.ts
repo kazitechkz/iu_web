@@ -1,6 +1,6 @@
 import {inject, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {LoginRequest} from "./account.request";
+import {ChangeProfileRequest, LoginRequest} from "./account.request";
 import {Observable} from "rxjs";
 import {ResponseData} from "../../response_data";
 import {environment} from "../../../../../environments/environment";
@@ -16,6 +16,9 @@ export class AccountService {
 
     meUser(): Observable<ResponseData<Me>> {
         return this._http.get<ResponseData<Me>>(environment.baseUrl + APIRoutesName.me);
+    }
+    updateUser(req: ChangeProfileRequest): Observable<ResponseData<boolean>> {
+        return this._http.post<ResponseData<boolean>>(environment.baseUrl + APIRoutesName.updateMe, req);
     }
 
 }
