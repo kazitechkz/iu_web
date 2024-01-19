@@ -43,7 +43,7 @@ export class CreateTicketComponent implements OnInit{
   //Data
   ticketTypes:TechSupportType[] = [];
   ticketCategories:TechSupportCategory[] = [];
-  public Editor = ClassicEditor;
+  public Editor: any = ClassicEditor;
   //Data
   //FormData
   errors:Record<string, string[]> | null = null;
