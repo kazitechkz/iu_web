@@ -149,6 +149,8 @@ import {AnswerBattleQuestionEffect} from "../../shared/store/battle/answerBattle
 import {CreateBattleStepEffect} from "../../shared/store/battle/createBattleStep/createBattleStep.effect";
 import {FinishBattleResultEffect} from "../../shared/store/battle/finishBattleResult/finishBattleResult.effect";
 import {MyActiveBattlesEffect} from "../../shared/store/battle/myActiveBattles/myActiveBattles.effect";
+import {GetCareerQuizzesEffect} from "../../shared/store/career/getCareerQuizzes/getCareerQuizzes.effect";
+import {GetCareerQuizEffect} from "../../shared/store/career/getCareerQuiz/getCareerQuiz.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -263,4 +265,6 @@ export const EffectsConstants = [
     AnswerBattleQuestionEffect,
     FinishBattleResultEffect,
     MyActiveBattlesEffect,
+    GetCareerQuizzesEffect,
+    GetCareerQuizEffect,
 ]

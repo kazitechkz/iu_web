@@ -90,6 +90,8 @@ $Body_Text : #9295A3;
   font-style: italic;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Podkova:wght@400;500;600;700;800&display=swap');
+
 body{
   font-family: 'Montserrat', sans-serif;
   font-weight: normal;
@@ -310,6 +312,20 @@ body{
     top: 12px;
     color: white;
     border-radius: 10px;
+    background: rgb(248 113 113);
+    padding: 8px;
+  }
+}
+#careerQuizRule{
+  .nsm-content{
+    border-radius: 15px;
+    width: 100%;
+  }
+  .nsm-dialog-btn-close{
+    right: 12px;
+    top: 12px;
+    color: white;
+    border-radius: 50%;
     background: rgb(248 113 113);
     padding: 8px;
   }

@@ -71,6 +71,8 @@ import { MyAttemptSettingsComponent } from './attemptSettings/my-attempt-setting
 import { BattleListComponent } from './battle/battle-list/battle-list.component';
 import { BattleDetailComponent } from './battle/battle-detail/battle-detail.component';
 import { BattleGameComponent } from './battle/battle-game/battle-game.component';
+import { CareerQuizListsComponent } from './career/career-quiz-lists/career-quiz-lists.component';
+import { CareerQuizDetailComponent } from './career/career-quiz-detail/career-quiz-detail.component';
 
 
 @NgModule({
@@ -125,6 +127,8 @@ import { BattleGameComponent } from './battle/battle-game/battle-game.component'
         BattleListComponent,
         BattleDetailComponent,
         BattleGameComponent,
+        CareerQuizListsComponent,
+        CareerQuizDetailComponent,
     ],
     imports: [
         CommonModule,
