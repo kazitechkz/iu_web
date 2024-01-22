@@ -34,6 +34,20 @@ export class GlobalTranslatePipe implements PipeTransform {
             return this.mathJax.transform(value.rule_kk)
           }
         }
+        if (target == 'question') {
+          if (limit != null) {
+            return this.truncate.transform(value.question_kk, limit)
+          } else {
+            return this.mathJax.transform(value.question_kk)
+          }
+        }
+        if (target == 'context') {
+          if (limit != null) {
+            return this.truncate.transform(value.context_kk, limit)
+          } else {
+            return this.mathJax.transform(value.context_kk)
+          }
+        }
         if (target == 'text') {
           if (limit != null) {
             return this.truncate.transform(value.text_kk, limit)
@@ -69,6 +83,20 @@ export class GlobalTranslatePipe implements PipeTransform {
             return this.truncate.transform(value.rule_ru, limit)
           } else {
             return this.mathJax.transform(value.rule_ru)
+          }
+        }
+        if (target == 'question') {
+          if (limit != null) {
+            return this.truncate.transform(value.question_ru, limit)
+          } else {
+            return this.mathJax.transform(value.question_ru)
+          }
+        }
+        if (target == 'context') {
+          if (limit != null) {
+            return this.truncate.transform(value.context_ru, limit)
+          } else {
+            return this.mathJax.transform(value.context_ru)
           }
         }
         if (target == 'text') {

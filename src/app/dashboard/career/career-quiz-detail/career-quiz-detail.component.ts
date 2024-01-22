@@ -16,11 +16,14 @@ import {
   faCoins,
   faExclamation,
   faGamepad,
-  faXmark
+  faXmark,
+  faPhone,
+  faEnvelope
 } from "@fortawesome/free-solid-svg-icons";
 import {NgxSmartModalService} from "ngx-smart-modal";
 import {OwlOptions} from "ngx-owl-carousel-o";
-import {faFacebookF, faInstagram, faLinkedin, faVk} from "@fortawesome/free-brands-svg-icons";
+import {faFacebookF, faInstagram, faLinkedin, faVk, faWhatsapp} from "@fortawesome/free-brands-svg-icons";
+import {faGlobe} from "@fortawesome/free-solid-svg-icons/faGlobe";
 
 @Component({
   selector: 'app-career-quiz-detail',
@@ -35,7 +38,6 @@ export class CareerQuizDetailComponent implements OnInit{
   public translate = inject(GlobalTranslateService);
   private _route = inject(ActivatedRoute);
   dialog = inject(NgxSmartModalService);
-
   //Injection
   //Data
   public quizId:number|null = null;
@@ -104,4 +106,8 @@ export class CareerQuizDetailComponent implements OnInit{
   protected readonly faVk = faVk;
   protected readonly faFacebookF = faFacebookF;
   protected readonly faLinkedin = faLinkedin;
+  protected readonly faPhone = faPhone;
+  protected readonly faEnvelope = faEnvelope;
+  protected readonly faGlobe = faGlobe;
+  protected readonly faWhatsapp = faWhatsapp;
 }

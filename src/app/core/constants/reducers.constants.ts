@@ -164,6 +164,7 @@ import {
 } from "../../shared/store/tournament/participateTournament/participateTournament.reducer";
 import {getCareerQuizzesReducer} from "../../shared/store/career/getCareerQuizzes/getCareerQuizzes.reducer";
 import {getCareerQuizReducer} from "../../shared/store/career/getCareerQuiz/getCareerQuiz.reducer";
+import {passCareerQuizReducer} from "../../shared/store/career/passCareerQuiz/passCareerQuiz.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -289,5 +290,6 @@ export const ReducersConstants = {
   myActiveBattles:myActiveBattlesReducer,
   getCareerQuizzes:getCareerQuizzesReducer,
   getCareerQuiz:getCareerQuizReducer,
+  passCareerQuiz:passCareerQuizReducer,
 }
 

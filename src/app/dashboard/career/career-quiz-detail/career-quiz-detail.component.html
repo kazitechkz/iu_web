@@ -31,6 +31,13 @@
       </div>
     </div>
   </div>
+  <div class="grid grid-cols-12 gap-3 relative p-3 mt-[50px]">
+    <div class="col-span-12 lg:pl-10">
+      <p class="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-4xl font-bold text-black uppercase">
+        Авторы профориентационного теста
+      </p>
+    </div>
+  </div>
   <div class="grid grid-cols-12 gap-3 relative p-3 my-10" *ngIf="careerQuiz.career_quiz_creators">
     <div class="col-span-12" *ngIf="careerQuiz.career_quiz_creators">
       <owl-carousel-o [options]="customOptions" class="py-2">
@@ -65,6 +72,16 @@
                       <fa-icon class="text-xl" [icon]="faLinkedin"></fa-icon>
                     </a>
                   </div>
+                  <div class="flex my-4">
+                    <a *ngIf="author.career_quiz_author.phone"  href="https://wa.me/{{author.career_quiz_author.phone}}" class="mx-1 min-w-[50%] px-5 py-2 main-green-bg flex justify-center items-center cursor-pointer rounded-full text-white">
+                      <fa-icon class="text-md mr-1" [icon]="faWhatsapp"></fa-icon>
+                      WhatsApp
+                    </a>
+                    <a *ngIf="author.career_quiz_author.email"  href="mailto:{{author.career_quiz_author.email}}" class="mx-1 min-w-[50%] px-5 py-2 bg-[#4e7db2] flex justify-center items-center cursor-pointer rounded-full text-white">
+                      <fa-icon class="text-md mr-1" [icon]="faEnvelope"></fa-icon>
+                      {{"MAIL_TO"|translate}}
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -91,7 +108,7 @@
         >
         </div>
         <div class="w-full text-center my-3">
-          <a [routerLink]="'/' + RoutesName.careerQuizDetail + '/' + careerQuiz.id" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
+          <a [routerLink]="'/' + RoutesName.passCareerQuiz + '/' + careerQuiz.id" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
             Пройти тест
           </a>
         </div>

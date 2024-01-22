@@ -2,6 +2,7 @@ import {Image} from "./image.model";
 import {CareerQuizGroup} from "./careerQuizGroup.model";
 import {CareerQuizCreator} from "./careerQuizCreator.model";
 import {CareerQuizQuestion} from "./careerQuizQuestion.model";
+import {CareerQuizAnswer} from "./careerQuizAnswer.model";
 
 export interface CareerQuiz {
   id: number
@@ -25,4 +26,5 @@ export interface CareerQuiz {
   career_quiz_group: CareerQuizGroup|null
   career_quiz_creators: CareerQuizCreator[]|null
   career_quiz_questions:CareerQuizQuestion[]|null
+  career_quiz_answers:CareerQuizAnswer[]|null
 }
