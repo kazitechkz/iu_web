@@ -63,4 +63,5 @@ export enum RoutesName {
     careerQuizList="dashboard/career-quizzes",
     careerQuizDetail="dashboard/career-quiz-detail",
     passCareerQuiz="dashboard/pass-career-quiz",
+    resultCareerQuiz="dashboard/result-career-quiz",
 }

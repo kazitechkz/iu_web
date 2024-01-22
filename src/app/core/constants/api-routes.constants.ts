@@ -118,5 +118,7 @@ export enum APIRoutesName {
     getCareerQuizzes="career-quizzes",
     getCareerQuizDetail="career-quiz-detail",
     passCareerQuiz="pass-career-quiz",
+    finishCareerQuiz="finish-career-quiz",
+    resultCareerQuiz="result-career-quiz",
 
 }

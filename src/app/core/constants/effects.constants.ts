@@ -152,6 +152,8 @@ import {MyActiveBattlesEffect} from "../../shared/store/battle/myActiveBattles/m
 import {GetCareerQuizzesEffect} from "../../shared/store/career/getCareerQuizzes/getCareerQuizzes.effect";
 import {GetCareerQuizEffect} from "../../shared/store/career/getCareerQuiz/getCareerQuiz.effect";
 import {PassCareerQuizEffect} from "../../shared/store/career/passCareerQuiz/passCareerQuiz.effect";
+import {FinishCareerQuizEffect} from "../../shared/store/career/finishCareerQuiz/finishCareerQuiz.effect";
+import {ResultCareerQuizEffect} from "../../shared/store/career/resultCareerQuiz/resultCareerQuiz.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -269,4 +271,6 @@ export const EffectsConstants = [
     GetCareerQuizzesEffect,
     GetCareerQuizEffect,
     PassCareerQuizEffect,
+    FinishCareerQuizEffect,
+    ResultCareerQuizEffect,
 ]

@@ -12,6 +12,8 @@ import {OwlOptions, SlidesOutputData} from "ngx-owl-carousel-o";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {SlickCarouselComponent} from "ngx-slick-carousel";
 import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import {FinishCareerQuizRequest} from "../../../shared/store/career/finishCareerQuiz/finishCareerQuiz.request";
+import {finishCareerQuizAction} from "../../../shared/store/career/finishCareerQuiz/finishCareerQuiz.action";
 
 @Component({
   selector: 'app-pass-career-quiz',
@@ -30,6 +32,7 @@ export class PassCareerQuizComponent implements OnInit{
   public givenAnswer:{ [key: number]: number; } = {};
   public givenSliderKey:number[] = [];
   public slider:number = 0;
+  public finishRequestQuiz:FinishCareerQuizRequest ={quiz_id:0,given_answers:""}
   //Data
   @ViewChild('owlCar') owlCar: any;
   constructor() {
@@ -50,6 +53,7 @@ export class PassCareerQuizComponent implements OnInit{
   public getCareerQuiz(){
     this._store.dispatch(passCareerQuizAction({requestData:this.quizId??0}));
   }
+
 
   customOptions: OwlOptions = {
     loop: false,
@@ -79,7 +83,9 @@ export class PassCareerQuizComponent implements OnInit{
 
   finishQuiz(){
     if(this.givenSliderKey.length == this.careerQuiz?.career_quiz_questions?.length){
-      console.log(JSON.stringify(this.givenAnswer));
+      let request = {quiz_id: this.quizId,given_answers: JSON.stringify(this.givenAnswer)};
+      this.finishRequestQuiz = Object.assign(this.finishRequestQuiz,request);
+      this._store.dispatch(finishCareerQuizAction({requestData:this.finishRequestQuiz}));
     }
   }
 

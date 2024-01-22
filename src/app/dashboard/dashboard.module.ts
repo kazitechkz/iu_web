@@ -74,6 +74,7 @@ import { BattleGameComponent } from './battle/battle-game/battle-game.component'
 import { CareerQuizListsComponent } from './career/career-quiz-lists/career-quiz-lists.component';
 import { CareerQuizDetailComponent } from './career/career-quiz-detail/career-quiz-detail.component';
 import { PassCareerQuizComponent } from './career/pass-career-quiz/pass-career-quiz.component';
+import { ResultCareerQuizComponent } from './career/result-career-quiz/result-career-quiz.component';
 
 
 @NgModule({
@@ -131,6 +132,7 @@ import { PassCareerQuizComponent } from './career/pass-career-quiz/pass-career-q
         CareerQuizListsComponent,
         CareerQuizDetailComponent,
         PassCareerQuizComponent,
+        ResultCareerQuizComponent,
     ],
     imports: [
         CommonModule,

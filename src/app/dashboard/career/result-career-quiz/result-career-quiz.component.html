@@ -1,0 +1,111 @@
+<div class="container mx-auto" *ngIf="careerQuizAttempt">
+  <div class="grid grid-cols-12 gap-3" *ngIf="careerQuizAttempt.career_quiz_attempt_results">
+    <div class="col-span-12 my-2"
+         *ngFor="let result of careerQuizAttempt.career_quiz_attempt_results.slice(0,3);
+          let order = index">
+      <div class="card shadow-lg p-3 bg-white rounded-xl min-h-[500px] relative">
+        <div class="flex justify-between">
+          <div class="h-[75px] w-[75px] md:w-[150px] md:h-[150px] bg-[#f6f6f8] top-0 left-0 flex justify-center items-center">
+            <p class="text-lg md:text-xl lg:text-2xl xl:text-4xl 2xl:text-6xl font-bold text-[#230453]">
+              0{{order+1}}
+            </p>
+          </div>
+          <div class="h-[75px] w-[75px] md:w-[150px] md:h-[150px] rounded-full bg-[#f6f6f8] top-0 left-0 flex justify-center items-center">
+            <p class="text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-4xl font-bold main-green-color">
+              {{result.percentage}}%
+            </p>
+          </div>
+        </div>
+        <div class="grid grid-cols-12 relative mt-5 md:min-h-[500px] py-5 px-3" *ngIf="result.career_quiz_feature">
+            <div class="col-span-12 lg:col-span-6 flex items-start lg:px-4">
+              <div class="text-justify">
+                <div class="flex justify-center md:justify-start my-2">
+                  <div
+                    class="w-[140px] h-[140px] md:w-[280px] md:h-[280px] rounded-full shadow-lg bg-center bg-no-repeat bg-contain"
+                    [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(result.career_quiz_feature.file?.url) +')'}"
+                  >
+                  </div>
+                </div>
+                <p class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-gray-800">
+                  {{result.career_quiz_feature|globalTranslate:"title":translate.currentLang}}
+                </p>
+                <p class="text-xs text-gray-400 mt-5 mb-2"
+                    [innerHTML]="result.career_quiz_feature|globalTranslate:'description':translate.currentLang" >
+                </p>
+              </div>
+            </div>
+            <div class="col-span-12 lg:col-span-6 flex items-start lg:px-4">
+              <div>
+                <div class="text-justify">
+                  <p class="text-lg font-bold text-gray-800">
+                    Перспективы развития:
+                  </p>
+                  <p class="text-xs text-gray-400 mt-5 mb-2"
+                     [innerHTML]="result.career_quiz_feature.prospect_ru" >
+                  </p>
+                </div>
+                <div class="text-justify mt-4">
+                  <p class="text-lg font-bold text-gray-800">
+                    Значение сферы в обществе:
+                  </p>
+                  <p class="text-xs text-gray-400 mt-5 mb-2"
+                     [innerHTML]="result.career_quiz_feature.meaning_ru" >
+                  </p>
+                </div>
+                <div class="text-justify mt-4">
+                  <p class="text-lg font-bold text-gray-800">
+                    Основные направления деятельности специалистов:
+                  </p>
+                  <p class="text-xs text-gray-400 mt-5 mb-2"
+                     [innerHTML]="result.career_quiz_feature.activity_ru" >
+                  </p>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-12 order-1" *ngIf="careerQuizAttempt.career_quiz_attempt_results">
+      <div class="bg-white py-4 rounded-2xl shadow-2xl">
+        <div class="relative overflow-x-auto" *ngIf="careerQuizAttempt.career_quiz_attempt_results">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 capitalize">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                Сфера
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Набранные баллы
+              </th>
+              <th scope="col" class="px-6 py-3">
+                В процентах
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let result of careerQuizAttempt.career_quiz_attempt_results">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap flex items-center" *ngIf="result.career_quiz_feature">
+                <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"
+                     [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(result.career_quiz_feature.file?.url) +')'}"
+                ></div>
+                <p class="font-bold text-black ml-2 inline-block">{{result.career_quiz_feature.title_ru}}</p>
+              </th>
+              <td class="px-6 py-4">
+                <p class="text-black ml-2 font-bold">
+                  {{result.points}}
+                </p>
+              </td>
+              <td class="px-6 py-4">
+                <p class="text-black ml-2 font-bold">
+                  {{result.percentage}}%
+                </p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
