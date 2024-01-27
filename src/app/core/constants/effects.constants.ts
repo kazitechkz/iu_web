@@ -149,6 +149,7 @@ import {AnswerBattleQuestionEffect} from "../../shared/store/battle/answerBattle
 import {CreateBattleStepEffect} from "../../shared/store/battle/createBattleStep/createBattleStep.effect";
 import {FinishBattleResultEffect} from "../../shared/store/battle/finishBattleResult/finishBattleResult.effect";
 import {MyActiveBattlesEffect} from "../../shared/store/battle/myActiveBattles/myActiveBattles.effect";
+import {PayCreateEffect} from "../../shared/store/paybox/pay_create/payCreate.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -263,4 +264,5 @@ export const EffectsConstants = [
     AnswerBattleQuestionEffect,
     FinishBattleResultEffect,
     MyActiveBattlesEffect,
+    PayCreateEffect
 ]

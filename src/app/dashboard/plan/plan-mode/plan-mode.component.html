@@ -1,155 +1,218 @@
-<div class="container mx-auto">
-  <div class="grid grid-cols-12 min-h-[80vh] my-[30px] gap-5">
-    <div class="col-span-12 my-2 xl:mx-3 lg:my-0 lg:col-span-6 flex justify-center xl:justify-end items-center">
-        <div class="max-w-[450px] min-h-[400px] w-full shadow-lg rounded-xl cursor-pointer" [routerLink]="'/'+[RoutesName.planUNT]">
-          <div class="header-plan min-h-[100px] main-tertiary-bg rounded-tr-lg rounded-tl-lg flex justify-center items-center">
-              <p class="text-md lg:text-lg xl:text-xl font-bold text-white">
-                {{"PLAN_UNT_MODE"|translate}}
-              </p>
-          </div>
-          <div class="header-image py-3 text-center">
-            <div class="h-24 w-24 lg:h-32 lg:w-32 xl:h-42 xl:w-42 main-tertiary-bg rounded-full inline-block"
-                 [ngStyle]="{
-                 'background-image':'url('+ '/assets/images/content-plan.webp'+')',
-                 'background-size':'contain',
-                 'background-position':'center',
-                 'background-repeat':'no-repeat',
-                 }">
-            </div>
-          </div>
-          <div class="body-card px-5 py-4">
-            <div class="flex items-center my-3 text-sm md:text-md">
-             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
-               <fa-icon [icon]="faBook"></fa-icon>
-             </span>
-              <p>
-                {{"CHOICE_OF_SIXTEEN_SUBJECTS"|translate}}
-              </p>
-            </div>
-            <div class="flex items-center my-3 text-sm md:text-md">
-             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
-               <fa-icon [icon]="faGraduationCap"></fa-icon>
-             </span>
-              <p>
-                {{"WORK_OVER_FAILURE"|translate}}
-              </p>
-            </div>
-            <div class="flex items-center my-3 text-sm md:text-md">
-             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
-               <fa-icon [icon]="faLanguage"></fa-icon>
-             </span>
-              <p>
-                {{"SUPPORT_MULTI_LANGUAGE"|translate}}
-              </p>
-            </div>
-            <div class="flex items-center my-3 text-sm md:text-md">
-             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
-               <fa-icon [icon]="faStar"></fa-icon>
-             </span>
-              <p>
-                {{"ANALYZE_WEAK_POSITION"|translate}}
-              </p>
-            </div>
-            <div class="flex items-center my-3 text-sm md:text-md">
-             <span class="h-8 w-8 min-w-[32px] rounded-full main-tertiary-bg text-white flex justify-center items-center text-sm mr-2">
-               <fa-icon [icon]="faCircleQuestion"></fa-icon>
-             </span>
-              <p>
-                {{"ACTUAL_QUESTION_MILLION"|translate}}
-              </p>
-            </div>
-            <div class="text-center py-5 flex justify-center items-end">
-              <a [routerLink]="'/'+[RoutesName.planUNT]" class="focus:outline-none
-                   inline-block my-2
-                   text-white main-tertiary-bg
-                   cursor-pointer
-                   hover:!bg-orange-700
-                   font-bold
-                   rounded-full text-sm md:text-md lg:text-lg px-5 py-2.5 mb-2">
-                {{"BUY_FULL_TRAINER_UNT"|translate}}
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-
-    </div>
-    <div class="col-span-12 my-2 xl:mx-3 lg:my-0 lg:col-span-6 flex justify-center xl:justify-start items-center">
-      <div class="max-w-[450px] min-h-[400px] w-full shadow-lg rounded-xl cursor-pointer" [routerLink]="'/'+[RoutesName.planContent]">
-        <div class="header-plan min-h-[100px] main-green-bg rounded-tr-lg rounded-tl-lg flex justify-center items-center">
-          <p class="text-md lg:text-lg xl:text-xl font-bold text-white">
-            {{"PLAN_UNT_CONTENT"|translate}}
-          </p>
-        </div>
-        <div class="header-image py-3 text-center">
-          <div class="h-24 w-24 lg:h-32 lg:w-32 xl:h-42 xl:w-42 main-green-bg rounded-full inline-block"
-               [ngStyle]="{
-                 'background-image':'url('+ '/assets/images/many-mode.png'+')',
-                 'background-size':'contain',
-                 'background-position':'center',
-                 'background-repeat':'no-repeat',
-                 }">
+<div class="h-full flex items-center justify-centers">
+  <div class="wrapper">
+    <div class="table basic">
+      <div class="price-section">
+        <div class="price-area">
+          <div class="inner-area">
+            <span class="price">990</span>
+            <span class="text">&#932;</span>
           </div>
         </div>
-        <div class="body-card px-5 py-4">
-          <div class="flex items-center my-3 text-sm md:text-md">
-             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
-               <fa-icon [icon]="faBook"></fa-icon>
-             </span>
-            <p>
-              {{"CHOICE_OF_SIXTEEN_SUBJECTS"|translate}}
-            </p>
-          </div>
-          <div class="flex items-center my-3 text-sm md:text-md">
-             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
-               <fa-icon [icon]="faGraduationCap"></fa-icon>
-             </span>
-            <p>
-              {{"WORK_OVER_FAILURE"|translate}}
-            </p>
-          </div>
-          <div class="flex items-center my-3 text-sm md:text-md">
-             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
-               <fa-icon [icon]="faLanguage"></fa-icon>
-             </span>
-            <p>
-              {{"SUPPORT_MULTI_LANGUAGE"|translate}}
-            </p>
-          </div>
-          <div class="flex items-center my-3 text-sm md:text-md">
-             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
-               <fa-icon [icon]="faStar"></fa-icon>
-             </span>
-            <p>
-              {{"ANALYZE_WEAK_POSITION"|translate}}
-            </p>
-          </div>
-          <div class="flex items-center my-3 text-sm md:text-md">
-             <span class="h-8 w-8 min-w-[32px] rounded-full main-green-bg text-white flex justify-center items-center text-sm mr-2">
-               <fa-icon [icon]="faCircleQuestion"></fa-icon>
-             </span>
-            <p>
-              {{"ACTUAL_QUESTION_MILLION"|translate}}
-            </p>
-          </div>
-          <div class="text-center py-5 flex justify-center items-end">
-            <a [routerLink]="'/'+[RoutesName.planContent]" class="focus:outline-none
-                   inline-block my-2
-                   text-white main-green-bg
-                   cursor-pointer
-                   hover:!bg-green-700
-                   font-bold
-                   rounded-full text-sm md:text-md lg:text-lg px-5 py-2.5 mb-2">
-              {{"BUY_FULL_TRAINER_CONTENT"|translate}}
-            </a>
-          </div>
-        </div>
-
       </div>
-
-
+      <div class="package-name"></div>
+      <ul class="features">
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#ffd861] text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faGraduationCap"></fa-icon>
+             </span>
+          <span class="list-name">{{"WORK_OVER_FAILURE"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#ffd861] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faLanguage"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUPPORT_MULTI_LANGUAGE"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#ffd861] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faStar"></fa-icon>
+          </span>
+          <span class="list-name">{{"ANALYZE_WEAK_POSITION"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#ffd861] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faChartLine"></fa-icon>
+          </span>
+          <span class="list-name">{{"FULL_STATS"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#ffd861] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faBook"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUBJECT_MAT_GRAM"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#ffd861] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faBook"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUBJECT_GRAM"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#ffd861] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faBook"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUBJECT_HISTORY"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#ffd861] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faBook"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUBJECT_PROFS"|translate}}</span>
+        </li>
+      </ul>
+      <div class="btn" (click)="openDialog('open', 1)"><button>{{'BUY_BUTTON'|translate}}</button></div>
     </div>
-
+    <div class="table premium">
+      <div class="price-section">
+        <div class="price-area">
+          <div class="inner-area">
+            <span class="price">2490</span>
+            <span class="text">&#932;</span>
+          </div>
+        </div>
+      </div>
+      <div class="package-name"></div>
+      <ul class="features">
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#a26bfa] text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faGraduationCap"></fa-icon>
+             </span>
+          <span class="list-name">{{"WORK_OVER_FAILURE"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#a26bfa] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faLanguage"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUPPORT_MULTI_LANGUAGE"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#a26bfa] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faStar"></fa-icon>
+          </span>
+          <span class="list-name">{{"ANALYZE_WEAK_POSITION"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#a26bfa] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faChartLine"></fa-icon>
+          </span>
+          <span class="list-name">{{"FULL_STATS"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#a26bfa] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faBook"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUBJECT_MAT_GRAM"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#a26bfa] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faBook"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUBJECT_GRAM"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#a26bfa] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faBook"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUBJECT_HISTORY"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#a26bfa] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faBook"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUBJECT_PROFS"|translate}}</span>
+        </li>
+      </ul>
+      <div class="btn" (click)="openDialog('open', 3)"><button>{{'BUY_BUTTON'|translate}}</button></div>
+    </div>
+    <div class="table ultimate">
+      <div class="price-section">
+        <div class="price-area">
+          <div class="inner-area">
+            <span class="price">4990</span>
+            <span class="text">&#932;</span>
+          </div>
+        </div>
+      </div>
+      <div class="package-name"></div>
+      <ul class="features">
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#43ef8b] text-white flex justify-center items-center text-sm mr-2">
+               <fa-icon [icon]="faGraduationCap"></fa-icon>
+             </span>
+          <span class="list-name">{{"WORK_OVER_FAILURE"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#43ef8b] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faLanguage"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUPPORT_MULTI_LANGUAGE"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#43ef8b] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faStar"></fa-icon>
+          </span>
+          <span class="list-name">{{"ANALYZE_WEAK_POSITION"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#43ef8b] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faChartLine"></fa-icon>
+          </span>
+          <span class="list-name">{{"FULL_STATS"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#43ef8b] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faBook"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUBJECT_MAT_GRAM"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#43ef8b] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faBook"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUBJECT_GRAM"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#43ef8b] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faBook"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUBJECT_HISTORY"|translate}}</span>
+        </li>
+        <li>
+          <span class="h-8 w-8 min-w-[32px] rounded-full bg-[#43ef8b] text-white flex justify-center items-center text-sm mr-2">
+            <fa-icon [icon]="faBook"></fa-icon>
+          </span>
+          <span class="list-name">{{"SUBJECT_PROFS"|translate}}</span>
+        </li>
+      </ul>
+      <div class="btn" (click)="openDialog('open', 6)"><button>{{'BUY_BUTTON'|translate}}</button></div>
+    </div>
   </div>
 </div>
+
+<ngx-smart-modal identifier="open">
+  <form (ngSubmit)="onSubmit()" [formGroup]="subjects_form">
+    <div class="my-2">
+      {{'SELECT_PROFILE_SUBJECTS' | translate}}
+    </div>
+    <div class="lg:flex my-2">
+      <select [formControlName]="'subject_first'" data-te-select-init class="mr-2 mobile:my-1 w-full">
+        <option selected [value]="0">{{'SELECT_SUBJECT' | translate}}</option>
+        <option [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': translate.currentLang}}</option>
+      </select>
+      <select [formControlName]="'subject_second'" data-te-select-init class="ml-2 mobile:my-1 w-full">
+        <option selected [value]="0">{{'SELECT_SUBJECT' | translate}}</option>
+        <option [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': translate.currentLang}}</option>
+      </select>
+    </div>
+    <button
+      tw-button
+      layout="raised"
+      color="primary"
+      type="submit"
+      [ngClass]="!subjects_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
+      [disabled]="!subjects_form.valid"
+    >
+      {{'SEND_BUTTON' | translate}}
+    </button>
+  </form>
+</ngx-smart-modal>

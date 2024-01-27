@@ -162,6 +162,7 @@ import {myActiveBattlesReducer} from "../../shared/store/battle/myActiveBattles/
 import {
   participantTournamentReducer
 } from "../../shared/store/tournament/participateTournament/participateTournament.reducer";
+import {payCreateReducer} from "../../shared/store/paybox/pay_create/payCreate.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -285,5 +286,6 @@ export const ReducersConstants = {
   answerBattleQuestion:answerBattleQuestionReducer,
   finishBattleResult:finishBattleResultReducer,
   myActiveBattles:myActiveBattlesReducer,
+  payCreate: payCreateReducer
 }
 

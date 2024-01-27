@@ -339,5 +339,11 @@
   "LOCALE":"Тіл",
   "MY_ACTIVE_BATTLES": "менің шайқастарым",
   "SHOW": "Көрсету",
-  "YOU_CANT_JOIN": "Сіз ойынға қосыла алмайсыз"
+  "YOU_CANT_JOIN": "Сіз ойынға қосыла алмайсыз",
+  "BUY_BUTTON": "Сатып алу",
+  "FULL_STATS": "Толық статистика",
+  "SUBJECT_MAT_GRAM": "Математикалық сауаттылық",
+  "SUBJECT_GRAM": "Оқу сауаттылығы",
+  "SUBJECT_HISTORY": "Қазақстан тарихы",
+  "SUBJECT_PROFS": "+2 таңдау пәндері"
 }
