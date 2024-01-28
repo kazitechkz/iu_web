@@ -69,6 +69,8 @@
       </a>
     </div>
   </div>
+
+
   <div class="grid grid-cols-12 gap-3 relative p-3" *ngIf="careerQuiz.code == 'DRAG_DROP'">
     <div class="col-span-12" *ngIf="careerQuestionsWithAnswers">
       <owl-carousel-o (translated)="getData($event)" [options]="customOptions" class="py-2" #owlCar>
@@ -87,17 +89,64 @@
                       </p>
                     </div>
                   </div>
+                  <div class="card-answers mt-10" *ngIf="careerQuestionsWithAnswers">
+                    <div class="grid grid-cols-12 gap-3" *ngIf="question.answers">
+                      <div class="col-span-12 md:col-span-6 md:my-2">
+                        <section *ngFor="let answer of question.answers;let i = index">
+                            <div
+                              [ngClass]="{'hidden':checkedAnswerIDS.includes(answer.id)}"
+                              class="bg-white py-3 px-5 text-violet-700 my-3 rounded-xl cursor-pointer"
+                              [dndDraggable]="answer.id"
+                              [dndEffectAllowed]="'copyMove'"
+                              (dndMoved)="onDraggableMoved($event,answer.id)"
+                              (dndStart)="onDragStart($event,answer.id)"
+                            >
+                              {{answer ? (answer | globalTranslate:'title':translate.currentLang) : ''}}
+                            </div>
+
+                        </section>
+
+                      </div>
+                      <div class="col-span-12 md:col-span-6 md:my-2">
+                        <div
+                          class="bg-white py-3 px-5 text-violet-700 my-3 rounded-xl cursor-pointer min-h-[50px]"
+                          *ngFor="let answerItem of question.answers;let i = index;"
+                          dndDropzone
+                          [dndDisableDropIf]="sortAnswer.hasOwnProperty(question.question.id) ? (sortAnswer[question.question.id].hasOwnProperty((question.answers.length - i)) ? true : false) : false"
+                          (dndDrop)="onDrop($event,question.question.id,(question.answers.length - i))">
+                            <section *ngIf="sortAnswer[question.question.id]">
+                              <section *ngIf="sortAnswer[question.question.id][(question.answers.length - i)]">
+                                <div class="flex justify-between items-center">
+                                  <div class="px-2">
+                                    {{getAnswer((sortAnswer[question.question.id][(question.answers.length - i)])) | globalTranslate:'title':translate.currentLang}}
+                                  </div>
+                                  <div (click)="deleteByInnerKey(question.question.id,(question.answers.length - i))" class="flex justify-center items-center h-7 w-7 rounded-full bg-rose-500 cursor-pointer min-w-7">
+                                    <fa-icon [icon]="faXmark" class="text-white"></fa-icon>
+                                  </div>
+                                </div>
+
+                              </section>
+                            </section>
+                          <div
+                            class="border-2 border-green-400 h-full"
+                            dndPlaceholderRef>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-
               </div>
-
             </div>
-
           </div>
         </ng-template>
       </owl-carousel-o>
     </div>
-
+    <div class="col-span-12 my-4 text-center" *ngIf="careerQuiz.career_quiz_answers?.length == checkedAnswerIDS.length" >
+      <a (click)="finishQuizDragAndDrop()" class="bg-green-400 hover:bg-green-500 cursor-pointer text-white text-sm px-5 py-3 rounded-xl font-bold">
+        Завершить
+      </a>
+    </div>
     <div class="col-span-12 my-4" *ngIf="careerQuiz.career_quiz_questions" >
       <div class="flex justify-center items-center">
         <div class="card grid grid-cols-12 border shadow-lg rounded-lg py-3 px-4 w-full max-w-[360px]">
@@ -112,8 +161,8 @@
               {{slider + 1}}/{{careerQuiz.career_quiz_questions.length}}
             </p>
           </div>
-          <div class="col-span-4">
-            <a *ngIf="givenSliderKey.includes(slider) && givenSliderKey.length > slider" (click)="owlCar.next()" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
+          <div class="col-span-4" *ngIf="sortAnswer[careerQuiz.career_quiz_questions[slider].id]">
+            <a *ngIf="careerQuestionsWithAnswers[slider].answers?.length == Object.keys(sortAnswer[careerQuiz.career_quiz_questions[slider].id]).length" (click)="owlCar.next()" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
               <span class="hidden sm:inline text-xs md:text-md">Вперед</span>
               <fa-icon class="text-xs md:text-md ml-1" [icon]="faChevronRight"></fa-icon>
             </a>
@@ -121,11 +170,7 @@
         </div>
       </div>
     </div>
-    <div class="col-span-12 my-4 text-center" *ngIf="careerQuiz.career_quiz_questions && careerQuiz.career_quiz_questions.length == givenSliderKey.length" >
-      <a (click)="finishQuiz()" class="bg-green-400 hover:bg-green-500 cursor-pointer text-white text-sm px-5 py-3 rounded-xl font-bold">
-        Завершить
-      </a>
-    </div>
+
   </div>
 </div>
 

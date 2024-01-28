@@ -11,11 +11,13 @@ import {passCareerQuizSelector} from "../../../shared/store/career/passCareerQui
 import {OwlOptions, SlidesOutputData} from "ngx-owl-carousel-o";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {SlickCarouselComponent} from "ngx-slick-carousel";
-import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import {faChevronLeft, faChevronRight, faWindowClose, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {FinishCareerQuizRequest} from "../../../shared/store/career/finishCareerQuiz/finishCareerQuiz.request";
 import {finishCareerQuizAction} from "../../../shared/store/career/finishCareerQuiz/finishCareerQuiz.action";
 import {CareerQuizQuestion} from "../../../shared/models/careerQuizQuestion.model";
 import {CareerQuizQuestionWithAnswerModel} from "../../../shared/models/careerQuizQuestionWithAnswer.model";
+import {DndDropEvent} from "ngx-drag-drop";
+import {CareerQuizAnswer} from "../../../shared/models/careerQuizAnswer.model";
 
 @Component({
   selector: 'app-pass-career-quiz',
@@ -35,6 +37,11 @@ export class PassCareerQuizComponent implements OnInit{
   public givenSliderKey:number[] = [];
   //@ts-ignore
   public careerQuestionsWithAnswers:CareerQuizQuestionWithAnswerModel[] = [];
+  public sortAnswer: {
+    [key: number]: { [innerKey: number]: number };
+  } = {};
+  public checkedAnswerIDS:number[] = [];
+  public activeAnswerId : number|null = null;
   public slider:number = 0;
   public finishRequestQuiz:FinishCareerQuizRequest ={quiz_id:0,given_answers:""}
   //Data
@@ -97,13 +104,60 @@ export class PassCareerQuizComponent implements OnInit{
       this._store.dispatch(finishCareerQuizAction({requestData:this.finishRequestQuiz}));
     }
   }
+  finishQuizDragAndDrop(){
+    if(this.checkedAnswerIDS.length == this.careerQuiz?.career_quiz_answers?.length){
+      console.log(this.sortAnswer);
+    }
+  }
 
   getData(data: SlidesOutputData) {
     this.slider = data.startPosition??0;
   }
+  onDragStart(event: DragEvent,answerId:number) {
+    this.activeAnswerId = answerId;
+  }
+  onDraggableMoved(event: DragEvent,answerId:number) {
+    this.activeAnswerId = answerId;
+  }
+  onDrop(event:DndDropEvent,questionId:number,rating:number) {
+    if(this.activeAnswerId){
+      if(this.sortAnswer[questionId]){
+        this.sortAnswer[questionId][rating] = this.activeAnswerId;
+      }
+      else{
+        this.sortAnswer[questionId] = [];
+        this.sortAnswer[questionId] = {[rating]:this.activeAnswerId};
+      }
+      this.checkedAnswerIDS.push(this.activeAnswerId);
+    }
+  }
+  deleteByInnerKey(questionId: number, rating: number): void {
+    // Check if the outer key exists
+    if (this.sortAnswer.hasOwnProperty(questionId)) {
+      // Check if the inner key exists
+      if (this.sortAnswer[questionId].hasOwnProperty(rating)) {
+        // Delete the inner key
+        let index = this.checkedAnswerIDS.findIndex(element => element ===  this.sortAnswer[questionId][rating]);
+        if (index !== -1) {
+          this.checkedAnswerIDS.splice(index, 1);
+        }
+        delete this.sortAnswer[questionId][rating];
+      }
+    }
+  }
+  getAnswer(answerId:number|null):CareerQuizAnswer|null{
+    if(answerId){
+      return this.careerQuiz?.career_quiz_answers?.find(item=>item.id == answerId) ?? null;
+    }
+    return null;
+  }
+
 
   protected readonly RoutesName = RoutesName;
   protected readonly JSON = JSON;
   protected readonly faChevronLeft = faChevronLeft;
   protected readonly faChevronRight = faChevronRight;
+  protected readonly Object = Object;
+  protected readonly faWindowClose = faWindowClose;
+  protected readonly faXmark = faXmark;
 }

@@ -57,6 +57,7 @@
     "ng2-date-picker": "^16.0.0",
     "ngu-carousel": "^1.5.3",
     "ngx-countdown": "^16.0.0",
+    "ngx-drag-drop": "^16.1.0",
     "ngx-markdown": "^16.0.0",
     "ngx-owl-carousel-o": "^17.0.0",
     "ngx-pagination": "^6.0.3",
