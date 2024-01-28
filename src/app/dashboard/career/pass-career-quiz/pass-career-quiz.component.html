@@ -1,5 +1,5 @@
 <div class="container mx-auto min-h-[100vh]" *ngIf="careerQuiz">
-  <div class="grid grid-cols-12 gap-3 relative p-3">
+  <div class="grid grid-cols-12 gap-3 relative p-3" *ngIf="careerQuiz.code == 'ONE_ANSWER'">
     <div class="col-span-12" *ngIf="careerQuiz.career_quiz_questions">
       <owl-carousel-o (translated)="getData($event)" [options]="customOptions" class="py-2" #owlCar>
         <ng-template carouselSlide *ngFor="let question of careerQuiz.career_quiz_questions;let questionNumber = index">
@@ -62,6 +62,64 @@
              </div>
            </div>
         </div>
+    </div>
+    <div class="col-span-12 my-4 text-center" *ngIf="careerQuiz.career_quiz_questions && careerQuiz.career_quiz_questions.length == givenSliderKey.length" >
+      <a (click)="finishQuiz()" class="bg-green-400 hover:bg-green-500 cursor-pointer text-white text-sm px-5 py-3 rounded-xl font-bold">
+        Завершить
+      </a>
+    </div>
+  </div>
+  <div class="grid grid-cols-12 gap-3 relative p-3" *ngIf="careerQuiz.code == 'DRAG_DROP'">
+    <div class="col-span-12" *ngIf="careerQuestionsWithAnswers">
+      <owl-carousel-o (translated)="getData($event)" [options]="customOptions" class="py-2" #owlCar>
+        <ng-template carouselSlide *ngFor="let question of careerQuestionsWithAnswers;let questionNumber = index">
+          <div class="slide">
+            <div class="p-4 flex justify-center items-center bg-violet-200 rounded-2xl">
+              <div>
+                <div>
+                  <div class="text-center">
+                    <p class="text-md md:text-lg lg:text-xl xl:text-2xl font-bold">
+                      {{question.question|globalTranslate:'question': translate.currentLang}}
+                    </p>
+                    <div class="my-3">
+                      <p class="text-md md:text-lg  font-bold">
+                        {{question.question|globalTranslate:'context': translate.currentLang}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+
+    <div class="col-span-12 my-4" *ngIf="careerQuiz.career_quiz_questions" >
+      <div class="flex justify-center items-center">
+        <div class="card grid grid-cols-12 border shadow-lg rounded-lg py-3 px-4 w-full max-w-[360px]">
+          <div class="col-span-4">
+            <a *ngIf="slider>0" (click)="owlCar.prev()" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
+              <fa-icon class="text-xs md:text-md mr-1" [icon]="faChevronLeft"></fa-icon>
+              <span class="text-xs md:text-md hidden sm:inline">Назад</span>
+            </a>
+          </div>
+          <div class="col-span-4 flex justify-center">
+            <p class="text-lg font-bold text-black">
+              {{slider + 1}}/{{careerQuiz.career_quiz_questions.length}}
+            </p>
+          </div>
+          <div class="col-span-4">
+            <a *ngIf="givenSliderKey.includes(slider) && givenSliderKey.length > slider" (click)="owlCar.next()" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
+              <span class="hidden sm:inline text-xs md:text-md">Вперед</span>
+              <fa-icon class="text-xs md:text-md ml-1" [icon]="faChevronRight"></fa-icon>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-span-12 my-4 text-center" *ngIf="careerQuiz.career_quiz_questions && careerQuiz.career_quiz_questions.length == givenSliderKey.length" >
       <a (click)="finishQuiz()" class="bg-green-400 hover:bg-green-500 cursor-pointer text-white text-sm px-5 py-3 rounded-xl font-bold">

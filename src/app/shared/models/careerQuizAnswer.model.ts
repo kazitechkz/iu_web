@@ -7,5 +7,7 @@ export interface CareerQuizAnswer{
   title_kk: string
   title_en: string|null
   value:number
+  question_id:number|null
+  feature_id:number|null
   career_quiz:CareerQuiz|null
 }

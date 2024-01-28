@@ -14,6 +14,8 @@ import {SlickCarouselComponent} from "ngx-slick-carousel";
 import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import {FinishCareerQuizRequest} from "../../../shared/store/career/finishCareerQuiz/finishCareerQuiz.request";
 import {finishCareerQuizAction} from "../../../shared/store/career/finishCareerQuiz/finishCareerQuiz.action";
+import {CareerQuizQuestion} from "../../../shared/models/careerQuizQuestion.model";
+import {CareerQuizQuestionWithAnswerModel} from "../../../shared/models/careerQuizQuestionWithAnswer.model";
 
 @Component({
   selector: 'app-pass-career-quiz',
@@ -31,6 +33,8 @@ export class PassCareerQuizComponent implements OnInit{
   public careerQuiz:CareerQuiz|null = null;
   public givenAnswer:{ [key: number]: number; } = {};
   public givenSliderKey:number[] = [];
+  //@ts-ignore
+  public careerQuestionsWithAnswers:CareerQuizQuestionWithAnswerModel[] = [];
   public slider:number = 0;
   public finishRequestQuiz:FinishCareerQuizRequest ={quiz_id:0,given_answers:""}
   //Data
@@ -39,6 +43,11 @@ export class PassCareerQuizComponent implements OnInit{
     this._store.select(passCareerQuizSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         this.careerQuiz = item.data;
+        if(item.data.code == "DRAG_DROP"){
+          item.data.career_quiz_questions?.forEach(question=>{
+            this.careerQuestionsWithAnswers.push({question:question,answers:item.data?.career_quiz_answers ? item.data?.career_quiz_answers?.filter(item=>item.question_id == question.id) : null})
+          })
+        }
       }
     })
   }

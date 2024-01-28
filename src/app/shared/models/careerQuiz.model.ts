@@ -19,6 +19,7 @@ export interface CareerQuiz {
   rule_en: string|null
   price: number
   currency: string
+  code: string
   created_at: Date
   updated_at: Date|null
   career_quiz_questions_count: number|null

@@ -4,7 +4,7 @@ import {CareerQuiz} from "./careerQuiz.model";
 export interface CareerQuizQuestion {
   id: number
   quiz_id: number
-  feature_id: number
+  feature_id: number|null
   question_ru: string
   question_kk: string
   question_en: string|null
