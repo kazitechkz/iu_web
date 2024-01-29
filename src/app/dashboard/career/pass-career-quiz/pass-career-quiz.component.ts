@@ -3,21 +3,17 @@ import {Store} from "@ngrx/store";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {ActivatedRoute} from "@angular/router";
 import {CareerQuiz} from "../../../shared/models/careerQuiz.model";
-import {getCareerQuizAction} from "../../../shared/store/career/getCareerQuiz/getCareerQuiz.action";
 import {passCareerQuizAction} from "../../../shared/store/career/passCareerQuiz/passCareerQuiz.action";
-import {getCareerQuizSelector} from "../../../shared/store/career/getCareerQuiz/getCareerQuiz.selector";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {passCareerQuizSelector} from "../../../shared/store/career/passCareerQuiz/passCareerQuiz.selector";
 import {OwlOptions, SlidesOutputData} from "ngx-owl-carousel-o";
 import {RoutesName} from "../../../core/constants/routes.constants";
-import {SlickCarouselComponent} from "ngx-slick-carousel";
-import {faChevronLeft, faChevronRight, faWindowClose, faXmark} from "@fortawesome/free-solid-svg-icons";
+import {faChevronLeft, faChevronRight, faPlus, faWindowClose, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {FinishCareerQuizRequest} from "../../../shared/store/career/finishCareerQuiz/finishCareerQuiz.request";
 import {finishCareerQuizAction} from "../../../shared/store/career/finishCareerQuiz/finishCareerQuiz.action";
-import {CareerQuizQuestion} from "../../../shared/models/careerQuizQuestion.model";
 import {CareerQuizQuestionWithAnswerModel} from "../../../shared/models/careerQuizQuestionWithAnswer.model";
-import {DndDropEvent} from "ngx-drag-drop";
 import {CareerQuizAnswer} from "../../../shared/models/careerQuizAnswer.model";
+import {DndDropEvent} from "ngx-drag-drop";
 
 @Component({
   selector: 'app-pass-career-quiz',
@@ -44,6 +40,16 @@ export class PassCareerQuizComponent implements OnInit{
   public activeAnswerId : number|null = null;
   public slider:number = 0;
   public finishRequestQuiz:FinishCareerQuizRequest ={quiz_id:0,given_answers:""}
+  public ratingTitle:{[key: number]: { title_ru: string,title_kk:string,className:string}} = {
+    8:{title_ru:'Совершенно согласен',title_kk:'Мүлдем келісемін',className:'text-green-700 font-bold'},
+    7:{title_ru:'Согласен',title_kk:'Келісемін',className:'text-green-600 font-bold'},
+    6:{title_ru:'Скорее согласен',title_kk:'Керісінше келісемін',className:'text-green-500 font-bold'},
+    5:{title_ru:'Склонен соглашаться',title_kk:'Келісуге бейім',className:'text-green-400 font-bold'},
+    4:{title_ru:'Нейтрально',title_kk:'Бейтарап', className:'text-yellow-300 font-bold'},
+    3:{title_ru:'Склонен не соглашаться',title_kk:'Келіспеуге бейім',className:'text-rose-400 font-bold'},
+    2:{title_ru:'Скорее не согласен',title_kk:'Керісінше келіспеймін',className:'text-rose-500 font-bold'},
+    1:{title_ru:'Не согласен',title_kk:'Келіспеймін',className:'text-rose-600 font-bold'},
+  }
   //Data
   @ViewChild('owlCar') owlCar: any;
   constructor() {
@@ -106,7 +112,10 @@ export class PassCareerQuizComponent implements OnInit{
   }
   finishQuizDragAndDrop(){
     if(this.checkedAnswerIDS.length == this.careerQuiz?.career_quiz_answers?.length){
-      console.log(this.sortAnswer);
+      let request = {quiz_id: this.quizId,given_answers: JSON.stringify(this.sortAnswer)};
+      this.finishRequestQuiz = Object.assign(this.finishRequestQuiz,request);
+      console.log(this.finishRequestQuiz);
+      this._store.dispatch(finishCareerQuizAction({requestData:this.finishRequestQuiz}));
     }
   }
 
@@ -152,6 +161,10 @@ export class PassCareerQuizComponent implements OnInit{
     return null;
   }
 
+  dropzoneIsClosed(questionId:number,rating:number):boolean{
+    return  this.sortAnswer.hasOwnProperty(questionId) ? (this.sortAnswer[questionId].hasOwnProperty(rating) ? true : false) : false
+  }
+
 
   protected readonly RoutesName = RoutesName;
   protected readonly JSON = JSON;
@@ -160,4 +173,5 @@ export class PassCareerQuizComponent implements OnInit{
   protected readonly Object = Object;
   protected readonly faWindowClose = faWindowClose;
   protected readonly faXmark = faXmark;
+  protected readonly faPlus = faPlus;
 }

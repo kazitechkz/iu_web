@@ -38,26 +38,26 @@
               <div>
                 <div class="text-justify">
                   <p class="text-lg font-bold text-gray-800">
-                    Перспективы развития:
+                    {{"PROSPECT"|translate}}:
                   </p>
                   <p class="text-xs text-gray-400 mt-5 mb-2"
-                     [innerHTML]="result.career_quiz_feature.prospect_ru" >
+                     [innerHTML]="result.career_quiz_feature |globalTranslate:'prospect':translate.currentLang" >
                   </p>
                 </div>
                 <div class="text-justify mt-4">
                   <p class="text-lg font-bold text-gray-800">
-                    Значение сферы в обществе:
+                    {{"MEANING"|translate}}:
                   </p>
                   <p class="text-xs text-gray-400 mt-5 mb-2"
-                     [innerHTML]="result.career_quiz_feature.meaning_ru" >
+                     [innerHTML]="result.career_quiz_feature |globalTranslate:'meaning':translate.currentLang" >
                   </p>
                 </div>
                 <div class="text-justify mt-4">
                   <p class="text-lg font-bold text-gray-800">
-                    Основные направления деятельности специалистов:
+                    {{"ACTIVITY"|translate}}:
                   </p>
                   <p class="text-xs text-gray-400 mt-5 mb-2"
-                     [innerHTML]="result.career_quiz_feature.activity_ru" >
+                     [innerHTML]="result.career_quiz_feature |globalTranslate:'activity':translate.currentLang" >
                   </p>
                 </div>
               </div>
@@ -72,13 +72,13 @@
             <thead class="text-xs text-gray-700 capitalize">
             <tr>
               <th scope="col" class="px-6 py-3">
-                Сфера
+                {{"SPHERE"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
-                Набранные баллы
+                {{"POINTS"|translate}}
               </th>
               <th scope="col" class="px-6 py-3">
-                В процентах
+                {{"PERCENTAGE"|translate}}
               </th>
             </tr>
             </thead>
@@ -88,7 +88,7 @@
                 <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"
                      [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(result.career_quiz_feature.file?.url) +')'}"
                 ></div>
-                <p class="font-bold text-black ml-2 inline-block">{{result.career_quiz_feature.title_ru}}</p>
+                <p class="font-bold text-black ml-2 inline-block">{{result.career_quiz_feature|globalTranslate:'title':translate.currentLang}}</p>
               </th>
               <td class="px-6 py-4">
                 <p class="text-black ml-2 font-bold">
