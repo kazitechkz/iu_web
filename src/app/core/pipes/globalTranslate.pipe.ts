@@ -48,6 +48,13 @@ export class GlobalTranslatePipe implements PipeTransform {
             return this.mathJax.transform(value.context_kk)
           }
         }
+        if (target == 'position') {
+          if (limit != null) {
+            return this.truncate.transform(value.position_kk, limit)
+          } else {
+            return this.mathJax.transform(value.position_kk)
+          }
+        }
         if (target == 'text') {
           if (limit != null) {
             return this.truncate.transform(value.text_kk, limit)
@@ -60,6 +67,27 @@ export class GlobalTranslatePipe implements PipeTransform {
             return this.truncate.transform(value.progress_kk, limit)
           } else {
             return value.progress_kk
+          }
+        }
+        if (target == 'prospect') {
+          if (limit != null) {
+            return this.truncate.transform(value.prospect_kk, limit)
+          } else {
+            return value.prospect_kk
+          }
+        }
+        if (target == 'meaning') {
+          if (limit != null) {
+            return this.truncate.transform(value.meaning_kk, limit)
+          } else {
+            return value.meaning_kk
+          }
+        }
+        if (target == 'activity') {
+          if (limit != null) {
+            return this.truncate.transform(value.activity_kk, limit)
+          } else {
+            return value.activity_kk
           }
         }
       }
@@ -99,6 +127,13 @@ export class GlobalTranslatePipe implements PipeTransform {
             return this.mathJax.transform(value.context_ru)
           }
         }
+        if (target == 'position') {
+          if (limit != null) {
+            return this.truncate.transform(value.position_ru, limit)
+          } else {
+            return this.mathJax.transform(value.position_ru)
+          }
+        }
         if (target == 'text') {
           if (limit != null) {
             return this.truncate.transform(value.text_ru, limit)
@@ -111,6 +146,27 @@ export class GlobalTranslatePipe implements PipeTransform {
             return this.truncate.transform(value.progress_ru, limit)
           } else {
             return value.progress_ru
+          }
+        }
+        if (target == 'prospect') {
+          if (limit != null) {
+            return this.truncate.transform(value.prospect_ru, limit)
+          } else {
+            return value.prospect_ru
+          }
+        }
+        if (target == 'meaning') {
+          if (limit != null) {
+            return this.truncate.transform(value.meaning_ru, limit)
+          } else {
+            return value.meaning_ru
+          }
+        }
+        if (target == 'activity') {
+          if (limit != null) {
+            return this.truncate.transform(value.activity_ru, limit)
+          } else {
+            return value.activity_ru
           }
         }
       }

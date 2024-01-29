@@ -115,7 +115,7 @@ export enum APIRoutesName {
     battleAnswer="battle-by-step-answer",
     joinToBattle="join-to-battle-by-promo-code",
     finishBattleResult="battle-finish-result",
-    payCreate="paybox"
+    payCreate="paybox",
     getCareerQuizzes="career-quizzes",
     getCareerQuizDetail="career-quiz-detail",
     passCareerQuiz="pass-career-quiz",

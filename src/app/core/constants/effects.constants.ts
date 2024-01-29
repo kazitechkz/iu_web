@@ -269,7 +269,7 @@ export const EffectsConstants = [
     AnswerBattleQuestionEffect,
     FinishBattleResultEffect,
     MyActiveBattlesEffect,
-    PayCreateEffect
+    PayCreateEffect,
     GetCareerQuizzesEffect,
     GetCareerQuizEffect,
     PassCareerQuizEffect,
