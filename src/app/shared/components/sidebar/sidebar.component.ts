@@ -82,6 +82,11 @@ export class SidebarComponent implements OnInit {
       path: RoutesName.tournamentList,
       icon: faGamepad as IconProp
     },
+    {
+      title: 'CAREERS',
+      path: RoutesName.careerQuizList,
+      icon: faBriefcase as IconProp
+    },
     // {
     //   title: 'COUCHERS',
     //   path: RoutesName.noPageIndex,

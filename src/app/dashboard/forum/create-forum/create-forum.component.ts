@@ -31,7 +31,7 @@ export class CreateForumComponent implements OnInit,OnDestroy{
   private http = inject(HttpClient);
   constructor(private fb: FormBuilder) { }
   //Data
-  public Editor = ClassicEditor;
+  public Editor: any = ClassicEditor;
   //@ts-ignore
   subjects:Subject[];
   public translate = inject(GlobalTranslateService);
@@ -51,7 +51,7 @@ export class CreateForumComponent implements OnInit,OnDestroy{
     ]),
   })
 
-  onReadyCkeditor(editor: ClassicEditor): void {
+  onReadyCkeditor(editor: any): void {
     // @ts-ignore
     editor.plugins.get( 'FileRepository' ).createUploadAdapter = ( loader ) => {
       return new UploadAdapterService(loader,this.http,"forum")

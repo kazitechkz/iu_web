@@ -52,7 +52,7 @@ export class ForumDetailComponent implements OnInit,OnDestroy{
   //@ts-ignore
     forumDiscuss:GetForumDiscussModel;
     params = {forum_id:0, type:"", page:1}
-    public Editor = ClassicEditor;
+    public Editor: any = ClassicEditor;
     createDiscuss:FormGroup = new FormGroup({
       text:new FormControl("",[
         Validators.required,

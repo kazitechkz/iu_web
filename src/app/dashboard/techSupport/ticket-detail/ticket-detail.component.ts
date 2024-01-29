@@ -69,7 +69,7 @@ export class TicketDetailComponent implements OnInit{
     ticket_id : 0,
     page : 1
   }
-  public Editor = ClassicEditor;
+  public Editor: any = ClassicEditor;
   createMessageForm:FormGroup = this.fb.group({
     ticket_id: new FormControl(null, [
       Validators.required,

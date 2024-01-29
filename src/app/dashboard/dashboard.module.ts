@@ -71,6 +71,11 @@ import { MyAttemptSettingsComponent } from './attemptSettings/my-attempt-setting
 import { BattleListComponent } from './battle/battle-list/battle-list.component';
 import { BattleDetailComponent } from './battle/battle-detail/battle-detail.component';
 import { BattleGameComponent } from './battle/battle-game/battle-game.component';
+import { CareerQuizListsComponent } from './career/career-quiz-lists/career-quiz-lists.component';
+import { CareerQuizDetailComponent } from './career/career-quiz-detail/career-quiz-detail.component';
+import { PassCareerQuizComponent } from './career/pass-career-quiz/pass-career-quiz.component';
+import { ResultCareerQuizComponent } from './career/result-career-quiz/result-career-quiz.component';
+import {DndDraggableDirective, DndDropzoneDirective} from "ngx-drag-drop";
 
 
 @NgModule({
@@ -125,37 +130,43 @@ import { BattleGameComponent } from './battle/battle-game/battle-game.component'
         BattleListComponent,
         BattleDetailComponent,
         BattleGameComponent,
+        CareerQuizListsComponent,
+        CareerQuizDetailComponent,
+        PassCareerQuizComponent,
+        ResultCareerQuizComponent,
     ],
-    imports: [
-        CommonModule,
-        DashboardRoutingModule,
-        SharedModule,
-        FontAwesomeModule,
-        SlickCarouselModule,
-        Select2Module,
-        UiSwitchModule,
-        CountdownComponent,
-        MarkdownModule,
-        NgxSmartModalModule,
-        CoreModule,
-        YouTubePlayerModule,
-        NgxPaginationModule,
-        NgChartsModule,
-        CountdownModule,
-        CKEditorModule,
-        TwOptionModule,
-        TwSelectModule,
-        TwButtonModule,
-        QRCodeModule,
-        DpDatePickerModule,
-        MathjaxModule,
-        CalendarDayModule,
-        CalendarMonthModule,
-        CalendarCommonModule,
-        SweetAlert2Module.forRoot(),
-        NgOptimizedImage,
-        CarouselModule,
-    ],
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    SharedModule,
+    FontAwesomeModule,
+    SlickCarouselModule,
+    Select2Module,
+    UiSwitchModule,
+    CountdownComponent,
+    MarkdownModule,
+    NgxSmartModalModule,
+    CoreModule,
+    YouTubePlayerModule,
+    NgxPaginationModule,
+    NgChartsModule,
+    CountdownModule,
+    CKEditorModule,
+    TwOptionModule,
+    TwSelectModule,
+    TwButtonModule,
+    QRCodeModule,
+    DpDatePickerModule,
+    MathjaxModule,
+    CalendarDayModule,
+    CalendarMonthModule,
+    CalendarCommonModule,
+    SweetAlert2Module.forRoot(),
+    NgOptimizedImage,
+    CarouselModule,
+    DndDraggableDirective,
+    DndDropzoneDirective,
+  ],
   providers: [MathJaxPipe, TranslatePipe]
 })
 export class DashboardModule {

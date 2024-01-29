@@ -163,6 +163,11 @@ import {
   participantTournamentReducer
 } from "../../shared/store/tournament/participateTournament/participateTournament.reducer";
 import {payCreateReducer} from "../../shared/store/paybox/pay_create/payCreate.reducer";
+import {getCareerQuizzesReducer} from "../../shared/store/career/getCareerQuizzes/getCareerQuizzes.reducer";
+import {getCareerQuizReducer} from "../../shared/store/career/getCareerQuiz/getCareerQuiz.reducer";
+import {passCareerQuizReducer} from "../../shared/store/career/passCareerQuiz/passCareerQuiz.reducer";
+import {finishCareerQuizReducer} from "../../shared/store/career/finishCareerQuiz/finishCareerQuiz.reducer";
+import {resultCareerQuizReducer} from "../../shared/store/career/resultCareerQuiz/resultCareerQuiz.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -286,6 +291,11 @@ export const ReducersConstants = {
   answerBattleQuestion:answerBattleQuestionReducer,
   finishBattleResult:finishBattleResultReducer,
   myActiveBattles:myActiveBattlesReducer,
+  getCareerQuizzes:getCareerQuizzesReducer,
+  getCareerQuiz:getCareerQuizReducer,
+  passCareerQuiz:passCareerQuizReducer,
+  finishCareerQuiz:finishCareerQuizReducer,
+  resultCareerQuiz:resultCareerQuizReducer,
   payCreate: payCreateReducer
 }
 

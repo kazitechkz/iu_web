@@ -1,0 +1,46 @@
+<div class="container mx-auto" *ngIf="careerQuizList">
+    <div class="grid grid-cols-12 gap-3" *ngIf="careerQuizList.data">
+      <div class="col-span-12 xl:col-span-6 my-3" *ngFor="let careerQuiz of careerQuizList.data|paginate: { itemsPerPage: careerQuizList.per_page, currentPage: careerQuizList.current_page,totalItems:careerQuizList.total }">
+        <div class="card relative bg-white rounded-2xl shadow-xl border-gray-300 border-[1px] flex min-h-[305px] h-full">
+            <div class="grid grid-cols-3 p-3 align-middle relative mb-[40px]">
+              <div class="col-span-3 md:col-span-2 order-2 sm:order-1 px-3 flex justify-center items-center z-20">
+                <div>
+                  <p class="text-md md:text-lg font-bold text-blue-400">
+                    {{careerQuiz | globalTranslate:"title": translate.currentLang}}
+                  </p>
+                  <a class="text-gray-600 text-xs font-bold my-2" *ngIf="careerQuiz.career_quiz_group">
+                    # {{careerQuiz.career_quiz_group | globalTranslate:"title": translate.currentLang}}
+                  </a>
+                  <div
+                    class="my-3 text-sm md:text-md text-gray-400"
+                    [innerHTML]="careerQuiz | globalTranslate:'description': translate.currentLang | truncate:90"
+                  >
+
+                  </div>
+                  <div class="mt-4 text-md text-gray-400">
+                    <a [routerLink]="'/' + RoutesName.careerQuizDetail + '/' + careerQuiz.id" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-4 py-2 rounded-full  font-bold">
+                      Подробнее <fa-icon class="ml-2" [icon]="faChevronRight"></fa-icon>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-span-3 md:col-span-1 order-1 sm:order-2 flex justify-center items-center">
+                <div>
+                  <img class="max-w-[90%]" src="{{ImageHelper.getImage(careerQuiz.file?.url)}}"/>
+                </div>
+              </div>
+            </div>
+            <div class="absolute w-full bottom-0 z-10">
+              <svg class="rounded-br-2xl rounded-bl-2xl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250">
+                <path fill="rgb(63 131 248 / 0.5)" fill-opacity="0.7" d="M0,64L60,101.3C120,139,240,213,360,218.7C480,224,600,160,720,160C840,160,960,224,1080,213.3C1200,203,1320,117,1380,74.7L1440,32L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+              </svg>
+            </div>
+        </div>
+      </div>
+    </div>
+  <div class="grid grid-cols-12 gap-3 py-5">
+    <div class="col-span-12 flex justify-center">
+      <pagination-controls class="rounded-full" (pageChange)="changePage($event)"></pagination-controls>
+    </div>
+  </div>
+</div>
