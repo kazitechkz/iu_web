@@ -15,8 +15,8 @@ import {PayRequest} from "./pay.request";
 export class PayCreateService {
   private _http = inject(HttpClient)
 
-  payCreate(req: PayRequest): Observable<ResponseData<PayModel>> {
-    return this._http.post<ResponseData<PayModel>>(environment.baseUrl + APIRoutesName.payCreate, {req});
+  payCreate(request: PayRequest): Observable<ResponseData<PayModel>> {
+    return this._http.post<ResponseData<PayModel>>(environment.baseUrl + APIRoutesName.payCreate, request);
   }
 
 }

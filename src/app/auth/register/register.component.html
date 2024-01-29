@@ -54,7 +54,7 @@
                         [formControlName]="'email'"
                         [input_name]="'email'"
                         [type]="'email'"
-                        [placeholder]="'EMAIL' | translate"
+                        [placeholder]="''"
                         [label]="'EMAIL' | translate"
                         [error_message]="'EMAIL_VALID_MESSAGE' | translate"
                         [backErrors]="errors"
@@ -62,15 +62,39 @@
                 />
                 <!--Phone input-->
                 <app-input-field
+                        [phone_input_mask]="true"
                         [formControlName]="'phone'"
                         [input_name]="'phone'"
                         [type]="'text'"
-                        [placeholder]="'PHONE' | translate"
+                        [placeholder]="'+7 777 777 7777'"
                         [label]="'PHONE' | translate"
                         [error_message]="'PHONE_VALID_MESSAGE' | translate"
                         [backErrors]="errors"
                         ngDefaultControl
                 />
+                <!--Parent Name input-->
+                <app-input-field
+                  [formControlName]="'parent_name'"
+                  [input_name]="'parent_name'"
+                  [type]="'text'"
+                  [placeholder]="'NAME' | translate"
+                  [label]="'NAME' | translate"
+                  [error_message]="'name_is_not_right'"
+                  [backErrors]="errors"
+                  ngDefaultControl
+                />
+              <!--Parent Phone input-->
+              <app-input-field
+                [phone_input_mask]="true"
+                [formControlName]="'parent_phone'"
+                [input_name]="'parent_phone'"
+                [type]="'text'"
+                [placeholder]="'+7 777 777 7777'"
+                [label]="'PHONE' | translate"
+                [error_message]="'PHONE_VALID_MESSAGE' | translate"
+                [backErrors]="errors"
+                ngDefaultControl
+              />
                 <!--Password input-->
                 <app-input-field
                         [formControlName]="'password'"

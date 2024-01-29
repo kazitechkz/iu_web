@@ -1,5 +1,6 @@
 <div class="relative mb-3" [formGroup]="form">
     <input
+            [inputMask]="phone_input_mask ? phone_mask : null"
             (keyup)="resetValidation()"
             type="{{type}}"
             [ngClass]="{

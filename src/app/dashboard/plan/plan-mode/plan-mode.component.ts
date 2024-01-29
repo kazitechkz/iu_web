@@ -65,7 +65,7 @@ export class PlanModeComponent {
   onSubmit() {
     if (this.subjects_form.valid) {
       let req = this.subjects_form.getRawValue() as PayRequest
-      this._store.dispatch(payCreateAction({req: req}))
+      this._store.dispatch(payCreateAction({request: req}))
       this._store.select(payCreateSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         if (item.data) {
          window.location.href = item.data.pg_redirect_url

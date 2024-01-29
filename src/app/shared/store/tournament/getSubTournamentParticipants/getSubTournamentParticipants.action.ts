@@ -8,6 +8,7 @@ import {SubTournamentParticipant} from "../../../models/subTournamentParticipant
 import {GetSubTournamentParticipantsRequest} from "./getSubTournamentParticipants.request";
 
 export const getSubTournamentParticipantsAction = createAction(GetSubTournamentParticipantsActionTypes.OnGetSubTournamentParticipants,props<{requestData:GetSubTournamentParticipantsRequest}>());
+export const clearGetSubTournamentParticipantsAction = createAction(GetSubTournamentParticipantsActionTypes.OnClearGetSubTournamentParticipants);
 export const getSubTournamentParticipantsActionSuccess = createAction(GetSubTournamentParticipantsActionTypes.OnGetSubTournamentParticipantsSuccess, props<{
   responseData: ResponseData<Pagination<SubTournamentParticipant[]>>
 }>());

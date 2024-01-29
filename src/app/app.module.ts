@@ -33,6 +33,7 @@ import {MathjaxModule} from "mathjax-angular";
 import {CalendarModule, DateAdapter} from "angular-calendar";
 import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
 import {CarouselModule} from "ngx-owl-carousel-o";
+import {InputMaskModule} from "@ngneat/input-mask";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -64,6 +65,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MathjaxModule.forRoot(/*Optional Config*/),
     DpDatePickerModule,
     NgxSpinnerModule.forRoot({type: 'mySpinner'}),
+    InputMaskModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

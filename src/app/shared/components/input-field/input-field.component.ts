@@ -1,5 +1,6 @@
 import {Component, inject, Input} from '@angular/core';
 import {ControlContainer, FormControl, FormControlName, FormGroup, FormGroupDirective} from "@angular/forms";
+import {createMask, InputmaskOptions} from "@ngneat/input-mask";
 
 @Component({
   selector: 'app-input-field',
@@ -18,11 +19,13 @@ export class InputFieldComponent {
     @Input({required:true}) placeholder:string = "text";
     @Input({required:true}) label:string = "text";
     @Input({required:true}) error_message:string = "text";
+    @Input({required:false}) phone_input_mask:boolean = false;
     @Input({required:false}) classOptional:string = "";
     @Input() backErrors:Record<string, string[]>|null = null;
 
   formControlNameDirective = inject(FormControlName);
   controlContainer = inject(ControlContainer);
+  phone_mask = createMask('+7 999 999 9999');
   ngOnInit() {
     this.form = <FormGroup>this.controlContainer.control;
     this.control = <FormControl>this.form.get(this.input_name);

@@ -1,5 +1,7 @@
 import {Tournament} from "./tournament.model";
 import {TournamentStep} from "./tournamentStep.model";
+import {SubTournamentResult} from "./subTournamentResult.model";
+import {SubTournamentParticipant} from "./subTournamentParticipant.model";
 
 export interface SubTournament{
   id:number,
@@ -17,4 +19,6 @@ export interface SubTournament{
   end_at:Date,
   tournament:Tournament|null
   tournament_step:TournamentStep|null
+  sub_tournament_results: SubTournamentResult[]|null
+  subtournament_participants: SubTournamentParticipant[]|null
 }

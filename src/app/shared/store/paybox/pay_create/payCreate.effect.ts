@@ -16,7 +16,7 @@ export class PayCreateEffect {
     this.action$.pipe(
       ofType(payCreateAction),
       switchMap((action) => {
-        return this._service.payCreate(action.req).pipe(
+        return this._service.payCreate(action.request).pipe(
           switchMap(data => {
               return of(
                   payCreateActionSuccess({responseData: data}),

@@ -5,7 +5,7 @@ import {PayModel} from "./pay.model";
 import {prop} from "@rxweb/reactive-form-validators";
 import {PayRequest} from "./pay.request";
 
-export const payCreateAction = createAction(PayCreateActionTypes.OnPayCreate, props<{req: PayRequest}>());
+export const payCreateAction = createAction(PayCreateActionTypes.OnPayCreate, props<{request: PayRequest}>());
 export const payCreateActionSuccess = createAction(PayCreateActionTypes.OnPayCreateSuccess, props<{
   responseData: ResponseData<PayModel>
 }>());

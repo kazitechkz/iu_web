@@ -15,6 +15,7 @@ import {StoreModule} from "@ngrx/store";
 import {registerReducer} from "../shared/store/auth/register/Register.reducer";
 import {RxReactiveFormsModule} from "@rxweb/reactive-form-validators";
 import {TwNotification, TwSelectModule} from "ng-tw";
+import {InputMaskModule} from "@ngneat/input-mask";
 
 
 @NgModule({
@@ -24,16 +25,17 @@ import {TwNotification, TwSelectModule} from "ng-tw";
         RegisterComponent,
         ResetComponent,
     ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    CoreModule,
-    SharedModule,
-    ReactiveFormsModule,
-    RxReactiveFormsModule,
-    TwSelectModule,
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        CoreModule,
+        SharedModule,
+        ReactiveFormsModule,
+        RxReactiveFormsModule,
+        TwSelectModule,
+        InputMaskModule,
 
-  ],
+    ],
   providers: [TwNotification]
 })
 export class AuthModule {

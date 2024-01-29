@@ -1,262 +1,816 @@
-<section class="px-3">
-  <div class="container mx-auto">
-    <div class="grid grid-cols-12 m-2 gap-2" *ngIf="tournamentDetails">
+<section class="px-3 mobile:px-0 sm:px-0">
+  <div class="lg:container mx-auto">
+    <div class="grid grid-cols-12 m-2 mobile:mx-0 sm:mx-0 gap-2" *ngIf="tournamentDetails">
       <div class="col-span-12 md:col-span-4 min-h-[300px] max-h-[450px] relative">
-        <div class="absolute rounded-xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(tournamentDetails.file!.url) + ')'}"></div>
-        <div class="text-left z-20 absolute left-3 bottom-10 font-bold">
-          <p class="text-white text-lg md:text-4xl  my-2 px-1 uppercase">
-            {{"TOURNAMENT"|translate}}:
-          </p>
-          <p class="main-secondary-color text-lg md:text-4xl  my-2 px-1">{{tournamentDetails|globalTranslate:'title':translate.currentLang}}</p>
-        </div>
+        <div class="absolute rounded-xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat"
+             [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(tournamentDetails.file!.url) + ')'}"></div>
+<!--        <div class="text-left z-20 absolute left-3 bottom-10 font-bold">-->
+<!--          <p class="text-white text-lg md:text-4xl  my-2 px-1 uppercase">-->
+<!--            {{"TOURNAMENT"|translate}}:-->
+<!--          </p>-->
+<!--          <p-->
+<!--            class="main-secondary-color text-lg md:text-4xl  my-2 px-1">{{tournamentDetails|globalTranslate:'title':translate.currentLang}}</p>-->
+<!--        </div>-->
       </div>
       <div class="col-span-12 md:col-span-8 min-h-[300px] shadow-2xl bg-white rounded-2xl">
         <div class="py-4 px-2">
-          <span class="main-secondary-color font-bold text-lg md:text-4xl  my-2 px-4 uppercase">{{tournamentDetails|globalTranslate:'title':translate.currentLang}}</span>
-          <div class="m-3">
-            <p class="main-secondary-color font-bold text-md md:text-lg  my-2 px-1">
-              {{"SUBJECT"|translate}}:
-            </p>
-            <p class="body-text text-md md:text-lg  my-2 px-1">
-              <fa-icon [icon]="faBook" class="ml-2"></fa-icon>
-              {{tournamentDetails.subject|globalTranslate:'title':translate.currentLang}}
-            </p>
-            <p class="main-secondary-color font-bold text-md md:text-lg  my-2 px-1">
-              {{"PARTICIPATION_PRICE"|translate}}:
-            </p>
-            <p class="body-text text-md md:text-lg   my-2 px-1">
-              <fa-icon [icon]="faMoneyBill" class="ml-2"></fa-icon>
-              {{tournamentDetails.price}} {{tournamentDetails.currency}}
-            </p>
-            <p class="main-secondary-color font-bold text-md md:text-lg  my-2 px-1">
-              {{"AVAILABLE_LANGUAGE"|translate}}:
-            </p>
-            <p class="body-text text-md md:text-lg  my-2 px-1" *ngFor="let locale of tournamentDetails.locales">
-              <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon>
-              {{locale.title}}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-12 m-2">
-      <div class="col-span-12 bg-white p-5 shadow-xl rounded-2xl my-3">
-        <div id="rule-block">
-          <div>
-            <h2 class="mb-0" id="headingTwo">
-              <button
-                class="group font-bold text-md lg:text-2xl relative flex w-full items-center rounded-none border-0 bg-white px-5 py-4 text-left text-base main-secondary-color transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:main-secondary-color [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)]"
-                type="button"
-                data-te-collapse-init
-                data-te-collapse-collapsed
-                data-te-target="#ruleBlock"
-                aria-expanded="false"
-                aria-controls="ruleBlock">
-                {{"RULES"|translate}}:
-                <span
-                  class="-mr-1 ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="h-6 w-6">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-          </svg>
-            </span>
-              </button>
-            </h2>
-            <div
-              id="ruleBlock"
-              class="!visible hidden"
-              data-te-collapse-item
-              aria-labelledby="headingTwo"
-              data-te-parent="#accordionExample">
-              <div class="px-5 py-4" *ngIf="tournamentDetails">
-                <div  [innerHTML]="tournamentDetails|globalTranslate:'rule':translate.currentLang"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-span-12 bg-white p-5 shadow-xl rounded-2xl my-3">
-        <div>
-          <h2 class="accordion-header mb-0" id="headingThree">
-            <button
-              class="group font-bold text-md lg:text-2xl relative flex w-full items-center rounded-none border-0 bg-white px-5 py-4 text-left text-base main-secondary-color transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:main-secondary-color [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)]"
-              type="button"
-              data-te-collapse-init
-              data-te-collapse-collapsed
-              data-te-target="#descriptionBlock"
-              aria-expanded="false"
-              aria-controls="descriptionBlock">
-              {{"DESCRIPTION"|translate}}:
-              <span
-                class="-mr-1 ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="h-6 w-6">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-          </svg>
-        </span>
-            </button>
-          </h2>
-          <div
-            id="descriptionBlock"
-            class="!visible hidden"
-            data-te-collapse-item
-            aria-labelledby="headingThree"
-            data-te-parent="#accordionExample">
-            <div class="px-5 py-4" *ngIf="tournamentDetails">
-              <div  [innerHTML]="tournamentDetails|globalTranslate:'description':translate.currentLang"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-span-12 bg-white p-5 shadow-xl rounded-2xl my-3" *ngIf="firstSubTournament">
-        <section *ngIf="!subtournament_ids.includes(firstSubTournament.id) && !firstSubTournament.is_finished;else participated">
-          <div class="text-center" *ngIf="firstSubTournament.is_current && !firstSubTournament.is_finished && (moment(firstSubTournament.start_at).isBefore(moment.now()) && moment(firstSubTournament.end_at).isAfter(moment.now()));else passed">
-            <p
-              class="text-danger text-xl lg:text-2xl font-bold inline-block">
-              {{moment(firstSubTournament.start_at).format("HH:mm DD/MM/yyyy")}} - {{moment(firstSubTournament.end_at).format("HH:mm DD/MM/yyyy")}}
-            </p>
-            <br/>
-            <a
-              (click)="participateTournament()"
-              type="button"
-              class="inline-block main-secondary-bg border-0 rounded-full px-3 lg:px-4 py-2 lg:py-3 text-md lg:text-2xl font-bold uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0 my-2"
-              data-te-ripple-init>
-              {{"WANT_TO_PARTICIPATE"|translate}}
-            </a>
-          </div>
-          <ng-template #passed>
-            <span
-              class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3"
-              *ngIf="moment(firstSubTournament.end_at).isAfter(moment.now())"
-            >
-              <fa-icon [icon]="faSadTear"></fa-icon>
-                <p>
-                  {{"UNFORTUNATELY_DATE_REGISTER_EXPIRED"|translate}}
-                </p>
-            </span>
-            <span
-              class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3"
-              *ngIf="moment(firstSubTournament.start_at).isBefore(moment.now())"
-            >
-              <fa-icon [icon]="faSadTear"></fa-icon>
-                <p>
-                  {{"UNFORTUNATELY_DATE_REGISTER_NOT_YET"|translate}}
-                </p>
-            </span>
-          </ng-template>
-        </section>
-        <ng-template #participated>
           <span
-            class="main-green-color md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3">
-            <fa-icon [icon]="faSmileWink"></fa-icon>
-            <p>
-              {{"YOU_ARE_PARTICIPANT"|translate}}
-            </p>
-          </span>
-        </ng-template>
-      </div>
-    </div>
+            class="main-secondary-color font-bold text-lg md:text-4xl  my-2 px-4 uppercase">{{tournamentDetails|globalTranslate:'title':translate.currentLang}}</span>
+          <div class="m-3 grid lg:grid-cols-2 sm:grid-cols-1 mobile:grid-cols-1">
+            <div>
+              <p class="main-secondary-color font-bold text-md md:text-lg  my-2 px-1">
+                {{"SUBJECT"|translate}}:
+              </p>
+              <p class="body-text text-md md:text-lg  my-2 px-1">
+                <fa-icon [icon]="faBook" class="ml-2"></fa-icon>
+                {{tournamentDetails.subject|globalTranslate:'title':translate.currentLang}}
+              </p>
+              <p class="main-secondary-color font-bold text-md md:text-lg  my-2 px-1">
+                {{"PARTICIPATION_PRICE"|translate}}:
+              </p>
+              <p class="body-text text-md md:text-lg   my-2 px-1">
+                <fa-icon [icon]="faMoneyBill" class="ml-2"></fa-icon>
+                {{tournamentDetails.price}} {{tournamentDetails.currency}}
+              </p>
+              <p class="main-secondary-color font-bold text-md md:text-lg  my-2 px-1">
+                {{"AVAILABLE_LANGUAGE"|translate}}:
+              </p>
+              <p class="body-text text-md md:text-lg  my-2 px-1" *ngFor="let locale of tournamentDetails.locales">
+                <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon>
+                {{locale.title}}
+              </p>
+              <p class="main-secondary-color font-bold text-md md:text-lg my-2 px-1 cursor-pointer" (click)="dialog.getModal('more').open()">
+                {{"MORE_INFO"|translate}}
+              </p>
+            </div>
+            <div>
+              <div *ngIf="winner_tournament; else finished">
 
-    <div class="grid grid-cols-12 m-2">
-      <div class="col-span-12 bg-white p-5 shadow-2xl rounded-2xl my-3">
-        <div class="lg:p-5 rounded-full">
-          <p class="text-black text-lg md:text-2xl font-bold  my-2 px-1 uppercase">Этапы:</p>
-          <ul
-            class="relative m-0 w-full list-none overflow-hidden p-0 transition-[height] duration-200 ease-in-out"
-            data-te-stepper-init
-            data-te-stepper-type="vertical">
-            <!--First item-->
-            <li
-              *ngFor="let step of steps"
-              data-te-stepper-step-ref
-              class="relative h-fit {{!step.is_last?'after:absolute after:left-[2.45rem] after:top-[3.6rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#9BA1FF] after:content-[\'\'] dark:after:bg-[9BA1FF]':''}}">
-              <div
-                data-te-stepper-head-ref
-                class="flex cursor-pointer text-black items-center p-6 leading-[1.3rem] no-underline after:bg-[#9BA1FF] after:content-[''] hover:bg-[#9BA1FF] focus:outline-none hover:text-white">
-              <span
-                data-te-stepper-head-icon-ref
-                class="mr-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#9BA1FF] text-sm font-medium text-white border-2 border-white">
-                <fa-icon class="mr-1" [icon]="faUsers"></fa-icon>
-                {{step.max_participants}}
-                </span>
-                <span
-                  data-te-stepper-head-text-ref
-                  class=" after:absolute after:flex after:text-[0.8rem] after:content-[data-content]">
-                   {{step |globalTranslate:'title':translate.currentLang}}
-                </span>
               </div>
-              <div
-                data-te-stepper-content-ref
-                class="transition-[height, margin-bottom, padding-top, padding-bottom] left-0 overflow-hidden pb-6 pl-[3.75rem] pr-6 duration-300 ease-in-out">
-                <div class="w-full rounded-full lg:p-5" *ngIf="getSubTournament(step.id);else noSubTournament">
-                  <div class="card lg:flex items-center w-full shadow-lg rounded-xl p-4 body-text">
-                    <div class="md:w-2/12 text-center main-secondary-color my-2">
-                      <fa-icon class="text-2xl lg:text-5xl" [icon]="faCheckCircle"></fa-icon>
-                    </div>
-                    <div class="md:w-10/12 text-center lg:text-left my-2">
-                      <p class="text-md md:text-2xl font-bold">{{step |globalTranslate:'title':translate.currentLang}}</p>
-                      <ul class="list-disc pl-3 lg:px-4">
-                        <li class="text-sm md:text-xl ">
-                          {{"PARTICIPANTS_QUANTITY"|translate}}: <b>{{step.max_participants}}</b>
-                        </li>
-                        <li class="text-sm md:text-xl">
-                          {{"QUESTION_QUANTITY"|translate}}: <b>{{getSubTournament(step.id)!.question_quantity}}</b>
-                        </li>
-                        <li class="text-sm md:text-xl">
-                          {{"MAX_POINTS"|translate}}: <b>{{getSubTournament(step.id)!.max_point}}</b>
-                        </li>
-                        <li class="text-sm md:text-xl">
-                         {{"PARTICIPATION_DATE"|translate}}: <b>{{moment(getSubTournament(step.id)!.start_at).format('HH:mm DD.MM.YYYY')}}</b> - по <b>{{moment(getSubTournament(step.id)!.end_at).format('HH:mm DD.MM.YYYY')}}</b>
-                        </li>
-                        <li class="text-sm md:text-xl">
-                          {{"TIME"|translate}}
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="text-center md:text-right">
+              <ng-template #finished>
+                <section *ngIf="firstSubTournament">
+                  <div class="text-center"
+                       *ngIf="firstSubTournament.is_current && !firstSubTournament.is_finished && moment() > moment(firstSubTournament.start_at) && moment() < moment(firstSubTournament.end_at);else passed">
+                    <div *ngIf="!isReg">
                       <a
-                        routerLink="{{'/' + RoutesName.subTournamentDetail + '/' + getSubTournament(step.id)!.id}}"
+                        (click)="participateTournament()"
                         type="button"
-                        class="inline-block my-2 main-secondary-bg border-0 rounded-full px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0"
+                        class="inline-block main-secondary-bg border-0 rounded-full px-3 lg:px-4 py-2 lg:py-3 text-md lg:text-2xl font-bold uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0 my-2"
                         data-te-ripple-init>
-                        {{"PASS"|translate}}
+                        {{"WANT_TO_PARTICIPATE"|translate}}
                       </a>
                     </div>
                   </div>
+                  <ng-template #passed>
+                    <div *ngIf="moment() < moment(firstSubTournament.start_at)">
+                <span
+                  class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3">
+                  <fa-icon [icon]="faSadTear"></fa-icon>
+                    <p>
+                      {{'WAIT_REGISTER_TIME'|translate}}
+                    </p>
+                </span>
+                    </div>
+                    <div *ngIf="moment() > moment(firstSubTournament.end_at)">
+                <span
+                  class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3">
+                  <fa-icon [icon]="faSadTear"></fa-icon>
+                    <p>
+                      {{"UNFORTUNATELY_DATE_REGISTER_EXPIRED"|translate}}
+                    </p>
+                </span>
+                    </div>
 
-
-                </div>
-                <ng-template #noSubTournament>
-                  <p class="text-danger">
-                    {{"STEP_NOT_FOUND"|translate}}
-                  </p>
-                </ng-template>
-              </div>
-            </li>
-
-          </ul>
+                  </ng-template>
+                </section>
+              </ng-template>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
+    <div class="grid grid-cols-12 m-2 mobile:mx-0 sm:mx-0">
+      <div class="col-span-12 bg-white p-5 shadow-xl rounded-2xl my-3" *ngIf="currentSubTournament">
+        <section>
+          <div class="text-center" *ngIf="winner_tournament; else winner">
+            {{'WINNER'|translate}}: {{winner_tournament.sub_tournament_results ? winner_tournament.sub_tournament_results[0].user?.name : ''}}
+          </div>
+          <ng-template #winner>
+            <div class="text-center"
+                 *ngIf="currentSubTournament.is_current && !currentSubTournament.is_finished;else passed2">
+              <div *ngIf="moment(currentSubTournament.start_at) > moment(); else notStarted">
+                <p *ngIf="startCountdown != ''"
+                   class="text-danger text-xl lg:text-2xl font-bold inline-block">
+                  {{'START_STEP'|translate}}: {{startCountdown}}
+                </p>
+              </div>
+              <ng-template #notStarted>
+                <div class="text-center" *ngIf="!isJoin; else participated">
+                  {{'YOU_ARE_NOT_ALLOWED'|translate}}
+                </div>
+                <ng-template #participated>
+                  <div class="text-center"
+                       *ngIf="moment(currentSubTournament.start_at) < moment() && moment(currentSubTournament.end_at) > moment();else currentPassed2">
+                    <p *ngIf="countdown != ''"
+                       class="text-danger text-xl lg:text-2xl font-bold inline-block">
+                      {{'END_STEP'|translate}}: {{countdown}}
+                    </p>
+                    <div class="text-center">
+                      <div class="text-center" *ngIf="currentSubTournament.sub_tournament_results?.length; else notResult">
+                        {{'YOU_ARE_PASSED'|translate}}
+                      </div>
+                      <ng-template #notResult>
+                        <div class="text-center" *ngIf="!checkAccess; else access">
+                          {{'YOU_ARE_NOT_ALLOWED'|translate}}
+                        </div>
+                        <ng-template #access>
+                          <div class="text-center">
+                            <a
+                              (click)="createTournamentAttempt()"
+                              type="button"
+                              class="inline-block my-2 main-secondary-bg border-0 rounded-full px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0"
+                              data-te-ripple-init>
+                              {{"PASS"|translate}}
+                            </a>
+                          </div>
+                        </ng-template>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <ng-template #currentPassed2>
+                    <div class="text-center">
+                      {{'YOU_ARE_NOT_ALLOWED'|translate}}
+                    </div>
+                  </ng-template>
+                  <!--              <span-->
+                  <!--                class="main-green-color md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3">-->
+                  <!--                <fa-icon [icon]="faSmileWink"></fa-icon>-->
+                  <!--                <p>-->
+                  <!--                  {{"YOU_ARE_PARTICIPANT"|translate}}-->
+                  <!--                </p>-->
+                  <!--              </span>-->
+                </ng-template>
+              </ng-template>
+            </div>
+            <ng-template #passed2>
+            <span
+              class="text-danger text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3">
+              <fa-icon [icon]="faSadTear"></fa-icon>
+                <p>
+                  {{"YOU_ARE_NOT_ALLOWED"|translate}}
+                </p>
+            </span>
+            </ng-template>
+          </ng-template>
+        </section>
 
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 m-3 mobile:mx-0 sm:mx-0 gap-2">
+      <div class="col-span-12">
+        <div class="md:flex justify-center">
+          <!--Pills navigation-->
+          <ul
+            class="mb-5 flex list-none flex-col flex-wrap pl-0 md:flex-row"
+            id="pills-tab"
+            role="tablist"
+            data-te-nav-ref>
+            <li role="presentation">
+              <a
+                href="#pills-users"
+                class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-[#9BA1FF] dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
+                id="pills-users-tab"
+                data-te-toggle="pill"
+                data-te-target="#pills-users"
+                data-te-nav-active
+                role="tab"
+                aria-controls="pills-users"
+                aria-selected="true"
+              >
+                Участники
+              </a
+              >
+            </li>
+            <li role="presentation">
+              <a
+                href="#pills-participants"
+                (click)="firstStep(getSubTournament(1))"
+                class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-[#9BA1FF] dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
+                id="pills-participants-tab"
+                data-te-toggle="pill"
+                data-te-target="#pills-participants"
+                role="tab"
+                aria-controls="pills-participants"
+                aria-selected="false"
+              >
+                Плей-офф
+              </a
+              >
+            </li>
+            <li role="presentation">
+              <a
+                (click)="secondStep(getSubTournament(2))"
+                href="#pills-rivals"
+                class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-[#9BA1FF] dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
+                id="pills-rivals-tab"
+                data-te-toggle="pill"
+                data-te-target="#pills-rivals"
+                role="tab"
+                aria-controls="pills-rivals"
+                aria-selected="false"
+              >1/8</a
+              >
+            </li>
+            <li role="presentation">
+              <a
+                (click)="thirdStep(getSubTournament(2))"
+                href="#pills-results"
+                class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-[#9BA1FF] dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
+                id="pills-results-tab"
+                data-te-toggle="pill"
+                data-te-target="#pills-results"
+                role="tab"
+                aria-controls="pills-results"
+                aria-selected="false"
+              >
+                1/4
+              </a
+              >
+            </li>
+            <li role="presentation">
+              <a
+                (click)="fourthStep(getSubTournament(3))"
+                href="#pills-prefinal"
+                class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-[#9BA1FF] dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
+                id="pills-prefinal-tab"
+                data-te-toggle="pill"
+                data-te-target="#pills-prefinal"
+                role="tab"
+                aria-controls="pills-prefinal"
+                aria-selected="false"
+              >
+                1/2
+              </a
+              >
+            </li>
+            <li role="presentation">
+              <a
+                (click)="fifthStep(getSubTournament(4))"
+                href="#pills-winners"
+                class="my-2 block rounded bg-neutral-100 px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 data-[te-nav-active]:!bg-primary-100 data-[te-nav-active]:text-primary-700 dark:bg-[#9BA1FF] dark:text-white dark:data-[te-nav-active]:text-primary-700 md:mr-4"
+                id="pills-winners-tab"
+                data-te-toggle="pill"
+                data-te-target="#pills-winners"
+                role="tab"
+                aria-controls="pills-winners"
+                aria-selected="false"
+              >
+                Финал
+              </a
+              >
+            </li>
+          </ul>
+        </div>
+
+
+        <!--Pills content-->
+        <div class="mb-6">
+          <!--Users-->
+          <div
+            class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+            id="pills-users"
+            role="tabpanel"
+            aria-labelledby="pills-users-tab"
+            data-te-tab-active>
+            <div class="lg:mx-3 md:mx-1 mobile:mx-1 sm:mx-1 p-4 mobile:px-0 sm:px-0" *ngIf="participants">
+              <div class="bg-white mx-3 mobile:mx-0 sm:mx-0 p-4 mobile:px-0 sm:px-0 rounded-2xl shadow-2xl">
+                <div class="relative overflow-x-auto" *ngIf="participants.data">
+                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 capitalize">
+                    <tr>
+                      <th scope="col" class="px-6 py-3 mobile:px-1 mobile:py-1 text-center">
+                        №
+                      </th>
+                      <th scope="col" class="px-6 py-3 mobile:px-1 mobile:py-1 text-center">
+                        {{"NAME"|translate}}
+                      </th>
+                      <th scope="col" class="px-6 py-3 mobile:px-2 mobile:hidden">
+                        {{"NICKNAME"|translate}}
+                      </th>
+                      <th scope="col" class="px-6 py-3 mobile:px-2 mobile:hidden">
+                        Email
+                      </th>
+                      <th scope="col" class="px-6 py-3 mobile:px-1 mobile:py-1 text-center">
+                        {{"PARTICIPATED_DATE"|translate}}
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="bg-white rounded-2xl my-2 border-b border-gray-300"
+                        *ngFor="let participant of participants.data | paginate: { itemsPerPage: participants.per_page, currentPage: participants.current_page,totalItems:participants.total } | keys">
+                      <th scope="row"
+                          class="mobile:px-2 px-6 py-4 mobile:py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
+                        <p class="font-bold text-black ml-2 inline-block">{{parseInt(participant.key) + 1}}. </p>
+                        <div
+                          class="w-8 h-8 px-2 py-2 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.webp')] bg-cover bg-no-repeat my-2"></div>
+                      </th>
+                      <td class="px-6 py-4 mobile:py-2 mobile:px-2">
+                        <p class="text-black ml-2 italic">{{participant.value.user?.name}}</p>
+                      </td>
+                      <td class="px-6 py-4 mobile:px-2 mobile:hidden ">
+                        <p class="text-black ml-2 italic">{{participant.value.user?.username}}</p>
+                      </td>
+                      <td class="px-6 py-4 mobile:px-2 mobile:hidden ">
+                        <p class="text-black ml-2 italic">{{participant.value.user?.email}}</p>
+                      </td>
+                      <td class="px-6 py-4 mobile:py-2 mobile:px-2">
+                        <p
+                          class="text-black ml-2">{{moment(participant.updated_at ?? participant.created_at).format('DD/MM/YYYY HH:mm')}}</p>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div class="my-2 flex justify-center" *ngIf="participants.total > participants.per_page">
+                    <pagination-controls class="rounded-full"
+                                         (pageChange)="participantPageChanged($event)"></pagination-controls>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!--Users-->
+          <!--ResultsFirstStep-->
+          <div
+            class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+            id="pills-participants"
+            role="tabpanel"
+            aria-labelledby="pills-participants-tab"
+          >
+            <div class="mx-3 mobile:mx-0 sm:mx-0 p-4 mobile:px-0 sm:px-0" *ngIf="sub_tournament_results">
+              <div
+                class="bg-white lg:mx-3 md:mx-1 mobile:mx-1 sm:mx-1 md:p-3 mobile:px-0 sm:px-0 rounded-2xl shadow-2xl"
+                *ngIf="sub_tournament_results.data">
+                <div class="relative overflow-x-auto">
+                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 capitalize">
+                    <tr>
+                      <th scope="col" class="px-6 py-3 mobile:px-2 mobile:py-1 mobile:text-center">
+                        №
+                      </th>
+                      <th scope="col" class="px-6 py-3 mobile:px-2 mobile:py-1 mobile:text-center">
+                        {{"NAME"|translate}}
+                      </th>
+                      <th scope="col" class="px-6 py-3 mobile:hidden">
+                        {{"NICKNAME"|translate}}
+                      </th>
+                      <th scope="col" class="px-6 py-3 mobile:hidden">
+                        Email
+                      </th>
+                      <th scope="col" class="px-6 py-3 mobile:px-2 mobile:py-1 mobile:text-center">
+                        {{"POINTS"|translate}}
+                      </th>
+                      <th scope="col" class="px-6 py-3 mobile:px-2 mobile:py-1 mobile:text-center">
+                        {{"TIME"|translate}}
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr [ngClass]="(parseInt(result.key)+1) <= 8 ? 'bg-[#4DC591]' : 'bg-white'"
+                        class="rounded-2xl my-2 border-b border-gray-300"
+                        *ngFor="let result of sub_tournament_results.data | paginate: { itemsPerPage: sub_tournament_results.per_page, currentPage: sub_tournament_results.current_page,totalItems:sub_tournament_results.total } | keys">
+                      <th scope="row"
+                          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
+                        <p class="font-bold text-black ml-2 inline-block">{{parseInt(result.key) + 1}}</p>
+                      </th>
+                      <td class="px-6 py-4 mobile:px-2 mobile:py-2 mobile:text-center">
+                        <p class="text-black ml-2 font-bold">{{result.value.user?.name}}</p>
+                      </td>
+                      <td class="px-6 py-4 mobile:hidden">
+                        <p class="text-black ml-2 font-bold">{{result.value.user?.username}}</p>
+                      </td>
+                      <td class="px-6 py-4 mobile:hidden">
+                        <p class="text-black ml-2 font-bold">{{result.value.user?.email}}</p>
+                      </td>
+                      <td class="px-6 py-4 mobile:px-2 mobile:py-2 mobile:text-center">
+                        <p class="text-black ml-2">{{result.value.point}}</p>
+                      </td>
+                      <td class="px-6 py-4 mobile:px-2 mobile:py-2 mobile:text-center">
+                        <p *ngIf="sub_tournament" class="text-black ml-2"
+                           [innerHTML]="StrHelper.getTimeForTournament(sub_tournament.time, result.value.time)"></p>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div class="my-2 flex justify-center"
+                       *ngIf="sub_tournament_results.total > sub_tournament_results.per_page">
+                    <pagination-controls class="rounded-full"
+                                         (pageChange)="resultPageChanged($event)"></pagination-controls>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <!--ResultsFirstStep-->
+          <!--1/8-->
+          <div
+            class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+            id="pills-rivals"
+            role="tabpanel"
+            aria-labelledby="pills-rivals-tab"
+          >
+            <div class="mx-3 mobile:mx-0 sm:mx-0 p-4 mobile:px-0 sm:px-0" *ngIf="sub_tournament_rivals">
+              <div
+                class="bg-white lg:mx-3 md:mx-1 mobile:mx-1 sm:mx-1 md:p-3 mobile:px-0 sm:px-0 rounded-2xl shadow-2xl my-3 py-3"
+                *ngIf="sub_tournament_rivals.length">
+                <div class="round-table round">
+                  <ul>
+                    <li class="round">
+                      <ul>
+                        <li class="round" *ngIf="sub_tournament_rivals[0]">
+                          <ul>
+                            <li>
+                              <p>{{sub_tournament_rivals[0].rival_one_user?.name}}</p>
+                            </li>
+                            <li>
+                              <p>{{sub_tournament_rivals[0].rival_two_user?.name}}</p>
+                            </li>
+                          </ul>
+                          <p>-</p>
+                        </li>
+                        <li class="round" *ngIf="sub_tournament_rivals[1]">
+                          <ul>
+                            <li>
+                              <p>{{sub_tournament_rivals[1].rival_one_user?.name}}</p>
+                            </li>
+                            <li>
+                              <p>{{sub_tournament_rivals[1].rival_two_user?.name}}</p>
+                            </li>
+                          </ul>
+                          <p>-</p>
+                        </li>
+                      </ul>
+                      <p>-</p>
+                    </li>
+                    <li class="round">
+                      <ul>
+                        <li class="round" *ngIf="sub_tournament_rivals[2]">
+                          <ul>
+                            <li>
+                              <p>{{sub_tournament_rivals[2].rival_one_user?.name}}</p>
+                            </li>
+                            <li>
+                              <p>{{sub_tournament_rivals[2].rival_two_user?.name}}</p>
+                            </li>
+                          </ul>
+                          <p>-</p>
+                        </li>
+                        <li class="round" *ngIf="sub_tournament_rivals[3]">
+                          <ul>
+                            <li>
+                              <p>{{sub_tournament_rivals[3].rival_one_user?.name}}</p>
+                            </li>
+                            <li>
+                              <p>{{sub_tournament_rivals[3].rival_two_user?.name}}</p>
+                            </li>
+                          </ul>
+                          <p>-</p>
+                        </li>
+                      </ul>
+                      <p>-</p>
+                    </li>
+                  </ul>
+                  <p>-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--1/8-->
+          <!--1/4-->
+          <div
+            class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+            id="pills-results"
+            role="tabpanel"
+            aria-labelledby="pills-results-tab">
+            <div class="mx-3 mobile:mx-0 sm:mx-0 p-4 mobile:px-0 sm:px-0" *ngIf="sub_tournament_rivals">
+              <div
+                class="bg-white lg:mx-3 md:mx-1 mobile:mx-1 sm:mx-1 md:p-3 mobile:px-0 sm:px-0 rounded-2xl shadow-2xl my-3 py-3"
+                *ngIf="sub_tournament_rivals.length">
+                <div class="round-table round">
+                  <ul>
+                    <li class="round">
+                      <ul>
+                        <li class="round" *ngIf="sub_tournament_rivals[0]">
+                          <ul>
+                            <li>
+                              <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                                {{sub_tournament_rivals[0].rival_one_user?.name}}
+                                <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[0].point_one}} балл (<span
+                                  [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[0].sub_tournament.time, sub_tournament_rivals[0].time_one)"></span>)
+                                </span>
+                              </p>
+                            </li>
+                            <li>
+                              <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                                {{sub_tournament_rivals[0].rival_two_user?.name}}
+                                <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[0].point_two}} балл (<span
+                                  [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[0].sub_tournament.time, sub_tournament_rivals[0].time_two)"></span>)
+                                </span>
+                              </p>
+                            </li>
+                          </ul>
+                          <p>{{sub_tournament_rivals[0].winner_user?.name}}</p>
+                        </li>
+                        <li class="round" *ngIf="sub_tournament_rivals[1]">
+                          <ul>
+                            <li>
+                              <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                                {{sub_tournament_rivals[1].rival_one_user?.name}}
+                                <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[1].point_one}} балл (<span
+                                  [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[1].sub_tournament.time, sub_tournament_rivals[1].time_one)"></span>)
+                                </span>
+                              </p>
+                            </li>
+                            <li>
+                              <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                                {{sub_tournament_rivals[1].rival_two_user?.name}}
+                                <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[1].point_two}} балл (<span
+                                  [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[1].sub_tournament.time, sub_tournament_rivals[1].time_two)"></span>)
+                                </span>
+                              </p>
+                            </li>
+                          </ul>
+                          <p>{{sub_tournament_rivals[1].winner_user?.name}}</p>
+                        </li>
+                      </ul>
+                      <p>-</p>
+                    </li>
+                    <li class="round">
+                      <ul>
+                        <li class="round" *ngIf="sub_tournament_rivals[2]">
+                          <ul>
+                            <li>
+                              <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                                {{sub_tournament_rivals[2].rival_one_user?.name}}
+                                <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[2].point_one}} балл (<span
+                                  [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[2].sub_tournament.time, sub_tournament_rivals[2].time_one)"></span>)
+                                </span>
+                              </p>
+                            </li>
+                            <li>
+                              <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                                {{sub_tournament_rivals[2].rival_two_user?.name}}
+                                <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[2].point_two}} балл (<span
+                                  [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[2].sub_tournament.time, sub_tournament_rivals[2].time_two)"></span>)
+                                </span>
+                              </p>
+                            </li>
+                          </ul>
+                          <p>{{sub_tournament_rivals[2].winner_user?.name}}</p>
+                        </li>
+                        <li class="round" *ngIf="sub_tournament_rivals[3]">
+                          <ul>
+                            <li>
+                              <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                                {{sub_tournament_rivals[3].rival_one_user?.name}}
+                                <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[3].point_one}} балл (<span
+                                  [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[3].sub_tournament.time, sub_tournament_rivals[3].time_one)"></span>)
+                                </span>
+                              </p>
+                            </li>
+                            <li>
+                              <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                                {{sub_tournament_rivals[3].rival_two_user?.name}}
+                                <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[3].point_two}} балл (<span
+                                  [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[3].sub_tournament.time, sub_tournament_rivals[3].time_two)"></span>)
+                                </span>
+                              </p>
+                            </li>
+                          </ul>
+                          <p>{{sub_tournament_rivals[3].winner_user?.name}}</p>
+                        </li>
+                      </ul>
+                      <p>-</p>
+                    </li>
+                  </ul>
+                  <p>-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--1/2-->
+          <div
+            class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+            id="pills-prefinal"
+            role="tabpanel"
+            aria-labelledby="pills-prefinal-tab">
+            <div class="mx-3 mobile:mx-0 sm:mx-0 p-4 mobile:px-0 sm:px-0" *ngIf="sub_tournament_rivals">
+              <div
+                class="bg-white lg:mx-3 md:mx-1 mobile:mx-1 sm:mx-1 md:p-3 mobile:px-0 sm:px-0 rounded-2xl shadow-2xl my-3 py-3"
+                *ngIf="sub_tournament_rivals.length">
+                <div class="round-table round">
+                  <ul>
+                    <li class="round" *ngIf="sub_tournament_rivals[0]">
+                      <ul>
+                        <li>
+                          <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                            {{sub_tournament_rivals[0].rival_one_user?.name}}
+                            <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[0].point_one}} балл (<span
+                              [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[0].sub_tournament.time, sub_tournament_rivals[0].time_one)"></span>)
+                                </span>
+                          </p>
+                        </li>
+                        <li>
+                          <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                            {{sub_tournament_rivals[0].rival_two_user?.name}}
+                            <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[0].point_two}} балл (<span
+                              [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[0].sub_tournament.time, sub_tournament_rivals[0].time_two)"></span>)
+                                </span>
+                          </p>
+                        </li>
+                      </ul>
+                      <p>{{sub_tournament_rivals[0].winner_user?.name}}</p>
+                    </li>
+                    <li class="round" *ngIf="sub_tournament_rivals[1]">
+                      <ul>
+                        <li>
+                          <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                            {{sub_tournament_rivals[1].rival_one_user?.name}}
+                            <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[1].point_one}} балл (<span
+                              [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[1].sub_tournament.time, sub_tournament_rivals[1].time_one)"></span>)
+                                </span>
+                          </p>
+                        </li>
+                        <li>
+                          <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                            {{sub_tournament_rivals[1].rival_two_user?.name}}
+                            <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[1].point_two}} балл (<span
+                              [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[1].sub_tournament.time, sub_tournament_rivals[1].time_two)"></span>)
+                                </span>
+                          </p>
+                        </li>
+                      </ul>
+                      <p>{{sub_tournament_rivals[1].winner_user?.name}}</p>
+                    </li>
+                  </ul>
+                  <p>-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--final-->
+          <div
+            class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+            id="pills-winners"
+            role="tabpanel"
+            aria-labelledby="pills-winners-tab">
+            <!--Winners-->
+            <div class="mx-3 mobile:mx-0 sm:mx-0 p-4 mobile:px-0 sm:px-0" *ngIf="sub_tournament_rivals">
+              <div
+                class="bg-white lg:mx-3 md:mx-1 mobile:mx-1 sm:mx-1 md:p-3 mobile:px-0 sm:px-0 rounded-2xl shadow-2xl my-3 py-3"
+                *ngIf="sub_tournament_rivals.length">
+                <div class="round-table round">
+                  <ul>
+                    <li class="round" *ngIf="sub_tournament_rivals[0]">
+                      <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                        {{sub_tournament_rivals[0].rival_one_user?.name}}
+                        <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[0].point_one}} балл (<span
+                          [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[0].sub_tournament.time, sub_tournament_rivals[0].time_one)"></span>)
+                                </span>
+                      </p>
+                    </li>
+                    <li class="round" *ngIf="sub_tournament_rivals[0]">
+                      <p class="2xl:flex mobile:inline-block sm:inline-block justify-between items-center">
+                        {{sub_tournament_rivals[0].rival_two_user?.name}}
+                        <span class="mobile:flex md:block mobile:text-xs sm:text-xs ml-2">
+                                  {{sub_tournament_rivals[0].point_two}} балл (<span
+                          [innerHTML]="StrHelper.getTimeForTournament(sub_tournament_rivals[0].sub_tournament.time, sub_tournament_rivals[0].time_two)"></span>)
+                                </span>
+                      </p>
+                    </li>
+                  </ul>
+                  <p>{{sub_tournament_rivals[0].winner_user?.name}}</p>
+                </div>
+              </div>
+            </div>
+            <!--Winners-->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <ngx-smart-modal identifier="more">
+      <p class="main-secondary-color font-bold text-md md:text-lg my-2 px-1">
+        {{"RULES"|translate}}
+      </p>
+      <div class="px-5 py-4" *ngIf="tournamentDetails">
+        <div [innerHTML]="tournamentDetails|globalTranslate:'rule':translate.currentLang"></div>
+      </div>
+      <p class="main-secondary-color font-bold text-md md:text-lg my-2 px-1">
+        {{"DESCRIPTION"|translate}}
+      </p>
+      <div class="px-5 py-4" *ngIf="tournamentDetails">
+        <div [innerHTML]="tournamentDetails|globalTranslate:'description':translate.currentLang"></div>
+      </div>
+    </ngx-smart-modal>
+    <!--    <div class="grid grid-cols-12 m-2">-->
+    <!--      <div class="col-span-12 bg-white p-5 shadow-2xl rounded-2xl my-3">-->
+    <!--        <div class="lg:p-5 rounded-full">-->
+    <!--          <p class="text-black text-lg md:text-2xl font-bold  my-2 px-1 uppercase">Этапы:</p>-->
+    <!--          <ul-->
+    <!--            class="relative m-0 w-full list-none overflow-hidden p-0 transition-[height] duration-200 ease-in-out"-->
+    <!--            data-te-stepper-init-->
+    <!--            data-te-stepper-type="vertical">-->
+    <!--            &lt;!&ndash;First item&ndash;&gt;-->
+    <!--            <li-->
+    <!--              *ngFor="let step of steps"-->
+    <!--              data-te-stepper-step-ref-->
+    <!--              class="relative h-fit {{!step.is_last?'after:absolute after:left-[2.45rem] after:top-[3.6rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#9BA1FF] after:content-[\'\'] dark:after:bg-[9BA1FF]':''}}">-->
+    <!--              <div-->
+    <!--                data-te-stepper-head-ref-->
+    <!--                class="flex cursor-pointer text-black items-center p-6 leading-[1.3rem] no-underline after:bg-[#9BA1FF] after:content-[''] hover:bg-[#9BA1FF] focus:outline-none hover:text-white">-->
+    <!--              <span-->
+    <!--                data-te-stepper-head-icon-ref-->
+    <!--                class="mr-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#9BA1FF] text-sm font-medium text-white border-2 border-white">-->
+    <!--                <fa-icon class="mr-1" [icon]="faUsers"></fa-icon>-->
+    <!--                {{step.max_participants}}-->
+    <!--                </span>-->
+    <!--                <span-->
+    <!--                  data-te-stepper-head-text-ref-->
+    <!--                  class=" after:absolute after:flex after:text-[0.8rem] after:content-[data-content]">-->
+    <!--                   {{step |globalTranslate:'title':translate.currentLang}}-->
+    <!--                </span>-->
+    <!--              </div>-->
+    <!--              <div-->
+    <!--                data-te-stepper-content-ref-->
+    <!--                class="transition-[height, margin-bottom, padding-top, padding-bottom] left-0 overflow-hidden pb-6 pl-[3.75rem] pr-6 duration-300 ease-in-out">-->
+    <!--                <div class="w-full rounded-full lg:p-5" *ngIf="getSubTournament(step.id);else noSubTournament">-->
+    <!--                  <div class="card lg:flex items-center w-full shadow-lg rounded-xl p-4 body-text">-->
+    <!--                    <div class="md:w-2/12 text-center main-secondary-color my-2">-->
+    <!--                      <fa-icon class="text-2xl lg:text-5xl" [icon]="faCheckCircle"></fa-icon>-->
+    <!--                    </div>-->
+    <!--                    <div class="md:w-10/12 text-center lg:text-left my-2">-->
+    <!--                      <p class="text-md md:text-2xl font-bold">{{step |globalTranslate:'title':translate.currentLang}}</p>-->
+    <!--                      <ul class="list-disc pl-3 lg:px-4">-->
+    <!--                        <li class="text-sm md:text-xl ">-->
+    <!--                          {{"PARTICIPANTS_QUANTITY"|translate}}: <b>{{step.max_participants}}</b>-->
+    <!--                        </li>-->
+    <!--                        <li class="text-sm md:text-xl">-->
+    <!--                          {{"QUESTION_QUANTITY"|translate}}: <b>{{getSubTournament(step.id)!.question_quantity}}</b>-->
+    <!--                        </li>-->
+    <!--                        <li class="text-sm md:text-xl">-->
+    <!--                          {{"MAX_POINTS"|translate}}: <b>{{getSubTournament(step.id)!.max_point}}</b>-->
+    <!--                        </li>-->
+    <!--                        <li class="text-sm md:text-xl">-->
+    <!--                          {{"PARTICIPATION_DATE"|translate}}: <b>{{moment(getSubTournament(step.id)!.start_at).format('HH:mm DD.MM.YYYY')}}</b> - по <b>{{moment(getSubTournament(step.id)!.end_at).format('HH:mm DD.MM.YYYY')}}</b>-->
+    <!--                        </li>-->
+    <!--                        <li class="text-sm md:text-xl">-->
+    <!--                          {{"TIME"|translate}}-->
+    <!--                        </li>-->
+    <!--                      </ul>-->
+    <!--                    </div>-->
+    <!--                    <div class="text-center md:text-right">-->
+    <!--                      <a-->
+    <!--                        routerLink="{{'/' + RoutesName.subTournamentDetail + '/' + getSubTournament(step.id)!.id}}"-->
+    <!--                        type="button"-->
+    <!--                        class="inline-block my-2 main-secondary-bg border-0 rounded-full px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0"-->
+    <!--                        data-te-ripple-init>-->
+    <!--                        {{"PASS"|translate}}-->
+    <!--                      </a>-->
+    <!--                    </div>-->
+    <!--                  </div>-->
+
+
+    <!--                </div>-->
+    <!--                <ng-template #noSubTournament>-->
+    <!--                  <p class="text-danger">-->
+    <!--                    {{"STEP_NOT_FOUND"|translate}}-->
+    <!--                  </p>-->
+    <!--                </ng-template>-->
+    <!--              </div>-->
+    <!--            </li>-->
+
+    <!--          </ul>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
 
   </div>
 </section>

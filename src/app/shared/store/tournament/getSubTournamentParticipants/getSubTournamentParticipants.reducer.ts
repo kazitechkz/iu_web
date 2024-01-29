@@ -1,6 +1,7 @@
 import {createReducer, on} from "@ngrx/store";
 import {getSubTournamentParticipantsState} from "./getSubTournamentParticipants.state";
 import {
+  clearGetSubTournamentParticipantsAction,
   getSubTournamentParticipantsAction,
   getSubTournamentParticipantsActionFailure, getSubTournamentParticipantsActionSuccess
 } from "./getSubTournamentParticipants.action";
@@ -10,8 +11,13 @@ const _getSubTournamentParticipantsReducer = createReducer(
   getSubTournamentParticipantsState,
   on(getSubTournamentParticipantsAction, (state, action) => {
     return {
+      ...state
+    }
+  }),
+  on(clearGetSubTournamentParticipantsAction, (state, action) => {
+    return {
       ...state,
-      data:null,
+      data:null
     }
   }),
   on(getSubTournamentParticipantsActionSuccess, (state, action) => {

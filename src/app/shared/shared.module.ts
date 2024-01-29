@@ -19,6 +19,7 @@ import {NgxSmartModalModule} from "ngx-smart-modal";
 import { ModalUntTrainerComponent } from './components/modal-unt-trainer/modal-unt-trainer.component';
 import { ModalContentOfferComponent } from './components/modal-content-offer/modal-content-offer.component';
 import { HomeFooterComponent } from './components/home-footer/home-footer.component';
+import {InputMaskModule} from "@ngneat/input-mask";
 
 @NgModule({
   declarations: [
@@ -34,17 +35,18 @@ import { HomeFooterComponent } from './components/home-footer/home-footer.compon
     ModalContentOfferComponent,
     HomeFooterComponent
   ],
-  imports: [
-    CommonModule,
-    FontAwesomeModule,
-    HttpClientModule,
-    CoreModule,
-    ReactiveFormsModule,
-    RouterLink,
-    RouterLinkActive,
-    SlickCarouselModule,
-    NgxSmartModalModule,
-  ],
+    imports: [
+        CommonModule,
+        FontAwesomeModule,
+        HttpClientModule,
+        CoreModule,
+        ReactiveFormsModule,
+        RouterLink,
+        RouterLinkActive,
+        SlickCarouselModule,
+        NgxSmartModalModule,
+        InputMaskModule,
+    ],
     exports: [
         InputFieldComponent,
         RoundedSocialButtonComponent,
