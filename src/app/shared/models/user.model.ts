@@ -3,6 +3,7 @@ import {Image} from "./image.model";
 import {Gender} from "./gender.model";
 import {AttemptSettingResult, AttemptSettingUNTResult} from "./attemptSettingResult.model";
 import {ClassroomModel} from "./classroom.model";
+import {Plan} from "./plan.model";
 
 export interface Users {
   name: string
@@ -22,7 +23,7 @@ export interface Me {
   email: string
   phone: string
   role: string
-  subscription: any
+  subscription: Plan[]
   file: Image | null
   gender: Gender | null
   birth_date: Date | null

@@ -18,4 +18,6 @@ export interface Plan {
   created_at: Date
   updated_at: Date|null
   deleted_at: Date|null
+  starts_at: Date
+  ends_at: Date
 }
