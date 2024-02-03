@@ -105,7 +105,8 @@ export class PlanModeComponent implements OnInit {
     this._store.dispatch(accountAction())
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       if (item.data) {
-        this.subscriptions = item.data.subscription
+        this.subscriptions = item.data.subscription as Plan[]
+        console.log(this.subscriptions)
       }
     })
   }
