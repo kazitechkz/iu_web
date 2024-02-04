@@ -24,11 +24,12 @@ import {NgxSmartModalService} from "ngx-smart-modal";
 import {PayRequest} from "../../../shared/store/paybox/pay_create/pay.request";
 import {payCreateAction} from "../../../shared/store/paybox/pay_create/payCreate.action";
 import {payCreateSelector} from "../../../shared/store/paybox/pay_create/payCreate.selector";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Plan} from "../../../shared/models/plan.model";
 import * as moment from "moment/moment";
 import {accountAction} from "../../../shared/store/user/account/account.action";
 import {getAccountState} from "../../../shared/store/user/account/account.selector";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-plan-mode',
@@ -37,7 +38,8 @@ import {getAccountState} from "../../../shared/store/user/account/account.select
 })
 export class PlanModeComponent implements OnInit {
   ngOnInit(): void {
-      this.getSubscriptions()
+    this.checkURL()
+    this.getSubscriptions()
   }
   countdown: string = '';
   endDate: moment.Moment = moment();
@@ -49,12 +51,35 @@ export class PlanModeComponent implements OnInit {
   destroyRef = inject(DestroyRef);
   private _store = inject(Store)
   private _route = inject(Router)
+  private _activateRoute = inject(ActivatedRoute)
   public subjects: Subject[] = []
   subjects_form: FormGroup = new FormGroup({
     time: new FormControl(1),
     subject_first: new FormControl(0, [Validators.required]),
     subject_second: new FormControl(0, [Validators.required]),
   }, {validators: this.subjectsNotEqualValidator()});
+  checkURL() {
+    this._activateRoute.queryParams.subscribe(params => {
+      if (params['success'] == 1) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Подписка успешно оформлена!",
+          showConfirmButton: false,
+          timer: 4000
+        });
+      }
+      if (params['error'] == 1) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Что-то пошло не так!",
+          showConfirmButton: false,
+          timer: 4000
+        });
+      }
+    })
+  }
   subjectsNotEqualValidator(): ValidatorFn {
     // @ts-ignore
     return (formGroup: FormGroup): ValidationErrors | null => {
@@ -100,13 +125,11 @@ export class PlanModeComponent implements OnInit {
       }
     })
   }
-
   getSubscriptions() {
     this._store.dispatch(accountAction())
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       if (item.data) {
         this.subscriptions = item.data.subscription as Plan[]
-        console.log(this.subscriptions)
       }
     })
   }
