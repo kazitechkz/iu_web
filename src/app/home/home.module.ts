@@ -10,6 +10,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ContractOfferComponent } from './contract-offer/contract-offer.component';
+import {CarouselModule} from "ngx-owl-carousel-o";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ContractOfferComponent } from './contract-offer/contract-offer.componen
         HomeRoutingModule,
         SharedModule,
         CoreModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        CarouselModule
     ]
 })
 export class HomeModule {

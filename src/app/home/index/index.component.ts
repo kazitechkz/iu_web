@@ -8,7 +8,7 @@ import {
   faBook,
   faBookAtlas,
   faBookOpen,
-  faCalendar, faCheckCircle, faDiagramProject,
+  faCalendar, faCheck, faCheckCircle, faCircleCheck, faDiagramProject,
   faHandsHelping,
   faInfinity,
   faLanguage,
@@ -20,7 +20,7 @@ import {
   faTasksAlt,
   faTrophy,
   faUserCheck, faUsers,
-  faVideo
+  faVideo, faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import {faDumbbell} from "@fortawesome/free-solid-svg-icons/faDumbbell";
 import {ImageHelper} from "../../core/helpers/image.helper";
@@ -30,6 +30,7 @@ import {
 } from "tw-elements";
 import {Store} from "@ngrx/store";
 import {getFeatureSupport} from "@angular-devkit/build-angular/src/tools/esbuild/utils";
+import {OwlOptions} from "ngx-owl-carousel-o";
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
@@ -45,6 +46,24 @@ export class IndexComponent implements OnInit{
   subjects:Subject[] = [];
   //Data
 
+
+  ngOnInit(): void {
+    initTE({ Tab });
+  }
+
+  customOptions: OwlOptions = {
+    loop: true,
+    margin:15,
+    items:1,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    nav:false,
+    navText: [],
+  }
+  //@ts-ignore
   protected readonly faArrowCircleRight = faArrowCircleRight;
   protected readonly faArrowRight = faArrowRight;
   protected readonly faBookOpen = faBookOpen;
@@ -67,13 +86,10 @@ export class IndexComponent implements OnInit{
   protected readonly faUsers = faUsers;
   protected readonly faSchool = faSchool;
   protected readonly ImageHelper = ImageHelper;
-
-  ngOnInit(): void {
-    initTE({ Tab });
-  }
-
-
   protected readonly faDiagramProject = faDiagramProject;
   protected readonly faCheckCircle = faCheckCircle;
   protected readonly faPen = faPen;
+  protected readonly faXmark = faXmark;
+  protected readonly faCheck = faCheck;
+  protected readonly faCircleCheck = faCircleCheck;
 }

@@ -1,356 +1,211 @@
-<div class="container mx-auto">
-<!--  Открывающий раздел -->
-  <div class="grid grid-cols-12 min-h-[60vh] pt-[80px] items-center justify-center relative">
-    <div class="col-span-12 md:col-span-6 lg:grid-cols-6 py-4 px-3 relative order-2 md:order-1">
-      <div class="my-2">
-        <span class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-5xl font-bold inline tracking-wide" style="line-height: 1.25">
-          Подготовься к ЕНТ совместно с <p class="main-secondary-color inline ">IUnion</p>
-        </span>
-      </div>
-      <div class="my-4 py-3">
-        <span class="text-md md:text-lg xl:text-xl inline tracking-wide" style="line-height: 1.10">
-         Мы гордимся тем, что помогаем вашим детям достичь выдающихся результатов на ЕНТ и готовы предоставить им все необходимые инструменты и ресурсы для успеха. Доверьтесь нам в подготовке к экзамену и достигните своей цели.
-        </span>
-      </div>
-      <div class="my-2">
-        <button type="button" class="font-bold text-white main-secondary-bg focus:outline-none focus:ring-40 rounded-full text-sm px-5 py-4 text-center mr-2 mb-2">
-          Начать подготовку к ЕНТ <fa-icon [icon]="faArrowRight"></fa-icon>
-        </button>
-      </div>
-    </div>
-    <div class="col-span-12 md:col-span-6 lg:grid-cols-6 py-4 px-3 relative order-1 md:order-2">
-      <img src="assets/images/man_stair.webp" class="max-w-[100%] z-10"/>
-    </div>
-  </div>
-  <!--  Открывающий раздел -->
-
-  <!--  Наши продукты -->
-  <div class="grid grid-cols-12 mt-[30px] mb-[20px] gap-4">
-    <div class="col-span-12 my-[50px]">
-      <span class="text-lg md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold inline tracking-wide uppercase" style="line-height: 1.25">
-        Что мы <p class="main-secondary-color inline">предлагаем:</p></span>
-    </div>
-    <div class="col-span-12 md:col-span-12 lg:col-span-12 xl:col-span-6 bg-white shadow-2xl rounded-2xl md:min-h-[320px] lg:flex h-full">
-      <div class="lg:w-4/12 xl:w-6/12 main-secondary-bg rounded-xl  flex justify-center items-center">
-        <img src="assets/images/laptop_stat.webp" class="max-w-[80%]">
-      </div>
-      <div class="lg:w-8/12 xl:w-6/12 p-3 text-center">
-          <div class="offer-card-header">
-            <span class="text-md inline-block lg:text-lg xl:text-xl 2xl:text-2xl font-bold">
-              Тренажер <p class="inline main-secondary-color">ЕНТ</p>
-            </span>
-            <span class="text-lg block my-2">
-              Более 100 тысяч вопросов по 16 предметам
-            </span>
+<div id="front-page" class="bg-white relative">
+  <!--Баннер-->
+  <section class="section-first-page">
+    <div class="container mx-auto max-h-[850px]">
+      <div class="grid grid-cols-12 min-h-[100vh] md:min-h-[600px] lg:min-h-[800px] items-center">
+        <div class="col-span-12 md:col-span-12 lg:col-span-6">
+          <div class="p-3">
+            <p class="text-lg md:text-2xl lg:text-4xl xl:text-6xl font-normal mb-4">
+              Не парься, ты легко сдашь ЕНТ <br/>
+              <b class="text-violet-700">вместе c IU</b>
+            </p>
+            <p class="text-sm md:text-md lg:text-lg my-3">
+              Более 50 000 актуальных вопросов, видеоуроки и материалы подготовленные профессионалами
+            </p>
+            <a href="" class="gradient-violet-button px-10 py-3 rounded-lg text-white my-3 inline-block">
+              Начать
+              <fa-icon [icon]="faArrowRight"></fa-icon>
+            </a>
           </div>
-          <div class="offer-card-body py-3 px-4">
-            <ul class="list-none">
-              <li class="text-md py-1"><fa-icon [icon]="faBookAtlas" class="ml-1 main-secondary-color"></fa-icon> Более 16 предметов</li>
-              <li class="text-md py-1"><fa-icon [icon]="faLanguage" class="ml-1 main-secondary-color"></fa-icon> Мультиязычный формат</li>
-              <li class="text-md py-1"><fa-icon [icon]="faCalendar" class="ml-1 main-secondary-color"></fa-icon> Самые актуальные вопросы</li>
-              <li class="text-md py-1"><fa-icon [icon]="faDumbbell" class="ml-1 main-secondary-color"></fa-icon> Различные режимы сдачи</li>
-              <li class="text-md py-1"><fa-icon [icon]="faInfinity" class="ml-1 main-secondary-color"></fa-icon> Неограниченое кол-во сдач</li>
-              <li class="text-md py-1"><fa-icon [icon]="faStar" class="ml-1 main-secondary-color"></fa-icon> Полная статистика</li>
-            </ul>
-          </div>
-      </div>
-    </div>
-    <div class="col-span-12 md:col-span-12 lg:col-span-12 xl:col-span-6 bg-white shadow-2xl rounded-2xl md:min-h-[320px] lg:flex h-full">
-      <div class="lg:w-4/12 xl:w-6/12 main-green-bg rounded-xl order-1 xl:order-2  flex justify-center items-center">
-        <img src="assets/images/teacher.webp" class="max-w-[80%]">
-      </div>
-      <div class="lg:w-8/12 xl:w-6/12 p-3 text-center order-2 xl:order-1">
-        <div class="offer-card-header">
-            <span class="text-md inline-block lg:text-lg xl:text-xl 2xl:text-2xl font-bold">
-              Онлайн подготовка для <p class="inline main-green-color">ЕНТ</p>
-            </span>
-          <span class="text-lg block my-2">
-              Мы предоставляем обширный контент, подготовленный лучшими преподавателями.
-            </span>
         </div>
-        <div class="offer-card-body py-3 px-4">
-          <ul class="list-none">
-            <li class="text-md py-1"><fa-icon [icon]="faVideo" class="ml-1 main-green-color"></fa-icon> Видеоуроки по 16 предметам</li>
-            <li class="text-md py-1"><fa-icon [icon]="faBook" class="ml-1 main-green-color"></fa-icon> Учебные материалы</li>
-            <li class="text-md py-1"><fa-icon [icon]="faVideo" class="ml-1 main-green-color"></fa-icon> Контент по 16 предметам</li>
-            <li class="text-md py-1"><fa-icon [icon]="faDumbbell" class="ml-1 main-green-color"></fa-icon> Тесты после каждого контенте</li>
-          </ul>
+        <div class="col-span-12 md:col-span-12 lg:col-span-3">
+          <img src="assets/images/single_subject.webp" class="w-full wiggle-img max-w-[300px]"/>
         </div>
       </div>
     </div>
-    <div class="col-span-12 md:col-span-12 lg:col-span-12 xl:col-span-6 bg-white shadow-2xl rounded-2xl md:min-h-[320px] lg:flex h-full">
-      <div class="lg:w-4/12 xl:w-6/12 main-tertiary-bg rounded-xl  flex justify-center items-center">
-        <img src="assets/images/woman-blonde.webp" class="max-w-[80%]">
-      </div>
-      <div class="lg:w-8/12 xl:w-6/12 p-3 text-center">
-        <div class="offer-card-header">
-            <span class="text-md inline-block lg:text-lg xl:text-xl 2xl:text-2xl font-bold">
-              Профессиональные <p class="inline main-tertiary-color">Репетиторы</p>
-            </span>
-          <span class="text-lg block my-2">
-              Самые профессиональные репетиторы собраны тут
-            </span>
-        </div>
-        <div class="offer-card-body py-3 px-4">
-          <ul class="list-none">
-            <li class="text-md py-1"><fa-icon [icon]="faHandsHelping" class="ml-1 main-tertiary-color"></fa-icon> Обращение к репетиторам</li>
-            <li class="text-md py-1"><fa-icon [icon]="faTasksAlt" class="ml-1 main-tertiary-color"></fa-icon> Помощь в решении задач</li>
-            <li class="text-md py-1"><fa-icon [icon]="faUserCheck" class="ml-1 main-tertiary-color"></fa-icon> Индивидуальный подход</li>
-            <li class="text-md py-1"><fa-icon [icon]="faMoneyBill" class="ml-1 main-tertiary-color"></fa-icon> Система скидок</li>
-            <li class="text-md py-1"><fa-icon [icon]="faMessage" class="ml-1 main-tertiary-color"></fa-icon> Форумы</li>
-          </ul>
+  </section>
+  <!--Баннер-->
+  <!--Сервисы-->
+  <section class="section-second-page bg-white py-4 my-4 block">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-12">
+        <div class="col-span-12 text-center">
+          <p class="text-lg md:text-2xl lg:text-4xl font-semibold mb-4 text-present">
+            Сервисы <b class="text-violet-700">IU</b>
+          </p>
+          <p class="text-sm md:text-md lg:text-lg my-3 text-gray-400">
+            Качество, на которое вы можете положиться
+          </p>
         </div>
       </div>
-    </div>
-    <div class="col-span-12 md:col-span-12 lg:col-span-12 xl:col-span-6 bg-white shadow-2xl rounded-2xl md:min-h-[320px] lg:flex h-full">
-      <div class="lg:w-4/12 xl:w-6/12 main-darken-blue-bg rounded-xl order-1 xl:order-2  flex justify-center items-center">
-        <img src="assets/images/gold_trophy.webp" class="max-w-[80%]">
-      </div>
-      <div class="lg:w-8/12 xl:w-6/12 p-3 text-center order-2 xl:order-1">
-        <div class="offer-card-header">
-            <span class="text-md inline-block lg:text-lg xl:text-xl 2xl:text-2xl font-bold">
-              Турниры и  <p class="inline main-darken-blue-color">ЕНТ Battle</p>
-            </span>
-          <span class="text-lg block my-2">
-              Участвуй в турнирах или Battle с другими учениками и выигрывай ценные призы
-            </span>
-        </div>
-        <div class="offer-card-body py-3 px-4">
-          <ul class="list-none">
-            <li class="text-md py-1"><fa-icon [icon]="faTrophy" class="ml-1 main-darken-blue-color"></fa-icon> Ценные призы</li>
-            <li class="text-md py-1"><fa-icon [icon]="faShieldAlt" class="ml-1 main-darken-blue-color"></fa-icon> Возможность получения гранта</li>
-            <li class="text-md py-1"><fa-icon [icon]="faMoneyBillWaveAlt" class="ml-1 main-darken-blue-color"></fa-icon> Выигрывай ценные призы</li>
-            <li class="text-md py-1"><fa-icon [icon]="faUsers" class="ml-1 main-darken-blue-color"></fa-icon> Новые друзья</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--  Наши продукты -->
-
-  <!--  Лучше купи тест для подготовки -->
-
-  <div class="grid grid-cols-12 mt-[30px] md:mt-[40px] lg:mt-[70px] mb-[20px] gap-4 min-h-[60vh] rounded-2xl gap-3">
-      <div class="col-span-12 lg:col-span-6 flex justify-center items-center px-3 main-darken-blue-bg rounded-2xl py-3">
-        <div class="text-center">
-          <span class="text-md inline-block lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold uppercase text-white uppercase">
-               У нас цена на тренажер ЕНТ ниже
-            </span>
-            <div class="flex justify-center items-center">
-              <img src="assets/images/burger.webp" class="max-w-[80%] max-h-[300px]">
-            </div>
-          <span class="text-md inline-block lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold uppercase text-white uppercase">
-              чем 1 бургер в фаст фуде
-            </span>
-        </div>
-      </div>
-    <div class="col-span-12 lg:col-span-6 flex justify-center items-center px-3 main-darken-blue-bg rounded-2xl py-3">
-      <div class="text-center">
-          <span class="text-md inline-block lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold uppercase text-white uppercase">
-              Цена на контент ниже
-            </span>
-        <div class="flex justify-center items-center">
-          <img src="assets/images/pizza.webp" class="max-w-[80%] max-h-[300px]">
-        </div>
-        <span class="text-md inline-block lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold uppercase text-white uppercase">
-              чем 1 пицца в популярной пиццерии
-            </span>
-      </div>
-    </div>
-  </div>
-
-
-  <!--  Лучше купи тест для подготовки -->
-
-
-  <!--  Наши преимущества -->
-  <div class="grid grid-cols-12 mt-[30px] mb-[20px] gap-4">
-    <div class="col-span-12 my-[50px]">
-      <span class="text-lg md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold inline tracking-wide uppercase" style="line-height: 1.25">
-        Наши <p class="main-secondary-color inline">преимущества:</p></span>
-    </div>
-    <div class="col-span-12 md:col-span-3 lg:col-span-6 xl:col-span-3">
-      <div class="shadow-2xl rounded-lg bg-white py-3 min-h-full relative">
-        <div class="main-secondary-bg w-full h-2 absolute top-0 rounded-tl-lg rounded-tr-lg"></div>
-        <div class="advantage-card-header text-center flex justify-center items-center">
-            <div class="rounded-full h-36 w-36 bg-center bg-contain bg-no-repeat bg-[url('assets/images/art.webp')]"></div>
-        </div>
-          <div class="advantage-card-body text-center py-2 px-4">
-            <div class="my-2">
-              <span class="text-lg md:text-lg lg:text-xl font-bold my-4 main-darken-blue-color">Индивидуальный <br> подход</span>
-            </div>
-            <div class="my-2">
-              <span class="text-sm md:text-sm">Мы понимаем, что каждый ученик уникален, и мы предоставляем индивидуальный подход к каждому из них. Мы помогаем идентифицировать слабые места и разрабатываем план подготовки, который соответствует их потребностям.</span>
-            </div>
-          </div>
-      </div>
-    </div>
-    <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-3">
-      <div class="shadow-2xl rounded-lg bg-white py-3 min-h-full relative">
-        <div class="main-green-bg w-full h-2 absolute top-0 rounded-tl-lg rounded-tr-lg"></div>
-        <div class="advantage-card-header text-center flex justify-center items-center">
-            <div class="rounded-full h-36 w-36 bg-center bg-contain bg-no-repeat bg-[url('assets/images/briefcase.webp')]"></div>
-        </div>
-          <div class="advantage-card-body text-center py-2 px-4">
-            <div class="my-2">
-              <span class="text-lg md:text-lg lg:text-xl font-bold my-4 main-darken-blue-color">Опытные <br> преподаватели</span>
-            </div>
-            <div class="my-2">
-              <span class="text-sm md:text-sm">
-                Наши преподаватели обладают обширным опытом в подготовке студентов к ЕНТ. Они знают, какие ключевые темы и навыки необходимы для успешной сдачи экзамена, и готовы передать свой опыт вашему ребенку.
-              </span>
-            </div>
-          </div>
-      </div>
-    </div>
-    <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-3">
-      <div class="shadow-2xl rounded-lg bg-white py-3 min-h-full relative">
-        <div class="main-tertiary-bg w-full h-2 absolute top-0 rounded-tl-lg rounded-tr-lg"></div>
-        <div class="advantage-card-header text-center flex justify-center items-center">
-            <div class="rounded-full h-36 w-36 bg-center bg-contain bg-no-repeat bg-[url('assets/images/books_3d.webp')]"></div>
-        </div>
-          <div class="advantage-card-body text-center py-2 px-4">
-            <div class="my-2">
-              <span class="text-lg md:text-lg lg:text-xl font-bold my-4 main-darken-blue-color">Обширные<br> ресурсы</span>
-            </div>
-            <div class="my-2">
-              <span class="text-sm md:text-sm">
-                  Наша библиотека учебных материалов, тестов, видеоуроков и контента обеспечивает учеников всеми необходимыми ресурсами для изучения и практики.              </span>
-            </div>
-          </div>
-      </div>
-    </div>
-    <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-3">
-      <div class="shadow-2xl rounded-lg bg-white py-3 min-h-full relative">
-        <div class="main-darken-blue-bg w-full h-2 absolute top-0 rounded-tl-lg rounded-tr-lg"></div>
-        <div class="advantage-card-header text-center flex justify-center items-center">
-            <div class="rounded-full h-36 w-36 bg-center bg-contain bg-no-repeat bg-[url('assets/images/diagram.webp')]"></div>
-        </div>
-          <div class="advantage-card-body text-center py-2 px-4">
-            <div class="my-2">
-              <span class="text-lg md:text-lg lg:text-xl font-bold my-4 main-darken-blue-color">Гарантированный<br> успех</span>
-            </div>
-            <div class="my-2">
-              <span class="text-sm md:text-sm">
-                    Мы посвятили себя успеху каждого ученика. Наши методы и подходы доказывают свою эффективность, и мы гордимся выдающимися результатами наших выпускников.
-              </span>
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
-  <!--  Наши преимущества -->
-  <!--  Наши преподаватели -->
-  <div class="grid grid-cols-12 my-[50px] gap-4">
-
-    <div class="col-span-12 lg:col-span-6 flex justify-content-center items-center main-darken-blue-bg p-3 rounded-2xl h-full min-h-[450px]">
-      <div class="text-center px-3 w-full">
-        <span class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold my-4 text-white">Для <br> Корпоративных Клиентов</span>
-        <div class="flex justify-center items-center">
-          <img src="assets/images/businessman.webp" class="max-w-[80%] max-h-[300px]">
-        </div>
-        <div class="my-4 px-3">
-          <div class="grid grid-cols-12">
-            <div class="col-span-12 lg:col-span-6 py-3 text-left px-2">
-              <span class="text-white font-bold text-md">
-                <fa-icon [icon]="faUsers" class="text-white inline-block"></fa-icon>
-                Возможность управления большим количеством абитуриентов
-              </span>
-            </div>
-            <div class="col-span-12 lg:col-span-6 py-3 text-left px-2">
-              <span class="text-white font-bold text-md ">
-                <fa-icon [icon]="faSchool" class="text-white inline-block"></fa-icon>
-                Удобное управление школой или организацией
-              </span>
-            </div>
-            <div class="col-span-12 lg:col-span-6 py-3 text-left px-2">
-              <span class="text-white font-bold text-md ">
-                <fa-icon [icon]="faDiagramProject" class="text-white inline-block"></fa-icon>
-                Полная статистика по абитуриентам
-              </span>
-            </div>
-            <div class="col-span-12 lg:col-span-6 py-3 text-left px-2">
-              <span class="text-white font-bold text-md ">
-                <fa-icon [icon]="faCheckCircle" class="text-white inline-block"></fa-icon>
-                Полноценная система управления
-              </span>
+      <div class="grid grid-cols-12 gap-5 my-5">
+        <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 relative">
+          <div
+            class="card-service h-full bg-white shadow-lg p-4 min-h-[300px] w-full hover:shadow-2xl cursor-pointer flex justify-center items-center">
+            <div class="text-center">
+              <img class="w-[150px] inline" src="assets/images/icons/unt.webp"/>
+              <p class="mt-3 mb-2 text-md lg:text-lg font-semibold">
+                Тренажер <b class="text-violet-700">ЕНТ</b>
+              </p>
+              <p class="mt-3 text-sm font-regular">
+                Более 50 000 актуальных вопросов по 16 предметам
+              </p>
             </div>
           </div>
         </div>
-        <div class="my-2">
-          <button type="button" class="font-bold text-white border-white bg-transparent border-2 focus:outline-none focus:ring-40 rounded-full text-lg px-5 py-4 text-center mr-2 mb-2">
-            Получить полную консультацию
-          </button>
-        </div>
-
-      </div>
-
-    </div>
-    <div class="col-span-12 lg:col-span-6 flex justify-content-center items-center main-tertiary-bg p-3 rounded-2xl h-full min-h-[60vh]">
-      <div class="text-center px-3 w-full">
-        <span class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold my-4 text-white">Для <br> Будущих Абитуриентов</span>
-        <div class="flex justify-center items-center">
-          <img src="assets/images/man_laptop.webp" class="max-w-[80%] max-h-[300px]">
-        </div>
-        <div class="my-4 px-3">
-          <div class="grid grid-cols-12">
-            <div class="col-span-12 lg:col-span-6 py-3 text-left px-2">
-              <span class="text-white font-bold text-md">
-                <fa-icon [icon]="faPen" class="text-white inline-block"></fa-icon>
-                Полноценный доступ к тренажеру
-              </span>
-            </div>
-            <div class="col-span-12 lg:col-span-6 py-3 text-left px-2">
-              <span class="text-white font-bold text-md ">
-                <fa-icon [icon]="faTrophy" class="text-white inline-block"></fa-icon>
-                Участвуй в турнирах и Battle, выигрывай ценные призы
-              </span>
-            </div>
-            <div class="col-span-12 lg:col-span-6 py-3 text-left px-2">
-              <span class="text-white font-bold text-md ">
-                <fa-icon [icon]="faBook" class="text-white inline-block"></fa-icon>
-                Полный доступ к материалам для подготовки к ЕНТ
-              </span>
-            </div>
-            <div class="col-span-12 lg:col-span-6 py-3 text-left px-2">
-              <span class="text-white font-bold text-md ">
-                <fa-icon [icon]="faUserCheck" class="text-white inline-block"></fa-icon>
-                Поддержка профессиональных преподавателей и репетиторов
-              </span>
+        <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 relative">
+          <div
+            class="card-service h-full bg-white shadow-lg p-4 min-h-[300px] w-full hover:shadow-2xl cursor-pointer flex justify-center items-center">
+            <div class="text-center">
+              <img class="w-[150px] inline" src="assets/images/icons/content.webp"/>
+              <p class="mt-3 mb-2 text-md lg:text-lg font-semibold">
+                Видеоуроки для подготовки к <b class="text-violet-700">ЕНТ</b>
+              </p>
+              <p class="mt-3 text-sm font-regular">
+                Готовьтесь по 16 дисциплинам по материалам и видео подготовленные профессионалами в своей области
+              </p>
             </div>
           </div>
         </div>
-        <div class="my-2">
-          <button type="button" class="font-bold text-white border-white bg-transparent border-2 focus:outline-none focus:ring-40 rounded-full text-lg px-5 py-4 text-center mr-2 mb-2">
-            Получить полную консультацию
-          </button>
+        <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 relative">
+          <div
+            class="card-service h-full bg-white shadow-lg p-4 min-h-[300px] w-full hover:shadow-2xl cursor-pointer flex justify-center items-center">
+            <div class="text-center">
+              <img class="w-[150px] inline" src="assets/images/briefcase.webp"/>
+              <p class="mt-3 mb-2 text-md lg:text-lg font-semibold">
+                Тесты и квизы по <b class="text-violet-700">Профориентации</b>
+              </p>
+              <p class="mt-3 text-sm font-regular">
+                Наши специалисты в области профориентации помогут вам определиться с будущей профессией
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 relative">
+          <div
+            class="card-service h-full bg-white shadow-lg p-4 min-h-[300px] w-full hover:shadow-2xl cursor-pointer flex justify-center items-center">
+            <div class="text-center">
+              <img class="w-[150px] inline" src="assets/images/icons/tournament.webp"/>
+              <p class="mt-3 mb-2 text-md lg:text-lg font-semibold text-violet-700">
+                Турниры
+              </p>
+              <p class="mt-3 text-sm font-regular">
+                Учавствуй в турнирах по тематике ЕНТ и выигрывай ценные призы!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 relative">
+          <div
+            class="card-service h-full bg-white shadow-lg p-4 min-h-[300px] w-full hover:shadow-2xl cursor-pointer flex justify-center items-center">
+            <div class="text-center">
+              <img class="w-[150px] inline" src="assets/images/icons/sword.webp"/>
+              <p class="mt-3 mb-2 text-md lg:text-lg font-semibold">
+                UBT <b class="text-violet-700">Battle</b>
+              </p>
+              <p class="mt-3 text-sm font-regular">
+                Играй с другими игроками 1 на 1, выигрывай ценные призы
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 relative">
+          <div
+            class="card-service h-full bg-white shadow-lg p-4 min-h-[300px] w-full hover:shadow-2xl cursor-pointer flex justify-center items-center">
+            <div class="text-center">
+              <img class="w-[150px] inline" src="assets/images/coin.webp"/>
+              <p class="mt-3 mb-2 text-md lg:text-lg font-semibold">
+                Учись и <b class="text-violet-700">Выигрывай</b>
+              </p>
+              <p class="mt-3 text-sm font-regular">
+                Собирай IU coins и меняй их на ценные призы!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 relative">
+          <div
+            class="card-service h-full bg-white shadow-lg p-4 min-h-[300px] w-full hover:shadow-2xl cursor-pointer flex justify-center items-center">
+            <div class="text-center">
+              <img class="w-[150px] inline" src="assets/images/qa.webp"/>
+              <p class="mt-3 mb-2 text-md lg:text-lg font-semibold">
+                IU <b class="text-violet-700">Форум</b>
+              </p>
+              <p class="mt-3 text-sm font-regular">
+                Непонятна задача? Ничего страшного, спроси участников и они обязательно ответят
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 relative">
+          <div
+            class="card-service h-full bg-white shadow-lg p-4 min-h-[300px] w-full hover:shadow-2xl cursor-pointer flex justify-center items-center">
+            <div class="text-center">
+              <img class="w-[150px] inline" src="assets/images/icons/tutor.webp"/>
+              <p class="mt-3 mb-2 text-md lg:text-lg font-semibold">
+                Техподдержка <b class="text-violet-700">24/7</b>
+              </p>
+              <p class="mt-3 text-sm font-regular">
+                Нашли ошибку или произошел сбой - пишите мы всегда на связи!
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!--Сервисы-->
+  <!--На кого нацелены-->
+  <section class="bg-white py-4 my-4 block relative">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-12 gap-3 min-h-[800px] py-[40px]">
+        <div class="col-span-12 sm:col-span-6 relative flex items-center">
+          <div class="md:absolute z-10 top-0 w-full flex justify-around">
+            <img class="w-full max-w-[300px] shadow-lg" src="assets/images/student.webp"/>
+            <img class="w-full max-w-[300px] shadow-lg" src="assets/images/teacher_1.webp"/>
+          </div>
+          <div class="md:absolute z-10 top-[300px] w-full flex justify-around">
+            <img class="xl:w-full max-w-[200px] md:max-w-[300px] shadow-lg" src="assets/images/parents.webp"/>
+          </div>
+        </div>
+
+        <div class="col-span-12 sm:col-span-6 px-3 flex items-center">
+          <div>
+            <p class="text-sm md:text-md lg:text-lg my-3 text-gray-400 uppercase">
+              <b class="text-violet-700">IU</b> - Ваш Надежный Помощник в Подготовке к ЕНТ!
+            </p>
+            <p class="text-lg md:text-2xl lg:text-4xl font-normal mb-4 text-present">
+              Мы помогаем школьникам преодолеть вызовы ЕНТ с  <b class="text-violet-700">легкостью и уверенностью.</b>
+            </p>
+            <div class="py-4">
+              <p class="text-sm md:text-md lg:text-lg my-4 text-gray-500">
+                IU – это больше, чем просто подготовка к экзамену; это путь к образовательному успеху и уверенности в собственных силах. <br/>
+                Присоединяйтесь к нам сегодня и откройте для себя лучшее в образовании!
+              </p>
+              <p class="text-sm md:text-md lg:text-lg my-4 text-gray-500 p-5 shadow-lg rounded-xl">
+                <fa-icon [icon]="faCheck" class="main-green-color font-bold mr-2"></fa-icon>
+                <span class="text-black font-bold">Для Школьников</span>: Готовитесь к ЕНТ и чувствуете себя подавленными?
+                Наша платформа предоставляет интерактивные и увлекательные учебные материалы, которые помогут вам освоить необходимые знания легко и эффективно. <br/>
+                Учитесь в своем собственном темпе и повышайте свои шансы на успех с помощью наших адаптивных тестов и обучающих видео.
+              </p>
+              <p class="text-sm md:text-md lg:text-lg my-4 text-gray-500 p-5 shadow-lg rounded-xl">
+                <fa-icon [icon]="faCheck" class="main-green-color font-bold mr-2"></fa-icon>
+                <span class="text-black font-bold">Для Родителей</span>: Ищете надежный способ помочь вашему ребенку подготовиться к ЕНТ? <br/>
+                IU предлагает комплексные ресурсы для обучения, которые помогут вашему ребенку уверенно идти к цели.  <br/>
+                Следите за их прогрессом, используя наши инструменты отслеживания и получайте регулярные обновления об их успехах и областях для улучшения.
+              </p>
+              <p class="text-sm md:text-md lg:text-lg my-4 text-gray-500 p-5 shadow-lg rounded-xl">
+                <fa-icon [icon]="faCheck" class="main-green-color font-bold mr-2"></fa-icon>
+                <span class="text-black font-bold">Для Учителей</span>: Наша платформа служит мощным инструментом для поддержки ваших учеников в подготовке к ЕНТ.  <br/>
+                Используйте наши образовательные материалы для дополнения вашего учебного плана, проводите эффективные и целенаправленные уроки с помощью наших специализированных инструментов и ресурсов.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-
     </div>
-  </div>
-  <!--  Наши преподаватели -->
-
-  <!--  Нам доверяют -->
-<!--  <div class="grid grid-cols-12 mt-[30px] mb-[20px] gap-4">-->
-<!--    <div class="col-span-12 my-[50px]">-->
-<!--      <span class="text-lg md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold inline tracking-wide uppercase" style="line-height: 1.25">-->
-<!--        Нам <p class="main-secondary-color inline">доверяют:</p></span>-->
-<!--    </div>-->
-<!--    <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 h-[60px] justify-center items-center">-->
-<!--      <img src="https://companieslogo.com/img/orig/KKS.F_BIG-3e3f7333.png?t=1685426980" class="max-h-[60px]"/>-->
-<!--    </div>-->
-<!--    <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 h-[60px] justify-center items-center">-->
-<!--      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Jusan_Bank_Logo.webp/2000px-Jusan_Bank_Logo.webp.png" class="max-h-[60px]"/>-->
-<!--    </div>-->
-<!--    <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 h-[60px] justify-center items-center">-->
-<!--      <img src="https://tvmd.kz/assets/img/kyndelik.png" class="max-h-[60px]"/>-->
-<!--    </div>-->
-<!--    <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 h-[60px] justify-center items-center">-->
-<!--      <img src="https://play-lh.googleusercontent.com/ikGafvmaGkVo5mBu7N94QIgjQx5Khx39GSUR5Re2FnVYVqNKbdwWj_TkPWkxAH-_HA=w416-h235-rw" class="max-h-[60px]"/>-->
-<!--    </div>-->
-<!--  </div>-->
-  <!--  Нам доверяют -->
+  </section>
+  <!--На кого нацелены-->
 </div>
-
