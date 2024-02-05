@@ -3,6 +3,8 @@ import {faCheck} from "@fortawesome/free-solid-svg-icons";
 import {NgxSmartModalService} from "ngx-smart-modal";
 import {Subject} from "../../models/subject.model";
 import {GlobalTranslateService} from "../../services/globalTranslate.service";
+import {RoutesName} from "../../../core/constants/routes.constants";
+import {StrHelper} from "../../../core/helpers/str.helper";
 
 @Component({
   selector: 'app-modal-content-offer',
@@ -20,4 +22,6 @@ export class ModalContentOfferComponent {
     this.dialog.getModal('buy-content-unt').open();
   }
   protected readonly faCheck = faCheck;
+  protected readonly RoutesName = RoutesName;
+  protected readonly StrHelper = StrHelper;
 }
