@@ -11,6 +11,10 @@
   background-size: 300% 100%;
   background-image: linear-gradient(to right, #2f57ef, #b966e7, #b966e7,#2f57ef);
 }
+.gradient-violet-bg{
+  background-size: 100% 120%;
+  background-image: linear-gradient(to right, #2f57ef, #b966e7, #b966e7,#2f57ef);
+}
 .gradient-violet-button:hover{
   background-color: inherit;
   background-position: 102% 0;
@@ -45,3 +49,80 @@
   }
 }
 
+.bg-gradient-1{
+  background: linear-gradient(rgb(255, 255, 255) 0%, rgb(239, 241, 255) 100%);
+}
+
+
+.team-card {
+  background: #313131;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: 0.2s ease-in-out;
+}
+
+.team-card-img {
+  height: 100%;
+  position: absolute;
+  transition: 0.2s ease-in-out;
+  z-index: 1;
+}
+
+.team-card-text-box {
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  transition: 0.2s ease-in-out;
+  z-index: 2;
+}
+
+.team-card-text-box > .text {
+  font-weight: bold;
+}
+
+.team-card-text-box > .head {
+  font-size: 20px;
+}
+
+.team-card-text-box > .price {
+  font-size: 17px;
+}
+
+.team-card-text-box > span {
+  color: lightgrey;
+}
+
+.team-card:hover > .team-card-text-box {
+  opacity: 1;
+}
+
+.team-card:hover > .team-card-img {
+  height: 65%;
+  filter: blur(7px);
+  animation: team-card-anim 3s infinite;
+}
+
+@keyframes team-card-anim {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.team-card:hover {
+  transform: scale(1.04) rotate(-1deg);
+}

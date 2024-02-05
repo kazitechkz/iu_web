@@ -8,14 +8,14 @@ import {
   faBook,
   faBookAtlas,
   faBookOpen,
-  faCalendar, faCheck, faCheckCircle, faCircleCheck, faDiagramProject,
+  faCalendar, faCheck, faCheckCircle, faCircleCheck, faDiagramProject, faEnvelope,
   faHandsHelping,
   faInfinity,
   faLanguage,
   faMessage,
   faMoneyBill,
-  faMoneyBillWaveAlt, faPen, faSchool,
-  faShieldAlt,
+  faMoneyBillWaveAlt, faPen, faPhone, faSchool,
+  faShieldAlt, faSquareEnvelope,
   faStar,
   faTasksAlt,
   faTrophy,
@@ -31,6 +31,8 @@ import {
 import {Store} from "@ngrx/store";
 import {getFeatureSupport} from "@angular-devkit/build-angular/src/tools/esbuild/utils";
 import {OwlOptions} from "ngx-owl-carousel-o";
+import {faGoogle, faWhatsapp, faWhatsappSquare} from "@fortawesome/free-brands-svg-icons";
+import {faPhoneSquare} from "@fortawesome/free-solid-svg-icons/faPhoneSquare";
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
@@ -92,4 +94,11 @@ export class IndexComponent implements OnInit{
   protected readonly faXmark = faXmark;
   protected readonly faCheck = faCheck;
   protected readonly faCircleCheck = faCircleCheck;
+  protected readonly faWhatsapp = faWhatsapp;
+  protected readonly faPhone = faPhone;
+  protected readonly faEnvelope = faEnvelope;
+  protected readonly faSquareEnvelope = faSquareEnvelope;
+  protected readonly faPhoneSquare = faPhoneSquare;
+  protected readonly faWhatsappSquare = faWhatsappSquare;
+  protected readonly faGoogle = faGoogle;
 }

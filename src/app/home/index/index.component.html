@@ -1,6 +1,6 @@
 <div id="front-page" class="bg-white relative">
   <!--Баннер-->
-  <section class="section-first-page">
+  <div class="section-first-page">
     <div class="container mx-auto max-h-[850px]">
       <div class="grid grid-cols-12 min-h-[100vh] md:min-h-[600px] lg:min-h-[800px] items-center">
         <div class="col-span-12 md:col-span-12 lg:col-span-6">
@@ -23,10 +23,10 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
   <!--Баннер-->
   <!--Сервисы-->
-  <section class="section-second-page bg-white py-4 my-4 block">
+  <div class="section-second-page bg-white py-4 my-4 block">
     <div class="container mx-auto">
       <div class="grid grid-cols-12">
         <div class="col-span-12 text-center">
@@ -154,23 +154,25 @@
 
       </div>
     </div>
-  </section>
+  </div>
   <!--Сервисы-->
   <!--На кого нацелены-->
-  <section class="bg-white py-4 my-4 block relative">
+  <div class="bg-white py-4 my-4 block relative">
     <div class="container mx-auto">
-      <div class="grid grid-cols-12 gap-3 min-h-[800px] py-[40px]">
-        <div class="col-span-12 sm:col-span-6 relative flex items-center">
-          <div class="md:absolute z-10 top-0 w-full flex justify-around">
-            <img class="w-full max-w-[300px] shadow-lg" src="assets/images/student.webp"/>
-            <img class="w-full max-w-[300px] shadow-lg" src="assets/images/teacher_1.webp"/>
-          </div>
-          <div class="md:absolute z-10 top-[300px] w-full flex justify-around">
-            <img class="xl:w-full max-w-[200px] md:max-w-[300px] shadow-lg" src="assets/images/parents.webp"/>
+      <div class="grid grid-cols-12 gap-3 min-h-[800px]">
+        <div class="col-span-12 md:col-span-6 order-2 lg:order-1 min-h-[400px] md:min-h-[500px]">
+          <div class="relative overflow-hidden h-full">
+            <div class="absolute z-10 top-0 w-full flex justify-center gap-3">
+              <img class="w-full max-w-[150px] md:max-w-[200px] lg:max-w-[300px]" src="assets/images/student.webp"/>
+              <img class="w-full max-w-[150px] md:max-w-[200px] lg:max-w-[300px]" src="assets/images/teacher_1.webp"/>
+            </div>
+            <div class="absolute z-10 top-[45%] w-full flex justify-around">
+              <img class="xl:w-full max-w-[150px] md:max-w-[200px] lg:max-w-[300px]" src="assets/images/parents.webp"/>
+            </div>
           </div>
         </div>
 
-        <div class="col-span-12 sm:col-span-6 px-3 flex items-center">
+        <div class="col-span-12 md:col-span-6 order-1 lg:order-2 px-3 flex items-center">
           <div>
             <p class="text-sm md:text-md lg:text-lg my-3 text-gray-400 uppercase">
               <b class="text-violet-700">IU</b> - Ваш Надежный Помощник в Подготовке к ЕНТ!
@@ -179,25 +181,22 @@
               Мы помогаем школьникам преодолеть вызовы ЕНТ с  <b class="text-violet-700">легкостью и уверенностью.</b>
             </p>
             <div class="py-4">
-              <p class="text-sm md:text-md lg:text-lg my-4 text-gray-500">
-                IU – это больше, чем просто подготовка к экзамену; это путь к образовательному успеху и уверенности в собственных силах. <br/>
-                Присоединяйтесь к нам сегодня и откройте для себя лучшее в образовании!
+              <p class="text-sm md:text-md lg:text-lg my-2 text-gray-500">
+                IU – это больше, чем просто подготовка к экзамену; это путь к образовательному успеху и уверенности в собственных силах
               </p>
-              <p class="text-sm md:text-md lg:text-lg my-4 text-gray-500 p-5 shadow-lg rounded-xl">
+              <p class="text-sm md:text-md xl:text-lg my-4 text-gray-500">
                 <fa-icon [icon]="faCheck" class="main-green-color font-bold mr-2"></fa-icon>
                 <span class="text-black font-bold">Для Школьников</span>: Готовитесь к ЕНТ и чувствуете себя подавленными?
-                Наша платформа предоставляет интерактивные и увлекательные учебные материалы, которые помогут вам освоить необходимые знания легко и эффективно. <br/>
-                Учитесь в своем собственном темпе и повышайте свои шансы на успех с помощью наших адаптивных тестов и обучающих видео.
+                Наша платформа предоставляет интерактивные и увлекательные учебные материалы, которые помогут вам освоить необходимые знания легко и эффективно.
               </p>
-              <p class="text-sm md:text-md lg:text-lg my-4 text-gray-500 p-5 shadow-lg rounded-xl">
+              <p class="text-sm md:text-md xl:text-lg my-4 text-gray-500">
                 <fa-icon [icon]="faCheck" class="main-green-color font-bold mr-2"></fa-icon>
-                <span class="text-black font-bold">Для Родителей</span>: Ищете надежный способ помочь вашему ребенку подготовиться к ЕНТ? <br/>
-                IU предлагает комплексные ресурсы для обучения, которые помогут вашему ребенку уверенно идти к цели.  <br/>
-                Следите за их прогрессом, используя наши инструменты отслеживания и получайте регулярные обновления об их успехах и областях для улучшения.
+                <span class="text-black font-bold">Для Родителей</span>: Ищете надежный способ помочь вашему ребенку подготовиться к ЕНТ?
+                IU предлагает комплексные ресурсы для обучения, которые помогут вашему ребенку уверенно идти к цели.
               </p>
-              <p class="text-sm md:text-md lg:text-lg my-4 text-gray-500 p-5 shadow-lg rounded-xl">
+              <p class="text-sm md:text-md xl:text-lg my-4 text-gray-500">
                 <fa-icon [icon]="faCheck" class="main-green-color font-bold mr-2"></fa-icon>
-                <span class="text-black font-bold">Для Учителей</span>: Наша платформа служит мощным инструментом для поддержки ваших учеников в подготовке к ЕНТ.  <br/>
+                <span class="text-black font-bold">Для Учителей</span>: Наша платформа служит мощным инструментом для поддержки ваших учеников в подготовке к ЕНТ.
                 Используйте наши образовательные материалы для дополнения вашего учебного плана, проводите эффективные и целенаправленные уроки с помощью наших специализированных инструментов и ресурсов.
               </p>
             </div>
@@ -206,6 +205,233 @@
       </div>
 
     </div>
-  </section>
+  </div>
   <!--На кого нацелены-->
+  <!--Почему IU-->
+  <div class="py-4 my-4 block">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-12 p-8 rounded-2xl gradient-violet-bg">
+            <div class="grid grid-cols-12 gap-10">
+              <div class="col-span-12 md:col-span-6 p-3 bg-white rounded-xl min-h-[150px] flex items-center h-full">
+                <div class="w-3/4">
+                  <p class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-semibold text-violet-700">
+                    Актуальные вопросы ЕНТ 2024
+                  </p>
+                  <p class="text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl my-3 font-light">
+                    Вопросы формировали профессиональные методисты совместно с преподавателями
+                  </p>
+                </div>
+                <div class="w-1/4 text-center">
+                  <p class="text-xl md:text-2xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-violet-700">
+                    >50k
+                  </p>
+                </div>
+              </div>
+              <div class="col-span-12 md:col-span-6 p-3 bg-white rounded-xl min-h-[150px] flex items-center h-full">
+                <div class="w-3/4">
+                  <p class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-semibold text-violet-700">
+                    Актуальные вопросы ЕНТ 2024
+                  </p>
+                  <p class="text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl my-3 font-light">
+                    Вопросы формировали профессиональные методисты совместно с преподавателями
+                  </p>
+                </div>
+                <div class="w-1/4 text-center">
+                  <p class="text-xl md:text-2xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-violet-700">
+                    >50k
+                  </p>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!--Почему IU-->
+  <!--О нас-->
+  <div class="py-4 my-4 block relative bg-gradient-1">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-12 sm:col-span-6 my-2">
+          <div>
+            <p class="text-sm md:text-md lg:text-lg my-3 text-gray-400 uppercase">
+             - Кто мы?
+            </p>
+            <p class="text-lg md:text-2xl lg:text-4xl font-normal mb-4 text-present">
+              Специализируемся на разработке и предоставлении <b class="text-violet-700">инновационных решений</b>
+            </p>
+            <div class="py-4">
+              <p class="text-sm md:text-md lg:text-lg my-2 text-gray-500">
+                Мы разрабатываем комплексные решения для самых разных проектов. Включаем в себя ряд комплексных задач - от создания проекта - до его будущего продвижения
+              </p>
+              <p class="text-sm md:text-md lg:text-lg my-2 text-gray-500">
+                Платформа IU является комплексным ресурсом, предназначенным для всесторонней подготовки к Единому национальному тестированию. Она включает в себя обширные учебные материалы по 16 предметам, покрывающие всю школьную программу.
+              </p>
+              <p class="text-sm md:text-md lg:text-lg my-2 text-gray-500">
+              Обучение на платформе происходит интерактивно: пользователи могут проходить тематические тесты, смотреть видеоуроки, записанные профессиональными преподавателями.
+              </p>
+              <hr>
+              <div class="grid grid-cols-2 py-3">
+                <div class="col-span-1 flex">
+                  <p class="text-xl md:text-2xl lg:text-4xl xl:text-6xl font-bold text-violet-700">
+                    +75
+                  </p>
+                  <p class="text-md lg:text-lg xl:text-xl ml-2">
+                    Проектов <br/>
+                    Завершено
+                  </p>
+                </div>
+                <div class="col-span-1 flex">
+                  <p class="text-xl md:text-2xl lg:text-4xl xl:text-6xl font-bold text-violet-700">
+                    >20
+                  </p>
+                  <p class="text-md lg:text-lg xl:text-xl ml-2">
+                    Компаний<br/>
+                    Рекомендуют Нас
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-12 sm:col-span-6 my-2 flex justify-center items-center">
+          <img src="assets/images/team.jpg" class="max-h-[500px] shadow-xl md:rotate-[10deg] rounded-2xl">
+        </div>
+      </div>
+      <div class="grid grid-cols-12 gap-3 py-3 mt-5 mb-2">
+        <div class="col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 my-2 relative">
+            <div
+              class="
+              team-card
+              flex justify-center items-center
+              cursor-pointer
+              max-w-[450px] w-full h-[450px] md:h-[385px] lg:h-[350px] xl:h-[450px]
+              "
+            >
+              <div class="
+              team-card-img
+              max-w-[450px] w-full h-[450px] md:h-[385px] lg:h-[350px] xl:h-[450px]
+              rounded-2xl shadow-2xl w-full h-full bg-center bg-no-repeat bg-cover
+              bg-[url('assets/images/dastan.png')]">
+              </div>
+                <div class="team-card-text-box">
+                  <p class="text head">Дастан Мухамедиев</p>
+                  <span>CEO</span>
+                  <div class="flex justify-center">
+                    <a href="" class="hover:text-green-400 mx-1">
+                      <fa-icon class="text-2xl" [icon]="faWhatsapp"></fa-icon>
+                    </a>
+                    <a href="" class="hover:text-rose-400 mx-1">
+                      <fa-icon class="text-xl" [icon]="faGoogle"></fa-icon>
+                    </a>
+                    <a href="" class="hover:text-indigo-400 mx-1">
+                      <fa-icon class="text-xl" [icon]="faPhone"></fa-icon>
+                    </a>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 my-2 relative">
+            <div
+              class="
+              team-card
+              flex justify-center items-center
+              cursor-pointer
+              max-w-[450px] w-full h-[450px] md:h-[385px] lg:h-[350px] xl:h-[450px]
+              "
+            >
+              <div class="
+              team-card-img
+              max-w-[450px] w-full h-[450px] md:h-[385px] lg:h-[350px] xl:h-[450px]
+              rounded-2xl shadow-2xl w-full h-full bg-center bg-no-repeat bg-cover
+              bg-[url('assets/images/abay.png')]">
+              </div>
+                <div class="team-card-text-box">
+                  <p class="text head">Абай Ширинов</p>
+                  <span>CTO</span>
+                  <div class="flex justify-center">
+                    <a href="" class="hover:text-green-400 mx-1">
+                      <fa-icon class="text-2xl" [icon]="faWhatsapp"></fa-icon>
+                    </a>
+                    <a href="" class="hover:text-rose-400 mx-1">
+                      <fa-icon class="text-xl" [icon]="faGoogle"></fa-icon>
+                    </a>
+                    <a href="" class="hover:text-indigo-400 mx-1">
+                      <fa-icon class="text-xl" [icon]="faPhone"></fa-icon>
+                    </a>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 my-2 relative">
+            <div
+              class="
+              team-card
+              flex justify-center items-center
+              cursor-pointer
+              max-w-[450px] w-full h-[450px] md:h-[385px] lg:h-[350px] xl:h-[450px]
+              "
+            >
+              <div class="
+              team-card-img
+              max-w-[450px] w-full h-[450px] md:h-[385px] lg:h-[350px] xl:h-[450px]
+              rounded-2xl shadow-2xl w-full h-full bg-center bg-no-repeat bg-cover
+              bg-[url('assets/images/nurbakyt.png')]">
+              </div>
+                <div class="team-card-text-box">
+                  <p class="text head">Нурбакыт Акилбеков</p>
+                  <span>CIO</span>
+                  <div class="flex justify-center">
+                    <a href="" class="hover:text-green-400 mx-1">
+                      <fa-icon class="text-2xl" [icon]="faWhatsapp"></fa-icon>
+                    </a>
+                    <a href="" class="hover:text-rose-400 mx-1">
+                      <fa-icon class="text-xl" [icon]="faGoogle"></fa-icon>
+                    </a>
+                    <a href="" class="hover:text-indigo-400 mx-1">
+                      <fa-icon class="text-xl" [icon]="faPhone"></fa-icon>
+                    </a>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 my-2 relative">
+            <div
+              class="
+              team-card
+              flex justify-center items-center
+              cursor-pointer
+              max-w-[450px] w-full h-[450px] md:h-[385px] lg:h-[350px] xl:h-[450px]
+              "
+            >
+              <div class="
+              team-card-img
+              max-w-[450px] w-full h-[450px] md:h-[385px] lg:h-[350px] xl:h-[450px]
+              rounded-2xl shadow-2xl w-full h-full bg-center bg-no-repeat bg-cover
+              bg-[url('assets/images/aruzhan.png')]">
+              </div>
+                <div class="team-card-text-box">
+                  <p class="text head">Аружан Ермек</p>
+                  <span>CMO</span>
+                  <div class="flex justify-center">
+                    <a href="" class="hover:text-green-400 mx-1">
+                      <fa-icon class="text-2xl" [icon]="faWhatsapp"></fa-icon>
+                    </a>
+                    <a href="" class="hover:text-rose-400 mx-1">
+                      <fa-icon class="text-xl" [icon]="faGoogle"></fa-icon>
+                    </a>
+                    <a href="" class="hover:text-indigo-400 mx-1">
+                      <fa-icon class="text-xl" [icon]="faPhone"></fa-icon>
+                    </a>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!--О нас-->
+
 </div>
