@@ -1,22 +1,60 @@
 <!-- TW Elements is free under AGPL, with commercial license required for specific uses. See more details: https://tw-elements.com/license/ and contact us for queries at tailwind@mdbootstrap.com -->
-<div class="wrapper" *ngIf="subscriptions">
-  <div *ngFor="let sub of subscriptions | keys"
+<div class="wrapper" *ngIf="subscriptions.length > 0">
+  <div *ngIf="basicSubscriptions.length > 0"
     class="mb-4 w-full flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:flex-row">
     <img
-      class="h-[150px] w-[150px] rounded-t-lg object-cover md:!rounded-none md:!rounded-l-lg"
-      src="https://tecdn.b-cdn.net/wp-content/uploads/2020/06/vertical.jpg"
+      class="mobile:mx-auto sm:mx-auto md:mx-0 h-[150px] w-[150px] rounded-t-lg object-cover md:!rounded-none md:!rounded-l-lg"
+      src="/assets/images/basic_plan.webp"
       alt="" />
     <div class="flex flex-col justify-start p-6">
       <h5
         class="mb-2 text-xl font-medium text-neutral-800">
-        {{sub.value.name}}
+        Basic Plan (990 тг)
       </h5>
-      <p class="mb-4 text-base text-neutral-600">
-        {{sub.value.price}} {{sub.value.currency}}
-      </p>
-      <p class="text-xs text-neutral-500">
-        До истечения осталось: <span [innerHTML]="updateCountdown(sub.value.ends_at)"></span>
-      </p>
+      <ul>
+        <li *ngFor="let sub of basicSubscriptions | keys">
+          <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.value.tag))"></span>
+          <span class="mx-3">({{moment(sub.value.ends_at).format('DD.MM.YYYY')}})</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="standardSubscriptions.length > 0"
+    class="mb-4 w-full flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:flex-row">
+    <img
+      class="mobile:mx-auto sm:mx-auto md:mx-0 h-[150px] w-[150px] rounded-t-lg object-cover md:!rounded-none md:!rounded-l-lg"
+      src="/assets/images/standard_plan.webp"
+      alt="" />
+    <div class="flex flex-col justify-start p-6">
+      <h5
+        class="mb-2 text-xl font-medium text-neutral-800">
+        Standard Plan (2490 тг)
+      </h5>
+      <ul>
+        <li *ngFor="let sub of standardSubscriptions | keys">
+          <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.value.tag))"></span>
+          <span class="mx-3">({{moment(sub.value.ends_at).format('DD.MM.YYYY')}})</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="premiumSubscriptions.length > 0"
+    class="mb-4 w-full flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:flex-row">
+    <img
+      class="mobile:mx-auto sm:mx-auto md:mx-0 h-[150px] w-[150px] rounded-t-lg object-cover md:!rounded-none md:!rounded-l-lg"
+      src="/assets/images/premium_plan.webp"
+      alt="" />
+    <div class="flex flex-col justify-start p-6">
+      <h5
+        class="mb-2 text-xl font-medium text-neutral-800">
+        Premium Plan (4990 тг)
+      </h5>
+      <ul>
+        <li *ngFor="let sub of premiumSubscriptions | keys">
+          <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.value.tag))"></span>
+          <span class="mx-3">({{moment(sub.value.ends_at).format('DD.MM.YYYY')}})</span>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

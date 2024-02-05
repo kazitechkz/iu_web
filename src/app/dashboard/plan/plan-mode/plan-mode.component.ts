@@ -14,8 +14,11 @@ import {RoomsRequest} from "../../../shared/store/room/rooms.request";
 import {joinRoomsAction} from "../../../shared/store/room/rooms.action";
 import {joinRoomsState} from "../../../shared/store/room/rooms.selector";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
-import {subjectsWithoutRequiredGetAction} from "../../../shared/store/subject/subject.action";
-import {getSubjectsWithoutRequiredStateSelector} from "../../../shared/store/subject/subject.selector";
+import {subjectGetAction, subjectsWithoutRequiredGetAction} from "../../../shared/store/subject/subject.action";
+import {
+  getSubjectsState,
+  getSubjectsWithoutRequiredStateSelector
+} from "../../../shared/store/subject/subject.selector";
 import {Store} from "@ngrx/store";
 import {Subject} from "../../../shared/models/subject.model";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
@@ -30,6 +33,7 @@ import * as moment from "moment/moment";
 import {accountAction} from "../../../shared/store/user/account/account.action";
 import {getAccountState} from "../../../shared/store/user/account/account.selector";
 import Swal from "sweetalert2";
+import {TwNotification} from "ng-tw";
 
 @Component({
   selector: 'app-plan-mode',
@@ -40,11 +44,15 @@ export class PlanModeComponent implements OnInit {
   ngOnInit(): void {
     this.checkURL()
     this.getSubscriptions()
+    this.getSubjects()
   }
   countdown: string = '';
   endDate: moment.Moment = moment();
   errors: Record<string, string[]> | null = null;
   public subscriptions: Plan[] = []
+  public basicSubscriptions: Plan[] = []
+  public standardSubscriptions: Plan[] = []
+  public premiumSubscriptions: Plan[] = []
   public translate = inject(GlobalTranslateService)
   private _translatePipe = inject(TranslatePipe)
   dialog = inject(NgxSmartModalService)
@@ -52,6 +60,7 @@ export class PlanModeComponent implements OnInit {
   private _store = inject(Store)
   private _route = inject(Router)
   private _activateRoute = inject(ActivatedRoute)
+  public listSubjects: Subject[] = []
   public subjects: Subject[] = []
   subjects_form: FormGroup = new FormGroup({
     time: new FormControl(1),
@@ -110,18 +119,19 @@ export class PlanModeComponent implements OnInit {
     this.subjects_form.reset()
   }
   openDialog(id: string, time: number) {
-    this.getSubjectsWithoutRequired()
     this.subjects_form.reset()
     this.subjects_form.patchValue({
       time: time
     })
     this.dialog.getModal(id).open(true)
   }
-  getSubjectsWithoutRequired() {
-    this._store.dispatch(subjectsWithoutRequiredGetAction())
-    this._store.select(getSubjectsWithoutRequiredStateSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-      if (item.data) {
-        this.subjects = item.data
+  getSubjects(){
+    this._store.dispatch(subjectGetAction());
+    this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=> {
+      if(item.data){
+        this.listSubjects = item.data
+        const elementsToRemove = [1,2,3];
+        this.subjects = item.data.filter(element => !elementsToRemove.includes(element.id));
       }
     })
   }
@@ -130,8 +140,31 @@ export class PlanModeComponent implements OnInit {
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       if (item.data) {
         this.subscriptions = item.data.subscription as Plan[]
+        this.basicSubscriptions = item.data.subscription.filter(x => x.price === 990)
+        this.standardSubscriptions = item.data.subscription.filter(x => x.price === 2490)
+        this.premiumSubscriptions = item.data.subscription.filter(x => x.price === 4990)
       }
     })
+  }
+  getDescription(tag: any):string {
+    let split = tag.split('.'),
+        text: string
+    if (split[1] == 1) {
+      text = 'Базовый тариф'
+    } else if (split[1] == 3) {
+      text = 'Стандарт тариф'
+    } else {
+      text = 'Премиум тариф'
+    }
+    return text;
+  }
+  getSubjectName(id: any) {
+    let subject = this.listSubjects.find(x => x.id === parseInt(id))
+    return subject?.title_ru
+  }
+  getSubjectIDFromTag(tag: any) {
+    let split = tag.split('.')
+    return split[0];
   }
   updateCountdown(endDate: Date) {
     let countDown = ''
@@ -161,4 +194,5 @@ export class PlanModeComponent implements OnInit {
   protected readonly RoutesName = RoutesName;
   protected readonly faChartLine = faChartLine;
   protected readonly setInterval = setInterval;
+  protected readonly moment = moment;
 }
