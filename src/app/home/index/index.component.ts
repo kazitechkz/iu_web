@@ -1,38 +1,23 @@
 import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {Subject} from "../../shared/models/subject.model";
-
-import {TranslateService} from "@ngx-translate/core";
 import {
-  faArrowCircleRight,
   faArrowRight,
   faBook,
-  faBookAtlas,
-  faBookOpen,
-  faCalendar, faCheck, faCheckCircle, faCircleCheck, faDiagramProject, faEnvelope,
-  faHandsHelping,
-  faInfinity,
+  faBullseye,
+  faCheck, faCheckCircle, faChevronRight, faCircleCheck,
+  faHeart,
   faLanguage,
-  faMessage,
-  faMoneyBill,
-  faMoneyBillWaveAlt, faPen, faPhone, faSchool,
-  faShieldAlt, faSquareEnvelope,
-  faStar,
-  faTasksAlt,
-  faTrophy,
-  faUserCheck, faUsers,
-  faVideo, faXmark
+  faShieldAlt,
+  faUserDoctor,
+   faWandMagicSparkles, faXmark
 } from "@fortawesome/free-solid-svg-icons";
-import {faDumbbell} from "@fortawesome/free-solid-svg-icons/faDumbbell";
 import {ImageHelper} from "../../core/helpers/image.helper";
 import {
   Tab,
   initTE,
 } from "tw-elements";
 import {Store} from "@ngrx/store";
-import {getFeatureSupport} from "@angular-devkit/build-angular/src/tools/esbuild/utils";
 import {OwlOptions} from "ngx-owl-carousel-o";
-import {faGoogle, faWhatsapp, faWhatsappSquare} from "@fortawesome/free-brands-svg-icons";
-import {faPhoneSquare} from "@fortawesome/free-solid-svg-icons/faPhoneSquare";
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
@@ -46,11 +31,22 @@ export class IndexComponent implements OnInit{
 
   //Data
   subjects:Subject[] = [];
+  activePlanId:number = 1;
+
+  plans:{[key: number]: { title: string,price:number,months_value:number,months:string,image:string,description:string[] }} = {
+    1:{title:"1_MONTH",price:990,months_value:1,months:"1 месяц",image:"assets/images/basic_bear.png",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
+    2:{title:"3_MONTH",price:2490,months_value:3,months:"3 месяца",image:"assets/images/standard_bear.png",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
+    3:{title:"6_MONTH",price:4990,months_value:6,months:"6 месяцев",image:"assets/images/premium_bear.png",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
+  }
   //Data
 
 
   ngOnInit(): void {
     initTE({ Tab });
+  }
+
+  selectActivePlan(planId:number){
+    this.activePlanId = planId;
   }
 
   customOptions: OwlOptions = {
@@ -66,39 +62,18 @@ export class IndexComponent implements OnInit{
     navText: [],
   }
   //@ts-ignore
-  protected readonly faArrowCircleRight = faArrowCircleRight;
   protected readonly faArrowRight = faArrowRight;
-  protected readonly faBookOpen = faBookOpen;
-  protected readonly faBookAtlas = faBookAtlas;
   protected readonly faLanguage = faLanguage;
-  protected readonly faCalendar = faCalendar;
-  protected readonly faDumbbell = faDumbbell;
-  protected readonly faInfinity = faInfinity;
-  protected readonly faStar = faStar;
-  protected readonly faVideo = faVideo;
   protected readonly faBook = faBook;
-  protected readonly faHandsHelping = faHandsHelping;
-  protected readonly faTasksAlt = faTasksAlt;
-  protected readonly faUserCheck = faUserCheck;
-  protected readonly faMoneyBill = faMoneyBill;
-  protected readonly faMessage = faMessage;
-  protected readonly faTrophy = faTrophy;
   protected readonly faShieldAlt = faShieldAlt;
-  protected readonly faMoneyBillWaveAlt = faMoneyBillWaveAlt;
-  protected readonly faUsers = faUsers;
-  protected readonly faSchool = faSchool;
   protected readonly ImageHelper = ImageHelper;
-  protected readonly faDiagramProject = faDiagramProject;
   protected readonly faCheckCircle = faCheckCircle;
-  protected readonly faPen = faPen;
   protected readonly faXmark = faXmark;
   protected readonly faCheck = faCheck;
   protected readonly faCircleCheck = faCircleCheck;
-  protected readonly faWhatsapp = faWhatsapp;
-  protected readonly faPhone = faPhone;
-  protected readonly faEnvelope = faEnvelope;
-  protected readonly faSquareEnvelope = faSquareEnvelope;
-  protected readonly faPhoneSquare = faPhoneSquare;
-  protected readonly faWhatsappSquare = faWhatsappSquare;
-  protected readonly faGoogle = faGoogle;
+  protected readonly faChevronRight = faChevronRight;
+  protected readonly faWandMagicSparkles = faWandMagicSparkles;
+  protected readonly faBullseye = faBullseye;
+  protected readonly faUserDoctor = faUserDoctor;
+  protected readonly faHeart = faHeart;
 }
