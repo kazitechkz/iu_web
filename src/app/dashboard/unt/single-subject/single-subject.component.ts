@@ -38,7 +38,7 @@ export class SingleSubjectComponent implements OnInit{
     protected readonly faLanguage = faLanguage;
     public translate = inject(GlobalTranslateService);
     subjects:Subject[] = [];
-    hasSubscription:boolean = false;
+    hasSubscription:number[] = [];
     locale_id:number = 1;
     chosenSubject:number[] = [];
     public loading:boolean = false;
@@ -80,11 +80,10 @@ export class SingleSubjectComponent implements OnInit{
 
   checkIfUserHasPermission(){
     this.loading = true;
-    if(!this.hasSubscription){
-      this.modalBuyUNT.openDialog();
-    }
-    else {
+    if (this.chosenSubject.every(el => this.hasSubscription.includes(el))) {
       this.createAttempt(true);
+    } else {
+      this.modalBuyUNT.openDialog()
     }
     this.loading = false;
   }

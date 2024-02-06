@@ -5,6 +5,7 @@ import {ResponseData} from "../../response_data";
 import {environment} from "../../../../../environments/environment";
 import {APIRoutesName} from "../../../../core/constants/api-routes.constants";
 import {Plan} from "../../../models/plan.model";
+import {Subject} from "../../../models/subject.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ import {Plan} from "../../../models/plan.model";
 export class CheckPlanUNTService {
   private _http = inject(HttpClient)
 
-  checkPlanUNT(): Observable<ResponseData<boolean>> {
-    return this._http.get<ResponseData<boolean>>(environment.baseUrl + APIRoutesName.checkPlanUNT);
+  checkPlanUNT(): Observable<ResponseData<number[]>> {
+    return this._http.get<ResponseData<number[]>>(environment.baseUrl + APIRoutesName.checkPlanUNT);
   }
 
 }
