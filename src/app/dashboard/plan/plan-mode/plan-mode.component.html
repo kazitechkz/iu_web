@@ -13,7 +13,7 @@
       </h5>
       <ul>
         <li *ngFor="let sub of basicSubscriptions | keys">
-          <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.value.tag))"></span>
+          <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.value.tag), this.translate.currentLang)"></span>
           <span class="mx-3">({{moment(sub.value.ends_at).format('DD.MM.YYYY')}})</span>
         </li>
       </ul>
@@ -32,7 +32,7 @@
       </h5>
       <ul>
         <li *ngFor="let sub of standardSubscriptions | keys">
-          <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.value.tag))"></span>
+          <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.value.tag), this.translate.currentLang)"></span>
           <span class="mx-3">({{moment(sub.value.ends_at).format('DD.MM.YYYY')}})</span>
         </li>
       </ul>
@@ -51,7 +51,7 @@
       </h5>
       <ul>
         <li *ngFor="let sub of premiumSubscriptions | keys">
-          <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.value.tag))"></span>
+          <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.value.tag), this.translate.currentLang)"></span>
           <span class="mx-3">({{moment(sub.value.ends_at).format('DD.MM.YYYY')}})</span>
         </li>
       </ul>

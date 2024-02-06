@@ -24,14 +24,15 @@ import {OwlOptions} from "ngx-owl-carousel-o";
 import {ModalUntTrainerComponent} from "../../../shared/components/modal-unt-trainer/modal-unt-trainer.component";
 import {checkPlanUNTAction} from "../../../shared/store/plan/checkPlanUNT/checkPlanUNT.action";
 import {checkPlanUNTSelector} from "../../../shared/store/plan/checkPlanUNT/checkPlanUNT.selector";
+
 @Component({
   selector: 'app-pass-unt',
   templateUrl: './pass-unt.component.html',
   styleUrls: ['./pass-unt.component.scss']
 })
-export class PassUntComponent implements OnInit{
+export class PassUntComponent implements OnInit {
   //@ts-ignore
-  @ViewChild('modalBuyUNT', { static: false }) modalBuyUNT: ModalUntTrainerComponent;
+  @ViewChild('modalBuyUNT', {static: false}) modalBuyUNT: ModalUntTrainerComponent;
   faClock = faClock;
   faBook = faBook;
   faLanguage = faLanguage;
@@ -39,33 +40,34 @@ export class PassUntComponent implements OnInit{
   protected readonly ColorConstants = ColorConstants;
   private _store = inject(Store);
   destroyRef = inject(DestroyRef);
-  complusory_subjects:Subject[] = [];
-  subjects:Subject[] = [];
+  complusory_subjects: Subject[] = [];
+  subjects: Subject[] = [];
   protected readonly ImageHelper = ImageHelper;
-  chosenSubject:number[] = [];
-  hasSubscription:boolean = false;
-  locale_id:number = 1;
+  chosenSubject: number[] = [];
+  hasSubscription: number[] = [];
+  locale_id: number = 1;
   public translate = inject(GlobalTranslateService);
   public loading = false;
+
   ngOnInit(): void {
     this.checkSubscription();
     this.getSubjects();
   }
 
-  getSubjects(){
+  getSubjects() {
     this._store.dispatch(subjectGetAction());
-    this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
-      if(item.data){
-        this.complusory_subjects = item.data.filter(item=>item.is_compulsory);
-        this.subjects = item.data.filter(item=>!item.is_compulsory);
+    this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      if (item.data) {
+        this.complusory_subjects = item.data.filter(item => item.is_compulsory);
+        this.subjects = item.data.filter(item => !item.is_compulsory);
       }
     })
   }
 
-  checkSubscription(){
+  checkSubscription() {
     this._store.dispatch(checkPlanUNTAction());
-    this._store.select(checkPlanUNTSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
-      if(item.data){
+    this._store.select(checkPlanUNTSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      if (item.data) {
         this.hasSubscription = item.data;
       }
     })
@@ -73,13 +75,13 @@ export class PassUntComponent implements OnInit{
 
   customOptions: OwlOptions = {
     loop: true,
-    margin:15,
+    margin: 15,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
     dots: true,
     navSpeed: 700,
-    nav:false,
+    nav: false,
     navText: [],
     responsive: {
       0: {
@@ -96,33 +98,34 @@ export class PassUntComponent implements OnInit{
       }
     },
   }
+
   //@ts-ignore
 
-  checkIfUserHasPermission(){
+  checkIfUserHasPermission() {
     this.loading = true;
-    if(!this.hasSubscription){
-      this.modalBuyUNT.openDialog();
-    }
-    else {
+    if (this.chosenSubject.every(el => this.hasSubscription.includes(el))) {
       this.createAttempt(true);
+    } else {
+      this.modalBuyUNT.openDialog()
     }
     this.loading = false;
   }
 
-  createAttempt(result:boolean){
-    if (this.chosenSubject.length == 2 && result){
-      let request = {subjects:this.chosenSubject, locale_id:this.locale_id, attempt_type_id:1,} as CreateAttemptRequest;
-      this._store.dispatch(createAttemptAction({requestData:request}));
+  createAttempt(result: boolean) {
+    if (this.chosenSubject.length == 2 && result) {
+      let request = {
+        subjects: this.chosenSubject,
+        locale_id: this.locale_id,
+        attempt_type_id: 1,
+      } as CreateAttemptRequest;
+      this._store.dispatch(createAttemptAction({requestData: request}));
     }
   }
 
-
-
-
-  chooseSubject(id:number){
+  chooseSubject(id: number) {
     const index = this.chosenSubject.indexOf(id); // Check if target exists in the array
     if (index === -1) {
-      if(this.chosenSubject.length >=2){
+      if (this.chosenSubject.length >= 2) {
         this.chosenSubject.splice(0, 1);
       }
       this.chosenSubject.push(id);
@@ -132,7 +135,7 @@ export class PassUntComponent implements OnInit{
     }
   }
 
-  changeLanguage(value:any){
+  changeLanguage(value: any) {
     this.locale_id = value ? 1 : 2;
   }
 

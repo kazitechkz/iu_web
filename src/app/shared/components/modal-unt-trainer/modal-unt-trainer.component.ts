@@ -4,6 +4,7 @@ import {ImageHelper} from "../../../core/helpers/image.helper";
 import {NgxSmartModalService} from "ngx-smart-modal";
 import {faArrowRight, faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {Subject} from "../../models/subject.model";
+import {RoutesName} from "../../../core/constants/routes.constants";
 
 @Component({
   selector: 'app-modal-unt-trainer',
@@ -20,6 +21,10 @@ export class ModalUntTrainerComponent {
     this.dialog.getModal('buy-trainer-unt').open();
   }
 
+  closeDialog() {
+    this.dialog.closeLatestModal()
+  }
+
   acceptAndPass(){
     this.dialogResult.emit(true);
   }
@@ -27,4 +32,5 @@ export class ModalUntTrainerComponent {
 
   protected readonly faCheck = faCheck;
   protected readonly faArrowRight = faArrowRight;
+  protected readonly RoutesName = RoutesName;
 }

@@ -10,15 +10,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
-import {RoomsRequest} from "../../../shared/store/room/rooms.request";
-import {joinRoomsAction} from "../../../shared/store/room/rooms.action";
-import {joinRoomsState} from "../../../shared/store/room/rooms.selector";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
-import {subjectGetAction, subjectsWithoutRequiredGetAction} from "../../../shared/store/subject/subject.action";
-import {
-  getSubjectsState,
-  getSubjectsWithoutRequiredStateSelector
-} from "../../../shared/store/subject/subject.selector";
+import {subjectGetAction} from "../../../shared/store/subject/subject.action";
+import {getSubjectsState} from "../../../shared/store/subject/subject.selector";
 import {Store} from "@ngrx/store";
 import {Subject} from "../../../shared/models/subject.model";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
@@ -33,7 +27,6 @@ import * as moment from "moment/moment";
 import {accountAction} from "../../../shared/store/user/account/account.action";
 import {getAccountState} from "../../../shared/store/user/account/account.selector";
 import Swal from "sweetalert2";
-import {TwNotification} from "ng-tw";
 
 @Component({
   selector: 'app-plan-mode',
@@ -77,6 +70,7 @@ export class PlanModeComponent implements OnInit {
           showConfirmButton: false,
           timer: 4000
         });
+        this.getSubscriptions()
       }
       if (params['error'] == 1) {
         Swal.fire({
@@ -158,9 +152,17 @@ export class PlanModeComponent implements OnInit {
     }
     return text;
   }
-  getSubjectName(id: any) {
+  getSubjectName(id: any, locale: string|null) {
     let subject = this.listSubjects.find(x => x.id === parseInt(id))
-    return subject?.title_ru
+    if (locale) {
+      if (locale == 'kk') {
+        return subject?.title_kk
+      } else {
+        return subject?.title_ru
+      }
+    } else {
+      return subject?.title_ru
+    }
   }
   getSubjectIDFromTag(tag: any) {
     let split = tag.split('.')
