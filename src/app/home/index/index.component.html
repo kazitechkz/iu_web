@@ -1,25 +1,55 @@
 <div id="front-page" class="bg-white relative">
   <!--Баннер-->
   <div class="section-first-page">
-    <div class="container mx-auto max-h-[850px]">
-      <div class="grid grid-cols-12 min-h-[100vh] md:min-h-[600px] lg:min-h-[800px] items-center">
-        <div class="col-span-12 md:col-span-12 lg:col-span-6">
+    <div class="container mx-auto max-h-[850px] relative">
+      <img src="assets/images/planet.png" class="w-full block absolute max-w-[100px] sm:max-w-[150px] lg:max-w-[200px] right-0 top-1"/>
+      <div class="grid grid-cols-12 lg:min-h-[800px] items-center">
+        <div class="col-span-12 md:col-span-12 lg:col-span-6 order-2 lg:order-1">
           <div class="p-3">
-            <p class="text-lg md:text-2xl lg:text-4xl xl:text-6xl font-normal mb-4">
+            <div class="hidden md:flex mb-4">
+              <button class="px-3 py-2 bg-transparent border-[1px] text-gray-500 border-gray-500 rounded-full me-1">
+                <fa-icon [icon]="faDumbbell" class="mr-1"></fa-icon> > 50к вопросов
+              </button>
+              <button class="px-3 py-2 bg-transparent border-[1px] text-gray-500 border-gray-500 rounded-full me-1">
+                <fa-icon [icon]="faVideo" class="mr-1"></fa-icon> > Более 1k уроков
+              </button>
+              <button class="px-3 py-2 bg-transparent border-[1px] text-gray-500 border-gray-500 rounded-full me-1">
+                <fa-icon [icon]="faBook" class="mr-1"></fa-icon> 16 предметов
+              </button>
+            </div>
+            <p class="text-lg sm:text-2xl lg:text-4xl xl:text-6xl font-semibold mb-4">
               Не парься, ты легко сдашь ЕНТ <br/>
               <b class="text-violet-700">вместе c IU</b>
             </p>
-            <p class="text-sm md:text-md lg:text-lg my-3">
+            <p class="text-sm sm:text-lg md:text-xl my-3">
               Более 50 000 актуальных вопросов, видеоуроки и материалы подготовленные профессионалами
             </p>
+            <ul class="text-sm md:text-md lg:text-lg text-black mt-4 lg:mt-5">
+              <li class="mb-2">
+                <fa-icon [icon]="faCheck" class="text-violet-400 mr-2"></fa-icon>
+                  Самые актуальные вопросы
+              </li>
+              <li class="mb-2">
+                <fa-icon [icon]="faCheck" class="text-violet-400 mr-2"></fa-icon>
+                Учись и проходи тест, когда тебе удобно
+              </li>
+              <li class="mb-2">
+                <fa-icon [icon]="faCheck" class="text-violet-400 mr-2"></fa-icon>
+                  IU заменит репетитора
+              </li>
+              <li class="mb-2">
+                <fa-icon [icon]="faCheck" class="text-violet-400 mr-2"></fa-icon>
+                  Играй и соревнуйся с друзьями
+              </li>
+            </ul>
             <a href="" class="gradient-violet-button px-10 py-3 rounded-lg text-white my-3 inline-block">
-              Начать
-              <fa-icon [icon]="faArrowRight"></fa-icon>
+              Поехали!
+              <fa-icon [icon]="faRocket"></fa-icon>
             </a>
           </div>
         </div>
-        <div class="col-span-12 md:col-span-12 lg:col-span-3">
-          <img src="assets/images/single_subject.webp" class="w-full wiggle-img max-w-[300px]"/>
+        <div class="col-span-12 md:col-span-12 min-h-[280px] sm:min-h-[380px] lg:col-span-6 lg:min-h-full order-1 lg:order-2 flex items-end lg:items-center">
+          <img src="assets/images/single_subject.webp" class="w-full wiggle-img max-w-[150px] sm:max-w-[180px] md:max-w-[200px] lg:max-w-[320px] 2xl:max-w-[400px]"/>
         </div>
       </div>
     </div>
@@ -41,7 +71,7 @@
       <div class="grid grid-cols-12 gap-5 my-5">
         <div class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
           <div
-            class="card-service h-full bg-white rounded-xl p-4 min-h-[400px] w-full cursor-pointer bg-[#d9d9d9] relative">
+            class="card-service h-full rounded-xl p-4 min-h-[400px] w-full cursor-pointer bg-[#d9d9d9] relative">
             <div class="text-left w-full xl:w-2/4">
               <p class="mt-3 mb-2 text-lg xl:text-2xl 2xl:text-4xl font-semibold">
                 Тренажер <b class="text-violet-700">ЕНТ</b>
@@ -62,10 +92,10 @@
         </div>
         <div class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-6">
           <div
-            class="card-service h-full bg-white rounded-xl p-4 min-h-[400px] w-full cursor-pointer bg-[#dad2bf] relative">
+            class="card-service h-full rounded-xl p-4 min-h-[400px] w-full cursor-pointer bg-[#dad2bf] relative">
             <div class="text-left w-full xl:w-2/4">
               <p class="mt-3 mb-2 text-lg xl:text-2xl 2xl:text-4xl font-semibold">
-                Cистема обучения для <b class="text-violet-700">ЕНТ</b>
+                Пошаговая подготовка к <b class="text-violet-700">ЕНТ</b>
               </p>
               <p class="mt-3 text-md font-regular text-gray-600">
                 Уникальность курса заключается в богатстве предоставляемых материалов: видеоуроков, снятыми
@@ -83,7 +113,7 @@
         </div>
         <div class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-4">
           <div
-            class="card-service h-full bg-white rounded-xl p-4 min-h-[400px] w-full cursor-pointer bg-[#dad2bf] relative">
+            class="card-service h-full rounded-xl p-4 min-h-[400px] w-full cursor-pointer bg-[#dad2bf] relative">
             <div class="text-left w-full">
               <p class="mt-3 mb-2 text-lg xl:text-2xl 2xl:text-4xl font-semibold">
                 Профориентационные <b class="text-violet-700">Тесты</b>
@@ -104,7 +134,7 @@
         </div>
         <div class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-4">
           <div
-            class="card-service h-full bg-white rounded-xl p-4 min-h-[400px] w-full cursor-pointer bg-[#363636] relative">
+            class="card-service h-full rounded-xl p-4 min-h-[400px] w-full cursor-pointer bg-[#363636] relative">
             <div class="text-left w-full text-white">
               <p class="mt-3 mb-2 text-lg xl:text-2xl 2xl:text-4xl font-semibold">
                 Игровая <b class="text-violet-700">Механика</b>
@@ -126,7 +156,7 @@
         </div>
         <div class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-4">
           <div
-            class="card-service h-full bg-white rounded-xl p-4 min-h-[400px] w-full cursor-pointer bg-[#d9d9d9] relative">
+            class="card-service h-full rounded-xl p-4 min-h-[400px] w-full cursor-pointer bg-[#d9d9d9] relative">
             <div class="text-left w-full">
               <p class="mt-3 mb-2 text-lg xl:text-2xl 2xl:text-4xl font-semibold">
                 Полноценная <b class="text-violet-700">Cтатистика</b>
@@ -149,6 +179,53 @@
     </div>
   </div>
   <!--Сервисы-->
+  <!--Бесплатный период-->
+  <div class="section-second-page bg-white py-4 my-4 block">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-12">
+        <div class="col-span-12 text-left">
+          <p class="text-sm md:text-md lg:text-lg my-3 text-gray-400 uppercase">
+            - Пора действовать!
+          </p>
+          <p class="text-lg md:text-2xl lg:text-4xl xl:text-5xl font-semibold mb-4 text-present lg:w-6/12">
+            <b class="text-violet-700">Бесплатно</b> откройте полный доступ к платформе всего за три шага
+          </p>
+        </div>
+      </div>
+      <div class="grid grid-cols-12 gap-5 my-5">
+        <div class="col-span-12 md:col-span-6 flex items-center">
+          <div>
+            <ul class="text-lg xl:text-2xl text-gray-500 mt-4 lg:mt-5">
+              <li class="mb-8 flex items-center">
+                Получите неограниченный доступ ко всем функциям нашей платформы без взимания платы, следуя трем простым шагам:
+              </li>
+              <li class="mb-4 flex items-center">
+                <div class="h-6 w-6 min-w-[24px] font-bold rounded-full bg-black flex justify-center items-center text-white text-sm mr-2">1</div>
+                Пройдите регистрацию на платформе
+              </li>
+              <li class="mb-4 flex items-center">
+                <div class="h-6 w-6 min-w-[24px] font-bold rounded-full bg-black flex justify-center items-center text-white text-sm mr-2">2</div>
+                Подтвердите свой аккаунт
+              </li>
+              <li class="mb-4 flex items-center">
+                <div class="h-6 w-6 min-w-[24px] font-bold rounded-full bg-black flex justify-center items-center text-white text-sm mr-2">3</div>
+                Пользуйтесь всеми возможностями платформы! От тренажера ЕНТ до игра в Battle
+              </li>
+            </ul>
+            <a href="" class="gradient-violet-button px-10 py-3 rounded-lg text-white my-3 inline-block">
+              Поехали!
+              <fa-icon [icon]="faArrowRight"></fa-icon>
+            </a>
+          </div>
+
+        </div>
+        <div class="col-span-12 md:col-span-6 flex justify-center items-center">
+          <img class="max-h-[400px]" src="assets/images/screen-demo.png">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Бесплатный период-->
   <!--На кого нацелены-->
   <div class="bg-white py-4 my-4 block relative">
     <div class="container mx-auto">
@@ -157,7 +234,7 @@
           <p class="text-sm md:text-md lg:text-lg my-3 text-gray-400 uppercase">
             - <b class="text-violet-700">IU</b> - Ваш Надежный Помощник в Подготовке к ЕНТ!
           </p>
-          <p class="text-lg md:text-2xl lg:text-4xl xl:text-5xl font-semibold mb-4 text-present">
+          <p class="text-lg md:text-2xl lg:text-4xl xl:text-5xl font-semibold mb-4 text-present lg:w-6/12">
             Мы помогаем школьникам преодолеть вызовы ЕНТ с <b class="text-violet-700">легкостью и уверенностью</b>
           </p>
         </div>
@@ -214,7 +291,7 @@
             <div class="p-4 md:p-6 lg:p-8 xl:p-10 rounded-lg" id="student" role="tabpanel"
                  aria-labelledby="student-tab">
               <div class="grid grid-cols-12 min-h-[400px] gap-3 md:gap-5">
-                <div class="col-span-12 sm:col-span-4 lg:px-2 flex justify-center items-center">
+                <div class="col-span-12 sm:col-span-5 lg:px-2 flex justify-center items-center">
                   <div class="content-for-who ">
                     <p class="text-lg md:text-xl xl:text-2xl 2xl:text-3xl text-white font-semibold">
                       Готовитесь к ЕНТ и чувствуете себя подавленными?
@@ -264,8 +341,8 @@
                     </ul>
                   </div>
                 </div>
-                <div class="col-span-12 sm:col-span-4 lg:px-2">
-                  <div class="content-for-who flex justify-center items-center items-center">
+                <div class="col-span-12 sm:col-span-3 lg:px-2">
+                  <div class="content-for-who flex justify-center items-center items-center h-full">
                     <img class="max-h-[300px] md:max-h-[450px]" src="assets/images/student.webp"/>
                   </div>
                 </div>
@@ -278,7 +355,7 @@
             <div class="hidden p-4 md:p-6 lg:p-8 xl:p-10 rounded-lg" id="school" role="tabpanel"
                  aria-labelledby="school-tab">
               <div class="grid grid-cols-12 min-h-[400px] gap-3 md:gap-5">
-                <div class="col-span-12 sm:col-span-4 lg:px-2 flex justify-center items-center">
+                <div class="col-span-12 sm:col-span-5 lg:px-2 flex justify-center items-center">
                   <div class="content-for-who ">
                     <p class="text-lg md:text-xl xl:text-2xl 2xl:text-3xl text-white font-semibold">
                       Наша платформа служит мощным инструментом для поддержки ваших учеников в подготовке к ЕНТ
@@ -326,8 +403,8 @@
                     </ul>
                   </div>
                 </div>
-                <div class="col-span-12 sm:col-span-4 lg:px-2">
-                  <div class="content-for-who flex justify-center items-center items-center">
+                <div class="col-span-12 sm:col-span-3 lg:px-2">
+                  <div class="content-for-who flex justify-center items-center items-center h-full">
                     <img class="max-h-[300px] md:max-h-[450px]" src="assets/images/teacher_1.webp"/>
                   </div>
                 </div>
@@ -340,7 +417,7 @@
             <div class="hidden p-4 md:p-6 lg:p-8 xl:p-10 rounded-lg" id="parents" role="tabpanel"
                  aria-labelledby="parents-tab">
               <div class="grid grid-cols-12 min-h-[400px] gap-3 md:gap-5">
-                <div class="col-span-12 sm:col-span-4 lg:px-2 flex justify-center items-center">
+                <div class="col-span-12 sm:col-span-5 lg:px-2 flex justify-center items-center">
                   <div class="content-for-who ">
                     <p class="text-lg md:text-xl xl:text-2xl 2xl:text-3xl text-white font-semibold">
                       Ищете надежный способ помочь вашему ребенку подготовиться к ЕНТ
@@ -383,8 +460,8 @@
                     </ul>
                   </div>
                 </div>
-                <div class="col-span-12 sm:col-span-4 lg:px-2">
-                  <div class="content-for-who flex justify-center items-center items-center">
+                <div class="col-span-12 sm:col-span-3 lg:px-2">
+                  <div class="content-for-who flex justify-center items-center items-center h-full">
                     <img class="max-h-[300px] md:max-h-[450px]" src="assets/images/parents.webp"/>
                   </div>
                 </div>
@@ -405,12 +482,12 @@
           <p class="text-sm md:text-md lg:text-lg my-3 text-gray-400 uppercase">
             - Инвестируйте в будущее вашего ребенка без переплаты
           </p>
-          <p class="text-lg md:text-2xl lg:text-4xl xl:text-5xl font-semibold mb-4 text-present">
+          <p class="text-lg md:text-2xl lg:text-4xl xl:text-5xl font-semibold mb-4 text-present lg:w-6/12">
             <b class="text-violet-700">Гибкие подписки </b> для неограниченного доступа к обучению
           </p>
         </div>
         <div class="col-span-12" *ngIf="plans[activePlanId]">
-          <div class="grid grid-cols-12 shadow-lg rounded-xl bg-white border p-4 md:p-6 lg:p-8 xl:p-12 relative overflow-hidden">
+          <div class="grid grid-cols-12 ticket-card-plan shadow-lg rounded-xl bg-white border relative overflow-hidden">
               <div class="absolute hidden sm:block right-0 top-0 h-16 w-16">
                 <div
                   class="absolute transform rotate-45 bg-violet-700 text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]">
@@ -421,22 +498,25 @@
               <div class="flex justify-between md:block">
                 <button
                   (click)="selectActivePlan(1)"
-                  class="border-2 block text-sm m-1 sm:text-lg sm:m-2 px-2 py-2 sm:px-4 sm:py-2 border-violet-700 rounded-full bg-white text-violet-700 hover:bg-violet-700 hover:text-white duration-[250ms]"
-                  [ngClass]="{'bg-violet-700 text-white':activePlanId == 1}"
+                  class="border-2 block text-sm m-1 sm:text-lg sm:w-full sm:m-2 px-2 py-2 sm:px-4 sm:py-2 border-violet-700 rounded-full text-violet-700 hover:bg-violet-700 hover:text-white duration-[250ms]"
+                  [ngClass]="{'bg-violet-700 text-white':activePlanId == 1,'bg-white':activePlanId != 1}"
                 >
                   1 Месяц
                 </button>
                 <button
                   (click)="selectActivePlan(2)"
-                  class="border-2 block text-sm m-1 sm:text-lg sm:m-2 px-2 py-2 sm:px-4 sm:py-2 border-violet-700 rounded-full bg-white text-violet-700 hover:bg-violet-700 hover:text-white duration-[250ms]"
-                  [ngClass]="{'bg-violet-700 text-white':activePlanId == 2}"
+                  class="border-2 block text-sm m-1 sm:text-lg sm:w-full sm:m-2 px-2 py-2 sm:px-4 sm:py-2 border-violet-700 rounded-full text-violet-700 hover:bg-violet-700 hover:text-white duration-[250ms]"
+                  [ngClass]="{'bg-violet-700 text-white':activePlanId == 2, 'bg-white':activePlanId != 2}"
                 >
                   3 Месяца
                 </button>
                 <button
                   (click)="selectActivePlan(3)"
-                  class="border-2 block text-sm m-1 sm:text-lg sm:m-2 px-2 py-2 sm:px-4 sm:py-2 border-violet-700 rounded-full bg-white text-violet-700 hover:bg-violet-700 hover:text-white duration-[250ms]"
-                  [ngClass]="{'bg-violet-700 text-white':activePlanId == 3}"
+                  class="border-2 block text-sm m-1 sm:text-lg sm:w-full sm:m-2 px-2 py-2 sm:px-4 sm:py-2 border-violet-700 rounded-full text-violet-700 hover:bg-violet-700 hover:text-white duration-[250ms]"
+                  [ngClass]="{
+                  'bg-violet-700 text-white':activePlanId == 3,
+                  'bg-white':activePlanId != 3
+                  }"
                 >
                   6 Месяцев
                 </button>
@@ -447,8 +527,8 @@
                 <img class="max-h-[300px] lg:max-h-[400px]" src="{{plans[activePlanId].image}}"/>
               </div>
             </div>
-            <div class="col-span-12 md:col-span-6 lg:col-span-6 my-2">
-              <b class="block text-violet-700 text-lg lg:text-xl mb-4">
+            <div class="col-span-12 md:col-span-6 lg:col-span-6 my-2 p-4 md:p-6 lg:p-8 xl:p-12">
+              <b class="block text-violet-700 text-lg lg:text-xl xl:text-2xl 2xl:text-4xl mb-4">
                 {{plans[activePlanId].title | translate}}
               </b>
               <p class="text-md lg:text-lg mb-4 text-gray-400 font-normal text-present">
@@ -461,7 +541,7 @@
                 </li>
               </ul>
               <div class="py-5 text-right">
-                <b class="block text-violet-700 text-lg lg:text-xl xl:text-2xl 2xl:text-4xl mb-4">
+                <b class="block text-violet-700 text-xl lg:text-2xl xl:text-4xl 2xl:text-6xl mb-4">
                   Всего за {{plans[activePlanId].price}} тенге <span *ngIf="plans[activePlanId].months_value > 1">/
                   <span class="text-md lg:text-lg xl:text-xl 2xl:text-2xl line-through text-rose-700">
                     {{plans[1].price * plans[activePlanId].months_value }} тенге
@@ -477,113 +557,26 @@
     </div>
   </div>
   <!--Стоимость-->
-  <!--О нас-->
-  <div class="py-4 my-4 block relative bg-gradient-1">
+  <!--Демоверсия-->
+  <div class="section-second-page bg-white py-4 my-4 block">
     <div class="container mx-auto">
-      <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-12 sm:col-span-6 order-2 sm:order-1 my-2">
-          <div>
-            <p class="text-sm md:text-md lg:text-lg my-3 text-gray-400 uppercase">
-              - За каждым уроком, тестом и конспектом стоят наши выдающиеся педагоги
-            </p>
-            <p class="text-lg md:text-2xl lg:text-4xl font-normal mb-4 text-present">
-              Эксперты платформы : <b class="text-violet-700">сердце и душа нашей образовательной платформы</b>
-            </p>
-            <div class="py-4">
-              <p class="text-sm md:text-md lg:text-lg my-2 text-gray-500">
-                Погрузитесь в мир образования вместе с нашей командой профессиональных учителей, которые являются
-                настоящими экспертами в своих областях. Они не просто передают знания — они вдохновляют, мотивируют и
-                открывают новые горизонты для наших учеников. Каждый тест, который вы проходите, каждая категория, в
-                которой вы соревнуетесь, и каждый видеоурок, который вы смотрите, были тщательно разработаны нашими
-                учителями. Они не только создают увлекательные и информативные материалы, но и делятся своим богатым
-                опытом и уникальными методиками, чтобы сделать ваше обучение максимально эффективным. Наши учителя стоят
-                за каждой успешной историей наших учеников, предоставляя им необходимые инструменты и поддержку для
-                достижения их образовательных целей. Присоединяйтесь к нашей платформе и начните свой путь к успеху с
-                лучшими специалистами!
-              </p>
-              <hr>
-              <div class="grid grid-cols-2 py-3">
-                <div class="col-span-1 flex">
-                  <p class="text-xl md:text-2xl lg:text-4xl xl:text-6xl font-bold text-violet-700">
-                    +10к
-                  </p>
-                  <p class="text-md lg:text-lg xl:text-xl ml-2">
-                    Учеников <br/>
-                    прошли обучение
-                  </p>
-                </div>
-                <div class="col-span-1 flex">
-                  <p class="text-xl md:text-2xl lg:text-4xl xl:text-6xl font-bold text-violet-700">
-                    >10
-                  </p>
-                  <p class="text-md lg:text-lg xl:text-xl ml-2">
-                    Лет<br/>
-                    Опыта
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-span-12 sm:col-span-6 order-1 sm:order-2 my-2 flex justify-center items-center">
-          <img src="assets/images/grant_plus.png" class="max-h-[500px] rounded-2xl">
+      <div class="grid grid-cols-12">
+        <div class="col-span-12 text-left">
+          <p class="text-sm md:text-md lg:text-lg my-3 text-gray-400 uppercase">
+            - Всегда рядом, всегда под рукой
+          </p>
+          <p class="text-lg md:text-2xl lg:text-4xl xl:text-5xl font-semibold mb-4 text-present lg:w-6/12">
+            IU - всегда там где и вы, <b class="text-violet-700">готовьтесь и учитесь откуда вам комфортнее</b>
+          </p>
         </div>
       </div>
-      <hr class="my-3"/>
-      <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-12 sm:col-span-6 my-2 flex justify-center items-center">
-          <img src="assets/images/teen_win.png" class="max-h-[500px] rounded-2xl">
-        </div>
-        <div class="col-span-12 sm:col-span-6 my-2">
-          <div>
-            <p class="text-sm md:text-md lg:text-lg my-3 text-gray-400 uppercase">
-              - Помогаем ученикам найти свой путь в мире профессий
-            </p>
-            <p class="text-lg md:text-2xl lg:text-4xl font-normal mb-4 text-present">
-              Наша команда профориентологов:<b class="text-violet-700">Навигаторы вашего будущего</b>
-            </p>
-            <div class="py-4">
-              <p class="text-sm md:text-md lg:text-lg my-2 text-gray-500">
-                В сердце нашей образовательной платформы находится команда опытных профориентологов, посвятивших свою
-                карьеру помощи ученикам в поиске их истинного призвания. С помощью научно-обоснованных методов и
-                индивидуального подхода, наши специалисты работают над созданием комплексных профориентационных тестов,
-                которые помогают школьникам раскрыть свои скрытые таланты и интересы.
-              </p>
-            </div>
-            <div class="py-2">
-              <p class="text-sm md:text-md lg:text-lg text-gray-500">
-                Пройдя профориентационный тест ваш ребенок получит:
-              </p>
-              <div class="my-2">
-                <ul class="text-sm md:text-md lg:text-lg text-gray-500 mt-4 lg:mt-5">
-                  <li class="mb-2">
-                    <fa-icon [icon]="faShieldAlt" class="text-green-400 mr-2"></fa-icon>
-                    Станет более самостоятельным и ответственным
-                  </li>
-                  <li class="mb-2">
-                    <fa-icon [icon]="faWandMagicSparkles" class="text-violet-400 mr-2"></fa-icon>
-                    Сможет определить свои сильные и слабые стороны, а также интересы
-                  </li>
-                  <li class="mb-2">
-                    <fa-icon [icon]="faBullseye" class="text-orange-400 mr-2"></fa-icon>
-                    Поймет, как лучше подготовиться к будущей карьере
-                  </li>
-                  <li class="mb-2">
-                    <fa-icon [icon]="faUserDoctor" class="text-indigo-400 mr-2"></fa-icon>
-                    Получит навыки, необходимые для успешной жизни
-                  </li>
-                  <li class="mb-2">
-                    <fa-icon [icon]="faHeart" class="text-rose-400 mr-2"></fa-icon>
-                    Получит мотивацию и поддержку
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+      <div class="grid grid-cols-12 gap-5 my-5">
+        <div class="col-span-12 flex justify-center items-center">
+          <img class="w-full" src="assets/images/demo-laptop.png">
         </div>
       </div>
     </div>
   </div>
-  <!--О нас-->
+  <!--Демоверсия-->
 
 </div>
