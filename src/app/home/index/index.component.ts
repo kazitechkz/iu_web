@@ -30,7 +30,6 @@ export class IndexComponent implements OnInit{
   //Injection End
 
   //Data
-  subjects:Subject[] = [];
   activePlanId:number = 1;
 
   plans:{[key: number]: { title: string,price:number,months_value:number,months:string,image:string,description:string[] }} = {
@@ -38,6 +37,24 @@ export class IndexComponent implements OnInit{
     2:{title:"Подписка на 3 месяца",price:2490,months_value:3,months:"3 месяца",image:"assets/images/standard_bear.png",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
     3:{title:"Подписка на 6 месяцев",price:4990,months_value:6,months:"6 месяцев",image:"assets/images/premium_bear.png",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
   }
+
+  subjects: { id: number,title_ru:string,title_kk:string,url:string,color:string }[]= [
+    {"id":1, "title_kk":"Математикалық сауаттылық", "title_ru":"Математическая грамотность","url":"subjects/20yKe_1701948088.webp",color:"#b6659d"},
+    {"id":2, "title_kk":"Қазақстан тарихы","title_ru":"История Казахстана","url":"subjects/A2nNH_1701948107.webp",color:"#ab7fe6"},
+    {"id":3,"title_kk":"Оқу сауаттылығы","title_ru":"Грамотность чтения","url":"subjects/4oJCz_1701948122.webp",color:"#c05851"},
+    {"id":4,"title_kk":"Математика", "title_ru":"Математика","url":"subjects/uMLSa_1701948136.webp",color:"#709048"},
+    {"id":5,"title_kk":"Физика","title_ru":"Физика","url":"subjects/n5rpf_1701948154.webp",color:"#7e4de3"},
+    {"id":6,"title_kk":"Химия","title_ru":"Химия","url":"subjects/9XvpP_1701948169.webp",color:"#4e954f"},
+    {"id":7,"title_kk":"Биология","title_ru":"Биология","url":"subjects/flPrU_1701948187.webp",color:"#3f83c6"},
+    {"id":8,"title_kk":"География","title_ru":"География","url":"subjects/UYv0X_1701948203.webp",color:"#a5a538"},
+    {"id":9,"title_kk":"Дүниежүзі тарихы","title_ru":"Всемирная история","url":"subjects/jiXiG_1701948225.webp",color:"#e5892d"},
+    {"id":10,"title_kk":"Құқық","title_ru":"Основы права","url":"subjects/T3A5F_1701948242.webp",color:"#be9e1d"},
+    {"id":11,"title_kk":"Ағылшын тілі","title_ru":"Английский язык","url":"subjects/8YpMH_1701948256.webp",color:"#5e7bdd"},
+    {"id":12,"title_kk":"Қазақ тілі", "title_ru":"Казахский язык","url":"subjects/NzjEP_1701948274.webp",color:"#746def"},
+    {"id":13,"title_kk":"Қазақ әдебиеті", "title_ru":"Казахская литература","url":"subjects/oEnPx_1701948300.webp",color:"#7e7c32" },
+    {"id":14,"title_kk":"Орыс тілі", "title_ru":"Русский язык","url":"subjects/GsAXe_1701948317.webp",color:"#b5646d"},
+    {"id":15,"title_kk":"Орыс әдебиеті","title_ru":"Русская литература","url":"subjects/Kbud5_1701948349.webp",color:"#dc8e24"},
+    {"id":16,"title_kk":"Информатика","title_ru":"Информатика","url":"subjects/lXsSP_1701948365.webp",color:"#50b8b9"}]
   //Data
 
 
@@ -61,7 +78,21 @@ export class IndexComponent implements OnInit{
     nav:false,
     navText: [],
   }
-  //@ts-ignore
+  subjectCarouselConfig = {
+    speed: 5000,
+    autoplay: true,
+    autoplaySpeed: 0,
+    centerMode: true,
+    cssEase: 'linear',
+    slidesToShow: 8,
+    variableWidth: true,
+    infinite: true,
+    initialSlide: 1,
+    arrows: false,
+    buttons: false,
+    pauseOnHover:false,
+    focusOnSelect: false,
+  };
   protected readonly faArrowRight = faArrowRight;
   protected readonly faLanguage = faLanguage;
   protected readonly faBook = faBook;

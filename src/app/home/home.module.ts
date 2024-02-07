@@ -11,8 +11,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { ContractOfferComponent } from './contract-offer/contract-offer.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
-
-
+import {SlickCarouselModule} from "ngx-slick-carousel";
 @NgModule({
     declarations: [
         HomeLayoutComponent,
@@ -21,14 +20,15 @@ import {CarouselModule} from "ngx-owl-carousel-o";
         PrivacyPolicyComponent,
         ContractOfferComponent
     ],
-    imports: [
-        CommonModule,
-        HomeRoutingModule,
-        SharedModule,
-        CoreModule,
-        FontAwesomeModule,
-        CarouselModule
-    ]
+  imports: [
+    CommonModule,
+    HomeRoutingModule,
+    SharedModule,
+    CoreModule,
+    FontAwesomeModule,
+    CarouselModule,
+    SlickCarouselModule,
+  ]
 })
 export class HomeModule {
 }
