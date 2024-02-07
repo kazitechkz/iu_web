@@ -54,7 +54,15 @@ export class IndexComponent implements OnInit{
     {"id":13,"title_kk":"Қазақ әдебиеті", "title_ru":"Казахская литература","url":"subjects/oEnPx_1701948300.webp",color:"#7e7c32" },
     {"id":14,"title_kk":"Орыс тілі", "title_ru":"Русский язык","url":"subjects/GsAXe_1701948317.webp",color:"#b5646d"},
     {"id":15,"title_kk":"Орыс әдебиеті","title_ru":"Русская литература","url":"subjects/Kbud5_1701948349.webp",color:"#dc8e24"},
-    {"id":16,"title_kk":"Информатика","title_ru":"Информатика","url":"subjects/lXsSP_1701948365.webp",color:"#50b8b9"}]
+    {"id":16,"title_kk":"Информатика","title_ru":"Информатика","url":"subjects/lXsSP_1701948365.webp",color:"#50b8b9"}];
+    partners:string[] = [
+      "assets/images/kundelik.png",
+      "assets/images/astana_hub.png",
+      "assets/images/grant_plus.png",
+      "assets/images/teen_win.png",
+      "assets/images/skillbox.png",
+      "assets/images/lerna.png",
+    ]
   //Data
 
 
