@@ -17,6 +17,11 @@
           </div>
         </div>
         <div class="px-3 cursor-pointer">
+          <div class="flex justify-center">
+            {{user?.balance}} IU
+          </div>
+        </div>
+        <div class="px-3 cursor-pointer">
           <div class="flex justify-center items-center" (click)="localeDropdown = !localeDropdown">
             <p class="mx-3">{{translate.currentLang | titlecase}}</p>
           </div>

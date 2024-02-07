@@ -133,10 +133,10 @@ export class PlanModeComponent implements OnInit {
     this._store.dispatch(accountAction())
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       if (item.data) {
-        this.subscriptions = item.data.subscription as Plan[]
-        this.basicSubscriptions = item.data.subscription.filter(x => x.price === 990)
-        this.standardSubscriptions = item.data.subscription.filter(x => x.price === 2490)
-        this.premiumSubscriptions = item.data.subscription.filter(x => x.price === 4990)
+        this.subscriptions = Object.values(item.data.subscription) as Plan[]
+        this.basicSubscriptions = Object.values(item.data.subscription).filter(x => x.price === 990)
+        this.standardSubscriptions = Object.values(item.data.subscription).filter(x => x.price === 2490)
+        this.premiumSubscriptions = Object.values(item.data.subscription).filter(x => x.price === 4990)
       }
     })
   }

@@ -23,6 +23,7 @@ export interface Me {
   email: string
   phone: string
   role: string
+  balance: number
   subscription: Plan[]
   file: Image | null
   gender: Gender | null
