@@ -12,9 +12,9 @@
         Basic Plan (990 тг)
       </h5>
       <ul>
-        <li *ngFor="let sub of basicSubscriptions | keys">
-          <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.value.tag), this.translate.currentLang)"></span>
-          <span class="mx-3">({{moment(sub.value.ends_at).format('DD.MM.YYYY')}})</span>
+        <li *ngFor="let sub of basicSubscriptions">
+          <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.tag), this.translate.currentLang)"></span>
+          <span class="mx-3">({{moment(sub.ends_at).format('DD.MM.YYYY')}})</span>
         </li>
       </ul>
     </div>
