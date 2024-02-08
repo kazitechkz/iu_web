@@ -1,6 +1,6 @@
 
 .section-first-page{
-  background-image: url("/assets/images/new-bg.webp");
+  background-image: url("/assets/images/new_bg_2.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -198,7 +198,7 @@ body{
 
   .title {
     font-size: 28px;
-    color: royalblue;
+    color: #6d28d9;
     font-weight: 600;
     letter-spacing: -1px;
     position: relative;
@@ -214,13 +214,13 @@ body{
     width: 16px;
     border-radius: 50%;
     left: 0px;
-    background-color: royalblue;
+    background-color: #6d28d9;
   }
 
   .title::before {
     width: 18px;
     height: 18px;
-    background-color: royalblue;
+    background-color: #6d28d9;
   }
 
   .title::after {
@@ -239,11 +239,11 @@ body{
   }
 
   .signin a {
-    color: royalblue;
+    color: #6d28d9;
   }
 
   .signin a:hover {
-    text-decoration: underline royalblue;
+    text-decoration: underline #6d28d9;
   }
 
   .flex {
@@ -292,7 +292,7 @@ body{
   .submit {
     border: none;
     outline: none;
-    background-color: royalblue;
+    background-color: #6d28d9;
     padding: 10px;
     border-radius: 10px;
     color: #fff;
@@ -317,4 +317,9 @@ body{
   }
 }
 
-
+.border-tb-md{
+  @media screen and (min-width: 768px){
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+  }
+}

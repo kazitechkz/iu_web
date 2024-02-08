@@ -5,21 +5,21 @@
       <img src="assets/images/planet.png" class="w-full block absolute max-w-[100px] sm:max-w-[150px] lg:max-w-[200px] right-0 top-1"/>
       <div class="grid grid-cols-12 lg:min-h-[800px] items-center">
         <div class="col-span-12 md:col-span-12 lg:col-span-6 order-2 lg:order-1">
-          <div class="p-3">
+          <div class="p-3 text-center md:text-left">
             <div class="block md:flex mb-4">
-              <button class="inline px-3 py-2 bg-transparent border-[1px] text-sm md:text-md lg:text-lg my-2 text-orange-400 border-orange-400 rounded-full me-1">
+              <button class="inline px-3 py-2 bg-transparent border-[1px] text-sm md:text-md lg:text-lg my-2 text-violet-700 border-violet-700 rounded-full me-1">
                 <fa-icon [icon]="faDumbbell" class="mr-1"></fa-icon> > 50к вопросов
               </button>
-              <button class="px-3 py-2 bg-transparent border-[1px] text-sm md:text-md lg:text-lg my-2 text-orange-400 border-orange-400 rounded-full me-1">
+              <button class="px-3 py-2 bg-transparent border-[1px] text-sm md:text-md lg:text-lg my-2 text-violet-700 border-violet-700 rounded-full me-1">
                 <fa-icon [icon]="faVideo" class="mr-1"></fa-icon> > Более 1k уроков
               </button>
-              <button class="px-3 py-2 bg-transparent border-[1px] text-sm md:text-md lg:text-lg my-2 text-orange-400 border-orange-400 rounded-full me-1">
+              <button class="px-3 py-2 bg-transparent border-[1px] text-sm md:text-md lg:text-lg my-2 text-violet-700 border-violet-700 rounded-full me-1">
                 <fa-icon [icon]="faBook" class="mr-1"></fa-icon> 16 предметов
               </button>
             </div>
-            <p class="text-lg sm:text-2xl lg:text-4xl xl:text-6xl font-semibold mb-4">
+            <p class="text-xl sm:text-2xl lg:text-4xl xl:text-6xl font-semibold mb-4">
               Не парься, ты легко сдашь ЕНТ <br/>
-              <b class="text-orange-400">вместе c IU</b>
+              <b class="text-violet-700">вместе c IU</b>
             </p>
             <p class="text-sm sm:text-lg md:text-xl my-3">
               Более 50 000 актуальных вопросов, видеоуроки и материалы подготовленные профессионалами
@@ -495,47 +495,52 @@
           </p>
         </div>
         <div class="col-span-12" *ngIf="plans[activePlanId]">
-          <div class="grid grid-cols-12 ticket-card-plan shadow-lg rounded-xl bg-white border relative overflow-hidden">
+          <div class="grid grid-cols-12 ticket-card-plan rounded-tr-xl rounded-xl border md:border-none bg-white relative overflow-hidden">
               <div class="absolute hidden sm:block right-0 top-0 h-16 w-16">
                 <div
-                  class="absolute transform rotate-45 bg-violet-700 text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]">
+                  class="absolute transform rotate-45 bg-orange-400 text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]">
                   {{plans[activePlanId].months}}
                 </div>
               </div>
-            <div class="col-span-12 md:col-span-3 lg:col-span-3 flex justify-center items-center my-2">
-              <div class="flex justify-between md:block">
+            <div class="col-span-12 md:col-span-3 lg:col-span-3 md:py-0 flex justify-center items-center bg-[#18181b] relative">
+              <div class="flex justify-between md:block md:w-[80%] items-center">
                 <button
                   (click)="selectActivePlan(1)"
-                  class="border-2 block text-sm m-1 sm:text-lg sm:w-full sm:m-2 px-2 py-2 sm:px-4 sm:py-2 border-orange-400 rounded-full text-orange-400 hover:bg-violet-700 hover:text-white duration-[250ms]"
-                  [ngClass]="{'bg-violet-700 text-white':activePlanId == 1,'bg-white':activePlanId != 1}"
+                  class="border-2 block text-sm m-1 sm:text-lg md:text-xl xl:text-2xl md:my-4 sm:w-full sm:m-2 px-2 py-2 sm:px-4 sm:py-2 border-orange-400 rounded-full text-orange-400 hover:bg-orange-400 hover:text-white duration-[250ms]"
+                  [ngClass]="{'bg-orange-400 text-white':activePlanId == 1,'bg-[#18181b]':activePlanId != 1}"
                 >
                   1 Месяц
                 </button>
                 <button
                   (click)="selectActivePlan(2)"
-                  class="border-2 block text-sm m-1 sm:text-lg sm:w-full sm:m-2 px-2 py-2 sm:px-4 sm:py-2 border-orange-400 rounded-full text-orange-400 hover:bg-violet-700 hover:text-white duration-[250ms]"
-                  [ngClass]="{'bg-violet-700 text-white':activePlanId == 2, 'bg-white':activePlanId != 2}"
+                  class="border-2 block text-sm m-1 sm:text-lg md:text-xl xl:text-2xl md:my-4 sm:w-full sm:m-2 px-2 py-2 sm:px-4 sm:py-2 border-orange-400 rounded-full text-orange-400 hover:bg-orange-400 hover:text-white duration-[250ms]"
+                  [ngClass]="{'bg-orange-400 text-white':activePlanId == 2, 'bg-[#18181b]':activePlanId != 2}"
                 >
                   3 Месяца
                 </button>
                 <button
                   (click)="selectActivePlan(3)"
-                  class="border-2 block text-sm m-1 sm:text-lg sm:w-full sm:m-2 px-2 py-2 sm:px-4 sm:py-2 border-orange-400 rounded-full text-orange-400 hover:bg-violet-700 hover:text-white duration-[250ms]"
+                  class="border-2 block text-sm m-1 sm:text-lg md:text-xl xl:text-2xl md:my-4 sm:w-full sm:m-2 px-2 py-2 sm:px-4 sm:py-2 border-orange-400 rounded-full text-orange-400 hover:bg-orange-400 hover:text-white duration-[250ms]"
                   [ngClass]="{
-                  'bg-violet-700 text-white':activePlanId == 3,
-                  'bg-white':activePlanId != 3
+                  'bg-orange-400 text-white':activePlanId == 3,
+                  'bg-[#18181b]':activePlanId != 3
                   }"
                 >
                   6 Месяцев
                 </button>
               </div>
+              <div class="hidden md:block justify-between sm:left-[-35%] md:left-[-30%] lg:left-[-25%] xl:left-[-15%] absolute items-center">
+                <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" class="bg-white w-20 h-20 rounded-full"></div>
+              </div>
             </div>
-            <div class="col-span-12 md:col-span-3 lg:col-span-3 my-2">
+            <div class="col-span-12 md:col-span-3 lg:col-span-3 border-tb-md md:border-solid md:border-dashed md:border-[#18181b] md:border-r-[3px] relative">
               <div class="flex h-full justify-center items-center" *ngIf="plans[activePlanId]">
                 <img class="max-h-[300px] lg:max-h-[400px]" src="{{plans[activePlanId].image}}"/>
               </div>
+              <div class="hidden md:block w-16 h-16 bg-orange-400 rounded-full absolute top-[-35px] right-[-35px]"></div>
+              <div class="hidden md:block w-16 h-16 bg-orange-400 rounded-full absolute bottom-[-35px] right-[-35px]"></div>
             </div>
-            <div class="col-span-12 md:col-span-6 lg:col-span-6 my-2 p-4 md:p-6 lg:p-8 xl:p-12">
+            <div class="col-span-12 md:col-span-6 lg:col-span-6 md:border-[#18181b] md:border-r md:border-t md:border-b md:rounded-tr-xl md:rounded-br-xl p-4 md:p-6 lg:p-8 xl:p-12">
               <b class="block text-orange-400 text-lg lg:text-xl xl:text-2xl 2xl:text-4xl mb-4">
                 {{plans[activePlanId].title | translate}}
               </b>
@@ -544,7 +549,7 @@
               </p>
               <ul class="text-sm md:text-md lg:text-lg text-gray-500 mt-4 lg:mt-5">
                 <li class="mb-2" *ngFor="let description of plans[activePlanId].description">
-                  <fa-icon [icon]="faCheck" class="text-violet-400 mr-2"></fa-icon>
+                  <fa-icon [icon]="faCheck" class="text-orange-300 mr-2"></fa-icon>
                   {{description|translate}}
                 </li>
               </ul>
@@ -622,35 +627,42 @@
       </div>
       <div class="grid grid-cols-12 gap-5 my-5">
         <div class="col-span-12 sm:col-span-4">
-          <p class="mt-3 mb-2 text-lg lg:text-xl xl:text-3xl 2xl:text-4xl font-semibold">
-            Сэкономь До <b class="text-orange-400">35000 тг</b>
-          </p>
-          <p class="mt-3 mb-2 text-lg lg:text-xl xl:text-2xl font-semibold">
-            на учебниках и пособиях
-          </p>
+          <div class="sm:min-h-[80px] lg:min-h-[120px]">
+            <p class="mt-3 mb-2 text-lg lg:text-xl xl:text-3xl 2xl:text-4xl font-semibold">
+              Сэкономь До <b class="text-orange-400">35000 тг</b>
+            </p>
+            <p class="mt-3 mb-2 text-lg lg:text-xl xl:text-2xl font-semibold">
+              на учебниках и пособиях
+            </p>
+          </div>
           <p class="mt-5 text-md lg:text-lg font-regular text-gray-600 border-l-[4px] border-orange-400 pl-2">
             Средняя стоимость книг для подготовки к ЕНТ обойдутся 25000 - 35000 тг, купи доступ за 990тг и получи доступ к тысячам материалов
           </p>
         </div>
         <div class="col-span-12 sm:col-span-4">
-          <p class="mt-3 mb-2 text-lg lg:text-xl xl:text-3xl 2xl:text-4xl font-semibold">
-            Сэкономь До <b class="text-orange-400">50000 тг</b>
-          </p>
-          <p class="mt-3 mb-2 text-lg lg:text-xl xl:text-2xl font-semibold">
-            на репетиторах
-          </p>
+          <div class="sm:min-h-[80px] lg:min-h-[120px]">
+            <p class="mt-3 mb-2 text-lg lg:text-xl xl:text-3xl 2xl:text-4xl font-semibold">
+              Сэкономь До <b class="text-orange-400">50000 тг</b>
+            </p>
+            <p class="mt-3 mb-2 text-lg lg:text-xl xl:text-2xl font-semibold">
+              на репетиторах
+            </p>
+          </div>
           <p class="mt-5 text-md lg:text-lg font-regular text-gray-600 border-l-[4px] border-orange-400 pl-2">
            IU заменит Репетитора ведь вы получите доступ к нашей обширной базе пошаговой подготовке к ЕНТ, где есть видео, конспекты, тесты составленные профессионалами,
              всего за 990 тг
           </p>
         </div>
         <div class="col-span-12 sm:col-span-4">
-          <p class="mt-3 mb-2 text-lg lg:text-xl xl:text-3xl 2xl:text-4xl font-semibold">
-            Заработай до <b class="text-orange-400">1 000 000 тг</b>
-          </p>
-          <p class="mt-3 mb-2 text-lg lg:text-xl xl:text-2xl font-semibold">
-            участвуй в турнирах, обходи противников и выигрывай!
-          </p>
+          <div class="sm:min-h-[80px] lg:min-h-[120px]">
+            <p class="mt-3 mb-2 text-lg lg:text-xl xl:text-3xl 2xl:text-4xl font-semibold">
+              Заработай до <b class="text-orange-400">1 000 000 тг</b>
+            </p>
+            <p class="mt-3 mb-2 text-lg lg:text-xl xl:text-2xl font-semibold">
+              участвуй в турнирах, обходи противников и выигрывай!
+            </p>
+          </div>
+
           <p class="mt-5 text-md lg:text-lg font-regular text-gray-600 border-l-[4px] border-orange-400 pl-2">
             Участвуй в турнирах и выигрывай ценные призы, главный приз которого - денеженое вознаграждение в размере 1 000 000 тенге!
           </p>
@@ -663,7 +675,7 @@
   <div data-aos-duration="1500" data-aos="zoom-out-up" class="section-second-page bg-white py-4 my-4 lg:my-[50px] block">
     <div class="container mx-auto">
       <div class="grid grid-cols-12 gap-5 my-5">
-        <div class="col-span-12 p-4 md:p-6 lg:p-8 xl:p-12 rounded-xl bg-violet-400 text-black">
+        <div class="col-span-12 p-4 md:p-6 lg:p-8 xl:p-12 rounded-xl bg-violet-700 text-black">
             <div class="mb-5 md:mb-10">
               <p class="text-lg md:text-2xl lg:text-4xl xl:text-5xl font-semibold mb-4 text-present lg:w-6/12">
                 Новые Горизонты Сотрудничества: <b class="text-orange-400">Вместе к Общему Успеху</b>
@@ -727,7 +739,7 @@
         </div>
         <div class="col-span-12 sm:col-span-4 lg:px-2 flex justify-center items-center form-container">
           <form class="form shadow-lg">
-            <p class="title text-lg lg:text-xl xl:text-2xl">Напишите нам! </p>
+            <p class="title text-lg lg:text-xl xl:text-2xl text-violet-700">Напишите нам! </p>
             <p class="message"> Наш менеджер свяжеться с вами в самое ближайшее время! </p>
             <label>
               <input required placeholder="" type="text" class="input">
