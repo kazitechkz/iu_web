@@ -1,5 +1,4 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
-import {Subject} from "../../shared/models/subject.model";
+import {Component, DestroyRef, HostListener, inject, OnInit} from '@angular/core';
 import {
   faArrowRight,
   faBook, faBoxesPacking,
@@ -18,6 +17,7 @@ import {
 } from "tw-elements";
 import {Store} from "@ngrx/store";
 import {OwlOptions} from "ngx-owl-carousel-o";
+
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
@@ -73,6 +73,8 @@ export class IndexComponent implements OnInit{
   selectActivePlan(planId:number){
     this.activePlanId = planId;
   }
+
+
 
   customOptions: OwlOptions = {
     loop: true,

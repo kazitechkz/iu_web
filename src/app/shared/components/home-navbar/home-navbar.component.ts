@@ -1,11 +1,7 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {Component, DestroyRef, HostListener, inject, OnInit} from '@angular/core';
 import { initFlowbite } from 'flowbite';
-import { Collapse } from "flowbite";
-import type { CollapseOptions, CollapseInterface } from "flowbite";
 import {Store} from "@ngrx/store";
 import {Me} from "../../models/user.model";
-import {getAccountState} from "../../store/user/account/account.selector";
-import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {SessionService} from "../../services/session.service";
 import {LocalKeysConstants} from "../../../core/constants/local-keys.constants";
 
@@ -22,6 +18,7 @@ export class HomeNavbarComponent implements OnInit{
   //Data
   //@ts-ignore
   me:Me;
+  fixedNavBar:boolean = false;
 
   getUserInfo(){
     this.me = this.sessionService.getDataFromLocalStorage(LocalKeysConstants.user) as Me;
@@ -29,6 +26,14 @@ export class HomeNavbarComponent implements OnInit{
   ngOnInit(): void {
     this.getUserInfo();
     initFlowbite();
+  }
+
+  @HostListener('window:scroll', ['$event']) onScroll() {
+    if (window.scrollY > 100) {
+      this.fixedNavBar = true;
+    } else {
+      this.fixedNavBar = false;
+    }
   }
 
 }
