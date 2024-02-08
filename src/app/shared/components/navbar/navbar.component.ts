@@ -29,7 +29,8 @@ import {ImageHelper} from "../../../core/helpers/image.helper";
 export class NavbarComponent implements OnInit {
   //@ts-ignore
   sideBar$: Observable<boolean>;
-  isOpen: boolean = false
+  profileDropdown: boolean = false
+  ratingDropdown: boolean = false
   localeDropdown: boolean = false
   private _authService = inject(AuthService)
   public translate = inject(GlobalTranslateService)
@@ -67,14 +68,26 @@ export class NavbarComponent implements OnInit {
     this.localeDropdown = !this.localeDropdown
   }
 
+  clickProfileDropdown() {
+    this.profileDropdown = !this.profileDropdown
+    setTimeout(() => {
+      this.profileDropdown = false
+    }, 3000)
+  }
+  clickLocaleDropdown() {
+    this.localeDropdown = !this.localeDropdown
+    setTimeout(() => {
+      this.localeDropdown = false
+    }, 3000)
+  }
   logout() {
     this._authService.logout()
   }
 
-    protected readonly StrHelper = StrHelper;
+  protected readonly StrHelper = StrHelper;
   protected readonly RoutesName = RoutesName;
   protected readonly faMessage = faMessage;
   protected readonly faBell = faBell;
-    protected readonly Image = Image;
+  protected readonly Image = Image;
   protected readonly ImageHelper = ImageHelper;
 }

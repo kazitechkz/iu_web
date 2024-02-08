@@ -6,23 +6,23 @@
     </div>
 
     <div class="relative w-1/2 sm:w-full sm:justify-between mobile:w-full flex mobile:justify-between md:justify-between items-center lg:justify-end">
-      <div class="w-1/2 lg:hidden mobile:block">
+      <div class="lg:hidden mobile:block">
         <i class="fa fa-bars cursor-pointer" aria-hidden="true" (click)="openSideNav()"></i>
       </div>
       <div class="flex items-center">
-        <div class="px-3 cursor-pointer" *ngIf="countMessage">
+        <div class="px-1 cursor-pointer" *ngIf="countMessage">
           <div class="flex justify-center">
             <fa-icon class="main-green-color text-xl" [icon]="faBell"> </fa-icon>
             <div class="mx-1 h-4 w-4 main-green-bg rounded-full text-center text-xs text-white">{{countMessage}}</div>
           </div>
         </div>
-        <div class="px-3 cursor-pointer">
-          <div class="flex justify-center">
+        <div class="px-1 cursor-pointer">
+          <div class="flex justify-center" [routerLink]="'/'+RoutesName.walletRating">
             {{user?.balance}} IU
           </div>
         </div>
-        <div class="px-3 cursor-pointer">
-          <div class="flex justify-center items-center" (click)="localeDropdown = !localeDropdown">
+        <div class="px-1 cursor-pointer">
+          <div class="flex justify-center items-center" (click)="clickLocaleDropdown()">
             <p class="mx-3">{{translate.currentLang | titlecase}}</p>
           </div>
           <div *ngIf="localeDropdown" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 z-[999]">
@@ -30,14 +30,14 @@
             <span class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white" (click)="changeLang('ru')">Ru</span>
           </div>
         </div>
-        <div class="flex justify-center items-center" (click)="isOpen = !isOpen">
+        <div class="flex justify-center items-center" (click)="clickProfileDropdown()">
           <p class="mx-3 mobile:hidden">{{user?.name}}</p>
           <button class="relative z-10 mobile:w-8 mobile:h-8 sm:w-12 sm:h-12 rounded-full overflow-hidden mobile:border-2 md:border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none">
             <img src="{{ImageHelper.getImage(user?.file?.url)}}" class="max-w-[100%]" alt="">
 <!--            <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400" alt="">-->
           </button>
 
-          <div *ngIf="isOpen" class="absolute lg:w-48 w-32 bg-white rounded-lg shadow-lg py-2 md:mt-44 mobile:mt-48 sm:mt-48 z-[999] mobile:right-0 sm:right-0">
+          <div *ngIf="profileDropdown" class="absolute lg:w-48 w-32 bg-white rounded-lg shadow-lg py-2 md:mt-44 mobile:mt-48 sm:mt-48 z-[999] mobile:right-0 sm:right-0">
 <!--            <a routerLink="index" class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white">Account</a>-->
             <a [routerLink]="StrHelper.getRouteByRole(user?.role, RoutesName.myProfile)" class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white">
               <i class="fa fa-user mr-3" aria-hidden="true"></i>
