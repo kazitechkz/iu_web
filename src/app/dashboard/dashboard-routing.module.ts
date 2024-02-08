@@ -54,6 +54,7 @@ import {CareerQuizListsComponent} from "./career/career-quiz-lists/career-quiz-l
 import {CareerQuizDetailComponent} from "./career/career-quiz-detail/career-quiz-detail.component";
 import {PassCareerQuizComponent} from "./career/pass-career-quiz/pass-career-quiz.component";
 import {ResultCareerQuizComponent} from "./career/result-career-quiz/result-career-quiz.component";
+import {WalletRatingComponent} from "./wallet/wallet-rating/wallet-rating.component";
 
 
 const routes: Routes = [
@@ -201,6 +202,10 @@ const routes: Routes = [
       {
         path: 'wallet-statistics',
         component: WalletStatisticsComponent
+      },
+      {
+        path: 'wallet-rating',
+        component: WalletRatingComponent
       },
       {
         path: 'news',

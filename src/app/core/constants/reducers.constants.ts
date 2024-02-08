@@ -168,6 +168,7 @@ import {getCareerQuizReducer} from "../../shared/store/career/getCareerQuiz/getC
 import {passCareerQuizReducer} from "../../shared/store/career/passCareerQuiz/passCareerQuiz.reducer";
 import {finishCareerQuizReducer} from "../../shared/store/career/finishCareerQuiz/finishCareerQuiz.reducer";
 import {resultCareerQuizReducer} from "../../shared/store/career/resultCareerQuiz/resultCareerQuiz.reducer";
+import {walletRatingReducer} from "../../shared/store/wallet/walletRating/walletRating.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -237,6 +238,7 @@ export const ReducersConstants = {
   categories: categoryReducer,
   getMySubjects:getMySubjectsReducer,
   walletIndex:walletIndexReducer,
+  walletRating:walletRatingReducer,
   walletStatistics:walletStatisticsReducer,
   walletTransfer:walletTransferReducer,
   subCategories: subCategoryReducer,
