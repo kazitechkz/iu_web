@@ -1,22 +1,25 @@
 <div>
-  <h2>Рейтинг пользователей</h2>
+  <h2>{{'WALLET_RATING'|translate}}</h2>
   <ul class="responsive-table" *ngIf="wallets">
     <li class="table-header">
       <div class="col col-1">№</div>
       <div class="col col-2">{{'NAME'|translate}}</div>
-      <div class="col col-3">{{'GENDER'|translate}}</div>
+      <div class="col col-3">{{'EMAIL'|translate}}</div>
       <div class="col col-4">{{'BALANCE'|translate}}</div>
     </li>
-    <li class="table-row" *ngFor="let wallet of wallets.data | paginate: {itemsPerPage: wallets.per_page, currentPage: wallets.current_page, totalItems: wallets.total}">
-      <div class="col col-1" data-label="Job Id">
-
+    <li class="table-row"
+        *ngFor="let wallet of wallets.data | paginate: {itemsPerPage: wallets.per_page, currentPage: wallets.current_page, totalItems: wallets.total} | keys: requestData.page : wallets.per_page">
+      <div class="col col-1" data-label="№">
+        {{parseInt(wallet.key) + 1}}
       </div>
-      <div class="col col-2" data-label="Customer Name">{{wallet.holder?.name}}</div>
-      <div class="col col-3" data-label="Amount">{{wallet.holder?.gender | globalTranslate: 'title': translate.currentLang}}</div>
-      <div class="col col-4" data-label="Payment Status">{{wallet.balance}}</div>
+      <div class="col col-2 break-all" [attr.data-label]="'NAME'|translate">{{wallet.value.holder?.name}}</div>
+      <div class="col col-3 break-all" [attr.data-label]="'EMAIL'|translate">{{wallet.value.holder?.email}}</div>
+      <div class="col col-4 break-all" [attr.data-label]="'BALANCE'|translate">{{wallet.value.balance}}</div>
     </li>
   </ul>
-  <div class="col-span-12 my-2 flex justify-center">
-    <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
+  <div *ngIf="wallets">
+    <div class="col-span-12 my-2 flex justify-center" *ngIf="wallets.total > wallets.per_page">
+      <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
   </div>
 </div>

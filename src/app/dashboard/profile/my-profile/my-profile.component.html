@@ -1,6 +1,6 @@
-<div class="container mx-auto" *ngIf="me">
+<div *ngIf="me">
   <div class="grid grid-cols-12 gap-4">
-    <div class="col-span-12 lg:col-span-4 my-4  p-3 bg-white shadow-2xl rounded-lg">
+    <div class="col-span-12 lg:col-span-3 my-4  p-3 bg-white shadow-2xl rounded-lg">
       <div class="flex justify-center items-center my-2 relative">
         <div class="rounded-full w-[130px] h-[130px] md:w-[260px] md:h-[260px] bg-center bg-no-repeat bg-cover"
              [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(me.file?.url) +')'}">
@@ -49,20 +49,86 @@
         </div>
       </div>
     </div>
-    <div class="col-span-12 lg:col-span-8 my-4">
-      <div class="relative">
-        <div class="absolute w-full text-right px-2 right-0 top-[10%]">
-          <button type="button" class="text-white flex justify-center items-center border border-white hover:bg-white hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-white dark:text-white dark:hover:text-white dark:focus:ring-white dark:hover:bg-white h-12 w-12">
-            <fa-icon [icon]="faPencilAlt"></fa-icon>
-          </button>
+    <div class="col-span-12 lg:col-span-9 my-4">
+      <div class="wrapper" *ngIf="subscriptions.length > 0">
+        <div *ngIf="basicSubscriptions.length > 0"
+             class="mb-4 w-full flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:flex-row">
+          <img
+            class="mobile:mx-auto sm:mx-auto md:mx-0 h-[150px] w-[150px] rounded-t-lg object-cover md:!rounded-none md:!rounded-l-lg"
+            src="/assets/images/basic_plan.webp"
+            alt="" />
+          <div class="flex flex-col justify-start p-6">
+            <h5
+              class="mb-2 text-xl font-medium text-neutral-800">
+              Basic Plan (990 тг)
+            </h5>
+            <ul>
+              <li *ngFor="let sub of basicSubscriptions">
+                <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.tag), this.translate.currentLang)"></span>
+                <span class="mx-3">({{moment(sub.ends_at).format('DD.MM.YYYY')}})</span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="absolute text-center w-full top-[50%]">
-          <p class=" text-white text-lg lg:text-2xl xl:text-4xl font-bold shadow-2xl" style="translate(-50%, -50%)">No comments? Anyway ty</p>
+        <div *ngIf="standardSubscriptions.length > 0"
+             class="mb-4 w-full flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:flex-row">
+          <img
+            class="mobile:mx-auto sm:mx-auto md:mx-0 h-[150px] w-[150px] rounded-t-lg object-cover md:!rounded-none md:!rounded-l-lg"
+            src="/assets/images/standard_plan.webp"
+            alt="" />
+          <div class="flex flex-col justify-start p-6">
+            <h5
+              class="mb-2 text-xl font-medium text-neutral-800">
+              Standard Plan (2490 тг)
+            </h5>
+            <ul>
+              <li *ngFor="let sub of standardSubscriptions | keys">
+                <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.value.tag), this.translate.currentLang)"></span>
+                <span class="mx-3">({{moment(sub.value.ends_at).format('DD.MM.YYYY')}})</span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="p-3 bg-center bg-no-repeat bg-cover shadow-2xl h-[300px] rounded-lg" [ngStyle]="{'background-image':'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://mdbcdn.b-cdn.net/img/new/slides/004.webp)'}"></div>
+        <div *ngIf="premiumSubscriptions.length > 0"
+             class="mb-4 w-full flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:flex-row">
+          <img
+            class="mobile:mx-auto sm:mx-auto md:mx-0 h-[150px] w-[150px] rounded-t-lg object-cover md:!rounded-none md:!rounded-l-lg"
+            src="/assets/images/premium_plan.webp"
+            alt="" />
+          <div class="flex flex-col justify-start p-6">
+            <h5
+              class="mb-2 text-xl font-medium text-neutral-800">
+              Premium Plan (4990 тг)
+            </h5>
+            <ul>
+              <li *ngFor="let sub of premiumSubscriptions | keys">
+                <span [innerHTML]="getSubjectName(getSubjectIDFromTag(sub.value.tag), this.translate.currentLang)"></span>
+                <span class="mx-3">({{moment(sub.value.ends_at).format('DD.MM.YYYY')}})</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
 
-
+      <div class="my-2">
+        <ul class="responsive-table">
+          <li class="table-header">
+            <div class="col col-1">№</div>
+            <div class="col col-2">{{'NAME'|translate}}</div>
+            <div class="col col-3">{{'EMAIL'|translate}}</div>
+            <div class="col col-4">{{'BALANCE'|translate}}</div>
+          </li>
+          <li class="table-row"
+              *ngFor="let wallet of [{key: 1},{key: 2},{key: 3},{key: 1},{key: 2},{key: 3}]">
+            <div class="col col-1" data-label="№">
+              {{wallet.key}}
+            </div>
+            <div class="col col-2 break-all" [attr.data-label]="'NAME'|translate">{{wallet.key}}</div>
+            <div class="col col-3 break-all" [attr.data-label]="'EMAIL'|translate">{{wallet.key}}</div>
+            <div class="col col-4 break-all" [attr.data-label]="'BALANCE'|translate">{{wallet.key}}</div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
