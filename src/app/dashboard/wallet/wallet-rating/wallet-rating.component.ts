@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, Input, OnInit} from '@angular/core';
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {Store} from "@ngrx/store";
 import {Pagination} from "../../../shared/store/pagination";
@@ -14,6 +14,8 @@ import {ImageHelper} from "../../../core/helpers/image.helper";
   styleUrls: ['./wallet-rating.component.scss']
 })
 export class WalletRatingComponent implements OnInit {
+  // @ts-ignore
+  @Input() label: string;
   public translate = inject(GlobalTranslateService)
   private _store = inject(Store)
   private destroyRef = inject(DestroyRef);
@@ -39,4 +41,6 @@ export class WalletRatingComponent implements OnInit {
   }
 
   protected readonly ImageHelper = ImageHelper;
+  protected readonly parseInt = parseInt;
+  protected readonly console = console;
 }

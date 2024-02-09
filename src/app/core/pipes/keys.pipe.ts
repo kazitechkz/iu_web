@@ -5,12 +5,19 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class KeysPipe implements PipeTransform {
 
-  transform(value: any): any[] {
+  transform(value: any, pageNumber: number|null = null, perPage: number|null = null): any[] {
     const keyValueArray = [];
 
-    for (const key in value) {
+    for (let key in value) {
       if (value.hasOwnProperty(key)) {
-        keyValueArray.push({ key, value: value[key] });
+        if (pageNumber && perPage && pageNumber >= 2) {
+          let valKey = key,
+              intKey = parseInt(key) + ((pageNumber*perPage)-perPage)
+          key = intKey.toString()
+          keyValueArray.push({ key, value: value[valKey] });
+        } else {
+          keyValueArray.push({ key, value: value[key] });
+        }
       }
     }
 

@@ -35,8 +35,6 @@ import Swal from "sweetalert2";
 })
 export class PlanModeComponent implements OnInit {
   ngOnInit(): void {
-    this.checkURL()
-    this.getSubscriptions()
     this.getSubjects()
   }
   countdown: string = '';
@@ -60,29 +58,7 @@ export class PlanModeComponent implements OnInit {
     subject_first: new FormControl(0, [Validators.required]),
     subject_second: new FormControl(0, [Validators.required]),
   }, {validators: this.subjectsNotEqualValidator()});
-  checkURL() {
-    this._activateRoute.queryParams.subscribe(params => {
-      if (params['success'] == 1) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Подписка успешно оформлена!",
-          showConfirmButton: false,
-          timer: 4000
-        });
-        this.getSubscriptions()
-      }
-      if (params['error'] == 1) {
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: "Что-то пошло не так!",
-          showConfirmButton: false,
-          timer: 4000
-        });
-      }
-    })
-  }
+
   subjectsNotEqualValidator(): ValidatorFn {
     // @ts-ignore
     return (formGroup: FormGroup): ValidationErrors | null => {
@@ -128,45 +104,6 @@ export class PlanModeComponent implements OnInit {
         this.subjects = item.data.filter(element => !elementsToRemove.includes(element.id));
       }
     })
-  }
-  getSubscriptions() {
-    this._store.dispatch(accountAction())
-    this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-      if (item.data) {
-        this.subscriptions = Object.values(item.data.subscription) as Plan[]
-        this.basicSubscriptions = Object.values(item.data.subscription).filter(x => x.price === 990)
-        this.standardSubscriptions = Object.values(item.data.subscription).filter(x => x.price === 2490)
-        this.premiumSubscriptions = Object.values(item.data.subscription).filter(x => x.price === 4990)
-      }
-    })
-  }
-  getDescription(tag: any):string {
-    let split = tag.split('.'),
-        text: string
-    if (split[1] == 1) {
-      text = 'Базовый тариф'
-    } else if (split[1] == 3) {
-      text = 'Стандарт тариф'
-    } else {
-      text = 'Премиум тариф'
-    }
-    return text;
-  }
-  getSubjectName(id: any, locale: string|null) {
-    let subject = this.listSubjects.find(x => x.id === parseInt(id))
-    if (locale) {
-      if (locale == 'kk') {
-        return subject?.title_kk
-      } else {
-        return subject?.title_ru
-      }
-    } else {
-      return subject?.title_ru
-    }
-  }
-  getSubjectIDFromTag(tag: any) {
-    let split = tag.split('.')
-    return split[0];
   }
   updateCountdown(endDate: Date) {
     let countDown = ''
