@@ -1,4 +1,6 @@
-
+html{
+  scroll-behavior: smooth;
+}
 .section-first-page{
   background-image: url("/assets/images/new_bg_2.jpg");
   background-repeat: no-repeat;
@@ -322,4 +324,17 @@ body{
     border-bottom: 1px solid;
     border-top: 1px solid;
   }
+}
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  opacity: 1;
+  transition: all .2s ease-in-out;
+}
+
+.show-scrollTop {
+  opacity: 1;
+  transition: all .2s ease-in-out;
 }

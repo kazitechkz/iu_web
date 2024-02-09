@@ -1,9 +1,9 @@
-import {Component, DestroyRef, HostListener, inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, DestroyRef, ElementRef, HostListener, inject, OnInit, ViewChild} from '@angular/core';
 import {
   faArrowRight,
   faBook, faBoxesPacking,
   faBullseye,
-  faCheck, faCheckCircle, faChevronRight, faCircleCheck, faDumbbell,
+  faCheck, faCheckCircle, faChevronRight, faChevronUp, faCircleCheck, faDumbbell,
   faHeart,
   faLanguage, faRocket,
   faShieldAlt,
@@ -18,17 +18,37 @@ import {
 import {Store} from "@ngrx/store";
 import {OwlOptions} from "ngx-owl-carousel-o";
 import { initFlowbite } from 'flowbite';
+import {LocalKeysConstants} from "../../core/constants/local-keys.constants";
+import {Me} from "../../shared/models/user.model";
+import {SessionService} from "../../shared/services/session.service";
+import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
+import {
+  getAttemptByPromoCodeAction
+} from "../../shared/store/attempt/getAttemptByPromoCode/getAttemptByPromoCode.action";
+import {ActivatedRoute} from "@angular/router";
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.scss']
 })
-export class IndexComponent implements OnInit{
+export class IndexComponent implements OnInit,AfterViewInit{
+
 //Injection Start
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
-  //Injection End
+  private _route = inject(ActivatedRoute)
 
+  //Injection End
+  //@ts-ignore
+  @ViewChild('serviceEl') serviceEl: ElementRef<HTMLDivElement>;
+  //@ts-ignore
+  @ViewChild('priceEl') priceEl: ElementRef<HTMLDivElement>;
+  //@ts-ignore
+  @ViewChild('advantageEl') advantageEl: ElementRef<HTMLDivElement>;
+  //@ts-ignore
+  @ViewChild('partnersEl') partnerEl: ElementRef<HTMLDivElement>;
+  //@ts-ignore
+  @ViewChild('contactEl') contactEl: ElementRef<HTMLDivElement>;
   //Data
   activePlanId:number = 1;
 
@@ -64,19 +84,81 @@ export class IndexComponent implements OnInit{
       "assets/images/lerna.png",
     ]
   //Data
-
+  private sessionService:SessionService = inject(SessionService);
+  showToUp:boolean = false;
+  //Data
+  //@ts-ignore
+  me:Me;
+  getUserInfo(){
+    this.me = this.sessionService.getDataFromLocalStorage(LocalKeysConstants.user) as Me;
+  }
 
   ngOnInit(): void {
     initFlowbite();
     initTE({ Tab });
+    this.getUserInfo();
+
+  }
+  ngAfterViewInit(): void {
+    this._route.fragment.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
+      if(params != null){
+        this.scrollToSection(params);
+      }
+    });
+  }
+
+  scrollToSection(scrollTo:string): void {
+    if(scrollTo == "service"){
+      this.serviceEl.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    }
+    if(scrollTo == "price"){
+      this.priceEl.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    }
+    if(scrollTo == "advantage"){
+      this.advantageEl.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    }
+    if(scrollTo == "partners"){
+      this.partnerEl.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    }
+    if(scrollTo == "contact"){
+      this.contactEl.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   selectActivePlan(planId:number){
     this.activePlanId = planId;
   }
 
-
-
+  getRouteStart() : string{
+    if(this.me){
+      if(this.me.role = "student"){
+        return "dashboard/my-profile";
+      }
+      if(this.me.role = "teacher"){
+        return "teacher/index";
+      }
+      return "auth/login";
+    }
+    else{
+      return "auth/login";
+    }
+  }
+  scrollToTop() {
+    (function smoothscroll() {
+      var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(smoothscroll);
+        window.scrollTo(0, currentScroll - (currentScroll / 8));
+      }
+    })();
+  }
+  @HostListener('window:scroll', ['$event']) onScroll() {
+    if (window.scrollY > 100) {
+      this.showToUp = true;
+    } else {
+      this.showToUp = false;
+    }
+  }
   customOptions: OwlOptions = {
     loop: true,
     margin:15,
@@ -122,4 +204,5 @@ export class IndexComponent implements OnInit{
   protected readonly faBoxesPacking = faBoxesPacking;
   protected readonly faDumbbell = faDumbbell;
   protected readonly faVideo = faVideo;
+  protected readonly faChevronUp = faChevronUp;
 }

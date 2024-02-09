@@ -4,7 +4,7 @@
     <div class="container mx-auto max-h-[850px] relative">
       <img src="assets/images/planet.png" class="w-full block absolute max-w-[100px] sm:max-w-[150px] lg:max-w-[200px] right-0 top-1"/>
       <div class="grid grid-cols-12 lg:min-h-[800px] items-center">
-        <div class="col-span-12 md:col-span-12 lg:col-span-6 order-2 lg:order-1">
+        <div class="col-span-12 md:col-span-12 lg:col-span-6 order-2 lg:order-1 pb-3">
           <div class="p-3 text-center md:text-left">
             <div class="block md:flex mb-4">
               <button class="inline px-3 py-2 bg-transparent border-[1px] text-sm md:text-md lg:text-lg my-2 text-violet-700 border-violet-700 rounded-full me-1">
@@ -42,7 +42,8 @@
                   Играй и соревнуйся с друзьями
               </li>
             </ul>
-            <a href="" class="gradient-violet-button px-10 py-3 rounded-lg text-white my-3 inline-block">
+            <a
+              routerLink="{{getRouteStart()}}" class="gradient-violet-button px-10 py-3 rounded-lg text-white my-3 inline-block">
               Поехали!
               <fa-icon [icon]="faRocket"></fa-icon>
             </a>
@@ -56,7 +57,7 @@
   </div>
   <!--Баннер-->
   <!--Сервисы-->
-  <div data-aos-duration="1500" data-aos="zoom-in" class="section-second-page bg-white py-4 my-4 lg:my-[50px] block">
+  <div #serviceEl data-aos-duration="1500" data-aos="zoom-in" class="section-second-page bg-white py-4 my-4 lg:my-[50px] block">
     <div class="container mx-auto">
       <div class="grid grid-cols-12">
         <div class="col-span-12 text-left">
@@ -81,11 +82,12 @@
                 ключевые темы и аспекты, необходимые для успешной сдачи ЕНТ.
               </p>
             </div>
-            <button class="more-info-button">
+            <button routerLink="{{getRouteStart()}}" class="more-info-button">
               <span class="more-info-button-content">
                 <span class="hidden md:inline">Начать</span>
                 <fa-icon [icon]="faChevronRight" class="md:ml-1"></fa-icon></span>
             </button>
+
             <img class="w-full absolute bottom-2 right-2 max-w-[150px] xl:max-w-[250px]"
                  src="assets/images/icons/unt.webp"/>
           </div>
@@ -102,7 +104,7 @@
                 профессионалами, до детально проработанных конспектов и тестов, которые помогут закрепить знания.
               </p>
             </div>
-            <button class="more-info-button">
+            <button routerLink="{{getRouteStart()}}" class="more-info-button">
               <span class="more-info-button-content">
                 <span class="hidden md:inline">Начать</span>
                 <fa-icon [icon]="faChevronRight" class="md:ml-1"></fa-icon></span>
@@ -123,7 +125,7 @@
                 уже существующие предположения о своем будущем карьерном пути
               </p>
             </div>
-            <button class="more-info-button">
+            <button routerLink="{{getRouteStart()}}" class="more-info-button">
               <span class="more-info-button-content">
                 <span class="hidden md:inline">Начать</span>
                 <fa-icon [icon]="faChevronRight" class="md:ml-1"></fa-icon></span>
@@ -145,7 +147,7 @@
                 интеллектуальных поединках
               </p>
             </div>
-            <button class="more-info-button">
+            <button routerLink="{{getRouteStart()}}" class="more-info-button">
               <span class="more-info-button-content">
                 <span class="hidden md:inline">Начать</span>
                 <fa-icon [icon]="faChevronRight" class="md:ml-1"></fa-icon></span>
@@ -166,7 +168,7 @@
                 свои успехи, определять сильные и слабые стороны.
               </p>
             </div>
-            <button class="more-info-button">
+            <button routerLink="{{getRouteStart()}}" class="more-info-button">
               <span class="more-info-button-content">
                 <span class="hidden md:inline">Начать</span>
                 <fa-icon [icon]="faChevronRight" class="md:ml-1"></fa-icon></span>
@@ -210,7 +212,7 @@
                 Пользуйтесь всеми возможностями платформы! От тренажера ЕНТ до игра в Battle
               </li>
             </ul>
-            <a href="" class="gradient-violet-button px-10 py-3 rounded-lg text-white my-3 inline-block">
+            <a routerLink="{{getRouteStart()}}" class="gradient-violet-button px-10 py-3 rounded-lg text-white my-3 inline-block">
               Поехали!
               <fa-icon [icon]="faArrowRight"></fa-icon>
             </a>
@@ -480,6 +482,7 @@
   <!--На кого нацелены-->
   <!--Стоимость-->
   <div
+    #priceEl
     data-aos="fade-right"
     data-aos-duration="1500"
     data-aos-easing="ease-in-sine"
@@ -613,7 +616,7 @@
   </div>
   <!--Демоверсия-->
   <!--Преимущества-->
-  <div data-aos-duration="1500" data-aos="zoom-out-left" data-aos-offset="300" class="section-second-page bg-white py-4 my-4 lg:my-[50px] block">
+  <div #advantageEl data-aos-duration="1500" data-aos="zoom-out-left" data-aos-offset="300" class="section-second-page bg-white py-4 my-4 lg:my-[50px] block">
     <div class="container mx-auto">
       <div class="grid grid-cols-12">
         <div class="col-span-12 text-left">
@@ -672,7 +675,7 @@
   </div>
   <!--Преимущества-->
   <!--Партнеры-->
-  <div data-aos-duration="1500" data-aos="zoom-out-up" class="section-second-page bg-white py-4 my-4 lg:my-[50px] block">
+  <div #partnersEl data-aos-duration="1500" data-aos="zoom-out-up" class="section-second-page bg-white py-4 my-4 lg:my-[50px] block">
     <div class="container mx-auto">
       <div class="grid grid-cols-12 gap-5 my-5">
         <div class="col-span-12 p-4 md:p-6 lg:p-8 xl:p-12 rounded-xl bg-violet-700 text-black">
@@ -721,10 +724,10 @@
   </div>
   <!--Партнеры-->
   <!--Контакты-->
-  <div data-aos-duration="1500" data-aos="zoom-out-right" class="section-second-page bg-white py-4 my-4 lg:my-[50px] block">
+  <div #contactEl data-aos-duration="1500" data-aos="zoom-out-right" class="section-second-page bg-white py-4 my-4 lg:my-[50px] block">
     <div class="container mx-auto">
       <div class="grid grid-cols-12 gap-5 my-5">
-        <div class="col-span-12 sm:col-span-4 lg:px-2 flex justify-center items-center">
+        <div class="col-span-12 lg:col-span-4 lg:px-2 flex justify-center items-center">
           <div>
             <p class="text-lg md:text-2xl lg:text-4xl text-orange-400 mb-4 text-present font-bold"> Остались вопросы?</p>
             <p class="text-md md:text-xl lg:text-2xl mb-4 text-present">
@@ -732,12 +735,12 @@
             </p>
           </div>
         </div>
-        <div class="col-span-12 sm:col-span-4 lg:px-2 flex justify-center items-center">
+        <div class="col-span-12 lg:col-span-4 lg:px-2 flex justify-center items-center">
           <div>
             <img class="w-full" src="assets/images/tech-support.gif"/>
           </div>
         </div>
-        <div class="col-span-12 sm:col-span-4 lg:px-2 flex justify-center items-center form-container">
+        <div class="col-span-12 lg:col-span-4 lg:px-2 flex justify-center items-center form-container">
           <form class="form shadow-lg">
             <p class="title text-lg lg:text-xl xl:text-2xl text-violet-700">Напишите нам! </p>
             <p class="message"> Наш менеджер свяжеться с вами в самое ближайшее время! </p>
@@ -835,4 +838,9 @@
     </div>
   </div>
   <!--Сервисы-->
+  <div class="scroll-to-top" [ngClass]="{'hidden':!showToUp}">
+    <button type="button" class="w-12 h-12 rounded-full bg-orange-400 text-white" data-toggle="button" (click)="scrollToTop()">
+      <fa-icon [icon]="faChevronUp"></fa-icon>
+    </button>
+  </div>
 </div>
