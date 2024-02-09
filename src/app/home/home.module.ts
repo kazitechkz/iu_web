@@ -12,13 +12,17 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { ContractOfferComponent } from './contract-offer/contract-offer.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {SlickCarouselModule} from "ngx-slick-carousel";
+import { MoneyBackComponent } from './money-back/money-back.component';
+import { PayOfferComponent } from './pay-offer/pay-offer.component';
 @NgModule({
     declarations: [
         HomeLayoutComponent,
         IndexComponent,
         NotFoundComponent,
         PrivacyPolicyComponent,
-        ContractOfferComponent
+        ContractOfferComponent,
+        MoneyBackComponent,
+        PayOfferComponent
     ],
   imports: [
     CommonModule,

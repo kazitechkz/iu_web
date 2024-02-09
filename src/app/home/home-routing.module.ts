@@ -5,6 +5,8 @@ import {IndexComponent} from "./index/index.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {PrivacyPolicyComponent} from "./privacy-policy/privacy-policy.component";
 import {ContractOfferComponent} from "./contract-offer/contract-offer.component";
+import {MoneyBackComponent} from "./money-back/money-back.component";
+import {PayOfferComponent} from "./pay-offer/pay-offer.component";
 
 const routes: Routes = [
   {
@@ -22,6 +24,14 @@ const routes: Routes = [
       {
         path: "contract-offer",
         component: ContractOfferComponent
+      },
+      {
+        path: "money-back",
+        component: MoneyBackComponent
+      },
+      {
+        path: "pay-offer",
+        component: PayOfferComponent
       },
       {
         path: "not-found",

@@ -17,7 +17,7 @@ import {
 } from "tw-elements";
 import {Store} from "@ngrx/store";
 import {OwlOptions} from "ngx-owl-carousel-o";
-
+import { initFlowbite } from 'flowbite';
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
@@ -67,6 +67,7 @@ export class IndexComponent implements OnInit{
 
 
   ngOnInit(): void {
+    initFlowbite();
     initTE({ Tab });
   }
 

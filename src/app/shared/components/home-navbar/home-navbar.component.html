@@ -1,24 +1,24 @@
 <div class="container-fluid w-full flex justify-center">
-  <nav class="z-[100] w-full bg-orange-400 rounded-none"
+  <nav class="z-[100] bg-[#ec6f1e] rounded-none"
        style="transition:0.5s linear;"
         [ngClass]="{
-        'sm:fixed w-full shadow-lg w-full-screen rounded-lg md:rounded-full sm:w-[640px] m-2 rounded-full md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1536px]':fixedNavBar,
-        'w-full bg-red':fixedNavBar == false,
+        'fixed w-full shadow-lg w-full-screen rounded-xl md:rounded-full sm:w-[640px] m-2 md:w-[768px] lg:w-[1024px] xl:w-[1280px] 2xl:w-[1536px]':fixedNavBar,
+        'w-full':fixedNavBar == false,
         }"
 
   >
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <a routerLink="/" class="flex items-center">
-        <img src="assets/images/logo-white.webp" class="h-12 mr-3" alt="IUnion" />
+        <img src="assets/images/logo-white-tr.png" class="h-[80px] rounded-lg mr-3" alt="IUnion" />
       </a>
-      <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+      <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
         </svg>
       </button>
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0">
+        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg  md:flex-row md:mt-0 md:border-0">
           <li class="text-sm uppercase">
             <a href="/" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Главная</a>
           </li>
@@ -37,13 +37,13 @@
           <li class="text-sm uppercase">
             <a href="/" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Контакты</a>
           </li>
-          <li class="text-md hover:text-violet-700">
+          <li class="text-sm hover:text-violet-700 uppercase">
             <div *ngIf="me; else guest">
-              <a *ngIf="me.role == 'student'" routerLink="dashboard/my-profile" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white">Привет, {{me.name}}</a>
-              <a *ngIf="me.role == 'teacher'" routerLink="teacher/index" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white">Привет, {{me.name}}</a>
+              <a *ngIf="me.role == 'student'" routerLink="dashboard/my-profile" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Привет, {{me.name}}</a>
+              <a *ngIf="me.role == 'teacher'" routerLink="teacher/index" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Привет, {{me.name}}</a>
             </div>
             <ng-template #guest>
-              <a routerLink="auth/login" class="block py-2 pl-3 pr-4 text-lg rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Вход</a>
+              <a routerLink="auth/login" class="uppercase block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Вход</a>
             </ng-template>
           </li>
         </ul>
