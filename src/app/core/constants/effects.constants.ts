@@ -156,6 +156,7 @@ import {PassCareerQuizEffect} from "../../shared/store/career/passCareerQuiz/pas
 import {FinishCareerQuizEffect} from "../../shared/store/career/finishCareerQuiz/finishCareerQuiz.effect";
 import {ResultCareerQuizEffect} from "../../shared/store/career/resultCareerQuiz/resultCareerQuiz.effect";
 import {WalletRatingEffect} from "../../shared/store/wallet/walletRating/walletRating.effect";
+import {MyOrderEffect} from "../../shared/store/paybox/my_orders/myOrder.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -272,6 +273,7 @@ export const EffectsConstants = [
     FinishBattleResultEffect,
     MyActiveBattlesEffect,
     PayCreateEffect,
+    MyOrderEffect,
     GetCareerQuizzesEffect,
     GetCareerQuizEffect,
     PassCareerQuizEffect,

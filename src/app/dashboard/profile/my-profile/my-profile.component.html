@@ -1,6 +1,6 @@
 <div *ngIf="me">
   <div class="grid grid-cols-12 gap-4">
-    <div class="col-span-12 lg:col-span-3 my-4  p-3 bg-white shadow-2xl rounded-lg">
+    <div class="col-span-12 lg:col-span-12 xl:col-span-4 2xl:col-span-3 my-4  p-3 bg-white shadow-2xl rounded-lg">
       <div class="flex justify-center items-center my-2 relative">
         <div class="rounded-full w-[130px] h-[130px] md:w-[260px] md:h-[260px] bg-center bg-no-repeat bg-cover"
              [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(me.file?.url) +')'}">
@@ -49,7 +49,7 @@
         </div>
       </div>
     </div>
-    <div class="col-span-12 lg:col-span-9 my-4">
+    <div class="col-span-12 lg:col-span-12 xl:col-span-8 2xl:col-span-9 my-4">
       <div class="wrapper" *ngIf="subscriptions.length > 0">
         <div *ngIf="basicSubscriptions.length > 0"
              class="mb-4 w-full flex flex-col rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:flex-row">
@@ -111,21 +111,32 @@
       </div>
 
       <div class="my-2">
+        <h1>Мои заказы</h1>
         <ul class="responsive-table">
           <li class="table-header">
             <div class="col col-1">№</div>
-            <div class="col col-2">{{'NAME'|translate}}</div>
-            <div class="col col-3">{{'EMAIL'|translate}}</div>
-            <div class="col col-4">{{'BALANCE'|translate}}</div>
+            <div class="col col-2">Номер заказа</div>
+            <div class="col col-2 text-center">Сумма</div>
+            <div class="col col-2">Описание</div>
+            <div class="col col-2 text-center">Дата покупки</div>
+<!--            <div class="col col-2">Предметы</div>-->
+            <div class="col col-2 text-center">Статус</div>
           </li>
           <li class="table-row"
-              *ngFor="let wallet of [{key: 1},{key: 2},{key: 3},{key: 1},{key: 2},{key: 3}]">
+              *ngFor="let order of myOrders | keys">
             <div class="col col-1" data-label="№">
-              {{wallet.key}}
+              {{parseInt(order.key) + 1}}
             </div>
-            <div class="col col-2 break-all" [attr.data-label]="'NAME'|translate">{{wallet.key}}</div>
-            <div class="col col-3 break-all" [attr.data-label]="'EMAIL'|translate">{{wallet.key}}</div>
-            <div class="col col-4 break-all" [attr.data-label]="'BALANCE'|translate">{{wallet.key}}</div>
+            <div class="col col-2 break-all" [attr.data-label]="'NAME'|translate">{{order.value.order_id}}</div>
+            <div class="col col-2 text-center break-all" [attr.data-label]="'NAME'|translate">{{order.value.price}}</div>
+            <div class="col col-2 break-all" [attr.data-label]="'EMAIL'|translate">{{order.value.description}}</div>
+            <div class="col col-2 text-center break-all" [attr.data-label]="'EMAIL'|translate">{{moment(order.value.created_at).format('DD.MM.YYYY')}}</div>
+<!--            <div class="col col-2 break-all" [attr.data-label]="'EMAIL'|translate">-->
+<!--              <span *ngFor="let subject of order.value.subjects">-->
+<!--                <p>{{getSubjectName(subject, translate.currentLang)}}</p>-->
+<!--              </span>-->
+<!--            </div>-->
+            <div class="col col-2 text-center break-all" [attr.data-label]="'BALANCE'|translate" [innerHTML]="order.value.status == 1 ? '<span>Success</span>' : 'Error'"></div>
           </li>
         </ul>
       </div>

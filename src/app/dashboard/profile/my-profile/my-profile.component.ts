@@ -33,6 +33,9 @@ import {getSubjectsState} from "../../../shared/store/subject/subject.selector";
 import {Subject} from "../../../shared/models/subject.model";
 import Swal from "sweetalert2";
 import {ActivatedRoute} from "@angular/router";
+import {MyOrderModel} from "../../../shared/store/paybox/my_orders/myOrder.model";
+import {myOrderAction} from "../../../shared/store/paybox/my_orders/myOrder.action";
+import {myOrderSelector} from "../../../shared/store/paybox/my_orders/myOrder.selector";
 
 @Component({
   selector: 'app-my-profile',
@@ -44,6 +47,7 @@ export class MyProfileComponent implements OnInit {
   public basicSubscriptions: Plan[] = []
   public standardSubscriptions: Plan[] = []
   public premiumSubscriptions: Plan[] = []
+  public myOrders: MyOrderModel[] = []
   public listSubjects: Subject[] = []
   public subjects: Subject[] = []
   private _store = inject(Store);
@@ -77,6 +81,7 @@ export class MyProfileComponent implements OnInit {
     this.getUserInfo()
     this.getSubscriptions()
     this.getSubjects()
+    this.getMyOrders()
   }
   checkURL() {
     this._activateRoute.queryParams.subscribe(params => {
@@ -166,6 +171,15 @@ export class MyProfileComponent implements OnInit {
   getSubjectIDFromTag(tag: any) {
     let split = tag.split('.')
     return split[0];
+  }
+
+  getMyOrders() {
+    this._store.dispatch(myOrderAction())
+    this._store.select(myOrderSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      if (item.data) {
+        this.myOrders = item.data
+      }
+    })
   }
 
   protected readonly faEnvelope = faEnvelope;

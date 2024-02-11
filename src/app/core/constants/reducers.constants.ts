@@ -169,6 +169,7 @@ import {passCareerQuizReducer} from "../../shared/store/career/passCareerQuiz/pa
 import {finishCareerQuizReducer} from "../../shared/store/career/finishCareerQuiz/finishCareerQuiz.reducer";
 import {resultCareerQuizReducer} from "../../shared/store/career/resultCareerQuiz/resultCareerQuiz.reducer";
 import {walletRatingReducer} from "../../shared/store/wallet/walletRating/walletRating.reducer";
+import {myOrderReducer} from "../../shared/store/paybox/my_orders/myOrder.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -298,6 +299,7 @@ export const ReducersConstants = {
   passCareerQuiz:passCareerQuizReducer,
   finishCareerQuiz:finishCareerQuizReducer,
   resultCareerQuiz:resultCareerQuizReducer,
-  payCreate: payCreateReducer
+  payCreate: payCreateReducer,
+  myOrder: myOrderReducer
 }
 
