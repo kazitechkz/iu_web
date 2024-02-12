@@ -1,6 +1,6 @@
 <div *ngIf="me">
   <div class="grid grid-cols-12 gap-4">
-    <div class="col-span-12 lg:col-span-12 xl:col-span-4 2xl:col-span-3 my-4  p-3 bg-white shadow-2xl rounded-lg">
+    <div class="col-span-12 lg:col-span-12 xl:col-span-4 2xl:col-span-3 my-4 p-3 bg-white shadow-2xl rounded-lg max-h-[600px]">
       <div class="flex justify-center items-center my-2 relative">
         <div class="rounded-full w-[130px] h-[130px] md:w-[260px] md:h-[260px] bg-center bg-no-repeat bg-cover"
              [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(me.file?.url) +')'}">
@@ -112,7 +112,7 @@
 
       <div class="my-2">
         <h1>Мои заказы</h1>
-        <ul class="responsive-table">
+        <ul class="responsive-table" *ngIf="myOrders">
           <li class="table-header">
             <div class="col col-1">№</div>
             <div class="col col-2">Номер заказа</div>
@@ -123,7 +123,7 @@
             <div class="col col-2 text-center">Статус</div>
           </li>
           <li class="table-row"
-              *ngFor="let order of myOrders | keys">
+              *ngFor="let order of myOrders.data | paginate: {itemsPerPage: myOrders.per_page, currentPage: myOrders.current_page, totalItems: myOrders.total} | keys: requestData.page : myOrders.per_page">
             <div class="col col-1" data-label="№">
               {{parseInt(order.key) + 1}}
             </div>
@@ -139,6 +139,11 @@
             <div class="col col-2 text-center break-all" [attr.data-label]="'BALANCE'|translate" [innerHTML]="order.value.status == 1 ? '<span>Success</span>' : 'Error'"></div>
           </li>
         </ul>
+        <div *ngIf="myOrders">
+          <div class="col-span-12 my-2 flex justify-center" *ngIf="myOrders.total > myOrders.per_page">
+            <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
+          </div>
+        </div>
       </div>
     </div>
   </div>

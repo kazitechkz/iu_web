@@ -36,6 +36,7 @@ import {ActivatedRoute} from "@angular/router";
 import {MyOrderModel} from "../../../shared/store/paybox/my_orders/myOrder.model";
 import {myOrderAction} from "../../../shared/store/paybox/my_orders/myOrder.action";
 import {myOrderSelector} from "../../../shared/store/paybox/my_orders/myOrder.selector";
+import {Pagination} from "../../../shared/store/pagination";
 
 @Component({
   selector: 'app-my-profile',
@@ -47,7 +48,7 @@ export class MyProfileComponent implements OnInit {
   public basicSubscriptions: Plan[] = []
   public standardSubscriptions: Plan[] = []
   public premiumSubscriptions: Plan[] = []
-  public myOrders: MyOrderModel[] = []
+  public myOrders: Pagination<MyOrderModel[]> | null = null
   public listSubjects: Subject[] = []
   public subjects: Subject[] = []
   private _store = inject(Store);
@@ -56,6 +57,7 @@ export class MyProfileComponent implements OnInit {
   private dialog = inject(NgxSmartModalService)
   private _activateRoute = inject(ActivatedRoute)
   errors: Record<string, string[]> | null = null;
+  requestData = {page: 1}
   profile_form: FormGroup = new FormGroup({
     name: new FormControl("", [
       Validators.required
@@ -83,6 +85,7 @@ export class MyProfileComponent implements OnInit {
     this.getSubjects()
     this.getMyOrders()
   }
+
   checkURL() {
     this._activateRoute.queryParams.subscribe(params => {
       if (params['success'] == 1) {
@@ -106,6 +109,7 @@ export class MyProfileComponent implements OnInit {
       }
     })
   }
+
   getUserInfo() {
     this._store.dispatch(accountAction())
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
@@ -114,6 +118,7 @@ export class MyProfileComponent implements OnInit {
       }
     });
   }
+
   getSubscriptions() {
     this._store.dispatch(accountAction())
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
@@ -125,16 +130,18 @@ export class MyProfileComponent implements OnInit {
       }
     })
   }
-  getSubjects(){
+
+  getSubjects() {
     this._store.dispatch(subjectGetAction());
-    this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=> {
-      if(item.data){
+    this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      if (item.data) {
         this.listSubjects = item.data
-        const elementsToRemove = [1,2,3];
+        const elementsToRemove = [1, 2, 3];
         this.subjects = item.data.filter(element => !elementsToRemove.includes(element.id));
       }
     })
   }
+
   openDialog(name: string) {
     this.dialog.getModal(name).open()
     this.profile_form.patchValue({
@@ -144,6 +151,7 @@ export class MyProfileComponent implements OnInit {
       'gender': this.me.gender ? this.me.gender.id : 1
     })
   }
+
   update() {
     if (this.profile_form.valid) {
       let req = this.profile_form.getRawValue() as ChangeProfileRequest
@@ -156,7 +164,8 @@ export class MyProfileComponent implements OnInit {
       })
     }
   }
-  getSubjectName(id: any, locale: string|null) {
+
+  getSubjectName(id: any, locale: string | null) {
     let subject = this.listSubjects.find(x => x.id === parseInt(id))
     if (locale) {
       if (locale == 'kk') {
@@ -168,18 +177,24 @@ export class MyProfileComponent implements OnInit {
       return subject?.title_ru
     }
   }
+
   getSubjectIDFromTag(tag: any) {
     let split = tag.split('.')
     return split[0];
   }
 
   getMyOrders() {
-    this._store.dispatch(myOrderAction())
+    let request = Object.assign({}, this.requestData);
+    this._store.dispatch(myOrderAction({req: request}))
     this._store.select(myOrderSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       if (item.data) {
         this.myOrders = item.data
       }
     })
+  }
+  pageChanged($event:number){
+    this.requestData.page = $event;
+    this.getMyOrders();
   }
 
   protected readonly faEnvelope = faEnvelope;
