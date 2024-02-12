@@ -16,7 +16,7 @@ export class MyOrderEffect {
     this.action$.pipe(
       ofType(myOrderAction),
       switchMap((action) => {
-        return this._service.getMyOrders().pipe(
+        return this._service.getMyOrders(action.req).pipe(
           switchMap(data => {
               return of(
                   MyOrderActionSuccess({responseData: data}),
