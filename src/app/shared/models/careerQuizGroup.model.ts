@@ -1,4 +1,6 @@
 import {CareerQuizFeature} from "./careerQuizFeature.model";
+import {CareerQuizAuthor} from "./careerQuizAuthor.model";
+import {CareerQuiz} from "./careerQuiz.model";
 
 export interface CareerQuizGroup {
   id: number
@@ -14,5 +16,7 @@ export interface CareerQuizGroup {
   price: number
   currency: string
   created_at: Date
-  updated_at: Date|null
+  updated_at: Date|null,
+  career_quiz_authors:CareerQuizAuthor[]|null
+  career_quizzes:CareerQuiz[]|null
 }

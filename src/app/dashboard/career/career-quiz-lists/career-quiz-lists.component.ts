@@ -1,7 +1,7 @@
 import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {Store} from "@ngrx/store";
-import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import {faBarChart, faChevronRight, faCoins, faPercentage} from "@fortawesome/free-solid-svg-icons";
 import {Pagination} from "../../../shared/store/pagination";
 import {CareerQuiz} from "../../../shared/models/careerQuiz.model";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
@@ -10,6 +10,7 @@ import {GetCareerQuizzesRequest} from "../../../shared/store/career/getCareerQui
 import {getCareerQuizzesAction} from "../../../shared/store/career/getCareerQuizzes/getCareerQuizzes.action";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import {RoutesName} from "../../../core/constants/routes.constants";
+import {faFileCircleCheck} from "@fortawesome/free-solid-svg-icons/faFileCircleCheck";
 
 @Component({
   selector: 'app-career-quiz-lists',
@@ -25,6 +26,7 @@ export class CareerQuizListsComponent implements OnInit{
   //Data
   //@ts-ignore
   public careerQuizList:Pagination<CareerQuiz[]>;
+  public purchasedList:number[] = [];
   public careerQuizRequest:GetCareerQuizzesRequest = {
     page:1
   }
@@ -33,7 +35,8 @@ export class CareerQuizListsComponent implements OnInit{
   constructor() {
     this._store.select(getCareerQuizzesSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
-        this.careerQuizList = item.data
+        this.careerQuizList = item.data.quizzes
+        this.purchasedList = item.data.purchased
       }
     });
   }
@@ -53,4 +56,8 @@ export class CareerQuizListsComponent implements OnInit{
   protected readonly faChevronRight = faChevronRight;
   protected readonly ImageHelper = ImageHelper;
   protected readonly RoutesName = RoutesName;
+  protected readonly faCoins = faCoins;
+  protected readonly faPercentage = faPercentage;
+  protected readonly faFileCircleCheck = faFileCircleCheck;
+  protected readonly faBarChart = faBarChart;
 }

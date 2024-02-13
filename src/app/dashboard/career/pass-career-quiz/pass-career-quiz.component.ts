@@ -114,7 +114,6 @@ export class PassCareerQuizComponent implements OnInit{
     if(this.checkedAnswerIDS.length == this.careerQuiz?.career_quiz_answers?.length){
       let request = {quiz_id: this.quizId,given_answers: JSON.stringify(this.sortAnswer)};
       this.finishRequestQuiz = Object.assign(this.finishRequestQuiz,request);
-      console.log(this.finishRequestQuiz);
       this._store.dispatch(finishCareerQuizAction({requestData:this.finishRequestQuiz}));
     }
   }

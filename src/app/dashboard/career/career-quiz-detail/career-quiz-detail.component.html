@@ -9,7 +9,7 @@
           </b>
         </p>
         <div class="my-3">
-          <a class="text-gray-600 text-md lg:text-lg xl:text-xl font-bold my-2" *ngIf="careerQuiz.career_quiz_group">
+          <a class="text-blue-400 text-md lg:text-lg xl:text-xl font-bold my-2" *ngIf="careerQuiz.career_quiz_group">
            #{{careerQuiz.career_quiz_group | globalTranslate:"title": translate.currentLang}}
           </a>
         </div>
@@ -19,8 +19,11 @@
         >
         </div>
         <div class="mt-8 text-md text-gray-400">
-          <a (click)="openDialog()" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
+          <a (click)="openDialog()" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold" *ngIf="isPurchased">
             {{"PASS_QUIZ"|translate}} <fa-icon class="ml-2" [icon]="faChevronRight"></fa-icon>
+          </a>
+          <a routerLink="/{{RoutesName.careerQuizPlan}}" class="bg-yellow-300 hover:bg-yellow-500 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold" *ngIf="!isPurchased">
+             <fa-icon class="ml-2" [icon]="faCoins"></fa-icon> Приобретите тест всего за {{careerQuiz.price}} KZT
           </a>
         </div>
       </div>

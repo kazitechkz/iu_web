@@ -55,6 +55,8 @@ import {CareerQuizDetailComponent} from "./career/career-quiz-detail/career-quiz
 import {PassCareerQuizComponent} from "./career/pass-career-quiz/pass-career-quiz.component";
 import {ResultCareerQuizComponent} from "./career/result-career-quiz/result-career-quiz.component";
 import {WalletRatingComponent} from "./wallet/wallet-rating/wallet-rating.component";
+import {CareerPlanComponent} from "./career/career-plan/career-plan.component";
+import {MyCareerQuizAttemptsComponent} from "./career/my-career-quiz-attempts/my-career-quiz-attempts.component";
 
 
 const routes: Routes = [
@@ -238,6 +240,14 @@ const routes: Routes = [
       {
         path: 'result-career-quiz/:id',
         component: ResultCareerQuizComponent
+      },
+      {
+        path: 'career-quiz-plans',
+        component: CareerPlanComponent
+      },
+      {
+        path: 'my-career-quiz-attempts',
+        component: MyCareerQuizAttemptsComponent
       },
       {
         path: 'my-tickets',

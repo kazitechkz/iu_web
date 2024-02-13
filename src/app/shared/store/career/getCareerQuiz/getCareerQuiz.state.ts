@@ -1,6 +1,6 @@
 import {createEntityAdapter, EntityState} from "@ngrx/entity";
-import {CareerQuiz} from "../../../models/careerQuiz.model";
+import {GetCareerQuizModel} from "./getCareerQuiz.model";
 
-export const getCareerQuizAdapter = createEntityAdapter<CareerQuiz>();
+export const getCareerQuizAdapter = createEntityAdapter<GetCareerQuizModel>();
 
-export const getCareerQuizState: EntityState<CareerQuiz> = getCareerQuizAdapter.getInitialState();
+export const getCareerQuizState: EntityState<GetCareerQuizModel> = getCareerQuizAdapter.getInitialState();

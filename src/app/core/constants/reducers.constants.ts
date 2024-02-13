@@ -170,6 +170,10 @@ import {finishCareerQuizReducer} from "../../shared/store/career/finishCareerQui
 import {resultCareerQuizReducer} from "../../shared/store/career/resultCareerQuiz/resultCareerQuiz.reducer";
 import {walletRatingReducer} from "../../shared/store/wallet/walletRating/walletRating.reducer";
 import {myOrderReducer} from "../../shared/store/paybox/my_orders/myOrder.reducer";
+import {
+  getCareerQuizGroupListReducer
+} from "../../shared/store/career/getCareerQuizGroupList/getCareerQuizGroupList.reducer";
+import {myCareerAttemptsReducer} from "../../shared/store/career/myCareerAttempts/myCareerAttempts.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -300,6 +304,8 @@ export const ReducersConstants = {
   finishCareerQuiz:finishCareerQuizReducer,
   resultCareerQuiz:resultCareerQuizReducer,
   payCreate: payCreateReducer,
-  myOrder: myOrderReducer
+  myOrder: myOrderReducer,
+  getCareerQuizGroupList:getCareerQuizGroupListReducer,
+  myCareerAttempts:myCareerAttemptsReducer,
 }
 

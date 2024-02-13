@@ -42,12 +42,14 @@ export class CareerQuizDetailComponent implements OnInit{
   //Data
   public quizId:number|null = null;
   public careerQuiz:CareerQuiz|null = null;
+  public isPurchased:boolean = false;
   //Data
 
   constructor() {
       this._store.select(getCareerQuizSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
         if(item.data){
-          this.careerQuiz = item.data;
+          this.careerQuiz = item.data.quiz;
+          this.isPurchased = item.data.is_purchased
         }
       })
   }

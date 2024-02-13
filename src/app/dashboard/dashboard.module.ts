@@ -78,6 +78,7 @@ import { ResultCareerQuizComponent } from './career/result-career-quiz/result-ca
 import {DndDraggableDirective, DndDropzoneDirective} from "ngx-drag-drop";
 import { WalletRatingComponent } from './wallet/wallet-rating/wallet-rating.component';
 import { CareerPlanComponent } from './career/career-plan/career-plan.component';
+import { MyCareerQuizAttemptsComponent } from './career/my-career-quiz-attempts/my-career-quiz-attempts.component';
 
 
 @NgModule({
@@ -138,6 +139,7 @@ import { CareerPlanComponent } from './career/career-plan/career-plan.component'
         ResultCareerQuizComponent,
         WalletRatingComponent,
         CareerPlanComponent,
+        MyCareerQuizAttemptsComponent,
     ],
   imports: [
     CommonModule,

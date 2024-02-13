@@ -4,21 +4,22 @@ import {Observable} from "rxjs";
 import {ResponseData} from "../../response_data";
 import {environment} from "../../../../../environments/environment";
 import {APIRoutesName} from "../../../../core/constants/api-routes.constants";
-import {GetCareerQuizzesRequest} from "./getCareerQuizzes.request";
-import {GetCareerQuizzesModel} from "./getCareerQuizzes.model";
+import {MyCareerAttemptsRequest} from "./myCareerAttempts.request";
+import {Pagination} from "../../pagination";
+import {CareerQuizAttempt} from "../../../models/careerQuizAttempt.model";
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class GetCareerQuizzesService {
+export class MyCareerAttemptsService {
   private _http = inject(HttpClient)
-  getCareerQuizzes(requestData:GetCareerQuizzesRequest): Observable<ResponseData<GetCareerQuizzesModel>> {
+  myCareerAttemptsService(requestData:MyCareerAttemptsRequest): Observable<ResponseData<Pagination<CareerQuizAttempt[]>>> {
     let formData = new HttpParams();
     if(requestData.page){
       formData = formData.append("page",requestData.page.toString());
     }
-    return this._http.get<ResponseData<GetCareerQuizzesModel>>(environment.baseUrl + APIRoutesName.getCareerQuizzes,{params:formData});
+    return this._http.get<ResponseData<Pagination<CareerQuizAttempt[]>>>(environment.baseUrl + APIRoutesName.myCareerAttempts,{params:formData});
   }
 
 }
