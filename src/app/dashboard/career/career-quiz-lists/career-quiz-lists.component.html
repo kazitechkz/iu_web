@@ -54,7 +54,21 @@
       <div class="col-span-12 xl:col-span-6 my-3"
            *ngFor="let careerQuiz of careerQuizList.data|paginate: { itemsPerPage: careerQuizList.per_page, currentPage: careerQuizList.current_page,totalItems:careerQuizList.total }">
         <div
-          class="card relative bg-white rounded-2xl shadow-xl border-gray-300 border-[1px] flex min-h-[305px] h-full">
+          class="card relative bg-white rounded-2xl shadow-xl border-gray-300 border-[1px] flex min-h-[305px] h-full overflow-x-hidden">
+          <div class="absolute hidden sm:block right-0 top-0 h-16 w-16">
+            <div
+              *ngIf="purchasedList.includes(careerQuiz.id);else notPurchased"
+              class="text-xs absolute transform rotate-45 bg-green-500 text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]">
+              Доступ открыт
+            </div>
+            <ng-template #notPurchased>
+              <div
+                class="text-xs absolute transform rotate-45 bg-rose-500 text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]">
+                Доступ закрыт
+              </div>
+            </ng-template>
+
+          </div>
           <div class="grid grid-cols-3 p-3 align-middle relative mb-[40px]">
             <div class="col-span-3 md:col-span-2 order-2 sm:order-1 px-3 flex justify-center items-center z-20">
               <div>
@@ -95,7 +109,7 @@
       </div>
     </div>
     <div class="grid grid-cols-12 gap-3 py-5">
-      <div class="col-span-12 flex justify-center">
+      <div class="col-span-12 flex justify-center" *ngIf="careerQuizList.last_page > 1">
         <pagination-controls class="rounded-full" (pageChange)="changePage($event)"></pagination-controls>
       </div>
     </div>

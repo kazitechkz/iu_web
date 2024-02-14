@@ -3,7 +3,7 @@
     <div class="col-span-12 my-2"
          *ngFor="let result of careerQuizAttempt.career_quiz_attempt_results.slice(0,3);
           let order = index">
-      <div class="card shadow-lg p-3 bg-white rounded-xl min-h-[500px] relative">
+      <div class="card shadow-lg p-3 rounded-xl min-h-[500px] relative bg-center bg-cover" style="background-image: url('assets/images/new_bg_2.jpg')">
         <div class="flex justify-between">
           <div class="h-[75px] w-[75px] md:w-[150px] md:h-[150px] bg-[#f6f6f8] top-0 left-0 flex justify-center items-center">
             <p class="text-lg md:text-xl lg:text-2xl xl:text-4xl 2xl:text-6xl font-bold text-[#230453]">
@@ -26,10 +26,10 @@
                   >
                   </div>
                 </div>
-                <p class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-gray-800">
+                <p class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-black">
                   {{result.career_quiz_feature|globalTranslate:"title":translate.currentLang}}
                 </p>
-                <p class="text-xs text-gray-400 mt-5 mb-2"
+                <p class="text-xs text-black mt-5 mb-2"
                     [innerHTML]="result.career_quiz_feature|globalTranslate:'description':translate.currentLang" >
                 </p>
               </div>
@@ -37,26 +37,26 @@
             <div class="col-span-12 lg:col-span-6 flex items-start lg:px-4">
               <div>
                 <div class="text-justify">
-                  <p class="text-lg font-bold text-gray-800">
+                  <p class="text-lg font-bold text-black">
                     {{"PROSPECT"|translate}}:
                   </p>
-                  <p class="text-xs text-gray-400 mt-5 mb-2"
+                  <p class="text-xs text-black mt-5 mb-2"
                      [innerHTML]="result.career_quiz_feature |globalTranslate:'prospect':translate.currentLang" >
                   </p>
                 </div>
                 <div class="text-justify mt-4">
-                  <p class="text-lg font-bold text-gray-800">
+                  <p class="text-lg font-bold text-black">
                     {{"MEANING"|translate}}:
                   </p>
-                  <p class="text-xs text-gray-400 mt-5 mb-2"
+                  <p class="text-xs text-black mt-5 mb-2"
                      [innerHTML]="result.career_quiz_feature |globalTranslate:'meaning':translate.currentLang" >
                   </p>
                 </div>
                 <div class="text-justify mt-4">
-                  <p class="text-lg font-bold text-gray-800">
+                  <p class="text-lg font-bold text-black">
                     {{"ACTIVITY"|translate}}:
                   </p>
-                  <p class="text-xs text-gray-400 mt-5 mb-2"
+                  <p class="text-xs text-black mt-5 mb-2"
                      [innerHTML]="result.career_quiz_feature |globalTranslate:'activity':translate.currentLang" >
                   </p>
                 </div>
@@ -66,7 +66,7 @@
       </div>
     </div>
     <div class="col-span-12 order-1" *ngIf="careerQuizAttempt.career_quiz_attempt_results">
-      <div class="bg-white py-4 rounded-2xl shadow-2xl">
+      <div class="py-4 rounded-2xl shadow-2xl bg-center bg-cover" style="background-image: url('assets/images/new_bg_2.jpg')">
         <div class="relative overflow-x-auto" *ngIf="careerQuizAttempt.career_quiz_attempt_results">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 capitalize">
@@ -83,7 +83,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let result of careerQuizAttempt.career_quiz_attempt_results">
+            <tr class="rounded-2xl my-2 border-b border-gray-300" *ngFor="let result of careerQuizAttempt.career_quiz_attempt_results">
               <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap flex items-center" *ngIf="result.career_quiz_feature">
                 <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"
                      [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(result.career_quiz_feature.file?.url) +')'}"

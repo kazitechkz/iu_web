@@ -13,7 +13,7 @@ import {
   faF,
   faBriefcase,
   faCircleQuestion,
-  faSitemap, faWallet, faRobot, faChess, faCartShopping, faHandshake, faMessage, faNewspaper, faUserCircle
+  faSitemap, faWallet, faRobot, faChess, faCartShopping, faHandshake, faMessage, faNewspaper, faUserCircle, faPlay
 } from "@fortawesome/free-solid-svg-icons";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import {Router} from "@angular/router";
@@ -87,16 +87,12 @@ export class SidebarComponent implements OnInit {
       path: RoutesName.careerQuizList,
       icon: faBriefcase as IconProp
     },
-    // {
-    //   title: 'COUCHERS',
-    //   path: RoutesName.noPageIndex,
-    //   icon: faMale as IconProp
-    // },
-    // {
-    //   title: 'SHOP',
-    //   path: RoutesName.noPageIndex,
-    //   icon: faCartShopping as IconProp
-    // },
+    {
+      title: 'IUTube',
+      path: RoutesName.iuTube,
+      icon: faPlay as IconProp
+    },
+
     {
       title: 'SUBSCRIPTION',
       path: RoutesName.planMode,

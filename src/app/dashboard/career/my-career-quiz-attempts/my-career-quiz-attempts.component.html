@@ -6,62 +6,37 @@
           История сдач тестирования
         </p>
       </div>
-      <div class="relative overflow-x-auto" *ngIf="careerQuizAttempts.data">
-        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 capitalize">
-          <tr>
-            <th scope="col" class="px-6 py-3">
-              Изображение
-            </th>
-            <th scope="col" class="px-6 py-3">
-              Наименование Теста
-            </th>
-            <th scope="col" class="px-6 py-3">
-              Группа
-            </th>
-            <th scope="col" class="px-6 py-3">
-              Дата сдачи
-            </th>
-            <th scope="col" class="px-6 py-3">
-              {{"ACTION"|translate}}
-            </th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let careerQuizAttempt of careerQuizAttempts.data | paginate: { itemsPerPage: careerQuizAttempts.per_page, currentPage: careerQuizAttempts.current_page,totalItems:careerQuizAttempts.total }">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center" *ngIf="careerQuizAttempt.career_quiz">
-              <div
-                class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"
-                [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(careerQuizAttempt.career_quiz?.file?.url) + ')'}"
-              >
-              </div>
-            </th>
-            <td class="px-6 py-4">
-              <p class="text-black ml-2 font-bold">
+      <div class="relative overflow-x-auto grid grid-cols-12 gap-3" *ngIf="careerQuizAttempts.data">
+        <div class="rounded-full col-span-12 sm:col-span-6 md:col-span-4 py-3 px-4 min-h-[80px] cursor-pointer bg-[#bbd3fd] my-3 hover:shadow-xl" *ngFor="let careerQuizAttempt of careerQuizAttempts.data | paginate: { itemsPerPage: careerQuizAttempts.per_page, currentPage: careerQuizAttempts.current_page,totalItems:careerQuizAttempts.total }">
+          <div [routerLink]="['/' + RoutesName.resultCareerQuiz + '/' + careerQuizAttempt.id.toString()]" class="flex items-center" *ngIf="careerQuizAttempt.career_quiz">
+            <div
+              class="w-12 h-12 md:w-16 md:h-16 min-w-12 md:min-w-16 rounded-full border-2 bg-cover bg-no-repeat my-2"
+              [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(careerQuizAttempt.career_quiz.file?.url) + ')'}">
+            </div>
+            <div>
+              <p class="text-white text-xl ml-2 font-bold w-2/3 mb-1">
                 {{careerQuizAttempt.career_quiz | globalTranslate:'title':translate.currentLang}}
+               </p>
+              <p class="text-white text-md ml-2 font-bold mb-1" *ngIf="careerQuizAttempt.career_quiz.career_quiz_group">
+                 #{{careerQuizAttempt.career_quiz.career_quiz_group | globalTranslate:'title':translate.currentLang}}
               </p>
-            </td>
-            <td class="px-6 py-4">
-              <p class="text-black ml-2 font-bold" *ngIf="careerQuizAttempt.career_quiz?.career_quiz_group">
-                {{careerQuizAttempt.career_quiz?.career_quiz_group | globalTranslate:'title':translate.currentLang}}
+              <p class="text-white text-sm ml-2 font-bold mt-1" *ngIf="careerQuizAttempt.career_quiz.created_at">
+                {{moment(careerQuizAttempt.career_quiz.created_at)}}
               </p>
-            </td>
-            <td class="px-6 py-4">
-              <p class="text-black ml-2 font-bold" *ngIf="careerQuizAttempt.career_quiz?.created_at">
-                {{moment(careerQuizAttempt.career_quiz?.created_at ?? Date.now()).format("HH:mm DD/MM/YYYY")}}
-              </p>
-            </td>
-            <td class="px-6 py-4">
-              <a [routerLink]="['/' + RoutesName.resultCareerQuiz + '/' + careerQuizAttempt.id.toString()]" type="button" class="cursor-pointer text-white bg-green-300 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
-                {{"RESULT"|translate}}
+            </div>
+            <div class="px-2 text-center">
+              <a class="text-white text-4xl cursor-pointer">
+                <fa-icon [icon]="faChevronRight"></fa-icon>
               </a>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-        <div class="my-2 flex justify-center">
-          <pagination-controls class="rounded-full" (pageChange)="changePage($event)"></pagination-controls>
+            </div>
+          </div>
         </div>
+        <section *ngIf="careerQuizAttempts">
+          <div class="my-2 flex justify-center" *ngIf="careerQuizAttempts.last_page > 1">
+            <pagination-controls class="rounded-full" (pageChange)="changePage($event)"></pagination-controls>
+          </div>
+        </section>
+
       </div>
     </div>
   </div>

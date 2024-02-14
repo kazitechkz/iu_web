@@ -57,6 +57,7 @@ import {ResultCareerQuizComponent} from "./career/result-career-quiz/result-care
 import {WalletRatingComponent} from "./wallet/wallet-rating/wallet-rating.component";
 import {CareerPlanComponent} from "./career/career-plan/career-plan.component";
 import {MyCareerQuizAttemptsComponent} from "./career/my-career-quiz-attempts/my-career-quiz-attempts.component";
+import {IutubeListComponent} from "./iutube/iutube-list/iutube-list.component";
 
 
 const routes: Routes = [
@@ -248,6 +249,10 @@ const routes: Routes = [
       {
         path: 'my-career-quiz-attempts',
         component: MyCareerQuizAttemptsComponent
+      },
+      {
+        path: 'iutube',
+        component: IutubeListComponent
       },
       {
         path: 'my-tickets',

@@ -14,6 +14,7 @@ import {RoutesName} from "../../../core/constants/routes.constants";
 import * as moment from "moment/moment";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import {myCareerAttemptsAction} from "../../../shared/store/career/myCareerAttempts/myCareerAttempts.action";
+import {faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-my-career-quiz-attempts',
@@ -57,4 +58,5 @@ export class MyCareerQuizAttemptsComponent implements OnInit{
   protected readonly Image = Image;
   protected readonly ImageHelper = ImageHelper;
   protected readonly Date = Date;
+  protected readonly faChevronRight = faChevronRight;
 }
