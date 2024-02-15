@@ -136,7 +136,7 @@
 <!--                <p>{{getSubjectName(subject, translate.currentLang)}}</p>-->
 <!--              </span>-->
 <!--            </div>-->
-            <div class="col col-2 text-center break-all" [attr.data-label]="'BALANCE'|translate" [innerHTML]="order.value.status == 1 ? '<span>Success</span>' : 'Error'"></div>
+            <div class="col col-2 text-center break-all" [attr.data-label]="'BALANCE'|translate" [innerHTML]="order.value.status == 1 ? '<span>Успешно</span>' : 'Ошибка'"></div>
           </li>
         </ul>
         <div *ngIf="myOrders">
