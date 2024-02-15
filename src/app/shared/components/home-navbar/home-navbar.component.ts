@@ -4,6 +4,7 @@ import {Store} from "@ngrx/store";
 import {Me} from "../../models/user.model";
 import {SessionService} from "../../services/session.service";
 import {LocalKeysConstants} from "../../../core/constants/local-keys.constants";
+import {userCheckAction} from "../../store/auth/userCheck/userCheck.action";
 
 @Component({
   selector: 'app-home-navbar',
@@ -24,6 +25,7 @@ export class HomeNavbarComponent implements OnInit{
     this.me = this.sessionService.getDataFromLocalStorage(LocalKeysConstants.user) as Me;
   }
   ngOnInit(): void {
+    this._store.dispatch(userCheckAction());
     this.getUserInfo();
     initFlowbite();
   }

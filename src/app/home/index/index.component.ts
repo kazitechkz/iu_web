@@ -26,6 +26,7 @@ import {
   getAttemptByPromoCodeAction
 } from "../../shared/store/attempt/getAttemptByPromoCode/getAttemptByPromoCode.action";
 import {ActivatedRoute} from "@angular/router";
+import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
@@ -37,6 +38,7 @@ export class IndexComponent implements OnInit,AfterViewInit{
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
   private _route = inject(ActivatedRoute)
+  public translate = inject(GlobalTranslateService);
 
   //Injection End
   //@ts-ignore
@@ -53,9 +55,9 @@ export class IndexComponent implements OnInit,AfterViewInit{
   activePlanId:number = 1;
 
   plans:{[key: number]: { title: string,price:number,months_value:number,months:string,image:string,description:string[] }} = {
-    1:{title:"Подписка на 1 месяц",price:990,months_value:1,months:"1 месяц",image:"assets/images/basic.webp",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
-    2:{title:"Подписка на 3 месяца",price:2490,months_value:3,months:"3 месяца",image:"assets/images/standard.webp",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
-    3:{title:"Подписка на 6 месяцев",price:4990,months_value:6,months:"6 месяцев",image:"assets/images/premium.webp",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
+    1:{title:"1_MONTH_SUBSCRIPTION",price:990,months_value:1,months:"1_MONTH",image:"assets/images/basic.webp",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
+    2:{title:"3_MONTHS_SUBSCRIPTION",price:2490,months_value:3,months:"3_MONTHS",image:"assets/images/standard.webp",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
+    3:{title:"6_MONTHS_SUBSCRIPTION",price:4990,months_value:6,months:"6_MONTHS",image:"assets/images/premium.webp",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
   }
 
   subjects: { id: number,title_ru:string,title_kk:string,url:string,color:string }[]= [

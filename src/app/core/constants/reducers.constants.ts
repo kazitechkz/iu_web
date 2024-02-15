@@ -174,6 +174,8 @@ import {
   getCareerQuizGroupListReducer
 } from "../../shared/store/career/getCareerQuizGroupList/getCareerQuizGroupList.reducer";
 import {myCareerAttemptsReducer} from "../../shared/store/career/myCareerAttempts/myCareerAttempts.reducer";
+import {payCareerReducer} from "../../shared/store/career/payCareer/payCareer.reducer";
+import {userCheckReducer} from "../../shared/store/auth/userCheck/userCheck.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -307,5 +309,7 @@ export const ReducersConstants = {
   myOrder: myOrderReducer,
   getCareerQuizGroupList:getCareerQuizGroupListReducer,
   myCareerAttempts:myCareerAttemptsReducer,
+  payCareer:payCareerReducer,
+  userCheck:userCheckReducer,
 }
 

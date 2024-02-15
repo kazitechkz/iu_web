@@ -48,7 +48,6 @@ export class ResetEffect {
           return this.service.ResetPassword(action.requestData).pipe(
             switchMap(actionData => {
               this.toastr.success(actionData.message ?? "Success");
-              console.log(actionData);
               return of(
                 resetPasswordSuccessAction({responseData: actionData})
               )

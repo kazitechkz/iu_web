@@ -19,11 +19,14 @@ import {
   faCheckCircle,
   faChevronRight,
   faCircleCheck,
-  faCoins,
+  faCoins, faLockOpen,
   faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import {OwlOptions} from "ngx-owl-carousel-o";
+import {PayCareerRequest} from "../../../shared/store/career/payCareer/payCareer.request";
+import {payCareerAction} from "../../../shared/store/career/payCareer/payCareer.action";
+import {payCareerSelector} from "../../../shared/store/career/payCareer/payCareer.selector";
 
 @Component({
   selector: 'app-career-plan',
@@ -43,6 +46,9 @@ export class CareerPlanComponent implements OnInit{
   purchased:number[]|null = [];
   activeQuizGroup:CareerQuizGroup|null = null;
   activeQuizNumber:number|null = null;
+  isGroupBlocked:number[] = [];
+  isCareerQuizBlocked:number[] = [];
+  payCareerRequest: PayCareerRequest = {career_group_id:null, career_quiz_id:null};
   //Data
 
   constructor() {
@@ -51,6 +57,17 @@ export class CareerPlanComponent implements OnInit{
         this.purchased = item.data.purchased;
         this.careerQuizGroups = item.data.group;
         this.activeQuizGroup = item.data.group[0];
+      }
+    })
+    this._store.select(payCareerSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        if(item.data.pg_redirect_url){
+          window.location.href = item.data.pg_redirect_url;
+        }
+      }
+      else{
+        this.isGroupBlocked = [];
+        this.isCareerQuizBlocked = [];
       }
     })
   }
@@ -71,6 +88,19 @@ export class CareerPlanComponent implements OnInit{
       }
     }
   }
+  payForCareerGroup(groupId:number){
+    if(!this.isGroupBlocked.includes(groupId)){
+      this.isGroupBlocked.push(groupId);
+      this._store.dispatch(payCareerAction({requestData:{career_group_id:groupId} as PayCareerRequest}))
+    }
+  }
+  payForCareerQuiz(quiz_id:number){
+    if(!this.isCareerQuizBlocked.includes(quiz_id)){
+      this.isCareerQuizBlocked.push(quiz_id);
+      this._store.dispatch(payCareerAction({requestData:{career_quiz_id:quiz_id} as PayCareerRequest}))
+    }
+  }
+
   customOptions: OwlOptions = {
     loop: true,
     margin: 5,
@@ -93,4 +123,5 @@ export class CareerPlanComponent implements OnInit{
   protected readonly faXmark = faXmark;
   protected readonly faCircleCheck = faCircleCheck;
   protected readonly faCartShopping = faCartShopping;
+  protected readonly faLockOpen = faLockOpen;
 }

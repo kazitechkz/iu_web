@@ -161,6 +161,8 @@ import {
   GetCareerQuizGroupListEffect
 } from "../../shared/store/career/getCareerQuizGroupList/getCareerQuizGroupList.effect";
 import {MyCareerAttemptsEffect} from "../../shared/store/career/myCareerAttempts/myCareerAttempts.effect";
+import {PayCareerEffect} from "../../shared/store/career/payCareer/payCareer.effect";
+import {UserCheckEffect} from "../../shared/store/auth/userCheck/userCheck.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -285,4 +287,6 @@ export const EffectsConstants = [
     ResultCareerQuizEffect,
     GetCareerQuizGroupListEffect,
     MyCareerAttemptsEffect,
+    PayCareerEffect,
+    UserCheckEffect,
 ]

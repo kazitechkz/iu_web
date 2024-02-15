@@ -2,6 +2,7 @@ export enum APIRoutesName {
     loginRoute = "auth/login",
     registerRoute = "auth/register",
     resetRoute = "auth/reset",
+    userCheck = "auth/user-check",
     sendResetTokenRoute = "auth/send-reset-token",
     me = "me",
     updateMe = "change-profile",
@@ -125,5 +126,6 @@ export enum APIRoutesName {
     resultCareerQuiz="result-career-quiz",
     getCareerQuizGroupList="career-quiz-groups-list",
     myCareerAttempts="my-career-attempts",
+    payCareer="pay-career"
 
 }

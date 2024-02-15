@@ -42,9 +42,14 @@
                 {{activeQuizGroup.price}} KZT
               </div>
             </div>
-            <a class="inline-block border border-white mt-4 bg-violet-400 hover:bg-violet-700 cursor-pointer text-white text-sm px-5 py-4 rounded-xl  font-bold">
+            <a (click)="payForCareerGroup(activeQuizGroup.id)" class="inline-block border border-white mt-4 bg-violet-400 hover:bg-violet-700 cursor-pointer text-white text-sm px-5 py-4 rounded-xl  font-bold" *ngIf="!isGroupBlocked.includes(activeQuizGroup.id);else isGroupLoaded">
               ПРИОБРЕСТИ <fa-icon [icon]="faCoins"/>
             </a>
+            <ng-template #isGroupLoaded>
+              <a class="inline-block border border-white mt-4 bg-violet-400 hover:bg-violet-700 cursor-pointer text-white text-sm px-5 py-4 rounded-xl  font-bold">
+                Ожидайте ... <fa-icon [icon]="faCoins"/>
+              </a>
+            </ng-template>
           </div>
         </div>
         <div class="col-span-12 md:col-span-4 h-full" *ngIf="activeQuizGroup.career_quizzes">
@@ -67,11 +72,23 @@
                     <span class="text-title">
                       {{quizItem.price}} KZT
                     </span>
-                    <div class="card-button">
-                      Приобрести
-                      <fa-icon [icon]="faCartShopping" class="mx-2"></fa-icon>
+                    <div class="border flex p-1 border-white rounded-full bg-green-500 text-white cursor-pointer" *ngIf="purchased?.includes(quizItem.id);else notPurchased">
+                      Приобритен
+                      <fa-icon [icon]="faLockOpen" class="mx-2"></fa-icon>
                     </div>
-                  </div></div>
+                    <ng-template #notPurchased>
+                      <div (click)="payForCareerQuiz(quizItem.id)" class="card-button" *ngIf="!isCareerQuizBlocked.includes(quizItem.id);else careerQuizLoaded">
+                        Приобрести
+                        <fa-icon [icon]="faCartShopping" class="mx-2"></fa-icon>
+                      </div>
+                      <ng-template #careerQuizLoaded>
+                        <div  class="card-button">
+                          Ожидайте ...
+                        </div>
+                      </ng-template>
+                    </ng-template>
+                  </div>
+                </div>
               </div>
             </ng-template>
           </owl-carousel-o>
