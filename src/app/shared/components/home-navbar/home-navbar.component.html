@@ -20,30 +20,41 @@
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg  md:flex-row md:mt-0 md:border-0">
           <li class="text-xs lg:text-sm uppercase">
-            <a href="/" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Главная</a>
+            <a href="/" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"MAIN_PAGE"|translate}}</a>
           </li>
           <li class="text-xs lg:text-sm uppercase">
-            <a href="/#service" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Сервисы</a>
+            <a href="/#service" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"SERVICE_PAGE"|translate}}</a>
           </li>
           <li class="text-xs lg:text-sm uppercase">
-            <a href="/#price" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Цены</a>
+            <a href="/#price" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"PRICE_PAGE"|translate}}</a>
           </li>
           <li class="text-xs lg:text-sm uppercase">
-            <a href="/#advantage" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Преимущества</a>
+            <a href="/#advantage" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"ADVANTAGE_PAGE"|translate}}</a>
           </li>
           <li class="text-xs lg:text-sm uppercase">
-            <a href="/#partners" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Для партнеров</a>
+            <a href="/#partners" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"PARTNERS_PAGE"|translate}}</a>
           </li>
           <li class="text-xs lg:text-sm uppercase">
-            <a href="/#contact" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Контакты</a>
+            <a href="/#contact" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"CONTACT_PAGE"|translate}}</a>
+          </li>
+          <li class="text-xs lg:text-sm uppercase flex items-center text-white">
+            <div class="px-1 cursor-pointer">
+              <div class="flex justify-center items-center" (click)="clickLocaleDropdown()">
+                <p class="mx-3">{{translate.currentLang | titlecase}}</p>
+              </div>
+              <div *ngIf="localeDropdown" class="absolute w-32 bg-orange-400 rounded-lg shadow-lg py-2 z-[999]">
+                <span class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white" (click)="changeLang('kk')">Kk</span>
+                <span class="block px-4 py-2 account-link cursor-pointer hover:bg-[#4dc591]/90 hover:text-white" (click)="changeLang('ru')">Ru</span>
+              </div>
+            </div>
           </li>
           <li class="text-xs lg:text-sm uppercase hover:text-violet-700 ">
             <div *ngIf="me; else guest">
-              <a *ngIf="me.role == 'student'" routerLink="dashboard/my-profile" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Привет, {{me.name}}</a>
-              <a *ngIf="me.role == 'teacher'" routerLink="teacher/index" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Привет, {{me.name}}</a>
+              <a *ngIf="me.role == 'student'" routerLink="dashboard/my-profile" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"HELLO"|translate}}, {{me.name}}</a>
+              <a *ngIf="me.role == 'teacher'" routerLink="teacher/index" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"HELLO"|translate}}, {{me.name}}</a>
             </div>
             <ng-template #guest>
-              <a routerLink="auth/login" class="text-xs lg:text-sm uppercase block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Вход</a>
+              <a routerLink="auth/login" class="text-xs lg:text-sm uppercase block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"LOGIN_PAGE"|translate}}</a>
             </ng-template>
           </li>
         </ul>

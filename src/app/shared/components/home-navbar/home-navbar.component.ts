@@ -5,6 +5,7 @@ import {Me} from "../../models/user.model";
 import {SessionService} from "../../services/session.service";
 import {LocalKeysConstants} from "../../../core/constants/local-keys.constants";
 import {userCheckAction} from "../../store/auth/userCheck/userCheck.action";
+import {GlobalTranslateService} from "../../services/globalTranslate.service";
 
 @Component({
   selector: 'app-home-navbar',
@@ -15,7 +16,8 @@ export class HomeNavbarComponent implements OnInit{
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
   private sessionService:SessionService = inject(SessionService);
-
+  public translate = inject(GlobalTranslateService)
+  localeDropdown: boolean = false
   //Data
   //@ts-ignore
   me:Me;
@@ -30,6 +32,16 @@ export class HomeNavbarComponent implements OnInit{
     initFlowbite();
   }
 
+  changeLang(lang: string) {
+    this.translate.onLangChange(lang)
+    this.localeDropdown = !this.localeDropdown
+  }
+  clickLocaleDropdown() {
+    this.localeDropdown = !this.localeDropdown
+    setTimeout(() => {
+      this.localeDropdown = false
+    }, 3000)
+  }
   @HostListener('window:scroll', ['$event']) onScroll() {
     if (window.scrollY > 100) {
       this.fixedNavBar = true;

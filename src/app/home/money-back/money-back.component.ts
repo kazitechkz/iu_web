@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
 
 @Component({
   selector: 'app-money-back',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./money-back.component.scss']
 })
 export class MoneyBackComponent {
-
+  public translate = inject(GlobalTranslateService);
 }
