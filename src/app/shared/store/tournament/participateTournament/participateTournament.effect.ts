@@ -5,7 +5,10 @@ import {ParticipateTournamentService} from "./participateTournament.service";
 import {
   OnParticipateTournamentAction,
   OnParticipateTournamentActionFailure,
-  OnParticipateTournamentActionSuccess
+  OnParticipateTournamentActionSuccess,
+  OnPayTournamentAction,
+  OnPayTournamentActionFailure,
+  OnPayTournamentActionSuccess
 } from "./participateTournament.action";
 
 @Injectable()
@@ -27,6 +30,24 @@ export class ParticipateTournamentEffect {
           ),
           catchError((_error) =>
             of(OnParticipateTournamentActionFailure({errors: _error}))
+          )
+        )
+      }),
+    ),
+  );
+  _onPayTournament = createEffect((): any =>
+    this.action$.pipe(
+      ofType(OnPayTournamentAction),
+      switchMap((action) => {
+        return this._service.payTournament(action.requestData).pipe(
+          switchMap(data => {
+              return of(
+                  OnPayTournamentActionSuccess({responseData: data}),
+              )
+            }
+          ),
+          catchError((_error) =>
+            of(OnPayTournamentActionFailure({errors: _error}))
           )
         )
       }),

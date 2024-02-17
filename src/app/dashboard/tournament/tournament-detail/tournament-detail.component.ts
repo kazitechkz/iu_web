@@ -35,11 +35,11 @@ import {
   ParticipateTournamentRequest
 } from "../../../shared/store/tournament/participateTournament/participateTournament.request";
 import {
-  OnParticipateTournamentAction
+  OnParticipateTournamentAction, OnPayTournamentAction
 } from "../../../shared/store/tournament/participateTournament/participateTournament.action";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {
-  participateTournamentSelector
+  participateTournamentSelector, payTournamentSelector
 } from "../../../shared/store/tournament/participateTournament/participateTournament.selector";
 import {
   getSubTournamentDetailSelector
@@ -98,6 +98,7 @@ import {
 import {
   createTournamentAttemptAction
 } from "../../../shared/store/tournament/createTournamentAttempt/createTournamentAttempt.action";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-tournament-detail',
@@ -146,7 +147,7 @@ export class TournamentDetailComponent implements OnInit {
   dialog = inject(NgxSmartModalService)
   //@ts-ignore
   public participants: Pagination<SubTournamentParticipant[]>
-
+  private _activateRoute = inject(ActivatedRoute)
   endDate: moment.Moment = moment();
   startDate: moment.Moment = moment();
   startRegDate: moment.Moment = moment();
@@ -156,6 +157,7 @@ export class TournamentDetailComponent implements OnInit {
   countdown: string = '';
   startCountdown: string = '';
   ngOnInit(): void {
+    this.checkURL()
     initTE({Collapse, Tab});
     this.getTournamentInfo();
     this.getSubTournamentDetail()
@@ -163,7 +165,28 @@ export class TournamentDetailComponent implements OnInit {
       this.updateCountdown();
     }, 1000);
   }
-
+  checkURL() {
+    this._activateRoute.queryParams.subscribe(params => {
+      if (params['success'] == 1) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Подписка успешно оформлена!",
+          showConfirmButton: false,
+          timer: 4000
+        });
+      }
+      if (params['error'] == 1) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Что-то пошло не так!",
+          showConfirmButton: false,
+          timer: 4000
+        });
+      }
+    })
+  }
   constructor() {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this.tournamentId = params["id"];
@@ -355,7 +378,12 @@ export class TournamentDetailComponent implements OnInit {
   participateTournament() {
     let request = {locale_id: 1, sub_tournament_id: this.firstSubTournament.id} as ParticipateTournamentRequest;
     if (request.sub_tournament_id) {
-      this._store.dispatch(OnParticipateTournamentAction({requestData: request}));
+      this._store.dispatch(OnPayTournamentAction({requestData: request}));
+      this._store.select(payTournamentSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+        if (item.data) {
+          window.location.href = item.data.pg_redirect_url
+        }
+      });
     }
   }
 

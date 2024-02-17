@@ -160,7 +160,7 @@ import {answerBattleQuestionReducer} from "../../shared/store/battle/answerBattl
 import {finishBattleResultReducer} from "../../shared/store/battle/finishBattleResult/finishBattleResult.reducer";
 import {myActiveBattlesReducer} from "../../shared/store/battle/myActiveBattles/myActiveBattles.reducer";
 import {
-  participantTournamentReducer
+  participantTournamentReducer, payTournamentReducer
 } from "../../shared/store/tournament/participateTournament/participateTournament.reducer";
 import {payCreateReducer} from "../../shared/store/paybox/pay_create/payCreate.reducer";
 import {getCareerQuizzesReducer} from "../../shared/store/career/getCareerQuizzes/getCareerQuizzes.reducer";
@@ -207,6 +207,7 @@ export const ReducersConstants = {
   getAllTournament:getAllTournamentReducer,
   getTournamentDetail:getTournamentDetailReducer,
   participateTournament:participantTournamentReducer,
+  payTournament:payTournamentReducer,
   getSubTournamentDetail:getSubTournamentDetailReducer,
   subStepResult: subStepResultReducer,
   getSubTournamentParticipants:getSubTournamentParticipantsReducer,
