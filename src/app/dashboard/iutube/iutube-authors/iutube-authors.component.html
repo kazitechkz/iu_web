@@ -1,0 +1,56 @@
+<div class="container mx-auto">
+  <div class="grid grid-cols-12">
+    <div class="col-span-12">
+      <div class="w-full py-4 bg-white border border-gray-200 rounded-lg shadow">
+        <div class="flex flex-col w-full items-center py-5">
+          <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="/assets/images/teacher.webp"/>
+          <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
+          <span class="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-12 gap-5 my-5">
+    <div class="col-span-12 my-5">
+      <p class="text-lg lg:text-xl xl:text-3xl text-black font-bold">
+        Видеоуроки автора
+      </p>
+    </div>
+    <div
+      *ngFor="let i of [1,2,3,4,5,6,7,8,9]"
+      [routerLink]="'/'+ RoutesName.iuTubeVideoSingle + '/' + 'kyNYqH2zoiE'"
+      class="col-span-12 sm:col-span-6 lg:col-span-4 2xl:col-span-3 border-red-500 cursor-pointer min-h-[280px] mt-2 h-full w-full rounded-xl shadow-xl">
+      <div
+        class="youtube-player-video h-[250px] rounded-tr-xl rounded-tl-xl flex justify-center items-center w-full bg-no-repeat bg-cover relative"
+        [ngStyle]="{'background-image': 'url(' + ImageHelper.getYoutubeThumbnail('https://www.youtube.com/watch?v=kyNYqH2zoiE&t=22s') + ')'}"
+      >
+        <fa-icon class="text-rose-500 text-4xl" [icon]="faPlay"></fa-icon>
+      </div>
+      <div class="px-3 pt-3">
+        <div class="flex justify-around">
+          <div class="w-[30px] h-[30px] min-w-[30px] mr-2">
+            <img src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png" class="shadow-lg rounded-full max-w-full h-auto align-middle border-none" />
+          </div>
+          <p class="ml-1 text-sm text-black font-bold">
+            {{
+            "Run ng serve for a dev server. Navigate to http://localhost:4200/. The application will automatically reload if you change any of the source files.".length > 50
+              ? "Run ng serve for a dev server. Navigate to http://localhost:4200/. The application will automatically reload if you change any of the source files.".slice(0,50) + "..."
+              :"Run ng serve for a dev server. Navigate to http://localhost:4200/."
+            }}
+          </p>
+        </div>
+        <div class="mt-2 text-right flex justify-end">
+          <div class="w-full">
+            <p class="ml-1 text-xs text-black mt-2 font-bold">
+              Математическая грамотность
+            </p>
+            <p class="ml-1 text-xs text-black mt-2">
+              12:34 11/02/2024
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

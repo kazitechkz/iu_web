@@ -80,6 +80,9 @@ import { WalletRatingComponent } from './wallet/wallet-rating/wallet-rating.comp
 import { CareerPlanComponent } from './career/career-plan/career-plan.component';
 import { MyCareerQuizAttemptsComponent } from './career/my-career-quiz-attempts/my-career-quiz-attempts.component';
 import { IutubeListComponent } from './iutube/iutube-list/iutube-list.component';
+import { IutubeDetailComponent } from './iutube/iutube-detail/iutube-detail.component';
+import { IutubeVideosComponent } from './iutube/iutube-videos/iutube-videos.component';
+import { IutubeAuthorsComponent } from './iutube/iutube-authors/iutube-authors.component';
 
 
 @NgModule({
@@ -142,6 +145,9 @@ import { IutubeListComponent } from './iutube/iutube-list/iutube-list.component'
         CareerPlanComponent,
         MyCareerQuizAttemptsComponent,
         IutubeListComponent,
+        IutubeDetailComponent,
+        IutubeVideosComponent,
+        IutubeAuthorsComponent,
     ],
   imports: [
     CommonModule,

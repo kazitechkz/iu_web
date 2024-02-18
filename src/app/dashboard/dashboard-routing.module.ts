@@ -58,6 +58,9 @@ import {WalletRatingComponent} from "./wallet/wallet-rating/wallet-rating.compon
 import {CareerPlanComponent} from "./career/career-plan/career-plan.component";
 import {MyCareerQuizAttemptsComponent} from "./career/my-career-quiz-attempts/my-career-quiz-attempts.component";
 import {IutubeListComponent} from "./iutube/iutube-list/iutube-list.component";
+import {IutubeVideosComponent} from "./iutube/iutube-videos/iutube-videos.component";
+import {IutubeDetailComponent} from "./iutube/iutube-detail/iutube-detail.component";
+import {IutubeAuthorsComponent} from "./iutube/iutube-authors/iutube-authors.component";
 
 
 const routes: Routes = [
@@ -253,6 +256,18 @@ const routes: Routes = [
       {
         path: 'iutube',
         component: IutubeListComponent
+      },
+      {
+        path: 'iutube-single-video/:alias',
+        component: IutubeDetailComponent
+      },
+      {
+        path: 'iutube-videos',
+        component: IutubeVideosComponent
+      },
+      {
+        path: 'iutube-author/:id',
+        component: IutubeAuthorsComponent
       },
       {
         path: 'my-tickets',

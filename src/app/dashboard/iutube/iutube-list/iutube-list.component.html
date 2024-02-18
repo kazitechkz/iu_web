@@ -1,7 +1,114 @@
 <div class="container mx-auto">
-  <div class="grid grid-cols-12">
-    <div class="col-span-12 bg-green-500 flex justify-center items-center h-full">
-      <youtube-player videoId="mVjYG9TSN88"/>
+  <div class="grid grid-cols-12 my-4">
+    <div class="col-span-12 flex justify-center items-center mb-5 rounded-xl shadow-lg p-5">
+        <div class="md:w-10/12">
+          <div class="relative mb-4 flex w-full flex-wrap items-stretch">
+            <input
+              type="search"
+              class="relative m-0 block min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-3 text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
+              placeholder="Поиск по названию"
+              aria-label="Search"
+              aria-describedby="button-addon2" />
+            <!--Search icon-->
+            <span
+              class="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700 dark:text-neutral-200"
+              id="basic-addon2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              class="h-5 w-5">
+              <path
+                fill-rule="evenodd"
+                d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                clip-rule="evenodd" />
+            </svg>
+          </span>
+          </div>
+        </div>
+        <div class="md:w-2/12">
+          <div class="relative mb-4 flex w-full flex-wrap items-stretch">
+
+          </div>
+        </div>
+    </div>
+    <div class="col-span-12">
+      <div class="grid grid-cols-12 min-h-[300px] shadow-xl rounded-xl relative">
+        <div class="col-span-12 lg:col-span-6 flex items-center relative overflow-hidden">
+            <div class="z-10 p-4 lg:pl-5">
+              <p class="text-xl lg:text-2xl font-bold">
+                Смотрите сотни видео по подготовке к ЕНТ абсолютно бесплатно!
+              </p>
+              <p class="text-sm mt-5">
+                Изучайте сотни видео, подготовленных методологами для ЕНТ по 16 предметам, и получите всестороннее понимание каждой дисциплины. Наши эксперты разработали каждый урок, чтобы обеспечить вам лучшее понимание материала и подготовить вас к успешной сдаче экзамена. С нами вы обретете уверенность в своих знаниях!
+              </p>
+            </div>
+        </div>
+        <div class="col-span-12 lg:col-span-6 flex justify-center items-end">
+          <img src="/assets/images/bear-iutube.webp" class="max-w-[300px] md:max-w-[500px]"/>
+        </div>
+        </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-12" *ngIf="subjects">
+    <div class="col-span-12">
+      <owl-carousel-o [options]="customOptions" class="py-2 px-3">
+        <ng-template carouselSlide *ngFor="let subject of subjects">
+          <div class="cursor-pointer">
+            <div class="w-full flex justify-center items-center">
+              <img
+                style="width: 50px!important; height: 50px!important;"
+                class="rounded-full border-2 border-red-500" src="{{ImageHelper.getImage(subject.image?.url)}}" />
+            </div>
+            <p class="text-xs text-center my-2">
+              {{subject | globalTranslate:"title":translate.currentLang}}
+            </p>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-5 my-5">
+    <div class="col-span-12 my-5">
+      <p class="text-lg lg:text-xl xl:text-3xl text-black font-bold">
+        Рекомендуемые
+      </p>
+    </div>
+    <div
+      *ngFor="let i of [1,2,3,4,5,6,7,8,9]"
+      [routerLink]="'/'+ RoutesName.iuTubeVideoSingle + '/' + 'kyNYqH2zoiE'"
+      class="col-span-12 sm:col-span-6 lg:col-span-4 2xl:col-span-3 border-red-500 cursor-pointer min-h-[280px] mt-2 h-full w-full rounded-xl shadow-xl">
+      <div
+        class="youtube-player-video h-[250px] rounded-tr-xl rounded-tl-xl flex justify-center items-center w-full bg-no-repeat bg-cover relative"
+        [ngStyle]="{'background-image': 'url(' + ImageHelper.getYoutubeThumbnail('https://www.youtube.com/watch?v=kyNYqH2zoiE&t=22s') + ')'}"
+      >
+        <fa-icon class="text-rose-500 text-4xl" [icon]="faPlay"></fa-icon>
+      </div>
+      <div class="px-3 pt-3">
+        <div class="flex justify-around">
+          <div class="w-[30px] h-[30px] min-w-[30px] mr-2">
+            <img src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png" class="shadow-lg rounded-full max-w-full h-auto align-middle border-none" />
+          </div>
+          <p class="ml-1 text-sm text-black font-bold">
+            {{
+            "Run ng serve for a dev server. Navigate to http://localhost:4200/. The application will automatically reload if you change any of the source files.".length > 50
+            ? "Run ng serve for a dev server. Navigate to http://localhost:4200/. The application will automatically reload if you change any of the source files.".slice(0,50) + "..."
+              :"Run ng serve for a dev server. Navigate to http://localhost:4200/."
+            }}
+          </p>
+        </div>
+        <div class="mt-2 text-right flex justify-end">
+          <div class="w-full">
+            <p class="ml-1 text-xs text-black mt-2 font-bold">
+              Математическая грамотность
+            </p>
+            <p class="ml-1 text-xs text-black mt-2">
+              12:34 11/02/2024
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

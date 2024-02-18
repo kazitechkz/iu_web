@@ -1,0 +1,63 @@
+<div class="container mx-auto">
+  <div class="grid grid-cols-12 gap-5">
+    <div class="col-span-12 md:col-span-6 xl:col-span-9 2xl:col-span-8 my-2">
+      <div class="w-full px-3">
+        <div class="youtube-player mb-3">
+          <youtube-player id="youtube-player" videoId="mVjYG9TSN88"/>
+        </div>
+        <div class="flex items-center">
+          <div class="w-[50px] h-[50px] min-w-[50px] mr-2">
+            <img src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png" class="shadow-lg rounded-full max-w-full h-auto align-middle border-none" />
+          </div>
+          <p class="ml-1 text-md lg:text-lg xl:text-2xl text-black font-bold">
+            Ludovico Eiunadi
+          </p>
+        </div>
+        <div>
+          <p class="my-2 text-sm">
+            Placeholder internationalization
+
+            Since the placeholder has an interactive button element, it needs an aria-label for proper accessibility. The default label is "Play video", but you can customize it based on your app through the placeholderButtonLabel input or the YOUTUBE_PLAYER_CONFIG injection token:
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-12 md:col-span-6 xl:col-span-3 2xl:col-span-4 my-2">
+      <div
+        *ngFor="let i of [1,2,3,4,5]"
+        [routerLink]="'/'+ RoutesName.iuTubeVideoSingle + '/' + 'kyNYqH2zoiE'"
+        class="pb-3 shadow-xl mb-3 cursor-pointer min-h-[280px] rounded-xl">
+        <div
+          class="youtube-player-video h-[250px] rounded-tr-xl rounded-tl-xl flex justify-center items-center w-full bg-no-repeat bg-cover relative"
+          [ngStyle]="{'background-image': 'url(' + ImageHelper.getYoutubeThumbnail('https://www.youtube.com/watch?v=kyNYqH2zoiE&t=22s') + ')'}"
+        >
+          <fa-icon class="text-rose-500 text-4xl" [icon]="faPlay"></fa-icon>
+        </div>
+        <div class="px-3 pt-3">
+          <div class="flex justify-around">
+            <div class="w-[30px] h-[30px] min-w-[30px] mr-2">
+              <img src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png" class="shadow-lg rounded-full max-w-full h-auto align-middle border-none" />
+            </div>
+            <p class="ml-1 text-sm text-black font-bold">
+              {{
+              "Run ng serve for a dev server. Navigate to http://localhost:4200/. The application will automatically reload if you change any of the source files.".length > 50
+                ? "Run ng serve for a dev server. Navigate to http://localhost:4200/. The application will automatically reload if you change any of the source files.".slice(0,50) + "..."
+                :"Run ng serve for a dev server. Navigate to http://localhost:4200/."
+              }}
+            </p>
+          </div>
+          <div class="mt-2 text-right flex justify-end">
+            <div class="w-full">
+              <p class="ml-1 text-xs text-black mt-2 font-bold">
+                Математическая грамотность
+              </p>
+              <p class="ml-1 text-xs text-black mt-2">
+                12:34 11/02/2024
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

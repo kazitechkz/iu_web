@@ -68,4 +68,8 @@ export enum RoutesName {
     careerQuizPlan="dashboard/career-quiz-plans",
     myCareerQuizAttempts="dashboard/my-career-quiz-attempts",
     iuTube="dashboard/iutube",
+    iuTubeVideos="dashboard/iutube-videos",
+    iuTubeVideoSingle="dashboard/iutube-single-video",
+    iuTubeAuthor="dashboard/iutube-author",
+
 }
