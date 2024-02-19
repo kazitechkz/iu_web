@@ -9,6 +9,7 @@ import {RoutesName} from "../../core/constants/routes.constants";
 import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {StrHelper} from "../../core/helpers/str.helper";
 import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
+import {faEnvelope, faKey} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
     selector: 'app-login',
@@ -62,4 +63,6 @@ export class LoginComponent {
 
   protected readonly RoutesName = RoutesName;
   protected readonly StrHelper = StrHelper;
+  protected readonly faKey = faKey;
+  protected readonly faEnvelope = faEnvelope;
 }

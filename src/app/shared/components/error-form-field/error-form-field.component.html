@@ -1,0 +1,7 @@
+<div class="component-wrapper">
+  <ng-content></ng-content>
+
+  <div *ngIf="errorMessage" class="text-danger">
+    {{ errorMessage }}
+  </div>
+</div>

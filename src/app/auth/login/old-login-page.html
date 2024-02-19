@@ -1,0 +1,87 @@
+<div class="container mx-auto min-h-[100vh] py-5 flex justify-center items-center">
+  <div class="w-full sm:w-full mobile:w-full md:w-10/12 md:grid md:grid-cols-12 card mx-5 py-12 min-h-[640px]">
+    <div class="mobile:h-[200px] sm:h-[200px] md:h-full visible:none md:d-block md:col-span-6 bg-[#C4C4C4] rounded-l-lg bg-center bg-cover bg-no-repeat"
+         style='background-image: url("assets/images/auth.webp")'>
+    </div>
+
+    <div class="col-span-12 md:col-span-6 visible:none md:d-block bg-red-50 py-4 px-5 md:px-12 md:py-12 rounded-r-lg">
+      <h1 class="text-green-500 text-xl font-bold">I-UNION</h1>
+      <div class="flex w-full justify-between my-4">
+        <p class="text-sm md:text-2xl capitalize text-dark ">{{ 'LOGIN' | translate }}</p>
+        <div class="flex">
+          <p class="text-dark mx-2 cursor-pointer" [ngClass]="this.translate.currentLang == 'kk' ? 'text-green-500' : ''" (click)="changeLang('kk')">Kaz</p>
+          <p class="text-dark mx-2 cursor-pointer" [ngClass]="this.translate.currentLang == 'ru' ? 'text-green-500' : ''" (click)="changeLang('ru')">Rus</p>
+        </div>
+      </div>
+
+      <!--            <div class="mt-8 mb-4">-->
+      <!--        <span class="text-xl text-dark">-->
+      <!--          {{ 'REGISTER' | translate }}-->
+      <!--            <app-rounded-social-button [icon]="faGoogle" [bg_color]="'bg-[#FF904D]'"/>-->
+      <!--          <app-rounded-social-button [icon]="faFacebookF" [bg_color]="'bg-[#3B5998]'"/>-->
+      <!--            {{ 'OR' | translate }}-->
+      <!--        </span>-->
+      <!--            </div>-->
+        <form (ngSubmit)="onSubmit()" [formGroup]="login_form">
+        <!--Email input-->
+        <app-input-field
+          [formControlName]="'email'"
+          [input_name]="'email'"
+          [type]="'email'"
+          [placeholder]="'EMAIL' | translate"
+          [label]="'EMAIL' | translate"
+          [error_message]="'email_is_not_right'"
+          [backErrors]="errors"
+          ngDefaultControl
+        />
+        <!--Password input-->
+        <app-input-field
+          [formControlName]="'password'"
+          [input_name]="'password'"
+          [type]="'password'"
+          [placeholder]="'PASSWORD' | translate"
+          [label]="'PASSWORD' | translate"
+          [error_message]="'password_is_not_right'"
+          [backErrors]="errors"
+          ngDefaultControl
+        />
+
+        <!--Terms and condition-->
+        <div class="mb-[0.125rem] block min-h-[1.5rem]">
+
+                    <span
+                      class="inline-block hover:cursor-pointer text-md text-left body-text">
+                        {{'FORGET_PASSWORD' | translate}} <a [routerLink]="[StrHelper.getRouteName(RoutesName.resetRoute)]" class="main-tertiary-color">{{'RESET_PASSWORD' | translate}}</a>
+                    </span>
+        </div>
+
+        <!--Send Button -->
+        <div class="flex my-4">
+          <button *ngIf="!isSend"
+                  [disabled]="!login_form.valid"
+                  type="submit"
+                  [ngClass]="login_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'"
+                  class="mx-auto inline-block rounded main-green-bg px-6 py-2 font-semibold leading-6 text-sm uppercase text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]">
+            {{"LOGIN" | translate}}
+          </button>
+          <button *ngIf="isSend" type="button" class="inline-flex justify-center mx-auto items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150 cursor-not-allowed" disabled>
+            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Processing...
+          </button>
+        </div>
+        <!-- Login -->
+        <div class="my-4 text-center">
+                    <span
+                      class="inline-block pl-[0.15rem] hover:cursor-pointer text-md main-text">
+                        {{'DONT_HAVE_ACCOUNT' | translate}} <a class="main-tertiary-color" [routerLink]="[StrHelper.getRouteName(RoutesName.registerRoute)]">
+                      {{'REGISTER' | translate}}
+                    </a>
+                    </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

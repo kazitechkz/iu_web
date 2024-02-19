@@ -1,6 +1,7 @@
 export enum RoutesName {
     loginRoute = "auth/login",
     registerRoute = "auth/register",
+    teacherRegisterRoute = "auth/teacher-register",
     dashboard = "dashboard/index",
     teacher = "teacher/index",
     teacherClassrooms = "classrooms",
