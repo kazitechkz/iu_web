@@ -1,33 +1,17 @@
-<div class="container mx-auto">
-  <div class="grid grid-cols-12 gap-3 p-3">
-    <div class="col-span-12 sm:col-span-6 md:col-span-12 mb-2 shadow-lg rounded-xl cursor-pointer" *ngFor="let i of [1,2,3,4,5]">
-      <div class="grid grid-cols-12 min-h-[250px]">
-        <div class="col-span-12 md:col-span-6 lg:col-span-4 rounded-xl min-h-[250px] h-full bg-cover bg-no-repeat bg-center bg-[url('https://mdbcdn.b-cdn.net/img/new/slides/006.webp')]"></div>
-        <div class="col-span-12 md:col-span-6 lg:col-span-8 p-4 ">
-          <div>
-            <h5
-              class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
-              Card title
-            </h5>
-            <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-              This is a wider card with supporting text below as a natural lead-in
-              to additional content. This content is a little bit longer.
-            </p>
-            <div class="flex items-center my-2">
-              <div class="w-[30px] h-[30px] min-w-[30px] mr-2">
-                <img src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png" class="shadow-lg rounded-full max-w-full h-auto align-middle border-none" />
-              </div>
-              <p class="text-base text-neutral-600 dark:text-neutral-200">
-                Ludovico Eiunadi
-              </p>
-            </div>
-            <p class="text-xs text-neutral-500 dark:text-neutral-300">
-              Last updated 3 mins ago
-            </p>
-          </div>
-        </div>
+<section>
+  <div class="container mx-auto" >
+    <app-iutube-search/>
+  </div>
+  <div class="container mx-auto" *ngIf="videosData">
+    <app-iutube-card-horizontal
+      *ngFor="let video of videosData.data | paginate: { itemsPerPage: videosData.per_page, currentPage: videosData.current_page,totalItems:videosData.total }"
 
+      [iutube-video]="video"></app-iutube-card-horizontal>
+    <div class="grid grid-cols-12 my-3">
+      <div class="col-span-12 my-2 flex justify-center" *ngIf="videosData.last_page > 1">
+        <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
       </div>
     </div>
   </div>
-</div>
+
+</section>

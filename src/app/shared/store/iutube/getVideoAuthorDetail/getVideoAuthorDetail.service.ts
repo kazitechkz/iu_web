@@ -15,11 +15,9 @@ export class GetVideoAuthorDetailService {
   private _http = inject(HttpClient)
 
   getVideoAuthorDetailService(requestData:GetVideoAuthorDetailRequest): Observable<ResponseData<GetVideoAuthorDetailModel>> {
-    let httpParameters = new HttpParams();
-    if(requestData.page){
-      httpParameters.set("page",requestData.page.toString())
-    }
-    return this._http.get<ResponseData<GetVideoAuthorDetailModel>>(environment.baseUrl + APIRoutesName.getVideoAuthor  + "/" + requestData.id.toString(),{params:httpParameters});
+    let params = new HttpParams();
+    params = params.append("page",requestData.page.toString());
+    return this._http.get<ResponseData<GetVideoAuthorDetailModel>>(environment.baseUrl + APIRoutesName.getVideoAuthor  + "/" + requestData.id.toString(),{params:params});
   }
 
 }

@@ -12,6 +12,7 @@ import {RoutesName} from "../../../core/constants/routes.constants";
 import {getMainVideosSelector} from "../../../shared/store/iutube/getMainVideos/getMainVideos.selector";
 import {GetMainVideosModel} from "../../../shared/store/iutube/getMainVideos/getMainVideos.model";
 import {getMainVideosAction} from "../../../shared/store/iutube/getMainVideos/getMainVideos.action";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-iutube-list',
@@ -23,6 +24,7 @@ export class IutubeListComponent implements OnInit{
   //Injection
   private _store = inject(Store);
   destroyRef = inject(DestroyRef);
+  private router = inject(Router);
   public translate = inject(GlobalTranslateService);
   //Injection
   //Data
@@ -65,6 +67,13 @@ export class IutubeListComponent implements OnInit{
     this._store.dispatch(getMainVideosAction());
   }
 
+  redirectTo(subjectId:number){
+    this.router.navigate(
+      ['/'+ RoutesName.iuTubeVideos],
+      {
+        queryParams: {subject_id:subjectId},}
+    );
+  }
 
   customOptions: OwlOptions = {
     loop: true,

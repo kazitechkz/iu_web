@@ -1,55 +1,57 @@
-<div class="container mx-auto">
-  <div class="grid grid-cols-12">
+<div class="container mx-auto" *ngIf="authorModel">
+  <app-iutube-search/>
+
+  <div class="grid grid-cols-12" *ngIf="authorModel.author">
     <div class="col-span-12">
-      <div class="w-full py-4 bg-white border border-gray-200 rounded-lg shadow">
+      <div class="w-full py-4 border border-gray-200 rounded-lg shadow bg-no-repeat bg-cover bg-center"  style="background-image: url('/assets/images/new_bg_2.jpg')">
         <div class="flex flex-col w-full items-center py-5">
-          <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="/assets/images/teacher.webp"/>
-          <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
-          <span class="text-sm text-gray-500 dark:text-gray-400">Visual Designer</span>
+          <div class="w-24 h-24 mb-3 rounded-full shadow-lg border-white border-2 bg-no-repeat bg-cover bg-center"
+               [ngStyle]="{'background-image':'url(' +ImageHelper.getImage(authorModel.author.file?.url) +')'}"
+          ></div>
+          <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{authorModel.author.name}}</h5>
+          <span class="text-sm text-gray-500 dark:text-gray-400 text-center"
+                *ngIf="authorModel.author.description"
+                [innerHTML]="authorModel.author.description">
+          </span>
+          <div class="flex my-4">
+            <a *ngIf="authorModel.author.instagram_url" target="_blank" href="{{authorModel.author.instagram_url}}" class="mx-1 w-10 h-10 bg-[#ae29a3] flex justify-center items-center cursor-pointer rounded-full text-white">
+              <fa-icon class="text-xl" [icon]="faInstagram"></fa-icon>
+            </a>
+            <a *ngIf="authorModel.author.vk_url" target="_blank" href="{{authorModel.author.vk_url}}" class="mx-1 w-10 h-10 bg-[#4e7db2] flex justify-center items-center cursor-pointer rounded-full text-white">
+              <fa-icon class="text-xl" [icon]="faVk"></fa-icon>
+            </a>
+            <a *ngIf="authorModel.author.facebook_url" target="_blank" href="{{authorModel.author.facebook_url}}" class="mx-1 w-10 h-10 bg-[#0862f6] flex justify-center items-center cursor-pointer rounded-full text-white">
+              <fa-icon class="text-xl" [icon]="faFacebookF"></fa-icon>
+            </a>
+            <a *ngIf="authorModel.author.linkedin_url" target="_blank" href="{{authorModel.author.linkedin_url}}" class="mx-1 w-10 h-10 bg-[#0e72a3] flex justify-center items-center cursor-pointer rounded-full text-white">
+              <fa-icon class="text-xl" [icon]="faLinkedin"></fa-icon>
+            </a>
+            <a *ngIf="authorModel.author.email" target="_blank" href="mailto:{{authorModel.author.email}}" class="mx-1 w-10 h-10 bg-rose-500 flex justify-center items-center cursor-pointer rounded-full text-white">
+              <fa-icon class="text-xl" [icon]="faGoogle"></fa-icon>
+            </a>
+            <a *ngIf="authorModel.author.phone" target="_blank" href="tel:{{authorModel.author.phone}}" class="mx-1 w-10 h-10 bg-blue-400 flex justify-center items-center cursor-pointer rounded-full text-white">
+              <fa-icon class="text-xl" [icon]="faPhoneAlt"></fa-icon>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="grid grid-cols-12 gap-5 my-5">
+  <div class="grid grid-cols-12 gap-5 my-5" *ngIf="authorModel.videos">
     <div class="col-span-12 my-5">
       <p class="text-lg lg:text-xl xl:text-3xl text-black font-bold">
         Видеоуроки автора
       </p>
     </div>
     <div
-      *ngFor="let i of [1,2,3,4,5,6,7,8,9]"
-      [routerLink]="'/'+ RoutesName.iuTubeVideoSingle + '/' + 'kyNYqH2zoiE'"
+      *ngFor="let video of authorModel.videos.data | paginate: { itemsPerPage: authorModel.videos.per_page, currentPage: authorModel.videos.current_page,totalItems:authorModel.videos.total }"
       class="col-span-12 sm:col-span-6 lg:col-span-4 2xl:col-span-3 border-red-500 cursor-pointer min-h-[280px] mt-2 h-full w-full rounded-xl shadow-xl">
-      <div
-        class="youtube-player-video h-[250px] rounded-tr-xl rounded-tl-xl flex justify-center items-center w-full bg-no-repeat bg-cover relative"
-        [ngStyle]="{'background-image': 'url(' + ImageHelper.getYoutubeThumbnail('https://www.youtube.com/watch?v=kyNYqH2zoiE&t=22s') + ')'}"
-      >
-        <fa-icon class="text-rose-500 text-4xl" [icon]="faPlay"></fa-icon>
-      </div>
-      <div class="px-3 pt-3">
-        <div class="flex justify-around">
-          <div class="w-[30px] h-[30px] min-w-[30px] mr-2">
-            <img src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png" class="shadow-lg rounded-full max-w-full h-auto align-middle border-none" />
-          </div>
-          <p class="ml-1 text-sm text-black font-bold">
-            {{
-            "Run ng serve for a dev server. Navigate to http://localhost:4200/. The application will automatically reload if you change any of the source files.".length > 50
-              ? "Run ng serve for a dev server. Navigate to http://localhost:4200/. The application will automatically reload if you change any of the source files.".slice(0,50) + "..."
-              :"Run ng serve for a dev server. Navigate to http://localhost:4200/."
-            }}
-          </p>
-        </div>
-        <div class="mt-2 text-right flex justify-end">
-          <div class="w-full">
-            <p class="ml-1 text-xs text-black mt-2 font-bold">
-              Математическая грамотность
-            </p>
-            <p class="ml-1 text-xs text-black mt-2">
-              12:34 11/02/2024
-            </p>
-          </div>
-        </div>
-      </div>
+      <app-iutube-card-vertical [iutube-video]="video"/>
+    </div>
+
+
+    <div class="col-span-12 my-2 flex justify-center" *ngIf="authorModel.videos.last_page > 1">
+      <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
     </div>
   </div>
 

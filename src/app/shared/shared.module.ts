@@ -22,6 +22,9 @@ import { HomeFooterComponent } from './components/home-footer/home-footer.compon
 import {InputMaskModule} from "@ngneat/input-mask";
 import { IutubeCardVerticalComponent } from './components/iutube-card-vertical/iutube-card-vertical.component';
 import { ErrorFormFieldComponent } from './components/error-form-field/error-form-field.component';
+import { IutubeCardHorizontalComponent } from './components/iutube-card-horizontal/iutube-card-horizontal.component';
+import { IutubeSearchComponent } from './components/iutube-search/iutube-search.component';
+import {UiSwitchModule} from "ngx-ui-switch";
 
 @NgModule({
   declarations: [
@@ -39,35 +42,40 @@ import { ErrorFormFieldComponent } from './components/error-form-field/error-for
     ErrorFormFieldComponent,
     HomeFooterComponent,
     IutubeCardVerticalComponent,
+    IutubeCardHorizontalComponent,
+    IutubeSearchComponent,
   ],
-    imports: [
-        CommonModule,
-        FontAwesomeModule,
-        HttpClientModule,
-        CoreModule,
-        ReactiveFormsModule,
-        RouterLink,
-        RouterLinkActive,
-        SlickCarouselModule,
-        NgxSmartModalModule,
-        InputMaskModule,
-    ],
-    exports: [
-        InputFieldComponent,
-        RoundedSocialButtonComponent,
-        TranslateModule,
-        InputFieldComponent,
-        SidebarComponent,
-        NavbarComponent,
-        HomeNavbarComponent,
-        TeacherSidebarComponent,
-        AnnouncementListComponent,
-        ModalUntTrainerComponent,
-        ModalContentOfferComponent,
-        HomeFooterComponent,
-        ErrorFormFieldComponent,
-        IutubeCardVerticalComponent,
-    ],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    HttpClientModule,
+    CoreModule,
+    ReactiveFormsModule,
+    RouterLink,
+    RouterLinkActive,
+    SlickCarouselModule,
+    NgxSmartModalModule,
+    InputMaskModule,
+    UiSwitchModule,
+  ],
+  exports: [
+    InputFieldComponent,
+    RoundedSocialButtonComponent,
+    TranslateModule,
+    InputFieldComponent,
+    SidebarComponent,
+    NavbarComponent,
+    HomeNavbarComponent,
+    TeacherSidebarComponent,
+    AnnouncementListComponent,
+    ModalUntTrainerComponent,
+    ModalContentOfferComponent,
+    HomeFooterComponent,
+    ErrorFormFieldComponent,
+    IutubeCardVerticalComponent,
+    IutubeCardHorizontalComponent,
+    IutubeSearchComponent,
+  ],
   providers:[TranslateStore ],
 })
 export class SharedModule { }

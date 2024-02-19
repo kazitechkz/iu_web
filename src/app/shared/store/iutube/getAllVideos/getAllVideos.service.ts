@@ -18,16 +18,16 @@ export class GetAllVideosService {
   getAllVideos(requestData:GetAllVideosRequest): Observable<ResponseData<Pagination<IutubeVideo[]>>> {
     let httpParameters = new HttpParams();
     if(requestData.page){
-      httpParameters.set("page",requestData.page.toString())
+      httpParameters = httpParameters.append("page",requestData.page.toString())
     }
     if(requestData.subject_id){
-      httpParameters.set("subject_id",requestData.subject_id.toString())
+      httpParameters = httpParameters.append("subject_id",requestData.subject_id.toString())
     }
     if(requestData.locale_id){
-      httpParameters.set("locale_id",requestData.locale_id.toString())
+      httpParameters =  httpParameters.append("locale_id",requestData.locale_id.toString())
     }
     if(requestData.search){
-      httpParameters.set("search",requestData.search.toString())
+      httpParameters =  httpParameters.append("search",requestData.search.toString())
     }
     return this._http.get<ResponseData<Pagination<IutubeVideo[]>>>(environment.baseUrl + APIRoutesName.getAllVideos,{params:httpParameters});
   }
