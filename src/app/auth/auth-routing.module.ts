@@ -7,6 +7,7 @@ import {ResetComponent} from "./reset/reset.component";
 import {RoutesName} from "../core/constants/routes.constants";
 import {authGuard} from "../core/guards/auth.guard";
 import {guestGuard} from "../core/guards/guest.guard";
+import {TeacherRegisterComponent} from "./teacher-register/teacher-register.component";
 
 const routes: Routes = [
     {
@@ -21,6 +22,10 @@ const routes: Routes = [
             {
                 path: RoutesName.registerRoute,
                 component: RegisterComponent
+            },
+            {
+                path: RoutesName.teacherRegisterRoute,
+                component: TeacherRegisterComponent
             },
             {
                 path: RoutesName.resetRoute,
