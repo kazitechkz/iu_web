@@ -20,6 +20,7 @@ import { ModalUntTrainerComponent } from './components/modal-unt-trainer/modal-u
 import { ModalContentOfferComponent } from './components/modal-content-offer/modal-content-offer.component';
 import { HomeFooterComponent } from './components/home-footer/home-footer.component';
 import {InputMaskModule} from "@ngneat/input-mask";
+import { IutubeCardVerticalComponent } from './components/iutube-card-vertical/iutube-card-vertical.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {InputMaskModule} from "@ngneat/input-mask";
     AnnouncementListComponent,
     ModalUntTrainerComponent,
     ModalContentOfferComponent,
-    HomeFooterComponent
+    HomeFooterComponent,
+    IutubeCardVerticalComponent
   ],
     imports: [
         CommonModule,
@@ -47,21 +49,22 @@ import {InputMaskModule} from "@ngneat/input-mask";
         NgxSmartModalModule,
         InputMaskModule,
     ],
-    exports: [
-        InputFieldComponent,
-        RoundedSocialButtonComponent,
-        TranslateModule,
-        InputFieldComponent,
-        SidebarComponent,
-        NavbarComponent,
-        HomeNavbarComponent,
-        TeacherSidebarComponent,
-        AnnouncementListComponent,
-        ModalUntTrainerComponent,
-        ModalContentOfferComponent,
-        HomeFooterComponent,
+  exports: [
+    InputFieldComponent,
+    RoundedSocialButtonComponent,
+    TranslateModule,
+    InputFieldComponent,
+    SidebarComponent,
+    NavbarComponent,
+    HomeNavbarComponent,
+    TeacherSidebarComponent,
+    AnnouncementListComponent,
+    ModalUntTrainerComponent,
+    ModalContentOfferComponent,
+    HomeFooterComponent,
+    IutubeCardVerticalComponent,
 
-    ],
+  ],
   providers:[TranslateStore ],
 })
 export class SharedModule { }

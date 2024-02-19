@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {
-  faCreditCard,
+  faCreditCard, faFilePen,
   faFileSignature,
   faHandshake,
   faLocation,
@@ -27,4 +27,5 @@ export class HomeFooterComponent {
   protected readonly faGoogle = faGoogle;
   protected readonly Date = Date;
   protected readonly faCreditCard = faCreditCard;
+  protected readonly faFilePen = faFilePen;
 }

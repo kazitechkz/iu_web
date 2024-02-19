@@ -126,6 +126,10 @@ export enum APIRoutesName {
     resultCareerQuiz="result-career-quiz",
     getCareerQuizGroupList="career-quiz-groups-list",
     myCareerAttempts="my-career-attempts",
-    payCareer="pay-career"
+    payCareer="pay-career",
+    getMainVideos="main-videos",
+    getAllVideos="all-videos",
+    getVideoAuthor="video-author-detail",
+    getVideoDetail="video-detail",
 
 }

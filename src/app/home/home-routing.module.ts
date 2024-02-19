@@ -7,6 +7,7 @@ import {PrivacyPolicyComponent} from "./privacy-policy/privacy-policy.component"
 import {ContractOfferComponent} from "./contract-offer/contract-offer.component";
 import {MoneyBackComponent} from "./money-back/money-back.component";
 import {PayOfferComponent} from "./pay-offer/pay-offer.component";
+import {TermsOfUseComponent} from "./terms-of-use/terms-of-use.component";
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: "pay-offer",
         component: PayOfferComponent
+      },
+      {
+        path: "terms-of-use",
+        component: TermsOfUseComponent
       },
       {
         path: "not-found",

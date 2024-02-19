@@ -23,6 +23,7 @@ export class IutubeAuthorsComponent implements OnInit{
   protected readonly ImageHelper = ImageHelper;
   protected RoutesName = RoutesName;
   protected faPlay = faPlay;
+  public authorId:number|null = null;
   //Data
 
   constructor() {
@@ -30,10 +31,9 @@ export class IutubeAuthorsComponent implements OnInit{
 
   ngOnInit(): void {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
-      console.log(params["id"]);
+      this.authorId = params["id"];
     });
     this.onYoutubePlayer();
-
   }
 
   onYoutubePlayer() {

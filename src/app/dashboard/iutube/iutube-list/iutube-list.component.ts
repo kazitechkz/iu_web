@@ -9,6 +9,9 @@ import {OwlOptions} from "ngx-owl-carousel-o";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import {faPlay} from "@fortawesome/free-solid-svg-icons";
 import {RoutesName} from "../../../core/constants/routes.constants";
+import {getMainVideosSelector} from "../../../shared/store/iutube/getMainVideos/getMainVideos.selector";
+import {GetMainVideosModel} from "../../../shared/store/iutube/getMainVideos/getMainVideos.model";
+import {getMainVideosAction} from "../../../shared/store/iutube/getMainVideos/getMainVideos.action";
 
 @Component({
   selector: 'app-iutube-list',
@@ -24,6 +27,7 @@ export class IutubeListComponent implements OnInit{
   //Injection
   //Data
   subjects:Subject[]|null = null;
+  iutubeVideos:GetMainVideosModel|null = null;
   protected readonly ImageHelper = ImageHelper;
   protected RoutesName = RoutesName;
   //Data
@@ -34,11 +38,17 @@ export class IutubeListComponent implements OnInit{
         this.subjects = item.data;
       }
     })
+    this._store.select(getMainVideosSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      if (item.data) {
+        this.iutubeVideos = item.data;
+      }
+    })
   }
 
   ngOnInit(): void {
     this.onYoutubePlayer();
     this.getSubjects();
+    this.getMainVideo();
   }
 
   onYoutubePlayer() {
@@ -49,6 +59,10 @@ export class IutubeListComponent implements OnInit{
 
   getSubjects() {
     this._store.dispatch(subjectGetAction());
+  }
+
+  getMainVideo() {
+    this._store.dispatch(getMainVideosAction());
   }
 
 
