@@ -26,14 +26,4 @@ export class AuthService {
     this._session.removeDataFromLocalStorage(LocalKeysConstants.user)
     this._router.navigateByUrl(RoutesName.loginRoute).then(null)
   }
-
-  registerSubmit(errors:Record<string, string[]> | null = null, requestData: RegisterRequest) {
-    this.store.dispatch(registerAction({requestData: requestData}));
-    this.store.select(getRegisterState).pipe(autoUnsubscribe(this.destroyRef)).subscribe((item: RegisterState) => {
-      if (item.errors) {
-        errors = item.errors;
-      }
-    })
-    return errors
-  }
 }

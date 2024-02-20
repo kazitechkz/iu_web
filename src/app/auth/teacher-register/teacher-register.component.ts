@@ -2,20 +2,17 @@ import {Component, DestroyRef, inject} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {LoginRequest} from "../../shared/store/auth/login/loginRequest";
-import {loginAction} from "../../shared/store/auth/login/login.action";
-import {getLoginState} from "../../shared/store/auth/login/login.selector";
-import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {faEnvelope, faKey, faPhone, faUser} from "@fortawesome/free-solid-svg-icons";
 import {StrHelper} from "../../core/helpers/str.helper";
 import {RoutesName} from "../../core/constants/routes.constants";
 import {faUserAlt} from "@fortawesome/free-solid-svg-icons/faUserAlt";
 import {createMask} from "@ngneat/input-mask";
 import {RegisterRequest} from "../../shared/store/auth/register/RegisterRequest";
+import {AuthService} from "../auth.service";
 import {registerAction} from "../../shared/store/auth/register/Register.action";
 import {getRegisterState} from "../../shared/store/auth/register/Register.selector";
+import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {RegisterState} from "../../shared/store/auth/register/Register.state";
-import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-teacher-register',
@@ -25,7 +22,8 @@ import {AuthService} from "../auth.service";
 export class TeacherRegisterComponent {
   private _store = inject(Store);
   private _service = inject(AuthService)
-
+  destroyRef = inject(DestroyRef);
+  private store = inject(Store)
   public translate = inject(GlobalTranslateService)
   errors:Record<string, string[]> | null = null;
   isSend: boolean = false
@@ -61,7 +59,12 @@ export class TeacherRegisterComponent {
     let requestData = this.register_form.getRawValue() as RegisterRequest;
     if (this.register_form.valid) {
       this.isSend = true
-      this.errors = this._service.registerSubmit(this.errors, requestData)
+      this.store.dispatch(registerAction({requestData: requestData}));
+      this.store.select(getRegisterState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+        if (item.errors) {
+          this.errors = item.errors;
+        }
+      })
     } else {
       this.isSend = false
     }
@@ -77,5 +80,4 @@ export class TeacherRegisterComponent {
   protected readonly RoutesName = RoutesName;
   protected readonly faUser = faUser;
   protected readonly faPhone = faPhone;
-  protected readonly faUserAlt = faUserAlt;
 }

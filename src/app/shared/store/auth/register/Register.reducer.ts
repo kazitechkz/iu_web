@@ -1,30 +1,27 @@
 import {createReducer, on} from "@ngrx/store";
-import {initialRegisterState, RegisterState} from "./Register.state";
-import {RegisterActionTypes} from "./Register.action.types";
 import {registerAction, registerActionFailure, registerActionSuccess} from "./Register.action";
+import {RegisterState} from "./Register.state";
 
 
 const _register_reducer = createReducer(
-    initialRegisterState,
+    RegisterState,
     on(registerAction, (state, action) => {
         return {
-            ...state,
-            is_loading: true
+            ...state
         }
     }),
     on(registerActionSuccess, (state, action) => {
         return {
             ...state,
-            is_loading: false,
-            success: true,
-            errors: null
+            status: true,
+            errors: null,
+            data: action.responseData
         }
     }),
     on(registerActionFailure, (state, action) => {
         return {
             ...state,
-            is_loading: false,
-            success: false,
+            status: false,
             errors: action.errors
         }
     })

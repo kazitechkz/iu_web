@@ -1,11 +1,6 @@
+import {createEntityAdapter, EntityState} from "@ngrx/entity";
 import {ResponseData} from "../../response_data";
 
-export interface RegisterState {
-    success: boolean | null,
-    errors: any,
-}
+export const registerAdapter = createEntityAdapter<ResponseData<string>>();
 
-export const initialRegisterState: RegisterState = {
-    success: null,
-    errors: null,
-};
+export const RegisterState: EntityState<ResponseData<string>> = registerAdapter.getInitialState();

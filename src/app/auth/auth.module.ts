@@ -18,6 +18,7 @@ import {TwNotification, TwSelectModule} from "ng-tw";
 import {InputMaskModule} from "@ngneat/input-mask";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { TeacherRegisterComponent } from './teacher-register/teacher-register.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { TeacherRegisterComponent } from './teacher-register/teacher-register.co
         RegisterComponent,
         ResetComponent,
         TeacherRegisterComponent,
+        VerifyEmailComponent,
     ],
     imports: [
         CommonModule,

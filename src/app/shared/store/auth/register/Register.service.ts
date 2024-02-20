@@ -13,8 +13,8 @@ import {APIRoutesName} from "../../../../core/constants/api-routes.constants";
 export class RegisterService {
     private _http = inject(HttpClient);
 
-    RegisterUser(requestData: RegisterRequest): Observable<ResponseData<boolean>> {
-        return this._http.post<ResponseData<boolean>>(environment.baseUrl + APIRoutesName.registerRoute, requestData);
+    RegisterUser(requestData: RegisterRequest): Observable<ResponseData<string>> {
+        return this._http.post<ResponseData<string>>(environment.baseUrl + APIRoutesName.registerRoute, requestData);
     }
 
 

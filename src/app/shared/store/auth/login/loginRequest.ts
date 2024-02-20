@@ -8,5 +8,6 @@ export interface LoginRequest {
 export interface AuthInfo {
   token: string,
   role: string,
-  user: Me
+  user: Me,
+  redirectURL: string
 }

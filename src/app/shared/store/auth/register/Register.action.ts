@@ -6,6 +6,6 @@ import {ResponseData} from "../../response_data";
 
 export const registerAction = createAction(RegisterActionTypes.OnRegister, props<{ requestData: RegisterRequest }>());
 export const registerActionSuccess = createAction(RegisterActionTypes.OnRegisterSuccess, props<{
-    responseData: ResponseData<boolean>
+    responseData: ResponseData<string>
 }>());
 export const registerActionFailure = createAction(RegisterActionTypes.OnRegisterFailure, props<{ errors: any }>());

@@ -43,7 +43,7 @@ export class RegisterEffect {
         () => {
             return this.action$.pipe(
                 ofType(registerActionSuccess),
-                exhaustMap(() => this.router.navigate([RoutesName.loginRoute]))
+                exhaustMap((action) => window.location.href = action.responseData.data!)
             );
         },
         {dispatch: false}

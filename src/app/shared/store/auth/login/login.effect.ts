@@ -27,6 +27,7 @@ export class LoginEffect {
       switchMap((action) => {
         return this._service.loginUser(action.requestData).pipe(
           switchMap(data => {
+            if (data.data?.redirectURL.trim().length === 0) {
               if (data.data?.role == 'student') {
                 this._notification.show({type: 'success', title: 'Success', text: 'Добро пожаловать!'});
                 this._localStorage.setDataToLocalStorage(LocalKeysConstants.token, data.data?.token as string)
@@ -44,6 +45,11 @@ export class LoginEffect {
               return of(
                 loginActionSuccess({responseData: data}),
               )
+            } else {
+              this._notification.show({type: 'danger', title: 'Error', text: 'Email is not verified!'});
+              window.location.href = data.data?.redirectURL!
+              return of()
+              }
             }
           ),
           catchError((_error) =>
