@@ -1,36 +1,30 @@
-import {Component, DestroyRef, inject, OnDestroy, OnInit} from '@angular/core';
-import { faGoogle,faFacebookF } from '@fortawesome/free-brands-svg-icons';
-import {FormControl, FormGroup, isFormGroup, Validators} from "@angular/forms";
+import {Component, DestroyRef, inject} from '@angular/core';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
-import {registerAction} from "../../shared/store/auth/register/Register.action";
 import {RegisterRequest} from "../../shared/store/auth/register/RegisterRequest";
-import {getRegisterState} from "../../shared/store/auth/register/Register.selector";
-import {error} from "@angular/compiler-cli/src/transformers/util";
-import {RegisterState} from "../../shared/store/auth/register/Register.state";
-import {Subscription} from "rxjs";
 import {RoutesName} from "../../core/constants/routes.constants";
-import {NgxSpinnerService} from "ngx-spinner";
-import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {StrHelper} from "../../core/helpers/str.helper";
 import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
 import {createMask} from "@ngneat/input-mask";
+import {faEnvelope, faKey, faPhone, faUser} from "@fortawesome/free-solid-svg-icons";
+import {AuthService} from "../auth.service";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  faGoogle = faGoogle;
-  faFacebookF = faFacebookF;
+  isSend: boolean = false
   errors:Record<string, string[]> | null = null;
   destroyRef = inject(DestroyRef);
-  private store = inject(Store<RegisterComponent>)
+  private _service = inject(AuthService)
   public translate = inject(GlobalTranslateService)
+  phone_mask = createMask('+7 999 999 9999');
   register_form : FormGroup = new FormGroup({
-    cb: new FormControl("", [
-      Validators.requiredTrue
-    ]),
-    role: new FormControl("", [
+    // cb: new FormControl("", [
+    //   Validators.requiredTrue
+    // ]),
+    role: new FormControl("student", [
       Validators.required,
     ]),
     email: new FormControl("", [
@@ -40,6 +34,7 @@ export class RegisterComponent {
     name: new FormControl("", [
       Validators.required,
       Validators.max(255),
+      Validators.minLength(3)
     ]),
     parent_name: new FormControl("", [
       Validators.required,
@@ -65,15 +60,20 @@ export class RegisterComponent {
 
   onSubmit() {
     let requestData = this.register_form.getRawValue() as RegisterRequest;
-    // console.log(requestData)
-    this.store.dispatch(registerAction({requestData: requestData}));
-    this.store.select(getRegisterState).pipe(autoUnsubscribe(this.destroyRef)).subscribe((item: RegisterState) => {
-      if (item.errors) {
-        this.errors = item.errors;
-      }
-    })
+    if (this.register_form.valid) {
+      this.isSend = true
+      this.errors = this._service.registerSubmit(this.errors, requestData)
+    } else {
+      this.isSend = false
+    }
   }
-
+  changeLang(lang: string) {
+    this.translate.onLangChange(lang)
+  }
   protected readonly RoutesName = RoutesName;
   protected readonly StrHelper = StrHelper;
+  protected readonly faUser = faUser;
+  protected readonly faEnvelope = faEnvelope;
+  protected readonly faPhone = faPhone;
+  protected readonly faKey = faKey;
 }

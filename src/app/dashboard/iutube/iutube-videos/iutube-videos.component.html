@@ -1,0 +1,17 @@
+<section>
+  <div class="container mx-auto" >
+    <app-iutube-search/>
+  </div>
+  <div class="container mx-auto" *ngIf="videosData">
+    <app-iutube-card-horizontal
+      *ngFor="let video of videosData.data | paginate: { itemsPerPage: videosData.per_page, currentPage: videosData.current_page,totalItems:videosData.total }"
+
+      [iutube-video]="video"></app-iutube-card-horizontal>
+    <div class="grid grid-cols-12 my-3">
+      <div class="col-span-12 my-2 flex justify-center" *ngIf="videosData.last_page > 1">
+        <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+</section>

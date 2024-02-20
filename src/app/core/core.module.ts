@@ -9,6 +9,7 @@ import {GlobalTranslatePipe} from "./pipes/globalTranslate.pipe";
 import {MathJaxPipe} from "./pipes/mathJax.pipe";
 import { GetYoutubeIDPipe } from './pipes/get-youtube-id.pipe';
 import { KeysPipe } from './pipes/keys.pipe';
+import { ShowErrorDirective } from './directives/show-error.directive';
 
 @NgModule({
     declarations: [
@@ -17,20 +18,22 @@ import { KeysPipe } from './pipes/keys.pipe';
       MathJaxPipe,
       GetYoutubeIDPipe,
       KeysPipe,
+      ShowErrorDirective,
   ],
     imports: [
         CommonModule,
         ToastrModule.forRoot(), // ToastrModule added
     ],
     providers: [TranslateStore, GlobalTranslatePipe, TruncatePipe,],
-    exports: [
-        TranslateModule,
-        GlobalTranslatePipe,
-        MathJaxPipe,
-        GetYoutubeIDPipe,
-        KeysPipe,
-        TruncatePipe,
-    ]
+  exports: [
+    TranslateModule,
+    GlobalTranslatePipe,
+    MathJaxPipe,
+    GetYoutubeIDPipe,
+    KeysPipe,
+    TruncatePipe,
+    ShowErrorDirective,
+  ]
 })
 export class CoreModule {
 }

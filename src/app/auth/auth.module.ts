@@ -16,6 +16,8 @@ import {registerReducer} from "../shared/store/auth/register/Register.reducer";
 import {RxReactiveFormsModule} from "@rxweb/reactive-form-validators";
 import {TwNotification, TwSelectModule} from "ng-tw";
 import {InputMaskModule} from "@ngneat/input-mask";
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { TeacherRegisterComponent } from './teacher-register/teacher-register.component';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import {InputMaskModule} from "@ngneat/input-mask";
         LoginComponent,
         RegisterComponent,
         ResetComponent,
+        TeacherRegisterComponent,
     ],
     imports: [
         CommonModule,
@@ -34,6 +37,7 @@ import {InputMaskModule} from "@ngneat/input-mask";
         RxReactiveFormsModule,
         TwSelectModule,
         InputMaskModule,
+        FontAwesomeModule,
 
     ],
   providers: [TwNotification]

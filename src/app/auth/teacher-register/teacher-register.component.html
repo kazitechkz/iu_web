@@ -1,0 +1,111 @@
+<div class="bg-gray-800 h-[100vh] flex justify-center items-center">
+  <div class="pr-3 pl-3">
+    <div fontfamily="Arial" class="pt-0 pr-3 pb-0 pl-3 mr-auto ml-auto max-w-7xl sm:px-5 lg:px-12">
+      <div class="bg-white rounded-xl sm:p-10">
+        <div class="grid lg:gap-x-10 lg:grid-cols-12 lg:gap-y-8 grid-cols-1">
+          <div class="hidden lg:col-span-5 lg:block">
+            <img
+              src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-1.2.1&ixid=MnwxM[…]G90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80" class="rounded-2xl w-full h-full object-cover"/>
+          </div>
+          <div class="pt-8 pr-8 pb-8 pl-8 lg:col-span-7">
+            <div class="flex w-full justify-between my-4">
+              <p class="text-gray-900 text-left font-extrabold leading-snug tracking-tight mb-4
+              md:text-4xl">iU-test</p>
+              <div class="flex">
+                <p class="text-dark mx-2 cursor-pointer" [ngClass]="this.translate.currentLang == 'kk' ? 'text-green-500' : ''" (click)="changeLang('kk')">Kaz</p>
+                <p class="text-dark mx-2 cursor-pointer" [ngClass]="this.translate.currentLang == 'ru' ? 'text-green-500' : ''" (click)="changeLang('ru')">Rus</p>
+              </div>
+            </div>
+            <div>
+              <form (ngSubmit)="onSubmit()" [formGroup]="register_form">
+                <core-input>
+                  <div class="mt-2.5 mr-0 mb-0 ml-0">
+                    <label class="block text-sm font-medium text-gray-700">{{'NAME' | translate}}</label>
+                    <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                      <fa-icon [icon]="faUser"></fa-icon>
+                    </span>
+                      <input showError name="name" [controlName]="'NAME' | translate" [formControlName]="'name'" type="text" placeholder="Jack Sparrow" class="focus:ring-indigo-500 focus:border-indigo-500
+                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
+                    </div>
+                  </div>
+                </core-input>
+                <core-input>
+                  <div class="mt-2.5 mr-0 mb-0 ml-0">
+                    <label class="block text-sm font-medium text-gray-700">{{'EMAIL' | translate}}</label>
+                    <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                      <fa-icon [icon]="faEnvelope"></fa-icon>
+                    </span>
+                      <input showError name="email" [controlName]="'EMAIL' | translate" [formControlName]="'email'" type="email" placeholder="Ex: james@bond.com"
+                             class="focus:ring-indigo-500 focus:border-indigo-500
+                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
+                    </div>
+                  </div>
+                </core-input>
+                <core-input>
+                  <div class="mt-2.5 mr-0 mb-2.5 ml-0">
+                    <label class="block text-sm font-medium text-gray-700">{{'PHONE' | translate}}</label>
+                    <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                      <fa-icon [icon]="faPhone"></fa-icon>
+                    </span>
+                      <input showError name="phone" [controlName]="'PHONE' | translate" [formControlName]="'phone'" [inputMask]="phone_mask" type="text" placeholder="+7 777 777 7777" class="focus:ring-indigo-500 focus:border-indigo-500
+                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
+                    </div>
+                  </div>
+                </core-input>
+                <core-input>
+                  <div class="mt-2.5 mr-0 mb-2.5 ml-0">
+                    <label class="block text-sm font-medium text-gray-700">{{'PASSWORD' | translate}}</label>
+                    <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                      <fa-icon [icon]="faKey"></fa-icon>
+                    </span>
+                      <input showError name="password" [controlName]="'PASSWORD' | translate" [formControlName]="'password'" type="password" placeholder="********" class="focus:ring-indigo-500 focus:border-indigo-500
+                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
+                    </div>
+                  </div>
+                </core-input>
+                <button *ngIf="!isSend"
+                        [disabled]="!register_form.valid"
+                        type="submit"
+                        [ngClass]="register_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" fontfamily="Arial"
+                        class="hover:bg-gray-600 rounded-md text-xl pt-3 pr-3 pb-3 pl-3 bg-gray-800
+                font-semibold text-white w-full text-center">{{"REGISTER" | translate}}</button>
+                <button *ngIf="isSend" type="button" class="hover:bg-gray-600 rounded-md text-xl pt-3 pr-3 pb-3 pl-3 bg-gray-800
+                font-semibold text-white w-full text-center flex justify-center items-center" disabled>
+                  <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                       viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Processing...
+                </button>
+              </form>
+
+              <div class="flex items-center justify-start border-t-2 border-gray-100 mt-6 mr-0 mb-0 ml-0 pt-6 pr-0 pb-0
+                pl-0">
+                <p class="text-sm text-gray-800">{{'ALREADY_HAVE_ACCOUNT' | translate}}</p>
+                <a [routerLink]="StrHelper.getRouteName(RoutesName.loginRoute)"
+                   class="text-sm text-blue-500 mt-0 mr-0 mb-0 ml-2">{{'LOGIN' | translate}}</a>
+              </div>
+              <div class="flex items-center text-gray-800 mt-5 mr-0 mb-0 ml-0 flex-wrap">
+                <p class="text-sm whitespace-nowrap mr-2">{{'I_AM_STUDENT'|translate}}</p>
+                <a [routerLink]="StrHelper.getRouteName(RoutesName.registerRoute)" class="text-sm text-blue-400 mr-2 font-medium whitespace-nowrap cursor-pointer">{{'HERE'|translate}}</a>
+              </div>
+              <div class="flex items-center text-gray-800 mt-5 mr-0 mb-0 ml-0 flex-wrap">
+                <p class="text-sm whitespace-nowrap mr-2">{{'PLEASE_READ'|translate}}</p>
+                <a target="_blank" [routerLink]="StrHelper.getRouteName('/private-policy')" class="cursor-pointer text-sm text-blue-400 mr-2 font-medium whitespace-nowrap">{{'TERMS'|translate}}</a>
+                <p class="text-sm mr-2 whitespace-nowrap">&</p>
+                <a target="_blank" [routerLink]="StrHelper.getRouteName('/contract-offer')" class="cursor-pointer text-sm text-blue-400 font-medium whitespace-nowrap">{{'CONDITIONS'|translate}}.</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

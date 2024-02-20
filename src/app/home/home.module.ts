@@ -14,6 +14,7 @@ import {CarouselModule} from "ngx-owl-carousel-o";
 import {SlickCarouselModule} from "ngx-slick-carousel";
 import { MoneyBackComponent } from './money-back/money-back.component';
 import { PayOfferComponent } from './pay-offer/pay-offer.component';
+import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 @NgModule({
     declarations: [
         HomeLayoutComponent,
@@ -22,7 +23,8 @@ import { PayOfferComponent } from './pay-offer/pay-offer.component';
         PrivacyPolicyComponent,
         ContractOfferComponent,
         MoneyBackComponent,
-        PayOfferComponent
+        PayOfferComponent,
+        TermsOfUseComponent
     ],
   imports: [
     CommonModule,

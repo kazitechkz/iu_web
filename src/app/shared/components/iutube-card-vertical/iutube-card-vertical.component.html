@@ -1,0 +1,55 @@
+<div *ngIf="iutubeVideo">
+  <div
+    [routerLink]="'/'+ RoutesName.iuTubeVideoSingle + '/' + iutubeVideo.alias"
+    class="youtube-player-video h-[250px] rounded-tr-xl rounded-tl-xl flex justify-center items-center w-full bg-no-repeat bg-cover relative"
+    [ngStyle]="{'background-image': 'url(' + (iutubeVideo.file ? ImageHelper.getImage(iutubeVideo.file.url) : ImageHelper.getYoutubeThumbnail(iutubeVideo.video_url)) + ')'}"
+  >
+    <fa-icon class="text-rose-500 text-4xl" [icon]="faPlay"></fa-icon>
+    <fa-icon
+      *ngIf="iutubeVideo.is_recommended"
+      class="text-rose-600 text-4xl absolute top-[10px] right-[10px]" [icon]="faFire">
+
+    </fa-icon>
+    <span
+      *ngIf="iutubeVideo.locale"
+      class="absolute bottom-[10px] right-[10px] inline-block whitespace-nowrap rounded-full bg-primary-100 px-2 py-1 text-center align-baseline text-[0.75em] font-bold leading-none text-primary-700">
+        {{iutubeVideo.locale.title}}
+      </span>
+  </div>
+  <div class="px-3 pt-3">
+    <div class="flex">
+      <div class="w-[30px] h-[30px] min-w-[30px] rounded-full mr-2 bg-cover bg-no-repeat bg-center"
+           *ngIf="iutubeVideo.iutube_author"
+           [routerLink]="'/'+ RoutesName.iuTubeAuthor + '/' + iutubeVideo.author_id"
+           [ngStyle]="{'background-image':'url(' +ImageHelper.getImage(iutubeVideo.iutube_author.file?.url) +')'}"
+      >
+      </div>
+      <p
+        [routerLink]="'/'+ RoutesName.iuTubeVideoSingle + '/' + iutubeVideo.alias"
+        class="ml-1 text-sm text-black font-bold">
+        {{
+        iutubeVideo.title.length > 50
+          ? iutubeVideo.title.slice(0,50) + "..."
+          :iutubeVideo.title
+        }}
+      </p>
+    </div>
+    <div class="mt-2 text-right flex justify-end">
+      <div class="w-full">
+        <p class="ml-1 text-xs text-black mt-2 font-bold" *ngIf="iutubeVideo.subject">
+          {{iutubeVideo.subject|globalTranslate:"title":translate.currentLang}}
+        </p>
+        <p class="ml-1 text-xs text-black mt-2 font-bold" *ngIf="iutubeVideo.step">
+          {{iutubeVideo.step|globalTranslate:"title":translate.currentLang}}
+        </p>
+        <p class="ml-1 text-xs text-black mt-2 font-bold" *ngIf="iutubeVideo.sub_step">
+          {{iutubeVideo.sub_step|globalTranslate:"title":translate.currentLang}}
+        </p>
+        <p class="ml-1 text-xs text-black mt-2" *ngIf="iutubeVideo.created_at">
+          {{moment(iutubeVideo.created_at).format("HH:mm DD/MM/YYYY")}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+

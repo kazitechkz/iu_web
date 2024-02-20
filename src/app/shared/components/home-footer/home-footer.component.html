@@ -3,7 +3,7 @@
     <div class="grid grid-cols-12 py-3 md:py-5 lg:py-8">
       <div class="col-span-12 lg:col-span-3 py-3">
         <a routerLink="/" class="flex justify-center lg:justify-start  items-center">
-          <img src="assets/images/logo-white-tr.png" class="max-w-[250px]" alt="IUnion" />
+          <img src="assets/images/logo-white.png" class="max-w-[250px]" alt="IUnion" />
         </a>
         <li class="flex justify-center lg:justify-start items-center text-center lg:text-left mb-4">
           <p class="text-white font-bold text-xl lg:text-2xl">
@@ -37,6 +37,12 @@
             <a routerLink="private-policy" class="block py-2 rounded md:hover:bg-transparent text-white">
               <fa-icon [icon]="faHandshake" class="ml-1"></fa-icon>
               {{"PRIVACY_POLICY"|translate}}
+            </a>
+          </li>
+          <li class="flex justify-center lg:justify-start items-center text-center lg:text-left">
+            <a routerLink="terms-of-use" class="block py-2  rounded md:hover:bg-transparent text-white">
+              <fa-icon [icon]="faFilePen" class="ml-1"></fa-icon>
+              {{"TERMS_OF_USE"|translate}}
             </a>
           </li>
           <li class="flex justify-center lg:justify-start items-center text-center lg:text-left">

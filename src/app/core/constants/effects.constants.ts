@@ -163,6 +163,10 @@ import {
 import {MyCareerAttemptsEffect} from "../../shared/store/career/myCareerAttempts/myCareerAttempts.effect";
 import {PayCareerEffect} from "../../shared/store/career/payCareer/payCareer.effect";
 import {UserCheckEffect} from "../../shared/store/auth/userCheck/userCheck.effect";
+import {GetMainVideosEffect} from "../../shared/store/iutube/getMainVideos/getMainVideos.effect";
+import {GetAllVideosEffect} from "../../shared/store/iutube/getAllVideos/getAllVideos.effect";
+import {GetVideoAuthorDetailEffect} from "../../shared/store/iutube/getVideoAuthorDetail/getVideoAuthorDetail.effect";
+import {GetVideoDetailEffect} from "../../shared/store/iutube/getVideoDetail/getVideoDetail.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -289,4 +293,8 @@ export const EffectsConstants = [
     MyCareerAttemptsEffect,
     PayCareerEffect,
     UserCheckEffect,
+    GetMainVideosEffect,
+    GetAllVideosEffect,
+    GetVideoAuthorDetailEffect,
+    GetVideoDetailEffect,
 ]

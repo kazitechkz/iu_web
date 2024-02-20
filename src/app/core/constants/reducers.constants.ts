@@ -176,6 +176,10 @@ import {
 import {myCareerAttemptsReducer} from "../../shared/store/career/myCareerAttempts/myCareerAttempts.reducer";
 import {payCareerReducer} from "../../shared/store/career/payCareer/payCareer.reducer";
 import {userCheckReducer} from "../../shared/store/auth/userCheck/userCheck.reducer";
+import {getMainVideosReducer} from "../../shared/store/iutube/getMainVideos/getMainVideos.reducer";
+import {getAllVideosReducer} from "../../shared/store/iutube/getAllVideos/getAllVideos.reducer";
+import {getVideoAuthorDetailReducer} from "../../shared/store/iutube/getVideoAuthorDetail/getVideoAuthorDetail.reducer";
+import {getVideoDetailReducer} from "../../shared/store/iutube/getVideoDetail/getVideoDetail.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -312,5 +316,9 @@ export const ReducersConstants = {
   myCareerAttempts:myCareerAttemptsReducer,
   payCareer:payCareerReducer,
   userCheck:userCheckReducer,
+  getMainVideos:getMainVideosReducer,
+  getAllVideos:getAllVideosReducer,
+  getVideoAuthorDetail:getVideoAuthorDetailReducer,
+  getVideoDetail:getVideoDetailReducer,
 }
 
