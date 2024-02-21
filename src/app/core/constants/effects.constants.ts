@@ -167,10 +167,12 @@ import {GetMainVideosEffect} from "../../shared/store/iutube/getMainVideos/getMa
 import {GetAllVideosEffect} from "../../shared/store/iutube/getAllVideos/getAllVideos.effect";
 import {GetVideoAuthorDetailEffect} from "../../shared/store/iutube/getVideoAuthorDetail/getVideoAuthorDetail.effect";
 import {GetVideoDetailEffect} from "../../shared/store/iutube/getVideoDetail/getVideoDetail.effect";
+import {VerifyEmailEffect} from "../../shared/store/auth/verifyEmail/verifyEmail.effect";
 
 export const EffectsConstants = [
     LoginEffect,
     RegisterEffect,
+    VerifyEmailEffect,
     ResetEffect,
     AccountEffect,
     SubjectEffect,

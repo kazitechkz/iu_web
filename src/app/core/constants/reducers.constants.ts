@@ -180,10 +180,12 @@ import {getMainVideosReducer} from "../../shared/store/iutube/getMainVideos/getM
 import {getAllVideosReducer} from "../../shared/store/iutube/getAllVideos/getAllVideos.reducer";
 import {getVideoAuthorDetailReducer} from "../../shared/store/iutube/getVideoAuthorDetail/getVideoAuthorDetail.reducer";
 import {getVideoDetailReducer} from "../../shared/store/iutube/getVideoDetail/getVideoDetail.reducer";
+import {verifyEmailReducer} from "../../shared/store/auth/verifyEmail/verifyEmail.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
   register: registerReducer,
+  verifyEmail: verifyEmailReducer,
   sendResetToken: sendResetTokenReducer,
   resetPassword: resetPasswordReducer,
   me: accountReducer,

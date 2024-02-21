@@ -18,24 +18,24 @@
             </div>
             <div>
               <p class="font-light text-xl text-gray-800 mt-6 mr-0 mb-4 ml-0 text-left">{{'VERIFY_EMAIL_DESCRIPTION'|translate}}</p>
-              <form (ngSubmit)="onSubmit()" [formGroup]="login_form">
+              <form (ngSubmit)="onSubmit()" [formGroup]="verify_form">
                 <div class="mt-2.5 mr-0 mb-0 ml-0">
                   <label class="block text-sm font-medium text-gray-700">{{'VERIFY_CODE' | translate}}</label>
                   <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
                     <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
                       <fa-icon [icon]="faEnvelope"></fa-icon>
                     </span>
-                    <input name="email" [formControlName]="'email'" type="email" placeholder="5785"
+                    <input name="email" [formControlName]="'code'" type="email" placeholder="5785"
                            class="focus:ring-indigo-500 focus:border-indigo-500
                   sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
                   </div>
                 </div>
                 <button *ngIf="!isSend"
-                        [disabled]="!login_form.valid"
+                        [disabled]="!verify_form.valid"
                         type="submit"
-                        [ngClass]="login_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" fontfamily="Arial" class="my-3 hover:bg-gray-600 rounded-md text-xl pt-3 pr-3 pb-3 pl-3 bg-gray-800
+                        [ngClass]="verify_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" fontfamily="Arial" class="my-3 hover:bg-gray-600 rounded-md text-xl pt-3 pr-3 pb-3 pl-3 bg-gray-800
                 font-semibold text-white w-full text-center">{{"CONTINUE_BUTTON" | translate}}</button>
-                <button *ngIf="isSend" type="button" class="hover:bg-gray-600 rounded-md text-xl pt-3 pr-3 pb-3 pl-3 bg-gray-800
+                <button *ngIf="isSend" type="button" class="my-3 hover:bg-gray-600 rounded-md text-xl pt-3 pr-3 pb-3 pl-3 bg-gray-800
                 font-semibold text-white w-full text-center flex justify-center items-center" disabled>
                   <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
