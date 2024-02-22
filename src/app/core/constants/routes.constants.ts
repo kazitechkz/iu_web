@@ -15,6 +15,7 @@ export enum RoutesName {
     teacherDetailClassroom = "detail-classroom",
     studentClassrooms = "classrooms",
     resetRoute = "auth/reset",
+    kundelikRoute = "auth/kundelik",
     verifyEmailRoute = "auth/verify-email",
     notFound = "not-found",
     untMode = "dashboard/unt-mode",

@@ -5,10 +5,10 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {ResetComponent} from "./reset/reset.component";
 import {RoutesName} from "../core/constants/routes.constants";
-import {authGuard} from "../core/guards/auth.guard";
 import {guestGuard} from "../core/guards/guest.guard";
 import {TeacherRegisterComponent} from "./teacher-register/teacher-register.component";
 import {VerifyEmailComponent} from "./verify-email/verify-email.component";
+import {KundelikComponent} from "./kundelik/kundelik.component";
 
 const routes: Routes = [
     {
@@ -35,6 +35,10 @@ const routes: Routes = [
             {
                 path: RoutesName.resetRoute,
                 component: ResetComponent
+            },
+            {
+                path: RoutesName.kundelikRoute,
+                component: KundelikComponent
             },
         ]
     }
