@@ -168,11 +168,13 @@ import {GetAllVideosEffect} from "../../shared/store/iutube/getAllVideos/getAllV
 import {GetVideoAuthorDetailEffect} from "../../shared/store/iutube/getVideoAuthorDetail/getVideoAuthorDetail.effect";
 import {GetVideoDetailEffect} from "../../shared/store/iutube/getVideoDetail/getVideoDetail.effect";
 import {VerifyEmailEffect} from "../../shared/store/auth/verifyEmail/verifyEmail.effect";
+import {KundelikEffect} from "../../shared/store/auth/kundelik/kundelik.effect";
 
 export const EffectsConstants = [
     LoginEffect,
     RegisterEffect,
     VerifyEmailEffect,
+    KundelikEffect,
     ResetEffect,
     AccountEffect,
     SubjectEffect,

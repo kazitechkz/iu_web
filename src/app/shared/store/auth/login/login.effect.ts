@@ -16,8 +16,6 @@ export class LoginEffect {
 
   private _service = inject(LoginService);
   private action$ = inject(Actions);
-  private _localStorage = inject(SessionService);
-  private _route = inject(Router);
   private _notification = inject(TwNotification)
   private _authService = inject(AuthService)
 
@@ -28,20 +26,7 @@ export class LoginEffect {
         return this._service.loginUser(action.requestData).pipe(
           switchMap(data => {
             if (data.data?.redirectURL.trim().length === 0) {
-              if (data.data?.role == 'student') {
-                this._notification.show({type: 'success', title: 'Success', text: 'Добро пожаловать!'});
-                this._localStorage.setDataToLocalStorage(LocalKeysConstants.token, data.data?.token as string)
-                this._localStorage.setDataToLocalStorage(LocalKeysConstants.user, data.data?.user as Me)
-                this._route.navigate([RoutesName.dashboard]).then(r => console.log('Navigated to dashboard'))
-              } else if (data.data?.role == 'teacher') {
-                this._notification.show({type: 'success', title: 'Success', text: 'Добро пожаловать!'});
-                this._localStorage.setDataToLocalStorage(LocalKeysConstants.token, data.data?.token as string)
-                this._localStorage.setDataToLocalStorage(LocalKeysConstants.user, data.data?.user as Me)
-                this._route.navigate([RoutesName.teacher]).then(r => console.log('Navigated to teacher dashboard'))
-              } else {
-                this._notification.show({type: 'danger', title: 'Error', text: 'Account doesn\'t exist'});
-                this._route.navigate([RoutesName.loginRoute]).then(r => console.log('Navigated to login page'))
-              }
+              this._authService.saveDataToStorage(data.data)
               return of(
                 loginActionSuccess({responseData: data}),
               )

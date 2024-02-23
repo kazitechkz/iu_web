@@ -181,11 +181,13 @@ import {getAllVideosReducer} from "../../shared/store/iutube/getAllVideos/getAll
 import {getVideoAuthorDetailReducer} from "../../shared/store/iutube/getVideoAuthorDetail/getVideoAuthorDetail.reducer";
 import {getVideoDetailReducer} from "../../shared/store/iutube/getVideoDetail/getVideoDetail.reducer";
 import {verifyEmailReducer} from "../../shared/store/auth/verifyEmail/verifyEmail.reducer";
+import {kundelikReducer} from "../../shared/store/auth/kundelik/kundelik.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
   register: registerReducer,
   verifyEmail: verifyEmailReducer,
+  kundelik: kundelikReducer,
   sendResetToken: sendResetTokenReducer,
   resetPassword: resetPasswordReducer,
   me: accountReducer,

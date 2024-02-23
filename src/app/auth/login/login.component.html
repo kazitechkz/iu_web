@@ -18,7 +18,7 @@
             </div>
             <div>
               <div class="grid grid-cols-1 gap-2">
-                <div [routerLink]="'/'+RoutesName.kundelikRoute" class="rounded-md w-full pt-3 pr-0 pb-3 pl-0 inline-flex items-center justify-center bg-gray-800
+                <div (click)="getKundelikAuth()" class="rounded-md w-full pt-3 pr-0 pb-3 pl-0 inline-flex items-center justify-center bg-gray-800
                   text-white cursor-pointer hover:bg-gray-600">
                   <p>
                     <img src="assets/images/kundelik_logo.webp" width="20">

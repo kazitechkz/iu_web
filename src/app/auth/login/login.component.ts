@@ -57,9 +57,14 @@ export class LoginComponent {
       })
     }
 
-  changeLang(lang: string) {
-    this.translate.onLangChange(lang)
-  }
+    getKundelikAuth()
+    {
+      window.location.href = 'https://login.kundelik.kz/oauth2?response_type=token&client_id=4111dfa786614bc29f01d27017a31a13&scope=CommonInfo,ContactInfo,EducationalInfo,FriendsAndRelatives&redirect_uri=http://localhost:4200/auth/kundelik'
+    }
+
+    changeLang(lang: string) {
+      this.translate.onLangChange(lang)
+    }
 
   protected readonly RoutesName = RoutesName;
   protected readonly StrHelper = StrHelper;

@@ -73,6 +73,7 @@ export class RegisterComponent {
       this.store.select(getRegisterState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         if (item.errors) {
           this.errors = item.errors;
+          this.isSend = false
         }
       })
     } else {
