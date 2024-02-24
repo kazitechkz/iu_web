@@ -28,6 +28,7 @@ export interface Me {
   file: Image | null
   gender: Gender | null
   birth_date: Date | null
+  isKundelik: boolean
 }
 
 export interface OrdinaryUser {

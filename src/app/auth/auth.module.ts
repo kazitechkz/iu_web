@@ -15,6 +15,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { TeacherRegisterComponent } from './teacher-register/teacher-register.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { KundelikComponent } from './kundelik/kundelik.component';
+import {NgxSpinnerModule} from "ngx-spinner";
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { KundelikComponent } from './kundelik/kundelik.component';
         TwSelectModule,
         InputMaskModule,
         FontAwesomeModule,
+        NgxSpinnerModule,
     ],
   providers: [TwNotification]
 })

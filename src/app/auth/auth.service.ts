@@ -14,12 +14,16 @@ import {Store} from "@ngrx/store";
 import {AuthInfo} from "../shared/store/auth/login/loginRequest";
 import {Me} from "../shared/models/user.model";
 import {TwNotification} from "ng-tw";
+import {marked} from "marked";
+import use = marked.use;
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   baseUrl = environment.baseUrl;
+  private http = inject(HttpClient)
   private _session = inject(SessionService)
   private _router = inject(Router)
   private store = inject(Store)
@@ -28,9 +32,26 @@ export class AuthService {
   private _route = inject(Router);
   private _notification = inject(TwNotification)
   logout() {
+    let user = this._localStorage.getDataFromLocalStorage(LocalKeysConstants.user)
+    // if (user.isKundelik) {
+    //   this.backgroundAction()
+    // } else {
+    //   this._session.removeDataFromLocalStorage(LocalKeysConstants.token)
+    //   this._session.removeDataFromLocalStorage(LocalKeysConstants.user)
+    //   this._router.navigateByUrl(RoutesName.loginRoute).then(null)
+    // }
     this._session.removeDataFromLocalStorage(LocalKeysConstants.token)
     this._session.removeDataFromLocalStorage(LocalKeysConstants.user)
     this._router.navigateByUrl(RoutesName.loginRoute).then(null)
+  }
+
+  private backgroundAction() {
+    return this.http.get('https://login.kundelik.kz/logout').subscribe(() => {
+      console.log('Действие выполнено в фоновом режиме');
+      this._session.removeDataFromLocalStorage(LocalKeysConstants.token)
+      this._session.removeDataFromLocalStorage(LocalKeysConstants.user)
+      this._router.navigateByUrl(RoutesName.loginRoute).then(null)
+    });
   }
 
   saveDataToStorage(data: AuthInfo | null) {

@@ -1,5 +1,4 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {KundelikService} from "../kundelik.service";
 import {ActivatedRoute} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {kundelikAction} from "../../shared/store/auth/kundelik/kundelik.action";
@@ -15,6 +14,7 @@ export class KundelikComponent implements OnInit {
   private activateRoute = inject(ActivatedRoute)
   private store = inject(Store)
   private access_token: string = ''
+  errors:Record<string, string[]> | null = null;
   constructor() {}
 
   initialData()
@@ -33,7 +33,9 @@ export class KundelikComponent implements OnInit {
               let req = {token: this.access_token} as KundelikRequest
                 this.store.dispatch(kundelikAction({requestData: req}))
                 this.store.select(getKundelikState).pipe().subscribe(item => {
-                  console.log(item)
+                  if(item.errors){
+                    this.errors = item.errors;
+                  }
                 })
             }
             // Если нашли токен, выходим из цикла

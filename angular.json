@@ -28,7 +28,10 @@
               "@fortawesome/free-solid-svg-icons/faCube",
               "@fortawesome/free-solid-svg-icons/faCubes",
               "pusher-js",
-              "moment"
+              "moment",
+              "inputmask",
+              "@fortawesome/free-solid-svg-icons/faGlobe",
+              "@fortawesome/free-solid-svg-icons/faFileCircleCheck"
             ],
             "outputPath": "dist/iu_web/browser",
             "index": "src/index.html",

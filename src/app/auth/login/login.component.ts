@@ -10,6 +10,7 @@ import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {StrHelper} from "../../core/helpers/str.helper";
 import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
 import {faEnvelope, faKey} from "@fortawesome/free-solid-svg-icons";
+import {environment} from "../../../environments/environment";
 
 @Component({
     selector: 'app-login',
@@ -59,7 +60,7 @@ export class LoginComponent {
 
     getKundelikAuth()
     {
-      window.location.href = 'https://login.kundelik.kz/oauth2?response_type=token&client_id=4111dfa786614bc29f01d27017a31a13&scope=CommonInfo,ContactInfo,EducationalInfo,FriendsAndRelatives&redirect_uri=http://localhost:4200/auth/kundelik'
+      window.location.href = 'https://login.kundelik.kz/oauth2?response_type=token&client_id=4111dfa786614bc29f01d27017a31a13&scope=CommonInfo,ContactInfo,EducationalInfo,FriendsAndRelatives&redirect_uri='+environment.kundelikUrl
     }
 
     changeLang(lang: string) {

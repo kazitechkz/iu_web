@@ -1,6 +1,6 @@
 import {createEntityAdapter, EntityState} from "@ngrx/entity";
-import {AuthInfo} from "../login/loginRequest";
+import {UserModel, Users} from "../../../models/user.model";
 
-export const KundelikAdapter = createEntityAdapter<AuthInfo>();
+export const KundelikAdapter = createEntityAdapter<Users>();
 
-export const KundelikState: EntityState<AuthInfo> = KundelikAdapter.getInitialState();
+export const KundelikState: UserModel = KundelikAdapter.getInitialState();
