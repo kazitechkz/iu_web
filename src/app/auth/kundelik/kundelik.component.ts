@@ -4,6 +4,7 @@ import {Store} from "@ngrx/store";
 import {kundelikAction} from "../../shared/store/auth/kundelik/kundelik.action";
 import {KundelikRequest} from "../../shared/store/auth/kundelik/kundelik.request";
 import {getKundelikState} from "../../shared/store/auth/kundelik/kundelik.selector";
+import {BusyService} from "../../shared/services/busy.service";
 
 @Component({
   selector: 'app-kundelik',
@@ -12,13 +13,14 @@ import {getKundelikState} from "../../shared/store/auth/kundelik/kundelik.select
 })
 export class KundelikComponent implements OnInit {
   private activateRoute = inject(ActivatedRoute)
+  private busyService = inject(BusyService)
   private store = inject(Store)
   private access_token: string = ''
   errors:Record<string, string[]> | null = null;
   constructor() {}
 
-  initialData()
-  {
+  initialData() {
+    this.busyService.busy();
     this.activateRoute.fragment.subscribe(item => {
       let queryStr = item?.split('&')
       if (queryStr) {
@@ -36,6 +38,7 @@ export class KundelikComponent implements OnInit {
                   if(item.errors){
                     this.errors = item.errors;
                   }
+                  this.busyService.idle();
                 })
             }
             // Если нашли токен, выходим из цикла
