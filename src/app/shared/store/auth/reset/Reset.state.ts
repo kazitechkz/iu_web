@@ -1,20 +1,6 @@
-export interface SendResetTokenState {
-  success: boolean | null,
-  errors: any,
-}
+import {createEntityAdapter, EntityState} from "@ngrx/entity";
+import {ResponseData} from "../../response_data";
 
-export const initialSendResetTokenState: SendResetTokenState = {
-  success: null,
-  errors: null,
-};
+export const sendResetTokenAdapter = createEntityAdapter<ResponseData<boolean>>();
 
-
-export interface ResetPasswordState {
-  success: boolean | null,
-  errors: any,
-}
-
-export const initialResetPasswordState: ResetPasswordState = {
-  success: null,
-  errors: null,
-};
+export const SendResetPasswordState: EntityState<ResponseData<boolean>> = sendResetTokenAdapter.getInitialState();

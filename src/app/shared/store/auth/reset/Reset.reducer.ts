@@ -1,16 +1,14 @@
 import {createReducer, on} from "@ngrx/store";
-import {initialResetPasswordState, initialSendResetTokenState} from "./Reset.state";
 import {
   resetPasswordAction, resetPasswordFailureAction, resetPasswordSuccessAction,
   sendResetTokenAction,
   sendResetTokenFailureAction,
   sendResetTokenSuccessAction
 } from "./Reset.action";
-import {state} from "@angular/animations";
-import {act} from "@ngrx/effects";
+import {SendResetPasswordState} from "./Reset.state";
 
 const _sendResetTokenReducer = createReducer(
-  initialSendResetTokenState,
+  SendResetPasswordState,
   on(sendResetTokenAction, (state) => {
     return {
       ...state
@@ -20,14 +18,15 @@ const _sendResetTokenReducer = createReducer(
     return {
       ...state,
       errors: null,
-      success: action.responseData.data
+      status: action.responseData.status,
+      data: action.responseData.data
     }
   }),
   on(sendResetTokenFailureAction, (state, action) => {
     return {
       ...state,
       errors: action.errors,
-      success: false
+      status: false
     }
   })
 )
@@ -38,7 +37,7 @@ export function sendResetTokenReducer(state: any, action: any) {
 
 
 const _resetPasswordReducer = createReducer(
-  initialResetPasswordState,
+  SendResetPasswordState,
   on(resetPasswordAction, (state) => {
     return {
       ...state
@@ -48,14 +47,15 @@ const _resetPasswordReducer = createReducer(
     return {
       ...state,
       errors: null,
-      success: action.responseData.data
+      status: action.responseData.status,
+      data: action.responseData.data
     }
   }),
   on(resetPasswordFailureAction, (state, action) => {
     return {
       ...state,
       errors: action.errors,
-      success: false
+      status: false
     }
   })
 )

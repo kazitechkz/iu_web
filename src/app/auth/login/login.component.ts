@@ -21,8 +21,6 @@ export class LoginComponent {
     private _store = inject(Store);
     destroyRef = inject(DestroyRef);
     public translate = inject(GlobalTranslateService)
-    faGoogle = faGoogle;
-    faFacebookF = faFacebookF;
     errors:Record<string, string[]> | null = null;
     isSend: boolean = false
     login_form: FormGroup = new FormGroup({
