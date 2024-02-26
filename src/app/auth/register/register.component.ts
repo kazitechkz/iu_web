@@ -13,6 +13,7 @@ import {registerAction} from "../../shared/store/auth/register/Register.action";
 import {getRegisterState} from "../../shared/store/auth/register/Register.selector";
 import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {RegisterState} from "../../shared/store/auth/register/Register.state";
+import {environment} from "../../../environments/environment";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -64,7 +65,10 @@ export class RegisterComponent {
       Validators.max(255),
     ]),
   });
-
+  getKundelikAuth()
+  {
+    window.location.href = 'https://login.kundelik.kz/oauth2?response_type=token&client_id=4111dfa786614bc29f01d27017a31a13&scope=CommonInfo,ContactInfo,EducationalInfo,FriendsAndRelatives&redirect_uri='+environment.kundelikUrl
+  }
   onSubmit() {
     let requestData = this.register_form.getRawValue() as RegisterRequest;
     if (this.register_form.valid) {

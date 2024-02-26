@@ -17,6 +17,19 @@
               </div>
             </div>
             <div>
+              <div class="grid grid-cols-1 gap-2">
+                <div (click)="getKundelikAuth()" class="rounded-md w-full pt-3 pr-0 pb-3 pl-0 inline-flex items-center justify-center bg-gray-800
+                  text-white cursor-pointer hover:bg-gray-600">
+                  <p>
+                    <img src="assets/images/kundelik_logo.webp" width="20">
+                  </p>
+                  <p class="text-xl mx-3">{{'LOGIN_WITH_KUNDELIK'|translate}}</p>
+                </div>
+
+              </div>
+              <p class="text-sm text-center text-gray-600 pt-4 pr-0 pb-2 pl-0 border-b-2 border-gray-100">OR</p>
+            </div>
+            <div>
               <form (ngSubmit)="onSubmit()" [formGroup]="register_form">
                 <core-input>
                   <div class="mt-2.5 mr-0 mb-0 ml-0">
