@@ -23,6 +23,7 @@
   "HERE": "басыңыз",
   "EMAIL": "Почта",
   "PASSWORD": "Құпия сөз",
+  "NEW_PASSWORD": "Жаңа құпия сөз",
   "FORGET_PASSWORD": "Құпия сөзді білмейсіз бе?",
   "RESET_PASSWORD": "Құпия сөзді қайта қалпына келтіру",
   "ALREADY_HAVE_ACCOUNT": "Аккаунтыңыз барма ?",

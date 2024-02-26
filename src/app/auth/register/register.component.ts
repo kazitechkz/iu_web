@@ -43,21 +43,21 @@ export class RegisterComponent {
       Validators.max(255),
       Validators.minLength(3)
     ]),
-    parent_name: new FormControl("", [
-      Validators.required,
-      Validators.max(255),
-    ]),
+    // parent_name: new FormControl("", [
+    //   Validators.required,
+    //   Validators.max(255),
+    // ]),
 
     phone: new FormControl("", [
       Validators.required,
       // Validators.pattern('[- +()0-9]{11,12}')
       //Validators.pattern(/^\+?77(\d{9})+$/gi),
     ]),
-    parent_phone: new FormControl("", [
-      Validators.required,
-      // Validators.pattern('[- +()0-9]{11,12}')
-      //Validators.pattern(/^\+?77(\d{9})+$/gi),
-    ]),
+    // parent_phone: new FormControl("", [
+    //   Validators.required,
+    //   // Validators.pattern('[- +()0-9]{11,12}')
+    //   //Validators.pattern(/^\+?77(\d{9})+$/gi),
+    // ]),
     password: new FormControl("", [
       Validators.required,
       Validators.min(4),

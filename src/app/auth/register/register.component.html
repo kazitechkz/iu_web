@@ -1,4 +1,4 @@
-<div class="bg-gray-800 h-auto flex justify-center items-center">
+<div class="bg-gray-800 min-h-[100vh] flex justify-center items-center">
   <div class="pr-3 pl-3 py-3">
     <div fontfamily="Arial" class="pt-0 pr-3 pb-0 pl-3 mr-auto ml-auto max-w-7xl sm:px-5 lg:px-12">
       <div class="bg-white rounded-xl sm:p-10">
@@ -85,30 +85,30 @@
                     </div>
                   </div>
                 </core-input>
-                <core-input>
-                  <div class="mt-2.5 mr-0 mb-0 ml-0">
-                    <label class="block text-sm font-medium text-gray-700">{{'PARENT_NAME' | translate}}</label>
-                    <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
-                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
-                      <fa-icon [icon]="faUser"></fa-icon>
-                    </span>
-                      <input showError [controlName]="'PARENT_NAME' | translate" [formControlName]="'parent_name'" type="text" placeholder="Jack Sparrow" class="focus:ring-indigo-500 focus:border-indigo-500
-                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
-                    </div>
-                  </div>
-                </core-input>
-                <core-input>
-                  <div class="mt-2.5 mr-0 mb-2.5 ml-0">
-                    <label class="block text-sm font-medium text-gray-700">{{'PARENT_PHONE' | translate}}</label>
-                    <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
-                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
-                      <fa-icon [icon]="faPhone"></fa-icon>
-                    </span>
-                      <input showError [controlName]="'PARENT_PHONE' | translate" [formControlName]="'parent_phone'" [inputMask]="phone_mask" type="text" placeholder="+7 777 777 7777" class="focus:ring-indigo-500 focus:border-indigo-500
-                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
-                    </div>
-                  </div>
-                </core-input>
+<!--                <core-input>-->
+<!--                  <div class="mt-2.5 mr-0 mb-0 ml-0">-->
+<!--                    <label class="block text-sm font-medium text-gray-700">{{'PARENT_NAME' | translate}}</label>-->
+<!--                    <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">-->
+<!--                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">-->
+<!--                      <fa-icon [icon]="faUser"></fa-icon>-->
+<!--                    </span>-->
+<!--                      <input showError [controlName]="'PARENT_NAME' | translate" [formControlName]="'parent_name'" type="text" placeholder="Jack Sparrow" class="focus:ring-indigo-500 focus:border-indigo-500-->
+<!--                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </core-input>-->
+<!--                <core-input>-->
+<!--                  <div class="mt-2.5 mr-0 mb-2.5 ml-0">-->
+<!--                    <label class="block text-sm font-medium text-gray-700">{{'PARENT_PHONE' | translate}}</label>-->
+<!--                    <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">-->
+<!--                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">-->
+<!--                      <fa-icon [icon]="faPhone"></fa-icon>-->
+<!--                    </span>-->
+<!--                      <input showError [controlName]="'PARENT_PHONE' | translate" [formControlName]="'parent_phone'" [inputMask]="phone_mask" type="text" placeholder="+7 777 777 7777" class="focus:ring-indigo-500 focus:border-indigo-500-->
+<!--                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </core-input>-->
 
                 <button *ngIf="!isSend"
                         [disabled]="!register_form.valid"

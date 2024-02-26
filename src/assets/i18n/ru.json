@@ -23,6 +23,7 @@
   "HERE": "сюда",
   "EMAIL": "Почта",
   "PASSWORD": "Пароль",
+  "NEW_PASSWORD": "Новый пароль",
   "FORGET_PASSWORD": "Забыли пароль?",
   "RESET_PASSWORD": "Восстановить пароль",
   "ALREADY_HAVE_ACCOUNT": "Уже есть аккаунт ?",
