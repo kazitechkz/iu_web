@@ -7,7 +7,7 @@
         </div>
         <div class="absolute bottom-0 right-0">
           <form>
-            <input id="img-update" type="file" class="invisible w-0" accept="image/*"/>
+            <input id="img-update" (change)="onFileSelected($event)" type="file" class="invisible w-0" accept="image/*"/>
           </form>
           <label for="img-update">
             <fa-icon class="mr-2 main-green-color" [icon]="faPencilAlt"></fa-icon>
@@ -152,76 +152,104 @@
 <ngx-smart-modal identifier="change-profile">
   <div *ngIf="me" class="px-3 py-4">
     <form [formGroup]="profile_form" (ngSubmit)="update()">
-      <span class="flex justify-center items-center mb-2 text-sm md:text-md lg:text-lg font-normal">
-          <fa-icon class="mr-2 main-green-color" [icon]="faUser"></fa-icon>
-          <app-input-field
-            class="w-full"
-            [formControlName]="'name'"
-            [input_name]="'name'"
-            [type]="'text'"
-            [placeholder]="''"
-            [label]="'NAME' | translate"
-            [error_message]="''"
-            [backErrors]="errors"
-            ngDefaultControl
-          />
-      </span>
-      <span class="flex justify-center items-center mb-2 text-sm md:text-md lg:text-lg font-normal">
-        <fa-icon class="mr-2 main-green-color" [icon]="faCalendar"></fa-icon>
-        <app-input-field
-          class="w-full"
-          [formControlName]="'date'"
-          [input_name]="'date'"
-          [type]="'date'"
-          [placeholder]="''"
-          [label]="'OLD_YEARS' | translate"
-          [error_message]="''"
-          [backErrors]="errors"
-          ngDefaultControl
-        />
-        </span>
-      <span class="flex justify-center items-center mb-2 text-sm md:text-md lg:text-lg font-normal">
-          <fa-icon class="mr-2 main-green-color" [icon]="faPhone"></fa-icon>
-          <app-input-field
-            class="w-full"
-            [formControlName]="'phone'"
-            [input_name]="'phone'"
-            [type]="'text'"
-            [placeholder]="''"
-            [label]="'PHONE' | translate"
-            [error_message]="'PHONE_VALID_MESSAGE' | translate"
-            [backErrors]="errors"
-            ngDefaultControl
-          />
-      </span>
-      <span class="flex justify-center items-center mb-2 text-sm md:text-md lg:text-lg font-normal">
-          <fa-icon class="mr-2 main-green-color" [icon]="faLock"></fa-icon>
-          <app-input-field
-            class="w-full"
-            [formControlName]="'password'"
-            [input_name]="'password'"
-            [type]="'password'"
-            [placeholder]="''"
-            [label]="'PASSWORD' | translate"
-            [error_message]="'password_is_not_right'"
-            [backErrors]="errors"
-            ngDefaultControl
-          />
-      </span>
-      <span class="flex justify-center items-center mb-2 text-sm md:text-md lg:text-lg font-normal" *ngIf="me.gender">
-          <fa-icon class="mr-2 main-green-color" [icon]="faVenusMars"></fa-icon>
-          <select class="w-full" [formControlName]="'gender'">
+      <core-input>
+        <div class="mt-2.5 mr-0 mb-0 ml-0">
+          <label class="block text-sm font-medium text-gray-700">{{'NAME' | translate}}</label>
+          <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                      <fa-icon [icon]="faUser"></fa-icon>
+                    </span>
+            <input showError name="name" [controlName]="'NAME' | translate" [formControlName]="'name'" type="text" placeholder="Jack Sparrow" class="focus:ring-indigo-500 focus:border-indigo-500
+                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
+          </div>
+        </div>
+      </core-input>
+      <core-input>
+        <div class="mt-2.5 mr-0 mb-2.5 ml-0">
+          <label class="block text-sm font-medium text-gray-700">{{'PHONE' | translate}}</label>
+          <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                      <fa-icon [icon]="faPhone"></fa-icon>
+                    </span>
+            <input showError name="phone" [controlName]="'PHONE' | translate" [formControlName]="'phone'" [inputMask]="phone_mask" type="text" placeholder="+7 777 777 7777" class="focus:ring-indigo-500 focus:border-indigo-500
+                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
+          </div>
+        </div>
+      </core-input>
+      <core-input>
+        <div class="mt-2.5 mr-0 mb-2.5 ml-0">
+          <label class="block text-sm font-medium text-gray-700">{{'BIRTH_DAY' | translate}}</label>
+          <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                      <fa-icon [icon]="faCalendar"></fa-icon>
+                    </span>
+            <input showError name="phone" [controlName]="'OLD_YEARS' | translate" [formControlName]="'date'" type="date" [placeholder]="'OLD_YEARS'|translate" class="focus:ring-indigo-500 focus:border-indigo-500
+                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
+          </div>
+        </div>
+      </core-input>
+      <core-input>
+        <div class="mt-2.5 mr-0 mb-2.5 ml-0">
+          <label class="block text-sm font-medium text-gray-700">{{'PASSWORD' | translate}}</label>
+          <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                      <fa-icon [icon]="faKey"></fa-icon>
+                    </span>
+            <input showError name="password" [controlName]="'PASSWORD' | translate" [formControlName]="'password'" type="password" placeholder="********" class="focus:ring-indigo-500 focus:border-indigo-500
+                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
+          </div>
+        </div>
+      </core-input>
+      <core-input>
+        <div class="mt-2.5 mr-0 mb-0 ml-0">
+          <label class="block text-sm font-medium text-gray-700">{{'PARENT_NAME' | translate}}</label>
+          <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                            <span
+                              class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                              <fa-icon [icon]="faUser"></fa-icon>
+                            </span>
+            <input showError [controlName]="'PARENT_NAME' | translate" [formControlName]="'parent_name'" type="text"
+                   placeholder="Jack Sparrow" class="focus:ring-indigo-500 focus:border-indigo-500
+                          sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
+          </div>
+        </div>
+      </core-input>
+      <core-input>
+        <div class="mt-2.5 mr-0 mb-2.5 ml-0">
+          <label class="block text-sm font-medium text-gray-700">{{'PARENT_PHONE' | translate}}</label>
+          <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                            <span
+                              class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                              <fa-icon [icon]="faPhone"></fa-icon>
+                            </span>
+            <input showError [controlName]="'PARENT_PHONE' | translate" [formControlName]="'parent_phone'"
+                   [inputMask]="phone_mask" type="text" placeholder="+7 777 777 7777" class="focus:ring-indigo-500 focus:border-indigo-500
+                          sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
+          </div>
+        </div>
+      </core-input>
+      <div class="mt-2.5 mr-0 mb-2.5 ml-0">
+        <label class="block text-sm font-medium text-gray-700">{{'PARENT_PHONE' | translate}}</label>
+        <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                            <span
+                              class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                              <fa-icon [icon]="faVenusMars"></fa-icon>
+                            </span>
+          <select class="focus:ring-indigo-500 focus:border-indigo-500
+                          sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md" [formControlName]="'gender'">
             <option value="1">{{'MALE' | translate}}</option>
             <option value="2">{{'FEMALE' | translate}}</option>
           </select>
-        </span>
+        </div>
+      </div>
+
       <div class="text-right my-2">
         <button type="submit"
                 [disabled]="!profile_form.valid"
                 [ngClass]="profile_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'"
           class="text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-500 dark:hover:bg-blue-700 dark:focus:ring-blue-700">
           <fa-icon class="mr-1 text-white" [icon]="faPencilAlt"></fa-icon>
-          {{"UPDATE"|translate}}
+          {{"UPDATE_BUTTON"|translate}}
         </button>
       </div>
     </form>

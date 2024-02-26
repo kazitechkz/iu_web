@@ -9,7 +9,7 @@ import {Me} from "../../../shared/models/user.model";
 import {
   faCalendar,
   faCrown,
-  faEnvelope, faLock,
+  faEnvelope, faKey, faLock,
   faPencilAlt,
   faPhone,
   faUser,
@@ -21,8 +21,6 @@ import {GlobalTranslateService} from "../../../shared/services/globalTranslate.s
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {ColorConstants} from "../../../core/constants/color.constants";
 import {StrHelper} from "../../../core/helpers/str.helper";
-import {subStepAction} from "../../../shared/store/step/subStep/subStep.action";
-import {getSubStepState} from "../../../shared/store/step/subStep/subStep.selector";
 import {NgxSmartModalService} from "ngx-smart-modal";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ChangeProfileRequest} from "../../../shared/store/user/account/account.request";
@@ -37,6 +35,9 @@ import {MyOrderModel} from "../../../shared/store/paybox/my_orders/myOrder.model
 import {myOrderAction} from "../../../shared/store/paybox/my_orders/myOrder.action";
 import {myOrderSelector} from "../../../shared/store/paybox/my_orders/myOrder.selector";
 import {Pagination} from "../../../shared/store/pagination";
+import {createMask} from "@ngneat/input-mask";
+import {HttpClient} from "@angular/common/http";
+import {AccountService} from "../../../shared/store/user/account/account.service";
 
 @Component({
   selector: 'app-my-profile',
@@ -45,6 +46,7 @@ import {Pagination} from "../../../shared/store/pagination";
 })
 export class MyProfileComponent implements OnInit {
   public subscriptions: Plan[] = []
+  public profileService = inject(AccountService)
   public basicSubscriptions: Plan[] = []
   public standardSubscriptions: Plan[] = []
   public premiumSubscriptions: Plan[] = []
@@ -58,6 +60,7 @@ export class MyProfileComponent implements OnInit {
   private _activateRoute = inject(ActivatedRoute)
   errors: Record<string, string[]> | null = null;
   requestData = {page: 1}
+  phone_mask = createMask('+7 999 999 9999');
   profile_form: FormGroup = new FormGroup({
     name: new FormControl("", [
       Validators.required
@@ -73,6 +76,8 @@ export class MyProfileComponent implements OnInit {
       Validators.min(4),
       Validators.max(255),
     ]),
+    parent_name: new FormControl(""),
+    parent_phone: new FormControl(""),
   });
   //Data
   //@ts-ignore
@@ -119,6 +124,23 @@ export class MyProfileComponent implements OnInit {
     });
   }
 
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      this.uploadFile(file)
+    }
+  }
+
+  uploadFile(file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+    this.profileService.updatePhoto(formData).pipe().subscribe(item => {
+      if (item.data) {
+        this.getUserInfo()
+      }
+    })
+  }
+
   getSubscriptions() {
     this._store.dispatch(accountAction())
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
@@ -148,6 +170,8 @@ export class MyProfileComponent implements OnInit {
       'name': this.me.name,
       'date': this.me.birth_date ? moment(this.me.birth_date).format("yyyy-MM-DD") : '',
       'phone': this.me.phone,
+      'parent_phone': this.me.parent_phone,
+      'parent_name': this.me.parent_name,
       'gender': this.me.gender ? this.me.gender.id : 1
     })
   }
@@ -212,4 +236,5 @@ export class MyProfileComponent implements OnInit {
   protected readonly Date = Date;
   protected readonly faLock = faLock;
   protected readonly parseInt = parseInt;
+  protected readonly faKey = faKey;
 }

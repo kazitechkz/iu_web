@@ -8,6 +8,7 @@ export enum APIRoutesName {
     sendResetTokenRoute = "auth/send-reset-token",
     me = "me",
     updateMe = "change-profile",
+    updatePhoto = "change-avatar",
     getSubjects = "subjects",
     getSubjectsWithoutRequired = "subjects-without-required",
     getCategories = "categories",

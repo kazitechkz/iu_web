@@ -21,4 +21,8 @@ export class AccountService {
         return this._http.post<ResponseData<boolean>>(environment.baseUrl + APIRoutesName.updateMe, req);
     }
 
+    updatePhoto(req: any): Observable<ResponseData<boolean>> {
+      return this._http.post<ResponseData<boolean>>(environment.baseUrl + APIRoutesName.updatePhoto, req);
+    }
+
 }
