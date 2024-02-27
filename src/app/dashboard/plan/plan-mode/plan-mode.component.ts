@@ -5,8 +5,8 @@ import {
   faChartLine,
   faCircleQuestion,
   faGraduationCap,
-  faLanguage,
-  faStar
+  faLanguage, faRocket,
+  faStar, faVenusMars
 } from "@fortawesome/free-solid-svg-icons";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
@@ -134,4 +134,6 @@ export class PlanModeComponent implements OnInit {
   protected readonly faChartLine = faChartLine;
   protected readonly setInterval = setInterval;
   protected readonly moment = moment;
+    protected readonly faVenusMars = faVenusMars;
+  protected readonly faRocket = faRocket;
 }

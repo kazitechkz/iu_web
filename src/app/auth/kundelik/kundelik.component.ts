@@ -1,10 +1,11 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Store} from "@ngrx/store";
 import {kundelikAction} from "../../shared/store/auth/kundelik/kundelik.action";
 import {KundelikRequest} from "../../shared/store/auth/kundelik/kundelik.request";
 import {getKundelikState} from "../../shared/store/auth/kundelik/kundelik.selector";
 import {BusyService} from "../../shared/services/busy.service";
+import {RoutesName} from "../../core/constants/routes.constants";
 
 @Component({
   selector: 'app-kundelik',
@@ -15,6 +16,7 @@ export class KundelikComponent implements OnInit {
   private activateRoute = inject(ActivatedRoute)
   private busyService = inject(BusyService)
   private store = inject(Store)
+  private route = inject(Router)
   private access_token: string = ''
   errors:Record<string, string[]> | null = null;
   constructor() {}
@@ -37,6 +39,7 @@ export class KundelikComponent implements OnInit {
                 this.store.select(getKundelikState).pipe().subscribe(item => {
                   if(item.errors){
                     this.errors = item.errors;
+                    this.route.navigateByUrl(RoutesName.loginRoute).then(() => null)
                   }
                   this.busyService.idle();
                 })
