@@ -194,13 +194,13 @@
     <div class="my-2">
       {{'SELECT_PROFILE_SUBJECTS' | translate}}
     </div>
-    <div class="grid mobile:grid-cols-1 mobile:gap-1 sm:grid-cols-2 sm:gap-2 my-2">
-      <div class="mt-2.5 mr-0 mb-2.5 ml-0">
+    <div class="grid mobile:grid-cols-1 mobile:gap-1 sm:grid-cols-2 sm:gap-2 mt-2">
+      <div class="mt-2.5 mx-0">
         <label class="block text-sm font-medium text-gray-700">{{'SELECT_SUBJECT' | translate}}</label>
         <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
                             <span
                               class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
-                              <fa-icon [icon]="faVenusMars"></fa-icon>
+                              <fa-icon [icon]="faBook"></fa-icon>
                             </span>
           <select [formControlName]="'subject_first'" class="focus:ring-indigo-500 focus:border-indigo-500
                           sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md">
@@ -208,12 +208,12 @@
           </select>
         </div>
       </div>
-      <div class="mt-2.5 mr-0 mb-2.5 ml-0">
+      <div class="mt-2.5 mx-0">
         <label class="block text-sm font-medium text-gray-700">{{'SELECT_SUBJECT' | translate}}</label>
         <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
                             <span
                               class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
-                              <fa-icon [icon]="faVenusMars"></fa-icon>
+                              <fa-icon [icon]="faBook"></fa-icon>
                             </span>
           <select [formControlName]="'subject_second'" class="focus:ring-indigo-500 focus:border-indigo-500
                           sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md">
@@ -222,6 +222,18 @@
         </div>
       </div>
     </div>
+    <core-input>
+      <div class="my-3 mx-0">
+        <label class="block text-sm font-medium text-gray-700">{{'PROMOCODE' | translate}}</label>
+        <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                      <fa-icon [icon]="faCode"></fa-icon>
+                    </span>
+          <input name="promocode" [formControlName]="'promocode'" type="text" placeholder="VBAJHU" class="focus:ring-indigo-500 focus:border-indigo-500
+                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
+        </div>
+      </div>
+    </core-input>
     <button
       type="submit"
       class="gradient-violet-button px-10 py-2 rounded-lg text-white my-2 inline-block"
