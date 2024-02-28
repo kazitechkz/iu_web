@@ -172,7 +172,7 @@ import {InputMaskModule} from "@ngneat/input-mask";
         TwButtonModule,
         QRCodeModule,
         DpDatePickerModule,
-        MathjaxModule,
+      MathjaxModule.forRoot(/*Optional Config*/),
         CalendarDayModule,
         CalendarMonthModule,
         CalendarCommonModule,
@@ -182,6 +182,7 @@ import {InputMaskModule} from "@ngneat/input-mask";
         DndDraggableDirective,
         DndDropzoneDirective,
         InputMaskModule,
+
     ],
   providers: [MathJaxPipe, TranslatePipe]
 })

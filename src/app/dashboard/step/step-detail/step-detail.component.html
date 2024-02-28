@@ -2,131 +2,130 @@
 <div class="w-full flex">
   <div class="w-full lg:p-4 sm:pl-2 mobile:p-1.5">
     <div class="w-full flex">
-
-      <div class="st mobile:w-full sm:w-full md:w-full lg:w-full xl:w-[70%]">
-
-        <div class="stepper" id="scrollableDiv">
-<!--          <div class="step-button flex justify-start bg-pos-bottom" >-->
-<!--            <button class="step-first">-->
-<!--              &lt;!&ndash;            <div class="st-content"></div>&ndash;&gt;-->
-<!--            </button>-->
-<!--          </div>-->
-          <div class="my-[30px]"></div>
-          <div *ngIf="steps">
-
-            <div *ngFor="let step of steps">
-              <div *ngIf="step.level % 2 === 0" class="step-button flex justify-start bg-pos-bottom">
-                <button class="step-button-left" (click)="openDialog(step.id.toString())">
-                  <div *ngIf="step.is_free" class="circle-multiple w-[90px] h-[90px] bg-no-repeat bg-bottom bg-contain"
-                       [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}">
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                  </div>
-                  <div *ngIf="!step.is_free" class="circle bg-no-repeat bg-bottom bg-contain"
-                       [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}"></div>
-                  <div class="st-content">
-                    {{step | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID)}}
-                  </div>
-                  <div class="mt-4 flex justify-between items-center px-5 w-full [direction:ltr]">
-                    <div class="w-full bg-neutral-200 text-black">
-                      <div
-                        class="bg-primary p-0.5 text-center text-xs font-medium leading-none italic"
-                        [ngStyle]="{'width': StrHelper.getProgressByLocaleID(step, localeID) + '%', 'background-color': ColorConstants.primaryColor}">
-                        {{StrHelper.getProgressByLocaleID(step, localeID)}}%
+      <div class="mobile:w-full sm:w-full md:w-full lg:w-full xl:w-[70%] pre-st rounded-xl">
+        <div class="st w-full">
+          <div class="stepper" id="scrollableDiv">
+            <div class="my-[30px]"></div>
+            <div *ngIf="steps">
+              <div *ngFor="let step of steps">
+                <div *ngIf="step.level % 2 === 0" class="step-button flex justify-start bg-pos-bottom">
+                  <button class="step-button-left" (click)="openDialog(step.id.toString())">
+                    <div *ngIf="step.is_free" class="circle-multiple w-[90px] h-[90px] bg-no-repeat bg-bottom bg-contain"
+                         [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div *ngIf="!step.is_free" class="circle bg-no-repeat bg-bottom bg-contain"
+                         [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}"></div>
+                    <div class="st-content">
+                      {{step | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID)}}
+                    </div>
+                    <div class="mt-4 flex justify-between items-center px-5 w-full [direction:ltr]">
+                      <div class="w-full bg-white text-black">
+                        <div
+                          class="main-orange-bg p-0.5 text-center text-xs font-medium leading-none italic"
+                          [ngStyle]="{'width': StrHelper.getProgressByLocaleID(step, localeID) + '%',}">
+                          {{StrHelper.getProgressByLocaleID(step, localeID)}}%
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </button>
-              </div>
-              <div *ngIf="step.level % 2 !== 0" class="step-button flex justify-end bg-pos-top">
-                <button class="step-button-right" (click)="openDialog(step.id.toString())">
-                  <div *ngIf="step.is_free" class="circle-multiple w-[90px] h-[90px] bg-no-repeat bg-bottom bg-contain"
-                       [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}">
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                  </div>
-                  <div *ngIf="!step.is_free" class="circle bg-no-repeat bg-bottom bg-contain"
-                       [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}"></div>
-                  <div class="st-content">
-                    {{ step | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID) }}
-                  </div>
+                  </button>
+                </div>
+                <div *ngIf="step.level % 2 !== 0" class="step-button flex justify-end bg-pos-top">
+                  <button class="step-button-right" (click)="openDialog(step.id.toString())">
+                    <div *ngIf="step.is_free" class="circle-multiple w-[90px] h-[90px] bg-no-repeat bg-bottom bg-contain"
+                         [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}">
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                      <div class="circle"></div>
+                    </div>
+                    <div *ngIf="!step.is_free" class="circle bg-no-repeat bg-bottom bg-contain"
+                         [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}"></div>
+                    <div class="st-content">
+                      {{ step | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(this.localeID) }}
+                    </div>
 
-                  <div class="mt-4 flex justify-between items-center px-5 w-full [direction:ltr]">
-                    <div class="w-full bg-neutral-200 text-black">
-                      <div
-                        class="bg-primary p-0.5 text-center text-xs font-medium leading-none italic"
-                        [ngStyle]="{'width': StrHelper.getProgressByLocaleID(step, localeID) + '%', 'background-color': ColorConstants.primaryColor}">
-                        {{ StrHelper.getProgressByLocaleID(step, localeID) }}%
+                    <div class="mt-4 flex justify-between items-center px-5 w-full [direction:ltr]">
+                      <div class="w-full bg-neutral-200 text-black">
+                        <div
+                          class="main-orange-bg p-0.5 text-center text-xs font-medium leading-none italic"
+                          [ngStyle]="{'width': StrHelper.getProgressByLocaleID(step, localeID) + '%'}">
+                          {{ StrHelper.getProgressByLocaleID(step, localeID) }}%
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </button>
-              </div>
-              <div  class="[direction:ltr] w-full">
-                <ngx-smart-modal identifier="{{step.id}}" [customClass]="'high-index'">
-                  <div class="my-3" *ngFor="let subStep of subSteps">
-                    <a [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepRoute) + '/' + subStep.id + '/' + localeID" *ngIf="subStep.is_free">
-                      <div
-                        class="flex mobile:pl-2 sm:pl-2 mobile:items-center sm:items-center rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:max-w-xl">
-                        <img
-                          class="mobile:hidden mobile:h-auto sm:hidden sm:h-auto md:block h-96 w-1/4 rounded-t-lg object-cover md:h-auto md:!rounded-none md:!rounded-l-lg"
-                          [src]="ImageHelper.getImage(null)"
-                          alt="" />
-                        <div class="md:hidden sm:block mobile:block border sm:w-[80px] sm:h-[80px] w-[50px] h-[50px] rounded-full bg-no-repeat bg-center bg-cover" [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(null)+')'}"></div>
-                        <div class="flex flex-col justify-start p-6 mobile:p-2 w-3/4">
-                          <h5
-                            class="mb-2 mobile:text-xs sm:text-xl font-medium text-neutral-800">
-                            {{subStep | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(localeID)}}
-                          </h5>
-                          <div class="flex justify-between items-center">
-                            <div class="w-full pr-3">
-                              <div class="h-1 w-full bg-neutral-200">
-                                <div class="h-1" [ngStyle]="{'width': StrHelper.getProgressByLocaleID(subStep, localeID) + '%', 'background-color': ColorConstants.primaryColor}"></div>
+                  </button>
+                </div>
+                <div  class="[direction:ltr] w-full">
+                  <ngx-smart-modal identifier="{{step.id}}" [customClass]="'high-index'">
+                    <div class="my-3" *ngFor="let subStep of subSteps">
+                      <a [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepRoute) + '/' + subStep.id + '/' + localeID" *ngIf="subStep.is_free">
+                        <div
+                          class="main-violet-first-rounded flex mobile:pl-2 sm:pl-2 mobile:items-center sm:items-center rounded-[35px] bg-[rgb(212,212,212,0.9)] md:max-w-xl">
+                          <img
+                            class="mobile:hidden mobile:h-auto sm:hidden sm:h-auto md:block h-96 w-1/4 rounded-t-lg object-cover md:h-auto md:!rounded-none md:!rounded-l-lg"
+                            [src]="ImageHelper.getImage(null)"
+                            alt="" />
+                          <div class="md:hidden sm:block mobile:block border sm:w-[80px] sm:h-[80px] w-[50px] h-[50px] rounded-full bg-no-repeat bg-center bg-cover" [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(null)+')'}"></div>
+                          <div class="flex flex-col justify-start p-6 mobile:p-2 w-3/4">
+                            <h5
+                              class="mb-2 mobile:text-xs sm:text-xl font-bold text-[#342430]">
+                              {{subStep | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(localeID)}}
+                            </h5>
+                            <div class="flex justify-between items-center">
+                              <div class="w-full pr-3">
+                                <div class="h-1 w-full main-orange-bg">
+                                  <div class="h-1" [ngStyle]="{'width': StrHelper.getProgressByLocaleID(subStep, localeID) + '%', 'background-color': ColorConstants.primaryColor}"></div>
+                                </div>
                               </div>
+                              <p class="text-sm mobile:text-xs text-[#342430] font-bold">{{StrHelper.getProgressByLocaleID(subStep, localeID)}}%</p>
                             </div>
-                            <p class="text-sm mobile:text-xs font-medium">{{StrHelper.getProgressByLocaleID(subStep, localeID)}}%</p>
                           </div>
-                          <!--                      <p class="text-xs text-neutral-500">-->
-                          <!--                        Last updated 3 mins ago-->
-                          <!--                      </p>-->
                         </div>
-                      </div>
-                    </a>
-                    <a class="cursor-pointer" (click)="openBuyContentDialog(step.subject)" *ngIf="!subStep.is_free">
-                      <div
-                        class="flex mobile:pl-2 sm:pl-2 mobile:items-center sm:items-center rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:max-w-xl">
-                        <img
-                          class="mobile:hidden mobile:h-auto sm:hidden sm:h-auto md:block h-96 w-1/4 rounded-t-lg object-cover md:h-auto md:!rounded-none md:!rounded-l-lg"
-                          [src]="ImageHelper.getImage(null)"
-                          alt="" />
-                        <div class="md:hidden sm:block mobile:block border sm:w-[80px] sm:h-[80px] w-[50px] h-[50px] rounded-full bg-no-repeat bg-center bg-cover" [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(null)+')'}"></div>
-                        <div class="flex justify-between items-center p-6 mobile:p-2 w-3/4">
-                          <h5
-                            class="mb-2 mobile:text-xs sm:text-xl font-medium text-gray-500">
-                            {{subStep | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(localeID)}}
-                          </h5>
-                          <i class="fa fa-lock ml-2 fa-xl text-gray-500" aria-hidden="true"></i>
+                      </a>
+                      <a class="cursor-pointer" (click)="openBuyContentDialog(step.subject)" *ngIf="!subStep.is_free">
+                        <div
+                          class="flex mobile:pl-2 sm:pl-2 mobile:items-center sm:items-center rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] md:max-w-xl">
+                          <img
+                            class="mobile:hidden mobile:h-auto sm:hidden sm:h-auto md:block h-96 w-1/4 rounded-t-lg object-cover md:h-auto md:!rounded-none md:!rounded-l-lg"
+                            [src]="ImageHelper.getImage(null)"
+                            alt="" />
+                          <div class="md:hidden sm:block mobile:block border sm:w-[80px] sm:h-[80px] w-[50px] h-[50px] rounded-full bg-no-repeat bg-center bg-cover" [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(null)+')'}"></div>
+                          <div class="flex justify-between items-center p-6 mobile:p-2 w-3/4">
+                            <h5
+                              class="mb-2 mobile:text-xs sm:text-xl font-medium text-gray-500">
+                              {{subStep | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(localeID)}}
+                            </h5>
+                            <i class="fa fa-lock ml-2 fa-xl text-gray-500" aria-hidden="true"></i>
+                          </div>
                         </div>
-                      </div>
-                    </a>
+                      </a>
 
-                  </div>
-                </ngx-smart-modal>
+                    </div>
+                  </ngx-smart-modal>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="xl:w-[30%] container px-2 mobile:hidden sm:hidden md:hidden lg:hidden xl:block">
-        <div *ngIf="fact">
-          <div class="ml-5 w-full 2xl:w-3/4 2xl:ml-20 h-[130px]">
-            <div class="bubble-2 bubble-bottom-left-2 text-white font-bold italic w-8/12 md:w-3/4 2xl:w-full text-sm" [innerHTML]="fact | globalTranslate: 'text': StrHelper.getCurrentLangByLocaleID(localeID)"></div>
+        <div class="h-full" *ngIf="fact">
+          <div class="ml-5 w-full 2xl:w-3/4 2xl:ml-20 flex justify-center items-center h-full">
+            <div>
+              <div class="bubble-2 bubble-bottom-left-2 text-white font-bold italic w-8/12 md:w-3/4 2xl:w-full text-sm">
+                <div class="max-h-[200px] overflow-y-scroll text-md no-scrollbar"
+                     [innerHTML]="fact | globalTranslate: 'text': StrHelper.getCurrentLangByLocaleID(localeID)">
+                </div>
+              </div>
+              <div
+                class="relative flex justify-center items-center">
+                <img src="assets/images/thinking_1.png" class="w-full"/>
+              </div>
+            </div>
           </div>
-          <div
-            style="height: calc(100vh - 430px); background-image: url('/assets/images/facts_bg.webp')" class="bg-bottom bg-no-repeat bg-contain">
-          </div>
+
         </div>
       </div>
     </div>
@@ -137,45 +136,35 @@
       <ui-switch
         class="inline"
         checkedLabel="Қазақ тілі"
-        defaultBgColor = '#9BA1FF'
+        defaultBgColor = '#ff914d'
         (valueChange)="changeLang($event)"
         size="large"
         uncheckedLabel="Русский язык"
         defaultBoColor="white"
         [checked]="localeID == 1"
         checkedTextColor="white"
-        switchColor="#fcfcfc"
+        switchColor="#482f42"
         uncheckedTextColor="white"
       ></ui-switch>
     </div>
-<!--    <div class="container mx-auto my-3 py-2">-->
-<!--      <div class="flex overflow-x-auto overscroll-none scroll-smooth will-change-scroll scrollbar-color py-3" id="scroll-x">-->
-<!--        <div *ngFor="let subject of subjects" class="slide card rounded-2xl shadow-lg cursor-pointer flex-shrink-0" (click)="getStepDetailBySubjectID(subject.id)">-->
-<!--          <div class=" min-h-[250px]  bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>-->
-<!--          <p class="text-center text-md font-bold py-4">-->
-<!--            {{subject.title_kk}}-->
-<!--          </p>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
     <div class="col-span-12">
       <owl-carousel-o [options]="customOptions" class="py-2">
         <ng-template carouselSlide *ngFor="let subject of subjects">
-          <div class="slide card rounded-2xl shadow-lg relative">
-            <fa-icon *ngIf="chosenSubject.includes(subject.id)" [icon]="faCircleCheck" class="main-green-color z-40 absolute right-1.5 top-1.5 text-4xl"></fa-icon>
+          <div class="slide card rounded-2xl shadow-lg relative bg-violet-first main-violet-first-rounded">
+            <fa-icon *ngIf="chosenSubject.includes(subject.id)" [icon]="faCircleCheck" class="main-violet-first-color z-40 absolute right-1.5 top-1.5 text-4xl"></fa-icon>
             <div class="cursor-pointer min-h-[200px] max-h-[250px] relative  md:min-h-[250px] md:max-h-[300px] lg:min-h-[150px] lg:max-h-[200px] xl:min-h-[180px] xl:max-h-[250px] 2xl:min-h-[250px] 2xl:max-h-[350px] bg-cover bg-center rounded-2xl"
                  [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}">
               <div class="p-3 absolute z-30 w-full bottom-0 flex justify-center items-center cursor-pointer">
-                <button (click)="chooseSubject(subject.id)" *ngIf="!chosenSubject.includes(subject.id)" type="button" class="text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
+                <button (click)="chooseSubject(subject.id)" *ngIf="!chosenSubject.includes(subject.id)" type="button" class="main-violet-first-rounded text-white bg-violet-first hover:main-violet-first-bg  focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
                   <fa-icon [icon]="faCheck"></fa-icon> {{"CHOOSE"|translate}}
                 </button>
-                <button (click)="chooseSubject(subject.id)" *ngIf="chosenSubject.includes(subject.id)" type="button" class="text-white bg-red-500 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
+                <button (click)="chooseSubject(subject.id)" *ngIf="chosenSubject.includes(subject.id)" type="button" class="main-violet-first-rounded text-white main-orange-second-bg focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
                   <fa-icon [icon]="faXmark"></fa-icon> {{"CANCEL"|translate}}
                 </button>
               </div>
             </div>
             <div class="flex justify-center items-center min-h-[80px]">
-              <p class="text-center text-md lg:text-lg font-bold py-4 px-3">
+              <p class="text-center text-md lg:text-lg font-bold py-4 px-3 text-white">
                 {{subject | globalTranslate:"title": StrHelper.getCurrentLangByLocaleID(this.localeID)}}
               </p>
             </div>

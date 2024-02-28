@@ -1,4 +1,4 @@
-<div *ngIf="results; else elseBlock" class="container my-10 mx-auto md:px-6">
+<div *ngIf="results; else elseBlock" class="container my-10 mx-auto md:px-6 bg-[rgba(255,255,255,0.7)] py-5 rounded-[20px] main-violet-first-rounded">
   <div
     class="mb-3 inline-flex w-full items-center rounded-lg bg-success-100 px-6 py-5 text-base text-success-700"
     role="alert">
@@ -18,8 +18,10 @@
   </div>
 
   <div *ngFor="let question of results?.questions"
-       class="block rounded-lg bg-white p-6 my-3 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-    <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px] border-[#50b8b9]">
+       class="block rounded-lg p-6 my-3">
+    <div class="relative">
+      <div class="min-h-[200px] w-full bg-[#ce6f34] rounded-[40px] absolute z-0 top-[-30px]"></div>
+      <div class="card bg-white h-full px-5 py-3 min-h-[200px] shadow-xl rounded-[40px] main-violet-first-rounded relative z-10">
       <div class="card h-full-header px-[10px] py-[15px] min-h-[60px]">
         <h5
           class="mb-2 text-xl font-medium leading-tight text-neutral-800">
@@ -80,18 +82,23 @@
         </div>
       </div>
     </div>
+    </div>
   </div>
 
-  <a
-     [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepExam + '/' + subStepId + '/' + localeId)"
-     class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-    {{'RESTART_BUTTON' | translate}}
-  </a>
+  <div class="text-right">
+    <a
+      [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepExam + '/' + subStepId + '/' + localeId)"
+      class="ml-3 inline-block bg-violet-first px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white rounded-full main-violet-first-rounded"
+    >
+      {{'RESTART_BUTTON' | translate}}
+    </a>
 
-  <a [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepRoute + '/' + subStepId + '/' + localeId)"
-     class="ml-3 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-    {{'BACK_BUTTON' | translate}}
-  </a>
+    <a [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepRoute + '/' + subStepId + '/' + localeId)"
+       class="ml-3 inline-block bg-violet-first px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white rounded-full main-violet-first-rounded"
+    >
+      {{'BACK_BUTTON' | translate}}
+    </a>
+  </div>
 </div>
 <ng-template #elseBlock>
   {{'NO_RESULTS' | translate}}

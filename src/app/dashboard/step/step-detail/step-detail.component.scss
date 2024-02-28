@@ -1,16 +1,27 @@
 .st {
-  background-color: #c9ecff;
   background-image: url("/assets/images/3.webp"),url("/assets/images/4.webp");
-  //background-image: url("https://lingualeo.com/_next/static/media/grass-left.e29e0a37a0f88866c1993299ecaad798.svg"),url("https://lingualeo.com/_next/static/media/grass-right.15a9f25dfb6a3ebf2668e2f91495ba34.svg");
   background-repeat: no-repeat,no-repeat;
   background-size: 150px;
   border-radius: 8px;
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 300px);
+  height: calc(80vh);
   justify-content: center;
   position: relative;
   background-position: 0 100%,100% 100%;
+}
+.pre-st{
+  background-image: linear-gradient(
+      90deg,
+      hsl(23deg 59% 48%) 0%,
+      hsl(17deg 47% 40%) 4%,
+      hsl(341deg 32% 26%) 11%,
+      hsl(288deg 45% 16%) 21%,
+      hsl(287deg 46% 17%) 42%,
+      hsl(332deg 33% 24%) 86%,
+      hsl(14deg 44% 37%) 97%,
+      hsl(23deg 59% 43%) 100%
+  );
 }
 .stepper {
   align-items: center;
@@ -21,7 +32,7 @@
   //direction: rtl;
   position: relative;
   scroll-behavior: smooth;
-  scrollbar-color: #4DC591 #ffffff;
+  scrollbar-color: #7a5585 #ffffff;
   //scrollbar-width: none;
   width: 100%;
 }
@@ -172,7 +183,7 @@
   position: relative;
   font-family: sans-serif;
   line-height: 24px;
-  background: #FF7648;
+  background: rgb(255, 145, 77,0.5);
   border-radius: 40px;
   padding: 24px;
   text-align: center;
@@ -195,7 +206,7 @@
   position: relative;
   font-family: sans-serif;
   line-height: 24px;
-  background: #4DC591;
+  background: rgb(255, 145, 77,0.5);
   border-radius: 40px;
   padding: 24px;
   text-align: center;
@@ -206,37 +217,16 @@
   width: 0px;
   height: 0px;
   position: absolute;
-  border-left: 14px solid #4DC591;
+  border-left: 14px solid rgb(255, 145, 77,0.5);
   border-right: 12px solid transparent;
-  border-top: 12px solid #4DC591;
+  border-top: 12px solid rgb(255, 145, 77,0.5);
   border-bottom: 20px solid transparent;
-  left: 200px;
-  bottom: -24px;
+  right: 0;
+  bottom: -32px;
 }
 
 
-.bubble-3 {
-  position: relative;
-  font-family: sans-serif;
-  line-height: 24px;
-  background: #9BA1FF;
-  border-radius: 40px;
-  padding: 24px;
-  text-align: center;
-}
 
-.bubble-bottom-left-3:before {
-  content: "";
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  border-left: 14px solid #9BA1FF;
-  border-right: 12px solid transparent;
-  border-top: 12px solid #9BA1FF;
-  border-bottom: 20px solid transparent;
-  left: 32px;
-  bottom: -24px;
-}
 
 @media only screen and (min-width: 1280px) and (max-width: 1535px) {
   .bubble-2 {
@@ -244,7 +234,7 @@
     position: relative;
     font-family: sans-serif;
     line-height: 14px;
-    background: #4DC591;
+    background: rgb(255, 145, 77,0.5);
     border-radius: 40px;
     padding: 14px;
     text-align: center;
@@ -278,7 +268,17 @@
 }
 
 @media only screen and (max-width: 900px) {
-  .st {background-image: none}
+  .st {background-image: linear-gradient(
+      90deg,
+      hsl(23deg 59% 48%) 0%,
+      hsl(17deg 47% 40%) 4%,
+      hsl(341deg 32% 26%) 11%,
+      hsl(288deg 45% 16%) 21%,
+      hsl(287deg 46% 17%) 42%,
+      hsl(332deg 33% 24%) 86%,
+      hsl(14deg 44% 37%) 97%,
+      hsl(23deg 59% 43%) 100%
+  );}
 }
 /* the slides */
 .slick-slide {

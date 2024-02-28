@@ -1,147 +1,141 @@
-<div class="container my-10 mx-auto md:px-6">
-<!--  <section class="mb-4 pt-14">-->
-<!--    <div class="mb-6 rounded-lg border-2 border-primary-500 p-2 text-base dark:text-white scroll-x-container" role="alert">-->
-<!--      <p class="inline-flex px-5 text-primary-700 ">-->
-
-<!--        &lt;!&ndash;Share on Twitter&ndash;&gt;-->
-<!--        <span *ngFor="let item of keys" class="mx-2 flex items-center rounded-full w-[35px] h-[35px] justify-center border border-[#4DC591] cursor-pointer">-->
-<!--          {{item+1}}-->
-<!--        </span>-->
-<!--      </p>-->
-<!--    </div>-->
-<!--  </section>-->
-
+<div class="container my-10 mx-auto md:px-6 bg-[rgba(255,255,255,0.7)] py-5 rounded-[20px] main-violet-first-rounded">
   <div *ngIf="questions?.length; else noQuestions">
     <div *ngFor="let question of questions"
-         class="block rounded-lg bg-white p-6 my-3 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-      <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px] border-[#50b8b9]">
-        <div class="card h-full-header px-[10px] py-[15px] min-h-[60px]">
-          <h5
-            class="mb-2 text-xl font-medium leading-tight text-neutral-800">
-            <div [mathjax]="question.question.text | mathjaxTransform"></div>
-          </h5>
-          <div class="my-2" *ngIf="question.question.context" [innerHTML]="question.question.context.context"></div>
-        </div>
-        <div class="content-question">
-          <div class="my-2">
-            <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
-              <input (click)="add(question.id, 'a')"
-                     class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                     type="radio"
-                     value="a"
-                     [name]="'flexRadioDefault'+question.id"
-                     [id]="'radioDefault01'+question.id" />
-              <label
-                class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
-                [for]="'radioDefault01'+question.id">
-                <div [mathjax]="question.question.answer_a | mathjaxTransform"></div>
-              </label>
-            </div>
-            <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
-              <input (click)="add(question.id, 'b')"
-                     class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                     type="radio"
-                     value="b"
-                     [name]="'flexRadioDefault'+question.id"
-                     [id]="'radioDefault02'+question.id" />
-              <label
-                class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
-                [for]="'radioDefault02'+question.id">
-                <div [mathjax]="question.question.answer_b | mathjaxTransform"></div>
-              </label>
-            </div>
-            <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
-              <input (click)="add(question.id, 'c')"
-                     class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                     type="radio"
-                     value="c"
-                     [name]="'flexRadioDefault'+question.id"
-                     [id]="'radioDefault03'+question.id" />
-              <label
-                class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
-                [for]="'radioDefault03'+question.id">
-                <div [mathjax]="question.question.answer_c | mathjaxTransform"></div>
-              </label>
-            </div>
-            <div  class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
-              <input (click)="add(question.id, 'd')"
-                     class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                     type="radio"
-                     value="d"
-                     [name]="'flexRadioDefault'+question.id"
-                     [id]="'radioDefault04'+question.id" />
-              <label
-                class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
-                [for]="'radioDefault04'+question.id">
-                <div [mathjax]="question.question.answer_d | mathjaxTransform"></div>
-              </label>
-            </div>
-            <div *ngIf="question.question.answer_e" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
-              <input (click)="add(question.id, 'e')"
-                     class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                     type="radio"
-                     value="e"
-                     [name]="'flexRadioDefault'+question.id"
-                     [id]="'radioDefault05'+question.id" />
-              <label
-                class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
-                [for]="'radioDefault05'+question.id">
-                <div [mathjax]="question.question.answer_e | mathjaxTransform"></div>
-              </label>
-            </div>
-            <div *ngIf="question.question.answer_f" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
-              <input (click)="add(question.id, 'f')"
-                     class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                     type="radio"
-                     value="f"
-                     [name]="'flexRadioDefault'+question.id"
-                     [id]="'radioDefault06'+question.id" />
-              <label
-                class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
-                [for]="'radioDefault06'+question.id">
-                <div [mathjax]="question.question.answer_f | mathjaxTransform"></div>
-              </label>
-            </div>
-            <div *ngIf="question.question.answer_g" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
-              <input (click)="add(question.id, 'g')"
-                     class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                     type="radio"
-                     value="g"
-                     [name]="'flexRadioDefault'+question.id"
-                     [id]="'radioDefault07'+question.id" />
-              <label
-                class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
-                [for]="'radioDefault07'+question.id">
-                <div [mathjax]="question.question.answer_g | mathjaxTransform"></div>
-              </label>
-            </div>
-            <div *ngIf="question.question.answer_h" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
-              <input (click)="add(question.id, 'h')"
-                     class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-primary checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-primary checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-primary dark:checked:after:border-primary dark:checked:after:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-primary dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                     type="radio"
-                     value="h"
-                     [name]="'flexRadioDefault'+question.id"
-                     [id]="'radioDefault08'+question.id" />
-              <label
-                class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
-                [for]="'radioDefault08'+question.id">
-                <div [mathjax]="question.question.answer_h | mathjaxTransform"></div>
-              </label>
+         class="block rounded-lg p-6 my-5">
+      <div class="relative">
+        <div class="min-h-[200px] w-full bg-[#ce6f34] rounded-[40px] absolute z-0 top-[-30px]"></div>
+        <div class="card bg-white h-full px-5 py-3 min-h-[200px] shadow-xl rounded-[40px] main-violet-first-rounded relative z-10">
+          <div class="card h-full-header px-[10px] py-[15px] min-h-[60px]">
+            <h5
+              class="mb-2 text-xl font-medium leading-tight text-neutral-800">
+              <div [mathjax]="question.question.text | mathjaxTransform"></div>
+            </h5>
+            <div class="my-2" *ngIf="question.question.context" [innerHTML]="question.question.context.context"></div>
+          </div>
+          <div class="content-question ">
+            <div class="my-2">
+              <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <input (click)="add(question.id, 'a')"
+                       class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-[#7a5585] checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-[#7a5585] checked:after:bg-[#7a5585] checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-[#7a5585] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-[#7a5585] dark:checked:after:border-[#7a5585] dark:checked:after:bg-[#7a5585] dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-[#7a5585] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                       type="radio"
+                       value="a"
+                       [name]="'flexRadioDefault'+question.id"
+                       [id]="'radioDefault01'+question.id" />
+                <label
+                  class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer text-md lg:text-lg xl:text-xl"
+                  [for]="'radioDefault01'+question.id">
+                  <div [mathjax]="question.question.answer_a | mathjaxTransform"></div>
+                </label>
+              </div>
+              <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <input (click)="add(question.id, 'b')"
+                       class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-[#7a5585] checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-[#7a5585] checked:after:bg-[#7a5585] checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-[#7a5585] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-[#7a5585] dark:checked:after:border-[#7a5585] dark:checked:after:bg-[#7a5585] dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-[#7a5585] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                       type="radio"
+                       value="b"
+                       [name]="'flexRadioDefault'+question.id"
+                       [id]="'radioDefault02'+question.id" />
+                <label
+                  class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer text-md lg:text-lg xl:text-xl"
+                  [for]="'radioDefault02'+question.id">
+                  <div [mathjax]="question.question.answer_b | mathjaxTransform"></div>
+                </label>
+              </div>
+              <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <input (click)="add(question.id, 'c')"
+                       class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-[#7a5585] checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-[#7a5585] checked:after:bg-[#7a5585] checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-[#7a5585] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-[#7a5585] dark:checked:after:border-[#7a5585] dark:checked:after:bg-[#7a5585] dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-[#7a5585] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                       type="radio"
+                       value="c"
+                       [name]="'flexRadioDefault'+question.id"
+                       [id]="'radioDefault03'+question.id" />
+                <label
+                  class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer text-md lg:text-lg xl:text-xl"
+                  [for]="'radioDefault03'+question.id">
+                  <div [mathjax]="question.question.answer_c | mathjaxTransform"></div>
+                </label>
+              </div>
+              <div  class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <input (click)="add(question.id, 'd')"
+                       class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-[#7a5585] checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-[#7a5585] checked:after:bg-[#7a5585] checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-[#7a5585] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-[#7a5585] dark:checked:after:border-[#7a5585] dark:checked:after:bg-[#7a5585] dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-[#7a5585] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                       type="radio"
+                       value="d"
+                       [name]="'flexRadioDefault'+question.id"
+                       [id]="'radioDefault04'+question.id" />
+                <label
+                  class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer text-md lg:text-lg xl:text-xl"
+                  [for]="'radioDefault04'+question.id">
+                  <div [mathjax]="question.question.answer_d | mathjaxTransform"></div>
+                </label>
+              </div>
+              <div *ngIf="question.question.answer_e" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <input (click)="add(question.id, 'e')"
+                       class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-[#7a5585] checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-[#7a5585] checked:after:bg-[#7a5585] checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-[#7a5585] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-[#7a5585] dark:checked:after:border-[#7a5585] dark:checked:after:bg-[#7a5585] dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-[#7a5585] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                       type="radio"
+                       value="e"
+                       [name]="'flexRadioDefault'+question.id"
+                       [id]="'radioDefault05'+question.id" />
+                <label
+                  class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer text-md lg:text-lg xl:text-xl"
+                  [for]="'radioDefault05'+question.id">
+                  <div [mathjax]="question.question.answer_e | mathjaxTransform"></div>
+                </label>
+              </div>
+              <div *ngIf="question.question.answer_f" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <input (click)="add(question.id, 'f')"
+                       class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-[#7a5585] checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-[#7a5585] checked:after:bg-[#7a5585] checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-[#7a5585] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-[#7a5585] dark:checked:after:border-[#7a5585] dark:checked:after:bg-[#7a5585] dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-[#7a5585] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                       type="radio"
+                       value="f"
+                       [name]="'flexRadioDefault'+question.id"
+                       [id]="'radioDefault06'+question.id" />
+                <label
+                  class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer text-md lg:text-lg xl:text-xl"
+                  [for]="'radioDefault06'+question.id">
+                  <div [mathjax]="question.question.answer_f | mathjaxTransform"></div>
+                </label>
+              </div>
+              <div *ngIf="question.question.answer_g" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <input (click)="add(question.id, 'g')"
+                       class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-[#7a5585] checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-[#7a5585] checked:after:bg-[#7a5585] checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-[#7a5585] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-[#7a5585] dark:checked:after:border-[#7a5585] dark:checked:after:bg-[#7a5585] dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-[#7a5585] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                       type="radio"
+                       value="g"
+                       [name]="'flexRadioDefault'+question.id"
+                       [id]="'radioDefault07'+question.id" />
+                <label
+                  class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer text-md lg:text-lg xl:text-xl"
+                  [for]="'radioDefault07'+question.id">
+                  <div [mathjax]="question.question.answer_g | mathjaxTransform"></div>
+                </label>
+              </div>
+              <div *ngIf="question.question.answer_h" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <input (click)="add(question.id, 'h')"
+                       class="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-neutral-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-[#7a5585] checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-[#7a5585] checked:after:bg-[#7a5585] checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:border-[#7a5585] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-neutral-600 dark:checked:border-[#7a5585] dark:checked:after:border-[#7a5585] dark:checked:after:bg-[#7a5585] dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:border-[#7a5585] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                       type="radio"
+                       value="h"
+                       [name]="'flexRadioDefault'+question.id"
+                       [id]="'radioDefault08'+question.id" />
+                <label
+                  class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer text-md lg:text-lg xl:text-xl"
+                  [for]="'radioDefault08'+question.id">
+                  <div [mathjax]="question.question.answer_h | mathjaxTransform"></div>
+                </label>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+    </div>
+    <div class="flex justify-end">
+      <button
+        [disabled]="!answers.length"
+        (click)="getAnswers()"
+        type="button"
+        class="inline-block rounded-full main-violet-first-rounded bg-violet-first px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150"
+        data-te-ripple-init
+        data-te-ripple-color="light">
+        {{'SEND_BUTTON' | translate}}
+      </button>
     </div>
 
-    <button
-      [disabled]="!answers.length"
-      (click)="getAnswers()"
-      type="button"
-      class="inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-      data-te-ripple-init
-      data-te-ripple-color="light">
-      {{'SEND_BUTTON' | translate}}
-    </button>
   </div>
 
   <ng-template #noQuestions>
