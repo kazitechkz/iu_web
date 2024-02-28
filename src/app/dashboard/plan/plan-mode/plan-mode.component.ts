@@ -24,9 +24,6 @@ import {payCreateSelector} from "../../../shared/store/paybox/pay_create/payCrea
 import {ActivatedRoute, Router} from "@angular/router";
 import {Plan} from "../../../shared/models/plan.model";
 import * as moment from "moment/moment";
-import {accountAction} from "../../../shared/store/user/account/account.action";
-import {getAccountState} from "../../../shared/store/user/account/account.selector";
-import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-plan-mode',
@@ -38,12 +35,7 @@ export class PlanModeComponent implements OnInit {
     this.getSubjects()
   }
   countdown: string = '';
-  endDate: moment.Moment = moment();
   errors: Record<string, string[]> | null = null;
-  public subscriptions: Plan[] = []
-  public basicSubscriptions: Plan[] = []
-  public standardSubscriptions: Plan[] = []
-  public premiumSubscriptions: Plan[] = []
   public translate = inject(GlobalTranslateService)
   private _translatePipe = inject(TranslatePipe)
   dialog = inject(NgxSmartModalService)
@@ -57,6 +49,7 @@ export class PlanModeComponent implements OnInit {
     time: new FormControl(1),
     subject_first: new FormControl(0, [Validators.required]),
     subject_second: new FormControl(0, [Validators.required]),
+    promo: new FormControl(null)
   }, {validators: this.subjectsNotEqualValidator()});
 
   subjectsNotEqualValidator(): ValidatorFn {
@@ -81,6 +74,10 @@ export class PlanModeComponent implements OnInit {
       let req = this.subjects_form.getRawValue() as PayRequest
       this._store.dispatch(payCreateAction({request: req}))
       this._store.select(payCreateSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+        if (item.errors) {
+          this.subjects_form.reset()
+          this.dialog.closeLatestModal()
+        }
         if (item.data) {
          window.location.href = item.data.pg_redirect_url
         }
