@@ -127,9 +127,10 @@
                       <div (click)="answerQuestion(questions[active_slider].id,'a')"
                            [ngClass]="{
                             'bg-[#7a5585]' :is_answered('a')? true : false,
+                            'bg-white' :!is_answered('a')? true : false,
                             'text-white': is_answered('a')? true : false,
                            }"
-                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
+                           class=" text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_a">
                         <div [mathjax]="question.answer_a | mathjaxTransform"></div>
                       </div>
@@ -140,9 +141,10 @@
                       <div (click)="answerQuestion(question.id,'b')"
                            [ngClass]="{
                                 'bg-[#7a5585]' :is_answered('b')? true : false,
+                                 'bg-white' :!is_answered('b')? true : false,
                                 'text-white': is_answered('b')? true : false,
                              }"
-                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
+                           class=" text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_b">
                         <div [mathjax]="question.answer_b | mathjaxTransform"></div>
                       </div>
@@ -153,9 +155,10 @@
                       <div (click)="answerQuestion(questions[active_slider].id,'c')"
                            [ngClass]="{
                               'bg-[#7a5585]' :is_answered('c')? true : false,
+                               'bg-white' :!is_answered('c')? true : false,
                               'text-white': is_answered('c')? true : false,
                            }"
-                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
+                           class=" text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_c">
                         <div [mathjax]="question.answer_c | mathjaxTransform"></div>
                       </div>
@@ -166,9 +169,10 @@
                       <div (click)="answerQuestion(questions[active_slider].id,'d')"
                            [ngClass]="{
                               'bg-[#7a5585]' :is_answered('d')? true : false,
+                                'bg-white' :!is_answered('d')? true : false,
                               'text-white': is_answered('d')? true : false,
                            }"
-                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
+                           class=" text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_d">
                         <div [mathjax]="question.answer_d | mathjaxTransform"></div>
                       </div>
@@ -179,9 +183,10 @@
                       <div (click)="answerQuestion(questions[active_slider].id,'e')"
                            [ngClass]="{
                               'bg-[#7a5585]' :is_answered('e')? true : false,
+                              'bg-white' :!is_answered('e')? true : false,
                               'text-white': is_answered('e')? true : false,
                            }"
-                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
+                           class=" text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_e">
                         <div [mathjax]="question.answer_e | mathjaxTransform"></div>
                       </div>
@@ -192,9 +197,10 @@
                       <div (click)="answerQuestion(questions[active_slider].id,'f')"
                            [ngClass]="{
                               'bg-[#7a5585]' :is_answered('f')? true : false,
+                              'bg-white' :!is_answered('f')? true : false,
                               'text-white': is_answered('f')? true : false,
                            }"
-                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
+                           class=" text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_f">
                         <div [mathjax]="question.answer_f | mathjaxTransform"></div>
                       </div>
@@ -205,9 +211,10 @@
                       <div (click)="answerQuestion(questions[active_slider].id,'g')"
                            [ngClass]="{
                               'bg-[#7a5585]' :is_answered('g')? true : false,
+                              'bg-white' :!is_answered('g')? true : false,
                               'text-white': is_answered('g')? true : false,
                            }"
-                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
+                           class=" text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_g">
                         <div [mathjax]="question.answer_g | mathjaxTransform"></div>
                       </div>
@@ -218,9 +225,10 @@
                       <div (click)="answerQuestion(questions[active_slider].id,'h')"
                            [ngClass]="{
                                 'bg-[#7a5585]' :is_answered('h')? true : false,
+                                'bg-white' :!is_answered('h')? true : false,
                                 'text-white': is_answered('h')? true : false,
                              }"
-                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
+                           class=" text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_h">
                         <div [mathjax]="question.answer_h | mathjaxTransform"></div>
                       </div>
