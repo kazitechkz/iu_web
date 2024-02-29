@@ -11,5 +11,28 @@
 }
 .scroll-bg{
   scroll-behavior: smooth;
-  scrollbar-color: #4DC591 #ffffff;
+  scrollbar-color: #7a5585 #DEDCDA;
+}
+.card-violet{
+  background: rgb(55,33,62,0.7);
+  background: linear-gradient(90deg, rgba(55, 33, 62, 0.5) 27%, rgba(17, 9, 4, 0.5) 100%)
+}
+.input-violet{
+  padding-right: 1rem!important;
+  padding-left: 1rem!important;
+  background: rgb(55,33,62,1);
+}
+
+.not-active-button-pagination{
+  background: rgb(216,116,53);
+  background: linear-gradient(90deg, rgba(216,116,53,1) 0%, rgba(43,22,24,1) 50%);
+}
+.active-button-pagination{
+  background: rgb(216,116,53);
+}
+.answered-button-pagination{
+  background: rgba(43,22,24,1);
+}
+.answer-slide{
+  background: #DCDAD9;
 }

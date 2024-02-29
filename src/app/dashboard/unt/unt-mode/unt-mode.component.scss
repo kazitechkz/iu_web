@@ -2,7 +2,8 @@
   position: relative;
   font-family: sans-serif;
   line-height: 24px;
-  background: #FF7648;
+  background: rgb(173,81,24);
+  background: linear-gradient(135deg, rgba(173,81,24,1) 0%, rgba(55,23,68,1) 50%, rgba(54,23,66,1) 100%);
   border-radius: 40px;
   padding: 24px;
   text-align: center;
@@ -13,21 +14,23 @@
   width: 0px;
   height: 0px;
   position: absolute;
-  border-left: 14px solid #FF7648;
+  border-left: 14px solid rgb(173,81,24);;
   border-right: 12px solid transparent;
-  border-top: 12px solid #FF7648;
+  border-top: 12px solid rgb(173,81,24);;
   border-bottom: 20px solid transparent;
-  left: 32px;
-  bottom: -24px;
+  left: 0;
+  bottom: -23px;
+  transform: rotate(30deg);
 }
 
 .bubble-2 {
   position: relative;
   font-family: sans-serif;
   line-height: 24px;
-  background: #4DC591;
+  background: rgb(173,81,24);
+  background: linear-gradient(135deg, rgba(173,81,24,1) 0%, rgba(55,23,68,1) 50%, rgba(54,23,66,1) 100%);
   border-radius: 40px;
-  padding: 24px;
+  padding: 32px;
   text-align: center;
 }
 
@@ -36,12 +39,13 @@
   width: 0px;
   height: 0px;
   position: absolute;
-  border-left: 14px solid #4DC591;
+  border-left: 14px solid rgb(173,81,24);
   border-right: 12px solid transparent;
-  border-top: 12px solid #4DC591;
+  border-top: 12px solid rgb(173,81,24);
   border-bottom: 20px solid transparent;
-  left: 32px;
-  bottom: -24px;
+  left: 0;
+  bottom: -23px;
+  transform: rotate(30deg);
 }
 
 
@@ -49,7 +53,8 @@
   position: relative;
   font-family: sans-serif;
   line-height: 24px;
-  background: #9BA1FF;
+  background: rgb(173,81,24);
+  background: linear-gradient(135deg, rgba(173,81,24,1) 0%, rgba(55,23,68,1) 50%, rgba(54,23,66,1) 100%);
   border-radius: 40px;
   padding: 24px;
   text-align: center;
@@ -60,10 +65,11 @@
   width: 0px;
   height: 0px;
   position: absolute;
-  border-left: 14px solid #9BA1FF;
+  border-left: 14px solid rgb(173,81,24);
   border-right: 12px solid transparent;
-  border-top: 12px solid #9BA1FF;
+  border-top: 12px solid rgb(173,81,24);
   border-bottom: 20px solid transparent;
-  left: 32px;
-  bottom: -24px;
+  left: 0;
+  bottom: -23px;
+  transform: rotate(30deg);
 }

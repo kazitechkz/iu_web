@@ -1,20 +1,19 @@
 <section *ngIf="attempt && !loading && questions">
   <div class="container mx-auto overflow-x-hidden">
-    <div class="grid grid-cols-12 py-5 my-3 main-green-bg rounded-2xl">
+    <div class="grid grid-cols-12 py-5 my-3 card-violet rounded-2xl">
       <div class="col-span-12 md:col-span-12 text-center">
         <p class="md:text-5xl font-bold text-white my-2 px-1">
           {{"TESTING"|translate}}
         </p>
         <div class="md:text-5xl font-bold text-white mb-2 mt-5 px-1 flex justify-center">
-          <fa-icon [icon]="faClock" class="mr-3"></fa-icon>
           <countdown (event)="handleCountDownEvent($event)" [config]="timeConfig"></countdown>
         </div>
       </div>
     </div>
-    <div class="grid grid-cols-12">
+    <div class="grid grid-cols-12 my-4">
       <div class="col-span-12 flex justify-center">
-        <div class="w-[300px]">
-          <select class="w-full rounded-2xl" (change)="changeSubject($event)">
+        <div class="max-w-[320px] md:max-w-[400px] lg:max-w-[600px]">
+          <select class="w-full text-lg xl:text-xl 2xl:text-2xl text-center rounded-full px-3 font-bold input-violet text-white fill-white main-violet-first-rounded focus:main-violet-first-rounded" (change)="changeSubject($event)">
             <option *ngFor="let subject of attempt.subject_questions" value="{{subject.attempt_subject_id}}">
               {{subject | globalTranslate:"title": translate.currentLang}}
             </option>
@@ -31,12 +30,12 @@
             <button
               (click)="goToSlider(questionNumber)"
               class="rounded-full h-10 w-10 md:w-14 md:h-14 flex justify-center items-center
-                bg-[#9295A3]
+                not-active-button main-violet-first-rounded
               text-sm md:text-md lg:text-2xl text-white font-bold"
               [ngClass]="{
-                  'bg-[#9BA1FF]': (answered_questions.hasOwnProperty(questions[questionNumber].id) || (answeredResult[questions[questionNumber].id])),
-                  'bg-[#9295A3]': (active_slider != questionNumber),
-                  'bg-[#FF7648]': (active_slider == questionNumber),
+                  'answered-button-pagination': (answered_questions.hasOwnProperty(questions[questionNumber].id) || (answeredResult[questions[questionNumber].id])),
+                  'not-active-button-pagination': (active_slider != questionNumber),
+                  'active-button-pagination': (active_slider == questionNumber),
               }"
               type="button"
             >
@@ -58,12 +57,12 @@
               <section>
                 <button
                   (click)="openModal('promptModal')"
-                  class="inline hover:rotate-0 rotate-180 hover:bg-yellow-200 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4 bg-yellow-400 text-md md:text-2xl text-white font-bold"
+                  class="inline hover:rotate-0 rotate-180 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4 text-md md:text-2xl text-white font-bold not-active-button-pagination main-violet-first-rounded"
                 >
                   <fa-icon [icon]="faLightbulb" class="text-white text-md md:text-2xl"></fa-icon>
                 </button>
                 <br>
-                <small class="text-yellow-400 font-bold text-xs sm:text-sm md:text-md">
+                <small class="text-white  font-bold text-xs sm:text-sm md:text-md">
                   {{"PROMPT"|translate}}
                 </small>
               </section>
@@ -72,12 +71,12 @@
               <section>
                 <button
                   (click)="saveQuestion()"
-                  class="inline hover:rotate-0 rotate-180 main-green-bg rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4   text-md md:text-2xl text-white font-bold"
+                  class="inline hover:rotate-0 rotate-180 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4 text-md md:text-2xl text-white font-bold not-active-button-pagination main-violet-first-rounded"
                   type="button">
                   <fa-icon [icon]="faStar"></fa-icon>
                 </button>
                 <br>
-                <small class="main-green-color font-bold text-xs sm:text-sm md:text-md">
+                <small class="text-white  font-bold text-xs sm:text-sm md:text-md">
                   {{"SAVED"|translate}}
                 </small>
               </section>
@@ -87,12 +86,12 @@
               <section>
                 <button
                   (click)="openModal('appealModal')"
-                  class="inline hover:rotate-0 rotate-180 bg-red-500 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4   text-md md:text-2xl text-white font-bold"
+                  class="inline hover:rotate-0 rotate-180 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4 text-md md:text-2xl text-white font-bold not-active-button-pagination main-violet-first-rounded"
                   type="button">
                   <fa-icon [icon]="faBug"></fa-icon>
                 </button>
                 <br>
-                <small class="text-red-500 font-bold text-xs sm:text-sm md:text-md">
+                <small class="text-white font-bold text-xs sm:text-sm md:text-md">
                   {{"FIND_ERROR"|translate}}
                 </small>
               </section>
@@ -111,15 +110,15 @@
                 (afterChange)="changeSlider($event)"
                 #slickModal="slick-carousel" class="carousel" [config]="questionSlider">
                 <div ngxSlickItem *ngFor="let question of questions_ones.question"
-                     class="slide cursor-pointer relative  rounded-2xl shadow-2xl overflow-y-scroll">
+                     class="slide cursor-pointer relative  rounded-2xl shadow-2xl answer-slide main-violet-first-rounded">
                   <div class="my-4 text-md md:text-xl text-black p-4 font-bold">
                     {{"QUESTION_NUMBER"|translate}} {{active_slider + 1}} / {{questions_ones.question.length}}
                   </div>
                   <div class="p-4 text-black font-bold content-question">
-                    <div class="text-xs md:text-sm overflow-x-scroll scroll-bg" [mathjax]="question.text | mathjaxTransform"></div>
+                    <div class="text-xs md:text-sm lg:text-md xl:text-lg overflow-x-scroll scroll-bg" [mathjax]="question.text | mathjaxTransform"></div>
                   </div>
                   <section *ngIf="question.context" class="p-4">
-                    <div class="text-xs md:text-sm overflow-x-scroll scroll-bg py-2" [mathjax]="question.context.context | mathjaxTransform"></div>
+                    <div class="text-xs md:text-sm lg:text-md xl:text-lg overflow-x-scroll overflow-y-scroll scroll-bg py-2 inline-block" [mathjax]="question.context.context | mathjaxTransform"></div>
                   </section>
                   <!--    Answer Modal-->
                   <div class="w-full p-5" *ngIf="answeredResult">
@@ -127,10 +126,10 @@
                     <section *ngIf="checkIsFiftyFifty('answer_a')">
                       <div (click)="answerQuestion(questions[active_slider].id,'a')"
                            [ngClass]="{
-                            'bg-[#9BA1FF]' :is_answered('a')? true : false,
+                            'bg-[#7a5585]' :is_answered('a')? true : false,
                             'text-white': is_answered('a')? true : false,
                            }"
-                           class="text-xs md:text-sm border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] border-black"
+                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_a">
                         <div [mathjax]="question.answer_a | mathjaxTransform"></div>
                       </div>
@@ -140,10 +139,10 @@
                     <section *ngIf="checkIsFiftyFifty('answer_b')">
                       <div (click)="answerQuestion(question.id,'b')"
                            [ngClass]="{
-                                'bg-[#9BA1FF]' :is_answered('b')? true : false,
+                                'bg-[#7a5585]' :is_answered('b')? true : false,
                                 'text-white': is_answered('b')? true : false,
                              }"
-                           class="text-xs md:text-sm border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] border-black"
+                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_b">
                         <div [mathjax]="question.answer_b | mathjaxTransform"></div>
                       </div>
@@ -153,10 +152,10 @@
                     <section *ngIf="checkIsFiftyFifty('answer_c')">
                       <div (click)="answerQuestion(questions[active_slider].id,'c')"
                            [ngClass]="{
-                              'bg-[#9BA1FF]' :is_answered('c')? true : false,
+                              'bg-[#7a5585]' :is_answered('c')? true : false,
                               'text-white': is_answered('c')? true : false,
                            }"
-                           class="text-xs md:text-sm border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] border-black"
+                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_c">
                         <div [mathjax]="question.answer_c | mathjaxTransform"></div>
                       </div>
@@ -166,10 +165,10 @@
                     <section *ngIf="checkIsFiftyFifty('answer_d')">
                       <div (click)="answerQuestion(questions[active_slider].id,'d')"
                            [ngClass]="{
-                              'bg-[#9BA1FF]' :is_answered('d')? true : false,
+                              'bg-[#7a5585]' :is_answered('d')? true : false,
                               'text-white': is_answered('d')? true : false,
                            }"
-                           class="text-xs md:text-sm border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] border-black"
+                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_d">
                         <div [mathjax]="question.answer_d | mathjaxTransform"></div>
                       </div>
@@ -179,10 +178,10 @@
                     <section *ngIf="checkIsFiftyFifty('answer_e')">
                       <div (click)="answerQuestion(questions[active_slider].id,'e')"
                            [ngClass]="{
-                              'bg-[#9BA1FF]' :is_answered('e')? true : false,
+                              'bg-[#7a5585]' :is_answered('e')? true : false,
                               'text-white': is_answered('e')? true : false,
                            }"
-                           class="text-xs md:text-sm border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] border-black"
+                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_e">
                         <div [mathjax]="question.answer_e | mathjaxTransform"></div>
                       </div>
@@ -192,10 +191,10 @@
                     <section *ngIf="checkIsFiftyFifty('answer_f')">
                       <div (click)="answerQuestion(questions[active_slider].id,'f')"
                            [ngClass]="{
-                              'bg-[#9BA1FF]' :is_answered('f')? true : false,
+                              'bg-[#7a5585]' :is_answered('f')? true : false,
                               'text-white': is_answered('f')? true : false,
                            }"
-                           class="text-xs md:text-sm border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] border-black"
+                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_f">
                         <div [mathjax]="question.answer_f | mathjaxTransform"></div>
                       </div>
@@ -205,10 +204,10 @@
                     <section *ngIf="checkIsFiftyFifty('answer_g')">
                       <div (click)="answerQuestion(questions[active_slider].id,'g')"
                            [ngClass]="{
-                              'bg-[#9BA1FF]' :is_answered('g')? true : false,
+                              'bg-[#7a5585]' :is_answered('g')? true : false,
                               'text-white': is_answered('g')? true : false,
                            }"
-                           class="text-xs md:text-sm border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] border-black"
+                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_g">
                         <div [mathjax]="question.answer_g | mathjaxTransform"></div>
                       </div>
@@ -218,10 +217,10 @@
                     <section *ngIf="checkIsFiftyFifty('answer_h')">
                       <div (click)="answerQuestion(questions[active_slider].id,'h')"
                            [ngClass]="{
-                                'bg-[#9BA1FF]' :is_answered('h')? true : false,
+                                'bg-[#7a5585]' :is_answered('h')? true : false,
                                 'text-white': is_answered('h')? true : false,
                              }"
-                           class="text-xs md:text-sm border-blue-400 p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] border-black"
+                           class="bg-white text-xs md:text-sm lg:text-md xl:text-lg font-bold p-4 rounded-2xl my-3 shadow-lg cursor-pointer flex border-[1px] main-violet-first-rounded"
                            *ngIf="question.answer_h">
                         <div [mathjax]="question.answer_h | mathjaxTransform"></div>
                       </div>
@@ -245,15 +244,14 @@
 
     <!--    Prev, Answer, Next-->
     <div class="grid grid-cols-12 my-2">
-      <div class="col-span-6 md:col-span-4 p-4 order-2 md:order-1">
-        <button type="button" class="
-          w-full
+      <div class="col-span-6 md:col-span-4 p-4 order-2 md:order-1 flex justify-start">
+        <button type="button" class="w-full
           inline
-          main-secondary-bg
+          bg-violet-first
           text-white
-          focus:outline-none focus:ring-4
-          focus:ring-violet-500 font-medium
-          rounded-lg text-sm p-3
+          main-violet-first-rounded
+          rounded-full text-sm md:text-md lg:text-lg p-3 font-bold
+          max-w-[320px]
           text-center m-2
    "
                 (click)="prev()"
@@ -265,17 +263,16 @@
         </button>
       </div>
 
-      <div class="col-span-12 md:col-span-4 p-4 order-1 md:order-2">
+      <div class="col-span-12 md:col-span-4 p-4 order-1 md:order-2 flex justify-center">
         <section *ngIf="!loadingAnswer">
-          <button type="button" class="w-full
-            text-lg
+          <button type="button" class="
             font-bold
             inline
-            main-green-bg
+            bg-violet-first
             text-white
-            focus:outline-none focus:ring-4
-            focus:ring-green-500 font-medium
-            rounded-lg text-sm p-3
+            main-violet-first-rounded
+            rounded-full text-sm md:text-md lg:text-lg p-3
+            max-w-[320px]
             text-center m-2"
                   [disabled]="loadingAnswer"
                   (click)="checkAnswer(questions[active_slider].id)"
@@ -287,15 +284,14 @@
         </section>
       </div>
 
-      <div class="col-span-6 md:col-span-4 p-4 order-3 md:order-3">
-        <button type="button" class="
-          w-full
+      <div class="col-span-6 md:col-span-4 p-4 order-3 md:order-3 flex justify-end">
+        <button type="button" class="w-full
           inline
-          main-secondary-bg
+          bg-violet-first
           text-white
-          focus:outline-none focus:ring-4
-          focus:ring-violet-500 font-medium
-          rounded-lg text-sm p-3
+          main-violet-first-rounded
+          rounded-full text-sm md:text-md lg:text-lg p-3 font-bold
+          max-w-[320px]
           text-center m-2
    "
                 (click)="next()">
@@ -314,11 +310,10 @@
       <button type="button" class="
             w-full md:w-1/4
             inline-block
-            bg-red-500
             text-white
-            focus:outline-none focus:ring-4
-            focus:ring-red-500 font-medium
-            rounded-lg text-sm p-3
+            rounded-full text-sm md:text-md lg:text-lg p-3 font-bold
+            bg-violet-orange-first
+            main-violet-first-rounded
             text-center m-2"
               (click)="finishAttempt()"
       >
@@ -334,23 +329,23 @@
   <ngx-smart-modal customClass="nsm-centered unt-modal" identifier="promptModal">
     <div class="py-3 px-4 text-center">
       <div>
-        <fa-icon class="inline-block text-4xl text-yellow-300 my-3" [icon]="faLightbulb"></fa-icon>
+        <fa-icon class="inline-block text-4xl main-violet-first-color my-3" [icon]="faLightbulb"></fa-icon>
       </div>
-      <p class="text-lg md:text-3xl inline-block my-2">
+      <p class="text-lg md:text-3xl inline-block my-2 main-violet-first-color font-bold">
         {{"PROMPT_TO_QUESTION"|translate}} {{active_slider + 1}}</p>
-      <section *ngIf="questions[active_slider].prompt;else no_prompt">
+      <section class="main-violet-first-color" *ngIf="questions[active_slider].prompt;else no_prompt">
         <markdown katex [data]="questions[active_slider].prompt | mathjaxTransform:true" *ngIf="questions[active_slider].prompt ; else no_prompt"></markdown>
       </section>
       <ng-template #no_prompt>
         <br/>
         <span>
-          <fa-icon class="text-yellow-300 mr-2" [icon]="faFaceFrownOpen"></fa-icon>
+          <fa-icon class="main-violet-first-color mr-2" [icon]="faFaceFrownOpen"></fa-icon>
           {{"UNFORTUNATELY_NO_PROMPT"|translate}}
         </span>
         <br/>
       </ng-template>
       <button (click)="closeModal('promptModal')" type="button"
-              class="focus:outline-none my-4 font-bold text-white bg-yellow-300 hover:bg-yellow-400 focus:ring-4 focus:ring-yellow-300 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-500">
+              class="focus:outline-none my-4 font-bold text-white main-violet-first-rounded bg-violet-first rounded-full focus:ring-4 text-sm px-5 py-2.5 mr-2 mb-2">
         {{"UNDERSTAND"|translate}}
       </button>
     </div>
@@ -360,31 +355,31 @@
   <ngx-smart-modal customClass="nsm-centered unt-modal" identifier="appealModal">
     <div class="py-3 px-4 text-center">
       <div>
-        <fa-icon class="inline-block text-4xl text-red-700 my-3" [icon]="faBug"></fa-icon>
+        <fa-icon class="inline-block text-4xl my-3 main-violet-first-color" [icon]="faBug"></fa-icon>
       </div>
-      <p class="text-lg md:text-3xl inline-block my-2">{{"APPEAL_TO_QUESTION"|translate}} {{active_slider + 1}}</p>
+      <p class="text-lg md:text-3xl inline-block my-2 main-violet-first-color font-bold">{{"APPEAL_TO_QUESTION"|translate}} {{active_slider + 1}}</p>
       <div class="my-4">
         <div class="my-2">
-          <select class="w-full rounded-lg my-2" [(ngModel)]="appealRequest.type_id">
+          <select class="text-md md:text-lg lg:text-xl text-center rounded-full px-3 font-bold input-violet main-violet-first-rounded text-white" [(ngModel)]="appealRequest.type_id">
             <option *ngFor="let type of appealTypes" value="{{type.id}}">
               {{type | globalTranslate:"title": translate.currentLang}}
             </option>
           </select>
         </div>
         <div class="my-2 text-left">
-          <label>{{"DESCRIBE_YOUR_PROBLEM"|translate}}</label>
-          <textarea class="w-full" [(ngModel)]="appealRequest.message" maxlength="255">
+          <label class="main-violet-first-color font-bold text-md md:text-lg lg:text-xl">{{"DESCRIBE_YOUR_PROBLEM"|translate}}</label>
+          <textarea class="w-full rounded-2xl main-violet-first-bg p-3 input-violet main-violet-first-rounded text-white" [(ngModel)]="appealRequest.message" maxlength="255">
 
           </textarea>
         </div>
 
       </div>
       <button (click)="createAppeal()" type="button"
-              class="focus:outline-none my-4 mx-2 font-bold text-white bg-red-500 focus:ring-4 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+              class="focus:outline-none my-4 mx-2 font-bold text-white main-violet-first-rounded bg-violet-first rounded-full focus:ring-4 text-sm px-5 py-2.5 mr-2 mb-2">
         {{"SEND"|translate}}
       </button>
       <button (click)="closeModal('appealModal')" type="button"
-              class="focus:outline-none my-4 font-bold text-white main-secondary-bg focus:ring-4 rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">
+              class="focus:outline-none my-4 font-bold text-white main-violet-first-rounded main-orange-bg rounded-full focus:ring-4 text-sm px-5 py-2.5 mr-2 mb-2">
         {{"CANCEL"|translate}}
       </button>
     </div>

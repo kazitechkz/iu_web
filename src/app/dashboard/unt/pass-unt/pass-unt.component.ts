@@ -113,11 +113,11 @@ export class PassUntComponent implements OnInit {
 
   createAttempt(result: boolean) {
     if (this.chosenSubject.length == 2 && result) {
-      let request = {
+      let request = Object.assign({}, {
         subjects: this.chosenSubject,
         locale_id: this.locale_id,
         attempt_type_id: 1,
-      } as CreateAttemptRequest;
+      }) as CreateAttemptRequest;
       this._store.dispatch(createAttemptAction({requestData: request}));
     }
   }

@@ -175,6 +175,11 @@ body{
   background-repeat: no-repeat;
   overflow-x: hidden!important;
 }
+@media screen and (max-width: 640px){
+  .container{
+    max-width: 100% !important;
+  }
+}
 
 #front-page{
   font-family: 'Euclid Circular A', sans-serif;
@@ -242,6 +247,12 @@ body{
   background: rgb(55,33,62);
   background: linear-gradient(90deg, rgba(55,33,62,0.95) 27%, rgba(17,9,4,1) 100%);
 }
+
+.bg-violet-orange-first{
+  background: rgb(173,81,24);
+  background: linear-gradient(135deg, rgba(173,81,24,1) 0%, rgba(55,23,68,1) 50%, rgba(54,23,66,1) 100%);
+}
+
 .main-orange-color{
   color: $main_orange;
 }
@@ -270,6 +281,7 @@ body{
 
 .unt-modal{
   .nsm-content{
+    background: rgb(255,255,255,0.8);
     border-radius: 25px!important;
   }
   .nsm-dialog-btn-close{
