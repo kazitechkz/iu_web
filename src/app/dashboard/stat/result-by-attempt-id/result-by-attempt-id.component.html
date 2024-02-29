@@ -1,142 +1,124 @@
 <div class="container mx-auto" *ngIf="resultByAttempt">
-  <div class="grid grid-cols-12 gap-2 bg-white rounded-xl shadow-lg p-3 my-3 justify-center items-center" *ngIf="resultByAttempt.attempt">
-    <div class="col-span-12 md:col-span-6 my-2">
-      <p class="text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl text-center uppercase bg-blue-400 rounded-lg text-white p-3">
-        {{resultByAttempt.attempt.attempt_type  | globalTranslate:"title": translate.currentLang}}
-      </p>
-    </div>
-    <div class="col-span-12 md:col-span-6 my-2">
-      <p class="text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl text-center uppercase bg-blue-400 rounded-lg text-white p-3">
-        {{"ATTEMPT_NUMBER"|translate}} {{resultByAttempt.attempt.id}}
-      </p>
-    </div>
-    <div class="col-span-12 md:col-span-6">
-      <p class="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-center uppercase font-bold">
-        {{"EXAMINATION_RESULT"|translate}}
-      </p>
-    </div>
-
-    <div class="col-span-12 md:col-span-6 my-2">
-      <p class="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-center uppercase font-bold">
-        {{"TIME_PASS"|translate}}  <countdown  [config]="timeConfig"></countdown>
-      </p>
-    </div>
-    <div class="col-span-12 md:col-span-6  my-2">
-      <p class="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-center uppercase font-bold">
-        {{resultByAttempt.attempt.user?.name}} {{"TOTAL_RESULT"|translate}}
-      </p>
-    </div>
-    <div class="col-span-12 md:col-span-6 my-2">
-      <p class="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-center uppercase font-bold">
-        {{resultByAttempt.attempt.points}} / {{resultByAttempt.attempt.max_points}}  {{"POINTS"|translate}}
-      </p>
-    </div>
-    <div class="col-span-12 md:col-span-6 my-2">
-      <p class="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-center uppercase font-bold">
-        {{"CONCLUSION"|translate}}
-      </p>
-    </div>
-    <div class="col-span-12 md:col-span-6 my-2">
-      <p class="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-center uppercase font-bold main-green-color" *ngIf="resultByAttempt.attempt.points > 50;else notPassed">
-       {{"PASSED_UNT"|translate}}
-      </p>
-      <ng-template #notPassed>
-        <p class="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-center uppercase font-bold text-red-500">
-          {{"NOT_PASSED_UNT"|translate}}
+  <div class="grid grid-cols-12 gap-5 rounded-xl shadow-lg p-3 my-3 justify-center items-center" *ngIf="resultByAttempt.attempt">
+    <div class="col-span-12 md:col-span-6 my-2 flex justify-center">
+      <div class="tab-bg-panel rounded-full w-full lg:w-9/12 main-violet-first-rounded">
+        <p class="text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl text-center text-white p-3 uppercase font-bold">
+          {{resultByAttempt.attempt.attempt_type  | globalTranslate:"title": translate.currentLang}}
         </p>
-      </ng-template>
-    </div>
-    <div class="col-span-12 lg:col-span-6 my-4">
-      <div class="flex justify-center items-center">
-        <table class="w-full md:w-10/12 lg:w-8/12">
-        <tbody>
-        <tr>
-          <td colspan="2" class="font-bold text-sm md:text-md">{{"UNT_TYPE"|translate}}:</td>
-          <td class="font-bold text-blue-400 text-sm md:text-md">{{resultByAttempt.attempt.attempt_type | globalTranslate:"title": translate.currentLang}}</td>
-        </tr>
-        <tr>
-          <td colspan="2" class="font-bold text-sm md:text-md">{{"START_AT"|translate}}:</td>
-          <td class="font-bold text-blue-400 text-sm md:text-md">{{moment(resultByAttempt.attempt.start_at).format('HH:mm:ss DD/MM/YYYY')}}</td>
-        </tr>
-        <tr>
-          <td colspan="2" class="font-bold text-sm md:text-md">{{"END_AT"|translate}}:</td>
-          <td class="font-bold text-blue-400 text-sm md:text-md">{{moment(resultByAttempt.attempt.end_at).format('HH:mm:ss DD/MM/YYYY')}}</td>
-        </tr>
-        </tbody>
-        </table>
       </div>
     </div>
-    <div class="col-span-12 lg:col-span-6 my-4">
-      <div class="flex justify-center items-center">
-        <table class="w-full md:w-10/12 lg:w-8/12">
-          <tbody>
-          <tr>
-            <td colspan="2" class="font-bold text-sm md:text-md">{{"UNT_LANGUAGE"|translate}}:</td>
-            <td class="font-bold text-blue-400 text-sm md:text-md">{{resultByAttempt.attempt.locale?.title}}</td>
-          </tr>
-          <tr>
-            <td colspan="2" class="font-bold text-sm md:text-md">{{"MAX_POINTS"|translate}}:</td>
-            <td class="font-bold text-blue-400 text-sm md:text-md">{{resultByAttempt.attempt.max_points}}</td>
-          </tr>
-          <tr>
-            <td colspan="2" class="font-bold text-sm md:text-md">{{"TOTAL_POINT"|translate}}:</td>
-            <td class="font-bold text-blue-400 text-sm md:text-md">{{resultByAttempt.attempt.points}}</td>
-          </tr>
-          </tbody>
-        </table>
+    <div class="col-span-12 md:col-span-6 my-2 flex justify-center">
+      <div class="tab-bg-panel rounded-full w-full lg:w-9/12 main-violet-first-rounded">
+        <p class="text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl text-center uppercase text-white p-3  font-bold">
+          {{"ATTEMPT_NUMBER"|translate}} {{resultByAttempt.attempt.id}}
+        </p>
       </div>
     </div>
-    <div class="col-span-12 my-4">
-        <div class="relative overflow-x-auto flex justify-center items-center">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <div class="col-span-12">
+      <div class="tab-bg-panel rounded-full w-full main-violet-first-rounded">
+        <p class="text-sm lg:text-md xl:text-lg text-center uppercase text-white p-2 font-bold">
+          {{"TIME_PASS"|translate}} - <b class="text-[#d87435]"><countdown  [config]="timeConfig"></countdown> </b>
+        </p>
+      </div>
+    </div>
+    <div class="col-span-12">
+      <div class="tab-bg-panel rounded-full w-full main-violet-first-rounded">
+        <p class="text-sm lg:text-md xl:text-lg text-center uppercase text-white p-2 font-bold">
+          {{resultByAttempt.attempt.user?.name}} {{"TOTAL_RESULT"|translate}} - <b class="text-[#d87435]">{{resultByAttempt.attempt.points}} / {{resultByAttempt.attempt.max_points}} {{"POINTS"|translate}} </b>
+        </p>
+      </div>
+    </div>
+    <div class="col-span-12">
+      <div class="tab-bg-panel rounded-full w-full main-violet-first-rounded">
+        <p class="text-sm lg:text-md xl:text-lg text-center uppercase text-white p-2 font-bold" *ngIf="resultByAttempt.attempt.points > 50;else notPassed">
+          {{"CONCLUSION"|translate}} -  <b class="text-[#d87435]">{{"PASSED_UNT"|translate}}</b>
+        </p>
+        <ng-template #notPassed>
+          <p class="text-sm lg:text-md xl:text-lg text-center uppercase text-white p-2 font-bold">
+            {{"CONCLUSION"|translate}} -  <b class="text-[#d87435]">{{"NOT_PASSED_UNT"|translate}}</b>
+          </p>
+        </ng-template>
+      </div>
+    </div>
+    <div class="col-span-12">
+      <div class="tab-bg-panel rounded-full w-full main-violet-first-rounded">
+        <p class="text-sm lg:text-md xl:text-lg text-center uppercase text-white p-2 font-bold">
+          {{"UNT_LANGUAGE"|translate}} - <b class="text-[#d87435]">{{resultByAttempt.attempt.locale?.title}}</b>
+        </p>
+      </div>
+    </div>
+    <div class="col-span-12">
+      <div class="tab-bg-panel rounded-full w-full main-violet-first-rounded">
+        <p class="text-sm lg:text-md xl:text-lg text-center uppercase text-white p-2 font-bold">
+          {{"UNT_TYPE"|translate}} - <b class="text-[#d87435]">{{resultByAttempt.attempt.attempt_type | globalTranslate:"title": translate.currentLang}}</b>
+        </p>
+      </div>
+    </div>
+    <div class="col-span-12">
+      <div class="tab-bg-panel rounded-full w-full main-violet-first-rounded">
+        <p class="text-sm lg:text-md xl:text-lg text-center uppercase text-white p-2 font-bold">
+          {{"START_AT"|translate}} - <b class="text-[#d87435]">{{moment(resultByAttempt.attempt.start_at).format('HH:mm:ss DD/MM/YYYY')}}</b>
+        </p>
+      </div>
+    </div>
+    <div class="col-span-12">
+      <div class="tab-bg-panel rounded-full w-full main-violet-first-rounded">
+        <p class="text-sm lg:text-md xl:text-lg text-center uppercase text-white p-2 font-bold">
+          {{"END_AT"|translate}} - <b class="text-[#d87435]">{{moment(resultByAttempt.attempt.end_at).format('HH:mm:ss DD/MM/YYYY')}}</b>
+        </p>
+      </div>
+    </div>
+    <div class="col-span-12 my-4 py-10 px-5 tab-bg-panel rounded-2xl">
+        <div class="relative overflow-x-auto flex justify-center items-center tab-bg-panel rounded-2xl">
+          <table class="w-full text-sm text-left">
             <thead class="text-xs text-gray-700 capitalize">
             <tr>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 text-white text-center">
                 №
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 text-white">
                 {{"SUBJECTS"|translate}}
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 text-white">
                 {{"TOTAL_QUESTION"|translate}}
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 text-white">
                 {{"RIGHT_TOTAL"|translate}}
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 text-white">
                 {{"WRONG_TOTAL"|translate}}
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 text-white">
                 {{"TOTAL"|translate}}
               </th>
             </tr>
             </thead>
             <tbody>
-            <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let subject of resultByAttempt.subjects">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
-                <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(subject.image?.url)+ ')'}"></div>
-                <p class="font-bold text-black ml-2 inline-block">#{{subject.id}}</p>
-              </th>
-              <td class="px-6 py-4">
-                <p class="text-black ml-2 font-bold">{{subject | globalTranslate:"title": translate.currentLang}}</p>
+            <tr class="rounded-2xl my-2" *ngFor="let subject of resultByAttempt.subjects">
+              <td class="px-6 py-4 font-medium text-white whitespace-nowrap flex justify-center items-center">
+                <div class="w-12 h-12 rounded-full border-2 bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(subject.image?.url)+ ')'}"></div>
+                <p class="font-bold text-white ml-2 inline-block">#{{subject.id}}</p>
               </td>
               <td class="px-6 py-4">
-                <p class="text-black ml-2 font-bold">
+                <p class="text-white ml-2 font-bold">{{subject | globalTranslate:"title": translate.currentLang}}</p>
+              </td>
+              <td class="px-6 py-4">
+                <p class="text-white ml-2 font-bold">
                   {{(getSubjectResult(subject.id)?.total ?? 0)}}
                 </p>
               </td>
               <td class="px-6 py-4">
-                <p class="text-green-400 ml-2 font-bold">
+                <p class="text-white ml-2 font-bold">
                   {{(getSubjectResult(subject.id)?.right ?? 0)}}
                 </p>
               </td>
               <td class="px-6 py-4">
-                <p class="text-red-400 ml-2 font-bold">
+                <p class="text-white ml-2 font-bold">
                   {{(getSubjectResult(subject.id)?.not_right ?? 0)}}
                 </p>
               </td>
               <td class="px-6 py-4">
-                <p class="text-black ml-2 font-bold">
+                <p class="text-white ml-2 font-bold">
                   {{(getSubjectResult(subject.id)?.point ?? 0)}}
                 </p>
               </td>
@@ -144,27 +126,30 @@
             </tbody>
           </table>
         </div>
-    </div>
-    <div class="col-span-12 lg:col-span-6 my-2">
-      <div class="text-center my-2">
-        <a
-          [routerLink]="'/'+RoutesName.statByAttemptId + '/' + resultByAttempt.attempt.id"
-          class="cursor-pointer text-sm lg:text-md lg:text-xl text-white main-secondary-bg hover:bg-violet-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-500 dark:hover:bg-blue-700 dark:focus:ring-blue-700">
-          <fa-icon class="mr-1 text-white" [icon]="faChartBar"></fa-icon>
-          {{"SHOW_DETAILED_STAT"|translate}}
-        </a>
+      <div class="grid grid-cols-12 mt-4">
+        <div class="col-span-12 lg:col-span-6 my-2">
+          <div class="text-center my-2">
+            <a
+              [routerLink]="'/'+RoutesName.statByAttemptId + '/' + resultByAttempt.attempt.id"
+              class="cursor-pointer text-sm lg:text-md lg:text-xl text-white font-medium rounded-full px-5 py-2.5 text-center mr-2 mb-2 bg-violet-first main-violet-first-rounded">
+              <fa-icon class="mr-1 text-white" [icon]="faChartBar"></fa-icon>
+              {{"SHOW_DETAILED_STAT"|translate}}
+            </a>
+          </div>
+        </div>
+        <div class="col-span-12 lg:col-span-6 my-2">
+          <div class="text-center my-2">
+            <a
+              [routerLink]="'/'+RoutesName.resultUnt + '/' + resultByAttempt.attempt.id"
+              class="text-sm lg:text-md lg:text-xl cursor-pointer text-white bg-orange-gradient font-medium rounded-full px-5 py-2.5 text-center mr-2 mb-2 border-2 border-[#ad5118]">
+              <fa-icon class="mr-1 text-white" [icon]="faCheckCircle"></fa-icon>
+              {{"WORK_OVER_FAILURES"|translate}}
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-span-12 lg:col-span-6 my-2">
-      <div class="text-center my-2">
-        <a
-          [routerLink]="'/'+RoutesName.resultUnt + '/' + resultByAttempt.attempt.id"
-          class="text-sm lg:text-md lg:text-xl cursor-pointer text-white bg-green-500 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-700 dark:focus:ring-green-700">
-          <fa-icon class="mr-1 text-white" [icon]="faCheckCircle"></fa-icon>
-          {{"WORK_OVER_FAILURES"|translate}}
-        </a>
-      </div>
-    </div>
+
   </div>
 
 

@@ -16,6 +16,7 @@ $main_tertiary : #FF7648;
 $Main_Text : #191B32;
 $Body_Text : #9295A3;
 $violet_first:#7a5585;
+$violet_second:#342430;
 $main_orange:#ff914d;
 $main_orange_second:#ad5118;
 
@@ -227,6 +228,14 @@ body{
   background-color: $violet_first;
 }
 
+.main-violet-second-color{
+  color: $violet_second;
+}
+
+.main-violet-second-bg{
+  background-color: $violet_second;
+}
+
 .main-violet-first-rounded{
   border: 2px solid $violet_first;
 }
@@ -251,6 +260,11 @@ body{
 .bg-violet-orange-first{
   background: rgb(173,81,24);
   background: linear-gradient(135deg, rgba(173,81,24,1) 0%, rgba(55,23,68,1) 50%, rgba(54,23,66,1) 100%);
+}
+
+.bg-orange-gradient{
+  background: rgb(236,129,1);
+  background: linear-gradient(90deg, rgba(236,129,1,1) 0%, rgba(178,66,1,1) 51%);
 }
 
 .main-orange-color{

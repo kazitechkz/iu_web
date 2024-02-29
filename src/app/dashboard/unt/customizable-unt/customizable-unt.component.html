@@ -1,81 +1,98 @@
 <div class="container mx-auto">
-  <div class="grid grid-cols-12 py-5 my-3 main-secondary-bg rounded-2xl">
-    <div class="col-span-12 md:col-span-6 flex justify-center">
-      <img src="/assets/images/customizable.webp" class="max-h-[350px]"/>
-    </div>
+  <div class="grid grid-cols-12 py-5 my-3 bg-violet-orange-first rounded-2xl">
     <div class="col-span-12 md:col-span-6 px-5 md:flex items-center text-center md:text-left">
-      <div>
-        <p class="text-md lg:text-lg xl:text-2xl 2xl:text-3xl text-white font-bold">
+      <div class="px-3 md:px-4 lg:px-5">
+        <p class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-white font-bold">
           {{"TRAINING_UNT_FOR_CATEGORY"|translate}}
         </p>
         <div class="my-4">
-          <p class="text-md lg:text-lg 2xl:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faClock" class="ml-2"></fa-icon>
-            {{"CUSTOMIZE_TIME_AND_QUANTITY"|translate}}
-          </p>
-          <p class="text-md lg:text-lg 2xl:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faBook" class="ml-2"></fa-icon>
-            {{"BOUGHT_CONTENT_FOR_UNT"|translate}}
-            <br>
-          </p>
-          <p class="text-md lg:text-lg 2xl:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faBoxesPacking" class="ml-2"></fa-icon>
-            {{"VARIOUS_QUESTION_ON_CATEGORY"|translate}}
-            <br>
-          </p>
-          <p class="text-md lg:text-lg 2xl:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon>
-            {{"SUPPORT_MULTI_LANGUAGE"|translate}}
-            <br>
-          </p>
+          <div class="flex items-center my-2">
+            <div class="w-8 h-8 border border-white p-2 rounded-full min-w-8 flex justify-center items-center">
+              <fa-icon [icon]="faClock" class="text-sm md:text-md lg:text-lg text-white my-2 px-1"></fa-icon>
+            </div>
+            <p class="text-sm md:text-md lg:text-lg xl:text-xl text-white my-2 px-1">
+              {{"CUSTOMIZE_TIME_AND_QUANTITY"|translate}}
+            </p>
+          </div>
+          <div class="flex items-center my-2">
+            <div class="w-8 h-8 border border-white p-2 rounded-full min-w-8 flex justify-center items-center">
+              <fa-icon [icon]="faBook" class="text-sm md:text-md lg:text-lg text-white my-2 px-1"></fa-icon>
+            </div>
+            <p class="text-sm md:text-md lg:text-lg xl:text-xl text-white my-2 px-1">
+              {{"BOUGHT_CONTENT_FOR_UNT"|translate}}
+            </p>
+          </div>
+          <div class="flex items-center my-2">
+            <div class="w-8 h-8 border border-white p-2 rounded-full min-w-8 flex justify-center items-center">
+              <fa-icon [icon]="faBoxesPacking" class="text-sm md:text-md lg:text-lg text-white my-2 px-1"></fa-icon>
+            </div>
+            <p class="text-sm md:text-md lg:text-lg xl:text-xl text-white my-2 px-1">
+              {{"VARIOUS_QUESTION_ON_CATEGORY"|translate}}
+            </p>
+          </div>
+          <div class="flex items-center my-2">
+            <div class="w-8 h-8 border border-white p-2 rounded-full min-w-8 flex justify-center items-center">
+              <fa-icon [icon]="faLanguage" class="text-sm md:text-md lg:text-lg text-white my-2 px-1"></fa-icon>
+            </div>
+            <p class="text-sm md:text-md lg:text-lg xl:text-xl text-white my-2 px-1">
+              {{"SUPPORT_MULTI_LANGUAGE"|translate}}
+            </p>
+          </div>
         </div>
+      </div>
+    </div>
+    <div class="col-span-12 md:col-span-6 flex justify-center">
+      <div class="flex justify-center items-center">
+        <img class="sm:max-w-[320px] md:max-w-[380px] lg:max-w-[420px]" src="assets/images/bear_office.webp"/>
       </div>
     </div>
   </div>
   <div class="grid grid-cols-12 gap-3 py-5 my-3 ">
     <div class="col-span-12 md:col-span-12 card md:flex items-center justify-center text-center">
-      <p class="md:text-lg font-bold py-4 md:mr-2">
-       {{"CHOOSE_LANGUAGE"|translate}}
+      <p class="md:text-lg font-bold py-4 md:mr-2 text-white">
+        {{"CHOOSE_LANGUAGE"|translate}}
       </p>
       <ui-switch
-        class="inline"
+        class="inline font-bold"
         checkedLabel="Қазақ тілі"
-        defaultBgColor = '#9BA1FF'
+        defaultBgColor='#ff914d'
         (valueChange)="changeLanguage($event)"
         size="large"
         uncheckedLabel="Русский язык"
         defaultBoColor="white"
         [checked]="locale_id == 1"
         checkedTextColor="white"
-        switchColor="#fcfcfc"
+        switchColor="#7a5585"
         uncheckedTextColor="white"
       ></ui-switch>
     </div>
   </div>
   <div class="col-span-12 md:col-span-12 card px-4">
-    <p class="text-2xl md:text-4xl font-bold py-4 text-center md:text-left">
+    <p class="text-2xl md:text-4xl font-bold py-4 text-center md:text-left text-white">
       {{"CHOOSE_SUBJECT"|translate}}
     </p>
   </div>
   <div class="col-span-12 md:col-span-12 p-3">
   <owl-carousel-o [options]="customOptions" class="py-2">
     <ng-template carouselSlide *ngFor="let subject of subjects">
-      <div  class="card rounded-2xl shadow-lg cursor-pointer relative" (click)="chooseSubject(subject.id)">
-        <fa-icon *ngIf="chosenSubject == subject.id" [icon]="faCircleCheck" class="main-green-color absolute right-1.5 top-1.5 text-4xl"></fa-icon>
-        <div class=" min-h-[250px] max-h-[350px] bg-cover bg-center rounded-2xl" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
+      <div  class="slide card main-violet-first-rounded bg-violet-first rounded-[40px] shadow-lg relative" (click)="chooseSubject(subject.id)">
+        <fa-icon *ngIf="chosenSubject == subject.id" [icon]="faCircleCheck" class="main-violet-first-color z-40 absolute right-1.5 top-1.5 text-4xl"></fa-icon>
+        <div class="cursor-pointer min-h-[200px] max-h-[250px] relative  md:min-h-[250px] md:max-h-[300px] lg:min-h-[150px] lg:max-h-[200px] xl:min-h-[180px] xl:max-h-[250px] 2xl:min-h-[250px] 2xl:max-h-[350px] bg-cover bg-center rounded-[40px]"
+             [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subject.image?.url) + ')'}"></div>
         <div class="min-h-[90px] flex justify-center items-center">
-          <p class="text-center text-xl font-bold py-4">
+          <p class="text-center text-md lg:text-lg font-bold py-4 px-3 text-white">
             {{subject | globalTranslate:"title": translate.currentLang}}
           </p>
         </div>
       </div>
     </ng-template>
     <ng-template carouselSlide *ngFor="let subjectItem of allSubjects">
-      <div  class="card rounded-2xl shadow-lg cursor-pointer relative cursor-pointer" (click)="openBuyDialog(subjectItem)">
+      <div class="slide card main-violet-first-rounded bg-violet-first rounded-[40px] shadow-lg relative" (click)="openBuyDialog(subjectItem)">
         <fa-icon [icon]="faLock" class="text-gray-600 absolute right-1.5 top-1.5 text-4xl z-40"></fa-icon>
-        <div class=" min-h-[250px] max-h-[350px] bg-cover bg-center rounded-2xl grayscale" [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subjectItem.image?.url) + ')'}"></div>
+        <div class="min-h-[200px] max-h-[250px] relative  md:min-h-[250px] md:max-h-[300px] lg:min-h-[150px] lg:max-h-[200px] xl:min-h-[180px] xl:max-h-[250px] 2xl:min-h-[250px] 2xl:max-h-[350px] bg-cover bg-center rounded-[40px] grayscale"
+             [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(subjectItem.image?.url) + ')'}"></div>
         <div class="min-h-[90px] flex justify-center items-center">
-          <p class="text-center text-xl font-bold py-4">
+          <p  class="text-center text-md lg:text-lg font-bold py-4 px-3 text-white">
             {{subjectItem | globalTranslate:"title": translate.currentLang}}
           </p>
         </div>
@@ -90,7 +107,7 @@
         <form [formGroup]="attempt_settings_form" (ngSubmit)="sendQuery()">
           <div class="my-2 lg:flex lg:items-center mobile:my-3">
             <div class="flex mx-2 mobile:my-2">
-              <input [formControlName]="'time'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-2 !w-full range-slider__range">
+              <input [formControlName]="'time'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-2 !w-full range-slider__range text-white ">
               <span class="range-slider__value !w-[80px]">(минут)</span>
             </div>
             <div class="flex mx-2 mobile:my-2">
@@ -101,7 +118,7 @@
                 role="switch"
                 id="flexSwitchCheckDefault" />
               <label
-                class="inline-block pl-[0.15rem] hover:cursor-pointer"
+                class="inline-block pl-[0.15rem] hover:cursor-pointer text-white"
                 for="flexSwitchCheckDefault"
               >{{'PROMPT' | translate}}</label
               >
@@ -114,7 +131,7 @@
               <button
                 [disabled]="Object.keys(initialData).length === 0"
                 type="submit"
-                class="ml-5 !bg-[#4DC591] text-white"
+                class="ml-5 bg-violet-first text-white rounded-full main-violet-first-rounded"
                 [ngClass]="attempt_settings_form.valid && Object.keys(initialData).length > 0 ? 'cursor-pointer' : 'cursor-not-allowed'"
                 tw-button
                 layout="flat"
@@ -133,14 +150,14 @@
               <div class="overflow-hidden">
                 <form>
                   <div *ngFor="let cat of categories"
-                       class="block w-full rounded-lg bg-[#9295A3] text-left shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+                       class="block w-full rounded-lg main-violet-first-bg text-left shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                     <div class="p-3 my-2 flex justify-between">
                       <div class="flex items-center justify-between">
                         <p class="mobile:text-xs lg:text-base text-white">
                           {{cat.title_kk}}
                         </p>
                       </div>
-                      <button (click)="getSubCategories(cat.id)" class="rounded-full border ml-auto w-[30px] h-[30px] flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
+                      <button (click)="getSubCategories(cat.id)" class="rounded-full border ml-auto w-[30px] h-[30px] flex justify-center items-center text-white hover:main-violet-first-rounded hover:text-[#3b71ca]">
                         <i class="fa fa-arrow-down" *ngIf="subCategoryContentID != cat.id"></i>
                         <i class="fa fa-arrow-up" *ngIf="subCategoryContentID == cat.id"></i>
                       </button>
@@ -148,7 +165,7 @@
                     </div>
                     <div *ngIf="subCategoryContentID == cat.id">
                       <div class="mobile:my-2 lg:flex lg:justify-between p-3">
-                        <button [ngClass]="isSelectAllCategoryID == cat.id ? 'border-[#3b71ca] text-[#3b71ca]' : ''" (click)="selectAllCategoryByID(cat.id)" class="mobile:text-xs px-2 border flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
+                        <button [ngClass]="isSelectAllCategoryID == cat.id ? 'main-violet-first-rounded text-[#3b71ca]' : ''" (click)="selectAllCategoryByID(cat.id)" class="mobile:text-xs px-2 border flex justify-center items-center text-white hover:main-violet-first-rounded hover:text-[#3b71ca]">
                           {{isSelectAllCategoryID != cat.id ? ('SELECT_ALL' | translate) : 'CANCEL_BUTTON' | translate}}
                           <i class="fa fa-check ml-3" *ngIf="isSelectAllCategoryID != cat.id"></i>
                           <i class="fa fa-ban ml-3" *ngIf="isSelectAllCategoryID == cat.id"></i>
@@ -156,18 +173,18 @@
                         <form [formGroup]="category_form" (ngSubmit)="categoryFormSubmit(cat)">
                           <div class="ml-2 mobile:my-2 lg:flex lg:justify-between" *ngIf="isSelectAllCategoryID == cat.id">
                             <div class="mobile:my-2">
-                              <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-3 range-slider__range">
+                              <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-3 range-slider__range text-white ">
                               <span class="range-slider__value">{{cat.s_questions_count}}</span>
                             </div>
                             <div class="mobile:my-2">
-                              <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="!pl-3 range-slider__range">
+                              <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="!pl-3 range-slider__range text-white ">
                               <span class="range-slider__value">{{cat.c_questions_count}}</span>
                             </div>
                             <div class="mobile:my-2">
-                              <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="!pl-3 range-slider__range">
+                              <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="!pl-3 range-slider__range text-white ">
                               <span class="range-slider__value">{{cat.m_questions_count}}</span>
                             </div>
-                            <button [disabled]="!category_form.valid" [ngClass]="category_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" type="submit" class="mobile:text-xs px-2 border flex justify-center items-center text-white hover:border-[#3b71ca] hover:text-[#3b71ca]">
+                            <button [disabled]="!category_form.valid" [ngClass]="category_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" type="submit" class="mobile:text-xs px-2 border flex justify-center items-center text-white hover:main-violet-first-rounded hover:text-[#3b71ca]">
                               {{'SAVE_BUTTON' | translate}}
                               <i class="fa fa-check ml-3"></i>
                             </button>
@@ -177,10 +194,10 @@
                       </div>
                       <div class="px-3 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8 py-3" *ngIf="isSelectAllCategoryID != cat.id">
                         <div *ngFor="let subCat of subCategories" (click)="dialog.getModal(String(subCat.id)).open()"
-                             class="group relative shadow cursor-pointer bg-white hover:bg-[#9BA1FF]/90" [ngClass]="checkExistSubCategoryFromSelectedList(cat.id, subCat.id) ? '!bg-[#9BA1FF]' : ''">
+                             class="group relative shadow cursor-pointer bg-white hover:bg-[#ff914d] text-black hover:text-white" [ngClass]="checkExistSubCategoryFromSelectedList(cat.id, subCat.id) ? '!bg-[#ff914d] text-white' : ''">
                           <div class="lg:p-6 mobile:p-2 my-2 flex justify-between">
                             <div class="flex items-center">
-                              <p class="mobile:text-xs text-base text-black">
+                              <p class="mobile:text-xs">
                                 {{subCat.title_kk}}
                               </p>
                             </div>
@@ -190,18 +207,18 @@
                               <form [formGroup]="sub_category_form" (ngSubmit)="subCategoryFormSubmit(subCat, cat)">
                                 <div class="">
                                   <div class="my-2">
-                                    <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-3 range-slider__range">
+                                    <input [formControlName]="'s_questions_count'" [placeholder]="'SINGLE_QUESTIONS' | translate" class="!pl-3 range-slider__range text-white  text-white">
                                     <span class="range-slider__value">{{subCat.s_questions_count}}</span>
                                   </div>
                                   <div class="my-2">
-                                    <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="!pl-3 range-slider__range">
+                                    <input [formControlName]="'c_questions_count'" [placeholder]="'CONTEXT_QUESTIONS' | translate" class="!pl-3 range-slider__range text-white  text-white">
                                     <span class="range-slider__value">{{subCat.c_questions_count}}</span>
                                   </div>
                                   <div class="my-2">
-                                    <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="!pl-3 range-slider__range">
+                                    <input [formControlName]="'m_questions_count'" [placeholder]="'MULTI_QUESTIONS' | translate" class="!pl-3 range-slider__range text-white  text-white">
                                     <span class="range-slider__value">{{subCat.m_questions_count}}</span>
                                   </div>
-                                  <button [disabled]="!sub_category_form.valid" [ngClass]="sub_category_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" type="submit" class="px-2 border rounded-[7px] flex justify-center items-center text-black hover:border-[#3b71ca] hover:text-[#3b71ca]">
+                                  <button [disabled]="!sub_category_form.valid" [ngClass]="sub_category_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'" type="submit" class="px-2 border rounded-[7px] flex justify-center items-center text-black hover:main-violet-first-rounded hover:text-[#3b71ca]">
                                     {{'SAVE_BUTTON' | translate}}
                                     <i class="fa fa-check ml-3"></i>
                                   </button>
