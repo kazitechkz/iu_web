@@ -319,6 +319,11 @@ body{
 .max-w-1100 {
   max-width: 1140px!important;
 }
+@media screen and (max-width: 500px) {
+  .max-w-1100 {
+    padding: 0!important;
+  }
+}
 
 .dp-calendar-weekday{
   font-size: 10px;

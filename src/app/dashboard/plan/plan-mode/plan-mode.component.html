@@ -190,11 +190,11 @@
 </div>
 
 <ngx-smart-modal identifier="open" [customClass]="'max-w-1100'">
-  <div class="bg-white w-full px-4">
+  <div class="bg-white w-full mobile:px-0 lg:px-4">
     <div class="bg-white">
-      <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+      <div class="mobile:px-0 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div class="mx-auto max-w-6xl">
-          <p class="text-4xl mb-8 font-bold text-gray-900 text-center">Cart</p>
+          <p class="text-4xl mb-8 font-bold text-gray-900 text-center">Покупка</p>
           <div class="lg:grid-cols-6 lg:items-start xl:gap-x-8 lg:gap-x-6 grid grid-cols-1 gap-y-10">
             <div class="lg:col-span-3 xl:col-span-4">
               <div class="shadow-lg pt-4 pr-8 pb-4 pl-8 rounded flow-root">
@@ -242,16 +242,19 @@
                       <span class="text-danger" *ngIf="promoError">{{promoError}}</span>
                       <span class="text-success" *ngIf="promoSuccess">Промокод успешно активирован</span>
                     </div>
+                    <div class="mt-2.5 mx-0">
+                      <button
+                        (click)="checkPromo()"
+                        type="button"
+                        class="gradient-violet-button px-2 py-2 rounded-lg text-white my-2 inline-block"
+                      >
+                        {{'CHECK_PROMO_BUTTON' | translate}}
+                        <fa-icon [icon]="faRocket"></fa-icon>
+                      </button>
+                    </div>
 
                   </div>
-                  <button
-                    (click)="checkPromo()"
-                    type="button"
-                    class="gradient-violet-button px-10 py-2 rounded-lg text-white my-2 inline-block"
-                  >
-                    {{'CHECK_PROMO_BUTTON' | translate}}
-                    <fa-icon [icon]="faRocket"></fa-icon>
-                  </button>
+
                 </form>
               </div>
             </div>
