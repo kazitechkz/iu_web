@@ -10,6 +10,7 @@ export enum APIRoutesName {
     updateMe = "change-profile",
     updatePhoto = "change-avatar",
     getSubjects = "subjects",
+    getPromoPercentage = "check-promo",
     getSubjectsWithoutRequired = "subjects-without-required",
     getCategories = "categories",
     getSubCategories = "sub-categories",
