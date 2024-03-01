@@ -1,34 +1,57 @@
 <div class="container mx-auto">
-  <div class="grid grid-cols-12 py-2 my-3 main-secondary-bg rounded-2xl">
-    <div class="col-span-12 md:col-span-6  md:px-10 md:flex items-center text-center md:text-left">
-      <div>
-        <p class="text-lg md:text-3xl text-white font-bold">
+  <div class="grid grid-cols-12 py-2 my-3 bg-violet-orange-first rounded-2xl">
+    <div class="col-span-12 md:col-span-6 px-5 md:flex items-center text-center md:text-left">
+      <div class="px-3 md:px-4 lg:px-5">
+        <p class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-white font-bold">
           {{"PARTICIPATE_AND_WIN"|translate}}
         </p>
-        <div class="my-4 pt-5">
-          <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faGift" class="ml-2"></fa-icon> {{"TOURNAMENT_PRISE_AND_AWARD"|translate}}
-          </p>
-          <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faUsers" class="ml-2"></fa-icon> {{"PARTICIPANTS_LIMIT"|translate}} <br>
-          </p>
-          <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faBook" class="ml-2"></fa-icon> {{"TOURNAMENT_SIXTEEN_SUBJECTS"|translate}} <br>
-          </p>
-          <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon> {{"SUPPORT_MULTI_LANGUAGE"|translate}} <br>
-          </p>
+        <div class="my-4">
+          <div class="flex items-center my-2">
+            <div class="w-8 h-8 border border-white p-2 rounded-full min-w-8 flex justify-center items-center">
+              <fa-icon [icon]="faLanguage" class="text-sm md:text-md lg:text-lg text-white my-2 px-1"></fa-icon>
+            </div>
+            <p class="text-sm md:text-md lg:text-lg xl:text-xl text-white my-2 px-1">
+              {{"SUPPORT_MULTI_LANGUAGE"|translate}}
+            </p>
+          </div>
+          <div class="flex items-center my-2">
+            <div class="w-8 h-8 border border-white p-2 rounded-full min-w-8 flex justify-center items-center">
+              <fa-icon [icon]="faBook" class="text-sm md:text-md lg:text-lg text-white my-2 px-1"></fa-icon>
+            </div>
+            <p class="text-sm md:text-md lg:text-lg xl:text-xl text-white my-2 px-1">
+              {{"TOURNAMENT_SIXTEEN_SUBJECTS"|translate}}
+            </p>
+          </div>
+          <div class="flex items-center my-2">
+            <div class="w-8 h-8 border border-white p-2 rounded-full min-w-8 flex justify-center items-center">
+              <fa-icon [icon]="faUsers" class="text-sm md:text-md lg:text-lg text-white my-2 px-1"></fa-icon>
+            </div>
+            <p class="text-sm md:text-md lg:text-lg xl:text-xl text-white my-2 px-1">
+              {{"PARTICIPANTS_LIMIT"|translate}}
+            </p>
+          </div>
+          <div class="flex items-center my-2">
+            <div class="w-8 h-8 border border-white p-2 rounded-full min-w-8 flex justify-center items-center">
+              <fa-icon [icon]="faGift" class="text-sm md:text-md lg:text-lg text-white my-2 px-1"></fa-icon>
+            </div>
+            <p class="text-sm md:text-md lg:text-lg xl:text-xl text-white my-2 px-1">
+              {{"TOURNAMENT_PRISE_AND_AWARD"|translate}}
+            </p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-span-12 md:col-span-6 flex justify-center">
-      <img src="assets/images/tournament.webp" class=" max-h-[350px]"/>
+    <div class="col-span-12 md:col-span-6 order-1 md:order-2">
+      <div class="flex justify-center items-center">
+        <img class="sm:max-w-[320px] md:max-w-[380px] lg:max-w-[460px]" src="assets/images/tournament.webp"/>
+      </div>
     </div>
+
   </div>
 
   <div class="grid grid-cols-12 py-5 my-3 rounded-2xl">
 
-    <div class="col-span-12 bg-white rounded-xl shadow-lg">
+    <div class="col-span-12 tournament-list-50 rounded-xl shadow-lg">
       <div class="p-4">
         <!--Tabs navigation-->
         <ul
@@ -37,27 +60,26 @@
           data-te-nav-ref>
           <li role="presentation">
             <a
-              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight hover:isolate focus:isolate focus:border-transparent text-white data-[te-nav-active]:border-[#b37cc4]"
               data-te-toggle="pill"
               data-te-target="#tabs-current"
               data-te-nav-active
               role="tab"
               aria-controls="tabs-current"
               aria-selected="true"
-            >{{ "CURRENT"|translate}}</a
-            >
+            >{{ "CURRENT"|translate}}</a>
           </li>
           <li role="presentation">
             <a
               href="#tabs-profile"
-              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight hover:isolate focus:isolate focus:border-transparent text-white data-[te-nav-active]:border-[#b37cc4]"
               data-te-toggle="pill"
               data-te-target="#tabs-participated"
               role="tab"
               aria-controls="tabs-participated"
-              aria-selected="false"
-            >  {{ "PARTICIPATED"|translate}}</a
-            >
+              aria-selected="false">
+              {{ "PARTICIPATED"|translate}}
+            </a>
           </li>
         </ul>
 
@@ -71,24 +93,26 @@
             data-te-tab-active>
             <div class="grid grid-cols-12 p-3 gap-2"  *ngIf="tournaments.open">
               <div class="col-span-12 md:col-span-4" *ngFor="let open_tournament of tournaments.open">
-                <div class="card min-h-[300px] relative shadow-2xl cursor-pointer" [routerLink]="['/'+RoutesName.tournamentDetail + '/' + open_tournament.id ]">
-                    <div class="absolute rounded-xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(open_tournament!.file!.url) + ')'}"></div>
-                    <div class="text-center md:text-left z-20 absolute left-3 bottom-4 font-bold">
-                      <p class="main-green-color text-lg  my-2 px-1">{{open_tournament.title_ru}}</p>
-                      <p class="text-yellow-200 text-sm  my-2 px-1">
+                <div class="card min-h-[300px]  rounded-2xl main-violet-first-rounded relative shadow-2xl cursor-pointer" [routerLink]="['/'+RoutesName.tournamentDetail + '/' + open_tournament.id ]">
+                    <div class="absolute rounded-2xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(open_tournament!.file!.url) + ')'}"></div>
+                    <div class="text-center md:text-left z-20 absolute left-3 bottom-4 font-bold w-full">
+                      <p class="text-white text-lg  my-2 px-1">{{open_tournament.title_ru}}</p>
+                      <p class="text-white text-sm  my-2 px-1">
                         <fa-icon [icon]="faBook" class="ml-2"></fa-icon>
                         {{open_tournament.subject|globalTranslate:'title':translate.currentLang}}
                       </p>
-                      <p class="text-sm text-yellow-200 my-2 px-1">
+                      <p class="text-sm text-white my-2 px-1">
                         <fa-icon [icon]="faClock" class="ml-2"></fa-icon> {{moment(open_tournament.start_at).format('DD/MM/YYYY HH:mm')}} - {{moment(open_tournament.end_at).format('DD/MM/YYYY HH:mm')}}
                       </p>
-                      <p class="text-yellow-200 text-sm  my-2 px-1">
+                      <p class="text-white text-sm  my-2 px-1">
                         <fa-icon [icon]="faMoneyBill" class="ml-2"></fa-icon>
                         {{open_tournament.price}}{{open_tournament.currency}}
                       </p>
-                      <a [routerLink]="['/'+RoutesName.tournamentDetail + '/' + open_tournament.id ]" type="button" class="inline-block cursor-pointer text-white bg-green-300 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500 my-3">
-                        {{"MORE_INFO"|translate}}
-                      </a>
+                      <div class="text-right w-full px-3">
+                        <a [routerLink]="['/'+RoutesName.tournamentDetail + '/' + open_tournament.id ]" type="button" class="uppercase font-bold main-violet-first-rounded bg-violet-first inline-block cursor-pointer text-white  focus:outline-none focus:ring-4 rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                          {{"MORE_INFO"|translate}}
+                        </a>
+                      </div>
                     </div>
                 </div>
               </div>
@@ -106,14 +130,14 @@
                   <div class="absolute rounded-xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(participated_tournament.file!.url) + ')'}"></div>
                   <div class="text-center md:text-left z-20 absolute left-3 bottom-4 font-bold">
                     <p class="main-green-color text-lg  my-2 px-1">{{participated_tournament|globalTranslate:'title':translate.currentLang}}</p>
-                    <p class="text-yellow-200 text-sm  my-2 px-1">
+                    <p class="text-white text-sm  my-2 px-1">
                       <fa-icon [icon]="faBook" class="ml-2"></fa-icon>
                       {{participated_tournament.subject|globalTranslate:'title':translate.currentLang}}
                     </p>
-                    <p class="text-sm text-yellow-200 my-2 px-1">
+                    <p class="text-sm text-white my-2 px-1">
                       <fa-icon [icon]="faClock" class="ml-2"></fa-icon> {{moment(participated_tournament.start_at).format('DD/MM/YYYY HH:mm')}} - {{moment(participated_tournament.end_at).format('DD/MM/YYYY HH:mm')}}
                     </p>
-                    <p class="text-yellow-200 text-sm  my-2 px-1">
+                    <p class="text-white text-sm  my-2 px-1">
                       <fa-icon [icon]="faMoneyBill" class="ml-2"></fa-icon>
                       {{participated_tournament.price}}{{participated_tournament.currency}}
                     </p>
