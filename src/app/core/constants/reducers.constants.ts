@@ -182,6 +182,7 @@ import {getVideoAuthorDetailReducer} from "../../shared/store/iutube/getVideoAut
 import {getVideoDetailReducer} from "../../shared/store/iutube/getVideoDetail/getVideoDetail.reducer";
 import {verifyEmailReducer} from "../../shared/store/auth/verifyEmail/verifyEmail.reducer";
 import {kundelikReducer} from "../../shared/store/auth/kundelik/kundelik.reducer";
+import {promoReducer} from "../../shared/store/promo/promo.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -228,6 +229,7 @@ export const ReducersConstants = {
   statByAttemptId:statByAttemptIdReducer,
   statBySubjectId:statBySubjectIdReducer,
   getUntPlan:getUntPlanReducer,
+  promo:promoReducer,
   getLearningPlan:getLearningPlanReducer,
   createForum:createForumReducer,
   allForum:allForumReducer,

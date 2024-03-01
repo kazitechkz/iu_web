@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+.max-w-1200 {
+  max-width: 1200px!important;
+}
+.nsm-dialog .nsm-body {
+  max-width: 1200px!important;
+}
 body{
   display: flex;
   align-items: center;

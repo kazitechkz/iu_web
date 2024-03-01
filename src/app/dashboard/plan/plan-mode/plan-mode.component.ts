@@ -22,8 +22,10 @@ import {PayRequest} from "../../../shared/store/paybox/pay_create/pay.request";
 import {payCreateAction} from "../../../shared/store/paybox/pay_create/payCreate.action";
 import {payCreateSelector} from "../../../shared/store/paybox/pay_create/payCreate.selector";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Plan} from "../../../shared/models/plan.model";
 import * as moment from "moment/moment";
+import {promoGetAction} from "../../../shared/store/promo/promo.action";
+import {PromoRequest} from "../../../shared/store/promo/promo.request";
+import {getPromoStateSelector} from "../../../shared/store/promo/promo.selector";
 
 @Component({
   selector: 'app-plan-mode',
@@ -31,6 +33,9 @@ import * as moment from "moment/moment";
   styleUrls: ['./plan-mode.component.scss']
 })
 export class PlanModeComponent implements OnInit {
+  constructor() {
+
+  }
   ngOnInit(): void {
     this.getSubjects()
   }
@@ -45,6 +50,11 @@ export class PlanModeComponent implements OnInit {
   private _activateRoute = inject(ActivatedRoute)
   public listSubjects: Subject[] = []
   public subjects: Subject[] = []
+  public promo: number = 0
+  public old_price: number = 0
+  public price: number = 0
+  public promoError: string|null = null
+  public promoSuccess: boolean = false
   subjects_form: FormGroup = new FormGroup({
     time: new FormControl(1),
     subject_first: new FormControl(0, [Validators.required]),
@@ -85,11 +95,62 @@ export class PlanModeComponent implements OnInit {
     }
     this.subjects_form.reset()
   }
+  getPrice(time: number, promo: number|null = null) {
+    let price: number
+    switch (time) {
+      case 1:
+        price = 990
+        break;
+      case 3:
+        price = 2490
+        break;
+      case 6:
+        price = 4990
+        break;
+      default:
+        price = 990
+        break;
+    }
+    this.old_price = price
+    if (promo) {
+      this.promo = Math.round((price * promo)/100)
+      price -= Math.round((price * promo)/100)
+    } else {
+      this.promo = 0
+    }
+    this.price = price
+  }
+  checkPromo() {
+    // console.log(this.subjects_form.value['promo'])
+    if (this.subjects_form.value['promo']) {
+      let req = {code: this.subjects_form.value['promo']} as PromoRequest
+      this._store.dispatch(promoGetAction({req: req}))
+      this._store.select(getPromoStateSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+        if (item) {
+          if (item.status) {
+            this.promoError = null
+            this.promoSuccess = true
+            this.getPrice(this.subjects_form.value['time'], item.data)
+          } else {
+            this.getPrice(this.subjects_form.value['time'])
+            this.promoSuccess = false
+          }
+          if (item.errors) {
+            this.getPrice(this.subjects_form.value['time'])
+            this.promoSuccess = false
+            // @ts-ignore
+            this.promoError = item.errors['error']['message']
+          }
+        }
+      })
+    }
+  }
   openDialog(id: string, time: number) {
     this.subjects_form.reset()
     this.subjects_form.patchValue({
       time: time
     })
+    this.getPrice(time)
     this.dialog.getModal(id).open(true)
   }
   getSubjects(){
@@ -131,8 +192,8 @@ export class PlanModeComponent implements OnInit {
   protected readonly faChartLine = faChartLine;
   protected readonly setInterval = setInterval;
   protected readonly moment = moment;
-    protected readonly faVenusMars = faVenusMars;
+  protected readonly faVenusMars = faVenusMars;
   protected readonly faRocket = faRocket;
-    protected readonly faUser = faUser;
+  protected readonly faUser = faUser;
   protected readonly faCode = faCode;
 }
