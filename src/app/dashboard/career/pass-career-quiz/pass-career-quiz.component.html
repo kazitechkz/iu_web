@@ -4,15 +4,15 @@
       <owl-carousel-o (translated)="getData($event)" [options]="customOptions" class="py-2" #owlCar>
         <ng-template carouselSlide *ngFor="let question of careerQuiz.career_quiz_questions;let questionNumber = index">
           <div class="slide">
-            <div class="p-4 flex justify-center items-center bg-violet-200 rounded-2xl">
+            <div class="p-4 flex justify-center items-center bg-black-violet-orange-180-05 main-violet-first-rounded rounded-2xl">
               <div>
                 <div>
                   <div class="text-center">
-                    <p class="text-md md:text-lg lg:text-xl xl:text-2xl font-bold">
+                    <p class="text-md md:text-lg lg:text-xl xl:text-2xl font-bold text-white">
                       {{question|globalTranslate:'question': translate.currentLang}}
                     </p>
                     <div class="my-3">
-                      <p class="text-md md:text-lg  font-bold">
+                      <p class="text-md md:text-lg  font-bold text-white">
                         {{question|globalTranslate:'context': translate.currentLang}}
                       </p>
                     </div>
@@ -21,10 +21,10 @@
                 <div class="card-answers mt-10" *ngIf="careerQuiz.career_quiz_answers">
                   <div class="grid grid-cols-12 gap-3">
                     <div class="col-span-12 md:col-span-6 md:my-2" *ngFor="let answer of careerQuiz.career_quiz_answers">
-                      <div class="flex items-center ps-4 border border-gray-200 rounded-2xl cursor-pointer bg-white">
+                      <div class="flex items-center ps-4 border main-violet-first-rounded  rounded-2xl cursor-pointer text-white main-violet-first-bg">
                         <input (change)="checkAnswer(question.id,answer.value,questionNumber)" id="{{question.id}}{{answer.id}}" type="radio" value="" name="{{question.id}}" class="w-4 h-4 text-blue-600">
                         <label for="{{question.id}}{{answer.id}}"
-                               class="text-xs md:text-md lg:text-lg w-full py-4 rounded-2xl ms-2 font-medium bg-white text-black cursor-pointer">
+                               class="text-xs md:text-md lg:text-lg w-full py-4 rounded-2xl ms-2 font-medium bg-violet-first pl-3 text-white cursor-pointer">
                           {{answer |globalTranslate:'title': translate.currentLang}}
                         </label>
                       </div>
@@ -42,20 +42,22 @@
 
     <div class="col-span-12 my-4" *ngIf="careerQuiz.career_quiz_questions" >
         <div class="flex justify-center items-center">
-           <div class="card grid grid-cols-12 border shadow-lg rounded-lg py-3 px-4 w-full max-w-[360px]">
+           <div class="main-violet-first-rounded bg-black-violet-orange-180-05 grid grid-cols-12 border shadow-lg rounded-lg py-4 px-4 w-full max-w-[360px]">
              <div class="col-span-4">
-               <a *ngIf="slider>0" (click)="owlCar.prev()" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
+               <a *ngIf="slider>0" (click)="owlCar.prev()"
+                  class="main-violet-second-bg main-violet-first-rounded cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
                  <fa-icon class="text-xs md:text-md mr-1" [icon]="faChevronLeft"></fa-icon>
                  <span class="text-xs md:text-md hidden sm:inline">{{"PREV"|translate}}</span>
                </a>
              </div>
              <div class="col-span-4 flex justify-center">
-                <p class="text-lg font-bold text-black">
+                <p class="text-lg font-bold text-white">
                   {{slider + 1}}/{{careerQuiz.career_quiz_questions.length}}
                 </p>
              </div>
              <div class="col-span-4">
-               <a *ngIf="givenSliderKey.includes(slider) && givenSliderKey.length > slider" (click)="owlCar.next()" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
+               <a *ngIf="givenSliderKey.includes(slider) && givenSliderKey.length > slider" (click)="owlCar.next()"
+                  class="main-violet-second-bg main-violet-first-rounded cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
                  <span class="hidden sm:inline text-xs md:text-md">{{"NEXT"|translate}}</span>
                  <fa-icon class="text-xs md:text-md ml-1" [icon]="faChevronRight"></fa-icon>
                </a>
@@ -64,7 +66,7 @@
         </div>
     </div>
     <div class="col-span-12 my-4 text-center" *ngIf="careerQuiz.career_quiz_questions && careerQuiz.career_quiz_questions.length == givenSliderKey.length" >
-      <a (click)="finishQuiz()" class="bg-green-400 hover:bg-green-500 cursor-pointer text-white text-sm px-5 py-3 rounded-xl font-bold">
+      <a (click)="finishQuiz()" class="main-violet-second-bg main-violet-first-rounded cursor-pointer text-white text-sm px-5 py-3 rounded-xl font-bold">
         {{"END_UP"|translate}}
       </a>
     </div>
@@ -76,15 +78,15 @@
       <owl-carousel-o (translated)="getData($event)" [options]="customOptions" class="py-2" #owlCar>
         <ng-template carouselSlide *ngFor="let question of careerQuestionsWithAnswers;let questionNumber = index">
           <div class="slide">
-            <div class="p-4 flex justify-center items-center bg-violet-200 rounded-2xl">
+            <div class="p-4 flex justify-center items-center bg-black-violet-orange-180-05 main-violet-first-rounded rounded-2xl">
               <div>
                 <div>
                   <div class="text-center">
-                    <p class="text-md md:text-lg lg:text-xl xl:text-2xl font-bold">
+                    <p class="text-md md:text-lg lg:text-xl xl:text-2xl font-bold text-white">
                       {{question.question|globalTranslate:'question': translate.currentLang}}
                     </p>
                     <div class="my-3">
-                      <p class="text-md md:text-lg  font-bold">
+                      <p class="text-md md:text-lg  font-bold text-white">
                         {{question.question|globalTranslate:'context': translate.currentLang}}
                       </p>
                     </div>
@@ -95,7 +97,7 @@
                         <section *ngFor="let answer of question.answers;let i = index">
                             <div
                               [ngClass]="{'hidden':checkedAnswerIDS.includes(answer.id)}"
-                              class="bg-white py-3 px-5 text-violet-700 my-3 rounded-xl cursor-pointer"
+                              class="main-violet-first-bg py-3 px-5 text-white my-3 rounded-xl cursor-pointer"
                               [dndDraggable]="answer.id"
                               [dndEffectAllowed]="'copyMove'"
                               (dndMoved)="onDraggableMoved($event,answer.id)"
@@ -133,8 +135,8 @@
                           <div
                             class="border-2 border-violet-200 min-h-[50px] rounded-xl flex justify-center items-center p-2"
                             dndPlaceholderRef>
-                            <div class="flex justify-center items-center w-10 h-10 md:h-14 md:w-14 border border-violet-400 rounded-full bg-white">
-                              <fa-icon class="text-violet-400 text-2xl font-bold" [icon]="faPlus">
+                            <div class="flex justify-center items-center w-10 h-10 md:h-14 md:w-14 border main-violet-first-rounded rounded-full bg-white">
+                              <fa-icon class="main-violet-first-color text-2xl font-bold" [icon]="faPlus">
                               </fa-icon>
                             </div>
 
@@ -151,26 +153,28 @@
       </owl-carousel-o>
     </div>
     <div class="col-span-12 my-4 text-center" *ngIf="careerQuiz.career_quiz_answers?.length == checkedAnswerIDS.length" >
-      <a (click)="finishQuizDragAndDrop()" class="bg-green-400 hover:bg-green-500 cursor-pointer text-white text-sm px-5 py-3 rounded-xl font-bold">
+      <a (click)="finishQuizDragAndDrop()" class="main-violet-second-bg main-violet-first-rounded text-white cursor-pointer text-sm px-5 py-3 rounded-full font-bold">
         {{"END_UP"|translate}}
       </a>
     </div>
     <div class="col-span-12 my-4" *ngIf="careerQuiz.career_quiz_questions" >
       <div class="flex justify-center items-center">
-        <div class="card grid grid-cols-12 border shadow-lg rounded-lg py-3 px-4 w-full max-w-[360px]">
+        <div class="card grid grid-cols-12 main-violet-first-rounded bg-black-violet-orange-180-05 shadow-lg rounded-lg py-3 px-4 w-full max-w-[360px]">
           <div class="col-span-4">
-            <a *ngIf="slider>0" (click)="owlCar.prev()" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
+            <a *ngIf="slider>0" (click)="owlCar.prev()"
+               class="main-violet-second-bg main-violet-first-rounded cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
               <fa-icon class="text-xs md:text-md mr-1" [icon]="faChevronLeft"></fa-icon>
               <span class="text-xs md:text-md hidden sm:inline">{{"PREV"|translate}}</span>
             </a>
           </div>
           <div class="col-span-4 flex justify-center">
-            <p class="text-lg font-bold text-black">
+            <p class="text-lg font-bold text-white">
               {{slider + 1}}/{{careerQuiz.career_quiz_questions.length}}
             </p>
           </div>
           <div class="col-span-4" *ngIf="sortAnswer[careerQuiz.career_quiz_questions[slider].id]">
-            <a *ngIf="careerQuestionsWithAnswers[slider].answers?.length == Object.keys(sortAnswer[careerQuiz.career_quiz_questions[slider].id]).length" (click)="owlCar.next()" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
+            <a *ngIf="careerQuestionsWithAnswers[slider].answers?.length == Object.keys(sortAnswer[careerQuiz.career_quiz_questions[slider].id]).length" (click)="owlCar.next()"
+               class="main-violet-second-bg main-violet-first-rounded cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
               <span class="hidden sm:inline text-xs md:text-md">{{"NEXT"|translate}}</span>
               <fa-icon class="text-xs md:text-md ml-1" [icon]="faChevronRight"></fa-icon>
             </a>

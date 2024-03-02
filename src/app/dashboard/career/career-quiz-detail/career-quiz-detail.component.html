@@ -1,28 +1,28 @@
 <div class="container mx-auto" *ngIf="careerQuiz">
-  <div class="grid grid-cols-12 gap-3 relative p-3 lg:border-l-[10px] lg:border-l-blue-400">
+  <div class="grid grid-cols-12 gap-3 relative p-3 lg:border-l-[10px] lg:border-l-[#ff914d]">
     <div class="col-span-12 lg:col-span-7 order-2 sm:order-1 px-3 flex justify-center items-center z-20">
       <div>
-        <p class="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-4xl font-bold text-black uppercase mb-8">
+        <p class="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-4xl font-bold text-white uppercase mb-8">
          {{"PASS_CAREER_QUIZ"|translate}}:
-          <b class="text-blue-400">
+          <b class="text-[#ff914d]">
             {{careerQuiz | globalTranslate:"title": translate.currentLang}}
           </b>
         </p>
         <div class="my-3">
-          <a class="text-blue-400 text-md lg:text-lg xl:text-xl font-bold my-2" *ngIf="careerQuiz.career_quiz_group">
+          <a class="text-white text-md lg:text-lg xl:text-xl font-bold my-2" *ngIf="careerQuiz.career_quiz_group">
            #{{careerQuiz.career_quiz_group | globalTranslate:"title": translate.currentLang}}
           </a>
         </div>
         <div
-          class="my-3 text-sm md:text-md lg:text-lg text-gray-400"
+          class="my-3 text-sm md:text-md lg:text-lg text-white"
           [innerHTML]="careerQuiz | globalTranslate:'description': translate.currentLang"
         >
         </div>
         <div class="mt-8 text-md text-gray-400">
-          <a (click)="openDialog()" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold" *ngIf="isPurchased">
+          <a (click)="openDialog()" class="bg-violet-first main-violet-first-rounded cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold" *ngIf="isPurchased">
             {{"PASS_QUIZ"|translate}} <fa-icon class="ml-2" [icon]="faChevronRight"></fa-icon>
           </a>
-          <a routerLink="/{{RoutesName.careerQuizPlan}}" class="bg-yellow-300 hover:bg-yellow-500 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold" *ngIf="!isPurchased">
+          <a routerLink="/{{RoutesName.careerQuizPlan}}" class="bg-[#ff914d] cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold" *ngIf="!isPurchased">
              <fa-icon class="ml-2" [icon]="faCoins"></fa-icon> Приобретите тест всего за {{careerQuiz.price}} KZT
           </a>
         </div>
@@ -36,7 +36,7 @@
   </div>
   <div class="grid grid-cols-12 gap-3 relative p-3 mt-[50px]">
     <div class="col-span-12 lg:pl-10">
-      <p class="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-4xl font-bold text-black uppercase">
+      <p class="text-md md:text-lg lg:text-xl xl:text-2xl 2xl:text-4xl font-bold text-white uppercase">
         {{"CAREER_AUTHOR"|translate}}
       </p>
     </div>
@@ -48,19 +48,19 @@
           <div class="slide">
             <div class="flex justify-center w-full h-full" *ngIf="author.career_quiz_author">
               <div class="author-card max-w-[400px] w-full">
-                <div class="profile-card h-full">
+                <div class="profile-card bg-black-violet-orange-180-05 main-violet-first-rounded h-full">
                   <div class="image">
                     <img src="{{ImageHelper.getImage(author.career_quiz_author.file?.url)}}" class="profile-pic">
                   </div>
                   <div class="data text-center">
-                    <p class="text-lg lg:text-xl xl:text-2xl font-bold mb-2">
+                    <p class="text-lg lg:text-xl xl:text-2xl font-bold mb-2 text-white">
                       {{author.career_quiz_author.name}}
                     </p>
-                    <span>
+                    <span class="text-white">
                        {{author.career_quiz_author | globalTranslate:'position':translate.currentLang}}
                     </span>
                   </div>
-                  <div class="row text-gray-400 text-xs text-center h-[200px] py-2 overflow-y-scroll no-scrollbar" [innerHTML]="author.career_quiz_author | globalTranslate:'description':translate.currentLang"></div>
+                  <div class="row text-white text-xs text-center h-[200px] py-2 overflow-y-scroll no-scrollbar" [innerHTML]="author.career_quiz_author | globalTranslate:'description':translate.currentLang"></div>
                   <div class="flex my-4">
                       <a *ngIf="author.career_quiz_author.instagram_url" target="_blank" href="{{author.career_quiz_author.instagram_url}}" class="mx-1 w-10 h-10 bg-[#ae29a3] flex justify-center items-center cursor-pointer rounded-full text-white">
                         <fa-icon class="text-xl" [icon]="faInstagram"></fa-icon>
@@ -95,23 +95,23 @@
   </div>
   <section>
     <div  class="w-full no-scroll" id="careerQuizRule">
-      <ngx-smart-modal [customClass]="'nsm-centered nsm-dialog-animation-ttb'" class="create-career-modal w-full" identifier="create-career-modal">
+      <ngx-smart-modal [customClass]="'nsm-centered nsm-dialog-animation-ttb careerModalRule'" class="create-career-modal w-full" identifier="create-career-modal">
 
         <div class="my-4 flex justify-center items-center">
-          <div class="w-12 h-12 md:w-18 md:h-18 lg:w-24 lg:h-24 xl:w-32 xl:h-32 2xl:w-36 2xl:h-36 bg-yellow-200 rounded-full flex justify-center items-center">
-            <fa-icon [icon]="faExclamation" class="text-md md:text-lg lg:text-2xl xl:text-4xl 2xl:text-6xl text-yellow-400"></fa-icon>
+          <div class="w-12 h-12 md:w-18 md:h-18 lg:w-24 lg:h-24 xl:w-32 xl:h-32 2xl:w-36 2xl:h-36 bg-[#ff914d] rounded-full flex justify-center items-center">
+            <fa-icon [icon]="faExclamation" class="text-md md:text-lg lg:text-2xl xl:text-4xl 2xl:text-6xl text-white"></fa-icon>
           </div>
         </div>
-        <p class="text-md md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl font-bold text-black uppercase mb-8 text-center">
+        <p class="text-md md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl font-bold uppercase mb-8 text-[#ff914d] text-center">
           {{"RULE"|translate}}
         </p>
         <div
-          class="my-3 text-sm md:text-md lg:text-lg text-gray-400"
+          class="my-3 text-sm md:text-md lg:text-lg main-violet-second-color"
           [innerHTML]="careerQuiz | globalTranslate:'rule': translate.currentLang"
         >
         </div>
         <div class="w-full text-center my-3">
-          <a [routerLink]="'/' + RoutesName.passCareerQuiz + '/' + careerQuiz.id" class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-5 py-3 rounded-xl  font-bold">
+          <a [routerLink]="'/' + RoutesName.passCareerQuiz + '/' + careerQuiz.id" class="cursor-pointer text-white text-sm px-5 py-3 rounded-full bg-violet-first main-violet-first-rounded font-bold">
             {{"PASS_QUIZ"|translate}}
           </a>
         </div>

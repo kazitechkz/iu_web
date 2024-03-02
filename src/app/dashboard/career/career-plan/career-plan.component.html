@@ -1,21 +1,21 @@
 <div class="container mx-auto" *ngIf="careerQuizGroups">
   <div class="grid grid-cols-12 my-5" *ngIf="careerQuizGroups.length > 1">
       <div class="col-span-2" *ngFor="let careerQuizGroup of careerQuizGroups;let index = index">
-        <button (click)="setActiveQuizGroup(index)" class="text-md py-3 text-white px-5 rounded-xl bg-violet-700 font-bold">
+        <button (click)="setActiveQuizGroup(index)" class="text-md py-3 text-white px-5 rounded-xl main-violet-second-bg main-violet-first-rounded font-bold">
             {{careerQuizGroup | globalTranslate:'title':translate.currentLang}}
         </button>
       </div>
   </div>
   <div class="grid grid-cols-12" *ngIf="activeQuizGroup">
-    <div class="col-span-12 rounded-xl my-5 shadow-lg bg-cover bg-center py-5" style="background-image: url('assets/images/new-bg.webp')">
+    <div class="col-span-12 rounded-xl my-5 shadow-lg bg-cover bg-center py-5 bg-black-violet-orange-180-05">
       <div class="grid grid-cols-12 min-h-[500px]">
         <div class="col-span-12 md:col-span-8 flex justify-center items-center h-full px-3 py-5">
           <div class="px-3 md:px-5 lg:px-8">
             <div>
-              <p class="text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold">
+              <p class="text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold text-white">
                 {{activeQuizGroup | globalTranslate:'title':translate.currentLang}}
               </p>
-              <div class="text-sm md:text-md my-4 text-justify" [innerHTML]="activeQuizGroup | globalTranslate:'description':translate.currentLang"></div>
+              <div class="text-sm md:text-md my-4 text-justify text-white" [innerHTML]="activeQuizGroup | globalTranslate:'description':translate.currentLang"></div>
             </div>
             <div class="my-3" *ngIf="activeQuizGroup.career_quiz_authors">
               <div class="flex mr-2">
@@ -27,22 +27,23 @@
               </div>
             </div>
             <div class="border-t-white  border-b-white py-3">
-              <p class="text-md lg:text-lg font-bold mb-2">
+              <p class="text-md lg:text-lg font-bold mb-2 text-white">
                 Приобретая группу вы приобретаете следующие тесты:
               </p>
               <div class="grid grid-cols-2" *ngIf="activeQuizGroup.career_quizzes">
                 <div class="col-span-2 my-1" *ngFor="let quiz of activeQuizGroup.career_quizzes">
-                  <p class="text-violet-700 text-sm">
+                  <p class="text-white text-sm">
                     <fa-icon [icon]="faCheck" class="ml-1"></fa-icon>
                     {{quiz | globalTranslate:'title':translate.currentLang}}
                   </p>
                 </div>
               </div>
-              <div class="text-violet-700 font-bold text-lg xl:text-2xl 2xl:text-4xl">
+              <div class="text-white font-bold text-lg xl:text-2xl 2xl:text-4xl">
                 {{activeQuizGroup.price}} KZT
               </div>
             </div>
-            <a (click)="payForCareerGroup(activeQuizGroup.id)" class="inline-block border border-white mt-4 bg-violet-400 hover:bg-violet-700 cursor-pointer text-white text-sm px-5 py-4 rounded-xl  font-bold" *ngIf="!isGroupBlocked.includes(activeQuizGroup.id);else isGroupLoaded">
+            <a (click)="payForCareerGroup(activeQuizGroup.id)"
+               class="inline-block main-violet-first-rounded mt-4 bg-violet-first cursor-pointer text-white text-sm px-5 py-4 rounded-full font-bold" *ngIf="!isGroupBlocked.includes(activeQuizGroup.id);else isGroupLoaded">
               ПРИОБРЕСТИ <fa-icon [icon]="faCoins"/>
             </a>
             <ng-template #isGroupLoaded>
@@ -56,33 +57,33 @@
           <owl-carousel-o [options]="customOptions" class="py-2">
             <ng-template carouselSlide *ngFor="let quizItem of activeQuizGroup.career_quizzes">
               <div class="slide card rounded-2xl relative h-full w-full flex justify-center py-4">
-                <div class="card-quiz rounded-xl shadow-lg">
+                <div class="card-quiz rounded-xl shadow-lg main-violet-first-rounded">
                   <div class="card-img flex justify-center items-center p-3">
                     <img src="{{ImageHelper.getImage(quizItem.file?.url)}}"/>
                   </div>
                   <div class="card-info">
-                    <p class="text-title">
+                    <p class="text-title text-white">
                       {{quizItem | globalTranslate:'title':translate.currentLang}}
                     </p>
-                    <p class="text-body text-xs max-h-[300px] overflow-y-scroll"
-                       [innerHTML]="(quizItem | globalTranslate:'description':translate.currentLang).length > 150 ? (quizItem | globalTranslate:'description':translate.currentLang | slice:0 : 150) + '...' : (quizItem | globalTranslate:'description':translate.currentLang)">
+                    <p class="text-white text-xs h-[120px] overflow-y-scroll no-scrollbar"
+                       [innerHTML]="quizItem | globalTranslate:'description':translate.currentLang">
                     </p>
                   </div>
                   <div class="card-footer">
-                    <span class="text-title">
+                    <span class="text-title text-white">
                       {{quizItem.price}} KZT
                     </span>
-                    <div class="border flex p-1 border-white rounded-full bg-green-500 text-white cursor-pointer" *ngIf="purchased?.includes(quizItem.id);else notPurchased">
+                    <div class="border flex p-1 border-white rounded-full text-white main-violet-first-rounded bg-violet-first cursor-pointer" *ngIf="purchased?.includes(quizItem.id);else notPurchased">
                       Приобритен
                       <fa-icon [icon]="faLockOpen" class="mx-2"></fa-icon>
                     </div>
                     <ng-template #notPurchased>
-                      <div (click)="payForCareerQuiz(quizItem.id)" class="card-button" *ngIf="!isCareerQuizBlocked.includes(quizItem.id);else careerQuizLoaded">
+                      <div (click)="payForCareerQuiz(quizItem.id)" class="card-button text-white main-violet-first-rounded bg-violet-first" *ngIf="!isCareerQuizBlocked.includes(quizItem.id);else careerQuizLoaded">
                         Приобрести
                         <fa-icon [icon]="faCartShopping" class="mx-2"></fa-icon>
                       </div>
                       <ng-template #careerQuizLoaded>
-                        <div  class="card-button">
+                        <div  class="card-button text-white main-violet-first-rounded bg-violet-first">
                           Ожидайте ...
                         </div>
                       </ng-template>

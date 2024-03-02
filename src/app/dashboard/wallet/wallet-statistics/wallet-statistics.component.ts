@@ -138,12 +138,12 @@ export class WalletStatisticsComponent implements OnInit,OnDestroy{
       {
         data: [],
         label: 'Пополнение',
-        backgroundColor:"#4DC591"
+        backgroundColor:"#7a5585"
       },
       {
         data: [],
         label: 'Расходы',
-        backgroundColor:"#EF4444"
+        backgroundColor:"#ff914d"
       },
     ],
   };

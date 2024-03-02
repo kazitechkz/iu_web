@@ -1,12 +1,12 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12 gap-3" *ngIf="proposedSubjects">
     <div class="col-span-12">
-      <div class="card shadow-2xl rounded-xl p-5 my-3 min-h-[100%]">
+      <div class="game-card shadow-2xl rounded-xl p-5 my-3 min-h-[100%]">
         <div class="header-card my-3 text-center">
-          <p class="text-md md:text-lg lg:text-xl xl:text-2xl font-bold main-secondary-color">
+          <p class="text-md md:text-lg lg:text-xl xl:text-2xl font-bold main-violet-second-color">
             {{"CHOOSE_ONE_SUBJECT"|translate}}
           </p>
-          <div class="p-3 main-secondary-color text-2xl">
+          <div class="p-3 main-violet-second-color text-md md:text-lg lg:text-xl xl:text-2xl">
             <countdown (event)="handleCountDownEvent($event)" [config]="timeConfig"></countdown>
           </div>
         </div>
@@ -37,13 +37,7 @@
           </div>
         </div>
         <div class="percentage my-3">
-          <div id="animatedElement" class="h-5 my-2 rounded-lg bg-green-400"
-               [ngStyle]="{'width':percentage.toString() + '%'}"
-                [ngClass]="{
-                  'bg-green-400':percentage >= 75,
-                  'bg-yellow-400':percentage < 75 && percentage > 25,
-                  'bg-red-400':percentage <= 25,
-                }"
+          <div id="animatedElement" class="h-5 my-2 rounded-lg bg-orange-gradient"
           ></div>
         </div>
       </div>
@@ -53,7 +47,7 @@
 
     <div class="col-span-12 my-3">
       <div class="result-card my-3 text-center flex justify-center items-center">
-        <div class="p-3 text-white font-bold rounded-2xl text-2xl main-green-bg w-full max-w-[320px]">
+        <div class="p-3 text-white font-bold rounded-2xl text-2xl bg-violet-first-50 main-violet-first-rounded w-full max-w-[320px]">
           <p class="font-bold block my-2">{{("TIME_LEFT"|translate)}}:</p>
           <countdown class="text-4xl" (event)="questionAnswerTimeEnds($event)" [config]="battleQuestionTime"></countdown>
         </div>
@@ -75,7 +69,7 @@
         <ngx-slick-carousel
           #slickModal="slick-carousel" class="carousel" [config]="questionSlider">
           <div ngxSlickItem class="flex justify-center items-center" *ngFor="let question of battleQuestion.questions">
-            <div class="card p-3 shadow-lg rounded-lg border-t-[10px] m-3">
+            <div class="game-card main-violet-second-color p-3 shadow-lg rounded-xl border-t-[20px] border-[#ce6f34] m-3">
               <div class="question-header py-3">
                 <div class="text-lg font-bold my-2" [ngStyle]="{'color':colors[question.subject_id]}">
                   {{question.subject|globalTranslate:"title": translate.currentLang}}

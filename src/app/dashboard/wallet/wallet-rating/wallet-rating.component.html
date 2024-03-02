@@ -1,13 +1,13 @@
 <div>
-  <h2>{{'WALLET_RATING'|translate}}</h2>
+  <h2 class="text-white">{{'WALLET_RATING'|translate}}</h2>
   <ul class="responsive-table" *ngIf="wallets">
-    <li class="table-header">
+    <li class="table-header text-white rounded-full bg-violet-first main-violet-first-rounded font-bold">
       <div class="col col-1">№</div>
       <div class="col col-2">{{'NAME'|translate}}</div>
       <div class="col col-3">{{'EMAIL'|translate}}</div>
       <div class="col col-4">{{'BALANCE'|translate}}</div>
     </li>
-    <li class="table-row"
+    <li class="table-row bg-black-violet-orange-180-05 main-violet-first-rounded text-white font-bold rounded-full"
         *ngFor="let wallet of wallets.data | paginate: {itemsPerPage: wallets.per_page, currentPage: wallets.current_page, totalItems: wallets.total} | keys: requestData.page : wallets.per_page">
       <div class="col col-1" data-label="№">
         {{parseInt(wallet.key) + 1}}

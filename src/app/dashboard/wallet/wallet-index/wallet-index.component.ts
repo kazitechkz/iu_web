@@ -38,9 +38,9 @@ export class WalletIndexComponent implements OnInit,OnDestroy{
   //@ts-ignore
   wallet:WalletIndexModel;
   walletRoutes = [
-    {title:"PAY_WITH_QR",icon:faQrcode,route:StrHelper.getRouteName(RoutesName.walletIndex)},
-    {title:"PAY_WITH_WALLET",icon:faCoins,route:StrHelper.getRouteName(RoutesName.walletDeposit)},
-    {title:"TRANSFER",icon:faRightLeft,route:StrHelper.getRouteName(RoutesName.walletTransfer)},
+    // {title:"PAY_WITH_QR",icon:faQrcode,route:StrHelper.getRouteName(RoutesName.walletIndex)},
+    // {title:"PAY_WITH_WALLET",icon:faCoins,route:StrHelper.getRouteName(RoutesName.walletDeposit)},
+    // {title:"TRANSFER",icon:faRightLeft,route:StrHelper.getRouteName(RoutesName.walletTransfer)},
     {title:"DEPOSIT_WITHDRAWS_ANALYTICS",icon:faChartBar,route:StrHelper.getRouteName(RoutesName.walletStatistics)},
     {title:"FAQ",icon:faMessage,route:StrHelper.getRouteName(RoutesName.walletIndex)},
   ]
@@ -103,17 +103,19 @@ export class WalletIndexComponent implements OnInit,OnDestroy{
   public barChartType: ChartType = 'bar';
 
   public barChartData: ChartData<'bar'> = {
-    labels: [],
+    labels: [
+
+    ],
     datasets: [
       {
         data: [],
         label: 'Пополнение',
-        backgroundColor:"#4DC591"
+        backgroundColor:"#7a5585",
       },
       {
         data: [],
         label: 'Расходы',
-        backgroundColor:"#EF4444"
+        backgroundColor:"#ff914d",
       },
     ],
   };

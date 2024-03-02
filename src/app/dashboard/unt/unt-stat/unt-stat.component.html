@@ -1,11 +1,11 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12 gap-3">
     <div class="col-span-12 xl:col-span-5 mx-3 p-4 order-2 xl:order-1" *ngIf="untStat">
-      <div [routerLink]="'/'+RoutesName.statFull" class="main-green-bg rounded-2xl p-4 shadow-lg md:flex items-center cursor-pointer neon-border">
-        <div class="md:w-4/12 p-2 text-center">
-          <img class="inline" src="assets/images/medal.webp">
+      <div [routerLink]="'/'+RoutesName.statFull" class="bg-black-violet-orange-180 rounded-full p-4 shadow-lg md:flex items-center cursor-pointer neon-border">
+        <div class="md:w-2/12 p-2 text-center">
+          <img class="inline w-[32px]" src="assets/images/medal.webp">
         </div>
-        <div class="md:w-8/12 p-2">
+        <div class="md:w-10/12 p-2">
           <p class="text-lg md:text-xl text-center md:text-left text-white font-bold">
             {{"STATS_BY_RESULT_IS_AVAILABLE"|translate}}
           </p>
@@ -13,74 +13,74 @@
       </div>
       <div class="grid grid-cols-12 my-4 gap-3">
         <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-6">
-          <div class="bg-white p-4 md:flex items-center shadow-lg rounded-2xl h-full">
+          <div class="bg-black-violet-orange-180-05 p-4 md:flex items-center shadow-lg rounded-2xl h-full main-violet-first-rounded">
             <div class="md:w-4/12 p-2 text-center grid justify-center">
-              <div class="rounded-full bg-green-300 h-16 w-16 flex justify-center items-center self-center">
-                <fa-icon [icon]="faBook" class="text-2xl text-green-500" />
+              <div class="rounded-full main-orange-bg h-16 w-16 flex justify-center items-center self-center">
+                <fa-icon [icon]="faBook" class="text-2xl text-white" />
               </div>
             </div>
             <div class="md:w-8/12 p-4 break-words">
-              <p class="text-md md:text-lg text-center md:text-left text-black font-bold">
+              <p class="text-md md:text-lg text-center md:text-left text-white font-bold">
                 {{untStat.attempt_count}}
               </p>
-              <p class="text-sm md:text-md text-center md:text-left text-gray-400">
+              <p class="text-md md:text-lg text-center md:text-left text-white font-bold">
                 {{"TOTAL"|translate}}
               </p>
             </div>
           </div>
         </div>
         <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-6">
-          <div class="bg-white p-4 md:flex items-center shadow-lg rounded-2xl h-full">
+          <div class="bg-black-violet-orange-180-05 p-4 md:flex items-center shadow-lg rounded-2xl h-full main-violet-first-rounded">
             <div class="md:w-4/12 p-2 text-center grid justify-center">
-              <div class="rounded-full bg-red-300 h-16 w-16 flex justify-center items-center self-center">
-                <fa-icon [icon]="faSquarePollVertical" class="text-2xl text-red-500" />
+              <div class="rounded-full main-orange-bg h-16 w-16 flex justify-center items-center self-center">
+                <fa-icon [icon]="faSquarePollVertical" class="text-2xl text-white" />
               </div>
             </div>
             <div class="md:w-8/12 p-4 break-words">
-              <p class="text-md md:text-lg text-center md:text-left text-black font-bold">
+              <p class="text-md md:text-lg text-center md:text-left text-white font-bold">
                 {{untStat.attempt_question_count}}
               </p>
-              <p class="text-sm md:text-md text-center md:text-left text-gray-400">
+              <p class="text-md md:text-lg text-center md:text-left text-white font-bold">
                 {{"TOTAL_QUESTION_PASSED"|translate}}
               </p>
             </div>
           </div>
         </div>
         <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-6">
-          <div class="bg-white p-4 md:flex items-center shadow-lg rounded-2xl h-full">
+          <div class="bg-black-violet-orange-180-05 p-4 md:flex items-center shadow-lg rounded-2xl h-full main-violet-first-rounded">
             <div class="md:w-4/12 p-2 text-center grid justify-center">
-              <div class="rounded-full bg-yellow-300 h-16 w-16 flex justify-center items-center self-center">
-                <fa-icon [icon]="faFlagCheckered" class="text-2xl text-yellow-500" />
+              <div class="rounded-full main-orange-bg h-16 w-16 flex justify-center items-center self-center">
+                <fa-icon [icon]="faFlagCheckered" class="text-2xl text-white" />
               </div>
             </div>
             <div class="md:w-8/12 p-4 break-words">
-              <p class="text-md md:text-lg text-center md:text-left text-black font-bold">
+              <p class="text-md md:text-lg text-center md:text-left text-white font-bold">
                 {{untStat.attempt_count_unfinished}}
               </p>
-              <p class="text-sm md:text-md text-center md:text-left text-gray-400">
+              <p class="text-md md:text-lg text-center md:text-left text-white font-bold">
                 {{"UNFINISHED"|translate}}
               </p>
             </div>
           </div>
         </div>
         <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-6">
-          <div class="bg-white p-4 md:flex items-center shadow-lg rounded-2xl h-full">
+          <div class="bg-black-violet-orange-180-05 p-4 md:flex items-center shadow-lg rounded-2xl h-full main-violet-first-rounded">
             <div class="md:w-4/12 p-2 text-center grid justify-center">
-              <div class="rounded-full bg-blue-300 h-16 w-16 flex justify-center items-center self-center">
-                <fa-icon [icon]="faUserGraduate" class="text-2xl text-blue-500" />
+              <div class="rounded-full main-orange-bg h-16 w-16 flex justify-center items-center self-center">
+                <fa-icon [icon]="faUserGraduate" class="text-2xl text-white" />
               </div>
             </div>
             <div class="md:w-8/12 p-4 break-words">
-              <p class="text-md md:text-lg text-center md:text-left text-black font-bold">
+              <p class="text-md md:text-lg text-center md:text-left text-white font-bold">
                 {{untStat.average}}
               </p>
-              <p class="text-sm md:text-md text-center md:text-left text-gray-400">
+              <p class="text-md md:text-lg text-center md:text-left text-white font-bold">
                 {{"AVERAGE_RATING"|translate}}
               </p>
             </div>
           </div>
         </div>
-        <div class="col-span-12 bg-white rounded-2xl p-4 shadow-lg md:flex items-center text-red-500">
+        <div class="col-span-12 rounded-2xl p-4 shadow-lg md:flex items-center bg-black-violet-orange-180-05 main-violet-first-rounded">
           <canvas
             baseChart
             class="chart"
@@ -94,57 +94,59 @@
 
 
     </div>
-    <div class="col-span-12 xl:col-span-7 mx-3 p-4 order-1 xl:order-2" *ngIf="attempts">
-      <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
+    <div class="col-span-12 xl:col-span-7 mx-3 order-1 xl:order-2" *ngIf="attempts">
+      <div class="table-stat main-violet-first-rounded mx-3">
         <div class="relative overflow-x-auto" *ngIf="attempts.data">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 capitalize">
+          <table class="w-full text-sm text-left text-white">
+            <thead class="text-xs text-white capitalize">
             <tr>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 main-violet-first-rounded">
                 #
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 main-violet-first-rounded">
                 {{"SUBJECTS"|translate}}
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 main-violet-first-rounded">
                 {{"RESULT"|translate}}
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 main-violet-first-rounded">
                 {{"END_AT"|translate}}
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" class="px-6 py-3 main-violet-first-rounded">
                 {{"ACTION"|translate}}
               </th>
             </tr>
             </thead>
             <tbody>
-            <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let attempt of attempts.data | paginate: { itemsPerPage: attempts.per_page, currentPage: attempts.current_page,totalItems:attempts.total }">
-              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
-                <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.webp')] bg-cover bg-no-repeat my-2"></div>
-                <p class="font-bold text-black ml-2 inline-block">#{{attempt.id}}</p>
+            <tr class="my-2 text-white main-violet-first-rounded" *ngFor="let attempt of attempts.data | paginate: { itemsPerPage: attempts.per_page, currentPage: attempts.current_page,totalItems:attempts.total }">
+              <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap flex justify-center items-center">
+                <div class="w-12 h-12 rounded-full border-2 bg-[url('assets/images/many-mode.webp')] bg-cover bg-no-repeat my-2"></div>
+                <p class="font-bold text-white ml-2 inline-block">#{{attempt.id}}</p>
               </th>
-              <td class="px-6 py-4">
-                <ul class="text-black ml-2" *ngIf="attempt.subjects">
+              <td class="px-6 py-4 main-violet-first-rounded">
+                <ul class="text-white ml-2" *ngIf="attempt.subjects">
                   <li class="text-sm list-item list-decimal" *ngFor="let subject of attempt.subjects">
                     {{subject | globalTranslate:"title": translate.currentLang}}
                   </li>
                 </ul>
               </td>
-              <td class="px-6 py-4">
-                <p class="text-black ml-2 font-bold">{{attempt.points}} из {{attempt.max_points}}</p>
+              <td class="px-6 py-4 main-violet-first-rounded">
+                <p class="text-white ml-2 font-bold">{{attempt.points}} из {{attempt.max_points}}</p>
               </td>
-              <td class="px-6 py-4">
-                <p *ngIf="attempt.end_at;else countdownTimer" class="text-black ml-2">{{moment(attempt.end_at).format('DD/MM/YYYY HH:mm')}}</p>
+              <td class="px-6 py-4 main-violet-first-rounded">
+                <p *ngIf="attempt.end_at;else countdownTimer" class="text-white ml-2">{{moment(attempt.end_at).format('DD/MM/YYYY HH:mm')}}</p>
                 <ng-template #countdownTimer>
-                  <countdown class="text-red-700" [config]="{leftTime:attempt.time_left/1000}"></countdown>
+                  <countdown class="main-orange-color" [config]="{leftTime:attempt.time_left/1000}"></countdown>
                 </ng-template>
               </td>
-              <td class="px-6 py-4">
-                <a *ngIf="attempt.end_at;else notEnded" [routerLink]="['/' + RoutesName.resultByAttemptId + '/' + attempt.id.toString()]" type="button" class="cursor-pointer text-white bg-green-300 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
+              <td class="px-6 py-4 main-violet-first-rounded">
+                <a *ngIf="attempt.end_at;else notEnded" [routerLink]="['/' + RoutesName.resultByAttemptId + '/' + attempt.id.toString()]" type="button"
+                   class="cursor-pointer text-white  bg-violet-first main-violet-first-rounded focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
                   {{"RESULT"|translate}}
                 </a>
                 <ng-template #notEnded>
-                  <a  [routerLink]="['/' + RoutesName.passUntExam + '/' + attempt.id.toString()]" type="button" class="cursor-pointer text-white bg-red-300 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-500 dark:hover:bg-red-500 dark:focus:ring-red-500">
+                  <a  [routerLink]="['/' + RoutesName.passUntExam + '/' + attempt.id.toString()]" type="button"
+                      class="cursor-pointer text-white main-orange-second-bg main-violet-first-rounded focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
                     {{"PASS"|translate}}
                   </a>
                 </ng-template>

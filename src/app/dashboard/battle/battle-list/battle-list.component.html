@@ -1,25 +1,42 @@
 <div class="container mx-auto">
-  <div class="grid grid-cols-12 py-2 my-3 main-secondary-bg rounded-2xl">
-    <div class="col-span-12 md:col-span-6  md:px-10 md:flex items-center text-center md:text-left">
-      <div>
-        <p class="text-lg md:text-3xl text-white font-bold">
+  <div class="grid grid-cols-12 py-2 my-3 bg-violet-orange-first rounded-2xl">
+    <div class="col-span-12 md:col-span-6 px-5 md:flex items-center text-center md:text-left">
+      <div class="px-3 md:px-4 lg:px-5">
+        <p class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-white font-bold">
           {{"BATTLE_AND_WIN" | translate}}
         </p>
-        <div class="my-4 pt-5">
-          <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faGift" class="ml-2"></fa-icon> {{"PARTICIPATE_PRISE_AND_AWARD"|translate}}
-          </p>
-          <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faBook" class="ml-2"></fa-icon> {{"SIXTEEN_SUBJECTS"|translate}} <br>
-          </p>
-          <p class="md:text-xl text-white my-2 px-1">
-            <fa-icon [icon]="faLanguage" class="ml-2"></fa-icon> {{"SUPPORT_MULTI_LANGUAGE"|translate}} <br>
-          </p>
+        <div class="my-4">
+          <div class="flex items-center my-2">
+            <div class="w-8 h-8 border border-white p-2 rounded-full min-w-8 flex justify-center items-center">
+              <fa-icon [icon]="faGift" class="text-sm md:text-md lg:text-lg text-white my-2 px-1"></fa-icon>
+            </div>
+            <p class="text-sm md:text-md lg:text-lg xl:text-xl text-white my-2 px-1">
+              {{"PARTICIPATE_PRISE_AND_AWARD"|translate}}
+            </p>
+          </div>
+          <div class="flex items-center my-2">
+            <div class="w-8 h-8 border border-white p-2 rounded-full min-w-8 flex justify-center items-center">
+              <fa-icon [icon]="faBook" class="text-sm md:text-md lg:text-lg text-white my-2 px-1"></fa-icon>
+            </div>
+            <p class="text-sm md:text-md lg:text-lg xl:text-xl text-white my-2 px-1">
+              {{"SIXTEEN_SUBJECTS"|translate}}
+            </p>
+          </div>
+          <div class="flex items-center my-2">
+            <div class="w-8 h-8 border border-white p-2 rounded-full min-w-8 flex justify-center items-center">
+              <fa-icon [icon]="faLanguage" class="text-sm md:text-md lg:text-lg text-white my-2 px-1"></fa-icon>
+            </div>
+            <p class="text-sm md:text-md lg:text-lg xl:text-xl text-white my-2 px-1">
+              {{"SUPPORT_MULTI_LANGUAGE"|translate}} <br>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-span-12 md:col-span-6 flex justify-center">
-      <img src="assets/images/battle.png" class=" max-h-[350px]"/>
+    <div class="col-span-12 md:col-span-6 order-1 md:order-2">
+      <div class="flex justify-center items-center">
+        <img class="sm:max-w-[320px] md:max-w-[380px] lg:max-w-[460px]" src="assets/images/tournament.webp"/>
+      </div>
     </div>
   </div>
   <div class="grid grid-cols-12 py-2 my-3">
@@ -30,24 +47,23 @@
               text-lg
               min-w-[225px]
               font-bold
-              inline
-              main-green-bg
+              main-violet-first-rounded
+              bg-violet-first
               text-white
-              text-2xl
+              lg:text-2xl
               focus:outline-none focus:ring-4
-              focus:ring-green-300 font-medium
-              rounded-full text-sm px-3 py-3
+              rounded-full px-3 py-3
               text-center mr-2 mb-2"
               (click)="openDialog()"
       >
         {{"START_GAME"|translate}}
-        <fa-icon [icon]="faGamepad" class="mx-2 text-lg"></fa-icon>
+        <fa-icon [icon]="faGamepad" class="mx-2 text-lg lg:text-2xl"></fa-icon>
       </button>
     </div>
   </div>
   <div class="grid grid-cols-12 py-5 my-3 rounded-2xl">
 
-    <div class="col-span-12 bg-white rounded-xl shadow-lg">
+    <div class="col-span-12 battle-list-50 rounded-xl">
       <div class="p-4">
         <!--Tabs navigation-->
         <ul
@@ -56,7 +72,7 @@
           data-te-nav-ref>
           <li role="presentation">
             <a
-              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight hover:isolate focus:isolate focus:border-transparent text-white data-[te-nav-active]:border-[#b37cc4]"
               data-te-toggle="pill"
               data-te-target="#tabs-current"
               data-te-nav-active
@@ -69,7 +85,7 @@
           <li role="presentation">
             <a
               href="#tabs-profile"
-              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight hover:isolate focus:isolate focus:border-transparent text-white data-[te-nav-active]:border-[#b37cc4]"
               data-te-toggle="pill"
               data-te-target="#tabs-participated"
               role="tab"
@@ -88,11 +104,11 @@
             aria-labelledby="tabs-home-tab"
             data-te-tab-active>
             <div class="grid grid-cols-12 py-2 my-3">
-              <div class="col-span-12 mx-3 p-4" *ngIf="battleListData">
-                <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
+              <div class="col-span-12" *ngIf="battleListData">
+                <div class="battle-list-50 rounded-2xl main-violet-first-color">
                   <div class="relative overflow-x-auto" *ngIf="battleListData.data">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                      <thead class="text-xs text-gray-700 capitalize">
+                    <table class="w-full text-sm text-left">
+                      <thead class="text-xs text-white capitalize">
                       <tr>
                         <th scope="col" class="px-6 py-3 text">
                           {{"OWNER"|translate}}
@@ -112,39 +128,42 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let battleList of battleList | paginate: { itemsPerPage: battleListData.per_page, currentPage: battleListData.current_page,totalItems:battleListData.total }">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center">
+                      <tr class="rounded-2xl my-2" *ngFor="let battleList of battleList | paginate: { itemsPerPage: battleListData.per_page, currentPage: battleListData.current_page,totalItems:battleListData.total }">
+                        <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap flex items-center justify-center">
                           <section *ngIf="battleList.owner">
-                            <div
-                              [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(battleList.owner.file?.url) +')'}"
-                              class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"></div>
-                            <p class="font-bold text-black ml-2 inline-block">{{battleList.owner.name}}</p>
+                            <section class="flex justify-center items-center">
+                              <div
+                                [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(battleList.owner.file?.url) +')'}"
+                                class="w-12 h-12 rounded-full border-2 bg-cover bg-no-repeat my-2"></div>
+                            </section>
+                            <p class="font-bold ml-2 inline-block text-white text-center">{{battleList.owner.name}}</p>
                           </section>
                         </th>
                         <td class="px-6 py-4">
-                          <p class="font-bold text-black ml-2 inline-block">
+                          <p class="font-bold text-white ml-2 inline-block">
                             {{battleList.price}}
-                            <fa-icon class="ml-1 text-yellow-300" [icon]="faCoins"></fa-icon>
+                            <fa-icon class="ml-1 main-orange-color" [icon]="faCoins"></fa-icon>
                           </p>
                         </td>
                         <td class="px-6 py-4">
                           <div *ngIf="battleList.locale">
-                            <p class="font-bold text-black ml-2 inline-block">{{battleList.locale.title}}</p>
+                            <p class="font-bold text-white ml-2 inline-block">{{battleList.locale.title}}</p>
                           </div>
                         </td>
                         <td class="px-6 py-4">
                           <div *ngIf="battleList.time_left_seconds">
-                            <countdown class="font-bold text-red-500" [config]="{leftTime:battleList.time_left_seconds}"></countdown>
+                            <countdown class="font-bold main-orange-color" [config]="{leftTime:battleList.time_left_seconds}"></countdown>
                           </div>
                         </td>
                         <td class="px-6 py-4">
                           <a (click)="joinToBattle(battleList.promo_code,battleList.pass_code)" *ngIf="battleList.price < myBalance;else cantJoin" type="button"
-                             class="block cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
+                             class="block cursor-pointer text-white  focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2  main-violet-first-rounded bg-violet-first">
                             <fa-icon class="mr-1" [icon]="battleList.pass_code ? faLock : faLockOpen"></fa-icon>
                             {{"JOIN"|translate}}
                           </a>
                           <ng-template #cantJoin>
-                            <a type="button" class="block cursor-pointer text-white bg-secondary hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                            <a type="button"
+                               class="block cursor-pointer text-white  focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2  main-violet-first-rounded main-orange-bg">
                               <fa-icon class="mr-1" [icon]="faLock"></fa-icon>
                               {{"YOU_CANT_JOIN"|translate}}
                             </a>
@@ -153,7 +172,7 @@
                       </tr>
                       </tbody>
                     </table>
-                    <div class="my-2 flex justify-center">
+                    <div class="my-2 flex justify-center" *ngIf="battleListData.last_page > 1">
                       <pagination-controls class="rounded-full" (pageChange)="changeActiveBattlePage($event)"></pagination-controls>
                     </div>
                   </div>
@@ -167,16 +186,16 @@
             id="tabs-participated"
             role="tabpanel"
             aria-labelledby="tabs-profile-participated">
-            <div class="col-span-12 mx-3 p-4" *ngIf="myBattleList">
-              <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
-                <div class="relative overflow-x-auto">
-                  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 capitalize">
+            <div class="col-span-12" *ngIf="myBattleList">
+              <div class="rounded-2xl">
+                <div class="battle-list-50 mx-3 p-4 rounded-2xl main-violet-first-color overflow-x-auto">
+                  <table class="w-full text-sm text-left text-white">
+                    <thead class="text-xs text-white capitalize">
                     <tr>
-                      <th scope="col" class="px-6 py-3 text">
+                      <th scope="col" class="px-6 py-3 text-center">
                         {{"OWNER"|translate}}
                       </th>
-                      <th scope="col" class="px-6 py-3 text">
+                      <th scope="col" class="px-6 py-3">
                         {{"GUEST_BATTLE"|translate}}
                       </th>
                       <th scope="col" class="px-6 py-3">
@@ -194,47 +213,48 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let myBattle of myBattleList">
-                      <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center">
+                    <tr class="rounded-2xl my-2" *ngFor="let myBattle of myBattleList">
+                      <td class="px-6 py-4 font-medium text-white whitespace-nowrap flex items-center flex justify-center">
                         <section *ngIf="myBattle.owner">
                           <section class="flex justify-center items-center">
                             <div
                               [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(myBattle.owner.file?.url) +')'}"
-                              class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"></div>
+                              class="w-12 h-12 rounded-full border-2 bg-cover bg-no-repeat my-2"></div>
                           </section>
-
-                          <p class="font-bold text-black ml-2 inline-block">{{myBattle.owner.name}}</p>
+                          <p class="font-bold ml-2 inline-block text-white text-center">{{myBattle.owner.name}}</p>
                         </section>
                       </td>
                       <td class="px-6 py-4">
                         <section *ngIf="myBattle.guest;else noGuest">
                           <div
                             [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(myBattle.guest.file?.url) +')'}"
-                            class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2"></div>
-                          <p class="font-bold text-black ml-2 inline-block">{{myBattle.guest.name}}</p>
+                            class="w-12 h-12 rounded-full bg-cover bg-no-repeat my-2"></div>
+                          <p class="font-bold text-white ml-2 inline-block">{{myBattle.guest.name}}</p>
                         </section>
                         <ng-template #noGuest>
-                          <p class="font-bold text-red-500 ml-2 inline-block">{{"NO_GUEST"|translate}}</p>
+                          <p class="font-bold main-orange-color ml-2 inline-block">{{"NO_GUEST"|translate}}</p>
                         </ng-template>
                       </td>
                       <td class="px-6 py-4">
-                        <p class="font-bold text-black ml-2 inline-block">
+                        <p class="font-bold text-white ml-2 inline-block">
                           {{myBattle.price}}
-                          <fa-icon class="ml-1 text-yellow-300" [icon]="faCoins"></fa-icon>
+                          <fa-icon class="ml-1 main-orange-color" [icon]="faCoins"></fa-icon>
                         </p>
                       </td>
                       <td class="px-6 py-4">
                         <div *ngIf="myBattle.locale">
-                          <p class="font-bold text-black ml-2 inline-block">{{myBattle.locale.title}}</p>
+                          <p class="font-bold text-white ml-2 inline-block">{{myBattle.locale.title}}</p>
                         </div>
                       </td>
                       <td class="px-6 py-4">
                         <div *ngIf="myBattle.time_left_seconds">
-                          <countdown class="font-bold text-red-500" [config]="{leftTime:myBattle.time_left_seconds}"></countdown>
+                          <countdown class="font-bold main-orange-color" [config]="{leftTime:myBattle.time_left_seconds}"></countdown>
                         </div>
                       </td>
                       <td class="px-6 py-4">
-                        <a [routerLink]="'/'+ RoutesName.battleDetail + '/'+ myBattle.promo_code" type="button" class="block cursor-pointer text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-500 dark:hover:bg-green-500 dark:focus:ring-green-500">
+                        <a [routerLink]="'/'+ RoutesName.battleDetail + '/'+ myBattle.promo_code"
+                           type="button"
+                           class="block cursor-pointer text-white  focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2  main-violet-first-rounded bg-violet-first">
                           <fa-icon class="mr-1" [icon]="faEye"></fa-icon>
                           {{"SHOW"|translate}}
                         </a>
@@ -264,27 +284,27 @@
           <img src="assets/images/battle.webp" class="w-[80%] max-w-[350px]"/>
         </div>
         <div class="my-3 text-center">
-          <p class="text-white font-bold text-md lg:text-lg xl:text-xl">
+          <p class="main-violet-first-color font-bold text-md lg:text-lg xl:text-xl">
             {{"CREATE_GAME_TITLE"|translate}}
           </p>
           <br/>
         </div>
         <div class="my-3 py-3 text-center">
           <div class="col-span-12 md:col-span-12 card md:flex items-center justify-center text-center">
-            <p class="md:text-lg font-bold py-4 md:mr-2 text-white">
+            <p class="md:text-lg font-bold py-4 md:mr-2 main-violet-first-color">
               {{"CHOOSE_LANGUAGE"|translate}}
             </p>
             <ui-switch
               class="inline"
               checkedLabel="Қазақ тілі"
-              defaultBgColor = '#9BA1FF'
+              defaultBgColor='#ff914d'
               (valueChange)="changeLanguage($event)"
               size="large"
               uncheckedLabel="Русский язык"
               defaultBoColor="white"
               [checked]="locale_id == 1"
               checkedTextColor="white"
-              switchColor="#fcfcfc"
+              switchColor="#7a5585"
               uncheckedTextColor="white"
             ></ui-switch>
           </div>
@@ -303,7 +323,7 @@
               [label]="('BET' | translate) + '*'"
               [error_message]="'price_is_not_right'"
               [backErrors]="errors"
-              [classOptional]="'text-white border-white  focus:text-white peer-focus:text-white'"
+              [classOptional]="'main-violet-first-rounded text-black bg-white rounded-2xl font-bold'"
               ngDefaultControl
             />
             <!--Name input-->
@@ -315,24 +335,22 @@
               [label]="'PASS_CODE' | translate"
               [error_message]="'pass_code_is_not_right'"
               [backErrors]="errors"
-              [classOptional]="'text-white border-white  focus:text-white peer-focus:text-white'"
+              [classOptional]="'main-violet-first-rounded text-black bg-white rounded-2xl font-bold'"
               ngDefaultControl
             />
             <div class="col-span-12 text-center" *ngIf="createBattle.valid">
               <button type="button"
                       (click)="onCreateBattle()"
-                      class="inline
-                      mt-4
+                      class="mt-4
                       text-lg
                       min-w-[225px]
                       font-bold
-                      inline
-                      main-green-bg
+                      main-violet-first-rounded
+                      bg-violet-first
                       text-white
-                      text-2xl
+                      lg:text-2xl
                       focus:outline-none focus:ring-4
-                      focus:ring-green-300 font-medium
-                      rounded-full text-sm px-3 py-3
+                      rounded-full px-3 py-3
                       text-center mr-2 mb-2">
                 {{"START_GAME"|translate}}
                 <fa-icon [icon]="faGamepad" class="mx-2 text-lg"></fa-icon>

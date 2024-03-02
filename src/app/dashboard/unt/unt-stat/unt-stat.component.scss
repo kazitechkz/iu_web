@@ -3,10 +3,10 @@
   border: 0.2rem solid #fff;
   box-shadow: 0 0 .2rem #fff,
   0 0 .2rem #fff,
-  0 0 2rem #4DC591,
-  0 0 0.8rem #4DC591,
-  0 0 0.8rem #4DC591,
-  inset 0 0 0.4rem #4DC591;
+  0 0 2rem #ff914d,
+  0 0 0.8rem #ff914d,
+  0 0 0.8rem #ff914d,
+  inset 0 0 0.4rem #ff914d;
 }
 @keyframes pulsate {
 
@@ -14,10 +14,10 @@
 
     box-shadow: 0 0 .4rem #fff,
     0 0 .2rem #fff,
-    0 0 2rem #4DC591,
-    0 0 1.0rem #4DC591,
-    0 0 1.0rem #4DC591,
-    inset 0 0 0.8rem #4DC591;
+    0 0 2rem #ff914d,
+    0 0 1.0rem #ff914d,
+    0 0 1.0rem #ff914d,
+    inset 0 0 0.8rem #ff914d;
 
   }
 
@@ -25,10 +25,14 @@
 
     box-shadow: 0 0 .1rem #fff,
     0 0 .1rem #fff,
-    0 0 1rem #4DC591,
-    0 0 0.4rem #4DC591,
-    0 0 0.4rem #4DC591,
-    inset 0 0 0.2rem #4DC591;
+    0 0 1rem #ff914d,
+    0 0 0.4rem #ff914d,
+    0 0 0.4rem #ff914d,
+    inset 0 0 0.2rem #ff914d;
 
   }
+}
+.table-stat{
+  background: rgb(21,11,5);
+  background: linear-gradient(180deg, rgb(173, 81, 24,0.5) 51%, rgb(55, 23, 68,0.5) 100%);
 }

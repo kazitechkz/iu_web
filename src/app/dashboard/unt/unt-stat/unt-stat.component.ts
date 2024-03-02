@@ -102,7 +102,7 @@ export class UntStatComponent implements OnInit{
   public barChartData: ChartData<'bar'> = {
     labels: [],
     datasets: [
-      { data: [  ], label: '',backgroundColor:"#4DC591" },
+      { data: [  ], label: '',backgroundColor:"#ff914d" },
     ],
   };
 

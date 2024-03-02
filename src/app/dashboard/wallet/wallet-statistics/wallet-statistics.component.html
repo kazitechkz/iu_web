@@ -1,20 +1,22 @@
 <div class="container mx-auto">
-  <div class="grid grid-cols-12 py-5 my-3 gap-4">
+  <div class="grid grid-cols-12 py-5 my-3 gap-4 bg-black-violet-orange-180-05 rounded-2xl main-violet-first-rounded p-3">
     <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6">
-      <label class="text-md lg:text-lg body-text font-bold my-2 block" for="from_data_input">   {{"TRANSACTION_FROM"|translate}}</label>
-      <input (ngModelChange)="changeFromDate($event)" [ngModel]="from_date" [dpDayPicker]="from_config" id="from_data_input" class="block border w-full rounded-md text-gray-500 font-normal p-2 focus:outline-none focus:border-blue-500" />
+      <label class="text-md lg:text-lg font-bold my-2 block text-white" for="from_data_input">   {{"TRANSACTION_FROM"|translate}}</label>
+      <input (ngModelChange)="changeFromDate($event)" [ngModel]="from_date" [dpDayPicker]="from_config" id="from_data_input"
+             class="block border w-full rounded-full text-white bg-violet-first-50 main-violet-first-rounded placeholder-white font-normal p-2 focus:outline-none" />
     </div>
-    <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6">
-      <label class="text-md lg:text-lg body-text font-bold my-2 block" for="to_data_input">{{"TRANSACTION_TO"|translate}}</label>
-      <input (ngModelChange)="changeToDate($event)"  [ngModel]="to_date" [dpDayPicker]="to_config" id="to_data_input" class="block border w-full rounded-md p-2 text-gray-500 font-normal focus:outline-none focus:border-blue-500" />
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6 text-white">
+      <label class="text-md lg:text-lg font-bold my-2 block text-white" for="to_data_input">{{"TRANSACTION_TO"|translate}}</label>
+      <input (ngModelChange)="changeToDate($event)"  [ngModel]="to_date" [dpDayPicker]="to_config" id="to_data_input"
+             class="block border w-full rounded-full text-white bg-violet-first-50 main-violet-first-rounded placeholder-white font-normal p-2 focus:outline-none" />
     </div>
   </div>
   <div class="grid grid-cols-12 py-5 my-3 gap-4" *ngIf="wallet">
     <div class="col-span-12 md:col-span-12 lg:col-span-8 xl:col-span-7 2xl:col-span-7">
-      <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
+      <div class="mx-3 p-4 rounded-2xl shadow-2xl bg-black-violet-orange-180-05 main-violet-first-rounded">
         <div class="relative overflow-x-auto">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 capitalize">
+          <table class="w-full text-sm text-left text-white">
+            <thead class="text-xs text-white capitalize">
             <tr>
               <th scope="col" class="px-6 py-3 text-center">
                 {{"AMOUNT"|translate}}
@@ -31,35 +33,27 @@
               <th scope="col" class="px-6 py-3 text-center">
                 {{"TRANSACTION_ID"|translate}}
               </th>
-              <th scope="col" class="px-6 py-3 text-center">
-                {{"ACTION"|translate}}
-              </th>
             </tr>
             </thead>
             <tbody>
-            <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let transaction of wallet.week_transaction">
+            <tr class="rounded-2xl my-2" *ngFor="let transaction of wallet.week_transaction">
               <td class="px-6 py-4 text-center">
-                <p class="text-black ml-2 font-bold" [ngClass]="{'text-red-400': transaction.amount < 0, 'text-green-400':transaction.amount > 0}">{{transaction.amount}}</p>
+                <p class="text-white ml-2 font-bold" [ngClass]="{'text-red-400': transaction.amount < 0, 'text-green-400':transaction.amount > 0}">{{transaction.amount}}</p>
               </td>
               <td class="px-6 py-4 text-center">
-                <fa-icon [icon]="faCheckCircle" class="text-xl main-green-color" *ngIf="transaction.confirmed"></fa-icon>
-                <fa-icon [icon]="faWindowClose" class="text-xl main-green-color" *ngIf="!transaction.confirmed"></fa-icon>
+                <fa-icon [icon]="faCheckCircle" class="text-xl main-violet-first-color" *ngIf="transaction.confirmed"></fa-icon>
+                <fa-icon [icon]="faWindowClose" class="text-xl main-orange-color" *ngIf="!transaction.confirmed"></fa-icon>
               </td>
               <td class="px-6 py-4 text-center" *ngIf="transaction.wallet">
-                <p class="text-black ml-2 font-bold" *ngIf="transaction.wallet.holder">{{transaction.wallet.holder.name}}</p>
+                <p class="text-white ml-2 font-bold" *ngIf="transaction.wallet.holder">{{transaction.wallet.holder.name}}</p>
               </td>
               <td class="px-6 py-4 text-center">
-                <p class="text-black ml-2 font-bold">{{moment(transaction.created_at).format("HH:mm DD/MM/YYYY")}}</p>
+                <p class="text-white ml-2 font-bold">{{moment(transaction.created_at).format("HH:mm DD/MM/YYYY")}}</p>
               </td>
               <td class="px-6 py-4 text-center" *ngIf="transaction.uuid">
                 <small>
                   {{transaction.uuid}}
                 </small>
-              </td>
-              <td class="px-6 py-4 text-center" *ngIf="transaction.uuid">
-                <a type="button" class="cursor-pointer text-white main-green-bg focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
-                  <fa-icon [icon]="faEye"></fa-icon>
-                </a>
               </td>
             </tr>
             </tbody>

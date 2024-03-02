@@ -257,6 +257,11 @@ body{
   background: linear-gradient(90deg, rgba(55,33,62,0.95) 27%, rgba(17,9,4,1) 100%);
 }
 
+.bg-violet-first-50{
+  background: rgb(55,33,62);
+  background: linear-gradient(90deg, rgba(55,33,62,0.5) 27%, rgba(17,9,4,0.5) 100%);
+}
+
 .bg-violet-orange-first{
   background: rgb(173,81,24);
   background: linear-gradient(135deg, rgba(173,81,24,1) 0%, rgba(55,23,68,1) 50%, rgba(54,23,66,1) 100%);
@@ -267,11 +272,24 @@ body{
   background: linear-gradient(90deg, rgba(236,129,1,1) 0%, rgba(178,66,1,1) 51%);
 }
 
+.bg-black-violet-orange-180{
+  background: rgb(21,11,5);
+  background: linear-gradient(180deg, rgba(21,11,5,1) 0%, rgba(55,25,67,1) 51%, rgba(216,116,53,1) 100%);
+}
+
+.bg-black-violet-orange-180-05{
+  background: rgb(21,11,5);
+  background: linear-gradient(180deg, rgba(21,11,5,0.5) 0%, rgba(55,25,67,0.5) 51%, rgba(216,116,53,0.5) 100%);
+}
+
 .main-orange-color{
   color: $main_orange;
 }
 .main-orange-bg{
   background: $main_orange;
+}
+.main-orange-border{
+  border:2px solid $main_orange;
 }
 .main-orange-second-color{
   color: $main_orange_second;
@@ -305,7 +323,7 @@ body{
 }
 
 .ngx-pagination .current {
-  background: #4DC591!important;
+  background: $main_orange!important;
 }
 .slick-slide{
   img {
@@ -336,13 +354,13 @@ body{
   font-weight: bold;
 }
 .dp-selected{
-  background: $main_green!important;
+  background: $main_orange!important;
   border-radius: 5px;
   font-weight: bold;
 }
 .dp-calendar-nav-container{
   border: none!important;
-  background: $main_green!important;
+  background: $main_orange!important;
   font-weight: bold;
   color: white;
   border-top-left-radius: 10px;
@@ -355,13 +373,13 @@ body{
 
 .dp-calendar-wrapper {
   box-sizing: border-box;
-  border: 2px solid #4DC591!important;
+  border: 2px solid $main_orange!important;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding: 5px;
 }
 .cal-month-view .cal-header {
-  background-color: #4DC591!important;
+  background-color: $main_orange!important;
   color: white;
   @media only screen and (max-width: 640px) {
     font-size: 6px!important;
@@ -457,8 +475,8 @@ body{
   }
   .nsm-content{
     border-radius: 15px;
-    background: $main_secondary;
-    border: 2px solid $main_secondary;
+    background: rgb(255,255,255,0.7);
+    border: 2px solid $violet_first
   }
   .nsm-dialog-btn-close{
     right: 12px;
@@ -496,5 +514,25 @@ body{
   .nsm-dialog-btn-close{
     top:20px;
     right: 20px;
+  }
+}
+.careerModalRule{
+  .overlay.nsm-overlay-open {
+    background-color: rgba(0, 0, 0, 0.8)!important;
+  }
+  .nsm-content{
+    border-radius: 15px;
+    background: rgb(255,255,255,0.8);
+    border: 2px solid $violet_first
+  }
+}
+.modalSearchVideo{
+  .overlay.nsm-overlay-open {
+    background-color: rgba(0, 0, 0, 0.8)!important;
+  }
+  .nsm-content{
+    border-radius: 15px;
+    background: rgb(255,255,255,0.8);
+    border: 2px solid $violet_first
   }
 }

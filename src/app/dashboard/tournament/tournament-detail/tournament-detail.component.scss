@@ -47,13 +47,14 @@
     content: '';
     display: inline-block;
     width: 10px;
-    border-top: 1px solid;
+    border-top: 2px solid;
     -webkit-order: 2;
     -ms-flex-order: 2;
     order: 2;
     -webkit-flex: 1 0 auto;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto;
+    color: #7a5585;
   }
 
   .round::after {
@@ -69,17 +70,20 @@
     -webkit-flex: 1 0 auto;
     -ms-flex: 1 0 auto;
     flex: 1 0 auto;
-    background-image: linear-gradient(#000, #000), linear-gradient(#000, #000), linear-gradient(#000, #000);
-    background-size: 100% 1px, 100% 1px, 1px 50%;
+    background-image: linear-gradient(rgb(55,33,62), rgb(55,33,62)), linear-gradient(rgb(55,33,62),rgb(55,33,62)), linear-gradient(rgb(55,33,62), rgb(55,33,62));
+    background-size: 100% 2px, 100% 2px, 2px 50%;
     background-position: 0 25%, 0 75%, 100% 50%;
     background-repeat: no-repeat;
   }
 
   .round-table p {
-    border: 1px solid;
+    border: 2px solid;
     margin: .5em 0;
     padding: 5px;
-    background: #eee;
+    background: linear-gradient(90deg, rgba(215,116,53,0.5) 0%, rgba(47,28,51,0.5) 50%);
+    border: 2px solid #7a5585;
+    border-radius: 9999px;
+    color: white;
     -webkit-flex: 3 0 auto;
     -ms-flex: 3 0 auto;
     flex: 3 0 auto;
@@ -113,8 +117,8 @@
     -webkit-align-self: stretch;
     -ms-flex-item-align: stretch;
     align-self: stretch;
-    background: linear-gradient(#000,#000) 50% 0 no-repeat;
-    background-size: 1px 50%;
+    background: linear-gradient(rgb(55,33,62),rgb(55,33,62)) 50% 0 no-repeat;
+    background-size: 2px 50%;
   }
   .round-table > ul > .round:first-child {
     -webkit-order: 1;
@@ -139,8 +143,8 @@
     content: '';
     display: inline-block;
     width: 30px;
-    border-top: 1px solid;
-    background: blue;
+    border-top: 2px solid;
+    background-image: linear-gradient(rgb(55,33,62), rgb(55,33,62)), linear-gradient(rgb(55,33,62),rgb(55,33,62)), linear-gradient(rgb(55,33,62), rgb(55,33,62));
     -webkit-order: 1;
     -ms-flex-order: 1;
     order: 1;
@@ -177,6 +181,7 @@
     -webkit-flex: 8 0 auto;
     -ms-flex: 8 0 auto;
     flex: 8 0 auto;
+    color: #7a5585;
   }
 }
 
@@ -189,3 +194,9 @@
   background: rgb(52,22,56);
   background: linear-gradient(90deg, rgba(52,22,56,0.5) 30%, rgba(55,23,68,0.5) 66%, rgba(89,58,93,0.5) 100%);
 }
+.tournament-list-50{
+  background: rgb(215,116,53);
+  background: linear-gradient(90deg, rgba(215,116,53,0.5) 0%, rgba(47,28,51,0.5) 50%);
+}
+
+

@@ -1,11 +1,11 @@
 <div class="container mx-auto" *ngIf="careerQuizList">
   <div class="grid grid-cols-12 gap-3 mb-4">
     <div class="col-span-12 md:col-span-6 lg:col-span-7 my-2">
-      <div class="w-full career-discount-card rounded-xl">
+      <div class="w-full bg-black-violet-orange-180-05 main-violet-first-rounded rounded-xl">
         <div class="grid grid-cols-12 gap-3 min-h-[400px]">
           <div class="col-span-12 md:col-span-6 w-full h-full flex justify-center md:justify-start items-center p-3">
             <div class="px-3">
-              <div>
+              <div class="text-white">
                 <p class="text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold">
                   Откройте свое будущее прямо сейчас!
                 </p>
@@ -13,7 +13,8 @@
                   Откройте для себя свое истинное призвание с помощью наших профессионально разработанных тестов – и все это по привлекательной цене.
                 </p>
               </div>
-              <a routerLink="/{{RoutesName.careerQuizPlan}}" class="inline-block mt-4 bg-violet-400 hover:bg-violet-700 cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold">
+              <a routerLink="/{{RoutesName.careerQuizPlan}}"
+                 class="inline-block mt-4 bg-violet-first main-violet-first-rounded cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold uppercase">
                 Приобрести <fa-icon [icon]="faChevronRight" class="ml-2"></fa-icon>
               </a>
             </div>
@@ -25,11 +26,11 @@
       </div>
     </div>
     <div class="col-span-12 md:col-span-6 lg:col-span-5 my-2">
-      <div class="w-full career-stat-card rounded-xl">
+      <div class="w-full bg-black-violet-orange-180-05 main-violet-first-rounded rounded-xl">
         <div class="grid grid-cols-12 gap-3 min-h-[400px]">
           <div class="col-span-12 md:col-span-6 w-full h-full flex justify-center md:justify-start items-center p-3">
             <div class="px-3">
-              <div>
+              <div class="text-white">
                 <p class="text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold">
                   Моя статистика
                 </p>
@@ -37,7 +38,8 @@
                   Ваша статистика доступна тут
                 </p>
               </div>
-              <a routerLink="/{{RoutesName.myCareerQuizAttempts}}" class="inline-block mt-4 bg-violet-400 hover:bg-violet-700 cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold">
+              <a routerLink="/{{RoutesName.myCareerQuizAttempts}}"
+                 class="inline-block mt-4 bg-violet-first main-violet-first-rounded cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold uppercase">
                 Моя статистика <fa-icon [icon]="faBarChart" class="ml-2"></fa-icon>
               </a>
             </div>
@@ -54,7 +56,7 @@
       <div class="col-span-12 xl:col-span-6 my-3"
            *ngFor="let careerQuiz of careerQuizList.data|paginate: { itemsPerPage: careerQuizList.per_page, currentPage: careerQuizList.current_page,totalItems:careerQuizList.total }">
         <div
-          class="card relative bg-white rounded-2xl shadow-xl border-gray-300 border-[1px] flex min-h-[305px] h-full overflow-x-hidden">
+          class="bg-black-violet-orange-180-05 main-violet-first-rounded relative rounded-2xl shadow-xl flex min-h-[305px] h-full overflow-x-hidden">
           <div class="absolute hidden sm:block right-0 top-0 h-16 w-16">
             <div
               *ngIf="purchasedList.includes(careerQuiz.id);else notPurchased"
@@ -63,7 +65,7 @@
             </div>
             <ng-template #notPurchased>
               <div
-                class="text-xs absolute transform rotate-45 bg-rose-500 text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]">
+                class="text-xs absolute transform rotate-45 bg-[#c46a31] text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]">
                 Доступ закрыт
               </div>
             </ng-template>
@@ -72,21 +74,21 @@
           <div class="grid grid-cols-3 p-3 align-middle relative mb-[40px]">
             <div class="col-span-3 md:col-span-2 order-2 sm:order-1 px-3 flex justify-center items-center z-20">
               <div>
-                <p class="text-md md:text-lg font-bold text-blue-400">
+                <p class="text-md md:text-lg font-bold text-white">
                   {{careerQuiz | globalTranslate:"title": translate.currentLang}}
                 </p>
-                <a class="text-gray-600 text-xs font-bold my-2" *ngIf="careerQuiz.career_quiz_group">
+                <a class="text-white text-xs font-bold my-2" *ngIf="careerQuiz.career_quiz_group">
                   # {{careerQuiz.career_quiz_group | globalTranslate:"title": translate.currentLang}}
                 </a>
                 <div
-                  class="my-3 text-sm md:text-md text-gray-400"
+                  class="my-3 text-sm md:text-md text-white"
                   [innerHTML]="careerQuiz | globalTranslate:'description': translate.currentLang | truncate:90"
                 >
 
                 </div>
-                <div class="mt-4 text-md text-gray-400">
+                <div class="mt-4 text-md text-white">
                   <a [routerLink]="'/' + RoutesName.careerQuizDetail + '/' + careerQuiz.id"
-                     class="bg-blue-300 hover:bg-blue-400 cursor-pointer text-white text-sm px-4 py-2 rounded-full  font-bold">
+                     class="bg-violet-first main-violet-first-rounded cursor-pointer text-white text-sm px-4 py-2 rounded-full  font-bold">
                     {{"MORE_INFO"|translate}}
                     <fa-icon class="ml-2" [icon]="faChevronRight"></fa-icon>
                   </a>
@@ -101,7 +103,7 @@
           </div>
           <div class="absolute w-full bottom-0 z-10">
             <svg class="rounded-br-2xl rounded-bl-2xl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250">
-              <path fill="rgb(63 131 248 / 0.5)" fill-opacity="0.7"
+              <path fill="#c46a31" fill-opacity="0.7"
                     d="M0,64L60,101.3C120,139,240,213,360,218.7C480,224,600,160,720,160C840,160,960,224,1080,213.3C1200,203,1320,117,1380,74.7L1440,32L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
             </svg>
           </div>

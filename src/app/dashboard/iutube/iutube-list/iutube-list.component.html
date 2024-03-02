@@ -2,8 +2,8 @@
   <app-iutube-search/>
   <div class="grid grid-cols-12 my-4">
     <div class="col-span-12">
-      <div class="grid grid-cols-12 min-h-[300px] shadow-xl rounded-xl relative">
-        <div class="col-span-12 lg:col-span-6 flex items-center relative overflow-hidden">
+      <div class="grid grid-cols-12 min-h-[300px] shadow-xl rounded-xl relative bg-black-violet-orange-180">
+        <div class="col-span-12 lg:col-span-6 flex items-center relative overflow-hidden text-white">
             <div class="z-10 p-4 lg:pl-5">
               <p class="text-xl lg:text-2xl font-bold">
                 Смотрите сотни видео по подготовке к ЕНТ абсолютно бесплатно!
@@ -27,9 +27,9 @@
             <div class="w-full flex justify-center items-center">
               <img
                 style="width: 50px!important; height: 50px!important;"
-                class="rounded-full border-2 border-red-500" src="{{ImageHelper.getImage(subject.image?.url)}}" />
+                class="rounded-full border-2 border-[#ff914d]" src="{{ImageHelper.getImage(subject.image?.url)}}" />
             </div>
-            <p class="text-xs text-center my-2">
+            <p class="text-xs text-center my-2 main-orange-color">
               {{subject | globalTranslate:"title":translate.currentLang}}
             </p>
           </div>
@@ -40,7 +40,7 @@
 
   <div class="grid grid-cols-12 gap-5 my-5" *ngIf="iutubeVideos">
     <div class="col-span-12 my-5" *ngIf="iutubeVideos.recommended.length > 0">
-      <p class="text-lg lg:text-xl xl:text-3xl text-black font-bold">
+      <p class="text-lg lg:text-xl xl:text-3xl text-white font-bold">
         Рекомендуемые
       </p>
     </div>
@@ -52,7 +52,7 @@
   </div>
   <div class="grid grid-cols-12 gap-5 my-5" *ngIf="iutubeVideos">
     <div class="col-span-12 my-5" *ngIf="iutubeVideos.public_videos.length > 0">
-      <p class="text-lg lg:text-xl xl:text-3xl text-black font-bold">
+      <p class="text-lg lg:text-xl xl:text-3xl text-white font-bold">
         Вам может быть интересно
       </p>
     </div>

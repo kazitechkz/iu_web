@@ -1,3 +1,22 @@
 #animatedElement {
   transition: width 1s ease; /* добавляем анимацию для свойства width */
+  animation: shrinkWidth 15s forwards;
+}
+.game-card{
+  background: rgb(255,255,255);
+}
+
+.bg-violet-first-50{
+  background: rgb(55,33,62);
+  background: linear-gradient(90deg, rgba(55,33,62,0.5) 27%, rgba(17,9,4,0.5) 100%);
+}
+
+@keyframes shrinkWidth {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0;
+  }
 }

@@ -9,6 +9,6 @@ export interface SubTournamentParticipant{
   sub_tournament:SubTournament|null
   user:TournamentUser|null,
   deleted_at: string|null,
-  created_at: string
-  updated_at: string|null,
+  created_at: Date
+  updated_at: Date|null,
 }
