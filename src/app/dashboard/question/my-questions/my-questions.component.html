@@ -2,7 +2,7 @@
 
   <div class="grid grid-cols-12 py-5 my-3 rounded-2xl">
 
-    <div class="col-span-12 bg-white rounded-xl shadow-lg">
+    <div class="col-span-12 bg-violet-orange-first-50 main-violet-first-rounded rounded-xl shadow-lg">
       <div class="p-4">
         <!--Tabs navigation-->
         <ul
@@ -11,7 +11,7 @@
           data-te-nav-ref>
           <li role="presentation">
             <a
-              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight hover:isolate focus:isolate focus:border-transparent text-white data-[te-nav-active]:border-[#b37cc4]"
               data-te-toggle="pill"
               data-te-target="#tabs-current"
               data-te-nav-active
@@ -24,7 +24,7 @@
           <li role="presentation">
             <a
               href="#tabs-profile"
-              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight hover:isolate focus:isolate focus:border-transparent text-white data-[te-nav-active]:border-[#b37cc4]"
               data-te-toggle="pill"
               data-te-target="#tabs-participated"
               role="tab"
@@ -45,12 +45,12 @@
             data-te-tab-active>
             <div class="grid grid-cols-12 p-3" >
               <div class="col-span-12" >
-                <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
+                <div class="bg-violet-orange-first mx-3 p-4 rounded-2xl shadow-2xl">
                   <div class="relative overflow-x-auto" *ngIf="questionsPagination">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" *ngIf="questionsPagination.data">
-                      <thead class="text-xs text-gray-700 capitalize">
+                    <table class="w-full text-sm text-left text-white" *ngIf="questionsPagination.data">
+                      <thead class="text-xs text-white capitalize">
                       <tr>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 text-center">
                           #
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -68,31 +68,32 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let question of questionsPagination.data | paginate: { itemsPerPage: questionsPagination.per_page, currentPage: questionsPagination.current_page,totalItems:questionsPagination.total }">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex" *ngIf="question.subject">
-                          <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(question.subject.image?.url) +')'}"></div>
+                      <tr class="rounded-2xl my-2 text-white" *ngFor="let question of questionsPagination.data | paginate: { itemsPerPage: questionsPagination.per_page, currentPage: questionsPagination.current_page,totalItems:questionsPagination.total }">
+                        <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap flex" *ngIf="question.subject">
+                          <div class="w-12 h-12 rounded-full bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(question.subject.image?.url) +')'}"></div>
                         </th>
                         <td class="px-6 py-4">
-                          <ul class="text-black" *ngIf="question.subject">
-                            <p class="text-black font-bold">{{question.subject |globalTranslate:'title':translate.currentLang}}</p>
+                          <ul *ngIf="question.subject">
+                            <p class="text-white font-bold">{{question.subject |globalTranslate:'title':translate.currentLang}}</p>
                           </ul>
                         </td>
                         <td class="px-6 py-4">
-                          <div class="text-black" *ngIf="question.text">
-                            <div class="text-black font-bold" [mathjax]="question.text | mathjaxTransform | truncate:30"></div>
+                          <div *ngIf="question.text">
+                            <div class="text-white font-bold" [mathjax]="question.text | mathjaxTransform | truncate:30"></div>
                           </div>
                         </td>
                         <td class="px-6 py-4">
-                          <div class="text-black" *ngIf="question.created_at">
-                            <div class="text-black font-bold">
+                          <div *ngIf="question.created_at">
+                            <div class="text-white font-bold">
                               {{moment(question.created_at).format("HH:mm DD/MM/YYYY")}}
                             </div>
                           </div>
                         </td>
                         <td class="px-6 py-4">
-                          <div class="text-black">
-                            <div class="text-black font-bold">
-                              <a [routerLink]="'/' + RoutesName.savedQuestions + '/' + question.id.toString()" type="button" class="cursor-pointer text-white main-green-bg focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                          <div class="text-white">
+                            <div class="font-bold">
+                              <a [routerLink]="'/' + RoutesName.savedQuestions + '/' + question.id.toString()" type="button"
+                                 class="cursor-pointer text-white bg-violet-first main-violet-first-rounded focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
                                 <fa-icon [icon]="faEye"></fa-icon>
                               </a>
                             </div>
@@ -101,7 +102,7 @@
                       </tr>
                       </tbody>
                     </table>
-                    <div class="my-2 flex justify-center">
+                    <div class="my-2 flex justify-center" *ngIf="questionsPagination.last_page > 1">
                       <pagination-controls class="rounded-full" (pageChange)="changeSavedQuestion($event)"></pagination-controls>
                     </div>
                   </div>
@@ -117,12 +118,12 @@
             aria-labelledby="tabs-profile-participated">
             <div class="grid grid-cols-12 p-3" >
               <div class="col-span-12" >
-                <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl">
+                <div class="bg-violet-orange-first mx-3 p-4 rounded-2xl shadow-2xl">
                   <div class="relative overflow-x-auto" *ngIf="appealPagination">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" *ngIf="appealPagination.data">
-                      <thead class="text-xs text-gray-700 capitalize">
+                    <table class="w-full text-sm text-left text-white" *ngIf="appealPagination.data">
+                      <thead class="text-xs text-white capitalize">
                       <tr>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 text-center">
                           #
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -143,44 +144,45 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let appeal of appealPagination.data | paginate: { itemsPerPage: appealPagination.per_page, currentPage: appealPagination.current_page,totalItems:appealPagination.total }">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex" *ngIf="appeal.question">
+                      <tr class="rounded-2xl my-2" *ngFor="let appeal of appealPagination.data | paginate: { itemsPerPage: appealPagination.per_page, currentPage: appealPagination.current_page,totalItems:appealPagination.total }">
+                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-white flex" *ngIf="appeal.question">
                           <section *ngIf="appeal.question.subject">
-                            <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(appeal.question.subject.image?.url) +')'}"></div>
+                            <div class="w-12 h-12 rounded-full bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(appeal.question.subject.image?.url) +')'}"></div>
                           </section>
                         </th>
                         <td class="px-6 py-4">
                           <section *ngIf="appeal.question">
-                            <ul class="text-black" *ngIf="appeal.question.subject">
-                              <p class="text-black font-bold">{{appeal.question.subject |globalTranslate:'title':translate.currentLang}}</p>
+                            <ul *ngIf="appeal.question.subject">
+                              <p class="text-white font-bold">{{appeal.question.subject |globalTranslate:'title':translate.currentLang}}</p>
                             </ul>
                           </section>
                         </td>
                         <td class="px-6 py-4">
                           <section *ngIf="appeal.appeal_type">
-                            <ul class="text-black" *ngIf="appeal.appeal_type">
-                              <p class="text-black font-bold">{{appeal.appeal_type |globalTranslate:'title':translate.currentLang}}</p>
+                            <ul *ngIf="appeal.appeal_type">
+                              <p class="text-white font-bold">{{appeal.appeal_type |globalTranslate:'title':translate.currentLang}}</p>
                             </ul>
                           </section>
                         </td>
                         <td class="px-6 py-4">
                           <section *ngIf="appeal.question">
-                            <div class="text-black" *ngIf="appeal.question.text">
-                              <div class="text-black font-bold" [mathjax]="appeal.question.text | mathjaxTransform | truncate:30"></div>
+                            <div *ngIf="appeal.question.text">
+                              <div class="text-white font-bold" [mathjax]="appeal.question.text | mathjaxTransform | truncate:30"></div>
                             </div>
                           </section>
                         </td>
                         <td class="px-6 py-4">
-                          <div class="text-black" *ngIf="appeal.question">
-                            <div class="text-black font-bold" *ngIf="appeal.question.created_at">
+                          <div *ngIf="appeal.question">
+                            <div class="text-white font-bold" *ngIf="appeal.question.created_at">
                               {{moment(appeal.question.created_at).format("HH:mm DD/MM/YYYY")}}
                             </div>
                           </div>
                         </td>
                         <td class="px-6 py-4">
-                          <div class="text-black">
-                            <div class="text-black font-bold">
-                              <a [routerLink]="'/' + RoutesName.appealedQuestions + '/' + appeal.id.toString()" type="button" class="cursor-pointer text-white main-green-bg focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                          <div>
+                            <div class="text-white font-bold">
+                              <a [routerLink]="'/' + RoutesName.appealedQuestions + '/' + appeal.id.toString()" type="button"
+                                 class="cursor-pointer text-white bg-violet-first main-violet-first-rounded focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
                                 <fa-icon [icon]="faEye"></fa-icon>
                               </a>
                             </div>
@@ -189,7 +191,7 @@
                       </tr>
                       </tbody>
                     </table>
-                    <div class="my-2 flex justify-center">
+                    <div class="my-2 flex justify-center" *ngIf="appealPagination.last_page > 1">
                       <pagination-controls class="rounded-full" (pageChange)="changeAppealQuestion($event)"></pagination-controls>
                     </div>
                   </div>

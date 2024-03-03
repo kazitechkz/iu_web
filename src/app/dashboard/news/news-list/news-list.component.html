@@ -25,32 +25,32 @@
   </div>
   <div class="grid grid-col-12 gap-3 my-5" *ngIf="allNews">
     <div class="col-span-12 cursor-pointer" [routerLink]="['/'+ RoutesName.newsDetail + '/' + newsItem.id]" *ngFor="let newsItem of allNews.data | paginate: { itemsPerPage: allNews.per_page, currentPage: allNews.current_page,totalItems:allNews.total }">
-      <div class="lg:flex items-center p-3 rounded-lg bg-white shadow-2xl">
+      <div class="lg:flex items-center p-3 rounded-lg bg-black-violet-orange-180-05 main-violet-first-rounded shadow-2xl">
         <div class="w-full min-h-[300px] h-full lg:w-4/12 rounded-lg bg-center bg-no-repeat bg-cover"
              [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(newsItem.poster!.url) + ')'}">
         </div>
         <div class="w-full min-h-[300px] h-full lg:w-8/12 py-3 px-6 rounded-lg text-center lg:text-left">
-          <p class="inline-block my-3 text-md lg:text-lg text-black font-bold">
+          <p class="inline-block my-3 text-md lg:text-lg text-white font-bold">
             {{newsItem.title}}
           </p>
-          <span class="block my-3 text-sm body-text">
+          <span class="block my-3 text-sm text-white">
             <fa-icon [icon]="faClock" class="mr-2"></fa-icon>{{moment(newsItem.published_at).format("HH:mm DD/MM/YYYY")}}
           </span>
-          <span class="block my-3 text-sm body-text" *ngIf="newsItem.user">
+          <span class="block my-3 text-sm text-white" *ngIf="newsItem.user">
             <fa-icon [icon]="faUser" class="mr-2"></fa-icon>{{newsItem.user.name}}
           </span>
-          <p class="inline-block my-3 body-text text-md">
+          <p class="inline-block my-3 text-white text-md">
             {{newsItem.subtitle}}
           </p>
           <div class="text-center lg:text-right">
-            <a [routerLink]="['/'+ RoutesName.newsDetail + '/' + newsItem.id]" class="inline-block my-3 cursor-pointer text-black hover:text-white border border-black hover:bg-black focus:ring-4 focus:outline-none focus:ring-black font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-              {{"MORE_INFO"|translate}}
+            <a [routerLink]="['/'+ RoutesName.newsDetail + '/' + newsItem.id]" class="inline-block my-3 cursor-pointer border main-violet-first-rounded bg-violet-first text-white focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
+              {{"MORE_INFO"|translate}} <fa-icon [icon]="faArrowRight"></fa-icon>
             </a>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-span-12 my-2 flex justify-center">
+    <div class="col-span-12 my-2 flex justify-center" *ngIf="allNews.last_page > 1">
       <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
     </div>
   </div>

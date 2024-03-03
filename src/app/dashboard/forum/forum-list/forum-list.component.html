@@ -1,8 +1,8 @@
 <div class="container mx-auto">
-  <div class="grid grid-cols-12 gap-3">
+  <div class="grid grid-cols-12 gap-3 rounded-xl bg-black-violet-orange-180-05 main-violet-first-rounded">
     <div class="col-span-12 md:col-span-12 lg:col-span-6 p-4">
       <tw-select
-        class="w-full flex h-full items-center"
+        class="w-full flex h-full items-center rounded-full main-violet-first-rounded main-violet-second-bg text-white"
         [ngModel]="params.type"
         (ngModelChange)="setForumType($event)"
         [placeholder]="'SELECT_TYPE' | translate"
@@ -26,53 +26,53 @@
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
           </div>
-          <input [(ngModel)]="params.search" type="search" id="default-search" class="block w-full p-4 pl-10 text-sm border-gray-300  rounded-lg " placeholder="{{('SEARCH'|translate)}}" required>
-          <button (click)="searchPage()" type="submit" class="text-white absolute right-2.5 bottom-2.5 main-secondary-bg  font-bold rounded-lg text-sm px-4 py-2">Search</button>
+          <input [(ngModel)]="params.search" type="search" id="default-search" class="block w-full p-4 pl-10 text-sm main-violet-first-rounded main-violet-second-bg text-white placeholder-white  rounded-lg " placeholder="{{('SEARCH'|translate)}}" required>
+          <button (click)="searchPage()" type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-violet-first main-violet-first-rounded  font-bold rounded-full text-sm px-4 py-2">{{("SEARCH"|translate)}}</button>
         </div>
     </div>
 
-    <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-9 order-2 lg:order-1" *ngIf="forumData">
-      <div class="p-3 border-2 border-green-500 shadow-lg rounded-2xl md:flex my-5 cursor-pointer"
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-9 order-2 lg:order-1 px-3" *ngIf="forumData">
+      <div class="p-3 main-violet-first-rounded shadow-lg rounded-2xl md:flex my-5 cursor-pointer"
            *ngFor="let forum of forumData.data | paginate: { itemsPerPage: forumData.per_page, currentPage: forumData.current_page,totalItems:forumData.total }"
            [routerLink]="['/' + RoutesName.forumDetail + '/' + forum.id]"
       >
           <div class="lg:w-3/12 text-center flex justify-center items-center">
             <div>
-              <div class="w-16 h-16 rounded-full inline-block border-2 border-green-300 bg-cover bg-no-repeat mr-2"
+              <div class="w-16 h-16 rounded-full inline-block bg-cover bg-no-repeat mr-2"
                    [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(forum.user?.file?.url)+ ')'}"
               ></div>
-              <p class="text-md font-bold">
+              <p class="text-md font-bold text-white">
                 {{forum.user?.name}}
               </p>
-              <p class="text-xl font-bold">
+              <p class="text-xl font-bold text-white">
                 {{forum.discuss_rating_sum_rating??0 > 0 ? '+' : (forum.discuss_rating_sum_rating??0 != 0 ? "-" :"")}} {{forum.discuss_rating_sum_rating ?? 0}}
               </p>
             </div>
           </div>
         <div class="lg:w-6/12 text-center lg:text-left flex items-center">
           <div class="w-full">
-            <p class="text-lg md:text-xl lg:text-2xl font-bold main-darken-blue-color">
+            <p class="text-lg md:text-xl lg:text-2xl font-bold text-white">
               {{forum.text}}
             </p>
-            <p class="inline-block mt-3 text-md main-text main-green-color">
+            <p class="inline-block mt-3 text-md text-white">
               {{forum.subject | globalTranslate:"title": translate.currentLang}}
             </p>
             <br>
-            <p class="inline-block mt-3 text-md main-text main-green-color">
+            <p class="inline-block mt-3 text-md text-white">
               {{moment(forum.created_at).format('HH:mm DD/MM/YYYY')}}
             </p>
           </div>
         </div>
         <div class="lg:w-3/12 text-center flex justify-center items-center">
           <div>
-            <fa-icon class="text-lg md:text-xl lg:text-2xl xl:text-4xl font-bold main-secondary-color" [icon]="faMessage"></fa-icon>
-            <p class="text-xl font-bold main-secondary-color">
+            <fa-icon class="text-lg md:text-xl lg:text-2xl xl:text-4xl font-bold main-orange-color" [icon]="faMessage"></fa-icon>
+            <p class="text-xl font-bold main-orange-color">
               {{forum.discusses_count ?? 0}}
             </p>
           </div>
         </div>
       </div>
-      <div class="my-2 flex justify-center">
+      <div class="my-2 flex justify-center" *ngIf="forumData.last_page > 1">
         <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
       </div>
     </div>
@@ -84,24 +84,23 @@
             w-full
             font-bold
             inline-block
-            main-secondary-bg
+            bg-violet-first main-violet-first-rounded
             text-white
             focus:outline-none focus:ring-4
-            rounded-lg text-sm p-3
+            rounded-full text-sm p-3
             text-center"
         >
           Создать
           <fa-icon [icon]="faPencil" class="mx-2 text-lg"></fa-icon>
         </a>
       </div>
-      <hr/>
       <div class="p-3">
         <div id="accordionFlushExample">
           <div
             class="rounded-lg">
             <h2 class="mb-0" id="flush-headingThree">
               <button
-                class="group relative flex w-full items-center rounded-lg border-0 bg-white px-5 py-4 text-left text-base transition main-secondary-bg text-white font-bold"
+                class="group relative flex w-full items-center rounded-full px-5 py-4 text-left text-base transition bg-violet-first main-violet-first-rounded text-white font-bold"
                 type="button"
                 data-te-collapse-init
                 data-te-collapse-collapsed
@@ -134,22 +133,22 @@
               aria-labelledby="flush-headingThree"
               data-te-parent="#accordionFlushExample">
               <ul class="w-full">
-                <li class="w-full rounded-lg p-4 cursor-pointer"
+                <li class="w-full rounded-full p-4 cursor-pointer main-orange-color main-violet-first-rounded"
                     (click)="setActiveSubject(0)"
-                    [ngClass]="{'main-secondary-bg':params.subject_id == 0, 'text-white':params.subject_id == 0}">
+                    [ngClass]="{'bg-violet-first main-violet-first-rounded':params.subject_id == 0, 'text-white':params.subject_id == 0}">
                   <div class="flex items-center">
-                    <div class="w-8 h-8 rounded-full border-2 border-green-300 bg-cover bg-no-repeat mr-2"
+                    <div class="w-8 h-8 bg-cover bg-no-repeat mr-2"
                          [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(null)+ ')'}"
                     ></div>
                     {{"ALL"|translate}}
                   </div>
                 </li>
-                <li class="w-full rounded-lg p-4 cursor-pointer"
+                <li class="w-full rounded-full p-4 cursor-pointer main-orange-color main-violet-first-rounded"
                     *ngFor="let subject of subjects"
                     (click)="setActiveSubject(subject.id)"
-                    [ngClass]="{'main-secondary-bg':params.subject_id == subject.id, 'text-white':params.subject_id == subject.id}">
+                    [ngClass]="{'bg-violet-first main-violet-first-rounded':params.subject_id == subject.id, 'text-white':params.subject_id == subject.id}">
                   <div class="flex items-center">
-                    <div class="w-8 h-8 rounded-full border-2 border-green-300 bg-cover bg-no-repeat mr-2"
+                    <div class="w-8 h-8 rounded-full bg-cover bg-no-repeat mr-2"
                          [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(subject.image?.url)+ ')'}"
                     ></div>
                     {{subject | globalTranslate:"title": translate.currentLang}}

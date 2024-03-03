@@ -8,7 +8,7 @@ import {getImportantNewsAction} from "../../../shared/store/news/getImportantNew
 import {getImportantNewsSelector} from "../../../shared/store/news/getImportantNews/getImportantNews.selector";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import * as moment from "moment/moment";
-import {faClock, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faArrowRight, faClock, faUser} from "@fortawesome/free-solid-svg-icons";
 import {allNewsAction} from "../../../shared/store/news/allNews/allNews.action";
 import {allNewsSelector} from "../../../shared/store/news/allNews/allNews.selector";
 import {Pagination} from "../../../shared/store/pagination";
@@ -72,4 +72,5 @@ export class NewsListComponent implements OnInit,OnDestroy{
   faClock = faClock;
   faUser = faUser;
 
+  protected readonly faArrowRight = faArrowRight;
 }

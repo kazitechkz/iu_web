@@ -35,7 +35,6 @@ body{
   justify-content: space-between;
 }
 .wrapper .table{
-  background: #fff;
   width: calc(33% - 20px);
   padding: 30px 30px;
   position: relative;
@@ -80,7 +79,7 @@ body{
 .price-area .inner-area .price{
   font-size: 32px;
   font-weight: 500;
-  //margin-left: 16px;
+  color: white;
 }
 .table .package-name{
   width: 100%;
@@ -94,7 +93,7 @@ body{
   left: 50%;
   font-size: 25px;
   font-weight: 500;
-  background: #fff;
+  background: #7a5585;
   padding: 0 15px;
   transform: translate(-50%, -50%);
 }
@@ -106,9 +105,10 @@ body{
   margin: 10px 0;
 }
 .features li .list-name{
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 600;
   margin-left: 15px;
+  color: white;
 }
 .features li .icon{
   font-size: 15px;
@@ -146,59 +146,77 @@ body{
 .basic ::selection,
 .basic .price-area,
 .basic .inner-area{
-  background: #ffd861;
+  background: rgb(236,129,1);
+  background: linear-gradient(90deg, rgba(236,129,1,1) 0%, rgba(178,66,1,1) 51%);
 }
 .basic .btn button{
-  border: 2px solid #ffd861;
-  background: #fff;
-  color: #ffd861;
+  background: linear-gradient(90deg, rgba(55,33,62,0.95) 27%, rgba(17,9,4,1) 100%);
+  color: white;
+  border: 2xp solid #7a5585;
 }
 .basic .btn button:hover{
-  background: #ffd861;
-  color: #fff;
+  background: linear-gradient(90deg, rgba(55,33,62,0.95) 27%, rgba(17,9,4,1) 100%);
+  color: white;
+  border: 2xp solid #7a5585;
 }
 .premium ::selection,
 .premium .price-area,
-.premium .inner-area,
+.premium .inner-area{
+  background: rgb(236,129,1);
+  background: linear-gradient(90deg, rgba(236,129,1,1) 0%, rgba(178,66,1,1) 51%);
+}
 .premium .btn button{
-  background: #a26bfa;
+  background: linear-gradient(90deg, rgba(55,33,62,0.95) 27%, rgba(17,9,4,1) 100%);
+  color: white;
+  border: 2xp solid #7a5585;
 }
 .premium .btn button:hover{
-  background: #833af8;
+  background: linear-gradient(90deg, rgba(55,33,62,0.95) 27%, rgba(17,9,4,1) 100%);
+  color: white;
+  border: 2xp solid #7a5585;
 }
 .ultimate ::selection,
 .ultimate .price-area,
 .ultimate .inner-area{
-  background: #43ef8b;
+  background: rgb(236,129,1);
+  background: linear-gradient(90deg, rgba(236,129,1,1) 0%, rgba(178,66,1,1) 51%);
 }
 .ultimate .btn button{
-  border: 2px solid #43ef8b;
-  color: #43ef8b;
-  background: #fff;
+  background: linear-gradient(90deg, rgba(55,33,62,0.95) 27%, rgba(17,9,4,1) 100%);
+  color: white;
+  border: 2xp solid #7a5585;
 }
 .ultimate .btn button:hover{
-  background: #43ef8b;
-  color: #fff;
+  background: rgb(55,33,62);
+  color: white;
+  border: 2xp solid #7a5585;
 }
 .basic .package-name{
-  background: #ffecb3;
+  background: #7a5585;
 }
 .premium .package-name{
-  background: #d0b3ff;
+  background: #7a5585;
 }
 .ultimate .package-name{
-  background: #baf8d4;
+  background: #7a5585;
 }
 .basic .package-name::before{
   content: "1 мес";
+  color: white;
+  border-radius: 9999px;
 }
 .premium .package-name::before{
   content: "3 мес";
   font-size: 24px;
+  color: white;
+  border-radius: 9999px;
 }
 .ultimate .package-name::before{
   content: "6 мес";
   font-size: 24px;
+  color: white;
+  border-radius: 9999px;
+
 }
 @media (max-width: 1020px) {
   .wrapper .table{

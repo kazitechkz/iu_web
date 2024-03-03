@@ -35,6 +35,7 @@ import {
   getNotificationTypeAllSelector
 } from "../../../shared/store/notification/getNotificationTypeAll/getNotificationTypeAll.selector";
 import {NotificationType} from "../../../shared/models/notificationType.model";
+import {ImageHelper} from "../../../core/helpers/image.helper";
 
 @Component({
   selector: 'app-notification-list',
@@ -154,4 +155,5 @@ export class NotificationListComponent implements OnInit,OnDestroy{
 
 
   protected readonly moment = moment;
+  protected readonly ImageHelper = ImageHelper;
 }

@@ -4,7 +4,7 @@
       <form [formGroup]="createForum" (submit)="onSubmit()">
         <div class="my-2 p-3">
           <tw-select
-            class="w-full flex"
+            class="w-full flex h-full items-center rounded-full main-violet-first-rounded main-violet-second-bg text-white py-3 text-md lg:text-lg"
             [formControlName]="'subject_id'"
             [placeholder]="'SELECT_SUBJECT' | translate"
           >
@@ -33,6 +33,7 @@
             [placeholder]="'Title' | translate"
             [label]="'Title' | translate"
             [error_message]="'title_is_not_right'"
+            [classOptional]="'main-violet-first-rounded text-white placeholder-white bg-violet-first rounded-2xl font-bold'"
             [backErrors]="errors"
             ngDefaultControl
           />
@@ -56,11 +57,9 @@
             text-lg
             font-bold
             inline
-            main-green-bg
-            text-white
             focus:outline-none focus:ring-4
-            focus:ring-green-500 font-medium
-            rounded-lg text-sm px-5 py-5
+             bg-violet-first main-violet-first-rounded text-white
+            rounded-lg px-4 py-2
             text-center mr-2 mb-2"
                   (click)="onSubmit()"
           >

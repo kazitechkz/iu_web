@@ -1,74 +1,76 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12" *ngIf="question">
     <div class="col-span-12 flex justify-center items-center" *ngIf="question.subject">
-      <div class="xl:w-1/2 xl:max-w-[800px] 2xl:max-w-[1200px] min-h-[200px] p-3 shadow-lg rounded-lg border-t-[10px] px-[10px] xl:px-[20px]" [ngStyle]="{'border-color':colors[question.subject.id]}" >
-        <div class="question-header py-3">
-          <div class="text-lg font-bold my-2" [ngStyle]="{'color':colors[question.subject.id]}">
+      <div class="xl:w-1/2 xl:max-w-[800px] 2xl:max-w-[1200px] min-h-[200px] p-3 shadow-lg rounded-lg border-t-[10px] px-[10px] xl:px-[20px] bg-violet-orange-first-50 main-violet-first-rounded" >
+        <div class="question-header py-3 text-white">
+          <div class="text-lg font-bold my-2">
             {{question.subject|globalTranslate:"title": translate.currentLang}}
           </div>
-          <div class="text-sm text-gray-400 font-bold my-2">
+          <div class="text-sm text-white font-bold my-2">
             {{question.subcategory|globalTranslate:"title": translate.currentLang}}
           </div>
           <hr/>
-          <div class="text-sm text-black font-bold my-2">
+          <div class="text-sm text-white font-bold my-2">
             {{"QUESTION"|translate}}:
           </div>
-          <div class="text-sm text-black my-2" [mathjax]="question.text | mathjaxTransform"></div>
-          <div class="text-md font-bold text-black my-2" *ngIf="question.context" [mathjax]="question.context.context | mathjaxTransform"></div>
+          <div class="text-sm text-white my-2" [mathjax]="question.text | mathjaxTransform"></div>
+          <div class="text-md font-bold text-white my-2" *ngIf="question.context" [mathjax]="question.context.context | mathjaxTransform"></div>
         </div>
         <div class="question-content py-3">
-          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 rounded-2xl my-2"
-               *ngIf="question.answer_a"
-               [ngStyle]="{'border-color':colors[question.subject.id]}">
-            <div class="text-sm  text-black" *ngIf="question.answer_a" [mathjax]="question.answer_a | mathjaxTransform"></div>
+          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 font-bold main-violet-first-rounded bg-violet-first rounded-2xl my-2"
+               *ngIf="question.answer_a">
+            <div class="text-sm  text-white" *ngIf="question.answer_a" [mathjax]="question.answer_a | mathjaxTransform"></div>
           </div>
-          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 rounded-2xl my-2"
-               *ngIf="question.answer_b"
-               [ngStyle]="{'border-color':colors[question.subject.id]}">
-            <div class="text-sm  text-black" *ngIf="question.answer_b" [mathjax]="question.answer_b | mathjaxTransform"></div>
+          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 font-bold main-violet-first-rounded bg-violet-first rounded-2xl my-2"
+               *ngIf="question.answer_b">
+            <div class="text-sm  text-white" *ngIf="question.answer_b" [mathjax]="question.answer_b | mathjaxTransform"></div>
           </div>
-          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 rounded-2xl my-2"
+          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 font-bold main-violet-first-rounded bg-violet-first rounded-2xl my-2"
                *ngIf="question.answer_c"
-               [ngStyle]="{'border-color':colors[question.subject.id]}">
-            <div class="text-sm  text-black" *ngIf="question.answer_c" [mathjax]="question.answer_c | mathjaxTransform"></div>
+               >
+            <div class="text-sm  text-white" *ngIf="question.answer_c" [mathjax]="question.answer_c | mathjaxTransform"></div>
           </div>
-          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 rounded-2xl my-2"
+          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 font-bold main-violet-first-rounded bg-violet-first rounded-2xl my-2"
                *ngIf="question.answer_d"
-               [ngStyle]="{'border-color':colors[question.subject.id]}">
-            <div class="text-sm  text-black" *ngIf="question.answer_d" [mathjax]="question.answer_d | mathjaxTransform"></div>
+               >
+            <div class="text-sm  text-white" *ngIf="question.answer_d" [mathjax]="question.answer_d | mathjaxTransform"></div>
           </div>
-          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 rounded-2xl my-2"
+          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 font-bold main-violet-first-rounded bg-violet-first rounded-2xl my-2"
                *ngIf="question.answer_e"
-               [ngStyle]="{'border-color':colors[question.subject.id]}">
-            <div class="text-sm  text-black" *ngIf="question.answer_e" [mathjax]="question.answer_e | mathjaxTransform"></div>
+               >
+            <div class="text-sm  text-white" *ngIf="question.answer_e" [mathjax]="question.answer_e | mathjaxTransform"></div>
           </div>
-          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 rounded-2xl my-2"
+          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 font-bold main-violet-first-rounded bg-violet-first rounded-2xl my-2"
                *ngIf="question.answer_f"
-               [ngStyle]="{'border-color':colors[question.subject.id]}">
-            <div class="text-sm  text-black" *ngIf="question.answer_f" [mathjax]="question.answer_f | mathjaxTransform"></div>
+               >
+            <div class="text-sm  text-white" *ngIf="question.answer_f" [mathjax]="question.answer_f | mathjaxTransform"></div>
           </div>
-          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 rounded-2xl my-2"
+          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 font-bold main-violet-first-rounded bg-violet-first rounded-2xl my-2"
                *ngIf="question.answer_g"
-               [ngStyle]="{'border-color':colors[question.subject.id]}">
-            <div class="text-sm  text-black" *ngIf="question.answer_g" [mathjax]="question.answer_g | mathjaxTransform"></div>
+               >
+            <div class="text-sm  text-white" *ngIf="question.answer_g" [mathjax]="question.answer_g | mathjaxTransform"></div>
           </div>
-          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 rounded-2xl my-2"
+          <div class="min-h-[50px] p-3 flex items-center bg-white border-2 font-bold main-violet-first-rounded bg-violet-first rounded-2xl my-2"
                *ngIf="question.answer_h"
-               [ngStyle]="{'border-color':colors[question.subject.id]}">
-            <div class="text-sm  text-black" *ngIf="question.answer_h" [mathjax]="question.answer_h | mathjaxTransform"></div>
+               >
+            <div class="text-sm  text-white" *ngIf="question.answer_h" [mathjax]="question.answer_h | mathjaxTransform"></div>
           </div>
         </div>
         <div class="question-answer">
+          <section *ngIf="question.prompt">
+            <hr>
+            <div class="text-sm text-white font-bold my-2">
+              {{"PROMPT"|translate}}:
+            </div>
+            <div class="text-sm text-white my-2" [mathjax]="question.prompt | mathjaxTransform"></div>
+          </section>
+          <section *ngIf="question.explanation">
           <hr>
-          <div class="text-sm text-black font-bold my-2">
-            {{"PROMPT"|translate}}:
-          </div>
-          <div class="text-sm text-black my-2" [mathjax]="question.prompt | mathjaxTransform"></div>
-          <hr>
-          <div class="text-sm text-black font-bold my-2">
+          <div class="text-sm text-white font-bold my-2">
             {{"EXPLANATION"|translate}}:
           </div>
-          <div class="text-sm text-black my-2" [mathjax]="question.explanation | mathjaxTransform"></div>
+          <div class="text-sm text-white my-2" [mathjax]="question.explanation | mathjaxTransform"></div>
+          </section>
         </div>
       </div>
 

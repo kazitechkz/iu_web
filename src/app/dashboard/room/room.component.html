@@ -1,126 +1,134 @@
-<div class="w-full flex justify-end items-center">
-  <button
-    class="ml-auto mr-3"
-    tw-button
-    layout="flat"
-    color="primary"
-    (click)="openDialog('pass_test')"
-  >
-    Сдать тест
-    <i class="fa fa-plus ml-3" aria-hidden="true"></i>
-  </button>
-  <button
-    class="ml-2"
-    tw-button
-    layout="flat"
-    color="primary"
-    (click)="openDialog('join_to_class')"
-  >
-    {{'ENTER_PROMO_CODE' | translate}}
-    <i class="fa fa-plus ml-3" aria-hidden="true"></i>
-  </button>
-</div>
-<div class="flex">
-  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
-    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-      <div class="overflow-hidden">
-        <table class="min-w-full text-left text-sm font-light">
-          <thead class="border-b font-medium dark:border-neutral-500">
-          <tr>
-            <th scope="col" class="px-6 py-4">#</th>
-            <th scope="col" class="px-6 py-4">{{'TITLE' | translate}}</th>
-            <th scope="col" class="px-6 py-4">{{'PROMO_CODE' | translate}}</th>
-            <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let classRoom of classrooms | keys"
-              class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
-            <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(classRoom.key) + 1}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.classroom_group | globalTranslate: 'title' : this.translate.currentLang}}</td>
-            <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.classroom_group.promo_code}}</td>
-            <td class="whitespace-nowrap px-6 py-4">
-              <div class="flex">
-                <button
-                  [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
-                  (confirm)="onDelete(classRoom.value.id)"
-                  class="mx-2 text-red-600"
-                  tw-button
-                  layout="flat"
-                >
-                  <i class="fa fa-sign-out" aria-hidden="true"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+<div class="container mx-auto">
+  <div class="grid grid-cols-12">
+    <div class="col-span-12 mb-4">
+      <div class="w-full flex justify-between items-center">
+        <button
+          class="mr-3 rounded-full bg-violet-first main-violet-first-rounded text-white"
+          tw-button
+          layout="flat"
+          (click)="openDialog('pass_test')"
+        >
+          Сдать тест
+          <i class="fa fa-plus ml-3" aria-hidden="true"></i>
+        </button>
+        <button
+          class="rounded-full bg-violet-first main-violet-first-rounded text-white"
+          tw-button
+          layout="flat"
+          (click)="openDialog('join_to_class')"
+        >
+          {{'ENTER_PROMO_CODE' | translate}}
+          <i class="fa fa-plus ml-3" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
+    <div class="col-span-12">
+    <div class="flex">
+      <div class="overflow-x-auto mx-auto w-full rounded-2xl bg-black-violet-orange-180-05 main-violet-first-rounded">
+        <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+          <div class="overflow-hidden">
+            <table class="min-w-full text-left text-sm font-light">
+              <thead class="font-medium text-white">
+              <tr>
+                <th scope="col" class="px-6 py-4">#</th>
+                <th scope="col" class="px-6 py-4">{{'TITLE' | translate}}</th>
+                <th scope="col" class="px-6 py-4">{{'PROMO_CODE' | translate}}</th>
+                <th scope="col" class="px-6 py-4">{{'ACTION' | translate}}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let classRoom of classrooms | keys"
+                  class="transition duration-300 ease-in-out text-white">
+                <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(classRoom.key) + 1}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.classroom_group | globalTranslate: 'title' : this.translate.currentLang}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.classroom_group.promo_code}}</td>
+                <td class="whitespace-nowrap px-6 py-4">
+                  <div class="flex">
+                    <button
+                      [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
+                      (confirm)="onDelete(classRoom.value.id)"
+                      class="mx-2 rounded-full main-orange-bg main-violet-first-rounded"
+                      tw-button
+                      layout="flat"
+                    >
+                      <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <ngx-smart-modal identifier="join_to_class">
+        <div>
+          <form (ngSubmit)="onSubmit()" [formGroup]="classroom_form">
+            <app-input-field
+              [formControlName]="'promo_code'"
+              [input_name]="'promo_code'"
+              [type]="'text'"
+              [placeholder]="'PROMO_CODE' | translate"
+              [label]="'PROMO_CODE' | translate"
+              [error_message]="'REQUIRED_MESSAGE' | translate"
+              [classOptional]="'main-violet-first-rounded main-violet-second-bg text-white placeholder-white rounded-2xl font-bold'"
+              [backErrors]="errors"
+              ngDefaultControl
+            />
+            <div class="my-2">
+              {{'SELECT_PROFILE_SUBJECTS' | translate}}
+            </div>
+            <div class="lg:flex my-2">
+              <select [formControlName]="'subject_first'" data-te-select-init class="mr-2 mobile:my-1 w-full rounded-full main-violet-first-rounded main-violet-second-bg text-white font-bold text-md lg:text-lg">
+                <option selected [value]="0">{{'SELECT_SUBJECT' | translate}}</option>
+                <option [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': translate.currentLang}}</option>
+              </select>
+              <select [formControlName]="'subject_second'" data-te-select-init class="mr-2 mobile:my-1 w-full rounded-full main-violet-first-rounded main-violet-second-bg text-white font-bold text-md lg:text-lg">
+                <option selected [value]="0">{{'SELECT_SUBJECT' | translate}}</option>
+                <option [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': translate.currentLang}}</option>
+              </select>
+            </div>
+            <button
+              tw-button
+              layout="raised"
+              class="mr-3 rounded-full bg-violet-first main-violet-first-rounded text-white"
+              type="submit"
+              [ngClass]="!classroom_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
+              [disabled]="!classroom_form.valid"
+            >
+              {{'SEND_BUTTON' | translate}}
+            </button>
+          </form>
+        </div>
+      </ngx-smart-modal>
+      <ngx-smart-modal identifier="pass_test">
+        <div>
+          <form (ngSubmit)="onPassTest()" [formGroup]="pass_test_form">
+            <app-input-field
+              [formControlName]="'promo_code'"
+              [input_name]="'promo_code'"
+              [type]="'text'"
+              [placeholder]="'PROMO_CODE' | translate"
+              [label]="'PROMO_CODE' | translate"
+              [error_message]="'REQUIRED_MESSAGE' | translate"
+              [classOptional]="'main-violet-first-rounded main-violet-second-bg text-white bg-white placeholder-white rounded-2xl font-bold'"
+              [backErrors]="errors"
+              ngDefaultControl
+            />
+            <button
+              tw-button
+              layout="raised"
+              class="mr-3 rounded-full bg-violet-first main-violet-first-rounded text-white"
+              type="submit"
+              [ngClass]="!pass_test_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
+              [disabled]="!pass_test_form.valid"
+            >
+              {{'SEND_BUTTON' | translate}}
+            </button>
+          </form>
+        </div>
+      </ngx-smart-modal>
+    </div>
+    </div>
   </div>
-  <ngx-smart-modal identifier="join_to_class">
-    <div>
-      <form (ngSubmit)="onSubmit()" [formGroup]="classroom_form">
-        <app-input-field
-          [formControlName]="'promo_code'"
-          [input_name]="'promo_code'"
-          [type]="'text'"
-          [placeholder]="'PROMO_CODE' | translate"
-          [label]="'PROMO_CODE' | translate"
-          [error_message]="'REQUIRED_MESSAGE' | translate"
-          [backErrors]="errors"
-          ngDefaultControl
-        />
-        <div class="my-2">
-          {{'SELECT_PROFILE_SUBJECTS' | translate}}
-        </div>
-        <div class="lg:flex my-2">
-          <select [formControlName]="'subject_first'" data-te-select-init class="mr-2 mobile:my-1 w-full">
-            <option selected [value]="0">{{'SELECT_SUBJECT' | translate}}</option>
-            <option [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': translate.currentLang}}</option>
-          </select>
-          <select [formControlName]="'subject_second'" data-te-select-init class="ml-2 mobile:my-1 w-full">
-            <option selected [value]="0">{{'SELECT_SUBJECT' | translate}}</option>
-            <option [value]="subject.id" *ngFor="let subject of subjects">{{subject | globalTranslate: 'title': translate.currentLang}}</option>
-          </select>
-        </div>
-        <button
-          tw-button
-          layout="raised"
-          color="primary"
-          type="submit"
-          [ngClass]="!classroom_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
-          [disabled]="!classroom_form.valid"
-        >
-          {{'SEND_BUTTON' | translate}}
-        </button>
-      </form>
-    </div>
-  </ngx-smart-modal>
-  <ngx-smart-modal identifier="pass_test">
-    <div>
-      <form (ngSubmit)="onPassTest()" [formGroup]="pass_test_form">
-        <app-input-field
-          [formControlName]="'promo_code'"
-          [input_name]="'promo_code'"
-          [type]="'text'"
-          [placeholder]="'PROMO_CODE' | translate"
-          [label]="'PROMO_CODE' | translate"
-          [error_message]="'REQUIRED_MESSAGE' | translate"
-          [backErrors]="errors"
-          ngDefaultControl
-        />
-        <button
-          tw-button
-          layout="raised"
-          color="primary"
-          type="submit"
-          [ngClass]="!pass_test_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
-          [disabled]="!pass_test_form.valid"
-        >
-          {{'SEND_BUTTON' | translate}}
-        </button>
-      </form>
-    </div>
-  </ngx-smart-modal>
 </div>

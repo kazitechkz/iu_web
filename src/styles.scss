@@ -267,6 +267,11 @@ body{
   background: linear-gradient(135deg, rgba(173,81,24,1) 0%, rgba(55,23,68,1) 50%, rgba(54,23,66,1) 100%);
 }
 
+.bg-violet-orange-first-50{
+  background: rgb(173,81,24);
+  background: linear-gradient(135deg, rgba(173,81,24,0.5) 0%, rgba(55,23,68,0.5) 50%, rgba(54,23,66,0.5) 100%);
+}
+
 .bg-orange-gradient{
   background: rgb(236,129,1);
   background: linear-gradient(90deg, rgba(236,129,1,1) 0%, rgba(178,66,1,1) 51%);
@@ -534,5 +539,25 @@ body{
     border-radius: 15px;
     background: rgb(255,255,255,0.8);
     border: 2px solid $violet_first
+  }
+}
+
+.buySubscriptionModal{
+    .overlay.nsm-overlay-open {
+      background-color: rgba(0, 0, 0, 0.8)!important;
+    }
+    .nsm-content{
+      border-radius: 15px;
+      background: rgb(21,11,5);
+      background: linear-gradient(180deg, rgba(21,11,5,1) 0%, rgba(55,25,67,1) 51%, rgba(216,116,53,1) 100%);
+      border: 2px solid $violet_first
+    }
+  .nsm-dialog-btn-close{
+    right: 12px;
+    top: 12px;
+    color: white;
+    border-radius: 50%;
+    background: rgb(248 113 113);
+    padding: 8px;
   }
 }
