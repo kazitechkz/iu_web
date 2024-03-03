@@ -1,7 +1,7 @@
-<div class="mobile:p-1.5 p-5 rounded-[10px] bg-white">
+<div class="mobile:p-1.5 p-5 rounded-[10px] bg-black-violet-orange-180-05 main-violet-first-rounded">
   <div class="w-full flex justify-end items-center">
     <button
-      class="ml-auto"
+      class="ml-auto main-violet-first-rounded bg-violet-first rounded-full text-white"
       tw-button
       layout="flat"
       color="primary"
@@ -16,7 +16,7 @@
       <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
         <div class="overflow-hidden">
           <table class="min-w-full text-left text-sm font-light">
-            <thead class="border-b font-medium dark:border-neutral-500">
+            <thead class="border-b font-medium text-white">
             <tr>
               <th scope="col" class="px-6 py-4">#</th>
               <th scope="col" class="px-6 py-4">{{'TITLE' | translate}}</th>
@@ -28,14 +28,14 @@
             </thead>
             <tbody>
             <tr *ngFor="let classRoom of classroomsGroups | keys"
-                class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
+                class="transition duration-300 ease-in-out text-white">
               <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(classRoom.key) + 1}}</td>
               <td class="whitespace-nowrap px-6 py-4">{{classRoom.value | globalTranslate: 'title' : this.translate.currentLang}}</td>
               <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.classrooms_count}}</td>
               <td class="whitespace-nowrap px-6 py-4">{{classRoom.value.promo_code}}</td>
               <td class="whitespace-nowrap px-6 py-4">
                 <button
-                  class="mx-2 text-black"
+                  class="mx-2 text-white main-violet-first-rounded bg-violet-first"
                   tw-button
                   layout="flat"
                   [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherDetailClassroom) + '/' + classRoom.value.id"
@@ -46,7 +46,7 @@
               <td class="whitespace-nowrap px-6 py-4">
                 <div class="flex">
                   <button
-                    class="mx-2 text-black"
+                    class="mx-2 text-white main-violet-first-rounded bg-violet-first"
                     tw-button
                     layout="flat"
                     (click)="openDialog(String(classRoom.value.id))"
@@ -54,7 +54,7 @@
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                   </button>
                   <button
-                    class="mx-2 text-red-600"
+                    class="mx-2 text-red-600 main-violet-first-rounded bg-violet-first"
                     tw-button
                     layout="flat"
                     [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
@@ -75,6 +75,7 @@
                       [label]="'TITLE_KK' | translate"
                       [error_message]="'REQUIRED_MESSAGE' | translate"
                       [backErrors]="errors"
+                      [classOptional]="'main-violet-first-rounded text-black bg-white rounded-2xl font-bold'"
                       ngDefaultControl
                     />
                     <app-input-field
@@ -85,6 +86,7 @@
                       [label]="'TITLE_RU' | translate"
                       [error_message]="'REQUIRED_MESSAGE' | translate"
                       [backErrors]="errors"
+                      [classOptional]="'main-violet-first-rounded text-black bg-white rounded-2xl font-bold'"
                       ngDefaultControl
                     />
                     <button
@@ -92,6 +94,7 @@
                       layout="raised"
                       color="primary"
                       type="submit"
+                      class="rounded-full text-white bg-violet-first main-violet-first-rounded"
                       [ngClass]="!classroom_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
                       [disabled]="!classroom_form.valid"
                     >
@@ -117,6 +120,8 @@
             [label]="'TITLE_KK' | translate"
             [error_message]="'REQUIRED_MESSAGE' | translate"
             [backErrors]="errors"
+            [classOptional]="'main-violet-first-rounded text-black bg-white rounded-2xl font-bold'"
+
             ngDefaultControl
           />
           <app-input-field
@@ -127,6 +132,8 @@
             [label]="'TITLE_RU' | translate"
             [error_message]="'REQUIRED_MESSAGE' | translate"
             [backErrors]="errors"
+            [classOptional]="'main-violet-first-rounded text-black bg-white rounded-2xl font-bold'"
+
             ngDefaultControl
           />
           <button
@@ -134,6 +141,7 @@
             layout="raised"
             color="primary"
             type="submit"
+            class="rounded-full text-white bg-violet-first main-violet-first-rounded"
             [ngClass]="!classroom_form.valid ? 'cursor-not-allowed' : 'cursor-pointer'"
             [disabled]="!classroom_form.valid"
           >

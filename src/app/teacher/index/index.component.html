@@ -3,17 +3,17 @@
     <div class="container mx-auto">
 
       <div class="mt-4 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8 py-3">
-        <div class="group relative shadow rounded-[10px] bg-white">
+        <div class="group relative shadow rounded-[10px] main-violet-first-rounded bg-violet-first">
           <div class="p-5 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-36">
             <div class="w-full h-full flex justify-start items-center">
-              <div class="text-white flex justify-center items-center w-[50px] h-[50px] rounded-full border-[#3b71ca] bg-[#FF5374]">
+              <div class="text-white flex justify-center items-center w-[50px] h-[50px] rounded-full main-orange-bg">
                 <i class="fa fa-user"></i>
               </div>
               <div class="p-3 flex justify-start items-center">
                 <div>
-                  <h1 class="font-bold text-[20px]">{{dashboardStat.users}}</h1>
+                  <h1 class="font-bold text-[20px] text-white">{{dashboardStat.users}}</h1>
                   <div>
-                    <span class="text-gray-400 italic">Студентов</span>
+                    <span class="text-white italic">Студентов</span>
                   </div>
                 </div>
               </div>
@@ -21,17 +21,17 @@
           </div>
         </div>
 
-        <div class="group relative shadow rounded-[10px] bg-white">
+        <div class="group relative shadow rounded-[10px] main-violet-first-rounded bg-violet-first">
           <div class="p-5 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-36">
             <div class="w-full h-full flex justify-start items-center">
-              <div class="text-white flex justify-center items-center w-[50px] h-[50px] rounded-full border-[#3b71ca] bg-[#4DC591]">
+              <div class="text-white flex justify-center items-center w-[50px] h-[50px] rounded-full  main-orange-bg">
                 <i class="fa fa-cube"></i>
               </div>
               <div class="p-3 flex justify-start items-center">
                 <div>
-                  <h1 class="font-bold text-[20px]">{{dashboardStat.single_tests}}</h1>
+                  <h1 class="font-bold text-[20px] text-white">{{dashboardStat.single_tests}}</h1>
                   <div>
-                    <span class="text-gray-400 italic">Одинарных тестов</span>
+                    <span class="italic text-white">Одинарных тестов</span>
                   </div>
                 </div>
               </div>
@@ -39,17 +39,17 @@
           </div>
         </div>
 
-        <div class="group relative shadow rounded-[10px] bg-white">
+        <div class="group relative shadow rounded-[10px] main-violet-first-rounded bg-violet-first">
           <div class="p-5 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-36">
             <div class="w-full h-full flex justify-start items-center">
-              <div class="text-white flex justify-center items-center w-[50px] h-[50px] rounded-full border-[#3b71ca] bg-[#FFBB44 ]">
-                <i class="fa fa-cubes"></i>
+              <div class="text-white flex justify-center items-center w-[50px] h-[50px] rounded-full main-orange-bg">
+                <i class="fa fa-cube"></i>
               </div>
               <div class="p-3 flex justify-start items-center">
                 <div>
-                  <h1 class="font-bold text-[20px]">{{dashboardStat.unt_tests}}</h1>
+                  <h1 class="font-bold text-[20px] text-white">{{dashboardStat.unt_tests}}</h1>
                   <div>
-                    <span class="text-gray-400 italic">ЕНТ тестов</span>
+                    <span class="text-white italic">ЕНТ тестов</span>
                   </div>
                 </div>
               </div>
@@ -57,17 +57,17 @@
           </div>
         </div>
 
-        <div class="group relative shadow rounded-[10px] bg-white">
+        <div class="group relative shadow rounded-[10px] main-violet-first-rounded bg-violet-first">
           <div class="p-5 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-36">
             <div class="w-full h-full flex justify-start items-center">
-              <div class="text-white flex justify-center items-center w-[50px] h-[50px] rounded-full border-[#3b71ca] bg-[#9BA1FF]">
+              <div class="text-white flex justify-center items-center w-[50px] h-[50px] rounded-full main-orange-bg">
                 <i class="fa fa-desktop"></i>
               </div>
               <div class="p-3 flex justify-start items-center">
                 <div>
-                  <h1 class="font-bold text-[20px]">{{dashboardStat.classrooms}}</h1>
+                  <h1 class="font-bold text-[20px] text-white">{{dashboardStat.classrooms}}</h1>
                   <div>
-                    <span class="text-gray-400 italic">групп</span>
+                    <span class="italic text-white">групп</span>
                   </div>
                 </div>
               </div>
@@ -80,25 +80,26 @@
 
       <form [formGroup]="statBySubjectForm" (ngSubmit)="submitBySubject()">
         <div class="mobile:block flex items-center justify-start p-3">
-          <select (change)="changeSubject($event)" class="mobile:my-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <select (change)="changeSubject($event)"
+                  class="mobile:my-3 shadow appearance-none border rounded w-full py-2 px-3 text-white main-violet-second-bg main-violet-first-rounded leading-tight focus:outline-none focus:shadow-outline">
             <option value="0">{{'SELECT_SUBJECT' | translate}}</option>
             <option [value]="subject.id" *ngFor="let subject of subjects">{{subject.title_kk}}</option>
           </select>
-          <input type="date" [formControlName]="'from_date'" class="mobile:my-3 sm:mx-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-          <input type="date" [formControlName]="'to_date'" class="mobile:my-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <input type="date" [formControlName]="'from_date'" class="mobile:my-3 sm:mx-3 shadow appearance-none border rounded w-full py-2 px-3 text-white main-violet-second-bg main-violet-first-rounded leading-tight focus:outline-none focus:shadow-outline">
+          <input type="date" [formControlName]="'to_date'" class="mobile:my-3 shadow appearance-none border rounded w-full py-2 px-3 text-white main-violet-second-bg main-violet-first-rounded leading-tight focus:outline-none focus:shadow-outline">
           <button
             type="submit"
-            class="ml-2 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+            class="ml-2 inline-block rounded bg-violet-first main-violet-first-rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
             data-te-ripple-init
             data-te-ripple-color="light">
             {{'SEARCH' | translate}}
           </button>
         </div>
       </form>
-      <div class="rounded-[10px] bg-white w-full">
+      <div class="rounded-[10px] bg-violet-first main-violet-first-rounded text-white w-full">
         <div class="w-full 2xl:flex mobile:block sm:block md:block lg:block xl:block">
           <div class="2xl:w-[60%] p-3">
-            <div class="col-span-12 bg-white rounded-2xl p-4 shadow-lg md:flex items-center text-red-500">
+            <div class="col-span-12 rounded-2xl p-4 shadow-lg md:flex items-center text-red-500">
               <canvas
                 baseChart
                 class="chart"
@@ -111,8 +112,8 @@
           </div>
           <div class="2xl:w-[40%] p-3">
             <h1>{{'TOP_SINGLE_TEST' | translate}}</h1>
-            <div class="flex items-center shadow bg-white px-5 py-3 rounded-[10px] w-full my-2" *ngFor="let user of dashboardStatBySubject | keys">
-              <div class="text-white flex justify-center items-center w-[30px] h-[30px] rounded-full border-[#3b71ca] bg-[#FF5374]">
+            <div class="flex items-center shadow bg-violet-first main-violet-first-rounded text-white px-5 py-3 rounded-[10px] w-full my-2" *ngFor="let user of dashboardStatBySubject | keys">
+              <div class="text-white flex justify-center items-center w-[30px] h-[30px] min-w-[30px] rounded-full main-orange-bg">
                 <i class="fa fa-graduation-cap"></i>
               </div>
               <div class="flex justify-between items-center">
@@ -128,21 +129,21 @@
 
       <form [formGroup]="statByUNTForm" (ngSubmit)="submitByUNT()">
         <div class="mobile:block flex items-center justify-start p-3">
-          <input type="date" [formControlName]="'from_date'" class="mobile:my-3 sm:mx-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-          <input type="date" [formControlName]="'to_date'" class="mobile:my-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <input type="date" [formControlName]="'from_date'" class="mobile:my-3 sm:mx-3 shadow appearance-none border rounded w-full py-2 px-3 text-white main-violet-second-bg main-violet-first-rounded leading-tight focus:outline-none focus:shadow-outline">
+          <input type="date" [formControlName]="'to_date'" class="mobile:my-3 shadow appearance-none border rounded w-full py-2 px-3 text-white main-violet-second-bg main-violet-first-rounded leading-tight focus:outline-none focus:shadow-outline">
           <button
             type="submit"
-            class="ml-2 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+            class="ml-2 inline-block rounded bg-violet-first main-violet-first-rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
             data-te-ripple-init
             data-te-ripple-color="light">
             {{'SEARCH' | translate}}
           </button>
         </div>
       </form>
-      <div class="rounded-[10px] bg-white w-full">
+      <div class="rounded-[10px] bg-violet-first main-violet-first-rounded w-full">
         <div class="w-full 2xl:flex mobile:block sm:block md:block lg:block xl:block">
           <div class="2xl:w-[60%] p-3">
-            <div class="col-span-12 bg-white rounded-2xl p-4 shadow-lg md:flex items-center text-red-500">
+            <div class="col-span-12 rounded-2xl p-4 shadow-lg md:flex items-center main-violet-second-color">
               <canvas
                 baseChart
                 class="chart"
@@ -154,9 +155,9 @@
             </div>
           </div>
           <div class="2xl:w-[40%] p-3">
-            <h1>{{'TOP_UNT_TEST' | translate}}</h1>
-            <div class="flex items-center shadow bg-white px-5 py-3 rounded-[10px] w-full my-2" *ngFor="let user of dashboardStatByUNT | keys">
-              <div class="text-white flex justify-center items-center w-[30px] h-[30px] rounded-full border-[#3b71ca] bg-[#FF5374]">
+            <h1 class="text-white">{{'TOP_UNT_TEST' | translate}}</h1>
+            <div class="flex items-center shadow bg-violet-first main-violet-first-rounded text-white px-5 py-3 rounded-[10px] w-full my-2" *ngFor="let user of dashboardStatByUNT | keys">
+              <div class="text-white flex justify-center items-center w-[30px] h-[30px] min-w-[30px] rounded-full main-orange-bg">
                 <i class="fa fa-graduation-cap"></i>
               </div>
               <div class="px-3">{{user.key}}</div>

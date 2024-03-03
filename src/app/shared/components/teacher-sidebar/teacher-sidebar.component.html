@@ -1,12 +1,17 @@
-<aside [ngClass]="!(isOpen$ | async) ? 'hidden relative m-[20px]' : 'block w-full absolute top-0 left-0 z-[9999] m-0'" class="bg-sidebar min-h-[100vh] lg:w-64 lg:block shadow-xl rounded-lg bg-white">
+<aside [ngClass]="!(isOpen$ | async) ? 'hidden relative m-[20px]' : 'block w-full absolute top-0 left-0 z-[9999] m-0'"
+       class="bg-violet-first md:bg-transparent main-violet-first-rounded h-full min-h-[100vh] lg:w-64 lg:block shadow-xl rounded-lg">
   <div class="p-6 mx-auto text-center sm:flex sm:justify-between mobile:flex mobile:justify-between">
-    <a href="index.html" class="text-black text-3xl font-semibold uppercase hover:text-gray-300">IU</a>
-    <button *ngIf="(isOpen$ | async)" (click)="closeSideNav()">X</button>
+    <a href="/" class="text-black text-3xl font-semibold uppercase hover:text-gray-300">
+      <img class="max-w-[150px]" src="/assets/images/logo-white.png"/>
+    </a>
+    <button class="text-white" *ngIf="(isOpen$ | async)" (click)="closeSideNav()">X</button>
   </div>
   <nav class="text-black text-base pt-3">
-    <div class="bg-link" routerLinkActive="active-nav-link" [routerLinkActiveOptions]="{exact: true}" *ngFor="let menu of menuLists">
-      <a [routerLink]="'/' + menu.path" (click)="navigateTo(menu.path)" class="flex items-center py-2 pl-6 nav-item cursor-pointer">
-        <fa-icon [icon]="menu.icon" class="mr-3"></fa-icon>
+    <div class="bg-link" routerLinkActive="main-violet-first-rounded mx-2 rounded-full main-orange-color" [routerLinkActiveOptions]="{exact: true}" *ngFor="let menu of menuLists">
+      <a [routerLink]="'/' + menu.path" (click)="navigateTo(menu.path)" class="flex items-center py-2 pl-6 nav-item cursor-pointer text-white">
+        <div class="w-8 h-8 border-[1px] flex justify-center items-center rounded-full mr-2">
+          <fa-icon [icon]="menu.icon"></fa-icon>
+        </div>
         {{menu.title | translate}}
       </a>
     </div>
