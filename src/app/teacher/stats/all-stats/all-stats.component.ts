@@ -24,6 +24,7 @@ import {statByUserStateSelector} from "../../../shared/store/teacher/stats/stats
 import {TeacherStatsByUser} from "../../../shared/models/teacherDashboardStatistic.model";
 import {AllAttemptRequest} from "../../../shared/store/attempt/allAttempt/allAttempt.request";
 import {StatByUserRequest} from "../../../shared/store/teacher/stats/stats-by-user/stat-by-user.request";
+import {allAttemptAction} from "../../../shared/store/attempt/allAttempt/allAttempt.action";
 
 @Component({
   selector: 'app-all-stats',
@@ -102,4 +103,5 @@ export class AllStatsComponent implements OnInit {
   protected readonly StrHelper = StrHelper;
   protected readonly moment = moment;
   protected readonly RoutesName = RoutesName;
+  protected readonly allAttemptAction = allAttemptAction;
 }

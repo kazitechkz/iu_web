@@ -1,10 +1,10 @@
-<div class="mobile:p-1.5 p-5 rounded-[10px] bg-white">
+<div class="mobile:p-1.5 p-5 rounded-[10px] main-violet-first-rounded bg-black-violet-orange-180-05">
   <div class="flex">
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
       <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
         <div class="overflow-hidden">
           <table class="min-w-full text-left text-sm font-light">
-            <thead class="border-b font-medium dark:border-neutral-500">
+            <thead class=" font-medium text-white">
             <tr>
               <th scope="col" class="px-6 py-4">#</th>
               <th scope="col" class="px-6 py-4"></th>
@@ -17,7 +17,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let user of users | keys"
-                class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
+                class=" transition duration-300 ease-in-out hover:bg-violet-700 text-white cursor-pointer">
               <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(user.key) + 1}}</td>
               <td class="whitespace-nowrap px-6 py-4">
                 <div class="flex justify-center items-center my-2">
@@ -35,7 +35,7 @@
               <td class="whitespace-nowrap px-6 py-4">
                 <div class="flex">
                   <a
-                    class="mx-2 text-black"
+                    class="mx-2 text-white bg-violet-first main-violet-first-rounded"
                     tw-button
                     layout="flat"
                     [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherStatByUser) + '/' + user.value.id"

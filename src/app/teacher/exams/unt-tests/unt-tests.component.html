@@ -1,4 +1,4 @@
-<div class="mobile:p-1.5 p-5 rounded-[10px] bg-white">
+<div class="mobile:p-1.5 p-5 rounded-[10px] main-violet-first-rounded bg-black-violet-orange-180-05">
   <div class="my-2">
     <h2>{{'LIST_UNT_TEST' | translate}}</h2>
   </div>
@@ -7,7 +7,7 @@
       <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
         <div class="overflow-hidden">
           <table class="min-w-full text-left text-sm font-light">
-            <thead class="border-b font-medium dark:border-neutral-500">
+            <thead class=" font-medium text-white">
             <tr>
               <th scope="col" class="px-6 py-4">#</th>
               <th scope="col" class="px-6 py-4">{{'SUBJECTS' | translate}}</th>
@@ -21,7 +21,7 @@
             </thead>
             <tbody *ngIf="myUNTTests">
             <tr *ngFor="let item of myUNTTests.data | paginate: { itemsPerPage: myUNTTests.per_page, currentPage: myUNTTests.current_page, totalItems: myUNTTests.total } | keys"
-                class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
+                class=" transition duration-300 ease-in-out hover:bg-violet-700 text-white">
               <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
               <td class="whitespace-nowrap px-6 py-4">{{item.value.subjects[0].title_kk}} , {{item.value.subjects[1].title_kk}}</td>
 <!--              <td class="whitespace-nowrap px-6 py-4">{{item.value.locale.title}}</td>-->
@@ -32,7 +32,7 @@
               <td class="whitespace-nowrap px-6 py-4">
                 <div class="flex">
                   <a
-                    class="mx-2 text-black"
+                    class="mx-2 main-violet-first-rounded bg-violet-first text-white"
                     tw-button
                     layout="flat"
                     [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherDetailUNTTest) + '/' + item.value.id"
@@ -42,7 +42,7 @@
                   <button
                     [swal]="{title: 'ARE_YOU_SURE'|translate, showCancelButton: true, confirmButtonText: 'YES'|translate, cancelButtonText: 'NO'|translate}"
                     (confirm)="deleteUNTExamById(item.value.id)"
-                    class="mx-2 text-red-600"
+                    class="mx-2 main-violet-first-rounded main-orange-second-bg text-white"
                     tw-button
                     layout="flat"
                   >

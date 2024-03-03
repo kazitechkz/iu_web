@@ -1,10 +1,10 @@
-<div class="mobile:p-1.5 p-5 rounded-[10px] bg-white">
+<div class="mobile:p-1.5 p-5 rounded-[10px] main-violet-first-rounded bg-black-violet-orange-180-05">
   <div class="flex">
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
       <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
         <div class="overflow-hidden">
           <table class="min-w-full text-left text-sm font-light">
-            <thead class="border-b font-medium dark:border-neutral-500">
+            <thead class="text-white font-medium">
             <tr>
               <th scope="col" class="px-6 py-4">#</th>
               <th scope="col" class="px-6 py-4">{{'NAME' | translate}}</th>
@@ -17,7 +17,7 @@
             </thead>
             <tbody *ngIf="exam">
             <tr *ngFor="let item of exam.attempt_settings_results | keys"
-                class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
+                class="transition duration-300 ease-in-out hover:bg-violet-700 text-white">
               <td class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(item.key) + 1}}</td>
               <td class="whitespace-nowrap px-6 py-4">{{item.value.user.name }}</td>
               <td class="whitespace-nowrap px-6 py-4">
@@ -36,7 +36,7 @@
                 <div class="flex">
                   <a
                     [routerLink]="StrHelper.getTeacherRouteName(RoutesName.teacherStatsAttempt) + '/' + item.value.attempt.id + '/' + item.value.user.id"
-                    class="mx-2 text-black"
+                    class="mx-2 main-violet-first-rounded bg-violet-first text-white"
                     tw-button
                     layout="flat"
                   >
@@ -46,11 +46,11 @@
               </td>
             </tr>
             <tr *ngFor="let item of exam.attempt_users | keys"
-                class="border-b transition duration-300 ease-in-out hover:bg-green-500 dark:border-neutral-500 dark:hover:bg-green-500 dark:hover:text-white">
+                class="transition duration-300 ease-in-out hover:bg-violet-700 text-white">
               <td *ngIf="!item.value.attempt_settings_result" class="whitespace-nowrap px-6 py-4 font-medium">{{parseInt(String(exam.attempt_settings_results ? exam.attempt_settings_results.length : 0)) + 1}}</td>
               <td *ngIf="!item.value.attempt_settings_result" class="whitespace-nowrap px-6 py-4">{{item.value.name }}</td>
               <td *ngIf="!item.value.attempt_settings_result" class="whitespace-nowrap px-6 py-4">
-                <span class="text-red-700">{{'NO'|translate}}</span>
+                <span class="main-orange-color">{{'NO'|translate}}</span>
               </td>
               <td *ngIf="!item.value.attempt_settings_result" class="whitespace-nowrap px-6 py-4">
                 -

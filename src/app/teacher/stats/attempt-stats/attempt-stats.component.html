@@ -1,17 +1,17 @@
-<div class="mobile:p-1.5 p-5 rounded-[10px] bg-white">
+<div class="mobile:p-1.5 p-5 rounded-[10px] main-violet-first-rounded bg-black-violet-orange-180-05">
   <div class="container mx-auto">
     <div class="grid grid-cols-12 gap-3" *ngIf="statByAttempt">
-      <div class="col-span-12 my-3 bg-white rounded-lg shadow-lg p-3" *ngFor="let subject of statByAttempt.subjects">
+      <div class="col-span-12 my-3 rounded-lg shadow-lg p-3" *ngFor="let subject of statByAttempt.subjects">
         <div class="md:flex items-center">
-          <div class="w-12 h-12 md:w-20 md:h-20 lg:w-28 lg:h-28 rounded-full border-2 border-green-300 bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(subject.image?.url)+ ')'}"></div>
+          <div class="w-12 h-12 md:w-20 md:h-20 lg:w-28 lg:h-28 rounded-full border-2 bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(subject.image?.url)+ ')'}"></div>
           <a href="javascript:void (0)"
-             class="text-md md:text-lg lg:text-xl xl:text-xl uppercase font-bold ml-2 cursor-pointer">
+             class="text-md md:text-lg lg:text-xl xl:text-xl uppercase font-bold ml-2 cursor-pointer text-white">
             {{subject.title_kk}}
           </a>
         </div>
         <div class="relative overflow-x-auto">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 capitalize">
+          <table class="w-full text-sm text-left text-white">
+            <thead class="text-xs text-white capitalize">
             <tr>
               <th scope="col" class="px-6 py-3">
                 {{"SUB_CATEGORY"|translate}}
@@ -31,37 +31,37 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let result of getSubjectResult(subject.id)">
+            <tr class="rounded-2xl my-2 border-b border-gray-300" *ngFor="let result of getSubjectResult(subject.id)">
               <td class="p-4">
-                <p (click)="openDialog(String(result.sub_category.id))" class="text-black ml-2 font-bold cursor-pointer" *ngIf="result.sub_category;else no_category">
+                <p (click)="openDialog(String(result.sub_category.id))" class="text-white ml-2 font-bold cursor-pointer" *ngIf="result.sub_category;else no_category">
                   {{result.sub_category.title_kk}}
                 </p>
                 <ng-template #no_category>
-                  <p class="text-red-500 ml-2 font-bold">{{"NO_CATEGORY_QUESTION"|translate}}</p>
+                  <p class="main-orange-second-color ml-2 font-bold">{{"NO_CATEGORY_QUESTION"|translate}}</p>
                 </ng-template>
               </td>
               <td class="p-4">
-                <p class="text-black ml-2 font-bold">
+                <p class="text-white ml-2 font-bold">
                   {{result.total}}
                 </p>
               </td>
               <td class="p-4">
-                <p class="text-green-400 ml-2 font-bold">
+                <p class="main-violet-first-color ml-2 font-bold">
                   {{result.right}}
                 </p>
               </td>
               <td class="p-4">
-                <p class="text-red-400 ml-2 font-bold">
+                <p class="main-orange-second-color ml-2 font-bold">
                   {{result.not_right}}
                 </p>
               </td>
               <div *ngIf="result.sub_category">
-                <ngx-smart-modal identifier="{{result.sub_category.id}}">
+                <ngx-smart-modal identifier="{{result.sub_category.id}}" class="studentAnswer">
                   <div *ngFor="let question of result.questions"
-                       class="block rounded-lg bg-white p-6 my-3 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
+                       class="block rounded-lg bg-violet-first main-violet-first-rounded p-6 my-3 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                     <div class="content-question">
                       <h5
-                        class="mb-2 text-xl font-medium leading-tight text-neutral-800">
+                        class="mb-2 text-xl font-medium leading-tight text-white">
                         <markdown katex>
                           {{question.text | mathjaxTransform}}
                         </markdown>
