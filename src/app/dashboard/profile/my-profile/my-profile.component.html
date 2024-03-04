@@ -1,44 +1,45 @@
 <div *ngIf="me">
   <div class="grid grid-cols-12 gap-4">
-    <div class="col-span-12 lg:col-span-12 xl:col-span-4 2xl:col-span-3 my-4 p-3 bg-white shadow-2xl rounded-lg max-h-[600px]">
-      <div class="flex justify-center items-center my-2 relative">
-        <div class="rounded-full w-[130px] h-[130px] md:w-[260px] md:h-[260px] bg-center bg-no-repeat bg-cover"
+    <div class="col-span-12 lg:col-span-12 my-4 p-3 bg-black-violet-orange-180-05 main-violet-first-rounded shadow-2xl rounded-lg max-h-[600px]">
+      <div class="flex items-center my-2">
+        <div class="rounded-full w-[130px] h-[130px] md:w-[180px] md:h-[180px] bg-center bg-no-repeat bg-cover relative main-violet-first-rounded"
              [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(me.file?.url) +')'}">
+          <div class="absolute bottom-[20px] flex justify-center w-full">
+            <form>
+              <input id="img-update" (change)="onFileSelected($event)" type="file" class="invisible w-0" accept="image/*"/>
+            </form>
+            <label for="img-update">
+              <fa-icon class="mr-2 text-white text-2xl cursor-pointer hover:" [icon]="faCameraAlt"></fa-icon>
+            </label>
+          </div>
         </div>
-        <div class="absolute bottom-0 right-0">
-          <form>
-            <input id="img-update" (change)="onFileSelected($event)" type="file" class="invisible w-0" accept="image/*"/>
-          </form>
-          <label for="img-update">
-            <fa-icon class="mr-2 main-green-color" [icon]="faPencilAlt"></fa-icon>
-          </label>
-        </div>
+        <p class="block mb-2 text-xl md:text-2xl lg:text-3xl font-bold text-white ml-3">{{me.name}}</p>
       </div>
-      <hr>
-      <div *ngIf="me" class="px-3 py-4">
-        <p class="block mb-2 text-xl md:text-2xl lg:text-3xl font-bold">{{me.name}}</p>
-        <span class="flex mb-2 text-sm md:text-md lg:text-lg font-normal">
-          <fa-icon class="mr-2 main-green-color" [icon]="faCrown"></fa-icon>
-          <p>{{me.role}}</p>
+      <div *ngIf="me" class="px-3 py-4 grid grid-cols md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-6 gap-2">
+
+        <span class="mb-2 text-sm md:text-md lg:text-lg font-normal main-violet-first-rounded bg-violet-first text-white text-center rounded-full">
+          <p><fa-icon class="mr-2" [icon]="faCrown"></fa-icon>{{me.role}}</p>
         </span>
-        <span class="flex mb-2 text-sm md:text-md lg:text-lg font-normal" *ngIf="me.birth_date">
-          <fa-icon class="mr-2 main-green-color" [icon]="faCalendar"></fa-icon>
-          <p>
+        <span class="mb-2 text-sm md:text-md lg:text-lg font-normal main-violet-first-rounded bg-violet-first text-white text-center rounded-full">
+          <p><fa-icon class="mr-2" [icon]="faCalendar"></fa-icon>
             {{moment(Date.now()).diff(me.birth_date,"years")}} {{"OLD_YEARS"|translate}}
             ({{moment(me.birth_date).format("DD/MM/yyyy")}})
           </p>
         </span>
-        <span class="flex mb-2 text-sm md:text-md lg:text-lg font-normal">
-          <fa-icon class="mr-2 main-green-color" [icon]="faEnvelope"></fa-icon>
-          <p>{{me.email}}</p>
+        <span class="mb-2 text-sm md:text-md lg:text-lg font-normal main-violet-first-rounded bg-violet-first text-white text-center rounded-full">
+          <p><fa-icon class="mr-2" [icon]="faEnvelope"></fa-icon>
+            {{me.email}}
+          </p>
         </span>
-        <span class="flex mb-2 text-sm md:text-md lg:text-lg font-normal">
-          <fa-icon class="mr-2 main-green-color" [icon]="faPhone"></fa-icon>
-          <p>{{me.phone}}</p>
+        <span class="mb-2 text-sm md:text-md lg:text-lg font-normal main-violet-first-rounded bg-violet-first text-white text-center rounded-full">
+          <p><fa-icon class="mr-2" [icon]="faPhone"></fa-icon>
+            {{me.phone}}
+          </p>
         </span>
-        <span class="flex mb-2 text-sm md:text-md lg:text-lg font-normal" *ngIf="me.gender">
-          <fa-icon class="mr-2 main-green-color" [icon]="faVenusMars"></fa-icon>
-          <p>{{me.gender | globalTranslate:"title": translate.currentLang}}</p>
+        <span class="mb-2 text-sm md:text-md lg:text-lg font-normal main-violet-first-rounded bg-violet-first text-white text-center rounded-full" *ngIf="me.gender">
+          <p><fa-icon class="mr-2" [icon]="faVenusMars"></fa-icon>
+            {{me.gender | globalTranslate:"title": translate.currentLang}}
+          </p>
         </span>
         <div class="text-right my-2">
           <a (click)="openDialog('change-profile')"
