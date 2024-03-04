@@ -7,7 +7,7 @@ import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {getAccountState, getChangeAccountState} from "../../../shared/store/user/account/account.selector";
 import {Me} from "../../../shared/models/user.model";
 import {
-  faCalendar,
+  faCalendar, faCameraAlt,
   faCrown,
   faEnvelope, faKey, faLock,
   faPencilAlt,
@@ -237,4 +237,5 @@ export class MyProfileComponent implements OnInit {
   protected readonly faLock = faLock;
   protected readonly parseInt = parseInt;
   protected readonly faKey = faKey;
+  protected readonly faCameraAlt = faCameraAlt;
 }
