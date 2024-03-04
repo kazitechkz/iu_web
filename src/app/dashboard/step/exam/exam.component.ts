@@ -9,6 +9,7 @@ import {Question, SubStepExamModel} from "../../../shared/models/question.model"
 import {distinctUntilChanged} from "rxjs";
 import {Location} from "@angular/common";
 import {resultExamAction, resultExamClearDataAction} from "../../../shared/store/step/resultExam/resultExam.action";
+import {TwNotification} from "ng-tw";
 
 @Component({
   selector: 'app-exam',
@@ -23,6 +24,7 @@ export class ExamComponent implements OnInit, DoCheck {
   private _location = inject(Location)
   destroyRef = inject(DestroyRef);
   public questions: SubStepExamModel[] | null = []
+  private _notification = inject(TwNotification)
   public localeID = 1
   //@ts-ignore
   public keys: IterableIterator<number> = []
@@ -103,8 +105,11 @@ export class ExamComponent implements OnInit, DoCheck {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(passSubStepExamAction({requestData: this.answers}))
       this._store.select(passSubStepExamState).pipe(distinctUntilChanged(), autoUnsubscribe(this.destroyRef)).subscribe(item => {
-        this._store.dispatch(resultExamClearDataAction())
-        this._router.navigateByUrl('/dashboard/result-exam/' + params['sub_step_test_id'] + '/' + this.localeID).then(r => null)
+        if (item.data) {
+          this._notification.show({ type: 'info', title: 'Ураа!', text: 'Вы получили ' + item.data + ' IU Coin' })
+          this._store.dispatch(resultExamClearDataAction())
+          this._router.navigateByUrl('/dashboard/result-exam/' + params['sub_step_test_id'] + '/' + this.localeID).then(r => null)
+        }
       })
     })
   }

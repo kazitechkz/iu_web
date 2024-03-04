@@ -4,5 +4,5 @@ import {SubStepExamModel} from "../../../models/question.model";
 export const accountAdapter = createEntityAdapter<SubStepExamModel[]>();
 export const subStepExamState: EntityState<SubStepExamModel[]> = accountAdapter.getInitialState();
 
-export const passExamAdapter = createEntityAdapter<boolean>();
-export const passStepExamState: EntityState<boolean> = passExamAdapter.getInitialState();
+export const passExamAdapter = createEntityAdapter<number>();
+export const passStepExamState: EntityState<number> = passExamAdapter.getInitialState();

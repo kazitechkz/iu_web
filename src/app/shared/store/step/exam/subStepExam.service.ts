@@ -19,7 +19,7 @@ export class SubStepExamService {
     }
 
     passStepExam(req: any) {
-      return this._http.post<ResponseData<boolean>>(environment.baseUrl + APIRoutesName.passSubStepExam, req);
+      return this._http.post<ResponseData<number>>(environment.baseUrl + APIRoutesName.passSubStepExam, req);
     }
 
 }

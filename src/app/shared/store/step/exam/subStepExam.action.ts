@@ -12,6 +12,6 @@ export const subStepExamActionFailure = createAction(SubStepExamActionTypes.OnSu
 
 export const passSubStepExamAction = createAction(SubStepExamActionTypes.passSubStepExam, props<{ requestData: any }>());
 export const passSubStepExamActionSuccess = createAction(SubStepExamActionTypes.passSubStepExamSuccess, props<{
-    responseData: ResponseData<boolean>
+    responseData: ResponseData<number>
 }>());
 export const passSubStepExamActionFailure = createAction(SubStepExamActionTypes.passSubStepExamFailure, props<{ errors: any }>());
