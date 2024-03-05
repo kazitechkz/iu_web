@@ -20,6 +20,9 @@ import {
   getUnreadMessageCountSelector
 } from "../../store/notification/getUnreadMessageCount/getUnreadMessageCount.selector";
 import {ImageHelper} from "../../../core/helpers/image.helper";
+import {getBattleByPromoAction} from "../../store/battle/getBattleByPromo/getBattleByPromo.action";
+import {getBattleByPromoSelector} from "../../store/battle/getBattleByPromo/getBattleByPromo.selector";
+import {PusherService} from "../../services/pusher.service";
 
 @Component({
   selector: 'app-navbar',
@@ -36,13 +39,17 @@ export class NavbarComponent implements OnInit {
   public translate = inject(GlobalTranslateService)
   private _store = inject(Store)
   destroyRef = inject(DestroyRef);
-  public user?: Me | null;
+  public user: Me | null = null;
   countMessage: number | null = null;
+  //@ts-ignore
+  private pusherChannel: Channel;
+  public pusher = inject(PusherService);
   ngOnInit(): void {
     this.sideBar$ = this._store.pipe(autoUnsubscribe(this.destroyRef), select(selectSidenavIsOpen))
     this.translate.getCurrentLang()
     this.getUnreadMessage();
     this.me()
+    this.listenBalance()
   }
 
   openSideNav() {
@@ -52,10 +59,23 @@ export class NavbarComponent implements OnInit {
   me() {
     this._store.dispatch(accountAction())
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-      this.user = item.data
+      if (item.data) {
+        this.user = item.data
+      }
     })
   }
-
+  listenBalance() {
+    this.pusherChannel = this.pusher.getChannel('balance-channel');
+    this.pusherChannel.bind('WalletEvent', (data: {balance:number}) => {
+      if (this.user) {
+        if(data.balance && this.user.balance !== undefined){
+          const objCopy = {...this.user};
+          objCopy.balance = data.balance
+          this.user = objCopy
+        }
+      }
+    });
+  }
   getUnreadMessage(){
     this._store.dispatch(getUnreadMessageCountAction())
     this._store.select(getUnreadMessageCountSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
