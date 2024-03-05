@@ -44,6 +44,7 @@ import {onCreateAppealAction} from "../../../shared/store/appeal/createAppeal/cr
 import {answerSelector} from "../../../shared/store/attempt/answer/answer.selector";
 import {finishAttemptAction} from "../../../shared/store/attempt/finishAttempt/finishAttempt.action";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
+import {TwNotification} from "ng-tw";
 
 @Component({
   selector: 'app-pass-unt-exam',
@@ -74,7 +75,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     //@ts-ignore
     public actual_question:Question;
     public loadingAnswer = false;
-
+    private _notification = inject(TwNotification)
     public answered_questions:{[key: number]: any}= {};
     //@ts-ignore
     @ViewChild('slickModal') slickModal: SlickCarouselComponent;
@@ -100,6 +101,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     this._store.select(answerSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         if(item.data.is_finished === true){
+          this._notification.show({ type: 'info', title: 'Ураа!', text: 'Вы заработали ' + item.data.points + 'iU Coins'})
           this._router.navigate([RoutesName.resultAttempt + "/" + this.attempt.attempt_id]).then(r => true);
         }
         else{
