@@ -20,4 +20,8 @@ export class PusherService {
   public getChannel(channelName: string) {
     return this.pusher.subscribe(channelName);
   }
+
+  public unsubscribeChannel(channelName:string){
+    this.pusher.unsubscribe(channelName);
+  }
 }

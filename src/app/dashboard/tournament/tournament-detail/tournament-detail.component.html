@@ -59,8 +59,10 @@
     <div class="grid grid-cols-12 m-2 mobile:mx-0 sm:mx-0">
       <div class="col-span-12 bg-violet-orange-first p-5 shadow-xl rounded-full my-3 main-violet-first-rounded text-white md:text-lg uppercase" *ngIf="currentSubTournament">
         <section>
-          <div class="text-center" *ngIf="winner_tournament; else winner">
-            {{'WINNER'|translate}}: {{winner_tournament.sub_tournament_results ? winner_tournament.sub_tournament_results[0].user?.name : ''}}
+          <div class="text-center pyro" *ngIf="winner_tournament; else winner">
+            {{'WINNER'|translate}}: {{winner_tournament.name ? winner_tournament.name : ''}}
+            <div class="before"></div>
+            <div class="after"></div>
           </div>
           <ng-template #winner>
             <div class="text-center"
@@ -125,51 +127,46 @@
         </section>
 
       </div>
-<!--      <div class="col-span-12 bg-violet-orange-first p-2 shadow-xl rounded-full my-3 main-violet-first-rounded text-white md:text-lg uppercase">-->
-<!--        <div>-->
-<!--          <div *ngIf="winner_tournament; else finished">-->
+      <div class="col-span-12 bg-violet-orange-first p-2 shadow-xl rounded-full my-3 main-violet-first-rounded text-white md:text-lg uppercase" *ngIf="!winner_tournament">
+        <div>
+            <section *ngIf="firstSubTournament">
+              <div class="text-center"
+                   *ngIf="firstSubTournament.is_current && !firstSubTournament.is_finished && moment() > moment(firstSubTournament.start_at) && moment() < moment(firstSubTournament.end_at);else passed">
+                <div *ngIf="!isReg">
+                  <a
+                    (click)="participateTournament()"
+                    type="button"
+                    class="inline-block main-violet-first-rounded bg-gradient-to-r from-[#d87435] to-[#371744] border-0 rounded-full px-3 lg:px-4 py-2 lg:py-3 text-md font-bold uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0 my-2"
+                    data-te-ripple-init>
+                    {{"WANT_TO_PARTICIPATE"|translate}}
+                  </a>
+                </div>
+              </div>
+              <ng-template #passed>
+                <div *ngIf="moment() < moment(firstSubTournament.start_at)">
+                <span
+                  class="main-orange-color text-xl md:text-2xl font-bold inline-block text-center w-full m-3">
+                  <fa-icon [icon]="faSadTear"></fa-icon>
+                    <p>
+                      {{'WAIT_REGISTER_TIME'|translate}}
+                    </p>
+                </span>
+                </div>
+                <div *ngIf="moment() > moment(firstSubTournament.end_at)">
+                <span
+                  class="main-orange-color text-xl md:text-2xl font-bold inline-block text-center w-full m-3">
+                  <fa-icon [icon]="faSadTear"></fa-icon>
+                    <p>
+                      {{"UNFORTUNATELY_DATE_REGISTER_EXPIRED"|translate}}
+                    </p>
+                </span>
+                </div>
 
-<!--          </div>-->
-<!--          <ng-template #finished>-->
-<!--            <section *ngIf="firstSubTournament">-->
-<!--              <div class="text-center"-->
-<!--                   *ngIf="firstSubTournament.is_current && !firstSubTournament.is_finished && moment() > moment(firstSubTournament.start_at) && moment() < moment(firstSubTournament.end_at);else passed">-->
-<!--                <div *ngIf="!isReg">-->
-<!--                  <a-->
-<!--                    (click)="participateTournament()"-->
-<!--                    type="button"-->
-<!--                    class="inline-block main-violet-first-rounded bg-gradient-to-r from-[#d87435] to-[#371744] border-0 rounded-full px-3 lg:px-4 py-2 lg:py-3 text-md font-bold uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0 my-2"-->
-<!--                    data-te-ripple-init>-->
-<!--                    {{"WANT_TO_PARTICIPATE"|translate}}-->
-<!--                  </a>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <ng-template #passed>-->
-<!--                <div *ngIf="moment() < moment(firstSubTournament.start_at)">-->
-<!--                <span-->
-<!--                  class="main-orange-color text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3">-->
-<!--                  <fa-icon [icon]="faSadTear"></fa-icon>-->
-<!--                    <p>-->
-<!--                      {{'WAIT_REGISTER_TIME'|translate}}-->
-<!--                    </p>-->
-<!--                </span>-->
-<!--                </div>-->
-<!--                <div *ngIf="moment() > moment(firstSubTournament.end_at)">-->
-<!--                <span-->
-<!--                  class="main-orange-color text-xl md:text-2xl xl:text-4xl font-bold inline-block text-center w-full m-3">-->
-<!--                  <fa-icon [icon]="faSadTear"></fa-icon>-->
-<!--                    <p>-->
-<!--                      {{"UNFORTUNATELY_DATE_REGISTER_EXPIRED"|translate}}-->
-<!--                    </p>-->
-<!--                </span>-->
-<!--                </div>-->
+              </ng-template>
+            </section>
+        </div>
 
-<!--              </ng-template>-->
-<!--            </section>-->
-<!--          </ng-template>-->
-<!--        </div>-->
-
-<!--      </div>-->
+      </div>
     </div>
 
     <div class="grid grid-cols-12 m-3 mobile:mx-0 sm:mx-0 gap-2">
@@ -259,6 +256,20 @@
                 Финал
               </a
               >
+            </li>
+            <li role="presentation">
+              <a
+                href="#pills-awards"
+                class="my-2 block uppercase font-bold rounded-full bg-violet-first main-violet-first-rounded px-7 pb-3.5 pt-4 text-xs lg:text-md leading-tight text-white data-[te-nav-active]:bg-gradient-to-r from-[#d87435] to-[#371744] md:mr-4"
+                id="pills-award-tab"
+                data-te-toggle="pill"
+                data-te-target="#pills-awards"
+                role="tab"
+                aria-controls="pills-awards"
+                aria-selected="false"
+              >
+                Призы
+              </a>
             </li>
           </ul>
         </div>

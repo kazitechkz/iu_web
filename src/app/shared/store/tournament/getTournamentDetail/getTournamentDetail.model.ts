@@ -3,6 +3,7 @@ import {TournamentStep} from "../../../models/tournamentStep.model";
 import {SubTournament} from "../../../models/subTournament.model";
 import {Pagination} from "../../pagination";
 import {SubTournamentParticipant} from "../../../models/subTournamentParticipant.model";
+import {OrdinaryUser} from "../../../models/user.model";
 
 export interface GetTournamentDetailModel {
   tournament: Tournament,
@@ -12,5 +13,5 @@ export interface GetTournamentDetailModel {
   currentSubTournament: SubTournament,
   check_access: boolean,
   is_reg: boolean,
-  winner_tournament: SubTournament|null
+  winner_tournament: OrdinaryUser|null
 }

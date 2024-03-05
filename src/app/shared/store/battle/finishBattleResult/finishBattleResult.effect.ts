@@ -22,7 +22,9 @@ export class FinishBattleResultEffect {
           switchMap(data => {
               if(data.data){
                   if(data.data.next_battle_step_id){
-                      this.router.navigate([RoutesName.battleGame + "/" + data.data.next_battle_step_id.toString()])
+                      this.router.navigate([RoutesName.battleGame + "/" + data.data.next_battle_step_id.toString()]).then(() => {
+                        window.location.reload();
+                      });
                   }
                   else{
                       this.router.navigate([RoutesName.battleDetail + "/" + data.data.battle_promo_code.toString()])

@@ -99,6 +99,7 @@ import {
   createTournamentAttemptAction
 } from "../../../shared/store/tournament/createTournamentAttempt/createTournamentAttempt.action";
 import Swal from "sweetalert2";
+import {OrdinaryUser} from "../../../shared/models/user.model";
 
 @Component({
   selector: 'app-tournament-detail',
@@ -131,7 +132,7 @@ export class TournamentDetailComponent implements OnInit {
   public paginationParticipants = { page: 1, id: 0 }
   //@ts-ignore
   sub_tournament_results: Pagination<SubTournamentResult[]>;
-  winner_tournament: SubTournament|null = null
+  winner_tournament: OrdinaryUser|null = null
   public paginationResults = {page: 1, id: 0}
   //@ts-ignore
   sub_tournament_rivals: SubTournamentRival[];

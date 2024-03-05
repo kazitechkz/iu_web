@@ -2,22 +2,32 @@
   <div class="grid grid-cols-12" *ngIf="battle">
     <div class="col-span-12 m-3 p-3">
       <div class="game-card shadow-xl rounded-xl main-violet-first-color p-3">
-        <div class="result-card my-3" *ngIf="battle.is_finished;else notFinished">
+        <div class="result-card my-3 flex justify-center items-center" *ngIf="battle.is_finished;else notFinished">
           <section class="text-center" *ngIf="battle.winner && battle.winner_id; else notWinner">
-            <div class="flex justify-center items-center">
-              <div [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(battle.winner.file?.url) +')'}"
-                   class="h-12 w-12 md:h-16 md:w-16 xl:w-24 xl:h-24 rounded-full border-2 shadow-xl bg-cover bg-no-repeat my-2"></div>
+            <div class="relative p-5 rounded-2xl bg-violet-first main-violet-first-rounded w-full md:max-w-[320px]" [ngClass]="{'pyro':battle.winner_id == user?.id}">
+              <div class="before"></div>
+              <div class="after"></div>
+              <div class="flex justify-center items-center ">
+                <img src="assets/images/crown.png" class="w-12 absolute top-0"/>
               </div>
-            <p class="font-bold text-black my-2">{{battle.winner.name}}</p>
-            <p
-              class="font-bold my-2 text-2xl"
-              *ngIf="user"
-              [ngClass]="{'main-violet-first-color':user.id == battle.winner_id,'main-orange-second-color': user.id != battle.winner_id}"
-            >{{user.id == battle.winner.id ? ('YOU_ARE_WINNER'|translate):("YOU_LOSE"|translate)}}</p>
+              <div  class="flex justify-center items-center">
+                <div [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(battle.winner.file?.url) +')'}"
+                     class="h-12 w-12 md:h-16 md:w-16 xl:w-24 xl:h-24 rounded-full border-2 shadow-xl bg-cover bg-no-repeat my-2"></div>
+              </div>
+              <p class="font-bold text-white text-lg md:text-xl lg:text-2xl xl:text-3xl my-2">Победитель:</p>
+              <p class="font-bold text-white text-lg md:text-xl lg:text-2xl xl:text-3xl my-2">{{battle.winner.name}}</p>
+              <p class="font-bold text-white text-lg md:text-xl lg:text-2xl xl:text-3xl my-2">+{{battle.price * ((battle.owner_id?1:0) + (battle.guest_id?1:0))}} IU <fa-icon class="main-orange-color" [icon]="faCoins"></fa-icon> </p>
+            </div>
           </section>
           <ng-template #notWinner>
             <div class="result-card my-3 text-center">
-              <p class="font-bold main-orange-second-color text-lg lg:text-2xl xl:text-4xl 2xl:text-6xl my-2">{{'DRAFT'|translate}}</p>
+              <div class="relative p-5 rounded-2xl bg-black-violet-orange-180 main-violet-first-rounded w-full min-w-[300px] md:max-w-[320px]">
+                <div  class="flex justify-center items-center">
+                  <div [ngStyle]="{'background-image':'url(assets/images/draft.png)'}"
+                       class="h-12 w-12 md:h-16 md:w-16 xl:w-24 xl:h-24 rounded-full border-2 shadow-xl bg-cover bg-no-repeat my-2"></div>
+                </div>
+                <p class="font-bold text-white text-lg md:text-xl lg:text-2xl xl:text-3xl my-2">{{"DRAFT"|translate}}</p>
+              </div>
             </div>
           </ng-template>
         </div>
@@ -39,6 +49,20 @@
               </div>
               <p class="font-bold text-[#342430] ml-2">{{battle.owner.name}}</p>
             </section>
+            <section class="text-center" *ngIf="battle.winner && battle.winner_id">
+              <button class="p-3 main-violet-first-rounded rounded-full bg-violet-first text-white" *ngIf="battle.winner_id == battle.owner_id;else ownerNotWinner">
+                <p>
+                  +{{battle.price * ((battle.owner_id?1:0) + (battle.guest_id?1:0))}} IU <fa-icon [icon]="faCoins"></fa-icon>
+                </p>
+              </button>
+              <ng-template #ownerNotWinner>
+                <button class="p-3 main-violet-first-rounded rounded-full main-orange-bg text-white text-lg">
+                  <p>
+                    -{{battle.price}} IU <fa-icon [icon]="faCoins"></fa-icon>
+                  </p>
+                </button>
+              </ng-template>
+            </section>
             <div class="flex justify-center p-4 text-md lg:text-2xl xl:text-4xl font-bold text-[#342430]">
               {{battle.owner_point}}
             </div>
@@ -50,6 +74,20 @@
                      class="h-12 w-12 md:h-16 md:w-16 xl:w-24 xl:h-24 rounded-full bg-cover bg-no-repeat my-2 shadow-xl"></div>
               </div>
               <p class="font-bold text-[#342430] ml-2">{{battle.guest.name}}</p>
+              <section class="text-center" *ngIf="battle.winner && battle.winner_id">
+                <button class="p-3 main-violet-first-rounded rounded-full bg-violet-first text-white" *ngIf="battle.winner_id == battle.guest;else guestNotWinner">
+                  <p>
+                    +{{battle.price * ((battle.owner_id?1:0) + (battle.guest_id?1:0))}} IU <fa-icon [icon]="faCoins"></fa-icon>
+                  </p>
+                </button>
+                <ng-template #guestNotWinner>
+                  <button class="p-3 main-violet-first-rounded rounded-full main-orange-bg text-white text-lg">
+                    <p>
+                      -{{battle.price}} IU <fa-icon [icon]="faCoins"></fa-icon>
+                    </p>
+                  </button>
+                </ng-template>
+              </section>
             </section>
             <ng-template #notGuestUser>
               <section class="text-center">
@@ -167,6 +205,41 @@
                       text-center mr-2 mb-2">
               {{"PLAY"|translate}}
               <fa-icon [icon]="faGamepad"></fa-icon>
+            </a>
+          </div>
+          <div class="my-3 p-3 text-center" *ngIf="isRivalTurn(battle.battle_steps)">
+            <a  type="button"
+               class="text-lg
+                      min-w-[280px]
+                      inline-block
+                      font-bold
+                      main-violet-first-rounded
+                      main-orange-bg
+                      text-white
+                      lg:text-2xl
+                      focus:outline-none focus:ring-4
+                      rounded-full px-3 py-3
+                      text-center mr-2 mb-2">
+              {{"WAIT_FOR_RIVAL"|translate}}
+              <fa-icon [icon]="faShieldAlt"></fa-icon>
+            </a>
+          </div>
+          <div class="my-3 p-3 text-center" *ngIf="battle.is_finished">
+            <a  type="button"
+                class="text-lg
+                      min-w-[280px]
+                      inline-block
+                      font-bold
+                      bg-violet-first
+                      main-violet-first-rounded
+                      cursor-pointer
+                      text-white
+                      lg:text-xl
+                      focus:outline-none focus:ring-4
+                      rounded-full px-3 py-3
+                      text-center mr-2 mb-2">
+              Работа над ошибками
+              <fa-icon [icon]="faPencilAlt"></fa-icon>
             </a>
           </div>
         </section>

@@ -33,7 +33,7 @@ import {joinToBattleAction} from "../../../shared/store/battle/joinToBattle/join
 import {joinToBattleSelector} from "../../../shared/store/battle/joinToBattle/joinToBattle.selector";
 import {Router} from "@angular/router";
 import {PusherService} from "../../../shared/services/pusher.service";
-import {Channel} from "pusher-js";
+import Pusher, {Channel} from "pusher-js";
 import {LocalKeysConstants} from "../../../core/constants/local-keys.constants";
 import {Me} from "../../../shared/models/user.model";
 import {SessionService} from "../../../shared/services/session.service";
@@ -88,7 +88,8 @@ export class BattleListComponent implements OnInit,OnDestroy{
     this.listenBattleRemovedEvent();
   }
   ngOnDestroy(): void {
-    this.pusherChannel.unsubscribe();
+      this.pusher.unsubscribeChannel("battle-list-joined");
+      this.pusher.unsubscribeChannel("battle-list-added");
   }
 
   constructor() {
@@ -161,7 +162,7 @@ export class BattleListComponent implements OnInit,OnDestroy{
     })
       password = password_input;
     }
-    let request = {promo_code:promo_code,pass_code:password} as JoinToBattleRequest;
+    let request = Object.assign({},{promo_code:promo_code,pass_code:password}) as JoinToBattleRequest;
     this._store.dispatch(joinToBattleAction({requestData:request}));
   }
 
@@ -192,8 +193,8 @@ export class BattleListComponent implements OnInit,OnDestroy{
         if(data.battle){
           if(this.user){
             if(data.battle.owner_id != this.user.id){
-              let finded = this.battleList.find(item=>item.id != data.battle.id);
-              if(!finded){
+              let finded = this.battleList.find(item=>item.id == data.battle.id);
+              if(finded == null && data.battle.owner){
                 this.battleList.unshift(data.battle);
               }
             }
@@ -214,7 +215,7 @@ export class BattleListComponent implements OnInit,OnDestroy{
     this.pusherChannel.bind('BattleJoined', (data: {promo_code:string}) => {
       if(data.hasOwnProperty("promo_code")){
         if(data.promo_code){
-          let index = this.battleList.findIndex(item=>item.promo_code = data.promo_code);
+          let index = this.battleList.findIndex(item=>item.promo_code == data.promo_code);
           if(index != -1){
             this.battleList.splice(index,1);
           }

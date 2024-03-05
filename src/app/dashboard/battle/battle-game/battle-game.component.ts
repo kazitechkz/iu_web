@@ -167,7 +167,7 @@ export class BattleGameComponent implements OnInit{
       if(this.battleStepQuestionResult){
         let index = this.battleStepQuestionResult.findIndex(items=>items.is_answered == false);
         if(index != -1){
-          this.slickModal.slickGoTo(index);
+          setTimeout(() => { this.slickModal.slickNext() }, 1000);
         }
         else{
           this.slickModal.slickNext();

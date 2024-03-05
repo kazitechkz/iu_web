@@ -14,7 +14,7 @@ import {BattleStepQuestion} from "../../../shared/models/battleStepQuestion.mode
 import {accountAction} from "../../../shared/store/user/account/account.action";
 import {getAccountState} from "../../../shared/store/user/account/account.selector";
 import {Me} from "../../../shared/models/user.model";
-import {faGamepad} from "@fortawesome/free-solid-svg-icons";
+import {faCoins, faGamepad, faPencilAlt, faShieldAlt} from "@fortawesome/free-solid-svg-icons";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {CountdownConfig, CountdownEvent} from "ngx-countdown";
 import {PusherService} from "../../../shared/services/pusher.service";
@@ -56,25 +56,32 @@ export class BattleDetailComponent implements OnInit,OnDestroy{
     this.pusherChannel.unsubscribe();
   }
   constructor() {
-
-  }
-  getBattle(){
-    let promo_code = this.promoCode
-    this._store.dispatch(getBattleByPromoAction({requestData:promo_code}));
+    this._store.select(getBattleByPromoSelector).subscribe(item=>{
+      if(item.data){
+        this.battle = item.data;
+        this.timeConfig.leftTime = item.data.time_left_seconds;
+      }
+    });
     this._store.select(getBattleByPromoSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         this.battle = item.data;
         this.timeConfig.leftTime = item.data.time_left_seconds;
       }
     });
-  }
-  me() {
-    this._store.dispatch(accountAction())
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       if(item.data){
         this.user = item.data;
       }
-    })
+    });
+  }
+  getBattle(){
+    let promo_code = this.promoCode
+    this._store.dispatch(getBattleByPromoAction({requestData:promo_code}));
+
+  }
+  me() {
+    this._store.dispatch(accountAction())
+
   }
   getBattleResult(step:BattleStep,user_id:number|null):BattleStepResult|undefined{
       return step.battle_step_results?.find(item=>(item.answered_user == user_id))
@@ -93,6 +100,14 @@ export class BattleDetailComponent implements OnInit,OnDestroy{
   getActiveStep(steps:BattleStep[]):BattleStep|undefined{
     return steps.find(item=>(item.is_current == true && item.current_user == (this.user?.id ?? 0)));
   }
+
+  isRivalTurn(steps:BattleStep[]):boolean{
+    let result = steps.find(item=>(item.is_current == true && item.current_user != (this.user?.id ?? 0)));
+    return  result != null ? true : false;
+  }
+
+
+
   timeConfig:CountdownConfig = {
     // @ts-ignore
     leftTime:300,
@@ -102,15 +117,8 @@ export class BattleDetailComponent implements OnInit,OnDestroy{
   listenBattleDetailEvent(){
       this.pusherChannel = this.pusher.getChannel('battle-channel.' + this.promoCode);
       this.pusherChannel.bind('BattleDetailEvent', (data: {promo_code:string}) => {
-        console.log("pusher!")
         if(data.promo_code){
           this._store.dispatch(getBattleByPromoAction({requestData:this.promoCode}));
-          this._store.select(getBattleByPromoSelector).subscribe(item=>{
-            if(item.data){
-              this.battle = item.data;
-              this.timeConfig.leftTime = item.data.time_left_seconds;
-            }
-          });
         }
       });
   }
@@ -120,4 +128,7 @@ export class BattleDetailComponent implements OnInit,OnDestroy{
   protected readonly JSON = JSON;
   protected readonly faGamepad = faGamepad;
   protected readonly RoutesName = RoutesName;
+  protected readonly faShieldAlt = faShieldAlt;
+  protected readonly faCoins = faCoins;
+  protected readonly faPencilAlt = faPencilAlt;
 }
