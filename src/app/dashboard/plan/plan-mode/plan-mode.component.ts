@@ -26,6 +26,7 @@ import * as moment from "moment/moment";
 import {promoGetAction} from "../../../shared/store/promo/promo.action";
 import {PromoRequest} from "../../../shared/store/promo/promo.request";
 import {getPromoStateSelector} from "../../../shared/store/promo/promo.selector";
+import {TwNotification} from "ng-tw";
 
 @Component({
   selector: 'app-plan-mode',
@@ -46,8 +47,7 @@ export class PlanModeComponent implements OnInit {
   dialog = inject(NgxSmartModalService)
   destroyRef = inject(DestroyRef);
   private _store = inject(Store)
-  private _route = inject(Router)
-  private _activateRoute = inject(ActivatedRoute)
+  private _notification = inject(TwNotification)
   public listSubjects: Subject[] = []
   public subjects: Subject[] = []
   public promo: number = 0
@@ -89,7 +89,13 @@ export class PlanModeComponent implements OnInit {
           this.dialog.closeLatestModal()
         }
         if (item.data) {
-         window.location.href = item.data.pg_redirect_url
+          if (item.data.pg_status == 'error') {
+            this.subjects_form.reset()
+            this.dialog.closeLatestModal()
+            this._notification.show({ type: 'danger', title: 'Error', text: item.data.pg_error_description! })
+          } else {
+            window.location.href = item.data.pg_redirect_url
+          }
         }
       })
     }

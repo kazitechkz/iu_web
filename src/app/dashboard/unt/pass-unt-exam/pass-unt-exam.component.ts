@@ -108,6 +108,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
           this.getAttemptResult(this.active_subject_id);
         }
         this.next();
+        setTimeout(() => this.loadingAnswer = false, 1000)
       }
     });
     //Attempt Result
@@ -256,7 +257,6 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
       request.answers = request.answers.join(',');
       this._store.dispatch(createAnswerAction({requestData:request}));
     }
-    this.loadingAnswer = false;
   }
 
   finishAttempt(){

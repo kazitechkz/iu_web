@@ -265,7 +265,7 @@
                 (click)="prev()"
         >
           <fa-icon [icon]="faBackwardFast" class="mx-2 text-lg"></fa-icon>
-          <p class="inline hidden md:inline">
+          <p class="hidden md:inline">
             {{"PREV_QUESTION"|translate}}
           </p>
         </button>
@@ -282,6 +282,7 @@
             rounded-full text-sm md:text-md lg:text-lg p-3
             max-w-[320px]
             text-center m-2"
+                  [ngClass]="loadingAnswer ? 'cursor-not-allowed' : 'cursor-pointer'"
                   [disabled]="loadingAnswer"
                   (click)="checkAnswer(questions[active_slider].id)"
                   *ngIf="answered_questions.hasOwnProperty(questions[active_slider].id) && !answeredResult[questions[active_slider].id]"
