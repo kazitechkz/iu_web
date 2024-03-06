@@ -504,5 +504,15 @@
   "LLC_IUNION": "ТОО 'I-UNION'",
   "ALL_RIGHT_RESERVED": "© 2024 ТОО 'I-UNION' - все права защищены",
   "ALL_ACCESS_TO_VIDEO_AND_MATERIALS": "Неограниченный доступ к 50 000 тестам и 1 000 конспектам",
-  "TERMS_OF_USE": "Пользовательское соглашение"
+  "TERMS_OF_USE": "Пользовательское соглашение",
+  "PASS_EXAM": "Начать тест",
+  "WAIT_FOR_RIVAL": "Ожидание хода противника",
+  "STEP_MENU": "Обучение",
+  "TRAINING_MENU": "Тренажер ЕНТ",
+  "TOURNAMENT_MENU": "Турниры",
+  "UNT_BATTLE_MENU": "Онлайн Баттл",
+  "WALLET_MENU": "Баланс",
+  "CAREER_MENU": "Профориентация",
+  "SUPPORT_MENU": "Служба поддержки",
+  "FORUM_MENU": "Форум"
 }

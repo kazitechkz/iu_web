@@ -8,7 +8,7 @@ import {
   faForwardFast,
   faBackwardFast,
   faCheck,
-  faHandshake, faFaceFrownOpen, faClover, faPersonRunning
+  faHandshake, faFaceFrownOpen, faClover, faPersonRunning, faChevronLeft, faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
 import {CountdownConfig, CountdownEvent} from "ngx-countdown";
 import {RoutesName} from "../../../core/constants/routes.constants";
@@ -16,7 +16,7 @@ import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {Store} from "@ngrx/store";
 import {getAttemptAction} from "../../../shared/store/attempt/getAttempt/getAttempt.action";
 import {getAttemptSelector} from "../../../shared/store/attempt/getAttempt/getAttempt.selector";
-import {Attempt} from "../../../shared/models/attempt.model";
+import {Attempt, SubjectQuestion} from "../../../shared/models/attempt.model";
 import {Question} from "../../../shared/models/question.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {distinctUntilChanged, Subscription} from "rxjs";
@@ -45,6 +45,7 @@ import {answerSelector} from "../../../shared/store/attempt/answer/answer.select
 import {finishAttemptAction} from "../../../shared/store/attempt/finishAttempt/finishAttempt.action";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {TwNotification} from "ng-tw";
+import {Subject} from "../../../shared/models/subject.model";
 
 @Component({
   selector: 'app-pass-unt-exam',
@@ -71,12 +72,16 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     public answeredResult:AnsweredResult = {};
     public fiftyFiftyResult:GetFiftyFiftyModel = {};
     public appealTypes:AppealType[] = [];
+    public prevSubject:SubjectQuestion|null = null;
+    public activeSubject:SubjectQuestion|null = null;
+    public nextSubject:SubjectQuestion|null = null;
     public appealRequest = {type_id:0,question_id:0,message:""};
     //@ts-ignore
     public actual_question:Question;
     public loadingAnswer = false;
     private _notification = inject(TwNotification)
     public answered_questions:{[key: number]: any}= {};
+    public unAnsweredQuestion:number = 0;
     //@ts-ignore
     @ViewChild('slickModal') slickModal: SlickCarouselComponent;
 
@@ -100,7 +105,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     //Answer Selector
     this._store.select(answerSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
-        if(item.data.is_finished === true){
+        if(item.data.is_finished == true){
           this._notification.show({ type: 'info', title: 'Ураа!', text: 'Вы заработали ' + item.data.points + 'iU Coins'})
           this._router.navigate([RoutesName.resultAttempt + "/" + this.attempt.attempt_id]).then(r => true);
         }
@@ -115,6 +120,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     this._store.select(answeredResultSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         this.answeredResult = Object.assign(this.answeredResult,item.data);
+        this.getAnsweredQuestionQTY();
       }
     });
     //Appeal Types
@@ -124,7 +130,6 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
         this.appealRequest.type_id = item.data.find(item=>true)?.id ??0;
       }
     });
-
   }
 
   getAttempt(){
@@ -135,6 +140,20 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
         if(item.data){
           this.attempt = item.data;
           this.active_subject_id = (item.data.subject_questions.find(item => true))?.attempt_subject_id ?? 0;
+          this.activeSubject = item.data.subject_questions.find(item => true) ?? null;
+          let activeSubjectIndex = item.data.subject_questions.findIndex(item => true);
+          if(activeSubjectIndex > 0){
+            this.prevSubject = item.data.subject_questions[activeSubjectIndex - 1] ?? null;
+          }
+          else{
+            this.prevSubject = null;
+          }
+          if(activeSubjectIndex >= 0 && item.data.subject_questions.length > activeSubjectIndex + 1){
+            this.nextSubject = item.data.subject_questions[activeSubjectIndex + 1] ?? null;
+          }
+          else{
+            this.nextSubject = null;
+          }
           this.questions = (item.data.subject_questions.find(item => true))?.question ?? [];
           //@ts-ignore
           this.actual_question = (item.data.subject_questions.find(item => true))?.question[0];
@@ -148,8 +167,12 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
   }
 
   getAttemptResult(active_subject_id:number){
-    let requestAnswer = {attempt_subject_id:active_subject_id} as AnsweredResultRequest;
-    this._store.dispatch(onAnsweredResultAction({requestData:requestAnswer}));
+    if(active_subject_id){
+      let requestAnswer = {attempt_subject_id:active_subject_id} as AnsweredResultRequest;
+      this._store.dispatch(onAnsweredResultAction({requestData:requestAnswer}));
+      this.getAnsweredQuestionQTY();
+    }
+
   }
 
   getAppealTypes(){
@@ -157,12 +180,26 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
 
   }
 
-  changeSubject(subject_id:any){
+  changeSubject(subject_id:any,activeSubjectId:number|null = null){
     this.active_slider = 0;
     this.slickModal.slickGoTo(0);
     this.loading = true;
-      subject_id = subject_id.target.value;
+    subject_id = activeSubjectId != null ? activeSubjectId : subject_id.target.value;
     this.active_subject_id = (this.attempt.subject_questions.find(item => item.attempt_subject_id == subject_id))?.attempt_subject_id ?? 0;
+    this.activeSubject = (this.attempt.subject_questions.find(item => item.attempt_subject_id == subject_id))??null;
+    let activeSubjectIndex = this.attempt.subject_questions.findIndex(item => item.attempt_subject_id == subject_id);
+    if(activeSubjectIndex > 0){
+      this.prevSubject = this.attempt.subject_questions[activeSubjectIndex - 1] ?? null;
+    }
+    else{
+      this.prevSubject = null;
+    }
+    if(activeSubjectIndex >= 0 && this.attempt.subject_questions.length > activeSubjectIndex + 1) {
+      this.nextSubject = this.attempt.subject_questions[activeSubjectIndex + 1] ?? null;
+    }
+    else{
+      this.nextSubject = null;
+    }
     this.questions = (this.attempt.subject_questions.find(item => item.attempt_subject_id == subject_id))?.question ?? [];
     this.question_pagination = Array.from({ length: this.questions.length }, (value, index) => index);
     this.loading = false;
@@ -251,11 +288,19 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
 
 
   checkAnswer(questionId:number){
-    this.loadingAnswer = true;
-    let request = Object.assign({}, this.answered_questions[questionId]);
-    if(request){
-      request.answers = request.answers.join(',');
-      this._store.dispatch(createAnswerAction({requestData:request}));
+    if((!this.answeredResult[questionId])){
+      this.loadingAnswer = true;
+      let request = Object.assign({}, this.answered_questions[questionId]);
+      if(request){
+        request.answers = request.answers.join(',');
+        this._store.dispatch(createAnswerAction({requestData:request}));
+      }
+      this.loadingAnswer = false;
+    }
+    else{
+      if(this.active_subject_id){
+        this.getAttemptResult(this.active_subject_id);
+      }
     }
   }
 
@@ -307,6 +352,12 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
   }
   prev() {
     this.slickModal.slickPrev();
+  }
+
+  getAnsweredQuestionQTY(){
+    if(this.active_subject_id && this.answeredResult && this.questions){
+      this.unAnsweredQuestion = this.questions.filter(item=>!Object.keys(this.answeredResult).includes(item.id.toString())).length;
+    }
   }
 
   //@ts-ignore
@@ -415,4 +466,8 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     protected readonly faFaceFrownOpen = faFaceFrownOpen;
   protected readonly faClover = faClover;
   protected readonly faPersonRunning = faPersonRunning;
+  protected readonly JSON = JSON;
+  protected readonly Object = Object;
+  protected readonly faChevronLeft = faChevronLeft;
+  protected readonly faChevronRight = faChevronRight;
 }

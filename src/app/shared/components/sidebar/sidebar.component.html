@@ -11,7 +11,7 @@
       <div class="bg-link" routerLinkActive="main-violet-first-rounded mx-2 rounded-full main-orange-color" [routerLinkActiveOptions]="{exact: true}" *ngFor="let menu of menuLists">
         <a [routerLink]="'/' + menu.path" (click)="navigateTo(menu.path)" class="flex items-center py-2 pl-6 nav-item cursor-pointer text-white">
           <div class="w-8 h-8 border-[1px] flex justify-center items-center rounded-full mr-2">
-            <fa-icon [icon]="menu.icon"></fa-icon>
+            <fa-icon class="text-white" [icon]="menu.icon"></fa-icon>
           </div>
           {{menu.title | translate}}
         </a>

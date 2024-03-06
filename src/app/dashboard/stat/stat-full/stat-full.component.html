@@ -1,11 +1,11 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12 gap-3">
     <div class="col-span-12">
-      <div class="border border-t-0 bg-white">
+      <div class="main-violet-second-bg">
         <h2 class="mb-0" id="headingFilterTickets">
           <button
-            class="group relative flex w-full items-center rounded-lg border-0 bg-white px-5 py-4 text-left text-base
-                            text-white transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none main-green-bg"
+            class="group relative flex w-full items-center rounded-lg main-violet-second-bg px-5 py-4 text-left text-base
+                            text-white transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none main-violet-first-rounded"
             type="button"
             data-te-collapse-init
             data-te-collapse-collapsed
@@ -26,11 +26,11 @@
           data-te-collapse-item
           aria-labelledby="headingFilterTickets"
           data-te-parent="#accordionFilterTickets">
-          <div class="px-5 py-4">
+          <div class="px-5 py-4 bg-black-violet-orange-180-05">
             <div class="grid grid-cols-12 gap-3">
               <div class="col-span-12 md:col-span-12 lg:col-span-4 p-4" *ngIf="attemptTypes">
                 <select
-                  class="w-full flex h-full items-center form-control"
+                  class="w-full flex h-full items-center form-control  main-violet-second-bg text-white main-violet-first-rounded"
                   [ngModel]="requestData.type_id"
                   (ngModelChange)="setAttemptType($event)"
                 >
@@ -41,7 +41,7 @@
               </div>
               <div class="col-span-12 md:col-span-12 lg:col-span-4 p-4" *ngIf="subjects">
                 <select
-                  class="w-full flex h-full items-center form-control"
+                  class="w-full flex h-full items-center form-control main-violet-second-bg text-white main-violet-first-rounded"
                   [ngModel]="requestData.subject_id"
                   (ngModelChange)="setSubject($event)"
                 >
@@ -55,7 +55,7 @@
               </div>
               <div class="col-span-12 md:col-span-12 lg:col-span-4 p-4">
                 <select
-                  class="w-full flex h-full items-center form-control"
+                  class="w-full flex h-full items-center form-control  main-violet-second-bg text-white main-violet-first-rounded"
                   [ngModel]="requestData.start_at"
                   (ngModelChange)="setStart($event)"
                 >
@@ -81,9 +81,9 @@
   </div>
   <div class="grid grid-cols-12 2xl:grid-cols-10 gap-3 my-2 py-3" *ngIf="fullStatModel">
     <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 2xl:col-span-2 my-3">
-        <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px] border-indigo-500">
+        <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px] border-indigo-500 main-violet-second-bg">
           <div class="card h-full-header px-[10px] py-[15px]">
-            <p class="text-gray-300 text-xs md:text-md lg:text-lg font-bold">
+            <p class=" text-xs md:text-md lg:text-lg font-bold">
               Всего попыток сдачи
             </p>
           </div>
@@ -96,7 +96,7 @@
         </div>
     </div>
     <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 2xl:col-span-2 my-3">
-        <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px] border-[#9BA1FF]">
+        <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px] border-[#9BA1FF] main-violet-second-bg">
           <div class="card h-full-header px-[10px] py-[15px]">
             <p class="text-gray-300 text-xs md:text-md lg:text-lg font-bold">
               Средний балл
@@ -111,7 +111,7 @@
         </div>
     </div>
     <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 2xl:col-span-2 my-3">
-        <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px] border-rose-500">
+        <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px] border-rose-500 bg-violet-first">
           <div class="card h-full-header px-[10px] py-[15px]">
             <p class="text-gray-300 text-xs md:text-md lg:text-lg font-bold">
               Минимальный балл
@@ -126,7 +126,7 @@
         </div>
     </div>
     <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 2xl:col-span-2 my-3">
-        <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px] border-[#4DC591]">
+        <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px] border-[#4DC591] main-violet-second-bg">
           <div class="card h-full-header px-[10px] py-[15px]">
             <p class="text-gray-300 text-xs md:text-md lg:text-lg font-bold">
               Максимальный балл
@@ -141,7 +141,7 @@
         </div>
     </div>
     <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 2xl:col-span-2 my-3">
-        <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px] border-amber-400">
+        <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px] border-amber-400 main-violet-second-bg">
           <div class="card h-full-header px-[10px] py-[15px]">
             <p class="text-gray-300 text-xs md:text-md lg:text-lg font-bold">
               Вопросов пройдено
@@ -166,7 +166,7 @@
             </div>
           <div class="grid grid-cols-12 2xl:grid-cols-10 gap-3 my-2 py-3">
             <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 2xl:col-span-2 my-3" *ngFor="let resultKey of subjectStat.value | keys">
-              <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px]" *ngIf="resultKey.value"
+              <div class="card h-full p-5 min-h-[200px] shadow-xl rounded-lg border-t-[10px] main-violet-second-bg" *ngIf="resultKey.value"
                    [ngStyle]="{'border-color':colors[subjectStat.key]}">
                 <div class="card h-full-header px-[10px] py-[15px] min-h-[80px]">
                   <p class="text-gray-400 text-xs font-bold" *ngIf="resultKey.value['sub_category'];else noSubCategory">

@@ -13,8 +13,13 @@
     <div class="grid grid-cols-12 my-4">
       <div class="col-span-12 flex justify-center">
         <div class="max-w-[320px] md:max-w-[400px] lg:max-w-[600px]">
-          <select class="w-full text-lg xl:text-xl 2xl:text-2xl text-center rounded-full px-3 font-bold input-violet text-white fill-white main-violet-first-rounded focus:main-violet-first-rounded" (change)="changeSubject($event)">
-            <option *ngFor="let subject of attempt.subject_questions" value="{{subject.attempt_subject_id}}">
+          <select
+            class="w-full text-lg xl:text-xl 2xl:text-2xl text-center rounded-full px-3 font-bold input-violet text-white fill-white main-violet-first-rounded focus:main-violet-first-rounded"
+            (change)="changeSubject($event)">
+            <option
+                    *ngFor="let subject of attempt.subject_questions"
+                    [selected]="subject.attempt_subject_id == active_subject_id"
+                    value="{{subject.attempt_subject_id}}">
               {{subject | globalTranslate:"title": translate.currentLang}}
             </option>
           </select>
@@ -31,10 +36,10 @@
               (click)="goToSlider(questionNumber)"
               class="rounded-full h-10 w-10 md:w-14 md:h-14 flex justify-center items-center
                 not-active-button main-violet-first-rounded
-              text-sm md:text-md lg:text-2xl text-white font-bold"
+              text-sm md:text-md lg:text-2xl text-white font-bold not-active-button-pagination"
               [ngClass]="{
-                  'answered-button-pagination': (answered_questions.hasOwnProperty(questions[questionNumber].id) || (answeredResult[questions[questionNumber].id])),
-                  'not-active-button-pagination': (active_slider != questionNumber),
+                  'answered-but-not-replied':(answered_questions.hasOwnProperty(questions[questionNumber].id) && !(answeredResult[questions[questionNumber].id])),
+                  'answered-button-pagination': (answeredResult[questions[questionNumber].id]),
                   'active-button-pagination': (active_slider == questionNumber),
               }"
               type="button"
@@ -47,55 +52,121 @@
       </div>
     </div>
     <!--    Pagination-->
+    <!--    Prev, Answer, Next-->
+    <section class="block my-3 hidden md:block">
+      <div class="grid grid-cols-12 gap-3">
+        <div class="col-span-4 flex justify-center items-center h-full w-full">
+          <button class="font-bold
+            h-full w-full
+            inline
+            bg-violet-first
+            text-white
+            main-violet-first-rounded
+            rounded-full text-sm md:text-md px-5 py-3
+            text-center m-2"
+                  *ngIf="prevSubject"
+                  (click)="changeSubject(0,prevSubject.attempt_subject_id)"
+          >
+            <fa-icon [icon]="faChevronLeft" class="mr-2"></fa-icon> {{prevSubject | globalTranslate:"title": translate.currentLang}}
+        </button>
+        </div>
+        <div class="col-span-4 flex justify-center items-center" *ngIf="active_subject_id">
+        <button class="font-bold
+            h-full w-full
+            inline
+            main-orange-second-bg
+            text-white
+            main-violet-first-rounded
+            rounded-full text-sm md:text-md px-5 py-3
+            text-center m-2"  *ngIf="unAnsweredQuestion > 0; else finishedSubject">
+           Осталось вопросов: {{unAnsweredQuestion}}
+        </button>
+          <ng-template #finishedSubject>
+
+        <button
+          *ngIf="activeSubject"
+          class="font-bold
+            h-full w-full
+            inline
+            bg-violet-first
+            text-white
+            main-violet-first-rounded
+            rounded-full text-sm md:text-md px-5 py-3
+            text-center m-2" >
+           Вы ответили на все вопросы дисциплины: {{activeSubject | globalTranslate:"title" : translate.currentLang}}
+        </button>
+
+          </ng-template>
+        </div>
+        <div class="col-span-4 flex justify-center items-center">
+          <button class="font-bold
+            h-full w-full
+            inline
+            bg-violet-first
+            text-white
+            main-violet-first-rounded
+            rounded-full text-sm md:text-md px-5 py-3
+            text-center m-2"
+                  *ngIf="nextSubject"
+                  (click)="changeSubject(0,nextSubject.attempt_subject_id)"
+
+          >
+            {{nextSubject | globalTranslate:"title": translate.currentLang}}
+            <fa-icon [icon]="faChevronRight" class="ml-2"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </section>
     <!--    Question Modal-->
-    <div class="grid grid-cols-12 mt-[50px] ">
+    <div class="grid grid-cols-12 mt-[10px] ">
       <!--    Prompt-->
       <div class="col-span-12 md:col-span-2"></div>
       <div class="col-span-12 md:col-span-8">
         <div class="flex justify-center py-3">
-            <div class="col-span-6 sm:col-span-4 md:col-span-3 flex justify-center items-start text-center p-2" *ngIf="attempt.type_id < 3">
-              <section>
-                <button
-                  (click)="openModal('promptModal')"
-                  class="inline hover:rotate-0 rotate-180 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4 text-md md:text-2xl text-white font-bold not-active-button-pagination main-violet-first-rounded"
-                >
-                  <fa-icon [icon]="faLightbulb" class="text-white text-md md:text-2xl"></fa-icon>
-                </button>
-                <br>
-                <small class="text-white  font-bold text-xs sm:text-sm md:text-md">
-                  {{"PROMPT"|translate}}
-                </small>
-              </section>
-            </div>
-            <div class="col-span-6 sm:col-span-4 md:col-span-3  flex justify-center items-start text-center p-2">
-              <section>
-                <button
-                  (click)="saveQuestion()"
-                  class="inline hover:rotate-0 rotate-180 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4 text-md md:text-2xl text-white font-bold not-active-button-pagination main-violet-first-rounded"
-                  type="button">
-                  <fa-icon [icon]="faStar"></fa-icon>
-                </button>
-                <br>
-                <small class="text-white  font-bold text-xs sm:text-sm md:text-md">
-                  {{"SAVED"|translate}}
-                </small>
-              </section>
+          <div class="col-span-6 sm:col-span-4 md:col-span-3 flex justify-center items-start text-center p-2"
+               *ngIf="attempt.type_id < 3">
+            <section>
+              <button
+                (click)="openModal('promptModal')"
+                class="inline hover:rotate-0 rotate-180 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4 text-md md:text-2xl text-white font-bold not-active-button-pagination main-violet-first-rounded"
+              >
+                <fa-icon [icon]="faLightbulb" class="text-white text-md md:text-2xl"></fa-icon>
+              </button>
+              <br>
+              <small class="text-white  font-bold text-xs sm:text-sm md:text-md">
+                {{"PROMPT"|translate}}
+              </small>
+            </section>
+          </div>
+          <div class="col-span-6 sm:col-span-4 md:col-span-3  flex justify-center items-start text-center p-2">
+            <section>
+              <button
+                (click)="saveQuestion()"
+                class="inline hover:rotate-0 rotate-180 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4 text-md md:text-2xl text-white font-bold not-active-button-pagination main-violet-first-rounded"
+                type="button">
+                <fa-icon [icon]="faStar"></fa-icon>
+              </button>
+              <br>
+              <small class="text-white  font-bold text-xs sm:text-sm md:text-md">
+                {{"SAVED"|translate}}
+              </small>
+            </section>
 
-            </div>
-            <div class="col-span-6 sm:col-span-4 md:col-span-3  flex justify-center items-start text-center p-2">
-              <section>
-                <button
-                  (click)="openModal('appealModal')"
-                  class="inline hover:rotate-0 rotate-180 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4 text-md md:text-2xl text-white font-bold not-active-button-pagination main-violet-first-rounded"
-                  type="button">
-                  <fa-icon [icon]="faBug"></fa-icon>
-                </button>
-                <br>
-                <small class="text-white font-bold text-xs sm:text-sm md:text-md">
-                  {{"FIND_ERROR"|translate}}
-                </small>
-              </section>
-            </div>
+          </div>
+          <div class="col-span-6 sm:col-span-4 md:col-span-3  flex justify-center items-start text-center p-2">
+            <section>
+              <button
+                (click)="openModal('appealModal')"
+                class="inline hover:rotate-0 rotate-180 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4 text-md md:text-2xl text-white font-bold not-active-button-pagination main-violet-first-rounded"
+                type="button">
+                <fa-icon [icon]="faBug"></fa-icon>
+              </button>
+              <br>
+              <small class="text-white font-bold text-xs sm:text-sm md:text-md">
+                {{"FIND_ERROR"|translate}}
+              </small>
+            </section>
+          </div>
         </div>
       </div>
       <div class="col-span-12 md:col-span-2"></div>
@@ -115,10 +186,13 @@
                     {{"QUESTION_NUMBER"|translate}} {{active_slider + 1}} / {{questions_ones.question.length}}
                   </div>
                   <div class="p-4 text-black font-bold content-question">
-                    <div class="text-xs md:text-sm lg:text-md xl:text-lg overflow-x-scroll scroll-bg" [mathjax]="question.text | mathjaxTransform"></div>
+                    <div class="text-xs md:text-sm lg:text-md xl:text-lg overflow-x-scroll scroll-bg"
+                         [mathjax]="question.text | mathjaxTransform"></div>
                   </div>
                   <section *ngIf="question.context" class="p-4">
-                    <div class="text-xs md:text-sm lg:text-md xl:text-lg overflow-x-scroll overflow-y-scroll scroll-bg py-2 inline-block" [mathjax]="question.context.context | mathjaxTransform"></div>
+                    <div
+                      class="text-xs md:text-sm lg:text-md xl:text-lg overflow-x-scroll overflow-y-scroll scroll-bg py-2 inline-block"
+                      [mathjax]="question.context.context | mathjaxTransform"></div>
                   </section>
                   <!--    Answer Modal-->
                   <div class="w-full p-5" *ngIf="answeredResult">
@@ -249,7 +323,6 @@
       <!--    Question And Answer-->
     </div>
     <!--    Question Modal-->
-
     <!--    Prev, Answer, Next-->
     <div class="grid grid-cols-12 my-2">
       <div class="col-span-6 md:col-span-4 p-4 order-2 md:order-1 flex justify-start">
@@ -262,6 +335,7 @@
           max-w-[320px]
           text-center m-2
    "
+                *ngIf="active_slider > 0"
                 (click)="prev()"
         >
           <fa-icon [icon]="faBackwardFast" class="mx-2 text-lg"></fa-icon>
@@ -303,7 +377,9 @@
           max-w-[320px]
           text-center m-2
    "
-                (click)="next()">
+                (click)="next()"
+                *ngIf="(active_slider + 1) < questions.length"
+        >
           <p class="inline hidden md:inline">
             {{"NEXT_QUESTION"|translate}}
           </p>
@@ -313,7 +389,6 @@
       </div>
 
     </div>
-    <!--    Prev, Answer, Next-->
     <div class="col-span-12 flex justify-center items-center">
       <!--    Finish-->
       <button type="button" class="
@@ -343,7 +418,8 @@
       <p class="text-lg md:text-3xl inline-block my-2 main-violet-first-color font-bold">
         {{"PROMPT_TO_QUESTION"|translate}} {{active_slider + 1}}</p>
       <section class="main-violet-first-color" *ngIf="questions[active_slider].prompt;else no_prompt">
-        <markdown katex [data]="questions[active_slider].prompt | mathjaxTransform:true" *ngIf="questions[active_slider].prompt ; else no_prompt"></markdown>
+        <markdown katex [data]="questions[active_slider].prompt | mathjaxTransform:true"
+                  *ngIf="questions[active_slider].prompt ; else no_prompt"></markdown>
       </section>
       <ng-template #no_prompt>
         <br/>
@@ -366,18 +442,24 @@
       <div>
         <fa-icon class="inline-block text-4xl my-3 main-violet-first-color" [icon]="faBug"></fa-icon>
       </div>
-      <p class="text-lg md:text-3xl inline-block my-2 main-violet-first-color font-bold">{{"APPEAL_TO_QUESTION"|translate}} {{active_slider + 1}}</p>
+      <p
+        class="text-lg md:text-3xl inline-block my-2 main-violet-first-color font-bold">{{"APPEAL_TO_QUESTION"|translate}} {{active_slider + 1}}</p>
       <div class="my-4">
         <div class="my-2">
-          <select class="text-md md:text-lg lg:text-xl text-center rounded-full px-3 font-bold input-violet main-violet-first-rounded text-white" [(ngModel)]="appealRequest.type_id">
+          <select
+            class="text-md md:text-lg lg:text-xl text-center rounded-full px-3 font-bold input-violet main-violet-first-rounded text-white"
+            [(ngModel)]="appealRequest.type_id">
             <option *ngFor="let type of appealTypes" value="{{type.id}}">
               {{type | globalTranslate:"title": translate.currentLang}}
             </option>
           </select>
         </div>
         <div class="my-2 text-left">
-          <label class="main-violet-first-color font-bold text-md md:text-lg lg:text-xl">{{"DESCRIBE_YOUR_PROBLEM"|translate}}</label>
-          <textarea class="w-full rounded-2xl main-violet-first-bg p-3 input-violet main-violet-first-rounded text-white" [(ngModel)]="appealRequest.message" maxlength="255">
+          <label
+            class="main-violet-first-color font-bold text-md md:text-lg lg:text-xl">{{"DESCRIBE_YOUR_PROBLEM"|translate}}</label>
+          <textarea
+            class="w-full rounded-2xl main-violet-first-bg p-3 input-violet main-violet-first-rounded text-white"
+            [(ngModel)]="appealRequest.message" maxlength="255">
 
           </textarea>
         </div>

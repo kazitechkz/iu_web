@@ -6,7 +6,7 @@ import {
   faClock,
   faCoins,
   faLanguage, faMessage,
-  faQrcode, faRightLeft
+  faQrcode, faRightLeft, faUsersLine
 } from "@fortawesome/free-solid-svg-icons";
 import {BaseChartDirective} from "ng2-charts";
 import {ChartConfiguration, ChartData, ChartType} from "chart.js";
@@ -42,7 +42,7 @@ export class WalletIndexComponent implements OnInit,OnDestroy{
     // {title:"PAY_WITH_WALLET",icon:faCoins,route:StrHelper.getRouteName(RoutesName.walletDeposit)},
     // {title:"TRANSFER",icon:faRightLeft,route:StrHelper.getRouteName(RoutesName.walletTransfer)},
     {title:"DEPOSIT_WITHDRAWS_ANALYTICS",icon:faChartBar,route:StrHelper.getRouteName(RoutesName.walletStatistics)},
-    {title:"FAQ",icon:faMessage,route:StrHelper.getRouteName(RoutesName.walletIndex)},
+    {title:"WALLET_RATING",icon:faUsersLine,route:StrHelper.getRouteName(RoutesName.walletRating)},
   ]
   //Data
   ngOnInit(): void {

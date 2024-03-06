@@ -57,44 +57,44 @@ export class IndexComponent implements OnInit{
 
   public menuLists = [
     {
-      title: 'DASHBOARD_CONTENT_TO_UNT',
+      title: 'STEP_MENU',
       path: StrHelper.getDashboardRouteName(RoutesName.stepRoute),
-      imageUrl: "assets/images/icons/content.webp"
+      imageUrl: "assets/images/icons/1.png"
     },
     {
-      title: 'DASHBOARD_TRAINING_TO_UNT',
+      title: 'TRAINING_MENU',
       path: RoutesName.untMode,
-      imageUrl: "assets/images/icons/unt.webp"
+      imageUrl: "assets/images/icons/2.png"
     },
     {
-      title: 'DASHBOARD_TOURNAMENT_TO_UNT',
+      title: 'TOURNAMENT_MENU',
       path: RoutesName.tournamentList,
-      imageUrl: "assets/images/icons/tournament.webp"
+      imageUrl: "assets/images/icons/3.png"
     },
     {
-      title: 'DASHBOARD_GAME_TO_UNT',
-      path: RoutesName.noPageIndex,
-      imageUrl: "assets/images/icons/gamepad.webp"
+      title: 'UNT_BATTLE_MENU',
+      path: RoutesName.battleList,
+      imageUrl: "assets/images/icons/4.png"
     },
     {
-      title: 'DASHBOARD_WALLET',
+      title: 'WALLET_MENU',
       path: RoutesName.walletIndex,
-      imageUrl: "assets/images/icons/wallet.webp"
+      imageUrl: "assets/images/icons/5.png"
     },
     {
-      title: 'DASHBOARD_SHOP',
-      path: RoutesName.noPageIndex,
-      imageUrl: "assets/images/icons/shopping.webp"
+      title: 'CAREER_MENU',
+      path: RoutesName.careerQuizList,
+      imageUrl: "assets/images/icons/6.png"
     },
     {
-      title: 'DASHBOARD_COUCHERS',
-      path: RoutesName.noPageIndex,
-      imageUrl: "assets/images/icons/tutor.webp"
-    },
-    {
-      title: 'DASHBOARD_FORUM',
+      title: 'FORUM_MENU',
       path: RoutesName.forumList,
-      imageUrl: "assets/images/icons/forum.webp"
+      imageUrl: "assets/images/icons/8.png"
+    },
+    {
+      title: 'SUPPORT_MENU',
+      path: RoutesName,
+      imageUrl: "assets/images/icons/7.png"
     },
   ]
 

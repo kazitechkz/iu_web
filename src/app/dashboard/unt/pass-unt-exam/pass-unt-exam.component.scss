@@ -28,10 +28,15 @@
   background: linear-gradient(90deg, rgba(216,116,53,1) 0%, rgba(43,22,24,1) 50%);
 }
 .active-button-pagination{
-  background: rgb(216,116,53);
+  background: rgb(216,116,53)!important;
 }
 .answered-button-pagination{
-  background: rgba(43,22,24,1);
+  background: rgba(43,22,24,1)!important;
+}
+
+.answered-but-not-replied{
+  background: white!important;
+  color: #7A5585FF!important;
 }
 .answer-slide{
   background: #DCDAD9;

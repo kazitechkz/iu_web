@@ -188,7 +188,7 @@ export class UntResultComponent implements  OnInit, OnDestroy{
         return  this.is_answered_correct(answer) ? right_answered : not_right_answered;
     }
     else{
-      return  this.is_answered_correct(answer) ? right_but_not_answered : {};
+      return  this.is_answered_correct(answer) ? right_but_not_answered : {'main-violet-first-rounded':true};
     }
   }
 

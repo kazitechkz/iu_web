@@ -1,6 +1,6 @@
 
 <div class="container mx-auto">
-    <main class="grid grid-cols-12 gap-4 bg-black-violet-orange-180-05 main-violet-first-rounded rounded-2xl">
+    <main class="grid grid-cols-12 gap-4 bg-black-violet-orange-180-05 main-violet-first-rounded rounded-2xl lg:rounded-[50px]">
         <!--    main content-->
         <div class="col-span-12 lg:col-span-9">
             <div class="block rounded-lg w-full h-full flex items-center">
@@ -38,13 +38,13 @@
   <div class="grid grid-cols-12 p-6 gap-4">
     <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 2xl:col-span-3" *ngFor="let menuItem of menuLists">
       <div class="
-          card bg-black-violet-orange-180-05 main-violet-first-rounded p-3 shadow-2xl rounded-2xl h-full min-h-[180px] cursor-pointer text-white
+          card bg-black-violet-orange-180-05 main-violet-first-rounded p-3 shadow-2xl rounded-2xl lg:rounded-[50px] h-full min-h-[180px] cursor-pointer text-white
         "
            [routerLink]="'/' + menuItem.path">
         <div class="service-card-header flex items-center justify-center">
-          <img src="{{menuItem.imageUrl}}" class="h-[80px]">
+          <img src="{{menuItem.imageUrl}}" class="max-h-[150px]">
         </div>
-        <div class="text-center p-3 text-md lg:text-lg break-words font-bold">
+        <div class="text-center p-3 text-md lg:text-lg break-words font-bold rounded-full bg-violet-first-50 main-violet-first-rounded">
           {{menuItem.title | translate}}
         </div>
       </div>

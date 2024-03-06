@@ -504,5 +504,15 @@
   "LLC_IUNION": "'I-UNION' ЖШС",
   "ALL_RIGHT_RESERVED":" © 2024 'I-UNION' ЖШС - Барлық құқықтар қорғалған",
   "ALL_ACCESS_TO_VIDEO_AND_MATERIALS": "50 000 тестке және 1 000 рефератқа шектеусіз қол жеткізу",
-  "TERMS_OF_USE": "Пайдаланушы келісімі"
+  "TERMS_OF_USE": "Пайдаланушы келісімі",
+  "PASS_EXAM": "Тестті бастау",
+  "WAIT_FOR_RIVAL": "Жаудың  күту",
+  "STEP_MENU": "Оқу",
+  "TRAINING_MENU": "Тренажер ҰБТ",
+  "TOURNAMENT_MENU": "Турнирлер",
+  "UNT_BATTLE_MENU": "Онлайн Баттл",
+  "WALLET_MENU": "Баланс",
+  "CAREER_MENU": "Профориентация",
+  "SUPPORT_MENU": "Қолдау қызметі",
+  "FORUM_MENU": "Форум"
 }

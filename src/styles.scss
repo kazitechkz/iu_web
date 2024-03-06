@@ -175,6 +175,7 @@ body{
   background-size: cover;
   background-repeat: no-repeat;
   overflow-x: hidden!important;
+  min-height: 800px!important;
 }
 @media screen and (max-width: 640px){
   .container{
@@ -441,8 +442,8 @@ body{
   }
   .nsm-content{
     border-radius: 15px;
-    background-color: rgb(254 240 138);
-    border: 2px solid rgb(248 113 113);
+    background: rgb(255,255,255,0.7);
+    border: 2px solid $violet_first
   }
   .nsm-dialog-btn-close{
     right: 12px;
@@ -459,7 +460,8 @@ body{
   }
   .nsm-content{
     border-radius: 15px;
-    border: 2px solid rgb(248 113 113);
+    background: rgb(255,255,255,0.7);
+    border: 2px solid $violet_first
   }
   .nsm-dialog-btn-close{
     right: 12px;

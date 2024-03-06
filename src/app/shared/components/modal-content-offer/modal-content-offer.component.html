@@ -2,28 +2,28 @@
   <div  class="[direction:ltr] w-full no-scroll main-tertiary-bg">
     <ngx-smart-modal class="modalBuyContentForUNT" identifier="buy-content-unt">
       <div class="flex justify-center w-full">
-        <img src="assets/images/bear_cry.webp" class="w-[80%] max-w-[350px]"/>
+        <img src="assets/images/bear_cry.webp" class="w-[80%] max-w-[320px]"/>
       </div>
       <div class="my-3 text-center">
         <p class="text-red-500 font-bold text-md lg:text-lg xl:text-xl" *ngIf="subject">
           {{"DONT_HAVE_ACCESS_TO"|translate}}
         </p>
-        <p class="main-green-color font-bold text-md lg:text-lg xl:text-xl" *ngIf="subject">
+        <p class="text-white font-bold text-md lg:text-lg xl:text-xl" *ngIf="subject">
           {{subject | globalTranslate:"title": translate.currentLang}}
 
         </p>
       </div>
       <div class="my-3 text-center">
-        <p class="text-red-500 font-bold text-md lg:text-lg xl:text-xl">
+        <p class="text-white font-bold text-md lg:text-lg xl:text-xl">
           {{"YOU_DIDNT_BUY_CONTENT"|translate}}
         </p>
         <br/>
-        <p class="main-green-color font-bold text-md lg:text-lg xl:text-xl">
+        <p class="text-white font-bold text-md lg:text-lg xl:text-xl">
           {{"BUY_FULL_ACCESS_TO_CONTENT_UNT"|translate}}
         </p>
       </div>
       <div class="my-3 py-3 text-center lg:flex justify-around items-center">
-        <button [routerLink]="'/'+RoutesName.planMode" type="button" class="inline-block text-white main-green-bg hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
+        <button [routerLink]="'/'+RoutesName.planMode" type="button" class="inline-block text-white bg-violet-first main-violet-first-rounded  focus:outline-none focus:ring-4  font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">
           <fa-icon [icon]="faCheck"></fa-icon> {{"BUY_FULL_TRAINER_CONTENT"|translate}}
         </button>
       </div>

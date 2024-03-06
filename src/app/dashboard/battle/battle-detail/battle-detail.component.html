@@ -14,7 +14,7 @@
                 <div [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(battle.winner.file?.url) +')'}"
                      class="h-12 w-12 md:h-16 md:w-16 xl:w-24 xl:h-24 rounded-full border-2 shadow-xl bg-cover bg-no-repeat my-2"></div>
               </div>
-              <p class="font-bold text-white text-lg md:text-xl lg:text-2xl xl:text-3xl my-2">Победитель:</p>
+              <p class="font-bold text-white text-lg md:text-xl lg:text-2xl xl:text-3xl my-2">{{"WINNER"|translate}}:</p>
               <p class="font-bold text-white text-lg md:text-xl lg:text-2xl xl:text-3xl my-2">{{battle.winner.name}}</p>
               <p class="font-bold text-white text-lg md:text-xl lg:text-2xl xl:text-3xl my-2">+{{battle.price * ((battle.owner_id?1:0) + (battle.guest_id?1:0))}} IU <fa-icon class="main-orange-color" [icon]="faCoins"></fa-icon> </p>
             </div>
@@ -238,7 +238,7 @@
                       focus:outline-none focus:ring-4
                       rounded-full px-3 py-3
                       text-center mr-2 mb-2">
-              Работа над ошибками
+              {{"SHOW_DETAILED_STAT"|translate}}
               <fa-icon [icon]="faPencilAlt"></fa-icon>
             </a>
           </div>

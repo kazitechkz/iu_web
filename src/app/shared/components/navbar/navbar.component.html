@@ -7,13 +7,13 @@
 
     <div class="relative w-1/2 sm:w-full sm:justify-between mobile:w-full flex mobile:justify-between md:justify-between items-center lg:justify-end">
       <div class="lg:hidden mobile:block">
-        <i class="fa fa-bars cursor-pointer" aria-hidden="true" (click)="openSideNav()"></i>
+        <i class="fa fa-bars cursor-pointer text-white" aria-hidden="true" (click)="openSideNav()"></i>
       </div>
       <div class="flex items-center text-white">
         <div class="px-1 cursor-pointer" *ngIf="countMessage">
           <div class="flex justify-center">
-            <fa-icon class="main-green-color text-xl" [icon]="faBell"> </fa-icon>
-            <div class="mx-1 h-4 w-4 main-green-bg rounded-full text-center text-xs text-white">{{countMessage}}</div>
+            <fa-icon class="main-violet-second-color text-xl" [icon]="faBell"> </fa-icon>
+            <div class="mx-1 h-4 w-4 main-violet-second-bg rounded-full text-center text-xs text-white">{{countMessage}}</div>
           </div>
         </div>
         <div class="px-1 cursor-pointer">
