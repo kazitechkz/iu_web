@@ -28,7 +28,7 @@
         </p>
       </div>
     </div>
-    <div class="col-span-12">
+    <div class="col-span-12" *ngIf="resultByAttempt.attempt.type_id == 1">
       <div class="tab-bg-panel rounded-full w-full main-violet-first-rounded">
         <p class="text-sm lg:text-md xl:text-lg text-center uppercase text-white p-2 font-bold" *ngIf="resultByAttempt.attempt.points > 50;else notPassed">
           {{"CONCLUSION"|translate}} -  <b class="text-[#d87435]">{{"PASSED_UNT"|translate}}</b>
