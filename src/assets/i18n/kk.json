@@ -514,5 +514,17 @@
   "WALLET_MENU": "Баланс",
   "CAREER_MENU": "Профориентация",
   "SUPPORT_MENU": "Қолдау қызметі",
-  "FORUM_MENU": "Форум"
+  "FORUM_MENU": "Форум",
+  "student":"Білім алушы",
+  "teacher":"Мұғалім",
+  "MY_ORDERS":"Менің тапсырыстарым",
+  "ORDER_NUMBER":"Тапсырыс нөмірі",
+  "ORDER_AMOUNT": "Cома",
+  "ORDER_DESCRIPTION":"Сипаттама",
+  "ORDER_DATE":"Cатып алу күні",
+  "ORDER_STATUS": "Мәртебесі",
+  "ORDER_SUCCESS": "Төлем қабылданды",
+  "ORDER_ERROR":"Төлем қабылданбады",
+  "REMAINING_QTY": "Сұрақтар қалды"
+
 }

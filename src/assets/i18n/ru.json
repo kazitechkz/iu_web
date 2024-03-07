@@ -514,5 +514,16 @@
   "WALLET_MENU": "Баланс",
   "CAREER_MENU": "Профориентация",
   "SUPPORT_MENU": "Служба поддержки",
-  "FORUM_MENU": "Форум"
+  "FORUM_MENU": "Форум",
+  "student": "Обучающийся",
+  "teacher": "Учитель",
+  "MY_ORDERS": "Мои заказы",
+  "ORDER_NUMBER": "Номер заказа",
+  "ORDER_AMOUNT": "Сумма",
+  "ORDER_DESCRIPTION": "Описание",
+  "ORDER_DATE": "Дата покупки",
+  "ORDER_STATUS": "Статус",
+  "ORDER_SUCCESS": "Успешно",
+  "ORDER_ERROR": "Ошибка",
+  "REMAINING_QTY": "Осталось вопросов"
 }

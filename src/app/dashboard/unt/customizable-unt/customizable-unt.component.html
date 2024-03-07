@@ -1,6 +1,6 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12 py-5 my-3 bg-violet-orange-first rounded-2xl">
-    <div class="col-span-12 md:col-span-6 px-5 md:flex items-center text-center md:text-left">
+    <div class="col-span-12 md:col-span-6 px-5 md:flex items-center text-center md:text-left order-2 md:order-1">
       <div class="px-3 md:px-4 lg:px-5">
         <p class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-white font-bold">
           {{"TRAINING_UNT_FOR_CATEGORY"|translate}}
@@ -41,7 +41,7 @@
         </div>
       </div>
     </div>
-    <div class="col-span-12 md:col-span-6 flex justify-center">
+    <div class="col-span-12 md:col-span-6 flex justify-center order-1 md:order-2">
       <div class="flex justify-center items-center">
         <img class="sm:max-w-[320px] md:max-w-[380px] lg:max-w-[420px]" src="assets/images/bear_office.webp"/>
       </div>
@@ -124,7 +124,7 @@
               >
             </div>
             <div class="mobile:flex mobile:justify-between">
-              <button class="border p-1 rounded-[5px]" type="button" (click)="dialog.get('open-basket').open()">
+              <button class="border p-1 rounded-[5px] text-white" type="button" (click)="dialog.get('open-basket').open()">
                 {{basket.singleQ + basket.contextQ + basket.multiQ}}
                 <i class="fa fa-basket-shopping ml-2"></i>
               </button>
@@ -157,7 +157,7 @@
                           {{cat.title_kk}}
                         </p>
                       </div>
-                      <button (click)="getSubCategories(cat.id)" class="rounded-full border ml-auto w-[30px] h-[30px] flex justify-center items-center text-white hover:main-violet-first-rounded hover:text-[#3b71ca]">
+                      <button (click)="getSubCategories(cat.id)" class="rounded-full border ml-auto w-[30px] h-[30px] min-w-[30px] flex justify-center items-center text-white hover:main-violet-first-rounded hover:text-[#3b71ca]">
                         <i class="fa fa-arrow-down" *ngIf="subCategoryContentID != cat.id"></i>
                         <i class="fa fa-arrow-up" *ngIf="subCategoryContentID == cat.id"></i>
                       </button>

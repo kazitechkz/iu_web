@@ -7,10 +7,10 @@
         </p>
       </div>
       <div class="relative overflow-x-auto grid grid-cols-12 gap-3" *ngIf="careerQuizAttempts.data">
-        <div class="rounded-full col-span-12 sm:col-span-6 md:col-span-4 py-3 px-4 min-h-[80px] cursor-pointer main-violet-first-rounded bg-violet-first my-3 hover:shadow-xl" *ngFor="let careerQuizAttempt of careerQuizAttempts.data | paginate: { itemsPerPage: careerQuizAttempts.per_page, currentPage: careerQuizAttempts.current_page,totalItems:careerQuizAttempts.total }">
-          <div [routerLink]="['/' + RoutesName.resultCareerQuiz + '/' + careerQuizAttempt.id.toString()]" class="flex items-center" *ngIf="careerQuizAttempt.career_quiz">
+        <div class="rounded-full col-span-12 lg:col-span-6 2xl:col-span-4 py-3 px-4 min-h-[80px] cursor-pointer main-violet-first-rounded bg-violet-first my-3 hover:shadow-xl" *ngFor="let careerQuizAttempt of careerQuizAttempts.data | paginate: { itemsPerPage: careerQuizAttempts.per_page, currentPage: careerQuizAttempts.current_page,totalItems:careerQuizAttempts.total }">
+          <div [routerLink]="['/' + RoutesName.resultCareerQuiz + '/' + careerQuizAttempt.id.toString()]" class="flex justify-between items-center" *ngIf="careerQuizAttempt.career_quiz">
             <div
-              class="w-12 h-12 md:w-16 md:h-16 min-w-12 md:min-w-16 rounded-full border-2 bg-cover bg-no-repeat my-2"
+              class="w-12 h-12 md:w-16 md:h-16 min-w-[3rem] md:min-w-[4rem] rounded-full border-2 bg-cover bg-no-repeat my-2"
               [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(careerQuizAttempt.career_quiz.file?.url) + ')'}">
             </div>
             <div>
@@ -21,7 +21,7 @@
                  #{{careerQuizAttempt.career_quiz.career_quiz_group | globalTranslate:'title':translate.currentLang}}
               </p>
               <p class="text-white text-sm ml-2 font-bold mt-1" *ngIf="careerQuizAttempt.career_quiz.created_at">
-                {{moment(careerQuizAttempt.career_quiz.created_at)}}
+                {{moment(careerQuizAttempt.career_quiz.created_at).format("HH:mm DD/MM/YYYY ")}}
               </p>
             </div>
             <div class="px-2 text-center">

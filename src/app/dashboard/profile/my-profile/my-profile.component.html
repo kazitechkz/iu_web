@@ -9,24 +9,27 @@
           </a>
         </div>
       </div>
-      <div class="flex items-center justify-center md:justify-start my-2">
-        <div class="rounded-full w-[130px] h-[130px] md:w-[180px] md:h-[180px] bg-center bg-no-repeat bg-cover relative main-violet-first-rounded"
-             [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(me.file?.url) +')'}">
-          <div class="absolute bottom-[20px] flex justify-center w-full">
-            <form>
-              <input id="img-update" (change)="onFileSelected($event)" type="file" class="invisible w-0" accept="image/*"/>
-            </form>
-            <label for="img-update">
-              <fa-icon class="mr-2 text-white text-2xl cursor-pointer hover:" [icon]="faCameraAlt"></fa-icon>
-            </label>
+      <div class="md:flex items-center justify-center md:justify-start text-center">
+        <div class="flex items-center justify-center md:justify-start my-2">
+          <div class="rounded-full w-[130px] h-[130px] md:w-[180px] md:h-[180px] bg-center bg-no-repeat bg-cover relative main-violet-first-rounded"
+               [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(me.file?.url) +')'}">
+            <div class="absolute bottom-[20px] flex justify-center w-full">
+              <form>
+                <input id="img-update" (change)="onFileSelected($event)" type="file" class="invisible w-0" accept="image/*"/>
+              </form>
+              <label for="img-update">
+                <fa-icon class="mr-2 text-white text-2xl cursor-pointer hover:" [icon]="faCameraAlt"></fa-icon>
+              </label>
+            </div>
           </div>
         </div>
         <p class="block mb-2 text-xl md:text-2xl lg:text-3xl font-bold text-white ml-3">{{me.name}}</p>
       </div>
+
       <div *ngIf="me" class="px-3 py-4 grid grid-cols md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2">
 
         <span class="flex justify-center items-center py-3 px-3 mb-2 text-sm md:text-md lg:text-lg font-normal main-violet-first-rounded bg-violet-first text-white text-center rounded-full">
-          <p><fa-icon class="mr-2" [icon]="faCrown"></fa-icon>{{me.role}}</p>
+          <p><fa-icon class="mr-2" [icon]="faCrown"></fa-icon>{{me.role | translate}}</p>
         </span>
         <span class="flex justify-center items-center mb-2 py-3 px-3 text-sm md:text-md lg:text-lg font-normal main-violet-first-rounded bg-violet-first text-white text-center rounded-full">
           <p><fa-icon class="mr-2" [icon]="faCalendar"></fa-icon>
@@ -114,15 +117,15 @@
     </div>
     <div class="col-span-12 lg:col-span-12  my-4" [ngClass]="{'xl:col-span-6 2xl:col-span-6':subscriptions.length > 0}">
       <div>
-        <h1 class="text-white mb-3">Мои заказы</h1>
+        <h1 class="text-white mb-3">{{"MY_ORDERS"|translate}}</h1>
         <ul class="responsive-table" *ngIf="myOrders">
           <li class="table-header bg-violet-first main-violet-first-rounded">
             <div class="col col-1 text-white">№</div>
-            <div class="col col-2 text-white">Номер заказа</div>
-            <div class="col col-2 text-center text-white">Сумма</div>
-            <div class="col col-2 text-white">Описание</div>
-            <div class="col col-2 text-center text-white">Дата покупки</div>
-            <div class="col col-2 text-center text-white">Статус</div>
+            <div class="col col-2 text-white">{{"ORDER_NUMBER"|translate}}</div>
+            <div class="col col-2 text-center text-white">{{"ORDER_AMOUNT"|translate}}</div>
+            <div class="col col-2 text-white">{{"ORDER_DESCRIPTION"|translate}}</div>
+            <div class="col col-2 text-center text-white">{{"ORDER_DATE"|translate}}</div>
+            <div class="col col-2 text-center text-white">{{"ORDER_STATUS"|translate}}</div>
           </li>
           <li class="table-row bg-violet-first main-violet-first-rounded"
               *ngFor="let order of myOrders.data | paginate: {itemsPerPage: myOrders.per_page, currentPage: myOrders.current_page, totalItems: myOrders.total} | keys: requestData.page : myOrders.per_page">
@@ -133,7 +136,9 @@
             <div class="col col-2 text-center break-all text-white" [attr.data-label]="'NAME'|translate">{{order.value.price}}</div>
             <div class="col col-2 break-all text-white" [attr.data-label]="'EMAIL'|translate">{{order.value.description}}</div>
             <div class="col col-2 text-center break-all text-white" [attr.data-label]="'EMAIL'|translate">{{moment(order.value.created_at).format('DD.MM.YYYY')}}</div>
-            <div class="col col-2 text-center break-all text-white" [attr.data-label]="'BALANCE'|translate" [innerHTML]="order.value.status == 1 ? '<span>Успешно</span>' : 'Ошибка'"></div>
+            <div class="col col-2 text-center break-all text-white" [attr.data-label]="'BALANCE'|translate">
+              {{order.value.status ? ('ORDER_SUCCESS'|translate) : ('ORDER_ERROR'|translate)}}
+            </div>
           </li>
         </ul>
         <div *ngIf="myOrders">

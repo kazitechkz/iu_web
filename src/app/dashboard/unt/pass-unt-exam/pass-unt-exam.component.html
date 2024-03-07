@@ -53,9 +53,9 @@
     </div>
     <!--    Pagination-->
     <!--    Prev, Answer, Next-->
-    <section class="block my-3 hidden md:block">
+    <section class="my-3">
       <div class="grid grid-cols-12 gap-3">
-        <div class="col-span-4 flex justify-center items-center h-full w-full">
+        <div class="col-span-4 hidden md:flex justify-center items-center h-full w-full">
           <button class="font-bold
             h-full w-full
             inline
@@ -70,7 +70,7 @@
             <fa-icon [icon]="faChevronLeft" class="mr-2"></fa-icon> {{prevSubject | globalTranslate:"title": translate.currentLang}}
         </button>
         </div>
-        <div class="col-span-4 flex justify-center items-center" *ngIf="active_subject_id">
+        <div class="col-span-12 md:col-span-4 flex justify-center items-center" *ngIf="active_subject_id">
         <button class="font-bold
             h-full w-full
             inline
@@ -98,7 +98,7 @@
 
           </ng-template>
         </div>
-        <div class="col-span-4 flex justify-center items-center">
+        <div class="col-span-4 hidden md:flex justify-center items-center">
           <button class="font-bold
             h-full w-full
             inline
