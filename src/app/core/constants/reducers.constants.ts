@@ -183,6 +183,7 @@ import {getVideoDetailReducer} from "../../shared/store/iutube/getVideoDetail/ge
 import {verifyEmailReducer} from "../../shared/store/auth/verifyEmail/verifyEmail.reducer";
 import {kundelikReducer} from "../../shared/store/auth/kundelik/kundelik.reducer";
 import {promoReducer} from "../../shared/store/promo/promo.reducer";
+import {passSubStepReducer} from "../../shared/store/stat/passSubStep/passSubStep.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -202,6 +203,7 @@ export const ReducersConstants = {
   subStepDetail: subStepDetailReducer,
   subStepExam: subStepExamReducer,
   passSubStepExam: passSubStepExamReducer,
+  passSubStepBySubCategory: passSubStepReducer,
   answer: answerReducer,
   answeredResult: answeredResultReducer,
   getFiftyFifty: getFiftyFiftyReducer,

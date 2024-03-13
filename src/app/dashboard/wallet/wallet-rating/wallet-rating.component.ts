@@ -7,6 +7,7 @@ import {walletRatingAction} from "../../../shared/store/wallet/walletRating/wall
 import {walletRatingSelector} from "../../../shared/store/wallet/walletRating/walletRating.selector";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {ImageHelper} from "../../../core/helpers/image.helper";
+import * as moment from "moment/moment";
 
 @Component({
   selector: 'app-wallet-rating',
@@ -22,8 +23,15 @@ export class WalletRatingComponent implements OnInit {
   // @ts-ignore
   public wallets: Pagination<Wallet[]>
   requestData = {page:1}
+  public meID: number|null = null
+  endDate: moment.Moment = moment('20240630');
+  countdown: string = '';
   ngOnInit(): void {
+    this.getMe()
     this.getAllWallets()
+    setInterval(() => {
+      this.updateCountdown();
+    }, 1000);
   }
 
   getAllWallets() {
@@ -35,12 +43,68 @@ export class WalletRatingComponent implements OnInit {
       }
     })
   }
+  updateCountdown() {
+    // Получаем текущую дату и время
+    const currentDate = moment();
+
+    // Рассчитываем разницу между текущей и целевой датой
+    const duration = moment.duration(this.endDate.diff(currentDate));
+
+    // Получаем оставшееся количество дней, часов, минут и секунд
+    const days = Math.floor(duration.asDays());
+    const hours = duration.hours();
+    const minutes = duration.minutes();
+    const seconds = duration.seconds();
+
+    // Форматируем вывод обратного отсчета
+    if (seconds) {
+      this.countdown = `${days} дн. ${hours} ч. ${minutes} мин. ${seconds} сек.`;
+    } else {
+      this.countdown = ''
+    }
+
+  }
+  getBgColor(userID: number|null): boolean {
+    if (userID && this.meID) {
+      return userID == this.meID;
+    } else {return false}
+  }
+  getPrize(indexKey: number) {
+    let prize = ''
+    switch (true) {
+      case (indexKey == 1):
+        prize = 'Iphone 15 Pro Max'
+        break
+      case (indexKey == 2):
+        prize = 'Apple Watch SE'
+        break
+      case (indexKey == 3):
+        prize = 'Airpods 3 Pro'
+        break
+      case (indexKey >= 4 && indexKey <= 10):
+        prize = '1000 KZT'
+        break
+      case (indexKey > 10 && indexKey < 20):
+        prize = '500 KZT'
+        break
+      default:
+        prize = ''
+        break
+    }
+    return prize
+  }
   pageChanged($event:number){
     this.requestData.page = $event;
     this.getAllWallets();
   }
 
+  getMe() {
+    let me = localStorage.getItem('userinfo')
+    if (me) {
+      this.meID = (JSON.parse(me)).id
+    }
+  }
   protected readonly ImageHelper = ImageHelper;
-  protected readonly parseInt = parseInt;
   protected readonly console = console;
+  protected readonly parseInt = parseInt;
 }

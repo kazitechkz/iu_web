@@ -11,6 +11,7 @@ export const subStepActionSuccess = createAction(SubStepActionTypes.OnSubStepSuc
 export const subStepActionFailure = createAction(SubStepActionTypes.OnSubStepFailure, props<{ errors: any }>());
 
 export const subStepDetailAction = createAction(SubStepActionTypes.OnSubStepDetail, props<{ requestData: SubStepRequest}>());
+export const subStepDetailClearAction = createAction(SubStepActionTypes.OnSubStepDetailClear);
 export const subStepDetailActionSuccess = createAction(SubStepActionTypes.OnSubStepDetailSuccess, props<{
   responseData: ResponseData<SubStepModel>
 }>());

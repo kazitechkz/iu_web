@@ -170,6 +170,7 @@ import {GetVideoDetailEffect} from "../../shared/store/iutube/getVideoDetail/get
 import {VerifyEmailEffect} from "../../shared/store/auth/verifyEmail/verifyEmail.effect";
 import {KundelikEffect} from "../../shared/store/auth/kundelik/kundelik.effect";
 import {PromoEffect} from "../../shared/store/promo/promo.effect";
+import {PassSubStepEffect} from "../../shared/store/stat/passSubStep/passSubStep.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -196,6 +197,7 @@ export const EffectsConstants = [
     CreateAppealEffect,
     SubStepExamEffect,
     PassSubStepExamEffect,
+    PassSubStepEffect,
     ResultExamEffect,
     GetStatEffect,
     FinishAttemptEffect,

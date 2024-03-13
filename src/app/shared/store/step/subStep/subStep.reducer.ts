@@ -4,8 +4,13 @@ import {
   subStepAction,
   subStepActionFailure,
   subStepActionSuccess,
+  subStepDetailAction,
   subStepDetailActionFailure,
-  subStepDetailActionSuccess, subStepResultActionFailure, subStepResultActionSuccess
+  subStepDetailActionSuccess,
+  subStepDetailClearAction,
+  subStepResultAction,
+  subStepResultActionFailure,
+  subStepResultActionSuccess
 } from "./subStep.action";
 
 
@@ -39,10 +44,14 @@ export function subStepReducer(state: any, action: any) {
 
 const _subStepDetailReducer = createReducer(
     subStepDetailState,
-    on(subStepAction, (state, action) => {
+    on(subStepDetailAction, (state, action) => {
+        return {
+            ...state
+        }
+    }),
+    on(subStepDetailClearAction, (state, action) => {
         return {
             ...state,
-          errors: null,
           data: null
         }
     }),
@@ -69,7 +78,7 @@ export function subStepDetailReducer(state: any, action: any) {
 
 const _subStepResultReducer = createReducer(
     subStepResultState,
-    on(subStepAction, (state, action) => {
+    on(subStepResultAction, (state, action) => {
         return {
             ...state,
         }

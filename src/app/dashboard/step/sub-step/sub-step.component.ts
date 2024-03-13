@@ -12,7 +12,11 @@ import {
 import {select, Store} from "@ngrx/store";
 import {ActivatedRoute} from "@angular/router";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
-import {subStepDetailAction, subStepResultAction} from "../../../shared/store/step/subStep/subStep.action";
+import {
+  subStepDetailAction,
+  subStepDetailClearAction,
+  subStepResultAction
+} from "../../../shared/store/step/subStep/subStep.action";
 import {SubResult, SubStepModel} from "../../../shared/models/subStep.model";
 import {getSubStepDetailState, getSubStepResultState} from "../../../shared/store/step/subStep/subStep.selector";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
