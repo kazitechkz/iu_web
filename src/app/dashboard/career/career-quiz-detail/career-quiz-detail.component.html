@@ -22,9 +22,12 @@
           <a (click)="openDialog()" class="bg-violet-first main-violet-first-rounded cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold" *ngIf="isPurchased">
             {{"PASS_QUIZ"|translate}} <fa-icon class="ml-2" [icon]="faChevronRight"></fa-icon>
           </a>
-          <a routerLink="/{{RoutesName.careerQuizPlan}}" class="bg-[#ff914d] cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold" *ngIf="!isPurchased">
+          <a (click)="payForCareerQuiz(careerQuiz.id)" class="bg-[#ff914d] cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold" *ngIf="!isPurchased">
              <fa-icon class="ml-2" [icon]="faCoins"></fa-icon> Приобретите тест всего за {{careerQuiz.price}} KZT
           </a>
+          <div class="py-2 my-3 pl-3">
+            <small class="main-orange-color my-3 font-bold">{{"YOU_CAN_PASS_ONLY_ONCE"|translate}}</small>
+          </div>
         </div>
       </div>
     </div>

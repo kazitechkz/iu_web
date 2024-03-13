@@ -98,7 +98,7 @@
   "AI_ADVISE": "Спроси у AI",
   "GAMES": "Игры",
   "SHOP": "Магазин",
-  "NOTIFICATION": "Объявление",
+  "NOTIFICATION": "Сообщения",
   "SUBSCRIPTION": "Подписки",
   "NEWS": "Новости",
   "SELECT_PROFILE_SUBJECTS": "Выберите профильные предметы",
@@ -150,11 +150,11 @@
   "RESULTS": "Результаты",
   "RIGHT_FROM": "верных из",
   "STATS_BY_RESULT_IS_AVAILABLE": "Статистика по вашим результатам тестирования доступна тут",
-  "TOTAL": "Всего",
+  "TOTAL": "Баллов",
   "TOTAL_QUESTION_PASSED": "Вопросов пройдено",
   "TOTAL_QUESTION": "Всего вопросов",
-  "RIGHT_TOTAL": "Всего верно",
-  "WRONG_TOTAL": "Всего неверно",
+  "RIGHT_TOTAL": "Верно",
+  "WRONG_TOTAL": "Неверно",
   "UNFINISHED": "Незавершенно",
   "AVERAGE_RATING": "Средний результат",
   "UNT_TYPE": "Тип тестирования",
@@ -525,5 +525,8 @@
   "ORDER_STATUS": "Статус",
   "ORDER_SUCCESS": "Успешно",
   "ORDER_ERROR": "Ошибка",
-  "REMAINING_QTY": "Осталось вопросов"
+  "REMAINING_QTY": "Осталось вопросов",
+  "CURRENT_STEP": "Текущий этап",
+  "YOU_CAN_PASS_ONLY_ONCE": "Вы можете сдать не более 1 раза",
+  "RATING_USERS": "Рейтинг"
 }

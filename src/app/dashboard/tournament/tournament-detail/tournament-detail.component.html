@@ -59,7 +59,7 @@
     <div class="grid grid-cols-12 m-2 mobile:mx-0 sm:mx-0">
       <div class="col-span-12 bg-violet-orange-first p-5 shadow-xl rounded-full my-3 main-violet-first-rounded text-white md:text-lg uppercase" *ngIf="currentSubTournament">
         <section>
-          <div class="text-center pyro" *ngIf="winner_tournament; else winner">
+          <div class="text-center pyro font-bold" *ngIf="winner_tournament; else winner">
             {{'WINNER'|translate}}: {{winner_tournament.name ? winner_tournament.name : ''}}
             <div class="before"></div>
             <div class="after"></div>
@@ -164,8 +164,12 @@
 
               </ng-template>
             </section>
+          <section *ngIf="currentSubTournament">
+            <div class="text-center font-bold">
+                {{"CURRENT_STEP"|translate}} : {{currentSubTournament.tournament_step | globalTranslate : "title" : translate.currentLang}}
+            </div>
+          </section>
         </div>
-
       </div>
     </div>
 
@@ -651,87 +655,5 @@
         <div [innerHTML]="tournamentDetails|globalTranslate:'description':translate.currentLang"></div>
       </div>
     </ngx-smart-modal>
-    <!--    <div class="grid grid-cols-12 m-2">-->
-    <!--      <div class="col-span-12 bg-white p-5 shadow-2xl rounded-2xl my-3">-->
-    <!--        <div class="lg:p-5 rounded-full">-->
-    <!--          <p class="text-white text-lg md:text-2xl font-bold  my-2 px-1 uppercase">Этапы:</p>-->
-    <!--          <ul-->
-    <!--            class="relative m-0 w-full list-none overflow-hidden p-0 transition-[height] duration-200 ease-in-out"-->
-    <!--            data-te-stepper-init-->
-    <!--            data-te-stepper-type="vertical">-->
-    <!--            &lt;!&ndash;First item&ndash;&gt;-->
-    <!--            <li-->
-    <!--              *ngFor="let step of steps"-->
-    <!--              data-te-stepper-step-ref-->
-    <!--              class="relative h-fit {{!step.is_last?'after:absolute after:left-[2.45rem] after:top-[3.6rem] after:mt-px after:h-[calc(100%-2.45rem)] after:w-px after:bg-[#9BA1FF] after:content-[\'\'] dark:after:bg-[9BA1FF]':''}}">-->
-    <!--              <div-->
-    <!--                data-te-stepper-head-ref-->
-    <!--                class="flex cursor-pointer text-white items-center p-6 leading-[1.3rem] no-underline after:bg-[#9BA1FF] after:content-[''] hover:bg-[#9BA1FF] focus:outline-none hover:text-white">-->
-    <!--              <span-->
-    <!--                data-te-stepper-head-icon-ref-->
-    <!--                class="mr-3 flex h-14 w-14 items-center justify-center rounded-full bg-[#9BA1FF] text-sm font-medium text-white border-2 border-white">-->
-    <!--                <fa-icon class="mr-1" [icon]="faUsers"></fa-icon>-->
-    <!--                {{step.max_participants}}-->
-    <!--                </span>-->
-    <!--                <span-->
-    <!--                  data-te-stepper-head-text-ref-->
-    <!--                  class=" after:absolute after:flex after:text-[0.8rem] after:content-[data-content]">-->
-    <!--                   {{step |globalTranslate:'title':translate.currentLang}}-->
-    <!--                </span>-->
-    <!--              </div>-->
-    <!--              <div-->
-    <!--                data-te-stepper-content-ref-->
-    <!--                class="transition-[height, margin-bottom, padding-top, padding-bottom] left-0 overflow-hidden pb-6 pl-[3.75rem] pr-6 duration-300 ease-in-out">-->
-    <!--                <div class="w-full rounded-full lg:p-5" *ngIf="getSubTournament(step.id);else noSubTournament">-->
-    <!--                  <div class="card lg:flex items-center w-full shadow-lg rounded-xl p-4 body-text">-->
-    <!--                    <div class="md:w-2/12 text-center main-secondary-color my-2">-->
-    <!--                      <fa-icon class="text-2xl lg:text-5xl" [icon]="faCheckCircle"></fa-icon>-->
-    <!--                    </div>-->
-    <!--                    <div class="md:w-10/12 text-center lg:text-left my-2">-->
-    <!--                      <p class="text-md md:text-2xl font-bold">{{step |globalTranslate:'title':translate.currentLang}}</p>-->
-    <!--                      <ul class="list-disc pl-3 lg:px-4">-->
-    <!--                        <li class="text-sm md:text-xl ">-->
-    <!--                          {{"PARTICIPANTS_QUANTITY"|translate}}: <b>{{step.max_participants}}</b>-->
-    <!--                        </li>-->
-    <!--                        <li class="text-sm md:text-xl">-->
-    <!--                          {{"QUESTION_QUANTITY"|translate}}: <b>{{getSubTournament(step.id)!.question_quantity}}</b>-->
-    <!--                        </li>-->
-    <!--                        <li class="text-sm md:text-xl">-->
-    <!--                          {{"MAX_POINTS"|translate}}: <b>{{getSubTournament(step.id)!.max_point}}</b>-->
-    <!--                        </li>-->
-    <!--                        <li class="text-sm md:text-xl">-->
-    <!--                          {{"PARTICIPATION_DATE"|translate}}: <b>{{moment(getSubTournament(step.id)!.start_at).format('HH:mm DD.MM.YYYY')}}</b> - по <b>{{moment(getSubTournament(step.id)!.end_at).format('HH:mm DD.MM.YYYY')}}</b>-->
-    <!--                        </li>-->
-    <!--                        <li class="text-sm md:text-xl">-->
-    <!--                          {{"TIME"|translate}}-->
-    <!--                        </li>-->
-    <!--                      </ul>-->
-    <!--                    </div>-->
-    <!--                    <div class="text-center md:text-right">-->
-    <!--                      <a-->
-    <!--                        routerLink="{{'/' + RoutesName.subTournamentDetail + '/' + getSubTournament(step.id)!.id}}"-->
-    <!--                        type="button"-->
-    <!--                        class="inline-block my-2 main-secondary-bg border-0 rounded-full px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0"-->
-    <!--                        data-te-ripple-init>-->
-    <!--                        {{"PASS"|translate}}-->
-    <!--                      </a>-->
-    <!--                    </div>-->
-    <!--                  </div>-->
-
-
-    <!--                </div>-->
-    <!--                <ng-template #noSubTournament>-->
-    <!--                  <p class="text-danger">-->
-    <!--                    {{"STEP_NOT_FOUND"|translate}}-->
-    <!--                  </p>-->
-    <!--                </ng-template>-->
-    <!--              </div>-->
-    <!--            </li>-->
-
-    <!--          </ul>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-
   </div>
 </section>

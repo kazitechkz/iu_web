@@ -13,7 +13,17 @@ import {
   faF,
   faBriefcase,
   faCircleQuestion,
-  faSitemap, faWallet, faRobot, faChess, faCartShopping, faHandshake, faMessage, faNewspaper, faUserCircle, faPlay
+  faSitemap,
+  faWallet,
+  faRobot,
+  faChess,
+  faCartShopping,
+  faHandshake,
+  faMessage,
+  faNewspaper,
+  faUserCircle,
+  faPlay,
+  faStar
 } from "@fortawesome/free-solid-svg-icons";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import {Router} from "@angular/router";
@@ -97,6 +107,11 @@ export class SidebarComponent implements OnInit {
       title: 'SUBSCRIPTION',
       path: RoutesName.planMode,
       icon: faHandshake as IconProp
+    },
+    {
+      title: 'RATING_USERS',
+      path: RoutesName.walletRating,
+      icon: faStar as IconProp
     },
     {
       title: 'WALLET',

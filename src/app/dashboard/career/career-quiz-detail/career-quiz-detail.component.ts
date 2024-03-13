@@ -24,6 +24,9 @@ import {NgxSmartModalService} from "ngx-smart-modal";
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {faFacebookF, faInstagram, faLinkedin, faVk, faWhatsapp} from "@fortawesome/free-brands-svg-icons";
 import {faGlobe} from "@fortawesome/free-solid-svg-icons/faGlobe";
+import {payCareerAction} from "../../../shared/store/career/payCareer/payCareer.action";
+import {PayCareerRequest} from "../../../shared/store/career/payCareer/payCareer.request";
+import {payCareerSelector} from "../../../shared/store/career/payCareer/payCareer.selector";
 
 @Component({
   selector: 'app-career-quiz-detail',
@@ -43,6 +46,7 @@ export class CareerQuizDetailComponent implements OnInit{
   public quizId:number|null = null;
   public careerQuiz:CareerQuiz|null = null;
   public isPurchased:boolean = false;
+  isCareerQuizBlocked:number[] = [];
   //Data
 
   constructor() {
@@ -52,6 +56,7 @@ export class CareerQuizDetailComponent implements OnInit{
           this.isPurchased = item.data.is_purchased
         }
       })
+
   }
   ngOnInit(): void {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
@@ -59,6 +64,20 @@ export class CareerQuizDetailComponent implements OnInit{
     })
     if(this.quizId){
       this.getCareerQuiz();
+    }
+  }
+
+  payForCareerQuiz(quiz_id:number){
+    if(!this.isCareerQuizBlocked.includes(quiz_id)){
+      this.isCareerQuizBlocked.push(quiz_id);
+      this._store.dispatch(payCareerAction({requestData:{career_quiz_id:quiz_id} as PayCareerRequest}))
+      this._store.select(payCareerSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+        if(item.data){
+          if(item.data.pg_redirect_url){
+            window.location.href = item.data.pg_redirect_url;
+          }
+        }
+      })
     }
   }
 
