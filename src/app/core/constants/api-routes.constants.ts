@@ -106,6 +106,7 @@ export enum APIRoutesName {
     createTechSupportMessage="tech-support-create-message",
     closeTechSupportTicket="tech-support-close-ticket",
     fullStat="statistics/full-stats",
+    findSubStepBySubCategoryId="findSubStepBySubCategoryId",
     getMySavedQuestions="my-saved-questions",
     getMyAppealQuestions="my-appeals-questions",
     getMyAppealQuestionById="my-appeal-question-by",

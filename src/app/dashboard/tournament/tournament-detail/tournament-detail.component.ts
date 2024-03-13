@@ -21,13 +21,11 @@ import {
   faMoneyBill,
   faUsers,
   faCheckCircle,
-  faQuestionCircle,
   faSmileWink,
   faSadTear
 } from "@fortawesome/free-solid-svg-icons";
 import {
   Collapse,
-  Stepper,
   initTE, Tab,
 } from "tw-elements";
 import {SubTournament} from "../../../shared/models/subTournament.model";
@@ -35,24 +33,18 @@ import {
   ParticipateTournamentRequest
 } from "../../../shared/store/tournament/participateTournament/participateTournament.request";
 import {
-  OnParticipateTournamentAction, OnPayTournamentAction
+  OnPayTournamentAction
 } from "../../../shared/store/tournament/participateTournament/participateTournament.action";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {
   participateTournamentSelector, payTournamentSelector
 } from "../../../shared/store/tournament/participateTournament/participateTournament.selector";
 import {
-  getSubTournamentDetailSelector
-} from "../../../shared/store/tournament/getSubTournamentDetail/getSubTournamentDetail.selector";
-import {
   getSubTournamentRivalsSelector
 } from "../../../shared/store/tournament/getSubTournamentRivals/getSubTournamentRivals.selector";
 import {
   getSubTournamentParticipantsSelector
 } from "../../../shared/store/tournament/getSubTournamentParticipants/getSubTournamentParticipants.selector";
-import {
-  getSubTournamentWinnersSelector
-} from "../../../shared/store/tournament/getSubTournamentWinners/getSubTournamentWinners.selector";
 import {
   getSubTournamentResultsSelector
 } from "../../../shared/store/tournament/getSubTournamentResults/getSubTournamentResults.selector";
@@ -86,9 +78,6 @@ import {
 } from "../../../shared/store/tournament/getSubTournamentRivals/getSubTournamentRivals.action";
 import {Pagination} from "../../../shared/store/pagination";
 import {SubTournamentParticipant} from "../../../shared/models/subTournamentParticipant.model";
-import {
-  GetSubTournamentResultsModel
-} from "../../../shared/store/tournament/getSubTournamentResults/getSubTournamentResults.model";
 import {SubTournamentResult} from "../../../shared/models/subTournamentResult.model";
 import {StrHelper} from "../../../core/helpers/str.helper";
 import {NgxSmartModalService} from "ngx-smart-modal";

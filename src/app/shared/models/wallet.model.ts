@@ -12,6 +12,6 @@ export interface Wallet {
   balance: string
   decimal_places: number
   created_at: Date
-  updated_at: Date|null
-  holder:OrdinaryUser|null
+  updated_at: Date | null
+  holder: OrdinaryUser | null
 }

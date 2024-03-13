@@ -4,6 +4,7 @@ export enum SubStepActionTypes {
     OnSubStepFailure = "[SubStep Action] On SubStep Failure",
 
     OnSubStepDetail = "[SubStepDetail Action] On SubStepDetail",
+    OnSubStepDetailClear = "[SubStepDetailClear Action] On SubStepDetailClear",
     OnSubStepDetailSuccess = "[SubStepDetail Action] On SubStepDetail Success",
     OnSubStepDetailFailure = "[SubStepDetail Action] On SubStepDetail Failure",
 
