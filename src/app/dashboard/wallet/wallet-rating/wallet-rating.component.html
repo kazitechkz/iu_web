@@ -5,11 +5,11 @@
     <li class="table-header text-white rounded-full bg-violet-first main-violet-first-rounded font-bold">
       <div class="col col-1">№</div>
       <div class="col col-2">{{'NAME'|translate}}</div>
-      <div class="col col-3">{{'EMAIL'|translate}}</div>
+<!--      <div class="col col-3">{{'EMAIL'|translate}}</div>-->
       <div class="col col-4">{{'BALANCE'|translate}}</div>
       <div class="col col-4">{{'PRIZE'|translate}}</div>
     </li>
-    <li [ngClass]="getBgColor(wallet.value.holder?.id) ? 'bg-green-violet' : 'bg-black-violet-orange-180-05'" class="table-row main-violet-first-rounded text-white font-bold rounded-full py-5"
+    <li [ngClass]="getBgColor(wallet.value.holder?.id) ? 'bg-green-violet' : 'bg-black-violet-orange-180-05'" class="table-row main-violet-first-rounded text-white font-bold mobile:text-[14px] sm:text-[14px] md:text-[14px] ld:text-[14px] xl:text-[16px] mobile:rounded-[20px] sm:rounded-[20px] md:rounded-[20px] lg:rounded-full py-5"
         *ngFor="let wallet of wallets.data | paginate: {itemsPerPage: wallets.per_page, currentPage: wallets.current_page, totalItems: wallets.total} | keys: requestData.page : wallets.per_page">
       <div class="col col-1 flex items-center" data-label="№">
         {{parseInt(wallet.key) + 1}}
@@ -18,7 +18,7 @@
         <div [ngStyle]="{'background-image': 'url(' + ImageHelper.getImage(wallet.value.holder?.file?.url) + ')'}" class="w-12 h-12 rounded-full border-2 bg-cover bg-no-repeat my-2"></div>
         <span class="mx-2">{{wallet.value.holder?.name}}</span>
       </div>
-      <div class="col col-3 flex items-center break-all" [attr.data-label]="'EMAIL'|translate">{{wallet.value.holder?.email}}</div>
+<!--      <div class="col col-3 flex items-center break-all" [attr.data-label]="'EMAIL'|translate">{{wallet.value.holder?.email}}</div>-->
       <div class="col col-4 flex items-center break-all" [attr.data-label]="'BALANCE'|translate">{{wallet.value.balance}}</div>
       <div class="col col-4 flex items-center break-all" [attr.data-label]="'PRIZE'|translate">{{getPrize(parseInt(wallet.key) + 1)}}</div>
     </li>

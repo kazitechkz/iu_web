@@ -37,7 +37,7 @@
             ({{moment(me.birth_date).format("DD/MM/yyyy")}})
           </p>
         </span>
-        <span class="flex justify-center items-center mb-2 py-3 px-3 text-sm md:text-md lg:text-lg font-normal main-violet-first-rounded bg-violet-first text-white text-center rounded-full">
+        <span *ngIf="!me.isKundelik" class="flex justify-center items-center mb-2 py-3 px-3 text-sm md:text-md lg:text-lg font-normal main-violet-first-rounded bg-violet-first text-white text-center rounded-full">
           <p><fa-icon class="mr-2" [icon]="faEnvelope"></fa-icon>
             {{me.email}}
           </p>
@@ -54,6 +54,7 @@
         </span>
       </div>
     </div>
+
     <div class="col-span-12 lg:col-span-12 xl:col-span-6 2xl:col-span-6 my-4" *ngIf="subscriptions.length > 0">
       <div class="wrapper" >
         <div *ngIf="basicSubscriptions.length > 0"
@@ -116,8 +117,8 @@
       </div>
     </div>
     <div class="col-span-12 lg:col-span-12  my-4" [ngClass]="{'xl:col-span-6 2xl:col-span-6':subscriptions.length > 0}">
+      <h1 class="text-white mb-3">{{"MY_ORDERS"|translate}}</h1>
       <div>
-        <h1 class="text-white mb-3">{{"MY_ORDERS"|translate}}</h1>
         <ul class="responsive-table" *ngIf="myOrders">
           <li class="table-header bg-violet-first main-violet-first-rounded">
             <div class="col col-1 text-white">№</div>
