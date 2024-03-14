@@ -45,7 +45,7 @@ import {answerSelector} from "../../../shared/store/attempt/answer/answer.select
 import {finishAttemptAction} from "../../../shared/store/attempt/finishAttempt/finishAttempt.action";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {TwNotification} from "ng-tw";
-import {Subject} from "../../../shared/models/subject.model";
+import {Me} from "../../../shared/models/user.model";
 
 @Component({
   selector: 'app-pass-unt-exam',
@@ -86,6 +86,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     @ViewChild('slickModal') slickModal: SlickCarouselComponent;
 
   destroyRef = inject(DestroyRef);
+    me: Me | null = null
     questions:Question[] = [];
      //@ts-ignore
     active_subject_id:number;
@@ -100,8 +101,10 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     this.getAttempt();
     this.getAppealTypes();
     initFlowbite();
+    this.checkSubscription()
   }
   constructor() {
+    let meLocal = localStorage.getItem('userinfo')
     //Answer Selector
     this._store.select(answerSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
@@ -130,8 +133,17 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
         this.appealRequest.type_id = item.data.find(item=>true)?.id ??0;
       }
     });
+    if (meLocal) {
+      this.me = JSON.parse(meLocal)
+    }
   }
-
+  checkSubscription():boolean {
+    if (this.me) {
+      return Object.entries(this.me.subscription).length > 0;
+    } else {
+      return false
+    }
+  }
   getAttempt(){
     this.loading = true;
     this.subscription =  this._route.params.subscribe(params => {
@@ -165,7 +177,6 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     });
     this.loading = false;
   }
-
   getAttemptResult(active_subject_id:number){
     if(active_subject_id){
       let requestAnswer = {attempt_subject_id:active_subject_id} as AnsweredResultRequest;
@@ -174,12 +185,10 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     }
 
   }
-
   getAppealTypes(){
     this._store.dispatch(appealTypesAction());
 
   }
-
   changeSubject(subject_id:any,activeSubjectId:number|null = null){
     this.active_slider = 0;
     this.slickModal.slickGoTo(0);
@@ -205,19 +214,16 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     this.loading = false;
     this.getAttemptResult(this.active_subject_id);
   }
-
   timeConfig:CountdownConfig = {
     // @ts-ignore
     leftTime:180,
     notify:[1],
   }
-
   handleCountDownEvent(e: CountdownEvent) {
     if (e.action === 'notify') {
       this._store.dispatch(finishAttemptAction({requestData:this.attempt.attempt_id}));
     }
   }
-
   answerQuestion(questionId:number,answer:string){
     if(!this.answeredResult[questionId]){
     if(!this.answered_questions[questionId]){
@@ -252,12 +258,10 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
       }
     }
   }
-
   saveQuestion(){
     let request = {questionId:this.questions[this.active_slider].id} as SaveQuestionRequest;
     this._store.dispatch(onSaveQuestionAction({requestData:request}));
   }
-
   getFiftyFifty(){
     let request = {questionId:this.questions[this.active_slider].id} as GetFiftyFiftyRequest;
     this._store.dispatch(onGetFiftyFiftyAction({requestData:request}));
@@ -277,7 +281,6 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     }
     return true;
   }
-
   createAppeal(){
     this.appealRequest.question_id = this.questions[this.active_slider].id;
     let request = Object.assign({},this.appealRequest)
@@ -285,8 +288,6 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     this.appealRequest.message = "";
     this.closeModal('appealModal');
   }
-
-
   checkAnswer(questionId:number){
     if((!this.answeredResult[questionId])){
       this.loadingAnswer = true;
@@ -303,11 +304,9 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
       }
     }
   }
-
   finishAttempt(){
     this._store.dispatch(finishAttemptAction({requestData:this.attempt.attempt_id}));
   }
-
   is_answered(answer:string){
     let index = this.questions[this.active_slider].id;
     if(this.answered_questions[index]){
@@ -318,7 +317,6 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     }
     return false;
   }
-
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
@@ -328,17 +326,13 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     openModal(modalIdentifier:string){
       this.dialog.getModal(modalIdentifier).open()
     }
-
     closeModal(modalIdentifier:string){
       this.dialog.getModal(modalIdentifier).close()
     }
-
   //Open Modal
-
   setActualQuestion(){
     this.actual_question = this.questions[this.active_slider];
   }
-
   //Sliders
   goToSlider(slideNo:number){
     this.slickModal.slickGoTo(slideNo);
@@ -353,13 +347,11 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
   prev() {
     this.slickModal.slickPrev();
   }
-
   getAnsweredQuestionQTY(){
     if(this.active_subject_id && this.answeredResult && this.questions){
       this.unAnsweredQuestion = this.questions.filter(item=>!Object.keys(this.answeredResult).includes(item.id.toString())).length;
     }
   }
-
   //@ts-ignore
   slidePaginationConfig = {
     "slidesToShow": 15,
@@ -456,18 +448,16 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     ]
   };
 //Sliders
-
-
     protected readonly StrHelper = StrHelper;
     protected readonly ColorConstants = ColorConstants;
     protected readonly ImageHelper = ImageHelper;
     protected readonly faHandshake = faHandshake;
     protected readonly prompt = prompt;
     protected readonly faFaceFrownOpen = faFaceFrownOpen;
-  protected readonly faClover = faClover;
-  protected readonly faPersonRunning = faPersonRunning;
-  protected readonly JSON = JSON;
-  protected readonly Object = Object;
-  protected readonly faChevronLeft = faChevronLeft;
-  protected readonly faChevronRight = faChevronRight;
+    protected readonly faClover = faClover;
+    protected readonly faPersonRunning = faPersonRunning;
+    protected readonly JSON = JSON;
+    protected readonly Object = Object;
+    protected readonly faChevronLeft = faChevronLeft;
+    protected readonly faChevronRight = faChevronRight;
 }
