@@ -226,7 +226,9 @@
                     </tbody>
                   </table>
                   <div class="my-2 flex justify-center">
-                    <pagination-controls class="rounded-full" (pageChange)="participantPageChanged($event)"></pagination-controls>
+                    <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                                         [nextLabel]="'NEXT_PAGINATION' | translate"
+                                         [responsive]="true" class="rounded-full" (pageChange)="participantPageChanged($event)"></pagination-controls>
                   </div>
                 </div>
 
@@ -430,7 +432,9 @@
                     </tbody>
                   </table>
                   <div class="my-2 flex justify-center">
-                    <pagination-controls class="rounded-full" (pageChange)="resultPageChanged($event)"></pagination-controls>
+                    <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                                         [nextLabel]="'NEXT_PAGINATION' | translate"
+                                         [responsive]="true" class="rounded-full" (pageChange)="resultPageChanged($event)"></pagination-controls>
                   </div>
                 </div>
 

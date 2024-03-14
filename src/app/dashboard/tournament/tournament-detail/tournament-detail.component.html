@@ -334,7 +334,9 @@
                     </tbody>
                   </table>
                   <div class="my-2 flex justify-center" *ngIf="participants.total > participants.per_page">
-                    <pagination-controls class="rounded-full"
+                    <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                                         [nextLabel]="'NEXT_PAGINATION' | translate"
+                                         [responsive]="true" class="rounded-full"
                                          (pageChange)="participantPageChanged($event)"></pagination-controls>
                   </div>
                 </div>
@@ -406,7 +408,9 @@
                   </table>
                   <div class="my-2 flex justify-center"
                        *ngIf="sub_tournament_results.total > sub_tournament_results.per_page">
-                    <pagination-controls class="rounded-full"
+                    <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                                         [nextLabel]="'NEXT_PAGINATION' | translate"
+                                         [responsive]="true" class="rounded-full"
                                          (pageChange)="resultPageChanged($event)"></pagination-controls>
                   </div>
                 </div>

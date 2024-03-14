@@ -73,7 +73,9 @@
         </div>
       </div>
       <div class="my-2 flex justify-center" *ngIf="forumData.last_page > 1">
-        <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
+        <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                             [nextLabel]="'NEXT_PAGINATION' | translate"
+                             [responsive]="true" class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
       </div>
     </div>
     <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-3 order-1 lg:order-2">

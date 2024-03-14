@@ -51,7 +51,9 @@
       </div>
     </div>
     <div class="col-span-12 my-2 flex justify-center" *ngIf="allNews.last_page > 1">
-      <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
+      <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                           [nextLabel]="'NEXT_PAGINATION' | translate"
+                           [responsive]="true" class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
     </div>
   </div>
 </div>

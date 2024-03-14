@@ -591,3 +591,9 @@ body{
     padding: 8px;
   }
 }
+.ngx-pagination a {
+  color: white!important;
+}
+.ngx-pagination a:hover {
+  color: black;
+}

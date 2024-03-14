@@ -131,7 +131,9 @@
             </tbody>
           </table>
           <div class="my-2 flex justify-center" *ngIf="stats.results.last_page > 1">
-            <pagination-controls class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
+            <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                                 [nextLabel]="'NEXT_PAGINATION' | translate"
+                                 [responsive]="true" class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
           </div>
         </div>
 
