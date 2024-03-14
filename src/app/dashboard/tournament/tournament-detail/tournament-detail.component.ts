@@ -89,6 +89,16 @@ import {
 } from "../../../shared/store/tournament/createTournamentAttempt/createTournamentAttempt.action";
 import Swal from "sweetalert2";
 import {OrdinaryUser} from "../../../shared/models/user.model";
+import {TournamentAward} from "../../../shared/models/tournamentAward.model";
+import {
+  GetTournamentAwardsRequest
+} from "../../../shared/store/tournament/getTournamentAwards/getTournamentAwards.request";
+import {
+  getTournamentAwardsAction
+} from "../../../shared/store/tournament/getTournamentAwards/getTournamentAwards.action";
+import {
+  getTournamentAwardSelector
+} from "../../../shared/store/tournament/getTournamentAwards/getTournamentAwards.selector";
 
 @Component({
   selector: 'app-tournament-detail',
@@ -123,6 +133,8 @@ export class TournamentDetailComponent implements OnInit {
   sub_tournament_results: Pagination<SubTournamentResult[]>;
   winner_tournament: OrdinaryUser|null = null
   public paginationResults = {page: 1, id: 0}
+  public paginationAwardsResults = {page: 1, id: 0}
+  public tournamentAwards:Pagination<TournamentAward[]>|null = null;
   //@ts-ignore
   sub_tournament_rivals: SubTournamentRival[];
   public paginationRival = {id: 0}
@@ -224,6 +236,13 @@ export class TournamentDetailComponent implements OnInit {
         }
       }
     )
+    this._store.select(getTournamentAwardSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
+      item => {
+        if(item.data){
+          this.tournamentAwards = item.data;
+        }
+      }
+    )
     this._store.select(participateTournamentSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         if (item.data && this.tournamentId) {
           this._store.dispatch(clearGetTournamentDetailAction())
@@ -276,6 +295,15 @@ export class TournamentDetailComponent implements OnInit {
       this.sub_tournament_rivals = []
     }
   }
+
+  getAwards(){
+    if(this.tournamentId){
+      this.paginationResults.id = this.tournamentId;
+      let request = Object.assign({},this.paginationResults) as GetTournamentAwardsRequest;
+      this._store.dispatch(getTournamentAwardsAction({requestData:request}));
+    }
+  }
+
   updateCountdown() {
     // Получаем текущую дату и время
     const currentDate = moment();
@@ -320,6 +348,13 @@ export class TournamentDetailComponent implements OnInit {
       objCopy.page = event
       this.paginationParticipants = objCopy
       this.getSubTournamentParticipants();
+    }
+  }
+
+  awardsPageChanged(event: number) {
+    if (event) {
+      this.paginationAwardsResults.page = event
+      this.getAwards();
     }
   }
 
@@ -407,4 +442,5 @@ export class TournamentDetailComponent implements OnInit {
   protected readonly StrHelper = StrHelper;
   protected readonly parseInt = parseInt;
   protected readonly console = console;
+  protected readonly JSON = JSON;
 }

@@ -75,7 +75,7 @@
               </div>
               <p class="font-bold text-[#342430] ml-2">{{battle.guest.name}}</p>
               <section class="text-center" *ngIf="battle.winner && battle.winner_id">
-                <button class="p-3 main-violet-first-rounded rounded-full bg-violet-first text-white" *ngIf="battle.winner_id == battle.guest;else guestNotWinner">
+                <button class="p-3 main-violet-first-rounded rounded-full bg-violet-first text-white" *ngIf="battle.winner_id == battle.guest_id;else guestNotWinner">
                   <p>
                     +{{battle.price * ((battle.owner_id?1:0) + (battle.guest_id?1:0))}} IU <fa-icon [icon]="faCoins"></fa-icon>
                   </p>

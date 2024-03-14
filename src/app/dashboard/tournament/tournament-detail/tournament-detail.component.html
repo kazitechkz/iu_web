@@ -6,7 +6,8 @@
              [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(tournamentDetails.file!.url) + ')'}">
         </div>
       </div>
-      <div class="col-span-12 md:col-span-8 min-h-[300px] shadow-2xl card-violet-bg rounded-2xl main-violet-first-rounded">
+      <div
+        class="col-span-12 md:col-span-8 min-h-[300px] shadow-2xl card-violet-bg rounded-2xl main-violet-first-rounded">
         <div class="py-4 px-2">
           <span
             class="font-bold text-white text-md md:text-lg lg:text-xl my-2 px-4 uppercase">
@@ -42,13 +43,16 @@
                   <p class="text-white font-bold text-md md:text-lg px-1">
                     {{"AVAILABLE_LANGUAGE"|translate}}:
                   </p>
-                  <p class="text-white font-bold text-md md:text-lg px-1 uppercase"  *ngFor="let locale of tournamentDetails.locales">
+                  <p class="text-white font-bold text-md md:text-lg px-1 uppercase"
+                     *ngFor="let locale of tournamentDetails.locales">
                     {{locale.title}}
                   </p>
                 </div>
               </div>
             </div>
-            <a class="text-white px-4 py-2 uppercase rounded-full main-violet-first-rounded bg-violet-first font-bold text-md md:text-lg my-4 cursor-pointer" (click)="dialog.getModal('more').open()">
+            <a
+              class="text-white px-4 py-2 uppercase rounded-full main-violet-first-rounded bg-violet-first font-bold text-md md:text-lg my-4 cursor-pointer"
+              (click)="dialog.getModal('more').open()">
               {{"MORE_INFO"|translate}}
             </a>
           </div>
@@ -57,7 +61,9 @@
     </div>
 
     <div class="grid grid-cols-12 m-2 mobile:mx-0 sm:mx-0">
-      <div class="col-span-12 bg-violet-orange-first p-5 shadow-xl rounded-full my-3 main-violet-first-rounded text-white md:text-lg uppercase" *ngIf="currentSubTournament">
+      <div
+        class="col-span-12 bg-violet-orange-first p-5 shadow-xl rounded-full my-3 main-violet-first-rounded text-white md:text-lg uppercase"
+        *ngIf="currentSubTournament">
         <section>
           <div class="text-center pyro font-bold" *ngIf="winner_tournament; else winner">
             {{'WINNER'|translate}}: {{winner_tournament.name ? winner_tournament.name : ''}}
@@ -85,7 +91,8 @@
                       {{'END_STEP'|translate}}: {{countdown}}
                     </p>
                     <div class="text-center">
-                      <div class="text-center font-bold main-orange-color" *ngIf="currentSubTournament.sub_tournament_results?.length; else notResult">
+                      <div class="text-center font-bold main-orange-color"
+                           *ngIf="currentSubTournament.sub_tournament_results?.length; else notResult">
                         {{'YOU_ARE_PASSED'|translate}}
                       </div>
                       <ng-template #notResult>
@@ -127,23 +134,25 @@
         </section>
 
       </div>
-      <div class="col-span-12 bg-violet-orange-first p-2 shadow-xl rounded-full my-3 main-violet-first-rounded text-white md:text-lg uppercase" *ngIf="!winner_tournament">
+      <div
+        class="col-span-12 bg-violet-orange-first p-2 shadow-xl rounded-full my-3 main-violet-first-rounded text-white md:text-lg uppercase"
+        *ngIf="!winner_tournament">
         <div>
-            <section *ngIf="firstSubTournament">
-              <div class="text-center"
-                   *ngIf="firstSubTournament.is_current && !firstSubTournament.is_finished && moment() > moment(firstSubTournament.start_at) && moment() < moment(firstSubTournament.end_at);else passed">
-                <div *ngIf="!isReg">
-                  <a
-                    (click)="participateTournament()"
-                    type="button"
-                    class="inline-block main-violet-first-rounded bg-gradient-to-r from-[#d87435] to-[#371744] border-0 rounded-full px-3 lg:px-4 py-2 lg:py-3 text-md font-bold uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0 my-2"
-                    data-te-ripple-init>
-                    {{"WANT_TO_PARTICIPATE"|translate}}
-                  </a>
-                </div>
+          <section *ngIf="firstSubTournament">
+            <div class="text-center"
+                 *ngIf="firstSubTournament.is_current && !firstSubTournament.is_finished && moment() > moment(firstSubTournament.start_at) && moment() < moment(firstSubTournament.end_at);else passed">
+              <div *ngIf="!isReg">
+                <a
+                  (click)="participateTournament()"
+                  type="button"
+                  class="inline-block main-violet-first-rounded bg-gradient-to-r from-[#d87435] to-[#371744] border-0 rounded-full px-3 lg:px-4 py-2 lg:py-3 text-md font-bold uppercase leading-normal transition duration-150 ease-in-out  cursor-pointer text-white focus:outline-none focus:ring-0 my-2"
+                  data-te-ripple-init>
+                  {{"WANT_TO_PARTICIPATE"|translate}}
+                </a>
               </div>
-              <ng-template #passed>
-                <div *ngIf="moment() < moment(firstSubTournament.start_at)">
+            </div>
+            <ng-template #passed>
+              <div *ngIf="moment() < moment(firstSubTournament.start_at)">
                 <span
                   class="main-orange-color text-xl md:text-2xl font-bold inline-block text-center w-full m-3">
                   <fa-icon [icon]="faSadTear"></fa-icon>
@@ -151,8 +160,8 @@
                       {{'WAIT_REGISTER_TIME'|translate}}
                     </p>
                 </span>
-                </div>
-                <div *ngIf="moment() > moment(firstSubTournament.end_at)">
+              </div>
+              <div *ngIf="moment() > moment(firstSubTournament.end_at)">
                 <span
                   class="main-orange-color text-xl md:text-2xl font-bold inline-block text-center w-full m-3">
                   <fa-icon [icon]="faSadTear"></fa-icon>
@@ -160,13 +169,14 @@
                       {{"UNFORTUNATELY_DATE_REGISTER_EXPIRED"|translate}}
                     </p>
                 </span>
-                </div>
+              </div>
 
-              </ng-template>
-            </section>
+            </ng-template>
+          </section>
           <section *ngIf="currentSubTournament">
             <div class="text-center font-bold">
-                {{"CURRENT_STEP"|translate}} : {{currentSubTournament.tournament_step | globalTranslate : "title" : translate.currentLang}}
+              {{"CURRENT_STEP"|translate}}
+              : {{currentSubTournament.tournament_step | globalTranslate : "title" : translate.currentLang}}
             </div>
           </section>
         </div>
@@ -263,6 +273,7 @@
             </li>
             <li role="presentation">
               <a
+                (click)="getAwards()"
                 href="#pills-awards"
                 class="my-2 block uppercase font-bold rounded-full bg-violet-first main-violet-first-rounded px-7 pb-3.5 pt-4 text-xs lg:text-md leading-tight text-white data-[te-nav-active]:bg-gradient-to-r from-[#d87435] to-[#371744] md:mr-4"
                 id="pills-award-tab"
@@ -288,7 +299,8 @@
             aria-labelledby="pills-users-tab"
             data-te-tab-active>
             <div class="lg:mx-3 md:mx-1 mobile:mx-1 sm:mx-1 p-4 mobile:px-0 sm:px-0" *ngIf="participants">
-              <div class="main-violet-first-rounded mx-3 mobile:mx-0 sm:mx-0 p-4 mobile:px-0 sm:px-0 rounded-2xl shadow-2xl tournament-list-50">
+              <div
+                class="main-violet-first-rounded mx-3 mobile:mx-0 sm:mx-0 p-4 mobile:px-0 sm:px-0 rounded-2xl shadow-2xl tournament-list-50">
                 <div class="relative overflow-x-auto" *ngIf="participants.data">
                   <table class="w-full text-sm text-left text-white">
                     <thead class="text-xs text-white capitalize">
@@ -381,9 +393,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr [ngClass]="(parseInt(result.key)+1) <= 8 ? 'tournament-list-50 main-violet-first-rounded ' : 'bg-transparent main-violet-first-rounded '"
-                        class="rounded-2xl my-2"
-                        *ngFor="let result of sub_tournament_results.data | paginate: { itemsPerPage: sub_tournament_results.per_page, currentPage: sub_tournament_results.current_page,totalItems:sub_tournament_results.total } | keys">
+                    <tr
+                      [ngClass]="(parseInt(result.key)+1) <= 8 ? 'tournament-list-50 main-violet-first-rounded ' : 'bg-transparent main-violet-first-rounded '"
+                      class="rounded-2xl my-2"
+                      *ngFor="let result of sub_tournament_results.data | paginate: { itemsPerPage: sub_tournament_results.per_page, currentPage: sub_tournament_results.current_page,totalItems:sub_tournament_results.total } | keys">
                       <th scope="row" class="px-6 py-4 mobile:px-2 mobile:py-2 mobile:text-center flex">
                         <p class="font-bold text-white ml-2 inline-block">{{parseInt(result.key) + 1}}</p>
                       </th>
@@ -640,6 +653,62 @@
               </div>
             </div>
             <!--Winners-->
+          </div>
+          <!--Awards-->
+          <div
+            class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+            id="pills-awards"
+            role="tabpanel"
+            aria-labelledby="pills-awards-tab"
+            data-te-tab-active>
+            <div class="lg:mx-3 md:mx-1 mobile:mx-1 sm:mx-1 p-4 mobile:px-0 sm:px-0" *ngIf="tournamentAwards">
+              <div class="main-violet-first-rounded mx-3 mobile:mx-0 sm:mx-0 p-4 mobile:px-0 sm:px-0 rounded-2xl shadow-2xl tournament-list-50">
+                <div class="relative overflow-x-auto" *ngIf="tournamentAwards.data">
+                  <table class="w-full text-sm text-left text-white">
+                    <thead class="text-xs text-white capitalize">
+                    <tr>
+                      <th scope="col" class="px-6 py-3 mobile:px-1 mobile:py-1 text-center">
+                        {{"ORDER_NUMBER"|translate}}
+                      </th>
+                      <th scope="col" class="px-6 py-3 mobile:px-1 mobile:py-1">
+                        {{"NAME"|translate}}
+                      </th>
+                      <th scope="col" class="px-6 py-3 mobile:px-1 mobile:py-1">
+                        {{"EMAIL"|translate}}
+                      </th>
+                      <th scope="col" class="px-6 py-3 mobile:px-2 mobile:hidden">
+                        {{"PRIZE"|translate}}
+                      </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="rounded-2xl my-2"
+                        *ngFor="let itemAward of tournamentAwards.data | paginate: { itemsPerPage: tournamentAwards.per_page, currentPage: tournamentAwards.current_page,totalItems:tournamentAwards.total }">
+                      <td class="px-6 py-4 mobile:py-2 mobile:px-2 text-center">
+                        <p class="text-white ml-2 italic">{{itemAward.order}}</p>
+                      </td>
+                      <td class="px-6 py-4 mobile:px-2 mobile:hidden ">
+                        <p class="text-white ml-2 italic">{{itemAward.user?.name}}</p>
+                      </td>
+                      <td class="px-6 py-4 mobile:px-2 mobile:hidden ">
+                        <p class="text-white ml-2 italic">{{itemAward.user?.email}}</p>
+                      </td>
+                      <td class="px-6 py-4 mobile:px-2 mobile:hidden ">
+                        <p class="text-white ml-2 italic">{{itemAward | globalTranslate:"title":translate.currentLang}}</p>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div class="my-2 flex justify-center" *ngIf="tournamentAwards.total > tournamentAwards.per_page">
+                    <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                                         [nextLabel]="'NEXT_PAGINATION' | translate"
+                                         [responsive]="true" class="rounded-full"
+                                         (pageChange)="awardsPageChanged($event)"></pagination-controls>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>

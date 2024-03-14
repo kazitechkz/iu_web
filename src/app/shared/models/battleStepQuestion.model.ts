@@ -1,5 +1,6 @@
 import {OrdinaryUser} from "./user.model";
 import {BattleStep} from "./battleStep.model";
+import {Question} from "./question.model";
 
 export interface BattleStepQuestion {
   id:number
@@ -15,4 +16,5 @@ export interface BattleStepQuestion {
   updated_at: Date|null
   user:OrdinaryUser|null
   battle_step:BattleStep|null
+  question:Question|null
 }

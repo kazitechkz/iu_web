@@ -171,6 +171,10 @@ import {VerifyEmailEffect} from "../../shared/store/auth/verifyEmail/verifyEmail
 import {KundelikEffect} from "../../shared/store/auth/kundelik/kundelik.effect";
 import {PromoEffect} from "../../shared/store/promo/promo.effect";
 import {PassSubStepEffect} from "../../shared/store/stat/passSubStep/passSubStep.effect";
+import {GetTournamentAwardsEffect} from "../../shared/store/tournament/getTournamentAwards/getTournamentAwards.effect";
+import {
+  GetBattleStepQuestionsEffect
+} from "../../shared/store/battle/getBattleStepQuestions/getBattleStepQuestions.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -305,4 +309,6 @@ export const EffectsConstants = [
     GetAllVideosEffect,
     GetVideoAuthorDetailEffect,
     GetVideoDetailEffect,
+    GetTournamentAwardsEffect,
+    GetBattleStepQuestionsEffect,
 ]

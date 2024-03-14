@@ -184,6 +184,12 @@ import {verifyEmailReducer} from "../../shared/store/auth/verifyEmail/verifyEmai
 import {kundelikReducer} from "../../shared/store/auth/kundelik/kundelik.reducer";
 import {promoReducer} from "../../shared/store/promo/promo.reducer";
 import {passSubStepReducer} from "../../shared/store/stat/passSubStep/passSubStep.reducer";
+import {
+  getTournamentAwardsReducer
+} from "../../shared/store/tournament/getTournamentAwards/getTournamentAwards.reducer";
+import {
+  getBattleStepQuestionsReducer
+} from "../../shared/store/battle/getBattleStepQuestions/getBattleStepQuestions.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -328,5 +334,7 @@ export const ReducersConstants = {
   getAllVideos:getAllVideosReducer,
   getVideoAuthorDetail:getVideoAuthorDetailReducer,
   getVideoDetail:getVideoDetailReducer,
+  getTournamentAwards:getTournamentAwardsReducer,
+  getBattleStepQuestions:getBattleStepQuestionsReducer,
 }
 
