@@ -1,0 +1,95 @@
+<div class="container mx-auto">
+  <div class="grid grid-cols-12 bg-[rgba(255,255,255,0.7)] py-5 rounded-[20px] main-violet-first-rounded" *ngIf="battleQuestions">
+    <div *ngFor="let battleStepQuestion of battleQuestions"
+         class="block rounded-lg p-6 my-3 col-span-12">
+      <div class="relative" *ngIf="battleStepQuestion.question">
+        <div class="min-h-[200px] w-full bg-[#ce6f34] rounded-[40px] absolute z-0 top-[-30px]"></div>
+        <div class="card bg-white h-full px-5 py-3 min-h-[200px] shadow-xl rounded-[40px] main-violet-first-rounded relative z-10">
+          <div class="card h-full-header px-[10px] py-[15px] min-h-[60px]">
+            <div class="mb-3">
+              <span  class="mb-3 text-md font-bold leading-tight main-orange-color cursor-pointer inline-block"
+                     *ngIf="battleStepQuestion.question.subject"
+                     [routerLink]="'/dashboard/'+RoutesName.stepRoute+'/'+battleStepQuestion.question.subject_id"
+              >
+                  {{battleStepQuestion.question.subject | globalTranslate : "title" : translate.currentLang}}
+                </span>
+              <p
+                *ngIf="battleStepQuestion.question.subcategory"
+                class="mb-2 text-md font-bold leading-tight main-orange-color">
+                {{battleStepQuestion.question.subcategory | globalTranslate : "title" : translate.currentLang}}
+              </p>
+            </div>
+            <h5
+              class="mb-2 text-xl font-medium leading-tight text-neutral-800">
+              <div [mathjax]="battleStepQuestion.question.text | mathjaxTransform"></div>
+            </h5>
+            <div class="my-2" *ngIf="battleStepQuestion.question.context" [innerHTML]="battleStepQuestion.question.context"></div>
+          </div>
+          <div class="content-question">
+            <div class="my-2">
+              <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <label
+                  class="mt-px flex pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('a', battleStepQuestion.answer ? battleStepQuestion.answer : null, battleStepQuestion.is_right ? battleStepQuestion.is_right : null)}">
+                  <div [mathjax]="'a.' + battleStepQuestion.question.answer_a | mathjaxTransform"></div>
+                  <fa-icon class="text-green-500 ml-2" [icon]="faCheck" *ngIf="battleStepQuestion.right_answer == 'a'"></fa-icon>
+                </label>
+              </div>
+              <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <label
+                  class="mt-px flex pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('b', battleStepQuestion.answer ? battleStepQuestion.answer : null, battleStepQuestion.is_right ? battleStepQuestion.is_right : null)}">
+                  <div [mathjax]="'b.' + battleStepQuestion.question.answer_b | mathjaxTransform"></div>
+                  <fa-icon class="text-green-500 ml-2" [icon]="faCheck" *ngIf="battleStepQuestion.right_answer == 'b'"></fa-icon>
+                </label>
+              </div>
+              <div class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <label
+                  class="mt-px flex pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('c', battleStepQuestion.answer ? battleStepQuestion.answer : null, battleStepQuestion.is_right ? battleStepQuestion.is_right : null)}">
+                  <div [mathjax]="'c.' + battleStepQuestion.question.answer_c | mathjaxTransform"></div>
+                  <fa-icon class="text-green-500 ml-2" [icon]="faCheck" *ngIf="battleStepQuestion.right_answer == 'c'"></fa-icon>
+                </label>
+              </div>
+              <div  class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <label
+                  class="mt-px flex pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('d', battleStepQuestion.answer ? battleStepQuestion.answer : null, battleStepQuestion.is_right ? battleStepQuestion.is_right : null)}">
+                  <div [mathjax]="'d.' + battleStepQuestion.question.answer_d | mathjaxTransform"></div>
+                  <fa-icon class="text-green-500 ml-2" [icon]="faCheck" *ngIf="battleStepQuestion.right_answer == 'd'"></fa-icon>
+                </label>
+              </div>
+              <div *ngIf="battleStepQuestion.question.answer_e" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <label
+                  class="mt-px flex pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('e', battleStepQuestion.answer ? battleStepQuestion.answer : null, battleStepQuestion.is_right ? battleStepQuestion.is_right : null)}">
+                  <div [mathjax]="'e.' + battleStepQuestion.question.answer_e | mathjaxTransform"></div>
+                  <fa-icon class="text-green-500 ml-2" [icon]="faCheck" *ngIf="battleStepQuestion.right_answer == 'e'"></fa-icon>
+
+                </label>
+              </div>
+              <div *ngIf="battleStepQuestion.question.answer_f" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <label
+                  class="mt-px flex pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('f', battleStepQuestion.answer ? battleStepQuestion.answer : null, battleStepQuestion.is_right ? battleStepQuestion.is_right : null)}">
+                  <div [mathjax]="'f.' + battleStepQuestion.question.answer_f | mathjaxTransform"></div>
+                  <fa-icon class="text-green-500 ml-2" [icon]="faCheck" *ngIf="battleStepQuestion.right_answer == 'f'"></fa-icon>
+
+                </label>
+              </div>
+              <div *ngIf="battleStepQuestion.question.answer_g" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <label
+                  class="mt-px flex pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('g', battleStepQuestion.answer ? battleStepQuestion.answer : null, battleStepQuestion.is_right ? battleStepQuestion.is_right : null)}">
+                  <div [mathjax]="'g.' + battleStepQuestion.question.answer_g | mathjaxTransform"></div>
+                  <fa-icon class="text-green-500 ml-2" [icon]="faCheck" *ngIf="battleStepQuestion.right_answer == 'g'"></fa-icon>
+
+                </label>
+              </div>
+              <div *ngIf="battleStepQuestion.question.answer_h" class="mb-4 block min-h-[1.5rem] pl-[1.5rem]">
+                <label
+                  class="mt-px flex pl-[0.15rem] hover:cursor-pointer" [ngStyle]="{'color': checkAnswer('h', battleStepQuestion.answer ? battleStepQuestion.answer : null, battleStepQuestion.is_right ? battleStepQuestion.is_right : null)}">
+                  <div [mathjax]="'h.' + battleStepQuestion.question.answer_h | mathjaxTransform"></div>
+                  <fa-icon class="text-green-500 ml-2" [icon]="faCheck" *ngIf="battleStepQuestion.right_answer == 'h'"></fa-icon>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

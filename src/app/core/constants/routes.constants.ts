@@ -63,6 +63,7 @@ export enum RoutesName {
     passByPromoCode="dashboard/pass-unt-by-promo",
     battleList="dashboard/battle-list",
     battleDetail="dashboard/battle-detail",
+    battleQuestions ="dashboard/battle-questions",
     battleGame="dashboard/battle-game",
     careerQuizList="dashboard/career-quizzes",
     careerQuizDetail="dashboard/career-quiz-detail",

@@ -61,6 +61,7 @@ import {IutubeListComponent} from "./iutube/iutube-list/iutube-list.component";
 import {IutubeVideosComponent} from "./iutube/iutube-videos/iutube-videos.component";
 import {IutubeDetailComponent} from "./iutube/iutube-detail/iutube-detail.component";
 import {IutubeAuthorsComponent} from "./iutube/iutube-authors/iutube-authors.component";
+import {BattleQuestionsComponent} from "./battle/battle-questions/battle-questions.component";
 
 
 const routes: Routes = [
@@ -112,6 +113,10 @@ const routes: Routes = [
       {
         path: 'battle-detail/:promo_code',
         component: BattleDetailComponent
+      },
+      {
+        path: 'battle-questions/:promo_code',
+        component: BattleQuestionsComponent
       },
       {
         path: 'battle-game/:step_id',

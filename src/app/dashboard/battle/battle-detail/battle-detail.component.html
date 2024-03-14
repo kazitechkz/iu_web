@@ -225,7 +225,9 @@
             </a>
           </div>
           <div class="my-3 p-3 text-center" *ngIf="battle.is_finished">
-            <a  type="button"
+            <a
+              [routerLink]="['/' + RoutesName.battleQuestions + '/' + promoCode]"
+              type="button"
                 class="text-lg
                       min-w-[280px]
                       inline-block
