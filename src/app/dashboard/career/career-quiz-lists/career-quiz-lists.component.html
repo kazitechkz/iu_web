@@ -7,15 +7,15 @@
             <div class="px-3">
               <div class="text-white">
                 <p class="text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold">
-                  Откройте свое будущее прямо сейчас!
+                  {{"OPEN_YOUR_CAREER"|translate}}
                 </p>
                 <p class="text-sm md:text-md my-2">
-                  Откройте для себя свое истинное призвание с помощью наших профессионально разработанных тестов – и все это по привлекательной цене.
+                  {{"OPEN_YOUR_CAREER_TITLE"|translate}}
                 </p>
               </div>
               <a routerLink="/{{RoutesName.careerQuizPlan}}"
                  class="inline-block mt-4 bg-violet-first main-violet-first-rounded cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold uppercase">
-                Приобрести <fa-icon [icon]="faChevronRight" class="ml-2"></fa-icon>
+                {{"BUY"|translate}} <fa-icon [icon]="faChevronRight" class="ml-2"></fa-icon>
               </a>
             </div>
           </div>
@@ -32,15 +32,15 @@
             <div class="px-3">
               <div class="text-white">
                 <p class="text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-bold">
-                  Моя статистика
+                  {{"CAREER_STAT"|translate}}
                 </p>
                 <p class="text-sm md:text-md my-2">
-                  Ваша статистика доступна тут
+                  {{"CAREER_STAT_TITLE"|translate}}
                 </p>
               </div>
               <a routerLink="/{{RoutesName.myCareerQuizAttempts}}"
                  class="inline-block mt-4 bg-violet-first main-violet-first-rounded cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold uppercase">
-                Моя статистика <fa-icon [icon]="faBarChart" class="ml-2"></fa-icon>
+                {{"MY_CAREER_STAT"|translate}} <fa-icon [icon]="faBarChart" class="ml-2"></fa-icon>
               </a>
             </div>
           </div>
@@ -57,19 +57,28 @@
            *ngFor="let careerQuiz of careerQuizList.data|paginate: { itemsPerPage: careerQuizList.per_page, currentPage: careerQuizList.current_page,totalItems:careerQuizList.total }">
         <div
           class="bg-black-violet-orange-180-05 main-violet-first-rounded relative rounded-2xl shadow-xl flex min-h-[305px] h-full overflow-x-hidden">
-          <div class="absolute hidden sm:block right-0 top-0 h-16 w-16">
-            <div
-              *ngIf="purchasedList.includes(careerQuiz.id);else notPurchased"
-              class="text-xs absolute transform rotate-45 bg-green-500 text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]">
-              Доступ открыт
-            </div>
-            <ng-template #notPurchased>
+          <div>
+            <div class="absolute sm:block right-0 top-0 h-16 w-16" *ngIf="careerQuiz.price == 0;else notFree">
               <div
-                class="text-xs absolute transform rotate-45 bg-[#c46a31] text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]">
-                Доступ закрыт
+                class="text-xs absolute transform rotate-45 bg-green-500 text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]">
+                {{"FREE"|translate}}!
+              </div>
+            </div>
+            <ng-template #notFree>
+              <div class="absolute sm:block right-0 top-0 h-16 w-16">
+                <div
+                  *ngIf="purchasedList.includes(careerQuiz.id);else notPurchased"
+                  class="text-xs absolute transform rotate-45 bg-green-500 text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]">
+                  {{"CAREER_ACCESS"|translate}}
+                </div>
+                <ng-template #notPurchased>
+                  <div
+                    class="text-xs absolute transform rotate-45 bg-[#c46a31] text-center text-white font-semibold py-1 right-[-35px] top-[32px] w-[170px]">
+                    {{"CAREER_NO_ACCESS"|translate}}
+                  </div>
+                </ng-template>
               </div>
             </ng-template>
-
           </div>
           <div class="grid grid-cols-3 p-3 align-middle relative mb-[40px]">
             <div class="col-span-3 md:col-span-2 order-2 sm:order-1 px-3 flex justify-center items-center z-20">
@@ -84,7 +93,6 @@
                   class="my-3 text-sm md:text-md text-white"
                   [innerHTML]="careerQuiz | globalTranslate:'description': translate.currentLang | truncate:90"
                 >
-
                 </div>
                 <div class="mt-4 text-md text-white">
                   <a [routerLink]="'/' + RoutesName.careerQuizDetail + '/' + careerQuiz.id"

@@ -28,7 +28,7 @@
             </div>
             <div class="border-t-white  border-b-white py-3">
               <p class="text-md lg:text-lg font-bold mb-2 text-white">
-                Приобретая группу вы приобретаете следующие тесты:
+                {{"BUY_GROUP_QUIZ"|translate}}
               </p>
               <div class="grid grid-cols-2" *ngIf="activeQuizGroup.career_quizzes">
                 <div class="col-span-2 my-1" *ngFor="let quiz of activeQuizGroup.career_quizzes">
@@ -44,11 +44,11 @@
             </div>
             <a (click)="payForCareerGroup(activeQuizGroup.id)"
                class="inline-block main-violet-first-rounded mt-4 bg-violet-first cursor-pointer text-white text-sm px-5 py-4 rounded-full font-bold" *ngIf="!isGroupBlocked.includes(activeQuizGroup.id);else isGroupLoaded">
-              ПРИОБРЕСТИ <fa-icon [icon]="faCoins"/>
+              {{"BUY_FOR"|translate}} <fa-icon [icon]="faCoins"/>
             </a>
             <ng-template #isGroupLoaded>
               <a class="inline-block border border-white mt-4 bg-violet-400 hover:bg-violet-700 cursor-pointer text-white text-sm px-5 py-4 rounded-xl  font-bold">
-                Ожидайте ... <fa-icon [icon]="faCoins"/>
+                {{"WAIT_PLEASE"|translate}} ... <fa-icon [icon]="faCoins"/>
               </a>
             </ng-template>
           </div>
@@ -73,21 +73,31 @@
                     <span class="text-title text-white">
                       {{quizItem.price}} KZT
                     </span>
-                    <div class="border flex p-1 border-white rounded-full text-white main-violet-first-rounded bg-violet-first cursor-pointer" *ngIf="purchased?.includes(quizItem.id);else notPurchased">
-                      Приобритен
-                      <fa-icon [icon]="faLockOpen" class="mx-2"></fa-icon>
-                    </div>
-                    <ng-template #notPurchased>
-                      <div (click)="payForCareerQuiz(quizItem.id)" class="card-button text-white main-violet-first-rounded bg-violet-first" *ngIf="!isCareerQuizBlocked.includes(quizItem.id);else careerQuizLoaded">
-                        Приобрести
-                        <fa-icon [icon]="faCartShopping" class="mx-2"></fa-icon>
-                      </div>
-                      <ng-template #careerQuizLoaded>
-                        <div  class="card-button text-white main-violet-first-rounded bg-violet-first">
-                          Ожидайте ...
+                    <div>
+                      <div *ngIf="quizItem.price == 0;else notFree">
+                        <div class="border flex p-1 border-white rounded-full text-white main-violet-first-rounded bg-violet-first cursor-pointer">
+                          {{"FREE"|translate}}
+                          <fa-icon [icon]="faLockOpen" class="mx-2"></fa-icon>
                         </div>
+                      </div>
+                      <ng-template #notFree>
+                        <div class="border flex p-1 border-white rounded-full text-white main-violet-first-rounded bg-violet-first cursor-pointer" *ngIf="purchased?.includes(quizItem.id);else notPurchased">
+                          {{"ALREADY_HAVE_BOUGHT"|translate}}
+                          <fa-icon [icon]="faLockOpen" class="mx-2"></fa-icon>
+                        </div>
+                        <ng-template #notPurchased>
+                          <div (click)="payForCareerQuiz(quizItem.id)" class="card-button text-white main-violet-first-rounded bg-violet-first" *ngIf="!isCareerQuizBlocked.includes(quizItem.id);else careerQuizLoaded">
+                            {{"BUY_FOR"|translate}}
+                            <fa-icon [icon]="faCartShopping" class="mx-2"></fa-icon>
+                          </div>
+                          <ng-template #careerQuizLoaded>
+                            <div  class="card-button text-white main-violet-first-rounded bg-violet-first">
+                              {{"WAIT_PLEASE"|translate}} ...
+                            </div>
+                          </ng-template>
+                        </ng-template>
                       </ng-template>
-                    </ng-template>
+                    </div>
                   </div>
                 </div>
               </div>

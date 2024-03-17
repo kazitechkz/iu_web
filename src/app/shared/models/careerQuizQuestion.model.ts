@@ -1,5 +1,6 @@
 import {CareerQuizFeature} from "./careerQuizFeature.model";
 import {CareerQuiz} from "./careerQuiz.model";
+import {CareerQuizAnswer} from "./careerQuizAnswer.model";
 
 export interface CareerQuizQuestion {
   id: number
@@ -15,4 +16,5 @@ export interface CareerQuizQuestion {
   updated_at: Date|null
   career_quiz_feature:CareerQuizFeature|null
   career_quiz:CareerQuiz|null
+  career_quiz_answers:CareerQuizAnswer[]|null
 }

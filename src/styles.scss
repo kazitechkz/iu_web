@@ -176,6 +176,8 @@ body{
   background-repeat: no-repeat;
   overflow-x: hidden!important;
   min-height: 800px!important;
+  max-width: 100%!important;
+  overflow-x: hidden!important;
 }
 @media screen and (max-width: 640px){
   .container{
