@@ -175,6 +175,18 @@
           <div class="text-center flex py-3 my-2">
             <div>
               <button
+                (click)="getAiAnswer()"
+                class="inline hover:rotate-0 rotate-180 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4 text-md md:text-2xl text-white font-bold not-active-button-pagination main-violet-first-rounded"
+              >
+                <fa-icon [icon]="faRobot" class="text-white text-2xl"></fa-icon>
+              </button>
+              <br>
+              <small class="text-white  font-bold text-xs sm:text-sm md:text-md">
+                {{"AI_ANSWER"|translate}}
+              </small>
+            </div>
+            <div>
+              <button
                 (click)="openModal('promptModal')"
                 class="inline hover:rotate-0 rotate-180 rounded-full shadow-lg h-10 w-10 md:w-14 md:h-14 mx-4 text-md md:text-2xl text-white font-bold not-active-button-pagination main-violet-first-rounded"
               >
@@ -268,6 +280,30 @@
     </div>
     <!--    Prev, Answer, Next-->
   </div>
+
+<!--  AI Prompt-->
+  <!--  Modal Prompt -->
+  <ngx-smart-modal customClass="nsm-centered unt-modal" identifier="aiPromptModal">
+    <div class="py-3 px-4 text-center">
+      <div>
+        <fa-icon class="inline-block text-4xl main-violet-first-color my-3" [icon]="faRobot"></fa-icon>
+      </div>
+      <p class="text-lg md:text-3xl inline-block my-2 main-violet-first-color font-bold">
+        {{"AI_ANSWER_TO_QUESTION"|translate}} {{active_slider + 1}}</p>
+      <section class="main-violet-first-color" *ngIf="aiAnswer">
+        <markdown katex [data]="aiAnswer | mathjaxTransform:true"></markdown>
+      </section>
+      <button (click)="getAiAnswer(true)" type="button"
+              class="focus:outline-none my-4 mx-2 font-bold text-white main-violet-first-rounded bg-violet-first rounded-full focus:ring-4 text-sm px-5 py-2.5 mr-2 mb-2">
+        {{"RESEND_AI"|translate}}
+      </button>
+      <button (click)="closeModal('aiPromptModal')" type="button"
+              class="focus:outline-none my-4 font-bold text-white main-violet-first-rounded main-orange-bg rounded-full focus:ring-4 text-sm px-5 py-2.5 mr-2 mb-2">
+        {{"CANCEL"|translate}}
+      </button>
+    </div>
+  </ngx-smart-modal>
+<!--  AI Prompt-->
 
   <!--  Modal Prompt -->
   <ngx-smart-modal customClass="nsm-centered unt-modal" identifier="promptModal">

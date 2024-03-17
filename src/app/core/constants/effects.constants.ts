@@ -175,6 +175,9 @@ import {GetTournamentAwardsEffect} from "../../shared/store/tournament/getTourna
 import {
   GetBattleStepQuestionsEffect
 } from "../../shared/store/battle/getBattleStepQuestions/getBattleStepQuestions.effect";
+import {
+  GetAIAnswerOnQuestionEffect
+} from "../../shared/store/openAI/getAIAnswerOnQuestion/getAIAnswerOnQuestion.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -311,4 +314,5 @@ export const EffectsConstants = [
     GetVideoDetailEffect,
     GetTournamentAwardsEffect,
     GetBattleStepQuestionsEffect,
+    GetAIAnswerOnQuestionEffect,
 ]

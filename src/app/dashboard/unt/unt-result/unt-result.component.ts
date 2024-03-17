@@ -1,5 +1,18 @@
 import {Component, DestroyRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {faClock, faLightbulb, faDice, faStar, faBug, faForwardFast, faBackwardFast, faCheck, faHandshake, faFaceFrownOpen, faClover} from "@fortawesome/free-solid-svg-icons";
+import {
+  faClock,
+  faLightbulb,
+  faDice,
+  faStar,
+  faBug,
+  faForwardFast,
+  faBackwardFast,
+  faCheck,
+  faHandshake,
+  faFaceFrownOpen,
+  faClover,
+  faRobot
+} from "@fortawesome/free-solid-svg-icons";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {Store} from "@ngrx/store";
@@ -29,6 +42,16 @@ import {Subscription} from "rxjs";
 import {AttemptModel} from "../../../shared/models/attempt";
 import {CountdownConfig} from "ngx-countdown";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
+import {getSubjectsState} from "../../../shared/store/subject/subject.selector";
+import {
+  getAIAnswerOnQuestionSelector
+} from "../../../shared/store/openAI/getAIAnswerOnQuestion/getAIAnswerOnQuestion.selector";
+import {
+  GetAIAnswerOnQuestionRequest
+} from "../../../shared/store/openAI/getAIAnswerOnQuestion/getAIAnswerOnQuestion.request";
+import {
+  getAIAnswerOnQuestionAction
+} from "../../../shared/store/openAI/getAIAnswerOnQuestion/getAIAnswerOnQuestion.action";
 
 @Component({
   selector: 'app-unt-result',
@@ -65,6 +88,20 @@ export class UntResultComponent implements  OnInit, OnDestroy{
     leftTime:180,
     demand:true
   }
+  //AI
+  aiAnswer:string|null = null;
+  aiAnswers:{[key: number]:string} = {};
+  //
+
+  constructor() {
+    this._store.select(getAIAnswerOnQuestionSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        this.aiAnswer = item.data;
+        this.aiAnswers[this.questions[this.active_slider].id] = item.data
+      }
+    })
+  }
+
   ngOnInit(): void {
     this.getAttempt();
     this.getAppealTypes();
@@ -218,6 +255,23 @@ export class UntResultComponent implements  OnInit, OnDestroy{
       }
   }
 
+  getAiAnswer(renew:boolean = false){
+    let questionId = this.questions[this.active_slider].id;
+    let status = renew ? "new" : "old";
+    if(questionId){
+      if(this.aiAnswers[questionId] && !renew){
+        this.aiAnswer = this.aiAnswers[questionId]
+      }
+      else{
+        let request = Object.assign({},{question_id:questionId,status:status}) as GetAIAnswerOnQuestionRequest
+        this._store.dispatch(getAIAnswerOnQuestionAction({requestData:request}));
+      }
+      this.openModal("aiPromptModal");
+    }
+
+
+  }
+
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
@@ -227,6 +281,7 @@ export class UntResultComponent implements  OnInit, OnDestroy{
   openModal(modalIdentifier:string){
     this.dialog.getModal(modalIdentifier).open()
   }
+
 
   closeModal(modalIdentifier:string){
     this.dialog.getModal(modalIdentifier).close()
@@ -334,4 +389,5 @@ export class UntResultComponent implements  OnInit, OnDestroy{
   protected readonly faForwardFast = faForwardFast;
   protected readonly RoutesName = RoutesName;
   protected readonly faClock = faClock;
+  protected readonly faRobot = faRobot;
 }

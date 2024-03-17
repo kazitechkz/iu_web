@@ -543,5 +543,8 @@
   "BUY_FOR": "Сатып алу",
   "BUY_GROUP_QUIZ":"Топты сатып алу арқылы сіз келесі сынақтарды аласыз:",
   "WAIT_PLEASE":"Күте тұрыңыз, өтінемін",
-  "ALREADY_HAVE_BOUGHT":"Сіз сатып алдыңыз"
+  "ALREADY_HAVE_BOUGHT":"Сіз сатып алдыңыз",
+  "AI_ANSWER": "Аi жауабы",
+  "AI_ANSWER_TO_QUESTION":"Сұраққа AI жауабы",
+  "RESEND_AI": "AI-ден қайта сұрау"
 }

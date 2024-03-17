@@ -190,6 +190,9 @@ import {
 import {
   getBattleStepQuestionsReducer
 } from "../../shared/store/battle/getBattleStepQuestions/getBattleStepQuestions.reducer";
+import {
+  getAIAnswerOnQuestionReducer
+} from "../../shared/store/openAI/getAIAnswerOnQuestion/getAIAnswerOnQuestion.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -336,5 +339,6 @@ export const ReducersConstants = {
   getVideoDetail:getVideoDetailReducer,
   getTournamentAwards:getTournamentAwardsReducer,
   getBattleStepQuestions:getBattleStepQuestionsReducer,
+  getAIAnswerOnQuestion:getAIAnswerOnQuestionReducer,
 }
 
