@@ -1,6 +1,6 @@
 <!-- Container for demo purpose -->
-<div *ngIf="(subStep$ | async)?.data != null; else elseBlock" onmousedown="return false">
-  <div class="container my-10 mx-auto px-4 md:px-6 bg-white py-3 lg:py-[14px] rounded-2xl main-violet-first-rounded">
+<div class="relative" *ngIf="(subStep$ | async)?.data != null; else elseBlock" onmousedown="return false">
+  <div id="sub_step_content" class="container my-10 mx-auto px-4 md:px-6 bg-white py-3 lg:py-[14px] rounded-2xl main-violet-first-rounded">
     <!-- Section: Design Block -->
     <section class="mb-12">
       <h1 class="mb-4 text-3xl font-bold">
@@ -94,7 +94,7 @@
       </div>
     </section>
 
-    <div class="flex justify-end">
+    <div class="flex justify-end" id="sub_step_action">
       <div class="flex">
         <a *ngIf="(result$ | async)?.data"
            [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepExam + '/' + (subStep$ | async)?.data?.id + '/' + localeID)"
@@ -115,6 +115,7 @@
 
     <!-- Section: Design Block -->
   </div>
+  <app-information-bear [pageName]="'sub_step_content_'" />
 </div>
 <ng-template #elseBlock>{{'FORBIDDEN_MESSAGE' | translate}}</ng-template>
 <!-- Container for demo purpose -->

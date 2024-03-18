@@ -1,9 +1,9 @@
 <div>
-  <div class="">
+  <div class="relative">
     <div class="container mx-auto">
       <h2 class="text-2xl font-bold tracking-tight text-white">{{'SUBJECTS' | translate}}</h2>
 
-      <div *ngIf="steps" class="mt-4 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8 py-3">
+      <div *ngIf="steps" id="step-cards" class="mt-4 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 2xl:grid-cols-4 xl:gap-x-8 py-3">
           <div class="group relative shadow cursor-pointer bg-violet-first rounded-2xl main-violet-first-rounded" *ngFor="let step of steps">
             <a [routerLink]="[step.id]">
               <div class="p-5 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-64">
@@ -16,18 +16,18 @@
                   </p>
                 </div>
                 <div class="my-4 text-white sm:text-xs flex items-center justify-between">
-                  <div class="flex items-center">
+                  <div class="flex items-center" id="step-cards-steps">
                     <i class="fa fa-book mr-3" aria-hidden="true"></i>
                     {{step.steps_count}} {{step.steps_count > 1 ? ('STEP_S' | translate) : 'STEP' | translate}}
                   </div>
-                  <div class="flex items-center">
+                  <div class="flex items-center" id="step-cards-sub-steps">
                     <i class="fa fa-swatchbook mr-3" aria-hidden="true"></i>
                     {{step.sub_steps_count}} {{step.sub_steps_count > 1 ? ('SUB_STEP_S' | translate) : 'SUB_STEP' | translate}}
                   </div>
                 </div>
 
                 <div class="my-3 h-full">
-                  <div class="mt-4 flex justify-between items-center mobile:relative sm:absolute bottom-[10%] left-0 right-0 px-5">
+                  <div id="step-cards-progress" class="mt-4 flex justify-between items-center mobile:relative sm:absolute bottom-[10%] left-0 right-0 px-5">
                     <div class="w-full pr-3">
                       <div class="h-1 w-full bg-white">
                         <div class="h-1 main-orange-bg" [ngStyle]="{'width': step.progress + '%'}"></div>
@@ -42,5 +42,6 @@
         <!-- More products... -->
       </div>
     </div>
+    <app-information-bear [pageName]="'step_'" />
   </div>
 </div>
