@@ -80,7 +80,7 @@ export class IndexComponent implements OnInit{
     },
     {
       title: 'SUPPORT_MENU',
-      path: RoutesName,
+      path: RoutesName.myTickets,
       imageUrl: "assets/images/icons/7.png"
     },
   ]
