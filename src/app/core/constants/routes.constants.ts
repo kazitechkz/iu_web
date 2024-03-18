@@ -65,6 +65,7 @@ export enum RoutesName {
     battleDetail="dashboard/battle-detail",
     battleQuestions ="dashboard/battle-questions",
     battleGame="dashboard/battle-game",
+    battleStats="dashboard/battle-stats",
     careerQuizList="dashboard/career-quizzes",
     careerQuizDetail="dashboard/career-quiz-detail",
     passCareerQuiz="dashboard/pass-career-quiz",

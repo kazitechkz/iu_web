@@ -178,6 +178,8 @@ import {
 import {
   GetAIAnswerOnQuestionEffect
 } from "../../shared/store/openAI/getAIAnswerOnQuestion/getAIAnswerOnQuestion.effect";
+import {GetBattleStatsEffect} from "../../shared/store/battle/getBattleStats/getBattleStats.effect";
+import {GetBattleHistoryEffect} from "../../shared/store/battle/getBattleHistory/getBattleHistory.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -315,4 +317,6 @@ export const EffectsConstants = [
     GetTournamentAwardsEffect,
     GetBattleStepQuestionsEffect,
     GetAIAnswerOnQuestionEffect,
+    GetBattleStatsEffect,
+    GetBattleHistoryEffect,
 ]

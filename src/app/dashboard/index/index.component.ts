@@ -14,7 +14,10 @@ import {AllAttemptRequest} from "../../shared/store/attempt/allAttempt/allAttemp
 import {allAttemptAction} from "../../shared/store/attempt/allAttempt/allAttempt.action";
 import {allAttemptSelector} from "../../shared/store/attempt/allAttempt/allAttempt.selector";
 import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
+//DRIVER JS
+import { driver } from "driver.js";
 
+//DRIVER JS
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
@@ -34,26 +37,10 @@ export class IndexComponent implements OnInit{
   public pagination = {page:1};
 
   viewDate: Date = new Date();
-  ngOnInit(): void {
-    this.getUserAttempts();
-  }
-  public getUserAttempts(){
-    let pageRequest: AllAttemptRequest = {page:1};
-    Object.assign(pageRequest,this.pagination);
-    pageRequest = pageRequest as AllAttemptRequest;
-    this._store.dispatch(allAttemptAction({requestData:pageRequest}));
-    this._store.select(allAttemptSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
-      item => {
-        if(item.data){
-          this.attempts = item.data;
-        }
-      }
-    )
-  }
-  pageChanged($event:number){
-    this.pagination.page = $event;
-    this.getUserAttempts();
-  }
+  ngOnInit(): void {}
+
+
+
 
   public menuLists = [
     {
@@ -93,7 +80,7 @@ export class IndexComponent implements OnInit{
     },
     {
       title: 'SUPPORT_MENU',
-      path: RoutesName,
+      path: RoutesName.myTickets,
       imageUrl: "assets/images/icons/7.png"
     },
   ]

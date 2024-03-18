@@ -62,6 +62,7 @@ import {IutubeVideosComponent} from "./iutube/iutube-videos/iutube-videos.compon
 import {IutubeDetailComponent} from "./iutube/iutube-detail/iutube-detail.component";
 import {IutubeAuthorsComponent} from "./iutube/iutube-authors/iutube-authors.component";
 import {BattleQuestionsComponent} from "./battle/battle-questions/battle-questions.component";
+import {BattleStatsComponent} from "./battle/battle-stats/battle-stats.component";
 
 
 const routes: Routes = [
@@ -121,6 +122,10 @@ const routes: Routes = [
       {
         path: 'battle-game/:step_id',
         component: BattleGameComponent,
+      },
+      {
+        path: 'battle-stats',
+        component: BattleStatsComponent,
       },
       {
         path: 'tournament-detail/:id',

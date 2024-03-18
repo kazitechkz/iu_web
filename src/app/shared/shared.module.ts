@@ -25,6 +25,7 @@ import { ErrorFormFieldComponent } from './components/error-form-field/error-for
 import { IutubeCardHorizontalComponent } from './components/iutube-card-horizontal/iutube-card-horizontal.component';
 import { IutubeSearchComponent } from './components/iutube-search/iutube-search.component';
 import {UiSwitchModule} from "ngx-ui-switch";
+import { InformationBearComponent } from './components/information-bear/information-bear.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {UiSwitchModule} from "ngx-ui-switch";
     IutubeCardVerticalComponent,
     IutubeCardHorizontalComponent,
     IutubeSearchComponent,
+    InformationBearComponent,
   ],
   imports: [
     CommonModule,
@@ -58,24 +60,25 @@ import {UiSwitchModule} from "ngx-ui-switch";
     InputMaskModule,
     UiSwitchModule,
   ],
-  exports: [
-    InputFieldComponent,
-    RoundedSocialButtonComponent,
-    TranslateModule,
-    InputFieldComponent,
-    SidebarComponent,
-    NavbarComponent,
-    HomeNavbarComponent,
-    TeacherSidebarComponent,
-    AnnouncementListComponent,
-    ModalUntTrainerComponent,
-    ModalContentOfferComponent,
-    HomeFooterComponent,
-    ErrorFormFieldComponent,
-    IutubeCardVerticalComponent,
-    IutubeCardHorizontalComponent,
-    IutubeSearchComponent,
-  ],
+    exports: [
+        InputFieldComponent,
+        RoundedSocialButtonComponent,
+        TranslateModule,
+        InputFieldComponent,
+        SidebarComponent,
+        NavbarComponent,
+        HomeNavbarComponent,
+        TeacherSidebarComponent,
+        AnnouncementListComponent,
+        ModalUntTrainerComponent,
+        ModalContentOfferComponent,
+        HomeFooterComponent,
+        ErrorFormFieldComponent,
+        IutubeCardVerticalComponent,
+        IutubeCardHorizontalComponent,
+        IutubeSearchComponent,
+        InformationBearComponent,
+    ],
   providers:[TranslateStore ],
 })
 export class SharedModule { }

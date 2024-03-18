@@ -1,0 +1,176 @@
+<div class="container mx-auto">
+  <div class="grid grid-cols-12 gap-5">
+    <div
+      *ngIf="me"
+      class="
+      p-3
+      col-span-12 sm:col-span-4 xl:col-span-4 flex h-full justify-center items-center main-violet-first-rounded bg-violet-first rounded-2xl">
+      <div class="text-center">
+        <div
+          class="rounded-full inline-block w-[130px] h-[130px] md:w-[180px] md:h-[180px] bg-center bg-no-repeat bg-cover relative main-violet-first-rounded"
+          [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(me.file?.url) +')'}">
+        </div>
+        <p class="block mt-3 text-xl md:text-2xl lg:text-3xl font-bold text-white ml-3">{{me.name}}</p>
+        <p class="block mt-3 text-md md:text-lg lg:text-xl font-bold text-white ml-3">{{me.email}}</p>
+      </div>
+    </div>
+    <div class="
+    col-span-12 sm:col-span-8 xl:col-span-8
+    flex h-full justify-center items-center
+     main-violet-first-rounded bg-violet-first rounded-2xl" *ngIf="stats">
+      <div class="p-4 w-full">
+        <div class="flex justify-center items-center mb-3">
+          <div class="text-center">
+            <fa-icon
+              class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold main-orange-color"
+              [icon]="faShieldAlt"></fa-icon>
+            <p class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-white my-3">{{stats.total }}</p>
+            <p class="text-md md:text-lg lg:text-xl font-bold text-white">{{"TOTAL_GAME"|translate}}</p>
+          </div>
+        </div>
+
+        <div class="flex justify-around">
+          <div class="text-center w-[100px] md:w-[130px]">
+            <fa-icon
+              class="text-lg md:text-xl lg:text-2xl font-bold text-green-500"
+              [icon]="faSmileWink"></fa-icon>
+            <p class="text-lg md:text-xl lg:text-2xl font-bold text-white my-3">{{stats.victory }}</p>
+            <p class="text-md md:text-lg lg:text-xl font-bold text-white">{{"VICTORY_GAME"|translate}}</p>
+          </div>
+          <div class="text-center w-[100px] md:w-[130px]">
+            <fa-icon
+              class="text-lg md:text-xl lg:text-2xl font-bold text-yellow-500"
+              [icon]="faFaceMeh"></fa-icon>
+            <p class="text-lg md:text-xl lg:text-2xl font-bold text-white my-3">{{stats.draft }}</p>
+            <p class="text-md md:text-lg lg:text-xl font-bold text-white">{{"DRAFT_GAME"|translate}}</p>
+          </div>
+          <div class="text-center w-[100px] md:w-[130px]">
+            <fa-icon
+              class="text-lg md:text-xl lg:text-2xl font-bold text-rose-500"
+              [icon]="faFaceSadTear"></fa-icon>
+            <p class="text-lg md:text-xl lg:text-2xl font-bold text-white my-3">{{stats.defeat }}</p>
+            <p class="text-md md:text-lg lg:text-xl font-bold text-white">{{"DEFEAT_GAME"|translate}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="grid grid-cols-12 gap-5 my-5" *ngIf="battlesPagination && me">
+    <div class="col-span-12 main-violet-first-rounded bg-violet-first rounded-2xl">
+      <div class="battle-list-50 rounded-2xl main-violet-first-color">
+        <div class="relative overflow-x-auto">
+          <table class="w-full text-sm text-left">
+            <thead class="text-xs text-white capitalize">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-center">
+                {{"BATTLE_DATE"|translate}}
+              </th>
+              <th scope="col" class="px-6 py-3 text-center">
+                {{"BATTLE_RIVALS"|translate}}
+              </th>
+              <th scope="col" class="px-6 py-3 text-center">
+
+              </th>
+              <th scope="col" class="px-6 py-3 text-center">
+                {{"BATTLE_POINT"|translate}}
+              </th>
+              <th scope="col" class="px-6 py-3 text-center">
+                {{"BATTLE_RESULT"|translate}}
+              </th>
+              <th scope="col" class="px-6 py-3 text-center">
+                {{"ACTION"|translate}}
+              </th>
+            </tr>
+            </thead>
+            <tbody *ngIf="battlesPagination">
+            <tr class="rounded-2xl my-2" *ngFor="let battle of battlesPagination.data | paginate: { itemsPerPage: battlesPagination.per_page, currentPage: battlesPagination.current_page,totalItems:battlesPagination.total }">
+              <td class="px-2 py-2 text-white text-center font-bold">
+                {{moment(battle.created_at).format("DD.MM.YYYY ")}} <br/>
+                {{moment(battle.created_at).format("HH:mm")}}
+              </td>
+              <td class="px-2 py-4">
+                <div class="flex justify-center">
+                  <div
+                    *ngIf="battle.owner"
+                    class="rounded-full mr-1 inline-block w-8 h-8 bg-center bg-no-repeat bg-cover relative main-violet-first-rounded"
+                    [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(battle.owner.file?.url) +')'}">
+                  </div>
+                  <div
+                    class="rounded-full ml-1 inline-block w-8 h-8 bg-center bg-no-repeat bg-cover relative main-violet-first-rounded"
+                    [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(battle.guest ? battle.guest.file?.url : null) +')'}">
+                  </div>
+                </div>
+              </td>
+              <td class="px-2 py-4">
+                <div class="flex">
+                <div class="text-white">
+                  <p class="font-bold text-md"
+                     [ngClass]="{'text-green-400' : battle.winner_id == battle.owner_id}"
+                     *ngIf="battle.owner">
+                    {{battle.owner.name}}
+                  </p>
+                  <p class="font-bold text-md"
+                     [ngClass]="{'text-green-400' : battle.winner_id == battle.guest_id}"
+                  >
+                    {{battle.guest ? battle.guest.name : ("GUEST"|translate)}}
+                  </p>
+                </div>
+                </div>
+              </td>
+              <td class="px-2 py-4">
+                <div class="flex justify-center">
+                  <div>
+                    <p class="text-white font-bold text-md">
+                      {{battle.owner_point}}
+                    </p>
+                    <p class="text-white font-bold text-md">
+                      {{battle.guest_point}}
+                    </p>
+                  </div>
+                </div>
+              </td>
+              <td  class="px-2 py-4">
+                <div class="flex justify-center" *ngIf="me.id == battle.winner_id">
+                  <div class="w-8 h-8 rounded-full bg-green-500 flex justify-center items-center">
+                    <p class="text-white text-md lg:text-lg">В</p>
+                  </div>
+                </div>
+                <div class="flex justify-center" *ngIf="battle.winner_id == null">
+                  <div class="w-8 h-8 rounded-full bg-yellow-500 flex justify-center items-center">
+                    <p class="text-white text-md lg:text-lg">Н</p>
+                  </div>
+                </div>
+                <div class="flex justify-center" *ngIf="me.id != battle.winner_id && battle.winner_id != null">
+                  <div class="w-8 h-8 rounded-full bg-rose-500 flex justify-center items-center">
+                    <p class="text-white text-md lg:text-lg">П</p>
+                  </div>
+                </div>
+              </td>
+              <td  class="px-2 py-4">
+                <div class="flex justify-center">
+                  <button
+                    [routerLink]="['/' + RoutesName.battleDetail + '/' + battle.promo_code]"
+                    class="w-8 h-8 rounded-full bg-violet-first main-violet-first-rounded flex justify-center items-center">
+                    <p class="text-white text-md lg:text-lg">
+                      <fa-icon [icon]="faInfo"></fa-icon>
+                    </p>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div class="my-2 flex justify-center" *ngIf="battlesPagination.last_page > 1">
+            <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                                 [nextLabel]="'NEXT_PAGINATION' | translate"
+                                 [responsive]="true" class="rounded-full" (pageChange)="changeBattlePage($event)"></pagination-controls>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
