@@ -81,7 +81,6 @@ export class BattleDetailComponent implements OnInit,OnDestroy{
   }
   me() {
     this._store.dispatch(accountAction())
-
   }
   getBattleResult(step:BattleStep,user_id:number|null):BattleStepResult|undefined{
       return step.battle_step_results?.find(item=>(item.answered_user == user_id))

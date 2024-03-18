@@ -92,6 +92,14 @@
               aria-controls="tabs-participated"
               aria-selected="false"
             >  {{ "MY_ACTIVE_BATTLES"|translate}}</a>
+
+          </li>
+          <li role="presentation">
+            <a
+              routerLink="/{{RoutesName.battleStats}}"
+              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight hover:isolate focus:isolate focus:border-transparent text-white data-[te-nav-active]:border-[#b37cc4]"
+            >  {{ "MY_BATTLE_HISTORY"|translate}}</a>
+
           </li>
         </ul>
 

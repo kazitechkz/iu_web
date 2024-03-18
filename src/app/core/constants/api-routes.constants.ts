@@ -122,6 +122,8 @@ export enum APIRoutesName {
     battleStepCreate="battle-step-create",
     getBattleSubjects="battle-subjects",
     getBattleStep="battle-by-step",
+    getBattleStats="battle-stats",
+    getBattleHistory="battle-history",
     battleAnswer="battle-by-step-answer",
     joinToBattle="join-to-battle-by-promo-code",
     finishBattleResult="battle-finish-result",

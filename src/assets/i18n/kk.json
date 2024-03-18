@@ -546,5 +546,14 @@
   "ALREADY_HAVE_BOUGHT":"Сіз сатып алдыңыз",
   "AI_ANSWER": "Аi жауабы",
   "AI_ANSWER_TO_QUESTION":"Сұраққа AI жауабы",
-  "RESEND_AI": "AI-ден қайта сұрау"
+  "RESEND_AI": "AI-ден қайта сұрау",
+  "MY_BATTLE_HISTORY": "Шайқас тарихы",
+  "BATTLE_DATE": "Күні",
+  "BATTLE_RIVALS": "Қарсыластар",
+  "BATTLE_POINT": "Шот",
+  "BATTLE_RESULT": "Нәтиже",
+  "TOTAL_GAME": "Жалпы ойындар",
+  "VICTORY_GAME": "Жеңістер",
+  "DRAFT_GAME": "Байланыстар",
+  "ЖЕҢІЛІС_ОЙЫНЫ": "Жеңіліс"
 }

@@ -546,5 +546,14 @@
   "ALREADY_HAVE_BOUGHT": "Вы уже приобрели",
   "AI_ANSWER": "Ответ от ИИ",
   "AI_ANSWER_TO_QUESTION": "Ответ от ИИ на вопрос",
-  "RESEND_AI": "Переспросить у ИИ"
+  "RESEND_AI": "Переспросить у ИИ",
+  "MY_BATTLE_HISTORY": "История битв",
+  "BATTLE_DATE": "Дата",
+  "BATTLE_RIVALS": "Соперники",
+  "BATTLE_POINT": "Счет",
+  "BATTLE_RESULT": "Результат",
+  "TOTAL_GAME": "Всего игр",
+  "VICTORY_GAME": "Победы",
+  "DRAFT_GAME": "Ничьи",
+  "DEFEAT_GAME": "Поражений"
 }

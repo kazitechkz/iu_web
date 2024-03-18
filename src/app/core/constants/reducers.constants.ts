@@ -193,6 +193,8 @@ import {
 import {
   getAIAnswerOnQuestionReducer
 } from "../../shared/store/openAI/getAIAnswerOnQuestion/getAIAnswerOnQuestion.reducer";
+import {getBattleStatsReducer} from "../../shared/store/battle/getBattleStats/getBattleStats.reducer";
+import {getBattleHistoryReducer} from "../../shared/store/battle/getBattleHistory/getBattleHistory.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -340,5 +342,7 @@ export const ReducersConstants = {
   getTournamentAwards:getTournamentAwardsReducer,
   getBattleStepQuestions:getBattleStepQuestionsReducer,
   getAIAnswerOnQuestion:getAIAnswerOnQuestionReducer,
+  getBattleStats:getBattleStatsReducer,
+  getBattleHistory:getBattleHistoryReducer,
 }
 
