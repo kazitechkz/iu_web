@@ -1,54 +1,57 @@
-
-<div class="container mx-auto">
+<div class="relative">
+  <div class="container mx-auto" id="main-index-page">
     <main class="grid grid-cols-12 gap-4 bg-black-violet-orange-180-05 main-violet-first-rounded rounded-2xl lg:rounded-[50px]">
-        <!--    main content-->
-        <div class="col-span-12 lg:col-span-9">
-            <div class="block rounded-lg w-full h-full flex items-center">
-                <div class="relative flex p-3 items-center overflow-hidden bg-cover bg-no-repeat">
-                  <div class="p-3 text-white">
-                    <p class="inline-block my-3  text-md lg:text-xl xl:text-2xl 2xl:text-4xl font-bold">
-                     {{"HELLO_STUDENT"|translate}}
-                    </p>
-                    <p class="inline-block my-3 py-5  text-sm lg:text-lg xl:text-xl 2xl:text-2xl">
-                      {{"HELLO_STUDENT_SUBTITLE"|translate}}
-                    </p>
-                  </div>
-                </div>
+      <!--    main content-->
+      <div class="col-span-12 lg:col-span-9">
+        <div class="block rounded-lg w-full h-full flex items-center">
+          <div class="relative flex p-3 items-center overflow-hidden bg-cover bg-no-repeat">
+            <div class="p-3 text-white">
+              <p class="inline-block my-3  text-md lg:text-xl xl:text-2xl 2xl:text-4xl font-bold">
+                {{"HELLO_STUDENT"|translate}}
+              </p>
+              <p class="inline-block my-3 py-5  text-sm lg:text-lg xl:text-xl 2xl:text-2xl">
+                {{"HELLO_STUDENT_SUBTITLE"|translate}}
+              </p>
             </div>
+          </div>
         </div>
-        <!--    right sidebar  -->
-        <div class="col-span-12 lg:col-span-3">
-            <div  class="block h-full rounded-lg">
-                <div class="relative h-full flex justify-center items-center overflow-hidden bg-cover bg-no-repeat">
-                    <img
-                            class="rounded-lg"
-                            src="assets/images/bear_hello.webp"
-                            alt=""/>
-                </div>
-            </div>
+      </div>
+      <!--    right sidebar  -->
+      <div class="col-span-12 lg:col-span-3">
+        <div  class="block h-full rounded-lg">
+          <div class="relative h-full flex justify-center items-center overflow-hidden bg-cover bg-no-repeat">
+            <img
+              class="rounded-lg"
+              src="assets/images/bear_hello.webp"
+              alt=""/>
+          </div>
         </div>
-
+      </div>
     </main>
-</div>
-<div class="container mx-auto">
-  <app-announcement-list/>
-</div>
-
-<div class="container mx-auto">
-  <div class="grid grid-cols-12 p-6 gap-4">
-    <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 2xl:col-span-3" *ngFor="let menuItem of menuLists">
-      <div class="
+  </div>
+  <div class="container mx-auto">
+    <app-announcement-list/>
+  </div>
+  <div class="container mx-auto">
+    <div class="grid grid-cols-12 p-6 gap-4" id="main-index-services">
+      <div class="col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-3 2xl:col-span-3"
+           *ngFor="let menuItem of menuLists">
+        <div class="
           card bg-black-violet-orange-180-05 main-violet-first-rounded p-3 shadow-2xl rounded-2xl lg:rounded-[50px] h-full min-h-[180px] cursor-pointer text-white
         "
-           [routerLink]="'/' + menuItem.path">
-        <div class="service-card-header flex items-center justify-center">
-          <img src="{{menuItem.imageUrl}}" class="max-h-[150px]">
-        </div>
-        <div class="text-center p-3 text-md lg:text-lg break-words font-bold rounded-full bg-violet-first-50 main-violet-first-rounded">
-          {{menuItem.title | translate}}
+             [routerLink]="'/' + menuItem.path">
+          <div class="service-card-header flex items-center justify-center">
+            <img src="{{menuItem.imageUrl}}" class="max-h-[150px]">
+          </div>
+          <div class="text-center p-3 text-md lg:text-lg break-words font-bold rounded-full bg-violet-first-50 main-violet-first-rounded">
+            {{menuItem.title | translate}}
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <app-information-bear [pageName]="'student_index_page_'" />
 </div>
+
 
