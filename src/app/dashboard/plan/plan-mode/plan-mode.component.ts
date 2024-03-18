@@ -2,10 +2,10 @@ import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import {
   faBook,
-  faChartLine,
-  faCircleQuestion, faCode,
+  faChartLine, faCheckCircle,
+  faCircleQuestion, faCode, faCrown, faDumbbell,
   faGraduationCap,
-  faLanguage, faRocket,
+  faLanguage, faNewspaper, faRocket,
   faStar, faUser, faVenusMars
 } from "@fortawesome/free-solid-svg-icons";
 import {RoutesName} from "../../../core/constants/routes.constants";
@@ -27,6 +27,7 @@ import {promoGetAction} from "../../../shared/store/promo/promo.action";
 import {PromoRequest} from "../../../shared/store/promo/promo.request";
 import {getPromoStateSelector} from "../../../shared/store/promo/promo.selector";
 import {TwNotification} from "ng-tw";
+import {faStairs} from "@fortawesome/free-solid-svg-icons/faStairs";
 
 @Component({
   selector: 'app-plan-mode',
@@ -202,4 +203,9 @@ export class PlanModeComponent implements OnInit {
   protected readonly faRocket = faRocket;
   protected readonly faUser = faUser;
   protected readonly faCode = faCode;
+  protected readonly faCheckCircle = faCheckCircle;
+  protected readonly faCrown = faCrown;
+  protected readonly faStairs = faStairs;
+  protected readonly faDumbbell = faDumbbell;
+  protected readonly faNewspaper = faNewspaper;
 }

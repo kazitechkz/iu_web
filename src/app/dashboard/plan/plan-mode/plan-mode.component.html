@@ -1,120 +1,99 @@
-<div class="h-full flex items-center justify-centers">
-  <div class="wrapper">
-    <div class="table basic rounded-xl main-violet-first-rounded bg-black-violet-orange-180-05">
-      <div class="price-section">
-        <div class="price-area">
-          <div class="inner-area">
-            <span class="price">990</span>
-            <span class="text">&#932;</span>
+<div class="container mx-auto">
+  <div class="grid grid-cols-12 gap-3">
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 p-3 m-2 flex items-center justify-center rounded-lg shadow-2xl border-2 main-violet-first-rounded bg-black-violet-orange-180-05">
+      <div class="w-full text-white px-5">
+        <span class="w-[70%] mx-auto flex justify-center items-center py-3 px-3 mb-2 text-sm md:text-md lg:text-lg font-normal main-violet-first-rounded bg-violet-first text-white text-center rounded-full">
+          <p><fa-icon class="mr-2" [icon]="faCrown"></fa-icon>{{"BUY_FULL_ACCESS_TO_UNT"|translate}}</p>
+        </span>
+        <div class="flex py-3">
+          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px]">
+            <fa-icon [icon]="faStairs"></fa-icon>
+          </div>
+          <div class="ml-3">
+            ПОШАГОВОЕ ОБУЧЕНИЕ <br>
+            <span>(более 1 000 конспектов)</span>
+          </div>
+        </div>
+        <div class="flex py-3">
+          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px]">
+            <fa-icon [icon]="faDumbbell"></fa-icon>
+          </div>
+          <div class="ml-3">
+            ТРЕНАЖЕР ЕНТ <br>
+            <span>(более 50 тысяч тестов)</span>
+          </div>
+        </div>
+        <div class="flex py-3">
+          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px]">
+            <fa-icon [icon]="faNewspaper"></fa-icon>
+          </div>
+          <div class="ml-3">
+            РАБОТА НАД ОШИБКАМИ <br>
+            <span>(подсказки и решения)</span>
+          </div>
+        </div>
+        <div class="flex py-3">
+          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px]">
+            <fa-icon [icon]="faLanguage"></fa-icon>
+          </div>
+          <div class="ml-3">
+            ПОДДЕРЖКА КАЗАХСКОГО ЯЗЫКА <br>
+            <span class="text-orange-400">(Тесты на русском языке находятся в разработке)</span>
+          </div>
+        </div>
+        <div class="flex py-3">
+          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px]">
+            <fa-icon [icon]="faChartLine"></fa-icon>
+          </div>
+          <div class="ml-3">
+            АНАЛИЗ СЛАБЫХ МЕСТ
+          </div>
+        </div>
+        <div class="flex py-3">
+          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px]">
+            <fa-icon [icon]="faLanguage"></fa-icon>
+          </div>
+          <div class="ml-3">
+            ПОЛНАЯ СТАТИСТИКА <br>
+            <div class="text-orange-400 my-2">&#x2022; МАТЕМАТИЧЕСКАЯ ГРАМОТНОСТЬ</div>
+            <div class="text-orange-400 my-2">&#x2022; ИСТОРИЯ КАЗАХСТАНА</div>
+            <div class="text-orange-400 my-2">&#x2022; ГРАМОТНОСТЬ ЧТЕНИЯ</div>
+            <div class="text-orange-400 my-2">&#x2022; +2 ПРОФИЛЬНЫХ ПРЕДМЕТА</div>
           </div>
         </div>
       </div>
-      <div class="package-name"></div>
-      <ul class="features">
-        <li>
-          <span class="list-name">{{"WORK_OVER_FAILURE"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUPPORT_MULTI_LANGUAGE"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"ANALYZE_WEAK_POSITION"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"FULL_STATS"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUBJECT_MAT_GRAM"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUBJECT_GRAM"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUBJECT_HISTORY"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUBJECT_PROFS"|translate}}</span>
-        </li>
-      </ul>
-      <div class="btn" (click)="openDialog('open', 1)"><button>{{'BUY_BUTTON'|translate}}</button></div>
-    </div>
-    <div class="table premium rounded-xl main-violet-first-rounded bg-black-violet-orange-180-05">
-      <div class="price-section">
-        <div class="price-area">
-          <div class="inner-area">
-            <span class="price">2490</span>
-            <span class="text">&#932;</span>
-          </div>
-        </div>
-      </div>
-      <div class="package-name"></div>
-      <ul class="features">
-        <li>
-          <span class="list-name">{{"WORK_OVER_FAILURE"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUPPORT_MULTI_LANGUAGE"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"ANALYZE_WEAK_POSITION"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"FULL_STATS"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUBJECT_MAT_GRAM"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUBJECT_GRAM"|translate}}</span>
-        </li>
-        <li>
 
-          <span class="list-name">{{"SUBJECT_HISTORY"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUBJECT_PROFS"|translate}}</span>
-        </li>
-      </ul>
-      <div class="btn" (click)="openDialog('open', 3)"><button>{{'BUY_BUTTON'|translate}}</button></div>
     </div>
-    <div class="table ultimate rounded-xl main-violet-first-rounded bg-black-violet-orange-180-05">
-      <div class="price-section">
-        <div class="price-area">
-          <div class="inner-area">
-            <span class="price">4990</span>
-            <span class="text">&#932;</span>
+
+    <div class="col-span-12 md:col-span-12 lg:col-span-6">
+      <div class="py-[50px] m-2 rounded-lg md:flex border-2 items-center justify-center cursor-pointer main-violet-first-rounded bg-black-violet-orange-180-05"
+           *ngFor="let plan of [1,2,3]"
+      >
+        <div class="w-full lg:w-3/12 ">
+          <input
+            type="radio" value="" name="plan-1" class="w-8 h-8 main-secondary-color main-secondary-bg border-gray-300 checked:bg-white focus:ring-[#9BA1FF] focus:ring-2">
+        </div>
+        <div class="w-full lg:w-6/12">
+          <div>
+            <p class="text-lg lg:text-2xl xl:text-2xl 2xl:text-4xl font-bold">5555</p>
+          </div>
+          <div class="mt-2 mb-2">
+            <p class="text-md">52556</p>
+          </div>
+        </div>
+        <div class="w-full lg:w-3/12">
+          <div>
+            <p class="text-lg lg:text-2xl xl:text-2xl font-bold">121212 / 1 {{"MONTH"|translate}}</p>
+          </div>
+          <div class="mt-5 mb-2">
+            <p class="text-md md:text-lg">1212 12121212</p>
           </div>
         </div>
       </div>
-      <div class="package-name"></div>
-      <ul class="features">
-        <li>
-          <span class="list-name">{{"WORK_OVER_FAILURE"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUPPORT_MULTI_LANGUAGE"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"ANALYZE_WEAK_POSITION"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"FULL_STATS"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUBJECT_MAT_GRAM"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUBJECT_GRAM"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUBJECT_HISTORY"|translate}}</span>
-        </li>
-        <li>
-          <span class="list-name">{{"SUBJECT_PROFS"|translate}}</span>
-        </li>
-      </ul>
-      <div class="btn" (click)="openDialog('open', 6)"><button>{{'BUY_BUTTON'|translate}}</button></div>
+
+
     </div>
+
   </div>
 </div>
 
