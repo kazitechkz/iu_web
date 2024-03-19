@@ -14,8 +14,6 @@ import {Store} from "@ngrx/store";
 import {Pagination} from "../../../shared/store/pagination";
 import {Battle} from "../../../shared/models/battle.model";
 import {GetActiveBattlesRequest} from "../../../shared/store/battle/getActiveBattles/getActiveBattles.request";
-import {subjectGetAction} from "../../../shared/store/subject/subject.action";
-import {getSubjectsState} from "../../../shared/store/subject/subject.selector";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {getActiveBattlesAction} from "../../../shared/store/battle/getActiveBattles/getActiveBattles.action";
 import {getActiveBattlesSelector} from "../../../shared/store/battle/getActiveBattles/getActiveBattles.selector";
@@ -33,16 +31,13 @@ import {joinToBattleAction} from "../../../shared/store/battle/joinToBattle/join
 import {joinToBattleSelector} from "../../../shared/store/battle/joinToBattle/joinToBattle.selector";
 import {Router} from "@angular/router";
 import {PusherService} from "../../../shared/services/pusher.service";
-import Pusher, {Channel} from "pusher-js";
 import {LocalKeysConstants} from "../../../core/constants/local-keys.constants";
 import {Me} from "../../../shared/models/user.model";
 import {SessionService} from "../../../shared/services/session.service";
 import {initTE, Tab} from "tw-elements";
 import {myActiveBattlesAction} from "../../../shared/store/battle/myActiveBattles/myActiveBattles.action";
 import {myActiveBattlesSelector} from "../../../shared/store/battle/myActiveBattles/myActiveBattles.selector";
-import {createBattleSelector} from "../../../shared/store/battle/createBattle/createBattle.selector";
 import Swal from "sweetalert2";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-battle-list',

@@ -1,7 +1,7 @@
 <section *ngIf="attempt && !loading">
-  <div class="container mx-auto">
+  <div class="container mx-auto relative">
     <div class="grid grid-cols-12 py-5 my-3 card-violet rounded-2xl">
-      <div class="col-span-12 md:col-span-12 text-center">
+      <div class="col-span-12 md:col-span-12 text-center" id="time_card">
         <p class="md:text-5xl font-bold text-white my-2 px-1">
           {{"RESULT"|translate}}
         </p>
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="grid grid-cols-12">
-      <div class="col-span-12 flex justify-center">
+      <div class="col-span-12 flex justify-center" id="subject_card">
         <div  class="max-w-[320px] md:max-w-[400px] lg:max-w-[600px]">
           <select class="w-full text-lg xl:text-xl 2xl:text-2xl text-center rounded-full px-3 font-bold input-violet text-white fill-white main-violet-first-rounded focus:main-violet-first-rounded" (change)="changeSubject($event)">
             <option  *ngFor="let subject of attempt.subject_questions" value="{{subject.attempt_subject_id}}">
@@ -27,7 +27,7 @@
     </div>
     <!--    Pagination-->
     <div class="grid grid-cols-12 mt-8">
-      <div class="col-span-12" *ngIf="answeredResult">
+      <div class="col-span-12" *ngIf="answeredResult" id="question_pagination">
         <ngx-slick-carousel class="carousel"
                             [config]="slidePaginationConfig">
           <div ngxSlickItem *ngFor="let questionNumber of question_pagination" class="slide cursor-pointer relative">
@@ -55,7 +55,7 @@
       </div>
       <!--    Prompt-->
       <!--    Question And Answer-->
-      <div class="col-span-12 xl:col-span-8">
+      <div class="col-span-12 xl:col-span-8" id="question_card">
         <div>
           <section *ngFor="let questions_ones of attempt.subject_questions">
             <section *ngIf="questions_ones.attempt_subject_id == active_subject_id">
@@ -78,7 +78,7 @@
                     </div>
                   </section>
                   <!--    Answer Modal-->
-                  <div class="w-full p-5" *ngIf="answeredResult">
+                  <div class="w-full p-5" id="question_answers" *ngIf="answeredResult">
                     <!-- A Answer-->
                     <section>
                       <div
@@ -170,7 +170,7 @@
       </div>
       <!--    Question And Answer-->
       <!--    Actions -->
-      <div class="col-span-12 xl:col-span-4 rounded-2xl shadow-2xl overflow-y-scroll no-scrollbar main-violet-first-rounded">
+      <div class="col-span-12 xl:col-span-4 rounded-2xl shadow-2xl overflow-y-scroll no-scrollbar main-violet-first-rounded" id="prompt_indicator">
         <div class="flex justify-center items-start">
           <div class="text-center flex py-3 my-2">
             <div>
@@ -233,7 +233,7 @@
     <!--    Question Modal-->
 
     <!--    Prev, Answer, Next-->
-    <div class="grid grid-cols-12 mt-8 mb-4">
+    <div class="grid grid-cols-12 mt-8 mb-4" id="prev_answer_next">
       <div class="col-span-12 md:col-span-4 p-4">
         <button type="button" class="w-full
           inline
@@ -280,7 +280,7 @@
     </div>
     <!--    Prev, Answer, Next-->
   </div>
-
+  <app-information-bear [pageName]="'unt-result_'"/>
 <!--  AI Prompt-->
   <!--  Modal Prompt -->
   <ngx-smart-modal customClass="nsm-centered unt-modal" identifier="aiPromptModal">

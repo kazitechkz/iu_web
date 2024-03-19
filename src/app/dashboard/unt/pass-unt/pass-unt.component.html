@@ -1,4 +1,4 @@
-<div class="container mx-auto">
+<div class="container mx-auto relative">
   <div class="grid grid-cols-12 py-2 my-3 bg-violet-orange-first rounded-2xl">
     <div class="col-span-12 md:col-span-6 px-5 md:flex items-center text-center md:text-left order-2 md:order-1">
       <div class="px-3 md:px-4 lg:px-5">
@@ -40,7 +40,7 @@
     </div>
   </div>
   <section *ngIf="subjects">
-    <div class="grid grid-cols-12 gap-3 py-5 my-3 ">
+    <div class="grid grid-cols-12 gap-3 py-5 my-3" id="compusory_subject_card">
       <div class="col-span-12 md:col-span-12 card px-4">
         <p class="text-lg md:text-lg lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold py-4 text-center md:text-left text-white">
           {{"COMPLUSORY_LANGUAGE"|translate}}
@@ -101,7 +101,7 @@
         {{"CHOOSE_SUBJECT"|translate}}
       </p>
     </div>
-    <div class="col-span-12">
+    <div class="col-span-12" id="selectable_subject_card">
       <owl-carousel-o [options]="customOptions" class="py-2">
         <ng-template carouselSlide *ngFor="let subject of subjects">
           <div class="slide card main-violet-first-rounded bg-violet-first rounded-[40px] shadow-lg relative">
@@ -127,6 +127,6 @@
       </owl-carousel-o>
     </div>
   </section>
-
+  <app-information-bear [pageName]="'pass-unt_'"></app-information-bear>
 <app-modal-unt-trainer (dialogResult)="createAttempt($event)" #modalBuyUNT/>
 </div>

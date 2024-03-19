@@ -1,5 +1,5 @@
-<div class="container mx-auto">
-  <div class="grid grid-cols-12 gap-3" *ngIf="statByAttempt">
+<div class="container mx-auto relative">
+  <div class="grid grid-cols-12 gap-3" id="attemptStat" *ngIf="statByAttempt">
     <div class="col-span-12 my-3 bg-white rounded-lg shadow-lg p-3" *ngFor="let subject of statByAttempt.subjects">
       <div class="md:flex items-center">
         <div class="w-12 h-12 md:w-20 md:h-20 lg:w-28 lg:h-28 rounded-full border-2 bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(subject.image?.url)+ ')'}"></div>
@@ -60,9 +60,9 @@
               </p>
             </td>
             <td class="p-4 border-2 border-[#8e6a5e]">
-              <p (click)="goToSubStep(result.sub_category.id)" class="text-black ml-2 font-bold cursor-pointer" *ngIf="result.sub_category;else no_category2">
+              <a (click)="goToSubStep(result.sub_category.id)" class="rounded-full p-2 text-white my-3 main-violet-first-rounded bg-violet-first font-bold cursor-pointer" *ngIf="result.sub_category;else no_category2">
                 {{'PASS'|translate}}
-              </p>
+              </a>
               <ng-template #no_category2>
                 <p class="text-red-500 ml-2 font-bold">
                   -
@@ -75,6 +75,7 @@
       </div>
     </div>
   </div>
+  <app-information-bear [pageName]="'stat-attempt_'"/>
 </div>
 <ngx-smart-modal identifier="substeps" [customClass]="'max-w-1100 buySubscriptionModal'">
   <div class=" w-full mobile:px-0 lg:px-4">

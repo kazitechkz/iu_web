@@ -1,7 +1,7 @@
-<div class="container mx-auto">
+<div class="container mx-auto relative">
   <div class="grid grid-cols-12" *ngIf="battle">
     <div class="col-span-12 m-3 p-3">
-      <div class="game-card shadow-xl rounded-xl main-violet-first-color p-3">
+      <div class="game-card shadow-xl rounded-xl main-violet-first-color p-3" id="battleStat">
         <div class="result-card my-3 flex justify-center items-center" *ngIf="battle.is_finished;else notFinished">
           <section class="text-center" *ngIf="battle.winner && battle.winner_id; else notWinner">
             <div class="relative p-5 rounded-2xl bg-violet-first main-violet-first-rounded w-full md:max-w-[320px]" [ngClass]="{'pyro':battle.winner_id == user?.id}">
@@ -40,7 +40,7 @@
             </div>
           </div>
         </ng-template>
-        <div class="flex rivals-card">
+        <div class="flex rivals-card" id="battleRivals">
           <div class="w-1/2">
             <section class="text-center" *ngIf="battle.owner">
               <div class="flex justify-center items-center">
@@ -104,7 +104,7 @@
           </div>
         </div>
 
-        <section *ngIf="battle.battle_steps">
+        <section *ngIf="battle.battle_steps" id="battleSteps">
           <div class="my-3 p-3" *ngFor="let battleStep of battle.battle_steps">
             <div class="w-full text-center my-3 font-bold text-lg lg:text-3xl">
               <p *ngIf="battleStep.subject">
@@ -248,4 +248,6 @@
       </div>
     </div>
   </div>
+
+  <app-information-bear [pageName]="'battle_detail_'"/>
 </div>

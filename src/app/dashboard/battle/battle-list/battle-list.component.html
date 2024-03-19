@@ -1,4 +1,4 @@
-<div class="container mx-auto">
+<div class="container mx-auto relative">
   <div class="grid grid-cols-12 py-2 my-3 bg-violet-orange-first rounded-2xl">
     <div class="col-span-12 md:col-span-6 px-5 md:flex items-center text-center md:text-left">
       <div class="px-3 md:px-4 lg:px-5">
@@ -40,7 +40,7 @@
     </div>
   </div>
   <div class="grid grid-cols-12 py-2 my-3">
-    <div class="col-span-12 text-center">
+    <div class="col-span-12 text-center" id="createBattle">
       <button type="button"
               class="inline
               mt-4
@@ -61,7 +61,7 @@
       </button>
     </div>
   </div>
-  <div class="grid grid-cols-12 py-5 my-3 rounded-2xl">
+  <div class="grid grid-cols-12 py-5 my-3 rounded-2xl" id="listBattle">
 
     <div class="col-span-12 battle-list-50 rounded-xl">
       <div class="p-4">
@@ -284,9 +284,6 @@
 
 
   </div>
-
-
-
   <section>
     <div  class="[direction:ltr] w-full no-scroll main-tertiary-bg">
       <ngx-smart-modal class="modalCreateGame" identifier="create-game-modal">
@@ -373,4 +370,6 @@
       </ngx-smart-modal>
     </div>
   </section>
+
+  <app-information-bear [pageName]="'battle_list_'"/>
 </div>

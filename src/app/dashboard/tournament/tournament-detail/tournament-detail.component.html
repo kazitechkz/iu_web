@@ -1,6 +1,6 @@
-<section class="px-3 mobile:px-0 sm:px-0">
-  <div class="lg:container mx-auto">
-    <div class="grid grid-cols-12 gap-3 m-2 mobile:mx-0 sm:mx-0" *ngIf="tournamentDetails">
+<section class="px-3 mobile:px-0 sm:px-0 ">
+  <div class="lg:container mx-auto relative">
+    <div class="grid grid-cols-12 gap-3 m-2 mobile:mx-0 sm:mx-0" id="tournamentDetail" *ngIf="tournamentDetails">
       <div class="col-span-12 md:col-span-4 min-h-[300px] max-h-[450px] relative card-violet-bg rounded-xl">
         <div class="absolute rounded-xl z-10  h-full w-full bg-cover bg-center bg-no-repeat main-violet-first-rounded"
              [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(tournamentDetails.file!.url) + ')'}">
@@ -60,7 +60,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-12 m-2 mobile:mx-0 sm:mx-0">
+    <div class="grid grid-cols-12 m-2 mobile:mx-0 sm:mx-0" id="tournamentInfo">
       <div
         class="col-span-12 bg-violet-orange-first p-5 shadow-xl rounded-full my-3 main-violet-first-rounded text-white md:text-lg uppercase"
         *ngIf="currentSubTournament">
@@ -183,7 +183,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-12 m-3 mobile:mx-0 sm:mx-0 gap-2">
+    <div class="grid grid-cols-12 m-3 mobile:mx-0 sm:mx-0 gap-2" id="tournamentStep">
       <div class="col-span-12">
         <div class="md:flex justify-center">
           <!--Pills navigation-->
@@ -713,6 +713,9 @@
         </div>
       </div>
     </div>
+
+
+    <app-information-bear [pageName]="'tournament_detail_'"/>
 
     <ngx-smart-modal identifier="more">
       <p class="main-orange-color font-bold text-md md:text-lg my-2 px-1">
