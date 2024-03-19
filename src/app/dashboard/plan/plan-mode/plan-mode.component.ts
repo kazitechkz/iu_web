@@ -62,7 +62,43 @@ export class PlanModeComponent implements OnInit {
     subject_second: new FormControl(0, [Validators.required]),
     promo: new FormControl(null)
   }, {validators: this.subjectsNotEqualValidator()});
-
+  plans: {
+    title: string,
+    time: number,
+    subtitle_kk: string,
+    subtitle_ru: string,
+    old_price: number,
+    price: number,
+    minus: number
+  }[] = [
+    {
+      title: 'BASIC PLAN',
+      time: 1,
+      subtitle_kk: '1 айға жазылым',
+      subtitle_ru: 'подписка на 1 месяц',
+      old_price: 1990,
+      price: 1590,
+      minus: 400
+    },
+    {
+      title: 'STANDARD PLAN',
+      time: 3,
+      subtitle_kk: '3 айға жазылым',
+      subtitle_ru: 'подписка на 3 месяц',
+      old_price: 4990,
+      price: 3990,
+      minus: 1000
+    },
+    {
+      title: 'PREMIUM PLAN',
+      time: 6,
+      subtitle_kk: '6 айға жазылым',
+      subtitle_ru: 'подписка на 6 месяц',
+      old_price: 8990,
+      price: 6990,
+      minus: 2000
+    }
+  ]
   subjectsNotEqualValidator(): ValidatorFn {
     // @ts-ignore
     return (formGroup: FormGroup): ValidationErrors | null => {
@@ -103,25 +139,40 @@ export class PlanModeComponent implements OnInit {
     this.subjects_form.reset()
   }
   getPrice(time: number, promo: number|null = null) {
-    let price: number
+    let oldPrice: number,
+        price: number
     switch (time) {
       case 1:
-        price = 990
+        oldPrice = 1990
         break;
       case 3:
-        price = 2490
+        oldPrice = 4990
         break;
       case 6:
-        price = 4990
+        oldPrice = 8990
         break;
       default:
-        price = 990
+        oldPrice = 1990
+        break;
+    }
+    switch (time) {
+      case 1:
+        price = 1590
+        break;
+      case 3:
+        price = 3990
+        break;
+      case 6:
+        price = 6990
+        break;
+      default:
+        price = 1590
         break;
     }
     this.old_price = price
     if (promo) {
-      this.promo = Math.round((price * promo)/100)
-      price -= Math.round((price * promo)/100)
+      this.promo = Math.round((oldPrice * promo)/100)
+      price -= Math.round((oldPrice * promo)/100)
     } else {
       this.promo = 0
     }
@@ -153,6 +204,8 @@ export class PlanModeComponent implements OnInit {
     }
   }
   openDialog(id: string, time: number) {
+    this.promoSuccess = false
+    this.promoError = null
     this.subjects_form.reset()
     this.subjects_form.patchValue({
       time: time
