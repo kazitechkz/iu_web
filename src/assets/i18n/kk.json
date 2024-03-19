@@ -567,7 +567,7 @@
   "AVERAGE_POINT":"GPA",
   "MIN_POINT": "Минималды балл",
   "MAX_POINT": "Максималды балл",
-  "ATTEMPTS_TOTAL":",арлық тапсыру әрекеттері",
+  "ATTEMPTS_TOTAL":"Барлық тапсыру әрекеттері",
   "QUESTION_PASSED": "Cұрақтар өтті",
   "TOURNAMENT_PARTICIPANTS":"қатысушылар",
   "TOURNAMENT_PLAYOFF":"Плейофф",
