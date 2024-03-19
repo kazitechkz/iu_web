@@ -1,4 +1,4 @@
-<div class="container mx-auto">
+<div class="container mx-auto relative">
   <div class="grid grid-cols-12 py-2 my-3 bg-violet-orange-first rounded-2xl">
     <div class="col-span-12 md:col-span-6 px-5 md:flex items-center text-center md:text-left order-2 md:order-1">
       <div class="px-3 md:px-4 lg:px-5">
@@ -79,7 +79,7 @@
 
   </div>
   <div class="grid grid-cols-12 gap-3 my-3 py-3">
-    <div class="col-span-12">
+    <div class="col-span-12" id="selectable_subject_card">
       <owl-carousel-o [options]="customOptions" class="py-2">
         <ng-template carouselSlide *ngFor="let subject of subjects">
           <div class="slide card main-violet-first-rounded bg-violet-first rounded-[40px] shadow-lg relative">
@@ -106,6 +106,7 @@
     </div>
   </div>
 
+  <app-information-bear [pageName]="'single-subject-unt_'"/>
 
   <app-modal-unt-trainer (dialogResult)="createAttempt($event)" #modalBuyUNT/>
 

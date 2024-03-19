@@ -1,14 +1,14 @@
 
-<div class="w-full flex">
+<div class="w-full flex relative">
   <div class="w-full lg:p-4 sm:pl-2 mobile:p-1.5">
     <div class="w-full flex">
       <div class="mobile:w-full sm:w-full md:w-full lg:w-full xl:w-[70%] pre-st rounded-xl">
-        <div class="st w-full">
+        <div class="st w-full" id="sub_steps_all">
           <div class="stepper" id="scrollableDiv">
             <div class="my-[30px]"></div>
             <div *ngIf="steps">
               <div *ngFor="let step of steps">
-                <div *ngIf="step.level % 2 === 0" class="step-button flex justify-start bg-pos-bottom">
+                <div id="sub_steps_detail" *ngIf="step.level % 2 === 0" class="step-button flex justify-start bg-pos-bottom">
                   <button class="step-button-left" (click)="openDialog(step.id.toString())">
                     <div *ngIf="step.is_free" class="circle-multiple w-[90px] h-[90px] bg-no-repeat bg-bottom bg-contain"
                          [ngStyle]="{'background-image': 'url('+ImageHelper.getImage(step.image?.url)+')'}">
@@ -111,7 +111,7 @@
         </div>
       </div>
       <div class="xl:w-[30%] container px-2 mobile:hidden sm:hidden md:hidden lg:hidden xl:block">
-        <div class="h-full" *ngIf="fact">
+        <div id="sub_step_fact" class="h-full" *ngIf="fact">
           <div class="ml-5 w-full 2xl:w-3/4 2xl:ml-20 flex justify-center items-center h-full">
             <div>
               <div class="bubble-2 bubble-bottom-left-2 text-white font-bold italic w-8/12 md:w-3/4 2xl:w-full text-sm">
@@ -125,15 +125,15 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
     <div class="col-span-12 md:col-span-12 card md:flex items-center justify-center text-center">
-      <p class="md:text-lg font-bold py-4 md:mr-2">
+      <p class="md:text-lg font-bold py-4 md:mr-2 text-white">
         {{"CHOOSE_LANGUAGE"|translate}}
       </p>
       <ui-switch
+        id="sub_step_locale"
         class="inline"
         checkedLabel="Қазақ тілі"
         defaultBgColor = '#ff914d'
@@ -147,7 +147,7 @@
         uncheckedTextColor="white"
       ></ui-switch>
     </div>
-    <div class="col-span-12">
+    <div id="sub_step_subjects" class="col-span-12">
       <owl-carousel-o [options]="customOptions" class="py-2">
         <ng-template carouselSlide *ngFor="let subject of subjects">
           <div class="slide card rounded-2xl shadow-lg relative bg-violet-first main-violet-first-rounded">
@@ -173,6 +173,7 @@
       </owl-carousel-o>
     </div>
   </div>
+  <app-information-bear [pageName]="'sub_step_'" />
 </div>
 
 

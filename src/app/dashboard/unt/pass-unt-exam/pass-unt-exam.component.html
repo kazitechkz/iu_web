@@ -1,18 +1,18 @@
 <section *ngIf="attempt && !loading && questions">
-  <div class="container mx-auto overflow-x-hidden">
+  <div class="container mx-auto overflow-x-hidden relative">
     <div class="grid grid-cols-12 py-5 my-3 card-violet rounded-2xl">
       <div class="col-span-12 md:col-span-12 text-center">
         <p class="md:text-5xl font-bold text-white my-2 px-1">
           {{"TESTING"|translate}}
         </p>
-        <div class="md:text-5xl font-bold text-white mb-2 mt-5 px-1 flex justify-center">
+        <div class="md:text-5xl font-bold text-white mb-2 mt-5 px-1 flex justify-center" id="time_card">
           <countdown (event)="handleCountDownEvent($event)" [config]="timeConfig"></countdown>
         </div>
       </div>
     </div>
     <div class="grid grid-cols-12 my-4">
       <div class="col-span-12 flex justify-center">
-        <div class="max-w-[320px] md:max-w-[400px] lg:max-w-[600px]">
+        <div class="max-w-[320px] md:max-w-[400px] lg:max-w-[600px]" id="subject_card">
           <select
             class="w-full text-lg xl:text-xl 2xl:text-2xl text-center rounded-full px-3 font-bold input-violet text-white fill-white main-violet-first-rounded focus:main-violet-first-rounded"
             (change)="changeSubject($event)">
@@ -28,7 +28,7 @@
     </div>
     <!--    Pagination-->
     <div class="grid grid-cols-12 mt-8">
-      <div class="col-span-12" *ngIf="answeredResult">
+      <div class="col-span-12" *ngIf="answeredResult" id="question_pagination">
         <ngx-slick-carousel class="carousel"
                             [config]="slidePaginationConfig">
           <div ngxSlickItem *ngFor="let questionNumber of question_pagination" class="slide cursor-pointer relative">
@@ -54,7 +54,7 @@
     <!--    Pagination-->
     <!--    Prev, Answer, Next-->
     <section class="my-3">
-      <div class="grid grid-cols-12 gap-3">
+      <div class="grid grid-cols-12 gap-3" id="subject_indicator">
         <div class="col-span-4 hidden md:flex justify-center items-center h-full w-full">
           <button class="font-bold
             h-full w-full
@@ -121,7 +121,7 @@
     <div class="grid grid-cols-12 mt-[10px] ">
       <!--    Prompt-->
       <div class="col-span-12 md:col-span-2"></div>
-      <div class="col-span-12 md:col-span-8">
+      <div class="col-span-12 md:col-span-8" id="prompt_indicator">
         <div class="flex justify-center py-3">
           <div class="col-span-6 sm:col-span-4 md:col-span-3 flex justify-center items-start text-center p-2"
                *ngIf="attempt.type_id < 3">
@@ -174,7 +174,7 @@
       <!--    Question And Answer-->
       <div class="col-span-12 md:col-span-2"></div>
       <div class="col-span-12 md:col-span-8">
-        <div>
+        <div id="question_card">
           <section *ngFor="let questions_ones of attempt.subject_questions">
             <section *ngIf="questions_ones.attempt_subject_id == active_subject_id">
               <ngx-slick-carousel
@@ -195,7 +195,7 @@
                       [mathjax]="question.context.context | mathjaxTransform"></div>
                   </section>
                   <!--    Answer Modal-->
-                  <div class="w-full p-5" *ngIf="answeredResult">
+                  <div id="question_answers" class="w-full p-5" *ngIf="answeredResult">
                     <!-- A Answer-->
                     <section *ngIf="checkIsFiftyFifty('answer_a')">
                       <div (click)="answerQuestion(questions[active_slider].id,'a')"
@@ -324,7 +324,7 @@
     </div>
     <!--    Question Modal-->
     <!--    Prev, Answer, Next-->
-    <div class="grid grid-cols-12 my-2">
+    <div class="grid grid-cols-12 my-2" id="prev_answer_next">
       <div class="col-span-6 md:col-span-4 p-4 order-2 md:order-1 flex justify-start">
         <button type="button" class="w-full
           inline
@@ -389,7 +389,7 @@
       </div>
 
     </div>
-    <div class="col-span-12 flex justify-center items-center">
+    <div class="col-span-12 flex justify-center items-center" id="end_settings">
       <!--    Finish-->
       <button type="button" class="
             w-full md:w-1/4
@@ -406,7 +406,7 @@
       </button>
       <!--    Finish-->
     </div>
-
+    <app-information-bear [pageName]="'pass-unt-exam_'"/>
   </div>
 
   <!--  Modal Prompt -->

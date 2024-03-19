@@ -1,5 +1,5 @@
-<div class="container mx-auto" *ngIf="resultByAttempt">
-  <div class="grid grid-cols-12 gap-5 rounded-xl shadow-lg p-3 my-3 justify-center items-center" *ngIf="resultByAttempt.attempt">
+<div class="container mx-auto relative" *ngIf="resultByAttempt">
+  <div class="grid grid-cols-12 gap-5 rounded-xl shadow-lg p-3 my-3 justify-center items-center" id="main-info" *ngIf="resultByAttempt.attempt">
     <div class="col-span-12 md:col-span-6 my-2 flex justify-center">
       <div class="tab-bg-panel rounded-full w-full lg:w-9/12 main-violet-first-rounded">
         <p class="text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl text-center text-white p-3 uppercase font-bold">
@@ -54,7 +54,7 @@
         </p>
       </div>
     </div>
-    <div class="col-span-12 my-4 py-10 px-5 tab-bg-panel rounded-2xl">
+    <div class="col-span-12 my-4 py-10 px-5 tab-bg-panel rounded-2xl" id="subject_table">
         <div class="relative overflow-x-auto flex justify-center items-center tab-bg-panel rounded-2xl">
           <table class="w-full text-sm text-left">
             <thead class="text-xs text-gray-700 capitalize">
@@ -112,7 +112,7 @@
             </tbody>
           </table>
         </div>
-      <div class="grid grid-cols-12 mt-4">
+      <div class="grid grid-cols-12 mt-4" id="management_tool">
         <div class="col-span-12 lg:col-span-6 my-2">
           <div class="text-center my-2">
             <a
@@ -139,5 +139,5 @@
   </div>
 
 
-
+  <app-information-bear [pageName]="'result-attempt_'"/>
 </div>

@@ -1,8 +1,8 @@
-<div *ngIf="me">
+<div class="relative" *ngIf="me">
   <div class="grid grid-cols-12 gap-4">
-    <div class="col-span-12 lg:col-span-12 my-4 p-3 bg-black-violet-orange-180-05 main-violet-first-rounded shadow-2xl rounded-lg max-h-[600px] relative">
+    <div id="profile-info-card" class="col-span-12 lg:col-span-12 my-4 p-3 bg-black-violet-orange-180-05 main-violet-first-rounded shadow-2xl rounded-lg max-h-[600px] relative">
       <div class="text-right my-2 absolute top-1 right-2">
-        <div (click)="openDialog('change-profile')" class="flex rounded-full cursor-pointer border-white border-2 h-10 w-10 justify-center items-center bg-violet-first main-violet-first-rounded">
+        <div id="profile-info-card-pencil" (click)="openDialog('change-profile')" class="flex rounded-full cursor-pointer border-white border-2 h-10 w-10 justify-center items-center bg-violet-first main-violet-first-rounded">
           <a
              class="cursor-pointer text-white  focus:outline-none focus:ring-4  font-medium rounded-full text-sm text-center">
             <fa-icon class="mr-1 text-white" [icon]="faPencilAlt"></fa-icon>
@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div class="col-span-12 lg:col-span-12 xl:col-span-6 2xl:col-span-6 my-4" *ngIf="subscriptions.length > 0">
+    <div id="profile-info-subscriptions" class="col-span-12 lg:col-span-12 xl:col-span-6 2xl:col-span-6 my-4" *ngIf="subscriptions.length > 0">
       <div class="wrapper" >
         <div *ngIf="basicSubscriptions.length > 0"
              class="mb-4 w-full flex flex-col rounded-lg main-violet-first-rounded bg-black-violet-orange-180-05 md:flex-row">
@@ -116,7 +116,7 @@
         </div>
       </div>
     </div>
-    <div class="col-span-12 lg:col-span-12  my-4" [ngClass]="{'xl:col-span-6 2xl:col-span-6':subscriptions.length > 0}">
+    <div id="profile-info-transactions" class="col-span-12 lg:col-span-12  my-4" [ngClass]="{'xl:col-span-6 2xl:col-span-6':subscriptions.length > 0}">
       <h1 class="text-white mb-3">{{"MY_ORDERS"|translate}}</h1>
       <div>
         <ul class="responsive-table" *ngIf="myOrders">
@@ -152,6 +152,7 @@
       </div>
     </div>
   </div>
+  <app-information-bear [pageName]="'my-profile_'" />
 </div>
 
 <ngx-smart-modal identifier="change-profile" class="profile-card-modal">
