@@ -70,25 +70,34 @@ export class WalletRatingComponent implements OnInit {
     } else {return false}
   }
   getPrize(indexKey: number) {
-    let prize = ''
+    let prize = '-'
     switch (true) {
       case (indexKey == 1):
-        prize = 'Iphone 15 Pro Max'
+        prize = 'Iphone 15 Pro'
         break
       case (indexKey == 2):
-        prize = 'Apple Watch SE'
+        prize = 'Apple iPad 10'
         break
       case (indexKey == 3):
-        prize = 'Airpods 3 Pro'
+        prize = 'Apple Watch SE'
         break
-      case (indexKey >= 4 && indexKey <= 10):
-        prize = '1000 KZT'
+      case (indexKey >= 4 && indexKey <= 6):
+        prize = '25 000 KZT'
         break
-      case (indexKey > 10 && indexKey < 20):
-        prize = '500 KZT'
+      case (indexKey >= 7 && indexKey <= 8):
+        prize = '20 000 KZT'
+        break
+      case (indexKey >= 9 && indexKey <= 10):
+        prize = '15 000 KZT'
+        break
+      case (indexKey >= 11 && indexKey <= 15):
+        prize = '10 000 KZT'
+        break
+      case (indexKey >= 16 && indexKey <= 20):
+        prize = '5 000 KZT'
         break
       default:
-        prize = ''
+        prize = '-'
         break
     }
     return prize
