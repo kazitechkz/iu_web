@@ -599,3 +599,20 @@ body{
 .ngx-pagination a:hover {
   color: black;
 }
+.iu-test-popover-class{
+  background: rgb(55,33,62);
+  background: linear-gradient(90deg, rgba(55,33,62,0.95) 27%, rgba(17,9,4,1) 100%);
+  border-radius: 20px;
+  border: 2px solid $violet_first;
+  color: white;
+  .driver-popover-prev-btn{
+    background: transparent!important;
+    border: 2px solid $main_orange!important;
+    color: white;
+  }
+  .driver-popover-next-btn{
+    background: transparent!important;
+    border: 2px solid $violet_first;
+    color: white;
+  }
+}

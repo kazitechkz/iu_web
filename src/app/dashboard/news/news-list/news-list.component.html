@@ -1,4 +1,4 @@
-<div class="container mx-auto">
+<div class="container mx-auto relative" id="myNews">
   <div class="grid grid-col-12 gap-3 my-5">
     <div class="col-span-12" *ngIf="news" >
       <div [routerLink]="['/'+ RoutesName.newsDetail + '/' + news.id]" class="cursor-pointer min-h-[350px] lg:min-h-[550px] py-5 px-3 rounded-lg flex items-center bg-cover bg-no-repeat"
@@ -56,4 +56,5 @@
                            [responsive]="true" class="rounded-full" (pageChange)="pageChanged($event)"></pagination-controls>
     </div>
   </div>
+  <app-information-bear [pageName]="'my_news_'"/>
 </div>

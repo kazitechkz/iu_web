@@ -27,6 +27,7 @@ import {OwlOptions} from "ngx-owl-carousel-o";
 import {PayCareerRequest} from "../../../shared/store/career/payCareer/payCareer.request";
 import {payCareerAction} from "../../../shared/store/career/payCareer/payCareer.action";
 import {payCareerSelector} from "../../../shared/store/career/payCareer/payCareer.selector";
+import {RoutesName} from "../../../core/constants/routes.constants";
 
 @Component({
   selector: 'app-career-plan',
@@ -124,4 +125,5 @@ export class CareerPlanComponent implements OnInit{
   protected readonly faCircleCheck = faCircleCheck;
   protected readonly faCartShopping = faCartShopping;
   protected readonly faLockOpen = faLockOpen;
+    protected readonly RoutesName = RoutesName;
 }

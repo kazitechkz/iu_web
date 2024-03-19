@@ -1,7 +1,7 @@
-<div class="container mx-auto">
+<div class="container mx-auto relative">
   <div class="grid grid-cols-12 gap-3">
     <div class="col-span-12 xl:col-span-5 mx-3 p-4 order-2 xl:order-1" *ngIf="untStat">
-      <div [routerLink]="'/'+RoutesName.statFull" class="bg-black-violet-orange-180 rounded-full p-4 shadow-lg md:flex items-center cursor-pointer neon-border">
+      <div id="statFullAction" [routerLink]="'/'+RoutesName.statFull" class="bg-black-violet-orange-180 rounded-full p-4 shadow-lg md:flex items-center cursor-pointer neon-border">
         <div class="md:w-2/12 p-2 text-center">
           <img class="inline w-[32px]" src="assets/images/medal.webp">
         </div>
@@ -11,7 +11,7 @@
           </p>
         </div>
       </div>
-      <div class="grid grid-cols-12 my-4 gap-3">
+      <div id="totalStats" class="grid grid-cols-12 my-4 gap-3">
         <div class="col-span-12 md:col-span-6 lg:col-span-6 xl:col-span-6">
           <div class="bg-black-violet-orange-180-05 p-4 md:flex items-center shadow-lg rounded-2xl h-full main-violet-first-rounded">
             <div class="md:w-4/12 p-2 text-center grid justify-center">
@@ -91,10 +91,10 @@
           </canvas>
         </div>
       </div>
-
-
     </div>
-    <div class="col-span-12 xl:col-span-7 mx-3 order-1 xl:order-2" *ngIf="attempts">
+    <div
+      id="tableStat"
+      class="col-span-12 xl:col-span-7 mx-3 order-1 xl:order-2" *ngIf="attempts">
       <div class="table-stat main-violet-first-rounded mx-3">
         <div class="relative overflow-x-auto" *ngIf="attempts.data">
           <table class="w-full text-sm text-left text-white">
@@ -163,7 +163,6 @@
 
       </div>
     </div>
-
-
   </div>
+  <app-information-bear [pageName]="'unt_stats_'"/>
 </div>

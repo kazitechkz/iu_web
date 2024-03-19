@@ -79,7 +79,7 @@
             main-violet-first-rounded
             rounded-full text-sm md:text-md px-5 py-3
             text-center m-2"  *ngIf="unAnsweredQuestion > 0; else finishedSubject">
-           Осталось вопросов: {{unAnsweredQuestion}}
+          {{"REMAINING_QUESTIONS"|translate}} {{unAnsweredQuestion}}
         </button>
           <ng-template #finishedSubject>
 
@@ -93,7 +93,8 @@
             main-violet-first-rounded
             rounded-full text-sm md:text-md px-5 py-3
             text-center m-2" >
-           Вы ответили на все вопросы дисциплины: {{activeSubject | globalTranslate:"title" : translate.currentLang}}
+          {{"NO_REMAINING_QUESTIONS"|translate}}
+            {{activeSubject | globalTranslate:"title" : translate.currentLang}}
         </button>
 
           </ng-template>

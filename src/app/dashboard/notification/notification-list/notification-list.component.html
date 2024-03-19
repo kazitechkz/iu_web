@@ -1,5 +1,4 @@
-<div class="container mx-auto">
-
+<div class="container mx-auto relative" id="myNotification">
   <div class="grid grid-cols-12 gap-3 mb-5 rounded-xl bg-black-violet-orange-180-05 main-violet-first-rounded">
     <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-3 p-4">
       <tw-select
@@ -62,7 +61,6 @@
       </tw-select>
     </div>
   </div>
-
   <div class="grid grid-cols-12 gap-3 bg-black-violet-orange-180-05 main-violet-first-rounded rounded-xl mt-5" *ngIf="notificationPagination">
     <div class="col-span-12 lg:col-span-6 xl:col-span-5 max-h-[100vh] overflow-y-scroll">
       <div (click)="selectActiveNotification(notification)" class="lg:flex w-full cursor-pointer  items-center min-h-[80px] main-violet-first-rounded-bottom p-5" *ngFor="let notification of notificationPagination.data | paginate: { itemsPerPage: notificationPagination.per_page, currentPage: notificationPagination.current_page,totalItems:notificationPagination.total }">
@@ -118,4 +116,5 @@
     </div>
 
   </div>
+  <app-information-bear [pageName]="'notifications_'"/>
 </div>

@@ -1,5 +1,5 @@
-<div class="container mx-auto">
-  <div class="grid grid-cols-12">
+<div class="container mx-auto relative">
+  <div class="grid grid-cols-12" id="myClassrooms">
     <div class="col-span-12 mb-4">
       <div class="w-full flex justify-between items-center">
         <button
@@ -8,7 +8,7 @@
           layout="flat"
           (click)="openDialog('pass_test')"
         >
-          Сдать тест
+          {{"PASS_EXAM_CLASSROOM"|translate}}
           <i class="fa fa-plus ml-3" aria-hidden="true"></i>
         </button>
         <button
@@ -131,4 +131,5 @@
     </div>
     </div>
   </div>
+  <app-information-bear [pageName]="'my_classrooms_'"/>
 </div>

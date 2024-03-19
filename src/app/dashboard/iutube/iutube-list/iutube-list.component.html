@@ -1,15 +1,15 @@
-<div class="container mx-auto">
-  <app-iutube-search/>
+<div class="container mx-auto relative">
+  <app-iutube-search id="iutubeFilter" />
   <div class="grid grid-cols-12 my-4">
     <div class="col-span-12">
       <div class="grid grid-cols-12 min-h-[300px] shadow-xl rounded-xl relative bg-black-violet-orange-180">
         <div class="col-span-12 lg:col-span-6 flex items-center relative overflow-hidden text-white">
             <div class="z-10 p-4 lg:pl-5">
               <p class="text-xl lg:text-2xl font-bold">
-                Смотрите сотни видео по подготовке к ЕНТ абсолютно бесплатно!
+                {{"IUTUBE_TITLE"|translate}}
               </p>
               <p class="text-sm mt-5">
-                Изучайте сотни видео, подготовленных методологами для ЕНТ по 16 предметам, и получите всестороннее понимание каждой дисциплины. Наши эксперты разработали каждый урок, чтобы обеспечить вам лучшее понимание материала и подготовить вас к успешной сдаче экзамена. С нами вы обретете уверенность в своих знаниях!
+                {{"IUTUBE_SUB_TITLE"|translate}}
               </p>
             </div>
         </div>
@@ -20,7 +20,7 @@
     </div>
   </div>
   <div class="grid grid-cols-12" *ngIf="subjects">
-    <div class="col-span-12">
+    <div class="col-span-12" id="iutubeSubject">
       <owl-carousel-o [options]="customOptions" class="py-2 px-3">
         <ng-template carouselSlide *ngFor="let subject of subjects">
           <div (click)="redirectTo(subject.id)" class="cursor-pointer">
@@ -41,10 +41,11 @@
   <div class="grid grid-cols-12 gap-5 my-5" *ngIf="iutubeVideos">
     <div class="col-span-12 my-5" *ngIf="iutubeVideos.recommended.length > 0">
       <p class="text-lg lg:text-xl xl:text-3xl text-white font-bold">
-        Рекомендуемые
+       {{"RECOMENDED_VIDEOS"|translate}}
       </p>
     </div>
     <div
+      id="iutubeVideo"
       *ngFor="let recommendedVideo of iutubeVideos.recommended"
       class="col-span-12 sm:col-span-6 lg:col-span-4 2xl:col-span-3 border-red-500 cursor-pointer min-h-[280px] mt-2 h-full w-full rounded-xl shadow-xl">
       <app-iutube-card-vertical [iutube-video]="recommendedVideo"/>
@@ -53,7 +54,7 @@
   <div class="grid grid-cols-12 gap-5 my-5" *ngIf="iutubeVideos">
     <div class="col-span-12 my-5" *ngIf="iutubeVideos.public_videos.length > 0">
       <p class="text-lg lg:text-xl xl:text-3xl text-white font-bold">
-        Вам может быть интересно
+        {{"INTERESED_VIDEOS"|translate}}
       </p>
     </div>
     <div
@@ -62,5 +63,7 @@
       <app-iutube-card-vertical [iutube-video]="recommendedVideo"/>
     </div>
   </div>
+
+  <app-information-bear [pageName]="'iutube_'"/>
 </div>
 
