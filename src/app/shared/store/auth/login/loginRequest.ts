@@ -9,5 +9,6 @@ export interface AuthInfo {
   token: string,
   role: string,
   user: Me,
+  isFirst: boolean,
   redirectURL: string
 }

@@ -94,7 +94,7 @@ export class StepDetailComponent implements OnInit {
     this._store.dispatch(subjectGetAction());
     this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=> {
       if(item.data){
-        const elementsToRemove = [3, 13, 14, 15];
+        const elementsToRemove = [3, 13, 15];
         this.subjects = item.data.filter(element => !elementsToRemove.includes(element.id));
       }
     })

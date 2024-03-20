@@ -61,7 +61,7 @@
             </td>
             <td class="p-4 border-2 border-[#8e6a5e]">
               <a (click)="goToSubStep(result.sub_category.id)" class="rounded-full p-2 text-white my-3 main-violet-first-rounded bg-violet-first font-bold cursor-pointer" *ngIf="result.sub_category;else no_category2">
-                {{'PASS'|translate}}
+                {{'PASS_STEP'|translate}}
               </a>
               <ng-template #no_category2>
                 <p class="text-red-500 ml-2 font-bold">
