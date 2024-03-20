@@ -63,6 +63,7 @@ import {IutubeDetailComponent} from "./iutube/iutube-detail/iutube-detail.compon
 import {IutubeAuthorsComponent} from "./iutube/iutube-authors/iutube-authors.component";
 import {BattleQuestionsComponent} from "./battle/battle-questions/battle-questions.component";
 import {BattleStatsComponent} from "./battle/battle-stats/battle-stats.component";
+import {GamesComponent} from "./games/games.component";
 
 
 const routes: Routes = [
@@ -306,6 +307,10 @@ const routes: Routes = [
       {
         path: 'ticket-detail/:id',
         component: TicketDetailComponent
+      },
+      {
+        path: 'games',
+        component: GamesComponent
       },
       {
         path:"no-page-ready",

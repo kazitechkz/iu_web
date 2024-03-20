@@ -163,11 +163,11 @@ export class SidebarComponent implements OnInit {
     //   path: RoutesName.noPageIndex,
     //   icon: faRobot as IconProp
     // },
-    // {
-    //   title: 'GAMES',
-    //   path: RoutesName.noPageIndex,
-    //   icon: faChess as IconProp
-    // },
+    {
+      title: 'GAMES',
+      path: RoutesName.games,
+      icon: faChess as IconProp
+    },
 
   ]
 }
