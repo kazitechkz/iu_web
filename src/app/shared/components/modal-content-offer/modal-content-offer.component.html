@@ -8,17 +8,17 @@
         <p class="text-red-500 font-bold text-md lg:text-lg xl:text-xl" *ngIf="subject">
           {{"DONT_HAVE_ACCESS_TO"|translate}}
         </p>
-        <p class="text-white font-bold text-md lg:text-lg xl:text-xl" *ngIf="subject">
+        <p class="text-gray-600 font-bold text-md lg:text-lg xl:text-xl" *ngIf="subject">
           {{subject | globalTranslate:"title": translate.currentLang}}
 
         </p>
       </div>
       <div class="my-3 text-center">
-        <p class="text-white font-bold text-md lg:text-lg xl:text-xl">
+        <p class="text-gray-600 font-bold text-md lg:text-lg xl:text-xl">
           {{"YOU_DIDNT_BUY_CONTENT"|translate}}
         </p>
         <br/>
-        <p class="text-white font-bold text-md lg:text-lg xl:text-xl">
+        <p class="text-gray-600 font-bold text-md lg:text-lg xl:text-xl">
           {{"BUY_FULL_ACCESS_TO_CONTENT_UNT"|translate}}
         </p>
       </div>

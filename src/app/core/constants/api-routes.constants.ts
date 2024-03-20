@@ -40,6 +40,7 @@ export enum APIRoutesName {
     getResultExam = "get-result-step-tests",
     passSubStepExam = "pass-step-test",
     getAllTournament = "tournaments-all",
+    getListTournament = "tournaments-list",
     getTournamentDetail = "tournament-detail",
     participateTournament = "participate-tournament",
     payTournament = "pay-tournament",

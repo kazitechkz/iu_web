@@ -588,5 +588,7 @@
   "SUCCESS_ACTIVATE_PROMO": "Промокод успешно активирован",
   "TO_BE_PAID": "К оплате",
   "IN_TOTAL": "Всего",
-  "NEW_PRICE": "Новая цена"
+  "NEW_PRICE": "Новая цена",
+  "PASS_SUBCATEGORY_STEP": "Пройти обучение",
+  "ALL_TOURNAMENTS":"Все турниры"
 }

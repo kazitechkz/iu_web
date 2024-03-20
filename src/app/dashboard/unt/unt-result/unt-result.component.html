@@ -288,19 +288,23 @@
       <div>
         <fa-icon class="inline-block text-4xl main-violet-first-color my-3" [icon]="faRobot"></fa-icon>
       </div>
-      <p class="text-lg md:text-3xl inline-block my-2 main-violet-first-color font-bold">
-        {{"AI_ANSWER_TO_QUESTION"|translate}} {{active_slider + 1}}</p>
-      <section class="main-violet-first-color" *ngIf="aiAnswer">
-        <markdown katex [data]="aiAnswer | mathjaxTransform:true"></markdown>
-      </section>
-      <button (click)="getAiAnswer(true)" type="button"
-              class="focus:outline-none my-4 mx-2 font-bold text-white main-violet-first-rounded bg-violet-first rounded-full focus:ring-4 text-sm px-5 py-2.5 mr-2 mb-2">
-        {{"RESEND_AI"|translate}}
-      </button>
-      <button (click)="closeModal('aiPromptModal')" type="button"
-              class="focus:outline-none my-4 font-bold text-white main-violet-first-rounded main-orange-bg rounded-full focus:ring-4 text-sm px-5 py-2.5 mr-2 mb-2">
-        {{"CANCEL"|translate}}
-      </button>
+      <div class="my-3">
+        <p class="text-lg md:text-3xl inline-block my-2 main-violet-first-color font-bold">
+          {{"AI_ANSWER_TO_QUESTION"|translate}} {{active_slider + 1}}</p>
+        <section class="main-violet-first-color" *ngIf="aiAnswer">
+          <markdown katex [data]="aiAnswer | mathjaxTransform:true"></markdown>
+        </section>
+      </div>
+      <div class="my-3">
+        <button (click)="getAiAnswer(true)" type="button"
+                class="focus:outline-none my-4 mx-2 font-bold text-white main-violet-first-rounded bg-violet-first rounded-full focus:ring-4 text-sm px-5 py-2.5 mr-2 mb-2">
+          {{"RESEND_AI"|translate}}
+        </button>
+        <button (click)="closeModal('aiPromptModal')" type="button"
+                class="focus:outline-none my-4 font-bold text-white main-violet-first-rounded main-orange-bg rounded-full focus:ring-4 text-sm px-5 py-2.5 mr-2 mb-2">
+          {{"CANCEL"|translate}}
+        </button>
+      </div>
     </div>
   </ngx-smart-modal>
 <!--  AI Prompt-->
@@ -349,10 +353,8 @@
         <div class="my-2 text-left">
           <label class="main-violet-first-color font-bold text-md md:text-lg lg:text-xl">{{"DESCRIBE_YOUR_PROBLEM"|translate}}</label>
           <textarea class="w-full rounded-2xl main-violet-first-bg p-3 input-violet main-violet-first-rounded text-white" [(ngModel)]="appealRequest.message" maxlength="255">
-
           </textarea>
         </div>
-
       </div>
       <button (click)="createAppeal()" type="button"
               class="focus:outline-none my-4 mx-2 font-bold text-white main-violet-first-rounded bg-violet-first rounded-full focus:ring-4 text-sm px-5 py-2.5 mr-2 mb-2">

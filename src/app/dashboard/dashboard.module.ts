@@ -87,6 +87,7 @@ import {InputMaskModule} from "@ngneat/input-mask";
 import { BattleQuestionsComponent } from './battle/battle-questions/battle-questions.component';
 import { BattleStatsComponent } from './battle/battle-stats/battle-stats.component';
 import { GamesComponent } from './games/games.component';
+import { TournamentAllComponent } from './tournament/tournament-all/tournament-all.component';
 
 
 @NgModule({
@@ -154,6 +155,7 @@ import { GamesComponent } from './games/games.component';
         IutubeAuthorsComponent,
         BattleQuestionsComponent,
         BattleStatsComponent,
+        TournamentAllComponent,
         GamesComponent,
     ],
     imports: [
