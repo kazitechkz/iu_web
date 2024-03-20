@@ -164,6 +164,7 @@
   "FINISHED": "Заврешен",
   "PASS": "Пройти",
   "PASS_STEP": "Обучение",
+  "BEFORE_TIME": "до вручения призов осталось",
   "EXAMINATION_RESULT": "Результат тестирования",
   "FULL_SUBJECTS_RESULT": "Полная статистика по предмету",
   "ATTEMPT_NUMBER": "Попытка №",

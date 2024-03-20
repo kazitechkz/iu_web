@@ -8,6 +8,7 @@ import {walletRatingSelector} from "../../../shared/store/wallet/walletRating/wa
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import * as moment from "moment/moment";
+import {Me} from "../../../shared/models/user.model";
 
 @Component({
   selector: 'app-wallet-rating',
@@ -23,7 +24,8 @@ export class WalletRatingComponent implements OnInit {
   // @ts-ignore
   public wallets: Pagination<Wallet[]>
   requestData = {page:1}
-  public meID: number|null = null
+  public userMe: Me|null = null
+  public place: number = 0
   endDate: moment.Moment = moment('20240630');
   countdown: string = '';
   ngOnInit(): void {
@@ -39,7 +41,8 @@ export class WalletRatingComponent implements OnInit {
     this._store.dispatch(walletRatingAction({requestData: request}))
     this._store.select(walletRatingSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       if (item.data) {
-        this.wallets = item.data
+        this.wallets = item.data.ratings
+        this.place = item.data.place
       }
     })
   }
@@ -58,15 +61,19 @@ export class WalletRatingComponent implements OnInit {
 
     // Форматируем вывод обратного отсчета
     if (seconds) {
-      this.countdown = `${days} дн. ${hours} ч. ${minutes} мин. ${seconds} сек.`;
+      if (this.translate.currentLang == 'kk') {
+        this.countdown = `${days} күн. ${hours} сағ. ${minutes} мин. ${seconds} сек.`;
+      } else {
+        this.countdown = `${days} дн. ${hours} ч. ${minutes} мин. ${seconds} сек.`;
+      }
     } else {
       this.countdown = ''
     }
 
   }
   getBgColor(userID: number|null): boolean {
-    if (userID && this.meID) {
-      return userID == this.meID;
+    if (userID && this.userMe) {
+      return userID == this.userMe.id;
     } else {return false}
   }
   getPrize(indexKey: number) {
@@ -110,7 +117,7 @@ export class WalletRatingComponent implements OnInit {
   getMe() {
     let me = localStorage.getItem('userinfo')
     if (me) {
-      this.meID = (JSON.parse(me)).id
+      this.userMe = (JSON.parse(me))
     }
   }
   protected readonly ImageHelper = ImageHelper;
