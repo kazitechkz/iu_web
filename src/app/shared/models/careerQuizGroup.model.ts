@@ -14,11 +14,11 @@ export interface CareerQuizGroup {
   phone: string|null
   address: string|null
   price: number
-  old_price:number|null
+  old_price:number
   currency: string
   created_at: Date
   updated_at: Date|null,
   career_quiz_authors:CareerQuizAuthor[]|null
   career_quizzes:CareerQuiz[]|null
-  old_price:number
+
 }
