@@ -1,15 +1,21 @@
 import {createReducer, on} from "@ngrx/store";
 import {
-  promoGetAction, promoGetActionFailure, promoGetActionSuccess
+  promoGetAction, promoGetActionFailure, promoGetActionSuccess, promoGetClearAction
 
 } from "./promo.action";
 import {promoState} from "./promo.state";
 
 const _promoReducer = createReducer(
   promoState,
-  on(promoGetAction, (state, action) => {
+  on(promoGetAction, (state) => {
     return {
       ...state,
+    }
+  }),
+  on(promoGetClearAction, (state) => {
+    return {
+      ...state,
+      data: null
     }
   }),
   on(promoGetActionSuccess, (state, action) => {

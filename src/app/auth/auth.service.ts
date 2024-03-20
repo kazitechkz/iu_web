@@ -17,6 +17,7 @@ import {TwNotification} from "ng-tw";
 import {marked} from "marked";
 import use = marked.use;
 import {HttpClient} from "@angular/common/http";
+import Swal from "sweetalert2";
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,13 @@ export class AuthService {
   }
 
   saveDataToStorage(data: AuthInfo | null) {
+    if (data?.isFirst) {
+      Swal.fire({
+        title: "Ура!",
+        text: "За вашу регистрацию было начислено 1000 iU-coins!",
+        icon: "success"
+      })
+    }
     if (data?.role == 'student') {
       this._notification.show({type: 'success', title: 'Success', text: 'Добро пожаловать!'});
       this._localStorage.setDataToLocalStorage(LocalKeysConstants.token, data?.token as string)

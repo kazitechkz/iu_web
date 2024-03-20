@@ -20,4 +20,5 @@ export interface CareerQuizGroup {
   updated_at: Date|null,
   career_quiz_authors:CareerQuizAuthor[]|null
   career_quizzes:CareerQuiz[]|null
+  old_price:number
 }

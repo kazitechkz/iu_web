@@ -3,13 +3,8 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {LoginService} from "./login.service";
 import {catchError, of, switchMap} from "rxjs";
 import {loginAction, loginActionFailure, loginActionSuccess} from "./login.action";
-import {Router} from "@angular/router";
-import {SessionService} from "../../../services/session.service";
-import {RoutesName} from "../../../../core/constants/routes.constants";
-import {LocalKeysConstants} from "../../../../core/constants/local-keys.constants";
 import {TwNotification} from "ng-tw";
 import {AuthService} from "../../../../auth/auth.service";
-import {Me} from "../../../models/user.model";
 
 @Injectable()
 export class LoginEffect {

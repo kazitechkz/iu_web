@@ -8,6 +8,7 @@ import {walletRatingSelector} from "../../../shared/store/wallet/walletRating/wa
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import * as moment from "moment/moment";
+import {Me} from "../../../shared/models/user.model";
 
 @Component({
   selector: 'app-wallet-rating',
@@ -23,7 +24,8 @@ export class WalletRatingComponent implements OnInit {
   // @ts-ignore
   public wallets: Pagination<Wallet[]>
   requestData = {page:1}
-  public meID: number|null = null
+  public userMe: Me|null = null
+  public place: number = 0
   endDate: moment.Moment = moment('20240630');
   countdown: string = '';
   ngOnInit(): void {
@@ -39,7 +41,8 @@ export class WalletRatingComponent implements OnInit {
     this._store.dispatch(walletRatingAction({requestData: request}))
     this._store.select(walletRatingSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       if (item.data) {
-        this.wallets = item.data
+        this.wallets = item.data.ratings
+        this.place = item.data.place
       }
     })
   }
@@ -58,37 +61,50 @@ export class WalletRatingComponent implements OnInit {
 
     // Форматируем вывод обратного отсчета
     if (seconds) {
-      this.countdown = `${days} дн. ${hours} ч. ${minutes} мин. ${seconds} сек.`;
+      if (this.translate.currentLang == 'kk') {
+        this.countdown = `${days} күн. ${hours} сағ. ${minutes} мин. ${seconds} сек.`;
+      } else {
+        this.countdown = `${days} дн. ${hours} ч. ${minutes} мин. ${seconds} сек.`;
+      }
     } else {
       this.countdown = ''
     }
 
   }
   getBgColor(userID: number|null): boolean {
-    if (userID && this.meID) {
-      return userID == this.meID;
+    if (userID && this.userMe) {
+      return userID == this.userMe.id;
     } else {return false}
   }
   getPrize(indexKey: number) {
-    let prize = ''
+    let prize = '-'
     switch (true) {
       case (indexKey == 1):
-        prize = 'Iphone 15 Pro Max'
+        prize = 'Iphone 15 Pro'
         break
       case (indexKey == 2):
-        prize = 'Apple Watch SE'
+        prize = 'Apple iPad 10'
         break
       case (indexKey == 3):
-        prize = 'Airpods 3 Pro'
+        prize = 'Apple Watch SE'
         break
-      case (indexKey >= 4 && indexKey <= 10):
-        prize = '1000 KZT'
+      case (indexKey >= 4 && indexKey <= 6):
+        prize = '25 000 KZT'
         break
-      case (indexKey > 10 && indexKey < 20):
-        prize = '500 KZT'
+      case (indexKey >= 7 && indexKey <= 8):
+        prize = '20 000 KZT'
+        break
+      case (indexKey >= 9 && indexKey <= 10):
+        prize = '15 000 KZT'
+        break
+      case (indexKey >= 11 && indexKey <= 15):
+        prize = '10 000 KZT'
+        break
+      case (indexKey >= 16 && indexKey <= 20):
+        prize = '5 000 KZT'
         break
       default:
-        prize = ''
+        prize = '-'
         break
     }
     return prize
@@ -101,7 +117,7 @@ export class WalletRatingComponent implements OnInit {
   getMe() {
     let me = localStorage.getItem('userinfo')
     if (me) {
-      this.meID = (JSON.parse(me)).id
+      this.userMe = (JSON.parse(me))
     }
   }
   protected readonly ImageHelper = ImageHelper;

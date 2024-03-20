@@ -6,7 +6,7 @@
           <p><fa-icon class="mr-2" [icon]="faCrown"></fa-icon>{{"BUY_FULL_ACCESS_TO_UNT"|translate}}</p>
         </span>
         <div class="flex py-3">
-          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px]">
+          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px] min-w-[40px]">
             <fa-icon [icon]="faStairs"></fa-icon>
           </div>
           <div class="ml-3">
@@ -15,7 +15,7 @@
           </div>
         </div>
         <div class="flex py-3">
-          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px]">
+          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px] min-w-[40px]">
             <fa-icon [icon]="faDumbbell"></fa-icon>
           </div>
           <div class="ml-3">
@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="flex py-3">
-          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px]">
+          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px] min-w-[40px]">
             <fa-icon [icon]="faNewspaper"></fa-icon>
           </div>
           <div class="ml-3">
@@ -33,16 +33,15 @@
           </div>
         </div>
         <div class="flex py-3">
-          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px]">
+          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px] min-w-[40px]">
             <fa-icon [icon]="faLanguage"></fa-icon>
           </div>
           <div class="ml-3">
-            <span class="uppercase font-bold">{{"SUPPORT_KK_LANGUAGE"|translate}} </span><br>
-            <span class="text-orange-400">({{"DEVELOPMENT_RU_LANGUAGE"|translate}})</span>
+            <span class="uppercase font-bold">{{"SUPPORT_MULTI_LANGUAGE"|translate}} </span><br>
           </div>
         </div>
         <div class="flex py-3">
-          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px]">
+          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px] min-w-[40px]">
             <fa-icon [icon]="faChartLine"></fa-icon>
           </div>
           <div class="ml-3">
@@ -50,7 +49,7 @@
           </div>
         </div>
         <div class="flex py-3">
-          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px]">
+          <div class="border-white border-2 flex justify-center items-center text-white rounded-full w-[40px] h-[40px] min-w-[40px]">
             <fa-icon [icon]="faLanguage"></fa-icon>
           </div>
           <div class="ml-3">
@@ -69,7 +68,7 @@
       <div (click)="openDialog('open', plan.time)" class=" text-white py-[55px] m-2 rounded-lg md:flex border-2 items-center justify-center cursor-pointer main-violet-first-rounded bg-black-violet-orange-180-05"
            *ngFor="let plan of plans"
       >
-        <div class="w-full lg:w-6/12 px-5">
+        <div class="w-full lg:w-6/12 px-5 sm:text-center mobile:text-center md:text-left">
           <div>
             <p class="text-lg lg:text-2xl xl:text-2xl 2xl:text-4xl font-bold">{{plan.title}}</p>
           </div>
@@ -173,19 +172,19 @@
                     <div class="mb-4">
                       <div class="py-5 items-center justify-between border-b-2 flex">
                         <p class="text-lg font-bold text-white">{{"TO_BE_PAID"|translate}}</p>
-                        <p class="text-white font-medium text-white text-right">{{price}}</p>
+                        <p class="font-medium text-white text-right">{{price}}</p>
                       </div>
                       <div class="items-center justify-between py-3 flex">
-                        <p class="text-white font-medium text-white">{{"IN_TOTAL"|translate}}</p>
-                        <p class="text-white font-medium text-white text-right">{{old_price}}</p>
+                        <p class="font-medium text-white">{{"IN_TOTAL"|translate}}</p>
+                        <p class="font-medium text-white text-right">{{old_price}}</p>
                       </div>
                       <div class="items-center justify-between py-3 flex">
-                        <p class="text-white font-medium text-white">{{"NEW_PRICE"|translate}}</p>
-                        <p class="text-white font-medium text-white text-right">{{price}}</p>
+                        <p class="font-medium text-white">{{"NEW_PRICE"|translate}}</p>
+                        <p class="font-medium text-white text-right">{{price}}</p>
                       </div>
                       <div class="items-center justify-between py-3 flex">
-                        <p class="text-white font-medium text-white">Промокод</p>
-                        <p class="text-white font-medium text-white text-right"><span *ngIf="promo != 0">-</span>{{promo}}</p>
+                        <p class="font-medium text-white">Промокод</p>
+                        <p class="font-medium text-white text-right"><span *ngIf="promo != 0">-</span>{{promo}}</p>
                       </div>
                     </div>
                   </div>

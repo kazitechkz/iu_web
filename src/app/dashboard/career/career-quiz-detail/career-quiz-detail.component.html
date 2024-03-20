@@ -29,7 +29,7 @@
               <a (click)="openDialog()" class="bg-violet-first main-violet-first-rounded cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold" *ngIf="isPurchased">
                 {{"PASS_QUIZ"|translate}} <fa-icon class="ml-2" [icon]="faChevronRight"></fa-icon>
               </a>
-              <a (click)="payForCareerQuiz(careerQuiz.id)" class="bg-[#ff914d] cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold" *ngIf="!isPurchased">
+              <a (click)="openDialogPromo('open')" class="bg-[#ff914d] cursor-pointer text-white text-sm px-5 py-3 rounded-full  font-bold" *ngIf="!isPurchased">
                 <fa-icon class="ml-2" [icon]="faCoins"></fa-icon> {{"BUY_CAREER_QUIZ"|translate}}: {{careerQuiz.price}} KZT
               </a>
               <div class="py-2 my-3 pl-3">
@@ -132,3 +132,85 @@
     </div>
   </section>
 </div>
+<ngx-smart-modal identifier="open" [customClass]="'max-w-1100 buySubscriptionModal'">
+  <div class=" w-full mobile:px-0 lg:px-4">
+    <div class="">
+      <div class="mobile:px-0 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+        <div class="mx-auto max-w-6xl">
+          <p class="text-4xl mb-8 font-bold text-white text-center">{{"PURCHASE"|translate}}</p>
+          <div class="lg:grid-cols-6 lg:items-start xl:gap-x-8 lg:gap-x-6 grid grid-cols-1 gap-y-10">
+            <div class="lg:col-span-3 xl:col-span-4">
+              <div class="shadow-lg pt-4 pr-8 pb-4 pl-8 rounded flow-root">
+                <form (ngSubmit)="onSubmit()" [formGroup]="promo_form">
+                  <div class="my-2 text-white font-bold text-2xl">
+                    {{this.title}}
+                  </div>
+
+                  <div class="mt-2.5 mx-0">
+                    <label class="block text-sm font-medium text-white">{{'PROMOCODE' | translate}}</label>
+                    <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                      <fa-icon [icon]="faCode"></fa-icon>
+                    </span>
+                      <input [formControlName]="'promo'" type="text" placeholder="VBAJHU" class="main-violet-first-rounded main-violet-second-bg text-white rounded-full placeholder-white
+                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 "/>
+                    </div>
+                    <span class="text-danger" *ngIf="promoError">{{promoError}}</span>
+                    <span class="text-success" *ngIf="promoSuccess">{{"SUCCESS_ACTIVATE_PROMO"|translate}}</span>
+                  </div>
+                  <div class="mt-2.5 mx-0">
+                    <button
+                            (click)="checkPromo()"
+                            type="button"
+                            class="main-violet-first-rounded bg-violet-first text-white rounded-full px-2 py-2 my-2 inline-block"
+                    >
+                      {{'CHECK_PROMO_BUTTON' | translate}}
+                      <fa-icon [icon]="faRocket"></fa-icon>
+                    </button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+            <div class="lg:col-span-2 lg:sticky">
+              <div class="bg-black-violet-orange-180 main-violet-first-rounded text-white overflow-hidden rounded">
+                <div class="px-4 py-6 sm:p-6 lg:p-8">
+                  <div class="flow-root">
+                    <div class="mb-4">
+                      <div class="py-5 items-center justify-between border-b-2 flex">
+                        <p class="text-lg font-bold text-white">{{"TO_BE_PAID"|translate}}</p>
+                        <p class="font-medium text-white text-right">{{price}}</p>
+                      </div>
+                      <div class="items-center justify-between py-3 flex">
+                        <p class="font-medium text-white">{{"IN_TOTAL"|translate}}</p>
+                        <p class="font-medium text-white text-right">{{old_price}}</p>
+                      </div>
+                      <div class="items-center justify-between py-3 flex">
+                        <p class="font-medium text-white">{{"NEW_PRICE"|translate}}</p>
+                        <p class="font-medium text-white text-right">{{price}}</p>
+                      </div>
+                      <div class="items-center justify-between py-3 flex">
+                        <p class="font-medium text-white">Промокод</p>
+                        <p class="font-medium text-white text-right"><span *ngIf="promo != 0">-</span>{{promo}}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mt-3 mr-0 mb-0 ml-0 space-y-4">
+                    <button
+                            [ngClass]="promo_form.valid ? 'cursor-pointer' : 'cursor-not-allowed'"
+                            [disabled]="!promo_form.valid"
+                            fontfamily="Arial" type="button" (click)="onSubmit()" class="transition-all duration-200 border-transparent
+                      focus:outline-none focus:ring-2 focus:ring-offset-2 text-white
+                      rounded-full bg-violet-first main-violet-first-rounded
+                      capitalize inline-flex border items-center justify-center w-full text-sm font-bold
+                      text-center py-3">{{"BUY"|translate}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ngx-smart-modal>
