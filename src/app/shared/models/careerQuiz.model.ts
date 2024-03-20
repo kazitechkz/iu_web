@@ -18,6 +18,7 @@ export interface CareerQuiz {
   rule_kk: string
   rule_en: string|null
   price: number
+  old_price: number
   currency: string
   code: string
   created_at: Date
