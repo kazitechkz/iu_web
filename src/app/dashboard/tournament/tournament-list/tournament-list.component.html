@@ -81,6 +81,14 @@
               {{ "PARTICIPATED"|translate}}
             </a>
           </li>
+          <li role="presentation">
+            <a
+              [routerLink]="'/'+RoutesName.tournamentAll"
+              class="cursor-pointer my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight hover:isolate focus:isolate focus:border-transparent text-white data-[te-nav-active]:border-[#b37cc4]"
+              role="tab">
+              {{ "ALL_TOURNAMENTS"|translate}}
+            </a>
+          </li>
         </ul>
 
         <!--Tabs content-->
@@ -96,7 +104,7 @@
                 <div class="card min-h-[300px]  rounded-2xl main-violet-first-rounded relative shadow-2xl cursor-pointer" [routerLink]="['/'+RoutesName.tournamentDetail + '/' + open_tournament.id ]">
                     <div class="absolute rounded-2xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(open_tournament!.file!.url) + ')'}"></div>
                     <div class="text-center md:text-left z-20 absolute left-3 bottom-4 font-bold w-full">
-                      <p class="text-white text-lg  my-2 px-1">{{open_tournament.title_ru}}</p>
+                      <p class="text-white text-lg  my-2 px-1">{{open_tournament | globalTranslate: 'title': translate.currentLang}}</p>
                       <p class="text-white text-sm  my-2 px-1">
                         <fa-icon [icon]="faBook" class="ml-2"></fa-icon>
                         {{open_tournament.subject|globalTranslate:'title':translate.currentLang}}
@@ -129,7 +137,7 @@
                 <div class="card min-h-[300px]  rounded-2xl main-violet-first-rounded relative shadow-2xl cursor-pointer" [routerLink]="['/'+RoutesName.tournamentDetail + '/' + participated_tournament.id ]">
                   <div class="absolute rounded-xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(participated_tournament.file!.url) + ')'}"></div>
                   <div class="text-center md:text-left z-20 absolute left-3 bottom-4 font-bold w-full">
-                    <p class="text-white text-lg  my-2 px-1">{{participated_tournament.title_ru}}</p>
+                    <p class="text-white text-lg  my-2 px-1">{{participated_tournament | globalTranslate: 'title': translate.currentLang }}</p>
                     <p class="text-white text-sm  my-2 px-1">
                       <fa-icon [icon]="faBook" class="ml-2"></fa-icon>
                       {{participated_tournament.subject|globalTranslate:'title':translate.currentLang}}

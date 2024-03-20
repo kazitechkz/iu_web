@@ -14,6 +14,7 @@ export interface CareerQuizGroup {
   phone: string|null
   address: string|null
   price: number
+  old_price:number|null
   currency: string
   created_at: Date
   updated_at: Date|null,

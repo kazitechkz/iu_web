@@ -77,7 +77,6 @@ export class BattleDetailComponent implements OnInit,OnDestroy{
   getBattle(){
     let promo_code = this.promoCode
     this._store.dispatch(getBattleByPromoAction({requestData:promo_code}));
-
   }
   me() {
     this._store.dispatch(accountAction())
@@ -104,8 +103,6 @@ export class BattleDetailComponent implements OnInit,OnDestroy{
     let result = steps.find(item=>(item.is_current == true && item.current_user != (this.user?.id ?? 0)));
     return  result != null ? true : false;
   }
-
-
 
   timeConfig:CountdownConfig = {
     // @ts-ignore

@@ -1,0 +1,38 @@
+<div class="container mx-auto relative" *ngIf="tournamentsData">
+  <div class="grid grid-cols-12 gap-3" *ngIf="tournamentsData.data">
+    <div class="col-span-12 md:col-span-4" *ngFor="let tournament of tournamentsData.data | paginate: { itemsPerPage: tournamentsData.per_page, currentPage: tournamentsData.current_page,totalItems:tournamentsData.total }">
+      <div class="card min-h-[300px]  rounded-2xl main-violet-first-rounded relative shadow-2xl cursor-pointer" [routerLink]="['/'+RoutesName.tournamentDetail + '/' + tournament.id ]">
+        <div class="absolute rounded-xl z-10  h-full brightness-50 w-full bg-cover bg-center bg-no-repeat" [ngStyle]="{'background-image':'url(' + ImageHelper.getImage(tournament.file!.url) + ')'}"></div>
+        <div class="text-center md:text-left z-20 absolute left-3 bottom-4 font-bold w-full">
+          <p class="text-white text-lg  my-2 px-1">{{tournament | globalTranslate: 'title': translate.currentLang}}</p>
+          <p class="text-white text-sm  my-2 px-1">
+            <fa-icon [icon]="faBook" class="ml-2"></fa-icon>
+            {{tournament.subject|globalTranslate:'title':translate.currentLang}}
+          </p>
+          <p class="text-sm text-white my-2 px-1">
+            <fa-icon [icon]="faClock" class="ml-2"></fa-icon> {{moment(tournament.start_at).format('DD/MM/YYYY HH:mm')}} - {{moment(tournament.end_at).format('DD/MM/YYYY HH:mm')}}
+          </p>
+          <p class="text-white text-sm  my-2 px-1">
+            <fa-icon [icon]="faMoneyBill" class="ml-2"></fa-icon>
+            {{tournament.price}}{{tournament.currency}}
+          </p>
+          <div class="text-right w-full px-3">
+            <a [routerLink]="['/'+RoutesName.tournamentDetail + '/' + tournament.id ]" type="button" class="uppercase font-bold main-violet-first-rounded bg-violet-first inline-block cursor-pointer text-white  focus:outline-none focus:ring-4 rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+              {{"MORE_INFO"|translate}}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="my-2 col-span-12 flex justify-center" *ngIf="tournamentsData.last_page > 1">
+      <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                           [nextLabel]="'NEXT_PAGINATION' | translate"
+                           [responsive]="true" class="rounded-full" (pageChange)="changeTournamentPage($event)"></pagination-controls>
+    </div>
+  </div>
+
+
+
+
+</div>
+

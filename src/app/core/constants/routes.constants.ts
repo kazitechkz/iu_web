@@ -31,6 +31,7 @@ export enum RoutesName {
     subStepResultExam = "result-exam",
     untStats = "dashboard/unt-statistics",
     tournamentList = "dashboard/tournament-list",
+    tournamentAll = "dashboard/tournament-all",
     tournamentDetail = "dashboard/tournament-detail",
     subTournamentDetail = "dashboard/sub-tournament-detail",
     resultByAttemptId = "dashboard/result-attempt",

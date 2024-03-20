@@ -507,7 +507,7 @@
   "ALL_ACCESS_TO_VIDEO_AND_MATERIALS": "50 000 тестке және 1 000 рефератқа шектеусіз қол жеткізу",
   "TERMS_OF_USE": "Пайдаланушы келісімі",
   "PASS_EXAM": "Тестті бастау",
-  "WAIT_FOR_RIVAL": "Жаудың  күту",
+  "WAIT_FOR_RIVAL": "қарсылас күту",
   "STEP_MENU": "Оқу",
   "TRAINING_MENU": "Тренажер ҰБТ",
   "TOURNAMENT_MENU": "Турнирлер",
@@ -555,7 +555,7 @@
   "TOTAL_GAME": "Жалпы ойындар",
   "VICTORY_GAME": "Жеңістер",
   "DRAFT_GAME": "Байланыстар",
-  "ЖЕҢІЛІС_ОЙЫНЫ": "Жеңіліс",
+  "DEFEAT_GAME": "Жеңіліс",
   "CUSTOMIZABLE_TEXT": "ТАҢДАЛҒАН ТАҚЫРЫПТАР БОЙЫНША ТЕСТ",
   "INDEPENDENT_SELECTION_OF_TESTS":"Тесттерді өз бетінше таңдау",
   "AUTHOR_VIDEOS":"Автордың бейне сабақтары",
@@ -586,5 +586,7 @@
   "SUCCESS_ACTIVATE_PROMO": "Промокод сәтті енгізілді",
   "TO_BE_PAID": "Төлеуге",
   "IN_TOTAL": "Жалпы",
-  "NEW_PRICE": "Жаңа баға"
+  "NEW_PRICE": "Жаңа баға",
+  "PASS_SUBCATEGORY_STEP":"Оқудан өту",
+  "ALL_TOURNAMENTS": "Барлық турнирлер"
 }

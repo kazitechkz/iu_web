@@ -5,6 +5,7 @@ import {NgxSmartModalService} from "ngx-smart-modal";
 import {faArrowRight, faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
 import {Subject} from "../../models/subject.model";
 import {RoutesName} from "../../../core/constants/routes.constants";
+import {GlobalTranslateService} from "../../services/globalTranslate.service";
 
 @Component({
   selector: 'app-modal-unt-trainer',
@@ -16,7 +17,7 @@ export class ModalUntTrainerComponent {
   protected readonly ImageHelper = ImageHelper;
   protected readonly Object = Object;
   dialog = inject(NgxSmartModalService);
-
+  public translate = inject(GlobalTranslateService);
   openDialog() {
     this.dialog.getModal('buy-trainer-unt').open();
   }
