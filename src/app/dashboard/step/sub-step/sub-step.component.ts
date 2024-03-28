@@ -73,7 +73,7 @@ export class SubStepComponent implements OnInit {
     })
     this.checkResult()
     this.getSubStep()
-    this.onYoutubePlayer()
+    // this.onYoutubePlayer()
     this.videoId = 'UZxEkiwEQT0'
     this.shortVideoId = '6xsHB6qbjwM'
   }

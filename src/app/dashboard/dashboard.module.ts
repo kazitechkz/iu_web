@@ -86,6 +86,7 @@ import { IutubeAuthorsComponent } from './iutube/iutube-authors/iutube-authors.c
 import {InputMaskModule} from "@ngneat/input-mask";
 import { BattleQuestionsComponent } from './battle/battle-questions/battle-questions.component';
 import { BattleStatsComponent } from './battle/battle-stats/battle-stats.component';
+import { GamesComponent } from './games/games.component';
 import { TournamentAllComponent } from './tournament/tournament-all/tournament-all.component';
 
 
@@ -155,6 +156,7 @@ import { TournamentAllComponent } from './tournament/tournament-all/tournament-a
         BattleQuestionsComponent,
         BattleStatsComponent,
         TournamentAllComponent,
+        GamesComponent,
     ],
     imports: [
         CommonModule,
