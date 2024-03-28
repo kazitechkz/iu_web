@@ -26,6 +26,7 @@ import { IutubeCardHorizontalComponent } from './components/iutube-card-horizont
 import { IutubeSearchComponent } from './components/iutube-search/iutube-search.component';
 import {UiSwitchModule} from "ngx-ui-switch";
 import { InformationBearComponent } from './components/information-bear/information-bear.component';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { InformationBearComponent } from './components/information-bear/informat
     IutubeCardHorizontalComponent,
     IutubeSearchComponent,
     InformationBearComponent,
+    BreadcrumbsComponent,
   ],
   imports: [
     CommonModule,
@@ -60,25 +62,26 @@ import { InformationBearComponent } from './components/information-bear/informat
     InputMaskModule,
     UiSwitchModule,
   ],
-    exports: [
-        InputFieldComponent,
-        RoundedSocialButtonComponent,
-        TranslateModule,
-        InputFieldComponent,
-        SidebarComponent,
-        NavbarComponent,
-        HomeNavbarComponent,
-        TeacherSidebarComponent,
-        AnnouncementListComponent,
-        ModalUntTrainerComponent,
-        ModalContentOfferComponent,
-        HomeFooterComponent,
-        ErrorFormFieldComponent,
-        IutubeCardVerticalComponent,
-        IutubeCardHorizontalComponent,
-        IutubeSearchComponent,
-        InformationBearComponent,
-    ],
+  exports: [
+    InputFieldComponent,
+    RoundedSocialButtonComponent,
+    TranslateModule,
+    InputFieldComponent,
+    SidebarComponent,
+    NavbarComponent,
+    HomeNavbarComponent,
+    TeacherSidebarComponent,
+    AnnouncementListComponent,
+    ModalUntTrainerComponent,
+    ModalContentOfferComponent,
+    HomeFooterComponent,
+    ErrorFormFieldComponent,
+    IutubeCardVerticalComponent,
+    IutubeCardHorizontalComponent,
+    IutubeSearchComponent,
+    InformationBearComponent,
+    BreadcrumbsComponent,
+  ],
   providers:[TranslateStore ],
 })
 export class SharedModule { }

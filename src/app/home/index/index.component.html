@@ -573,9 +573,9 @@
               </ul>
               <div class="py-5 text-right">
                 <b class="block text-orange-400 text-xl lg:text-2xl xl:text-4xl 2xl:text-6xl mb-4">
-                  {{plans[activePlanId].price}} KZT <span *ngIf="plans[activePlanId].months_value > 1">/
+                  {{plans[activePlanId].price}} KZT <span *ngIf="plans[activePlanId].old_price">/
                   <span class="text-md lg:text-lg xl:text-xl 2xl:text-2xl line-through text-rose-700">
-                    {{plans[1].price * plans[activePlanId].months_value }} KZT
+                    {{plans[activePlanId].old_price}} KZT
                   </span>
                 </span>
                 </b>

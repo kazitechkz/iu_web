@@ -54,10 +54,10 @@ export class IndexComponent implements OnInit,AfterViewInit{
   //Data
   activePlanId:number = 1;
 
-  plans:{[key: number]: { title: string,price:number,months_value:number,months:string,image:string,description:string[] }} = {
-    1:{title:"1_MONTH_SUBSCRIPTION",price:990,months_value:1,months:"1_MONTH",image:"assets/images/basic.webp",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","ALL_ACCESS_TO_VIDEO_AND_MATERIALS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
-    2:{title:"3_MONTHS_SUBSCRIPTION",price:2490,months_value:3,months:"3_MONTHS",image:"assets/images/standard.webp",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","ALL_ACCESS_TO_VIDEO_AND_MATERIALS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
-    3:{title:"6_MONTHS_SUBSCRIPTION",price:4990,months_value:6,months:"6_MONTHS",image:"assets/images/premium.webp",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","ALL_ACCESS_TO_VIDEO_AND_MATERIALS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
+  plans:{[key: number]: { title: string,price:number,old_price:number,months_value:number,months:string,image:string,description:string[] }} = {
+    1:{title:"1_MONTH_SUBSCRIPTION",price:1590,old_price:1990,months_value:1,months:"1_MONTH",image:"assets/images/basic.webp",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","ALL_ACCESS_TO_VIDEO_AND_MATERIALS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
+    2:{title:"3_MONTHS_SUBSCRIPTION",price:3990,old_price:4990,months_value:3,months:"3_MONTHS",image:"assets/images/standard.webp",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","ALL_ACCESS_TO_VIDEO_AND_MATERIALS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
+    3:{title:"6_MONTHS_SUBSCRIPTION",price:6990,old_price:8990,months_value:6,months:"6_MONTHS",image:"assets/images/premium.webp",description:["WORK_OVER_FAILURE","SUPPORT_MULTI_LANGUAGE","ANALYZE_WEAK_POSITION","FULL_STATS","ALL_ACCESS_TO_VIDEO_AND_MATERIALS","SUBJECT_MAT_GRAM","SUBJECT_GRAM","SUBJECT_HISTORY","SUBJECT_PROFS"]},
   }
 
   subjects: { id: number,title_ru:string,title_kk:string,url:string,color:string }[]= [

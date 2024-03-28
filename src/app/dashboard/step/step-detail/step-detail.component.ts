@@ -28,6 +28,7 @@ import {factAction} from "../../../shared/store/fact/fact.action";
 import {getFactStateSelector} from "../../../shared/store/fact/fact.selector";
 import {FactModel} from "../../../shared/models/fact.model";
 import {OwlOptions} from "ngx-owl-carousel-o";
+import {BreadcrumbModel} from "../../../shared/models/breadcrumb.model";
 
 @Component({
   selector: 'app-step-detail',
@@ -50,6 +51,7 @@ export class StepDetailComponent implements OnInit {
   public subSteps: SubStepModel[] | null = []
   chosenSubject:number[] = [];
   public localeID: number = 1
+  public breadcrumbs: BreadcrumbModel[] = [];
 
   ngOnInit(): void {
     this.getStepDetail()
@@ -76,7 +78,10 @@ export class StepDetailComponent implements OnInit {
   openDialog(id: string) {
     this._store.dispatch(subStepAction({requestData: parseInt(id)}))
     this._store.select(getSubStepState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-      this.subSteps = item.data
+      this.subSteps = item.data;
+      this.breadcrumbs.push(
+
+      );
     })
     this.dialog.getModal(id).open()
   }
