@@ -48,6 +48,7 @@ import {GlobalTranslateService} from "../../../shared/services/globalTranslate.s
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {ModalUntTrainerComponent} from "../../../shared/components/modal-unt-trainer/modal-unt-trainer.component";
 import {ModalContentOfferComponent} from "../../../shared/components/modal-content-offer/modal-content-offer.component";
+import {RoutesName} from "../../../core/constants/routes.constants";
 
 @Component({
   selector: 'app-customizable-unt',
@@ -394,4 +395,5 @@ export class CustomizableUntComponent implements OnInit,OnDestroy{
   protected readonly faXmark = faXmark;
   protected readonly faLock = faLock;
     protected readonly Object = Object;
+    protected readonly RoutesName = RoutesName;
 }

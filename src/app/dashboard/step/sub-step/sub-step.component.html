@@ -1,3 +1,11 @@
+<app-breadcrumbs>
+  <app-breadcrumb-item [title]="('STEP_MENU'|translate)" [route]="'/dashboard/'+RoutesName.stepRoute" [last]="true"/>
+  <app-breadcrumb-item *ngIf="activeSubject" [title]="activeSubject | globalTranslate:'title':translate.currentLang"
+                       [route]="'/dashboard/'+RoutesName.stepRoute + '/' + activeSubject.id"
+                       [last]="false"/>
+  <app-breadcrumb-item *ngIf="(subStep$ | async)?.data != null" [title]="(subStep$ | async)?.data | globalTranslate: 'title': StrHelper.getCurrentLangByLocaleID(localeID)"
+                       [last]="false"/>
+</app-breadcrumbs>
 <!-- Container for demo purpose -->
 <div class="relative" *ngIf="(subStep$ | async)?.data != null; else elseBlock" onmousedown="return false">
   <div id="sub_step_content" class="container my-10 mx-auto px-4 md:px-6 bg-white py-3 lg:py-[14px] rounded-2xl main-violet-first-rounded">

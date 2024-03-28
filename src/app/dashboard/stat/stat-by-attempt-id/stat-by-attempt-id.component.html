@@ -1,3 +1,8 @@
+<app-breadcrumbs>
+  <app-breadcrumb-item [title]="('SHOW_DETAILED_STAT'|translate)" [route]="'/'+RoutesName.untStats" [last]="true"/>
+  <app-breadcrumb-item *ngIf="statByAttempt" [title]="('RESULT'|translate)" [route]="'/'+RoutesName.resultByAttemptId + '/' + statByAttempt.attempt.id" [last]="false" />
+  <app-breadcrumb-item  [title]="('SHOW_DETAILED_STAT'|translate)" [last]="false" />
+</app-breadcrumbs>
 <div class="container mx-auto relative">
   <div class="grid grid-cols-12 gap-3" id="attemptStat" *ngIf="statByAttempt">
     <div class="col-span-12 my-3 bg-white rounded-lg shadow-lg p-3" *ngFor="let subject of statByAttempt.subjects">

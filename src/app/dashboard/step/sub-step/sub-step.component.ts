@@ -29,6 +29,8 @@ import {calculate} from "@rxweb/reactive-form-validators/algorithm/luhn-algorith
 import {GlobalTranslatePipe} from "../../../core/pipes/globalTranslate.pipe";
 import {MathJaxPipe} from "../../../core/pipes/mathJax.pipe";
 import {SubStepContentModel} from "../../../shared/models/subStepContent.model";
+import {Subject} from "../../../shared/models/subject.model";
+import {SubjectHelper} from "../../../core/helpers/subject.helper";
 
 @Component({
   selector: 'app-sub-step',
@@ -62,7 +64,8 @@ export class SubStepComponent implements OnInit {
   //@ts-ignore
   subStep$: Observable<ResponseData<SubStepModel>>
   //@ts-ignore
-  public content: SubStepContentModel
+  public content: SubStepContentModel;
+  public activeSubject : Subject|null = null;
   videoId: string = ''
   shortVideoId: string = ''
   public localeID: number = 1
@@ -88,7 +91,10 @@ export class SubStepComponent implements OnInit {
       this.subStep$ = this._store.pipe(autoUnsubscribe(this.destroyRef), select(getSubStepDetailState))
       this.subStep$.pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         //@ts-ignore
-        this.content = item.data?.sub_step_content
+        this.content = item.data?.sub_step_content;
+        if(item.data?.step.subject_id){
+         this.activeSubject = SubjectHelper.staticSubject.find(subj => subj.id == item.data?.step.subject_id) ?? null;
+        }
       })
     })
   }

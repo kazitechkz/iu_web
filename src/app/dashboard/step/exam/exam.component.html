@@ -1,3 +1,7 @@
+<app-breadcrumbs>
+  <app-breadcrumb-item [title]="('STEP_MENU'|translate)" [route]="'/dashboard/'+RoutesName.stepRoute" [last]="true"/>
+  <app-breadcrumb-item [title]="('PASS_EXAM'|translate)" [last]="false" />
+</app-breadcrumbs>
 <div class="container my-10 mx-auto md:px-6 bg-[rgba(255,255,255,0.7)] py-5 rounded-[20px] main-violet-first-rounded">
   <div *ngIf="questions?.length; else noQuestions">
     <div *ngFor="let question of questions"

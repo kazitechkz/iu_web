@@ -22,6 +22,7 @@ import {OwlOptions} from "ngx-owl-carousel-o";
 import {ModalUntTrainerComponent} from "../../../shared/components/modal-unt-trainer/modal-unt-trainer.component";
 import {checkPlanUNTAction} from "../../../shared/store/plan/checkPlanUNT/checkPlanUNT.action";
 import {checkPlanUNTSelector} from "../../../shared/store/plan/checkPlanUNT/checkPlanUNT.selector";
+import {RoutesName} from "../../../core/constants/routes.constants";
 
 @Component({
   selector: 'app-single-subject',
@@ -131,4 +132,5 @@ export class SingleSubjectComponent implements OnInit{
   protected readonly ImageHelper = ImageHelper;
   protected readonly faCheck = faCheck;
   protected readonly faXmark = faXmark;
+    protected readonly RoutesName = RoutesName;
 }

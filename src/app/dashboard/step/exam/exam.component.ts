@@ -10,6 +10,8 @@ import {distinctUntilChanged} from "rxjs";
 import {Location} from "@angular/common";
 import {resultExamAction, resultExamClearDataAction} from "../../../shared/store/step/resultExam/resultExam.action";
 import {TwNotification} from "ng-tw";
+import {RoutesName} from "../../../core/constants/routes.constants";
+import {StrHelper} from "../../../core/helpers/str.helper";
 
 @Component({
   selector: 'app-exam',
@@ -39,7 +41,8 @@ export class ExamComponent implements OnInit, DoCheck {
         }
       }))
       this._store.select(getSubStepExamState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-        this.questions = item.data
+        this.questions = item.data;
+        console.log(item.data);
       })
     })
   }
@@ -126,4 +129,7 @@ export class ExamComponent implements OnInit, DoCheck {
       this.keys = this.questions.keys()
     }
   }
+
+    protected readonly RoutesName = RoutesName;
+    protected readonly StrHelper = StrHelper;
 }

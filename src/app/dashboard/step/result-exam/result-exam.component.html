@@ -1,3 +1,7 @@
+<app-breadcrumbs>
+  <app-breadcrumb-item [title]="('STEP_MENU'|translate)" [route]="'/dashboard/'+RoutesName.stepRoute" [last]="true"/>
+  <app-breadcrumb-item [title]="('RESULT'|translate)" [last]="false" />
+</app-breadcrumbs>
 <div *ngIf="results; else elseBlock" class="container my-10 mx-auto md:px-6 bg-[rgba(255,255,255,0.7)] py-5 rounded-[20px] main-violet-first-rounded">
   <div
     class="mb-3 inline-flex w-full items-center rounded-lg bg-success-100 px-6 py-5 text-base text-success-700"

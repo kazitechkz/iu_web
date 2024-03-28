@@ -26,6 +26,7 @@ export interface StepModel {
   max_questions_quantity: number
   questions_step: number
   image_url: number
+  subject_id: number|null
   created_at: any
   updated_at: string
   deleted_at: any

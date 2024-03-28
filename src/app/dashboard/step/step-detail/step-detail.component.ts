@@ -29,6 +29,7 @@ import {getFactStateSelector} from "../../../shared/store/fact/fact.selector";
 import {FactModel} from "../../../shared/models/fact.model";
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {BreadcrumbModel} from "../../../shared/models/breadcrumb.model";
+import {allNewsAction} from "../../../shared/store/news/allNews/allNews.action";
 
 @Component({
   selector: 'app-step-detail',
@@ -50,8 +51,8 @@ export class StepDetailComponent implements OnInit {
   dialog = inject(NgxSmartModalService)
   public subSteps: SubStepModel[] | null = []
   chosenSubject:number[] = [];
-  public localeID: number = 1
-  public breadcrumbs: BreadcrumbModel[] = [];
+  public localeID: number = 1;
+  public activeSubject:Subject|null = null;
 
   ngOnInit(): void {
     this.getStepDetail()
@@ -79,9 +80,6 @@ export class StepDetailComponent implements OnInit {
     this._store.dispatch(subStepAction({requestData: parseInt(id)}))
     this._store.select(getSubStepState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       this.subSteps = item.data;
-      this.breadcrumbs.push(
-
-      );
     })
     this.dialog.getModal(id).open()
   }
@@ -91,7 +89,8 @@ export class StepDetailComponent implements OnInit {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this._store.dispatch(stepDetailAction({ requestData: params['id'] }))
       this._store.select(getStepDetailState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-        this.steps = item.data
+        this.steps = item.data;
+        this.activeSubject = item.data?.find(item =>item.subject != null)!.subject ?? null;
       })
     })
   }
@@ -202,4 +201,6 @@ export class StepDetailComponent implements OnInit {
   protected readonly StrHelper = StrHelper;
   protected readonly faXmark = faXmark;
   protected readonly faCheck = faCheck;
+  protected readonly BreadcrumbModel = BreadcrumbModel;
+  protected readonly allNewsAction = allNewsAction;
 }

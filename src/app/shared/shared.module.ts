@@ -27,6 +27,7 @@ import { IutubeSearchComponent } from './components/iutube-search/iutube-search.
 import {UiSwitchModule} from "ngx-ui-switch";
 import { InformationBearComponent } from './components/information-bear/information-bear.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
+import { BreadcrumbItemComponent } from './components/breadcrumb-item/breadcrumb-item.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
     IutubeSearchComponent,
     InformationBearComponent,
     BreadcrumbsComponent,
+    BreadcrumbItemComponent,
   ],
   imports: [
     CommonModule,
@@ -81,6 +83,7 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
     IutubeSearchComponent,
     InformationBearComponent,
     BreadcrumbsComponent,
+    BreadcrumbItemComponent,
   ],
   providers:[TranslateStore ],
 })

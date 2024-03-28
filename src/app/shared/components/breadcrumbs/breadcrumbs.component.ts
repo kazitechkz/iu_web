@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {faHomeAlt} from "@fortawesome/free-solid-svg-icons";
 import {BreadcrumbModel} from "../../models/breadcrumb.model";
+import {BreadcrumbItemComponent} from "../breadcrumb-item/breadcrumb-item.component";
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -9,6 +10,5 @@ import {BreadcrumbModel} from "../../models/breadcrumb.model";
 })
 export class BreadcrumbsComponent {
 
-  @Input() breadcrumbs:BreadcrumbModel[] = [];
 
 }

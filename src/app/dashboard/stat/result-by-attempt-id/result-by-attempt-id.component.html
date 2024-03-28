@@ -1,3 +1,7 @@
+<app-breadcrumbs>
+  <app-breadcrumb-item [title]="('SHOW_DETAILED_STAT'|translate)" [route]="'/'+RoutesName.untStats" [last]="true"/>
+  <app-breadcrumb-item [title]="('RESULT'|translate)" [last]="false" />
+</app-breadcrumbs>
 <div class="container mx-auto relative" *ngIf="resultByAttempt">
   <div class="grid grid-cols-12 gap-5 rounded-xl shadow-lg p-3 my-3 justify-center items-center" id="main-info" *ngIf="resultByAttempt.attempt">
     <div class="col-span-12 md:col-span-6 my-2 flex justify-center">

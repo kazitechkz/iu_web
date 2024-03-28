@@ -1,3 +1,8 @@
+<app-breadcrumbs>
+  <app-breadcrumb-item [title]="('SHOW_DETAILED_STAT'|translate)" [route]="'/'+RoutesName.untStats" [last]="true"/>
+  <app-breadcrumb-item *ngIf="attempt" [title]="('RESULT'|translate)" [route]="'/'+RoutesName.resultByAttemptId + '/' + attempt.attempt_id" [last]="false" />
+  <app-breadcrumb-item  [title]="('WORK_OVER_FAILURE'|translate)" [last]="false" />
+</app-breadcrumbs>
 <section *ngIf="attempt && !loading">
   <div class="container mx-auto relative">
     <div class="grid grid-cols-12 py-5 my-3 card-violet rounded-2xl">
