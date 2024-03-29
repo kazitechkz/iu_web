@@ -1,4 +1,7 @@
-
+<app-breadcrumbs>
+  <app-breadcrumb-item [title]="('MY_QUESTIONS'|translate)" [route]="'/'+RoutesName.myQuestions"  [last]="true"/>
+  <app-breadcrumb-item [title]="('APPEAL_QUESTIONS'|translate)"   [last]="false"/>
+</app-breadcrumbs>
 <div class="container mx-auto">
   <div class="grid grid-cols-12 gap-3" *ngIf="appeal">
     <div class="col-span-12 xl:col-span-6" *ngIf="appeal.question">

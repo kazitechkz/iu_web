@@ -1,3 +1,7 @@
+<app-breadcrumbs>
+  <app-breadcrumb-item [title]="('TECH_SUPPORT'|translate)" [route]="'/'+RoutesName.myTickets"  [last]="true"/>
+  <app-breadcrumb-item [title]="('SHOW'|translate)"  [last]="false"/>
+</app-breadcrumbs>
 <div class="container mx-auto" *ngIf="ticketMessageModel">
   <div [ngClass]="{'max-h-[70vh] overflow-y-scroll no-scrollbar':!ticketMessageModel.ticket.is_closed}">
     <div class="grid grid-cols-12 gap-3 py-3">

@@ -14,6 +14,7 @@ import {
   getMySavedQuestionByIdSelector
 } from "../../../shared/store/question/getMySavedQuestionById/getMySavedQuestionById.selector";
 import {Question} from "../../../shared/models/question.model";
+import {RoutesName} from "../../../core/constants/routes.constants";
 
 @Component({
   selector: 'app-saved-question',
@@ -55,4 +56,5 @@ export class SavedQuestionComponent implements OnInit{
     });
   }
 
+    protected readonly RoutesName = RoutesName;
 }

@@ -1,3 +1,7 @@
+<app-breadcrumbs>
+  <app-breadcrumb-item [title]="('DASHBOARD_TOURNAMENT_TO_UNT'|translate)" [route]="'/'+RoutesName.tournamentList"  [last]="true"/>
+  <app-breadcrumb-item [title]="('ALL_TOURNAMENTS'|translate)" [route]="'/'+RoutesName.tournamentList"  [last]="false"/>
+</app-breadcrumbs>
 <div class="container mx-auto relative" *ngIf="tournamentsData">
   <div class="grid grid-cols-12 gap-3" *ngIf="tournamentsData.data">
     <div class="col-span-12 md:col-span-4" *ngFor="let tournament of tournamentsData.data | paginate: { itemsPerPage: tournamentsData.per_page, currentPage: tournamentsData.current_page,totalItems:tournamentsData.total }">

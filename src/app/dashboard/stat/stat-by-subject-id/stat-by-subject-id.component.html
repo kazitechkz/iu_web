@@ -1,3 +1,9 @@
+<app-breadcrumbs>
+  <app-breadcrumb-item [title]="('SHOW_DETAILED_STAT'|translate)" [route]="'/'+RoutesName.untStats" [last]="true"/>
+  <ng-container *ngIf="statBySubject">
+    <app-breadcrumb-item *ngIf="statBySubject.subject" [title]="statBySubject.subject | globalTranslate:'title':translate.currentLang" [last]="false"/>
+  </ng-container>
+</app-breadcrumbs>
 <div class="container mx-auto relative">
   <div class="grid grid-cols-12 gap-3" id="attemptStat" *ngIf="statBySubject">
     <div class="col-span-12 my-3 bg-white rounded-lg shadow-lg p-3">
@@ -73,7 +79,6 @@
     </div>
   </div>
   <app-information-bear [pageName]="'stat-attempt_'"/>
-
 </div>
 
 <ngx-smart-modal identifier="substeps" [customClass]="'max-w-1100 buySubscriptionModal'">

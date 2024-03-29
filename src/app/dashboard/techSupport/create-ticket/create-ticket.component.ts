@@ -28,6 +28,7 @@ import {
 import {
   createTechSupportTicketSelector
 } from "../../../shared/store/techSupport/createTechSupportTicket/createTechSupportTicket.selector";
+import {RoutesName} from "../../../core/constants/routes.constants";
 
 @Component({
   selector: 'app-create-ticket',
@@ -102,4 +103,5 @@ export class CreateTicketComponent implements OnInit{
 
   protected readonly ClassicEditor = ClassicEditor;
   protected readonly faCheck = faCheck;
+    protected readonly RoutesName = RoutesName;
 }

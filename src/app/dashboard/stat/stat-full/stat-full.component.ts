@@ -29,6 +29,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import * as moment from "moment";
+import {RoutesName} from "../../../core/constants/routes.constants";
 @Component({
   selector: 'app-stat-full',
   templateUrl: './stat-full.component.html',
@@ -146,4 +147,5 @@ export class StatFullComponent implements OnInit {
   protected readonly Object = Object;
   protected readonly moment = moment;
   protected readonly Date = Date;
+    protected readonly RoutesName = RoutesName;
 }

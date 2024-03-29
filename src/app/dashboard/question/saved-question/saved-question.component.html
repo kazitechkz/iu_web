@@ -1,3 +1,7 @@
+<app-breadcrumbs>
+  <app-breadcrumb-item [title]="('MY_QUESTIONS'|translate)" [route]="'/'+RoutesName.myQuestions"  [last]="true"/>
+  <app-breadcrumb-item [title]="('SAVED_QUESTIONS'|translate)"   [last]="false"/>
+</app-breadcrumbs>
 <div class="container mx-auto">
   <div class="grid grid-cols-12" *ngIf="question">
     <div class="col-span-12 flex justify-center items-center" *ngIf="question.subject">

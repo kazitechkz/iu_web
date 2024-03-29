@@ -1,3 +1,7 @@
+<app-breadcrumbs>
+  <app-breadcrumb-item [title]="('ALL_TOURNAMENTS'|translate)" [route]="'/'+RoutesName.tournamentList"  [last]="true"/>
+  <app-breadcrumb-item *ngIf="tournamentDetails" [title]="tournamentDetails|globalTranslate:'title':translate.currentLang"  [last]="false"/>
+</app-breadcrumbs>
 <section class="px-3 mobile:px-0 sm:px-0 ">
   <div class="lg:container mx-auto relative">
     <div class="grid grid-cols-12 gap-3 m-2 mobile:mx-0 sm:mx-0" id="tournamentDetail" *ngIf="tournamentDetails">

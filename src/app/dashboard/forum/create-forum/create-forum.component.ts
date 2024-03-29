@@ -19,6 +19,7 @@ import {createForumState} from "../../../shared/store/forum/createForum/createFo
 import {createForumSelector} from "../../../shared/store/forum/createForum/createForum.selector";
 import {faCheck} from "@fortawesome/free-solid-svg-icons";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
+import {RoutesName} from "../../../core/constants/routes.constants";
 @Component({
   selector: 'app-create-forum',
   templateUrl: './create-forum.component.html',
@@ -89,4 +90,5 @@ export class CreateForumComponent implements OnInit,OnDestroy{
 
 
   protected readonly faCheck = faCheck;
+    protected readonly RoutesName = RoutesName;
 }

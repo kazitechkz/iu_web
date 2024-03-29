@@ -26,6 +26,7 @@ import {
   getMyAppealQuestionByIdSelector
 } from "../../../shared/store/appeal/getMyAppealQuestionById/getMyAppealQuestionById.selector";
 import {Appeal} from "../../../shared/models/appeal.model";
+import {RoutesName} from "../../../core/constants/routes.constants";
 
 @Component({
   selector: 'app-appeal-question',
@@ -65,4 +66,5 @@ export class AppealQuestionComponent implements OnInit{
     });
   }
 
+    protected readonly RoutesName = RoutesName;
 }

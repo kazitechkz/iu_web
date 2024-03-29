@@ -1,3 +1,7 @@
+<app-breadcrumbs>
+  <app-breadcrumb-item [title]="('SHOW_DETAILED_STAT'|translate)" [route]="'/'+RoutesName.untStats" [last]="true"/>
+  <app-breadcrumb-item  [title]="('FULL_STATS'|translate)" [last]="false" />
+</app-breadcrumbs>
 <div class="container mx-auto relative">
   <div class="grid grid-cols-12 gap-3">
     <div id="filterBlock" class="col-span-12">
@@ -119,7 +123,7 @@
           </div>
           <div class="card h-full-body px-[10px] py-[15px] flex justify-between text-2xl lg:text-2xl xl:text-4xl 2xl:text-6xl font-bold text-rose-500">
             <p>
-              {{fullStatModel.min}}
+              {{fullStatModel.min ?? 0}}
             </p>
             <fa-icon [icon]="faThumbsDown"/>
           </div>
@@ -134,7 +138,7 @@
           </div>
           <div class="card h-full-body px-[10px] py-[15px] flex justify-between text-2xl lg:text-2xl xl:text-4xl 2xl:text-6xl font-bold main-green-color">
             <p>
-              {{fullStatModel.max}}
+              {{fullStatModel.max ?? 0}}
             </p>
             <fa-icon [icon]="faThumbsUp"/>
           </div>
