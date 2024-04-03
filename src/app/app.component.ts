@@ -1,6 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {NgxSpinnerService} from "ngx-spinner";
 import {TranslateService} from "@ngx-translate/core";
+import {GoogleTagManagerService} from "angular-google-tag-manager";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,21 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class AppComponent implements OnInit {
   title = 'iu_web';
-  private _translateService = inject(TranslateService)
+  private _translateService = inject(TranslateService);
+  private _router = inject(Router);
+  constructor(private gtmService: GoogleTagManagerService) {
+    //Google Tag
+    this._router.events.forEach(item => {
+      if (item instanceof NavigationEnd) {
+        const gtmTag = {
+          pageName: item.url
+        };
+        this.gtmService.pushTag(gtmTag);
+      }
+    });
+  }
+
+
   ngOnInit(): void {
     const selectedLanguage = localStorage.getItem('lang');
     if (selectedLanguage) {
@@ -17,12 +33,4 @@ export class AppComponent implements OnInit {
     }
   }
 
-  // loadCurrentUser() {
-  //   const token = localStorage.getItem('token');
-  //   this.accountService.loadCurrentUser(token).subscribe(() => {
-  //     console.log('loaded user');
-  //   }, error => {
-  //     console.log(error);
-  //   });
-  // }
 }

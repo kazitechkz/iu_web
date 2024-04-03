@@ -25,8 +25,9 @@ import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {
   getAttemptByPromoCodeAction
 } from "../../shared/store/attempt/getAttemptByPromoCode/getAttemptByPromoCode.action";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
+import {GoogleTagManagerService} from "angular-google-tag-manager";
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
@@ -39,7 +40,7 @@ export class IndexComponent implements OnInit,AfterViewInit{
   private destroyRef:DestroyRef = inject(DestroyRef);
   private _route = inject(ActivatedRoute)
   public translate = inject(GlobalTranslateService);
-
+  private _router = inject(Router);
   //Injection End
   //@ts-ignore
   @ViewChild('serviceEl') serviceEl: ElementRef<HTMLDivElement>;
@@ -101,6 +102,9 @@ export class IndexComponent implements OnInit,AfterViewInit{
     this.getUserInfo();
 
   }
+
+
+
   ngAfterViewInit(): void {
     this._route.fragment.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       if(params != null){

@@ -65,6 +65,10 @@ import {BattleQuestionsComponent} from "./battle/battle-questions/battle-questio
 import {BattleStatsComponent} from "./battle/battle-stats/battle-stats.component";
 import {GamesComponent} from "./games/games.component";
 import {TournamentAllComponent} from "./tournament/tournament-all/tournament-all.component";
+import {NgxSeo} from "@avivharuzi/ngx-seo";
+import {SeoConstants} from "../core/constants/seo.constants";
+
+
 
 
 const routes: Routes = [
@@ -75,199 +79,248 @@ const routes: Routes = [
     children: [
       {
         path: 'index',
-        component: IndexComponent
+        component: IndexComponent,
+        data:{seo:SeoConstants.DashboardSEO}
       },
       {
         path: 'pass-unt',
-        component: PassUntComponent
+        component: PassUntComponent,
+        data:{seo:SeoConstants.PassUNTSEO}
       },
       {
         path: 'unt-mode',
-        component: UntModeComponent
+        component: UntModeComponent,
+        data:{seo:SeoConstants.ModeUNTSEO}
       },
       {
         path: 'single-subject-unt',
-        component: SingleSubjectComponent
+        component: SingleSubjectComponent,
+        data:{seo:SeoConstants.SingleSubjectUNTSEO}
       },
       {
         path: 'customizable-unt',
-        component: CustomizableUntComponent
+        component: CustomizableUntComponent,
+        data:{seo:SeoConstants.CustomizableUntSEO}
       },
       {
         path: 'pass-unt-exam/:id',
-        component: PassUntExamComponent
+        component: PassUntExamComponent,
+        data:{seo:SeoConstants.PassUNTSEO}
       },
       {
         path: 'unt-result/:id',
-        component: UntResultComponent
+        component: UntResultComponent,
+        data:{seo:SeoConstants.PassUNTSEO}
       },
       {
         path: 'unt-statistics',
-        component: UntStatComponent
+        component: UntStatComponent,
+        data:{seo:SeoConstants.UntStatSEO}
       },
       {
         path: 'tournament-list',
-        component: TournamentListComponent
+        component: TournamentListComponent,
+        data:{seo:SeoConstants.TournamentsSEO}
       },
       {
         path: 'tournament-all',
-        component: TournamentAllComponent
+        component: TournamentAllComponent,
+        data:{seo:SeoConstants.TournamentsSEO}
       },
       {
         path: 'battle-list',
-        component: BattleListComponent
+        component: BattleListComponent,
+        data:{seo:SeoConstants.BattleListSEO}
       },
       {
         path: 'battle-detail/:promo_code',
-        component: BattleDetailComponent
+        component: BattleDetailComponent,
+        data:{seo:SeoConstants.BattleDetailSEO}
       },
       {
         path: 'battle-questions/:promo_code',
-        component: BattleQuestionsComponent
+        component: BattleQuestionsComponent,
+        data:{seo:SeoConstants.BattleQuestionSEO}
       },
       {
         path: 'battle-game/:step_id',
         component: BattleGameComponent,
+        data:{seo:SeoConstants.BattleDetailSEO}
       },
       {
         path: 'battle-stats',
         component: BattleStatsComponent,
+        data:{seo:SeoConstants.BattleStatSEO}
       },
       {
         path: 'tournament-detail/:id',
-        component: TournamentDetailComponent
+        component: TournamentDetailComponent,
+        data:{seo:SeoConstants.TournamentDetailSEO}
       },
       {
         path: 'sub-tournament-detail/:id',
-        component: SubTournamentDetailComponent
+        component: SubTournamentDetailComponent,
+        data:{seo:SeoConstants.TournamentDetailSEO}
       },
       {
         path: 'step',
-        component: StepComponent
+        component: StepComponent,
+        data:{seo:SeoConstants.StepSEO}
       },
       {
         path: 'step/:id',
-        component: StepDetailComponent
+        component: StepDetailComponent,
+        data:{seo:SeoConstants.SubStepSEO}
       },
       {
         path: 'sub-step/:id/:locale_id',
-        component: SubStepComponent
+        component: SubStepComponent,
+        data:{seo:SeoConstants.SubStepSEO}
       },
       {
         path: 'sub-step-exam/:sub_step_test_id/:locale_id',
-        component: ExamComponent
+        component: ExamComponent,
+        data:{seo:SeoConstants.StepExamSEO}
       },
       {
         path: 'result-exam/:sub_step_id/:locale_id',
-        component: ResultExamComponent
+        component: ResultExamComponent,
+        data:{seo:SeoConstants.ResultExamSEO}
       },
       {
         path: 'result-attempt/:id',
-        component: ResultByAttemptIdComponent
+        component: ResultByAttemptIdComponent,
+        data:{seo:SeoConstants.ResultExamSEO}
       },
       {
         path: 'stat-attempt/:id',
-        component: StatByAttemptIdComponent
+        component: StatByAttemptIdComponent,
+        data:{seo:SeoConstants.ResultAttemptSEO}
       },
       {
         path: 'plan-mode',
-        component: PlanModeComponent
+        component: PlanModeComponent,
+        data:{seo:SeoConstants.PlanSEO}
       },
       {
         path: 'plan-unt',
-        component: UntPlanComponent
+        component: UntPlanComponent,
+        data:{seo:SeoConstants.PlanSEO}
       },
       {
         path: 'plan-content',
-        component: ContentPlanComponent
+        component: ContentPlanComponent,
+        data:{seo:SeoConstants.PlanSEO}
       },
       {
         path: 'pass-unt-by-promo/:promo_code',
-        component: PassUntByPromoComponent
+        component: PassUntByPromoComponent,
+        data:{seo:SeoConstants.PassUNTByPromoSEO}
       },
       {
         path: 'stat-subject/:id',
-        component: StatBySubjectIdComponent
+        component: StatBySubjectIdComponent,
+        data:{seo:SeoConstants.StatBySubjectIdSEO}
       },
       {
         path: 'stat-full',
-        component: StatFullComponent
+        component: StatFullComponent,
+        data:{seo:SeoConstants.StatFullUNTSeo}
       },
       {
         path: 'my-profile',
-        component: MyProfileComponent
+        component: MyProfileComponent,
+        data:{seo:SeoConstants.ProfileSeo}
       },
       {
         path: 'create-forum',
         component: CreateForumComponent,
+        data:{seo:SeoConstants.CreateForumSeo}
       },
       {
         path: 'forum-list',
         component: ForumListComponent,
+        data:{seo:SeoConstants.ForumListSeo}
       },
       {
         path: 'forum-detail/:id',
-        component: ForumDetailComponent
+        component: ForumDetailComponent,
+        data:{seo:SeoConstants.ForumDetailSeo}
       },
       {
         path: 'wallet',
-        component: WalletIndexComponent
+        component: WalletIndexComponent,
+        data:{seo:SeoConstants.WalletSeo}
       },
       {
         path: 'wallet-transfer',
-        component: WalletTransferComponent
+        component: WalletTransferComponent,
+        data:{seo:SeoConstants.WalletTransferSeo}
       },
       {
         path: 'wallet-deposit',
-        component: WalletDepositComponent
+        component: WalletDepositComponent,
+        data:{seo:SeoConstants.WalletDepositSeo}
       },
       {
         path: 'wallet-statistics',
-        component: WalletStatisticsComponent
+        component: WalletStatisticsComponent,
+        data:{seo:SeoConstants.WalletStatisticsSeo}
       },
       {
         path: 'wallet-rating',
-        component: WalletRatingComponent
+        component: WalletRatingComponent,
+        data:{seo:SeoConstants.WalletRatingSeo}
       },
       {
         path: 'news',
-        component: NewsListComponent
+        component: NewsListComponent,
+        data:{seo:SeoConstants.NewsSeo}
       },
       {
         path: 'news-detail/:id',
-        component: NewsDetailComponent
+        component: NewsDetailComponent,
+        data:{seo:SeoConstants.NewsDetailSeo}
       },
       {
         path: 'notifications',
-        component: NotificationListComponent
+        component: NotificationListComponent,
+        data:{seo:SeoConstants.NotificationSeo}
       },
       {
         path: 'classrooms',
-        component: RoomComponent
+        component: RoomComponent,
+        data:{seo:SeoConstants.ClassRoomSeo}
       },
       {
         path: 'career-quizzes',
-        component: CareerQuizListsComponent
+        component: CareerQuizListsComponent,
+        data:{seo:SeoConstants.CareerQuizSeo}
       },
       {
         path: 'career-quiz-detail/:id',
-        component: CareerQuizDetailComponent
+        component: CareerQuizDetailComponent,
+        data:{seo:SeoConstants.CareerQuizDetailSeo}
       },
       {
         path: 'pass-career-quiz/:id',
-        component: PassCareerQuizComponent
+        component: PassCareerQuizComponent,
+        data:{seo:SeoConstants.PassCareerQuizSeo}
       },
       {
         path: 'result-career-quiz/:id',
-        component: ResultCareerQuizComponent
+        component: ResultCareerQuizComponent,
+        data:{seo:SeoConstants.ResultCareerQuizSeo}
       },
       {
         path: 'career-quiz-plans',
-        component: CareerPlanComponent
+        component: CareerPlanComponent,
+        data:{seo:SeoConstants.CareerPlanSeo}
       },
       {
         path: 'my-career-quiz-attempts',
-        component: MyCareerQuizAttemptsComponent
+        component: MyCareerQuizAttemptsComponent,
+        data:{seo:SeoConstants.MyCareerQuizAttemptsSeo}
       },
       {
         path: 'iutube',

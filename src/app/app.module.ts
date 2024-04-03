@@ -34,6 +34,8 @@ import {CalendarModule, DateAdapter} from "angular-calendar";
 import {adapterFactory} from "angular-calendar/date-adapters/date-fns";
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {InputMaskModule} from "@ngneat/input-mask";
+import {GoogleTagManagerModule} from "angular-google-tag-manager";
+import {NgxSeoModule} from "@avivharuzi/ngx-seo";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -66,6 +68,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     DpDatePickerModule,
     NgxSpinnerModule.forRoot({type: 'mySpinner'}),
     InputMaskModule,
+    NgxSeoModule.forRoot({
+      changeTitle: (title) => title,
+      preserve: false,
+      listenToRouteEvents: true,
+    }),
+    GoogleTagManagerModule.forRoot({
+      id: 'AW-16504382945'
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -84,6 +94,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: 'googleTagManagerId',  useValue: "AW-16504382945"}
   ],
   bootstrap: [AppComponent]
 })
