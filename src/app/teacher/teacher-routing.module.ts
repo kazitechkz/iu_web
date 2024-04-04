@@ -16,6 +16,7 @@ import {UntTestsComponent} from "./exams/unt-tests/unt-tests.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {MyStudentsComponent} from "./my-students/my-students.component";
 import {AllStatsComponent} from "./stats/all-stats/all-stats.component";
+import {SeoConstants} from "../core/constants/seo.constants";
 
 const routes: Routes = [
   {
@@ -25,47 +26,58 @@ const routes: Routes = [
     children: [
       {
         path: 'index',
-        component: IndexComponent
+        component: IndexComponent,
+        data:{seo:SeoConstants.DashboardTeacherSeo}
       },
       {
         path: RoutesName.teacherClassrooms,
-        component: ClassroomsComponent
+        component: ClassroomsComponent,
+        data:{seo:SeoConstants.MyTeacherClassroomSeo}
       },
       {
         path: RoutesName.teacherMyStudents,
-        component: MyStudentsComponent
+        component: MyStudentsComponent,
+        data:{seo:SeoConstants.MyStudentSeo}
       },
       {
         path: RoutesName.teacherStatByUser + '/:user_id',
-        component: AllStatsComponent
+        component: AllStatsComponent,
+        data:{seo: SeoConstants.MyStudentsStatSeo}
       },
       {
         path: 'detail-classroom/:id',
-        component: DetailClassroomComponent
+        component: DetailClassroomComponent,
+        data:{seo: SeoConstants.MyClassroomDetailSeo}
       },
       {
         path: 'single-tests',
-        component: SingleTestsComponent
+        component: SingleTestsComponent,
+        data:{seo: SeoConstants.SendStudentToSingleUntSeo}
       },
       {
         path: 'unt-tests',
-        component: UntTestsComponent
+        component: UntTestsComponent,
+        data:{seo: SeoConstants.SendStudentToFullUntSeo}
       },
       {
         path: 'detail-test/:id',
-        component: DetailExamComponent
+        component: DetailExamComponent,
+        data:{seo: SeoConstants.MyStudentsStatSeo}
       },
       {
         path: 'detail-unt-test/:id',
-        component: DetailUntExamComponent
+        component: DetailUntExamComponent,
+        data:{seo: SeoConstants.MyStudentsStatSeo}
       },
       {
         path: 'stats-attempt/:attempt_id/:user_id',
-        component: AttemptStatsComponent
+        component: AttemptStatsComponent,
+        data:{seo: SeoConstants.MyStudentsStatSeo}
       },
       {
         path: 'my-profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        data:{seo: SeoConstants.TeacherProfileSeo}
       }
     ]
   }

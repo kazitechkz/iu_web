@@ -324,27 +324,33 @@ const routes: Routes = [
       },
       {
         path: 'iutube',
-        component: IutubeListComponent
+        component: IutubeListComponent,
+        data:{seo:SeoConstants.IUTubeSeo}
       },
       {
         path: 'iutube-single-video/:alias',
-        component: IutubeDetailComponent
+        component: IutubeDetailComponent,
+        data:{seo:SeoConstants.IUTubeSeo}
       },
       {
         path: 'iutube-videos',
-        component: IutubeVideosComponent
+        component: IutubeVideosComponent,
+        data:{seo:SeoConstants.IUTubeSeo}
       },
       {
         path: 'iutube-author/:id',
-        component: IutubeAuthorsComponent
+        component: IutubeAuthorsComponent,
+        data:{seo:SeoConstants.IUTubeSeo}
       },
       {
         path: 'my-tickets',
-        component: MyTicketsComponent
+        component: MyTicketsComponent,
+        data:{seo:SeoConstants.MyTicketsSeo}
       },
       {
         path: 'my-questions',
-        component: MyQuestionsComponent
+        component: MyQuestionsComponent,
+        data:{seo:SeoConstants.MyQuestionsSeo}
       },
       {
         path: 'my-attempt-settings',
@@ -352,19 +358,23 @@ const routes: Routes = [
       },
       {
         path: 'saved-questions/:id',
-        component: SavedQuestionComponent
+        component: SavedQuestionComponent,
+        data:{seo:SeoConstants.MyQuestionsSeo}
       },
       {
         path: 'appealed-questions/:id',
-        component: AppealQuestionComponent
+        component: AppealQuestionComponent,
+        data:{seo:SeoConstants.MyQuestionsSeo}
       },
       {
         path: 'create-ticket',
-        component: CreateTicketComponent
+        component: CreateTicketComponent,
+        data:{seo:SeoConstants.CreateTicketSeo}
       },
       {
         path: 'ticket-detail/:id',
-        component: TicketDetailComponent
+        component: TicketDetailComponent,
+        data:{seo:SeoConstants.MyTicketsSeo}
       },
       {
         path: 'games',

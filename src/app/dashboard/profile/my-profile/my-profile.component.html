@@ -32,9 +32,13 @@
           <p><fa-icon class="mr-2" [icon]="faCrown"></fa-icon>{{me.role | translate}}</p>
         </span>
         <span class="flex justify-center items-center mb-2 py-3 px-3 text-sm md:text-md lg:text-lg font-normal main-violet-first-rounded bg-violet-first text-white text-center rounded-full">
-          <p><fa-icon class="mr-2" [icon]="faCalendar"></fa-icon>
+          <p *ngIf="me.birth_date">
+            <fa-icon class="mr-2" [icon]="faCalendar"></fa-icon>
             {{moment(Date.now()).diff(me.birth_date,"years")}} {{"OLD_YEARS"|translate}}
             ({{moment(me.birth_date).format("DD/MM/yyyy")}})
+          </p>
+          <p *ngIf="!me.birth_date">
+            -
           </p>
         </span>
         <span *ngIf="!me.isKundelik" class="flex justify-center items-center mb-2 py-3 px-3 text-sm md:text-md lg:text-lg font-normal main-violet-first-rounded bg-violet-first text-white text-center rounded-full">

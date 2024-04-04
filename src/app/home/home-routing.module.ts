@@ -8,6 +8,7 @@ import {ContractOfferComponent} from "./contract-offer/contract-offer.component"
 import {MoneyBackComponent} from "./money-back/money-back.component";
 import {PayOfferComponent} from "./pay-offer/pay-offer.component";
 import {TermsOfUseComponent} from "./terms-of-use/terms-of-use.component";
+import {SeoConstants} from "../core/constants/seo.constants";
 
 const routes: Routes = [
   {
@@ -20,27 +21,33 @@ const routes: Routes = [
       },
       {
         path: "private-policy",
-        component: PrivacyPolicyComponent
+        component: PrivacyPolicyComponent,
+        data:{seo:SeoConstants.PrivacyPolicySeo}
       },
       {
         path: "contract-offer",
-        component: ContractOfferComponent
+        component: ContractOfferComponent,
+        data:{seo:SeoConstants.ContractOfferSeo}
       },
       {
         path: "money-back",
-        component: MoneyBackComponent
+        component: MoneyBackComponent,
+        data:{seo:SeoConstants.MoneyBackSeo}
       },
       {
         path: "pay-offer",
-        component: PayOfferComponent
+        component: PayOfferComponent,
+        data:{seo:SeoConstants.PayOfferSeo}
       },
       {
         path: "terms-of-use",
-        component: TermsOfUseComponent
+        component: TermsOfUseComponent,
+        data:{seo:SeoConstants.TermsOfUseSeo}
       },
       {
         path: "not-found",
-        component: NotFoundComponent
+        component: NotFoundComponent,
+        data:{seo:SeoConstants.NotFoundSeo}
       }
     ]
   }
