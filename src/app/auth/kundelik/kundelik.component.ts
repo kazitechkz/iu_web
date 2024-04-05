@@ -6,6 +6,7 @@ import {KundelikRequest} from "../../shared/store/auth/kundelik/kundelik.request
 import {getKundelikState} from "../../shared/store/auth/kundelik/kundelik.selector";
 import {BusyService} from "../../shared/services/busy.service";
 import {RoutesName} from "../../core/constants/routes.constants";
+import {SessionService} from "../../shared/services/session.service";
 
 @Component({
   selector: 'app-kundelik',
@@ -14,6 +15,7 @@ import {RoutesName} from "../../core/constants/routes.constants";
 })
 export class KundelikComponent implements OnInit {
   private activateRoute = inject(ActivatedRoute)
+  private _localStorage = inject(SessionService)
   private busyService = inject(BusyService)
   private store = inject(Store)
   private route = inject(Router)
@@ -34,6 +36,7 @@ export class KundelikComponent implements OnInit {
           if (keyValue[0] === 'access_token') {
             this.access_token = keyValue[1];
             if (this.access_token !== '') {
+              this._localStorage.setDataToLocalStorage('kundelik_token', this.access_token);
               let req = {token: this.access_token} as KundelikRequest
                 this.store.dispatch(kundelikAction({requestData: req}))
                 this.store.select(getKundelikState).pipe().subscribe(item => {

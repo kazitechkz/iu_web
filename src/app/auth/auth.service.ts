@@ -4,20 +4,14 @@ import {SessionService} from "../shared/services/session.service";
 import {LocalKeysConstants} from "../core/constants/local-keys.constants";
 import {Router} from "@angular/router";
 import {RoutesName} from "../core/constants/routes.constants";
-import {FormGroup} from "@angular/forms";
-import {RegisterRequest} from "../shared/store/auth/register/RegisterRequest";
-import {registerAction} from "../shared/store/auth/register/Register.action";
-import {getRegisterState} from "../shared/store/auth/register/Register.selector";
-import {autoUnsubscribe} from "../core/helpers/autoUnsubscribe";
-import {RegisterState} from "../shared/store/auth/register/Register.state";
 import {Store} from "@ngrx/store";
 import {AuthInfo} from "../shared/store/auth/login/loginRequest";
 import {Me} from "../shared/models/user.model";
 import {TwNotification} from "ng-tw";
 import {marked} from "marked";
-import use = marked.use;
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
 import Swal from "sweetalert2";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -34,25 +28,23 @@ export class AuthService {
   private _notification = inject(TwNotification)
   logout() {
     let user = this._localStorage.getDataFromLocalStorage(LocalKeysConstants.user)
-    // if (user.isKundelik) {
-    //   this.backgroundAction()
-    // } else {
-    //   this._session.removeDataFromLocalStorage(LocalKeysConstants.token)
-    //   this._session.removeDataFromLocalStorage(LocalKeysConstants.user)
-    //   this._router.navigateByUrl(RoutesName.loginRoute).then(null)
-    // }
+    if (user.isKundelik) {
+      this.backgroundAction()
+    }
     this._session.removeDataFromLocalStorage(LocalKeysConstants.token)
     this._session.removeDataFromLocalStorage(LocalKeysConstants.user)
     this._router.navigateByUrl(RoutesName.loginRoute).then(null)
   }
 
   private backgroundAction() {
-    return this.http.get('https://login.kundelik.kz/logout').subscribe(() => {
-      console.log('Действие выполнено в фоновом режиме');
-      this._session.removeDataFromLocalStorage(LocalKeysConstants.token)
-      this._session.removeDataFromLocalStorage(LocalKeysConstants.user)
-      this._router.navigateByUrl(RoutesName.loginRoute).then(null)
-    });
+    // console.log(this._localStorage.getDataFromLocalStorage('kundelik_token'))
+    // const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this._localStorage.getDataFromLocalStorage('kundelik_token'));
+    // // Create a new HttpRequest instance directly without going through interceptors
+    // const request = new HttpRequest('GET', 'https://login.kundelik.kz/logout', {
+    //   headers: headers,
+    //   responseType: 'json'
+    // });
+    // this.http.request(request);
   }
 
   saveDataToStorage(data: AuthInfo | null) {
