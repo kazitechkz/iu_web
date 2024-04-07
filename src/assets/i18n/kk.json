@@ -559,7 +559,6 @@
   "DRAFT_GAME": "Байланыстар",
   "DEFEAT_GAME": "Жеңіліс",
   "CUSTOMIZABLE_TEXT": "ТАҢДАЛҒАН ТАҚЫРЫПТАР БОЙЫНША ТЕСТ",
-  "INDEPENDENT_SELECTION_OF_TESTS":"Тесттерді өз бетінше таңдау",
   "AUTHOR_VIDEOS":"Автордың бейне сабақтары",
   "RECOMENDED_VIDEOS": "ұсынылған",
   "INTERESED_VIDEOS": "Сізді қызықтыруы мүмкін",
@@ -590,5 +589,6 @@
   "IN_TOTAL": "Жалпы",
   "NEW_PRICE": "Жаңа баға",
   "PASS_SUBCATEGORY_STEP":"Оқудан өту",
-  "ALL_TOURNAMENTS": "Барлық турнирлер"
+  "ALL_TOURNAMENTS": "Барлық турнирлер",
+  "SUB_TEXT_WALLET_RATING": "жүлделі ойынға қатысу үшін жазылымды сатып алуыңыз қажет"
 }

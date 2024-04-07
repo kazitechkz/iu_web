@@ -42,7 +42,6 @@ export class ExamComponent implements OnInit, DoCheck {
       }))
       this._store.select(getSubStepExamState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         this.questions = item.data;
-        console.log(item.data);
       })
     })
   }
@@ -110,6 +109,10 @@ export class ExamComponent implements OnInit, DoCheck {
       this._store.select(passSubStepExamState).pipe(distinctUntilChanged(), autoUnsubscribe(this.destroyRef)).subscribe(item => {
         if (item.data) {
           this._notification.show({ type: 'info', title: 'Ураа!', text: 'Вы получили ' + item.data + ' IU Coin' })
+          this._store.dispatch(resultExamClearDataAction())
+          this._router.navigateByUrl('/dashboard/result-exam/' + params['sub_step_test_id'] + '/' + this.localeID).then(r => null)
+        }
+        if (item.data == 0) {
           this._store.dispatch(resultExamClearDataAction())
           this._router.navigateByUrl('/dashboard/result-exam/' + params['sub_step_test_id'] + '/' + this.localeID).then(r => null)
         }

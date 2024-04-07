@@ -559,7 +559,6 @@
   "DRAFT_GAME": "Ничьи",
   "DEFEAT_GAME": "Поражений",
   "CUSTOMIZABLE_TEXT": "ТЕСТ ПО ВЫБРАННЫМ ТЕМАМ",
-  "INDEPENDENT_SELECTION_OF_TESTS": "Самостоятельный подбор тестов",
   "AUTHOR_VIDEOS":"Видеоуроки автора",
   "RECOMENDED_VIDEOS":"Рекомендуемые",
   "INTERESED_VIDEOS":"Вам может быть интересно",
@@ -590,5 +589,6 @@
   "IN_TOTAL": "Всего",
   "NEW_PRICE": "Новая цена",
   "PASS_SUBCATEGORY_STEP": "Пройти обучение",
-  "ALL_TOURNAMENTS":"Все турниры"
+  "ALL_TOURNAMENTS":"Все турниры",
+  "SUB_TEXT_WALLET_RATING": "для участия в розыгрыше необходимо иметь подписку"
 }

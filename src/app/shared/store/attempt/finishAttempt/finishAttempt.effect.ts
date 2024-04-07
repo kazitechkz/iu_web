@@ -19,7 +19,9 @@ export class FinishAttemptEffect {
       switchMap((action) => {
         return this._service.finishAttempt(action.requestData).pipe(
           switchMap(data => {
-              this._notification.show({ type: 'info', title: 'Ураа!', text: 'Вы заработали ' + data.data?.points + 'iU Coins'})
+            if (data.data && data.data.points !== 0) {
+              this._notification.show({ type: 'info', title: 'Ураа!', text: 'Вы заработали ' + data.data?.points + ' iU Coins'})
+            }
               this._route.navigate([RoutesName.resultAttempt + "/" + data.data?.attempt_id]).then(r => true);
               return of(
                   finishAttemptActionSuccess({responseData: data}),
