@@ -106,7 +106,6 @@ import {
   styleUrls: ['./tournament-detail.component.scss']
 })
 export class TournamentDetailComponent implements OnInit {
-
   private _store = inject(Store);
   private destroyRef: DestroyRef = inject(DestroyRef);
   private _route = inject(ActivatedRoute);
@@ -158,6 +157,7 @@ export class TournamentDetailComponent implements OnInit {
   registerStartCountdown: string = ''
   countdown: string = '';
   startCountdown: string = '';
+  public localeID: number = 1;
   ngOnInit(): void {
     this.checkURL()
     initTE({Collapse, Tab});
@@ -423,10 +423,13 @@ export class TournamentDetailComponent implements OnInit {
     if (this.tournamentDetails.subject_id) {
       let request = {
         sub_tournament_id: this.currentSubTournament.id,
-        locale_id: this.locale_id,
+        locale_id: this.localeID,
       } as CreateTournamentAttemptRequest;
       this._store.dispatch(createTournamentAttemptAction({requestData: request}));
     }
+  }
+  changeLang(event: any) {
+    this.localeID = event ? 1 : 2
   }
   protected readonly ImageHelper = ImageHelper;
   protected readonly moment = moment;

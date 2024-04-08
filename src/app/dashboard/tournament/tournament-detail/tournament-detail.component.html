@@ -104,6 +104,25 @@
                           {{'YOU_ARE_NOT_ALLOWED'|translate}}
                         </div>
                         <ng-template #access>
+                          <div class="col-span-12 md:col-span-12 card md:flex items-center justify-center text-center">
+                            <p class="md:text-lg font-bold py-4 md:mr-2 text-white">
+                              {{"CHOOSE_LANGUAGE"|translate}}
+                            </p>
+                            <ui-switch
+                              id="sub_step_locale"
+                              class="inline"
+                              checkedLabel="Қазақ тілі"
+                              defaultBgColor = '#ff914d'
+                              (valueChange)="changeLang($event)"
+                              size="large"
+                              uncheckedLabel="Русский язык"
+                              defaultBoColor="white"
+                              [checked]="localeID == 1"
+                              checkedTextColor="white"
+                              switchColor="#482f42"
+                              uncheckedTextColor="white"
+                            ></ui-switch>
+                          </div>
                           <div class="text-center">
                             <a
                               (click)="createTournamentAttempt()"
@@ -314,12 +333,12 @@
                       <th scope="col" class="px-6 py-3 mobile:px-1 mobile:py-1">
                         {{"NAME"|translate}}
                       </th>
-                      <th scope="col" class="px-6 py-3 mobile:px-2 mobile:hidden">
-                        {{"NICKNAME"|translate}}
-                      </th>
-                      <th scope="col" class="px-6 py-3 mobile:px-2 mobile:hidden">
-                        Email
-                      </th>
+<!--                      <th scope="col" class="px-6 py-3 mobile:px-2 mobile:hidden">-->
+<!--                        {{"NICKNAME"|translate}}-->
+<!--                      </th>-->
+<!--                      <th scope="col" class="px-6 py-3 mobile:px-2 mobile:hidden">-->
+<!--                        Email-->
+<!--                      </th>-->
                       <th scope="col" class="px-6 py-3 mobile:px-1 mobile:py-1">
                         {{"PARTICIPATED_DATE"|translate}}
                       </th>
@@ -335,12 +354,12 @@
                       <td class="px-6 py-4 mobile:py-2 mobile:px-2">
                         <p class="text-white ml-2 italic">{{participant.value.user?.name}}</p>
                       </td>
-                      <td class="px-6 py-4 mobile:px-2 mobile:hidden ">
-                        <p class="text-white ml-2 italic">{{participant.value.user?.username}}</p>
-                      </td>
-                      <td class="px-6 py-4 mobile:px-2 mobile:hidden ">
-                        <p class="text-white ml-2 italic">{{participant.value.user?.email}}</p>
-                      </td>
+<!--                      <td class="px-6 py-4 mobile:px-2 mobile:hidden ">-->
+<!--                        <p class="text-white ml-2 italic">{{participant.value.user?.username}}</p>-->
+<!--                      </td>-->
+<!--                      <td class="px-6 py-4 mobile:px-2 mobile:hidden ">-->
+<!--                        <p class="text-white ml-2 italic">{{participant.value.user?.email}}</p>-->
+<!--                      </td>-->
                       <td class="px-6 py-4 mobile:py-2 mobile:px-2">
                         <p
                           class="text-white ml-2">{{moment(participant.value.updated_at ?? participant.value.created_at).format('DD/MM/YYYY HH:mm')}}</p>
@@ -381,12 +400,12 @@
                       <th scope="col" class="px-6 py-3 mobile:px-2 mobile:py-1 mobile:text-center">
                         {{"NAME"|translate}}
                       </th>
-                      <th scope="col" class="px-6 py-3 mobile:hidden">
-                        {{"NICKNAME"|translate}}
-                      </th>
-                      <th scope="col" class="px-6 py-3 mobile:hidden">
-                        Email
-                      </th>
+<!--                      <th scope="col" class="px-6 py-3 mobile:hidden">-->
+<!--                        {{"NICKNAME"|translate}}-->
+<!--                      </th>-->
+<!--                      <th scope="col" class="px-6 py-3 mobile:hidden">-->
+<!--                        Email-->
+<!--                      </th>-->
                       <th scope="col" class="px-6 py-3 mobile:px-2 mobile:py-1 mobile:text-center">
                         {{"POINTS"|translate}}
                       </th>
@@ -406,12 +425,12 @@
                       <td class="px-6 py-4 mobile:px-2 mobile:py-2 mobile:text-center">
                         <p class="text-white ml-2 font-bold">{{result.value.user?.name}}</p>
                       </td>
-                      <td class="px-6 py-4 mobile:hidden">
-                        <p class="text-white ml-2 font-bold">{{result.value.user?.username}}</p>
-                      </td>
-                      <td class="px-6 py-4 mobile:hidden">
-                        <p class="text-white ml-2 font-bold">{{result.value.user?.email}}</p>
-                      </td>
+<!--                      <td class="px-6 py-4 mobile:hidden">-->
+<!--                        <p class="text-white ml-2 font-bold">{{result.value.user?.username}}</p>-->
+<!--                      </td>-->
+<!--                      <td class="px-6 py-4 mobile:hidden">-->
+<!--                        <p class="text-white ml-2 font-bold">{{result.value.user?.email}}</p>-->
+<!--                      </td>-->
                       <td class="px-6 py-4 mobile:px-2 mobile:py-2 mobile:text-center">
                         <p class="text-white ml-2">{{result.value.point}}</p>
                       </td>
@@ -662,8 +681,7 @@
             class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
             id="pills-awards"
             role="tabpanel"
-            aria-labelledby="pills-awards-tab"
-            data-te-tab-active>
+            aria-labelledby="pills-awards-tab">
             <div class="lg:mx-3 md:mx-1 mobile:mx-1 sm:mx-1 p-4 mobile:px-0 sm:px-0" *ngIf="tournamentAwards">
               <div class="main-violet-first-rounded mx-3 mobile:mx-0 sm:mx-0 p-4 mobile:px-0 sm:px-0 rounded-2xl shadow-2xl tournament-list-50">
                 <div class="relative overflow-x-auto" *ngIf="tournamentAwards.data">
@@ -673,13 +691,13 @@
                       <th scope="col" class="px-6 py-3 mobile:px-1 mobile:py-1 text-center">
                         {{"ORDER_NUMBER"|translate}}
                       </th>
-                      <th scope="col" class="px-6 py-3 mobile:px-1 mobile:py-1">
+                      <th scope="col" class="px-6 py-3 mobile:px-1 mobile:py-1 text-center">
                         {{"NAME"|translate}}
                       </th>
-                      <th scope="col" class="px-6 py-3 mobile:px-1 mobile:py-1">
-                        {{"EMAIL"|translate}}
-                      </th>
-                      <th scope="col" class="px-6 py-3 mobile:px-2 mobile:hidden">
+<!--                      <th scope="col" class="px-6 py-3 mobile:px-1 mobile:py-1">-->
+<!--                        {{"EMAIL"|translate}}-->
+<!--                      </th>-->
+                      <th scope="col" class="px-6 py-3 mobile:px-2 mobile:hidden text-center">
                         {{"PRIZE"|translate}}
                       </th>
                     </tr>
@@ -690,13 +708,13 @@
                       <td class="px-6 py-4 mobile:py-2 mobile:px-2 text-center">
                         <p class="text-white ml-2 italic">{{itemAward.order}}</p>
                       </td>
-                      <td class="px-6 py-4 mobile:px-2 mobile:hidden ">
+                      <td class="px-6 py-4 mobile:px-2 mobile:hidden text-center">
                         <p class="text-white ml-2 italic">{{itemAward.user?.name}}</p>
                       </td>
-                      <td class="px-6 py-4 mobile:px-2 mobile:hidden ">
-                        <p class="text-white ml-2 italic">{{itemAward.user?.email}}</p>
-                      </td>
-                      <td class="px-6 py-4 mobile:px-2 mobile:hidden ">
+<!--                      <td class="px-6 py-4 mobile:px-2 mobile:hidden ">-->
+<!--                        <p class="text-white ml-2 italic">{{itemAward.user?.email}}</p>-->
+<!--                      </td>-->
+                      <td class="px-6 py-4 mobile:px-2 mobile:hidden text-center">
                         <p class="text-white ml-2 italic">{{itemAward | globalTranslate:"title":translate.currentLang}}</p>
                       </td>
                     </tr>
