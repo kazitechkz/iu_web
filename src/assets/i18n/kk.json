@@ -590,5 +590,6 @@
   "NEW_PRICE": "Жаңа баға",
   "PASS_SUBCATEGORY_STEP":"Оқудан өту",
   "ALL_TOURNAMENTS": "Барлық турнирлер",
-  "SUB_TEXT_WALLET_RATING": "жүлделі ойынға қатысу үшін жазылымды сатып алуыңыз қажет"
+  "SUB_TEXT_WALLET_RATING": "жүлделі ойынға қатысу үшін жазылымды сатып алуыңыз қажет",
+  "TOURNAMENT_BANNER_IMG": "assets/images/tournament_kk.png"
 }

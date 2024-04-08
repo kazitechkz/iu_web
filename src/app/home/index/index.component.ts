@@ -28,19 +28,24 @@ import {
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
 import {GoogleTagManagerService} from "angular-google-tag-manager";
+import {ModalUntTrainerComponent} from "../../shared/components/modal-unt-trainer/modal-unt-trainer.component";
+import {
+  ModalTournamentBannerComponent
+} from "../../shared/components/modal-tournament-banner/modal-tournament-banner.component";
+import {NgxSmartModalService} from "ngx-smart-modal";
 @Component({
     selector: 'app-index',
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit,AfterViewInit{
-
 //Injection Start
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
   private _route = inject(ActivatedRoute)
   public translate = inject(GlobalTranslateService);
   private _router = inject(Router);
+  private ngxSmartModalService = inject(NgxSmartModalService);
   //Injection End
   //@ts-ignore
   @ViewChild('serviceEl') serviceEl: ElementRef<HTMLDivElement>;
@@ -100,8 +105,9 @@ export class IndexComponent implements OnInit,AfterViewInit{
     initFlowbite();
     initTE({ Tab });
     this.getUserInfo();
-
   }
+
+
 
 
 
@@ -111,6 +117,8 @@ export class IndexComponent implements OnInit,AfterViewInit{
         this.scrollToSection(params);
       }
     });
+    this.ngxSmartModalService.getModal('tournamentBanner').open();
+
   }
 
   scrollToSection(scrollTo:string): void {

@@ -15,6 +15,7 @@ import {SlickCarouselModule} from "ngx-slick-carousel";
 import { MoneyBackComponent } from './money-back/money-back.component';
 import { PayOfferComponent } from './pay-offer/pay-offer.component';
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
+import {NgxSmartModalModule} from "ngx-smart-modal";
 @NgModule({
     declarations: [
         HomeLayoutComponent,
@@ -26,15 +27,16 @@ import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
         PayOfferComponent,
         TermsOfUseComponent
     ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    SharedModule,
-    CoreModule,
-    FontAwesomeModule,
-    CarouselModule,
-    SlickCarouselModule,
-  ]
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        SharedModule,
+        CoreModule,
+        FontAwesomeModule,
+        CarouselModule,
+        SlickCarouselModule,
+        NgxSmartModalModule,
+    ]
 })
 export class HomeModule {
 }

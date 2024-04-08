@@ -7,7 +7,11 @@ import {RoutesName} from "../constants/routes.constants";
 export const authGuard: CanActivateFn = (childRoute, state) => {
   const _session = inject(SessionService)
   const _route = inject(Router)
+
   if (_session.getDataFromLocalStorage(LocalKeysConstants.token) == null) {
+    if(state.url){
+      _session.setDataToLocalStorage("redirectTo",state.url);
+    }
     _route.navigateByUrl(RoutesName.loginRoute).then(null)
   }
   return _session.getDataFromLocalStorage(LocalKeysConstants.token) != null;

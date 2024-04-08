@@ -28,6 +28,7 @@ import {UiSwitchModule} from "ngx-ui-switch";
 import { InformationBearComponent } from './components/information-bear/information-bear.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { BreadcrumbItemComponent } from './components/breadcrumb-item/breadcrumb-item.component';
+import { ModalTournamentBannerComponent } from './components/modal-tournament-banner/modal-tournament-banner.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { BreadcrumbItemComponent } from './components/breadcrumb-item/breadcrumb
     InformationBearComponent,
     BreadcrumbsComponent,
     BreadcrumbItemComponent,
+    ModalTournamentBannerComponent,
   ],
   imports: [
     CommonModule,
@@ -64,27 +66,28 @@ import { BreadcrumbItemComponent } from './components/breadcrumb-item/breadcrumb
     InputMaskModule,
     UiSwitchModule,
   ],
-  exports: [
-    InputFieldComponent,
-    RoundedSocialButtonComponent,
-    TranslateModule,
-    InputFieldComponent,
-    SidebarComponent,
-    NavbarComponent,
-    HomeNavbarComponent,
-    TeacherSidebarComponent,
-    AnnouncementListComponent,
-    ModalUntTrainerComponent,
-    ModalContentOfferComponent,
-    HomeFooterComponent,
-    ErrorFormFieldComponent,
-    IutubeCardVerticalComponent,
-    IutubeCardHorizontalComponent,
-    IutubeSearchComponent,
-    InformationBearComponent,
-    BreadcrumbsComponent,
-    BreadcrumbItemComponent,
-  ],
+    exports: [
+        InputFieldComponent,
+        RoundedSocialButtonComponent,
+        TranslateModule,
+        InputFieldComponent,
+        SidebarComponent,
+        NavbarComponent,
+        HomeNavbarComponent,
+        TeacherSidebarComponent,
+        AnnouncementListComponent,
+        ModalUntTrainerComponent,
+        ModalContentOfferComponent,
+        HomeFooterComponent,
+        ErrorFormFieldComponent,
+        IutubeCardVerticalComponent,
+        IutubeCardHorizontalComponent,
+        IutubeSearchComponent,
+        InformationBearComponent,
+        BreadcrumbsComponent,
+        BreadcrumbItemComponent,
+        ModalTournamentBannerComponent,
+    ],
   providers:[TranslateStore ],
 })
 export class SharedModule { }
