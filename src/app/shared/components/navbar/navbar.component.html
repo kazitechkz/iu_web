@@ -10,13 +10,13 @@
         <i class="fa fa-bars cursor-pointer text-white" aria-hidden="true" (click)="openSideNav()"></i>
       </div>
       <div class="flex items-center text-white">
-        <div class="px-1 cursor-pointer" [routerLink]="'/'+RoutesName.notification">
+        <div class="px-1 cursor-pointer" [routerLink]="'/'+RoutesName.notification"  *ngIf="user?.role == 'student'">
           <div class="flex justify-center">
             <fa-icon class="text-white text-xl" [icon]="faBell"> </fa-icon>
             <div class="mx-1 h-4 w-4 bg-white rounded-full text-center text-xs main-violet-second-color">{{countMessage ?? 0}}</div>
           </div>
         </div>
-        <div class="px-1 cursor-pointer">
+        <div class="px-1 cursor-pointer" *ngIf="user?.role == 'student'">
           <div class="flex justify-center" [routerLink]="'/'+RoutesName.walletRating">
             {{user?.balance}} IU
           </div>
