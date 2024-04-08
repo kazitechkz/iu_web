@@ -215,10 +215,10 @@ export class TournamentDetailComponent implements OnInit {
         this.paginationParticipants = objCopy
         this.steps = item.data.steps;
         this.getSubTournamentParticipants()
-        if (this.currentSubTournament.sub_tournament_results?.length) {
-          if (this.currentSubTournament.sub_tournament_results[0]) {
-            if (this.currentSubTournament.sub_tournament_results[0].attempt) {
-              if (this.currentSubTournament.sub_tournament_results[0].attempt?.end_at == null) {
+        if (this.currentSubTournament.sub_tournament_results) {
+          if (this.currentSubTournament.sub_tournament_results.length) {
+            if (this.currentSubTournament.sub_tournament_results[0]) {
+              if (this.currentSubTournament.sub_tournament_results[0].attempt) {
                 this.notEndedAttempt = this.currentSubTournament.sub_tournament_results[0].attempt;
               } else {
                 this.notEndedAttempt = null
