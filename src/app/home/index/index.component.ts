@@ -145,10 +145,10 @@ export class IndexComponent implements OnInit,AfterViewInit{
 
   getRouteStart() : string{
     if(this.me){
-      if(this.me.role = "student"){
+      if(this.me.role == "student"){
         return "dashboard/my-profile";
       }
-      if(this.me.role = "teacher"){
+      if(this.me.role == "teacher"){
         return "teacher/index";
       }
       return "auth/login";
