@@ -99,6 +99,7 @@ import {
 import {
   getTournamentAwardSelector
 } from "../../../shared/store/tournament/getTournamentAwards/getTournamentAwards.selector";
+import {AttemptModel} from "../../../shared/models/attempt";
 
 @Component({
   selector: 'app-tournament-detail',
@@ -158,6 +159,7 @@ export class TournamentDetailComponent implements OnInit {
   countdown: string = '';
   startCountdown: string = '';
   public localeID: number = 1;
+  public notEndedAttempt: AttemptModel | null = null
   ngOnInit(): void {
     this.checkURL()
     initTE({Collapse, Tab});
@@ -213,6 +215,17 @@ export class TournamentDetailComponent implements OnInit {
         this.paginationParticipants = objCopy
         this.steps = item.data.steps;
         this.getSubTournamentParticipants()
+        if (this.currentSubTournament.sub_tournament_results?.length) {
+          if (this.currentSubTournament.sub_tournament_results[0]) {
+            if (this.currentSubTournament.sub_tournament_results[0].attempt) {
+              if (this.currentSubTournament.sub_tournament_results[0].attempt?.end_at == null) {
+                this.notEndedAttempt = this.currentSubTournament.sub_tournament_results[0].attempt;
+              } else {
+                this.notEndedAttempt = null
+              }
+            }
+          }
+        }
       }
     });
     this._store.select(getSubTournamentParticipantsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(

@@ -344,10 +344,14 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
     this.setActualQuestion();
   }
   next() {
-    this.slickModal.slickNext();
+    if (this.slickModal) {
+      this.slickModal.slickNext();
+    }
   }
   prev() {
-    this.slickModal.slickPrev();
+    if (this.slickModal) {
+      this.slickModal.slickPrev();
+    }
   }
   getAnsweredQuestionQTY(){
     if(this.active_subject_id && this.answeredResult && this.questions){

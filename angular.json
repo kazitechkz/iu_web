@@ -31,7 +31,8 @@
               "moment",
               "inputmask",
               "@fortawesome/free-solid-svg-icons/faGlobe",
-              "@fortawesome/free-solid-svg-icons/faFileCircleCheck"
+              "@fortawesome/free-solid-svg-icons/faFileCircleCheck",
+              "@fortawesome/free-solid-svg-icons/faStairs"
             ],
             "outputPath": "dist/iu_web/browser",
             "index": "src/index.html",

@@ -97,7 +97,13 @@
                     <div class="text-center">
                       <div class="text-center font-bold main-orange-color"
                            *ngIf="currentSubTournament.sub_tournament_results?.length; else notResult">
-                        {{'YOU_ARE_PASSED'|translate}}
+                        <div *ngIf="notEndedAttempt; else notEnded;">
+                          <a [routerLink]="['/' + RoutesName.passUntExam + '/' + notEndedAttempt.id]" type="button"
+                             class="cursor-pointer text-white main-orange-second-bg main-violet-first-rounded focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                            {{"CONTINUE_BUTTON"|translate}}
+                          </a>
+                        </div>
+                        <ng-template #notEnded>{{'YOU_ARE_PASSED'|translate}}</ng-template>
                       </div>
                       <ng-template #notResult>
                         <div class="text-center font-bold main-orange-color" *ngIf="!checkAccess; else access">
