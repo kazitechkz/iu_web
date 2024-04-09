@@ -1,0 +1,142 @@
+<div class="w-full min-h-[100vh] bg-white">
+  <div class="container mx-auto py-3 lg:py-5 xl:py-7">
+    <div class="grid grid-cols-12">
+      <div routerLink="/lifehack-show/how_to_prepare_to_unt" class="col-span-12 xl:col-span-8 my-2 group">
+        <div class="lifehack-card p-4 lg:p-6 border border-gray-300 cursor-pointer
+      group-hover:border-[#ff914d]
+      transition duration-[400ms]">
+          <div
+            class="rounded-md min-h-[325px] lg:min-h-[400px] xl:min-h-[500px] px-4 py-4 relative border border-gray-300"
+            style="background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('assets/images/lifehacks/lifehack_1.webp') no-repeat center/cover"
+          >
+            <div class="absolute top-1 right-1 group">
+              <div
+                class="bg-white h-[40px] w-[40px] rounded-tl-lg rounded-bl-lg rounded-br-lg group-hover:bg-[#ff914d] flex justify-center items-center">
+                <i class="fas fa-rocket text-xl text-[#ff914d] group-hover:text-white"></i>
+              </div>
+            </div>
+
+            <div class="absolute mb-4 bottom-2">
+              <a routerLink="/lifehack-show/how_to_prepare_to_unt" class="text-white font-bold text-lg lg:text-2xl xl:text-4xl group-hover:underline">
+                {{"LIFEHACK_TITLE_1"|translate}}
+              </a>
+              <div class="mt-3 flex">
+                <p class="text-sm lg:text-lg text-white font-semibold">
+                  11:01 09.04.2024 / {{"IU_OPINION"|translate}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-12 xl:col-span-4 group my-2 min-h-[325px] lg:min-h-[380px] xl:min-h-[420px]">
+        <app-lifehack-card
+          [title]="('LIFEHACK_TITLE_2'|translate)"
+          [backgroundImage]="'assets/images/lifehacks/lifehack_2.webp'"
+          [mainLink]="'lifehack-show/lifehacks_to_unt'"
+          [createdAt]="'11:52 09.04.2024'"
+          [icon]="'fas fa-rocket'"
+          [iconLink]="'lifehack-show/lifehacks_to_unt'"
+          [iconTitle]="'IU_OPINION'|translate"
+        />
+      </div>
+    </div>
+    <div class="grid grid-cols-12 my-4">
+      <div class="col-span-12 pl-2">
+        <h1 class="text-lg lg:text-xl xl:text-4xl font-bold text-[#ff914d]">
+          {{"IU_OPINION"|translate}}
+        </h1>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 my-4">
+      <div class="col-span-12 md:col-span-6 xl:col-span-4 group my-2 min-h-[325px] lg:min-h-[380px] xl:min-h-[420px]">
+        <app-lifehack-card
+          [title]="('LIFEHACK_TITLE_3'|translate)"
+          [backgroundImage]="'assets/images/lifehacks/lifehack_3.webp'"
+          [mainLink]="'lifehack-show/psycho_prepare_to_unt'"
+          [createdAt]="'11:31 09.04.2024'"
+          [icon]="'fas fa-rocket'"
+          [iconLink]="'lifehack-show/psycho_prepare_to_unt'"
+          [iconTitle]="'IU_OPINION'|translate"
+        />
+      </div>
+      <div class="col-span-12 md:col-span-6 xl:col-span-4 group my-2 min-h-[325px] lg:min-h-[380px] xl:min-h-[420px]">
+        <app-lifehack-card
+          [title]="('LIFEHACK_TITLE_4'|translate)"
+          [backgroundImage]="'assets/images/lifehacks/lifehack_4.webp'"
+          [mainLink]="'lifehack-show/top_ten_failures'"
+          [createdAt]="'11:45 09.04.2024'"
+          [icon]="'fas fa-rocket'"
+          [iconLink]="'lifehack-show/top_ten_failures'"
+          [iconTitle]="'IU_OPINION'|translate"
+        />
+      </div>
+      <div class="col-span-12 md:col-span-6 xl:col-span-4 group my-2 min-h-[325px] lg:min-h-[380px] xl:min-h-[420px]">
+        <app-lifehack-card
+          [title]="('LIFEHACK_TITLE_5'|translate)"
+          [backgroundImage]="'assets/images/lifehacks/lifehack_5.webp'"
+          [mainLink]="'lifehack-show/history_date_for_unt'"
+          [createdAt]="'11:39 09.04.2024'"
+          [icon]="'fas fa-rocket'"
+          [iconLink]="'lifehack-show/history_date_for_unt'"
+          [iconTitle]="'IU_OPINION'|translate"
+        />
+      </div>
+      <div class="col-span-12 md:col-span-6 xl:col-span-4 group my-2 min-h-[325px] lg:min-h-[380px] xl:min-h-[420px]">
+        <app-lifehack-card
+          [title]="('LIFEHACK_TITLE_6'|translate)"
+          [backgroundImage]="'assets/images/lifehacks/lifehack_6.webp'"
+          [mainLink]="'lifehack-show/last_step_preparation_to_unt'"
+          [createdAt]="'12:05 09.04.2024'"
+          [icon]="'fas fa-rocket'"
+          [iconLink]="'lifehack-show/last_step_preparation_to_unt'"
+          [iconTitle]="'IU_OPINION'|translate"
+        />
+      </div>
+      <div class="col-span-12 md:col-span-6 xl:col-span-4 group my-2 min-h-[325px] lg:min-h-[380px] xl:min-h-[420px]">
+        <app-lifehack-card
+          [title]="('LIFEHACK_TITLE_7'|translate)"
+          [backgroundImage]="'assets/images/lifehacks/lifehack_7.webp'"
+          [mainLink]="'lifehack-show/strategy_for_unt'"
+          [createdAt]="'12:55 09.04.2024'"
+          [icon]="'fas fa-rocket'"
+          [iconLink]="'lifehack-show/strategy_for_unt'"
+          [iconTitle]="'IU_OPINION'|translate"
+        />
+      </div>
+      <div class="col-span-12 md:col-span-6 xl:col-span-4 group my-2 min-h-[325px] lg:min-h-[380px] xl:min-h-[420px]">
+        <app-lifehack-card
+          [title]="('LIFEHACK_TITLE_8'|translate)"
+          [backgroundImage]="'assets/images/lifehacks/lifehack_8.jpg'"
+          [mainLink]="'lifehack-show/hot_to_choose_university'"
+          [createdAt]="'12:08 09.04.2024'"
+          [icon]="'fas fa-rocket'"
+          [iconLink]="'lifehack-show/hot_to_choose_university'"
+          [iconTitle]="'IU_OPINION'|translate"
+        />
+      </div>
+      <div class="col-span-12 md:col-span-6 xl:col-span-4 group my-2 min-h-[325px] lg:min-h-[380px] xl:min-h-[420px]">
+        <app-lifehack-card
+          [title]="('LIFEHACK_TITLE_9'|translate)"
+          [backgroundImage]="'assets/images/lifehacks/lifehack_9.webp'"
+          [mainLink]="'lifehack-show/response_for_choosing_profession'"
+          [createdAt]="'13:51 09.04.2024'"
+          [icon]="'fas fa-rocket'"
+          [iconLink]="'lifehack-show/response_for_choosing_profession'"
+          [iconTitle]="'IU_OPINION'|translate"
+        />
+      </div>
+      <div class="col-span-12 md:col-span-6 xl:col-span-4 group my-2 min-h-[325px] lg:min-h-[380px] xl:min-h-[420px]">
+        <app-lifehack-card
+          [title]="('LIFEHACK_TITLE_10'|translate)"
+          [backgroundImage]="'assets/images/lifehacks/lifehack_10.webp'"
+          [mainLink]="'lifehack-show/receipt_of_happiness'"
+          [createdAt]="'15:08 09.04.2024'"
+          [icon]="'fas fa-rocket'"
+          [iconLink]="'lifehack-show/receipt_of_happiness'"
+          [iconTitle]="'IU_OPINION'|translate"
+        />
+      </div>
+    </div>
+  </div>
+</div>

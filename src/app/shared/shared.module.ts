@@ -29,6 +29,8 @@ import { InformationBearComponent } from './components/information-bear/informat
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { BreadcrumbItemComponent } from './components/breadcrumb-item/breadcrumb-item.component';
 import { ModalTournamentBannerComponent } from './components/modal-tournament-banner/modal-tournament-banner.component';
+import { LifehackCardComponent } from './components/lifehack-card/lifehack-card.component';
+import { StaticLifeHackComponent } from './components/static-life-hack/static-life-hack.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { ModalTournamentBannerComponent } from './components/modal-tournament-ba
     BreadcrumbsComponent,
     BreadcrumbItemComponent,
     ModalTournamentBannerComponent,
+    LifehackCardComponent,
+    StaticLifeHackComponent,
   ],
   imports: [
     CommonModule,
@@ -87,6 +91,8 @@ import { ModalTournamentBannerComponent } from './components/modal-tournament-ba
         BreadcrumbsComponent,
         BreadcrumbItemComponent,
         ModalTournamentBannerComponent,
+        LifehackCardComponent,
+        StaticLifeHackComponent,
     ],
   providers:[TranslateStore ],
 })

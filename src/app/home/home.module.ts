@@ -16,6 +16,17 @@ import { MoneyBackComponent } from './money-back/money-back.component';
 import { PayOfferComponent } from './pay-offer/pay-offer.component';
 import { TermsOfUseComponent } from './terms-of-use/terms-of-use.component';
 import {NgxSmartModalModule} from "ngx-smart-modal";
+import { LifehacksHomeComponent } from './lifehacks/lifehacks-home/lifehacks-home.component';
+import { HowToPrepareToUntComponent } from './lifehacks/how-to-prepare-to-unt/how-to-prepare-to-unt.component';
+import { LifehacksToUntComponent } from './lifehacks/lifehacks-to-unt/lifehacks-to-unt.component';
+import { PsychoPrepareToUntComponent } from './lifehacks/psycho-prepare-to-unt/psycho-prepare-to-unt.component';
+import { TopTenFailuresComponent } from './lifehacks/top-ten-failures/top-ten-failures.component';
+import { HistoryDateForUntComponent } from './lifehacks/history-date-for-unt/history-date-for-unt.component';
+import { LastStepPreparationToUntComponent } from './lifehacks/last-step-preparation-to-unt/last-step-preparation-to-unt.component';
+import { StrategyForUntComponent } from './lifehacks/strategy-for-unt/strategy-for-unt.component';
+import { HotToChooseUniversityComponent } from './lifehacks/hot-to-choose-university/hot-to-choose-university.component';
+import { ResponseForChoosingProfessionComponent } from './lifehacks/response-for-choosing-profession/response-for-choosing-profession.component';
+import { ReceiptOfHappinessComponent } from './lifehacks/receipt-of-happiness/receipt-of-happiness.component';
 @NgModule({
     declarations: [
         HomeLayoutComponent,
@@ -25,7 +36,18 @@ import {NgxSmartModalModule} from "ngx-smart-modal";
         ContractOfferComponent,
         MoneyBackComponent,
         PayOfferComponent,
-        TermsOfUseComponent
+        TermsOfUseComponent,
+        LifehacksHomeComponent,
+        HowToPrepareToUntComponent,
+        LifehacksToUntComponent,
+        PsychoPrepareToUntComponent,
+        TopTenFailuresComponent,
+        HistoryDateForUntComponent,
+        LastStepPreparationToUntComponent,
+        StrategyForUntComponent,
+        HotToChooseUniversityComponent,
+        ResponseForChoosingProfessionComponent,
+        ReceiptOfHappinessComponent,
     ],
     imports: [
         CommonModule,

@@ -19,25 +19,28 @@
       </button>
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg  md:flex-row md:mt-0 md:border-0">
-          <li class="text-xs lg:text-sm uppercase">
+          <li class="text-xs  uppercase">
             <a href="/" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"MAIN_PAGE"|translate}}</a>
           </li>
-          <li class="text-xs lg:text-sm uppercase">
+          <li class="text-xs  uppercase">
+            <a href="/lifehacks" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">Лайфхаки</a>
+          </li>
+          <li class="text-xs  uppercase">
             <a href="/#service" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"SERVICE_PAGE"|translate}}</a>
           </li>
-          <li class="text-xs lg:text-sm uppercase">
+          <li class="text-xs  uppercase">
             <a href="/#price" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"PRICE_PAGE"|translate}}</a>
           </li>
-          <li class="text-xs lg:text-sm uppercase">
+          <li class="text-xs  uppercase">
             <a href="/#advantage" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"ADVANTAGE_PAGE"|translate}}</a>
           </li>
-          <li class="text-xs lg:text-sm uppercase">
+          <li class="text-xs  uppercase">
             <a href="/#partners" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"PARTNERS_PAGE"|translate}}</a>
           </li>
-          <li class="text-xs lg:text-sm uppercase">
+          <li class="text-xs  uppercase">
             <a href="/#contact" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"CONTACT_PAGE"|translate}}</a>
           </li>
-          <li class="text-xs lg:text-sm uppercase flex items-center text-white">
+          <li class="text-xs  uppercase flex items-center text-white">
             <div class="px-1 cursor-pointer">
               <div class="flex justify-center items-center" (click)="clickLocaleDropdown()">
                 <p class="mx-3">{{translate.currentLang | titlecase}}</p>
@@ -48,13 +51,13 @@
               </div>
             </div>
           </li>
-          <li class="text-xs lg:text-sm uppercase hover:text-violet-700 ">
+          <li class="text-xs  uppercase hover:text-violet-700 ">
             <div *ngIf="me; else guest">
               <a *ngIf="me.role == 'student'" routerLink="dashboard/my-profile" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"HELLO"|translate}}, {{me.name}}</a>
               <a *ngIf="me.role == 'teacher'" routerLink="teacher/index" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"HELLO"|translate}}, {{me.name}}</a>
             </div>
             <ng-template #guest>
-              <a routerLink="auth/login" class="text-xs lg:text-sm uppercase block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"LOGIN_PAGE"|translate}}</a>
+              <a routerLink="auth/login" class="text-xs  uppercase block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"LOGIN_PAGE"|translate}}</a>
             </ng-template>
           </li>
         </ul>
