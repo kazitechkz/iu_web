@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {Store} from "@ngrx/store";
 import {ActivatedRoute} from "@angular/router";
@@ -16,18 +16,15 @@ import * as moment from "moment/moment";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {
   faBook,
+  faCheckCircle,
   faClock,
   faLanguage,
   faMoneyBill,
-  faUsers,
-  faCheckCircle,
+  faSadTear,
   faSmileWink,
-  faSadTear
+  faUsers
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  Collapse,
-  initTE, Tab,
-} from "tw-elements";
+import {Collapse, initTE, Tab,} from "tw-elements";
 import {SubTournament} from "../../../shared/models/subTournament.model";
 import {
   ParticipateTournamentRequest
@@ -37,7 +34,8 @@ import {
 } from "../../../shared/store/tournament/participateTournament/participateTournament.action";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {
-  participateTournamentSelector, payTournamentSelector
+  participateTournamentSelector,
+  payTournamentSelector
 } from "../../../shared/store/tournament/participateTournament/participateTournament.selector";
 import {
   getSubTournamentRivalsSelector
@@ -104,9 +102,11 @@ import {AttemptModel} from "../../../shared/models/attempt";
 @Component({
   selector: 'app-tournament-detail',
   templateUrl: './tournament-detail.component.html',
-  styleUrls: ['./tournament-detail.component.scss']
+  styleUrls: ['./tournament-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TournamentDetailComponent implements OnInit {
+  private cdr = inject(ChangeDetectorRef)
   private _store = inject(Store);
   private destroyRef: DestroyRef = inject(DestroyRef);
   private _route = inject(ActivatedRoute);
@@ -127,10 +127,8 @@ export class TournamentDetailComponent implements OnInit {
   //@ts-ignore
   my_result: SubTournamentResult;
   //@ts-ignore
-  sub_tournament_participants: Pagination<SubTournamentParticipant[]>;
   public paginationParticipants = { page: 1, id: 0 }
-  //@ts-ignore
-  sub_tournament_results: Pagination<SubTournamentResult[]>;
+  sub_tournament_results: Pagination<SubTournamentResult[]>|null = null;
   winner_tournament: OrdinaryUser|null = null
   public paginationResults = {page: 1, id: 0}
   public paginationAwardsResults = {page: 1, id: 0}
@@ -147,8 +145,7 @@ export class TournamentDetailComponent implements OnInit {
   isReg: boolean = false;
   checkAccess: boolean = false;
   dialog = inject(NgxSmartModalService)
-  //@ts-ignore
-  public participants: Pagination<SubTournamentParticipant[]>
+  public participants: Pagination<SubTournamentParticipant[]>|null = null;
   private _activateRoute = inject(ActivatedRoute)
   endDate: moment.Moment = moment();
   startDate: moment.Moment = moment();
@@ -161,10 +158,13 @@ export class TournamentDetailComponent implements OnInit {
   public localeID: number = 1;
   public notEndedAttempt: AttemptModel | null = null
   ngOnInit(): void {
+    this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
+      this.tournamentId = params["id"];
+    });
     this.checkURL()
     initTE({Collapse, Tab});
     this.getTournamentInfo();
-    this.getSubTournamentDetail()
+    // this.getSubTournamentDetail()
     setInterval(() => {
       this.updateCountdown();
     }, 1000);
@@ -192,70 +192,6 @@ export class TournamentDetailComponent implements OnInit {
     })
   }
   constructor() {
-    this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
-      this.tournamentId = params["id"];
-    });
-    this._store.select(getTournamentDetailSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-      if (item.data) {
-        this.isJoin = item.data.is_join
-        this.isReg = item.data.is_reg
-        this.tournamentDetails = item.data.tournament;
-        this.firstSubTournament = item.data.firstSubTournament
-        this.subTournamentId = item.data.firstSubTournament.id
-        this.currentSubTournament = item.data.currentSubTournament
-        this.checkAccess = item.data.check_access
-        this.winner_tournament = item.data.winner_tournament
-        this.endDate = moment(item.data.currentSubTournament.end_at)
-        this.endRegDate = moment(item.data.firstSubTournament.end_at)
-        this.startDate = moment(item.data.currentSubTournament.start_at)
-        const objCopy = {...this.paginationParticipants};
-        if (this.subTournamentId) {
-          objCopy.id = this.subTournamentId
-        }
-        this.paginationParticipants = objCopy
-        this.steps = item.data.steps;
-        this.getSubTournamentParticipants()
-        // if (this.currentSubTournament.sub_tournament_results) {
-        //   if (this.currentSubTournament.sub_tournament_results.length) {
-        //     if (this.currentSubTournament.sub_tournament_results[0]) {
-        //       if (this.currentSubTournament.sub_tournament_results[0].attempt) {
-        //         this.notEndedAttempt = this.currentSubTournament.sub_tournament_results[0].attempt;
-        //       } else {
-        //         this.notEndedAttempt = null
-        //       }
-        //     }
-        //   }
-        // }
-      }
-    });
-    this._store.select(getSubTournamentParticipantsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
-      item => {
-        if (item.data) {
-          this.participants = item.data;
-        }
-      }
-    )
-    this._store.select(getSubTournamentResultsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
-      item => {
-        if(item.data){
-          this.sub_tournament_results = item.data.results;
-        }
-      }
-    )
-    this._store.select(getSubTournamentRivalsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
-      item => {
-        if(item.data){
-          this.sub_tournament_rivals = item.data;
-        }
-      }
-    )
-    this._store.select(getTournamentAwardSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
-      item => {
-        if(item.data){
-          this.tournamentAwards = item.data;
-        }
-      }
-    )
     this._store.select(participateTournamentSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         if (item.data && this.tournamentId) {
           this._store.dispatch(clearGetTournamentDetailAction())
@@ -268,8 +204,10 @@ export class TournamentDetailComponent implements OnInit {
   firstStep(sub_tournament: SubTournament) {
     if (sub_tournament) {
       this.sub_tournament = sub_tournament
-      this.paginationResults.id = sub_tournament.id;
-      this.getSubTournamentResults(this.paginationResults.id)
+      const objCopy = {...this.paginationResults};
+      objCopy.id = sub_tournament.id
+      this.paginationResults = objCopy
+      this.getSubTournamentResults()
     }
   }
   secondStep(sub_tournament: SubTournament) {
@@ -311,9 +249,17 @@ export class TournamentDetailComponent implements OnInit {
 
   getAwards(){
     if(this.tournamentId){
-      this.paginationResults.id = this.tournamentId;
-      let request = Object.assign({},this.paginationResults) as GetTournamentAwardsRequest;
+      this.paginationAwardsResults.id = this.tournamentId;
+      let request = Object.assign({},this.paginationAwardsResults) as GetTournamentAwardsRequest;
       this._store.dispatch(getTournamentAwardsAction({requestData:request}));
+      this._store.select(getTournamentAwardSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
+        item => {
+          if(item.data){
+            this.tournamentAwards = item.data;
+            this.cdr.detectChanges()
+          }
+        }
+      )
     }
   }
 
@@ -361,6 +307,7 @@ export class TournamentDetailComponent implements OnInit {
       objCopy.page = event
       this.paginationParticipants = objCopy
       this.getSubTournamentParticipants();
+      this.cdr.detectChanges()
     }
   }
 
@@ -375,15 +322,22 @@ export class TournamentDetailComponent implements OnInit {
     const objCopy = {...this.paginationResults};
     objCopy.page = event
     this.paginationResults = objCopy
-    this.getSubTournamentResults(this.paginationResults.id);
+    this.getSubTournamentResults();
+    this.cdr.detectChanges()
   }
 
   getSubTournamentParticipants() {
-    let pageRequest: GetSubTournamentParticipantsRequest = {page: 1, id: 0};
-    Object.assign(pageRequest, this.paginationParticipants);
-    pageRequest = this.paginationParticipants as GetSubTournamentParticipantsRequest;
+    let pageRequest = this.paginationParticipants as GetSubTournamentParticipantsRequest;
     this._store.dispatch(clearGetSubTournamentParticipantsAction())
     this._store.dispatch(getSubTournamentParticipantsAction({requestData: pageRequest}));
+    this._store.select(getSubTournamentParticipantsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
+      item => {
+        if (item.data) {
+          this.participants = item.data;
+          this.cdr.detectChanges()
+        }
+      }
+    )
   }
 
   getSubTournamentWinners() {
@@ -393,11 +347,17 @@ export class TournamentDetailComponent implements OnInit {
     this._store.dispatch(getSubTournamentWinnersAction({requestData: pageRequest}));
   }
 
-  getSubTournamentResults(id: number) {
-    let pageRequest: GetSubTournamentResultsRequest = {page: 1, id: id};
-    Object.assign(pageRequest, this.paginationResults);
-    pageRequest = pageRequest as GetSubTournamentResultsRequest;
+  getSubTournamentResults() {
+    let pageRequest = this.paginationResults as GetSubTournamentResultsRequest;
     this._store.dispatch(getSubTournamentResultsAction({requestData: pageRequest}));
+    this._store.select(getSubTournamentResultsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
+      item => {
+        if(item.data){
+          this.sub_tournament_results = item.data;
+          this.cdr.detectChanges()
+        }
+      }
+    )
   }
 
   getSubTournamentRivals(id: number) {
@@ -405,11 +365,53 @@ export class TournamentDetailComponent implements OnInit {
     Object.assign(pageRequest, this.paginationRival);
     pageRequest = pageRequest as GetSubTournamentRivalsRequest;
     this._store.dispatch(getSubTournamentRivalsAction({requestData: pageRequest}));
+    this._store.select(getSubTournamentRivalsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
+      item => {
+        if(item.data){
+          this.sub_tournament_rivals = item.data;
+          this.cdr.detectChanges()
+        }
+      }
+    )
   }
 
   getTournamentInfo() {
     if (this.tournamentId) {
       this._store.dispatch(getTournamentDetailAction({requestData: this.tournamentId}));
+      this._store.select(getTournamentDetailSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+        if (item.data) {
+          this.isJoin = item.data.is_join
+          this.isReg = item.data.is_reg
+          this.tournamentDetails = item.data.tournament;
+          this.firstSubTournament = item.data.firstSubTournament
+          this.subTournamentId = item.data.firstSubTournament.id
+          this.currentSubTournament = item.data.currentSubTournament
+          this.checkAccess = item.data.check_access
+          this.winner_tournament = item.data.winner_tournament
+          this.endDate = moment(item.data.currentSubTournament.end_at)
+          this.endRegDate = moment(item.data.firstSubTournament.end_at)
+          this.startDate = moment(item.data.currentSubTournament.start_at)
+          const objCopy = {...this.paginationParticipants};
+          if (this.subTournamentId) {
+            objCopy.id = this.subTournamentId
+          }
+          this.paginationParticipants = objCopy
+          this.steps = item.data.steps;
+          this.getSubTournamentParticipants()
+          this.cdr.detectChanges()
+          // if (this.currentSubTournament.sub_tournament_results) {
+          //   if (this.currentSubTournament.sub_tournament_results.length) {
+          //     if (this.currentSubTournament.sub_tournament_results[0]) {
+          //       if (this.currentSubTournament.sub_tournament_results[0].attempt) {
+          //         this.notEndedAttempt = this.currentSubTournament.sub_tournament_results[0].attempt;
+          //       } else {
+          //         this.notEndedAttempt = null
+          //       }
+          //     }
+          //   }
+          // }
+        }
+      });
     }
   }
 
