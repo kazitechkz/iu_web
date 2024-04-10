@@ -328,7 +328,7 @@
             role="tabpanel"
             aria-labelledby="pills-results-tab">
             <div class="mx-3 p-4" *ngIf="sub_tournament_results">
-              <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl" *ngIf="sub_tournament_results.my_result">
+              <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl" *ngIf="sub_tournament_results.data">
                 <div class="relative overflow-x-auto">
                   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 capitalize">
@@ -354,25 +354,25 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngIf="sub_tournament_results.my_result">
+                    <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let result of sub_tournament_results.data">
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
                         <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.webp')] bg-cover bg-no-repeat my-2"></div>
-                        <p class="font-bold text-black ml-2 inline-block">#{{sub_tournament_results.my_result.id}}</p>
+                        <p class="font-bold text-black ml-2 inline-block">#{{result.id}}</p>
                       </th>
                       <td class="px-6 py-4">
-                        <p class="text-black ml-2 font-bold">{{sub_tournament_results.my_result.user?.name}}</p>
+                        <p class="text-black ml-2 font-bold">{{result.user?.name}}</p>
                       </td>
                       <td class="px-6 py-4">
-                        <p class="text-black ml-2 font-bold">{{sub_tournament_results.my_result.user?.username}}</p>
+                        <p class="text-black ml-2 font-bold">{{result.user?.username}}</p>
                       </td>
                       <td class="px-6 py-4">
-                        <p class="text-black ml-2 font-bold">{{sub_tournament_results.my_result.user?.email}}</p>
+                        <p class="text-black ml-2 font-bold">{{result.user?.email}}</p>
                       </td>
                       <td class="px-6 py-4">
-                        <p class="text-black ml-2">{{sub_tournament_results.my_result.point}}</p>
+                        <p class="text-black ml-2">{{result.point}}</p>
                       </td>
                       <td class="px-6 py-4">
-                        <p class="text-black ml-2">{{((sub_tournament.time - moment.duration(sub_tournament_results.my_result.time,'milliseconds').asMinutes())*60).toFixed(1)}} секунд</p>
+                        <p class="text-black ml-2">{{((sub_tournament.time - moment.duration(result.time,'milliseconds').asMinutes())*60).toFixed(1)}} секунд</p>
                       </td>
                     </tr>
                     </tbody>
@@ -382,7 +382,7 @@
               </div>
             </div>
             <div class="mx-3 p-4" *ngIf="sub_tournament_results">
-              <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl" *ngIf="sub_tournament_results.results">
+              <div class="bg-white mx-3 p-4 rounded-2xl shadow-2xl" *ngIf="sub_tournament_results.data">
                 <div class="relative overflow-x-auto">
                   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 capitalize">
@@ -408,7 +408,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let result of sub_tournament_results.results.data | paginate: { itemsPerPage: sub_tournament_results.results.per_page, currentPage: sub_tournament_results.results.current_page,totalItems:sub_tournament_results.results.total }">
+                    <tr class="bg-white rounded-2xl my-2 border-b border-gray-300" *ngFor="let result of sub_tournament_results.data | paginate: { itemsPerPage: sub_tournament_results.per_page, currentPage: sub_tournament_results.current_page,totalItems:sub_tournament_results.total }">
                       <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex justify-center items-center">
                         <div class="w-12 h-12 rounded-full border-2 border-green-300 bg-[url('assets/images/many-mode.webp')] bg-cover bg-no-repeat my-2"></div>
                         <p class="font-bold text-black ml-2 inline-block">#{{result.id}}</p>

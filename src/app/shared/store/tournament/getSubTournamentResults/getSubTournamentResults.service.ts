@@ -8,6 +8,7 @@ import {GetSubTournamentResultsRequest} from "./getSubTournamentResults.request"
 import {Pagination} from "../../pagination";
 import {SubTournamentParticipant} from "../../../models/subTournamentParticipant.model";
 import {GetSubTournamentResultsModel} from "./getSubTournamentResults.model";
+import {SubTournamentResult} from "../../../models/subTournamentResult.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,12 @@ import {GetSubTournamentResultsModel} from "./getSubTournamentResults.model";
 export class GetSubTournamentResultsService {
   private _http = inject(HttpClient)
 
-  getSubTournamentResults(parameters:GetSubTournamentResultsRequest): Observable<ResponseData<GetSubTournamentResultsModel>> {
+  getSubTournamentResults(parameters:GetSubTournamentResultsRequest): Observable<ResponseData<Pagination<SubTournamentResult[]>>> {
     let httpParams = new HttpParams();
     if(parameters.page != null && parameters.page > 0){
       httpParams = httpParams.append("page",parameters.page.toString())
     }
-    return this._http.get<ResponseData<GetSubTournamentResultsModel>>(environment.baseUrl + APIRoutesName.getSubTournamentResults + "/" + parameters.id.toString(),{params:httpParams});
+    return this._http.get<ResponseData<Pagination<SubTournamentResult[]>>>(environment.baseUrl + APIRoutesName.getSubTournamentResults + "/" + parameters.id.toString(),{params:httpParams});
   }
 
 }

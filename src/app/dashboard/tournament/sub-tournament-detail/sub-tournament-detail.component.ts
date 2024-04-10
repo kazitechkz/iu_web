@@ -109,7 +109,7 @@ export class SubTournamentDetailComponent implements OnInit{
   sub_tournament_participants:Pagination<SubTournamentParticipant[]>;
   public paginationParticipants = {page:1,id:0}
   //@ts-ignore
-  sub_tournament_results:GetSubTournamentResultsModel;
+  sub_tournament_results:Pagination<SubTournamentResult[]>;
   public paginationResults = {page:1,id:0}
   //@ts-ignore
   sub_tournament_rivals:SubTournamentRival[];

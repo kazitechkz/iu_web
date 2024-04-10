@@ -346,7 +346,7 @@
                     </thead>
                     <tbody>
                     <tr class="rounded-2xl my-2"
-                        *ngFor="let participant of participants.data | paginate: { itemsPerPage: participants.per_page, currentPage: participants.current_page,totalItems:participants.total } | keys">
+                        *ngFor="let participant of participants.data | paginate: { id: 'partsID', itemsPerPage: participants.per_page, currentPage: participants.current_page,totalItems:participants.total } | keys : paginationParticipants.page : participants.per_page">
                       <th scope="row"
                           class="mobile:px-2 px-6 py-4 mobile:py-2 font-medium text-white whitespace-nowrap flex justify-center items-center">
                         <p class="font-bold text-white ml-2 inline-block">{{parseInt(participant.key) + 1}} </p>
@@ -368,7 +368,7 @@
                     </tbody>
                   </table>
                   <div class="my-2 flex justify-center" *ngIf="participants.total > participants.per_page">
-                    <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                    <pagination-controls [id]="'partsID'" [previousLabel]="'PREVIOUS_PAGINATION' | translate"
                                          [nextLabel]="'NEXT_PAGINATION' | translate"
                                          [responsive]="true" class="rounded-full"
                                          (pageChange)="participantPageChanged($event)"></pagination-controls>
@@ -418,7 +418,7 @@
                     <tr
                       [ngClass]="(parseInt(result.key)+1) <= 8 ? 'tournament-list-50 main-violet-first-rounded ' : 'bg-transparent main-violet-first-rounded '"
                       class="rounded-2xl my-2"
-                      *ngFor="let result of sub_tournament_results.data | paginate: { itemsPerPage: sub_tournament_results.per_page, currentPage: sub_tournament_results.current_page,totalItems:sub_tournament_results.total } | keys">
+                      *ngFor="let result of sub_tournament_results.data | paginate: { id: 'resultID', itemsPerPage: sub_tournament_results.per_page, currentPage: sub_tournament_results.current_page,totalItems:sub_tournament_results.total } | keys : paginationResults.page : sub_tournament_results.per_page">
                       <th scope="row" class="px-6 py-4 mobile:px-2 mobile:py-2 mobile:text-center flex">
                         <p class="font-bold text-white ml-2 inline-block">{{parseInt(result.key) + 1}}</p>
                       </th>
@@ -443,7 +443,7 @@
                   </table>
                   <div class="my-2 flex justify-center"
                        *ngIf="sub_tournament_results.total > sub_tournament_results.per_page">
-                    <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                    <pagination-controls [id]="'resultID'" [previousLabel]="'PREVIOUS_PAGINATION' | translate"
                                          [nextLabel]="'NEXT_PAGINATION' | translate"
                                          [responsive]="true" class="rounded-full"
                                          (pageChange)="resultPageChanged($event)"></pagination-controls>
@@ -704,7 +704,7 @@
                     </thead>
                     <tbody>
                     <tr class="rounded-2xl my-2"
-                        *ngFor="let itemAward of tournamentAwards.data | paginate: { itemsPerPage: tournamentAwards.per_page, currentPage: tournamentAwards.current_page,totalItems:tournamentAwards.total }">
+                        *ngFor="let itemAward of tournamentAwards.data | paginate: { id: 'awardID', itemsPerPage: tournamentAwards.per_page, currentPage: tournamentAwards.current_page,totalItems:tournamentAwards.total }">
                       <td class="px-6 py-4 mobile:py-2 mobile:px-2 text-center">
                         <p class="text-white ml-2 italic">{{itemAward.order}}</p>
                       </td>
@@ -721,7 +721,7 @@
                     </tbody>
                   </table>
                   <div class="my-2 flex justify-center" *ngIf="tournamentAwards.total > tournamentAwards.per_page">
-                    <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                    <pagination-controls [id]="'awardID'" [previousLabel]="'PREVIOUS_PAGINATION' | translate"
                                          [nextLabel]="'NEXT_PAGINATION' | translate"
                                          [responsive]="true" class="rounded-full"
                                          (pageChange)="awardsPageChanged($event)"></pagination-controls>
