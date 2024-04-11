@@ -11,3 +11,4 @@ export const onAnsweredResultActionSuccess = createAction(AnswerResultActionType
   responseData: ResponseData<AnsweredResult>
 }>());
 export const onAnsweredResultActionFailure = createAction(AnswerResultActionTypes.OnAnswerResultFailure, props<{ errors: any }>());
+export const onAnsweredResultClearAction = createAction(AnswerResultActionTypes.OnAnswerResultClear);

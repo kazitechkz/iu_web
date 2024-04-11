@@ -14,6 +14,7 @@ import {ColorConstants} from "../../../core/constants/color.constants";
 import {StrHelper} from "../../../core/helpers/str.helper";
 import {SlickCarouselComponent} from "ngx-slick-carousel";
 import {Announcement} from "../../models/announcement.model";
+import {DomSanitizer} from "@angular/platform-browser";
 
 
 @Component({
@@ -28,6 +29,7 @@ export class AnnouncementListComponent implements OnInit {
   private _route = inject(ActivatedRoute);
   public translate = inject(GlobalTranslateService);
   dialog = inject(NgxSmartModalService)
+  sanitizer = inject(DomSanitizer)
   active_slider:number = 0;
   //Injection
   //Data
@@ -39,6 +41,10 @@ export class AnnouncementListComponent implements OnInit {
     this.getAllAnnouncements();
   }
 
+
+  sanitizeURL(url:string){
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 
   getAllAnnouncements(){
     this._store.dispatch(GetAllAnnouncementsAction());
@@ -65,7 +71,7 @@ export class AnnouncementListComponent implements OnInit {
   slideConfig = {
     "slidesToShow": 5,
     "slidesToScroll": 1,
-    "dots": false,
+    "dots": true,
     "arrows":false,
     "infinite": false,
     "responsive": [
@@ -75,7 +81,7 @@ export class AnnouncementListComponent implements OnInit {
           slidesToShow: 6,
           slidesToScroll: 6,
           infinite: true,
-          dots: false,
+          dots: true,
         }
       },
       {
@@ -83,7 +89,7 @@ export class AnnouncementListComponent implements OnInit {
         settings: {
           slidesToShow: 5,
           slidesToScroll: 5,
-          dots: false
+          dots: true
         }
       },
       {

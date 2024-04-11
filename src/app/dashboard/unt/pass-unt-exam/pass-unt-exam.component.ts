@@ -23,7 +23,10 @@ import {distinctUntilChanged, Subscription} from "rxjs";
 import {SlickCarouselComponent} from "ngx-slick-carousel";
 import {createAnswerAction} from "../../../shared/store/attempt/answer/answer.action";
 import {AnsweredResult} from "../../../shared/store/attempt/answeredResult/answeredResult";
-import {onAnsweredResultAction} from "../../../shared/store/attempt/answeredResult/answerResult.action";
+import {
+  onAnsweredResultAction,
+  onAnsweredResultClearAction
+} from "../../../shared/store/attempt/answeredResult/answerResult.action";
 import {AnsweredResultRequest} from "../../../shared/store/attempt/answeredResult/answerResult.request";
 import {answeredResultSelector} from "../../../shared/store/attempt/answeredResult/answerResult.selector";
 import {initFlowbite} from "flowbite";
@@ -105,6 +108,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
   }
   constructor() {
     let meLocal = localStorage.getItem('userinfo')
+    this._store.dispatch(onAnsweredResultClearAction());
     //Answer Selector
     this._store.select(answerSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
@@ -182,6 +186,7 @@ export class PassUntExamComponent implements OnInit,OnDestroy{
   getAttemptResult(active_subject_id:number){
     if(active_subject_id){
       let requestAnswer = {attempt_subject_id:active_subject_id} as AnsweredResultRequest;
+      this._store.dispatch(onAnsweredResultClearAction());
       this._store.dispatch(onAnsweredResultAction({requestData:requestAnswer}));
       this.getAnsweredQuestionQTY();
     }

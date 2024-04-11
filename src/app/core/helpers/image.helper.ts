@@ -16,8 +16,17 @@ export class ImageHelper {
   }
 
   public static GetYoutubeID(url:string):string{
-    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-    var match = url.match(regExp);
-    return (match&&match[7].length==11)? match[7] : "mVjYG9TSN88";
+    var regExpFullVideo = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    var match = url.match(regExpFullVideo);
+    var urlFull = (match&&match[7].length==11) ? match[7] : null;
+    if(urlFull){
+      return  urlFull;
+    }
+    const regexShorts = "(youtu.*be.*)\\/(watch\\?v=|embed\\/|v|shorts|)(.*?((?=[&#?])|$))";
+    const matchShort = url.match(regexShorts);
+    if (matchShort) {
+      return  matchShort[3]; // Идентификатор видео находится в первой захваченной группе
+    }
+    return  "jXyWx5mTF_4"
   }
 }

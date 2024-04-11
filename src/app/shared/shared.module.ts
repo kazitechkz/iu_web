@@ -31,6 +31,7 @@ import { BreadcrumbItemComponent } from './components/breadcrumb-item/breadcrumb
 import { ModalTournamentBannerComponent } from './components/modal-tournament-banner/modal-tournament-banner.component';
 import { LifehackCardComponent } from './components/lifehack-card/lifehack-card.component';
 import { StaticLifeHackComponent } from './components/static-life-hack/static-life-hack.component';
+import {YouTubePlayerModule} from "@angular/youtube-player";
 
 @NgModule({
   declarations: [
@@ -57,19 +58,20 @@ import { StaticLifeHackComponent } from './components/static-life-hack/static-li
     LifehackCardComponent,
     StaticLifeHackComponent,
   ],
-  imports: [
-    CommonModule,
-    FontAwesomeModule,
-    HttpClientModule,
-    CoreModule,
-    ReactiveFormsModule,
-    RouterLink,
-    RouterLinkActive,
-    SlickCarouselModule,
-    NgxSmartModalModule,
-    InputMaskModule,
-    UiSwitchModule,
-  ],
+    imports: [
+        CommonModule,
+        FontAwesomeModule,
+        HttpClientModule,
+        CoreModule,
+        ReactiveFormsModule,
+        RouterLink,
+        RouterLinkActive,
+        SlickCarouselModule,
+        NgxSmartModalModule,
+        InputMaskModule,
+        UiSwitchModule,
+        YouTubePlayerModule,
+    ],
     exports: [
         InputFieldComponent,
         RoundedSocialButtonComponent,

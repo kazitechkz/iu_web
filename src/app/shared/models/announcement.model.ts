@@ -13,6 +13,7 @@ export interface Announcement {
   time_in_sec: number
   url_text: any
   url: any
+  video_url: string|null
   created_at: Date
   updated_at: Date|null
   image: Image|null

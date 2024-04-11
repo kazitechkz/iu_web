@@ -433,6 +433,20 @@ body{
 .announcement-carousel{
   .slick-list> div {
     margin-left:0; }
+  .slick-dots{
+    li{
+      button::before{
+        font-size: 16px;
+        color:white!important;
+      }
+    }
+    li.slick-active{
+      button::before{
+        font-size: 16px;
+        color:$main_orange!important;
+      }
+    }
+  }
 }
 .owl-stage {
   padding-top: 10px!important;

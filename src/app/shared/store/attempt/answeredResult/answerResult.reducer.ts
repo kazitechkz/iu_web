@@ -2,6 +2,7 @@ import {createReducer, on} from "@ngrx/store";
 import {answeredResultState} from "./answerResult.state";
 import {
   onAnsweredResultAction,
+  onAnsweredResultClearAction,
   onAnsweredResultActionFailure,
   onAnsweredResultActionSuccess
 } from "./answerResult.action";
@@ -12,6 +13,12 @@ const _answeredResultReducer = createReducer(
     return {
       ...state,
       data:null,
+    }
+  }),
+  on(onAnsweredResultClearAction, (state) => {
+    return {
+      ...state,
+      data: null
     }
   }),
   on(onAnsweredResultActionSuccess, (state, action) => {
