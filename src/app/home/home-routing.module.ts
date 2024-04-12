@@ -24,6 +24,9 @@ import {
   ResponseForChoosingProfessionComponent
 } from "./lifehacks/response-for-choosing-profession/response-for-choosing-profession.component";
 import {ReceiptOfHappinessComponent} from "./lifehacks/receipt-of-happiness/receipt-of-happiness.component";
+import {InformationAllComponent} from "./information/information-all/information-all.component";
+import {InformationComponent} from "./information/information/information.component";
+import {InformationCategoryComponent} from "./information/information-category/information-category.component";
 
 const routes: Routes = [
   {
@@ -112,6 +115,19 @@ const routes: Routes = [
         path: "terms-of-use",
         component: TermsOfUseComponent,
         data:{seo:SeoConstants.TermsOfUseSeo}
+      },
+      {
+        path: "informations",
+        component: InformationAllComponent,
+        data:{seo:SeoConstants.InformationsSeo}
+      },
+      {
+        path: "information/:alias",
+        component: InformationComponent,
+      },
+      {
+        path: "informations-category/:alias",
+        component: InformationCategoryComponent,
       },
       {
         path: "not-found",

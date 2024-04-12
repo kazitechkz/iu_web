@@ -1,14 +1,14 @@
 import {AfterViewInit, Component, DestroyRef, ElementRef, HostListener, inject, OnInit, ViewChild} from '@angular/core';
 import {
-  faArrowRight,
-  faBook, faBoxesPacking,
-  faBullseye,
-  faCheck, faCheckCircle, faChevronRight, faChevronUp, faCircleCheck, faDumbbell,
-  faHeart,
-  faLanguage, faRocket,
-  faShieldAlt,
-  faUserDoctor, faVideo,
-  faWandMagicSparkles, faXmark,faFilePen
+    faArrowRight,
+    faBook, faBoxesPacking,
+    faBullseye,
+    faCheck, faCheckCircle, faChevronRight, faChevronUp, faCircleCheck, faDumbbell,
+    faHeart,
+    faLanguage, faRocket,
+    faShieldAlt,
+    faUserDoctor, faVideo,
+    faWandMagicSparkles, faXmark, faFilePen, faInfo
 } from "@fortawesome/free-solid-svg-icons";
 import {ImageHelper} from "../../core/helpers/image.helper";
 import {
@@ -220,4 +220,5 @@ export class IndexComponent implements OnInit,AfterViewInit{
   protected readonly faVideo = faVideo;
   protected readonly faChevronUp = faChevronUp;
   protected readonly faFilePen = faFilePen;
+    protected readonly faInfo = faInfo;
 }

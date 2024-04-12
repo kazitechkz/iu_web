@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {faChevronUp} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
     selector: 'app-home-layout',
@@ -7,4 +8,5 @@ import {Component} from '@angular/core';
 })
 export class HomeLayoutComponent {
 
+    protected readonly faChevronUp = faChevronUp;
 }

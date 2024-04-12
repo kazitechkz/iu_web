@@ -183,6 +183,12 @@ import {GetBattleHistoryEffect} from "../../shared/store/battle/getBattleHistory
 import {
   GetListOfTournamentsEffect
 } from "../../shared/store/tournament/getListOfTournaments/getListOfTournaments.effect";
+import {AllInformationEffect} from "../../shared/store/information/allInformations/allInformation.effect";
+import {GetInformationEffect} from "../../shared/store/information/getInformation/getInformation.effect";
+import {
+    GetInformationsByCategoryEffect
+} from "../../shared/store/information/getInformationsByCategory/getInformationsByCategory.effect";
+import {HottestInformationEffect} from "../../shared/store/information/hottestInformation/hottestInformation.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -323,4 +329,8 @@ export const EffectsConstants = [
     GetBattleStatsEffect,
     GetBattleHistoryEffect,
     GetListOfTournamentsEffect,
+    AllInformationEffect,
+    GetInformationEffect,
+    GetInformationsByCategoryEffect,
+    HottestInformationEffect,
 ]

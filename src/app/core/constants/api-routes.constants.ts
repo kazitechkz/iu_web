@@ -142,6 +142,12 @@ export enum APIRoutesName {
     getAllVideos="all-videos",
     getVideoAuthor="video-author-detail",
     getVideoDetail="video-detail",
-    getAIAnswerOnQuestion="get-ai-answer"
+    getAIAnswerOnQuestion="get-ai-answer",
+    hottestInformation="hottest-information",
+    allInformations="all-informations",
+    getInformation="information",
+    getInformationsByCategory="information-by-category",
+
+
 
 }

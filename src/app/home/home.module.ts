@@ -27,6 +27,9 @@ import { StrategyForUntComponent } from './lifehacks/strategy-for-unt/strategy-f
 import { HotToChooseUniversityComponent } from './lifehacks/hot-to-choose-university/hot-to-choose-university.component';
 import { ResponseForChoosingProfessionComponent } from './lifehacks/response-for-choosing-profession/response-for-choosing-profession.component';
 import { ReceiptOfHappinessComponent } from './lifehacks/receipt-of-happiness/receipt-of-happiness.component';
+import { InformationAllComponent } from './information/information-all/information-all.component';
+import { InformationComponent } from './information/information/information.component';
+import { InformationCategoryComponent } from './information/information-category/information-category.component';
 @NgModule({
     declarations: [
         HomeLayoutComponent,
@@ -48,6 +51,9 @@ import { ReceiptOfHappinessComponent } from './lifehacks/receipt-of-happiness/re
         HotToChooseUniversityComponent,
         ResponseForChoosingProfessionComponent,
         ReceiptOfHappinessComponent,
+        InformationAllComponent,
+        InformationComponent,
+        InformationCategoryComponent,
     ],
     imports: [
         CommonModule,

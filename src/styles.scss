@@ -429,6 +429,14 @@ body{
   .overlay.nsm-overlay-open {
     background-color: rgba(0, 0, 0, 1)!important;
   }
+  .nsm-dialog-btn-close{
+    right: 12px;
+    top: 12px;
+    color: white;
+    border-radius: 10px;
+    background: rgb(248 113 113);
+    padding: 8px;
+  }
 }
 .announcement-carousel{
   .slick-list> div {

@@ -198,6 +198,12 @@ import {getBattleHistoryReducer} from "../../shared/store/battle/getBattleHistor
 import {
   getListOfTournamentsReducer
 } from "../../shared/store/tournament/getListOfTournaments/getListOfTournaments.reducer";
+import {allInformationsReducer} from "../../shared/store/information/allInformations/allInformations.reducer";
+import {getInformationReducer} from "../../shared/store/information/getInformation/getInformation.reducer";
+import {
+  getInformationsByCategoryReducer
+} from "../../shared/store/information/getInformationsByCategory/getInformationsByCategory.reducer";
+import {hottestInformationReducer} from "../../shared/store/information/hottestInformation/hottestInformation.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -348,5 +354,9 @@ export const ReducersConstants = {
   getBattleStats:getBattleStatsReducer,
   getBattleHistory:getBattleHistoryReducer,
   getListOfTournaments:getListOfTournamentsReducer,
+  allInformations:allInformationsReducer,
+  getInformation:getInformationReducer,
+  getInformationsByCategory:getInformationsByCategoryReducer,
+  hottestInformation:hottestInformationReducer,
 }
 
