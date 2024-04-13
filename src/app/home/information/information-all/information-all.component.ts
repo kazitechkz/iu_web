@@ -19,6 +19,7 @@ import {AllInformationsRequest} from "../../../shared/store/information/allInfor
 import {allInformationsSelector} from "../../../shared/store/information/allInformations/allInformations.selector";
 import {ImageHelper} from "../../../core/helpers/image.helper";
 import * as moment from "moment";
+import {RoutesName} from "../../../core/constants/routes.constants";
 
 @Component({
   selector: 'app-information-all',
@@ -38,9 +39,15 @@ export class InformationAllComponent implements OnInit,OnDestroy{
   hottestInformations:HottestInformationModel;
   //@ts-ignore
   informations:Pagination<Information[]>;
+  informationLists:Information[] = [];
   ngOnInit(): void {
     this.getHottestInformations();
     this.getInformations();
+    this._store.select(allInformationsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
+      if(item.data){
+        this.informations = item.data;
+      }
+    });
   }
 
   getHottestInformations(){
@@ -48,25 +55,20 @@ export class InformationAllComponent implements OnInit,OnDestroy{
     this._store.select(hottestInformationSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         this.hottestInformations = item.data;
+
       }
     });
   };
   getInformations(){
     let request = Object.assign({},this.requestData) as AllInformationsRequest;
     this._store.dispatch(allInformationsAction({requestData:request}));
-    this._store.select(allInformationsSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
-      if(item.data){
-        this.informations = item.data;
-      }
-    });
+
   };
 
-  changePage(){
-    this.requestData.page +=1;
+  changePage(page:number){
+    this.requestData.page =page;
     this.getInformations();
   }
-
-
 
   ngOnDestroy(): void {
   }
@@ -74,4 +76,5 @@ export class InformationAllComponent implements OnInit,OnDestroy{
   protected readonly ImageHelper = ImageHelper;
   protected readonly moment = moment;
   protected readonly JSON = JSON;
+  protected readonly RoutesName = RoutesName;
 }

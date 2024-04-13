@@ -30,6 +30,7 @@ import { ReceiptOfHappinessComponent } from './lifehacks/receipt-of-happiness/re
 import { InformationAllComponent } from './information/information-all/information-all.component';
 import { InformationComponent } from './information/information/information.component';
 import { InformationCategoryComponent } from './information/information-category/information-category.component';
+import {NgxPaginationModule} from "ngx-pagination";
 @NgModule({
     declarations: [
         HomeLayoutComponent,
@@ -64,6 +65,7 @@ import { InformationCategoryComponent } from './information/information-category
         CarouselModule,
         SlickCarouselModule,
         NgxSmartModalModule,
+        NgxPaginationModule,
     ]
 })
 export class HomeModule {

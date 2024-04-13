@@ -79,6 +79,10 @@
                   <div class="card-footer">
                     <span class="text-title text-white">
                       {{quizItem.price}} KZT
+                      <br/>
+                      <b class="line-through text-white text-md rounded-full  font-bold" *ngIf="quizItem.old_price">
+                        {{quizItem.old_price}} KZT
+                      </b>
                     </span>
                     <div>
                       <div *ngIf="quizItem.price == 0;else notFree">

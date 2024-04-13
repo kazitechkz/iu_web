@@ -1,28 +1,92 @@
-<div class="w-full min-h-[100vh] bg-white">
-    <div class="container mx-auto py-3 lg:py-5 xl:py-7" *ngIf="hottestInformations">
-        <div class="grid grid-cols-12" *ngIf="hottestInformations.main_information">
-            <p>{{hottestInformations.main_information != null }}</p>
-            <div routerLink="/lifehack-show/how_to_prepare_to_unt" class="col-span-12 my-2 group">
-                <div class="lifehack-card p-4 lg:p-6 border border-gray-300 cursor-pointer
-                      group-hover:border-[#ff914d]
-                      transition duration-[400ms]">
-                    <div
-                            class="rounded-md min-h-[325px] lg:min-h-[400px] xl:min-h-[500px] px-4 py-4 relative border border-gray-300"
-                            [ngStyle]="{'background': 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + ImageHelper.getImage(hottestInformations.main_information.file?.url) + ') no-repeat center / cover'}"                    >
+<div class="min-h-[100vh] w-full bg-white">
+  <div class="container mx-auto" *ngIf="hottestInformations">
+    <div class="grid grid-cols-12">
+      <div class="col-span-12" *ngIf="hottestInformations.main_information">
+        <div [routerLink]="'/' + RoutesName.infoShow + hottestInformations.main_information.alias" class="col-span-12 xl:col-span-8 my-2 group">
+          <div class="lifehack-card p-4 lg:p-6 border border-gray-300 cursor-pointer
+      group-hover:border-[#ff914d]
+      transition duration-[400ms]">
+            <div
+              class="rounded-md min-h-[325px] lg:min-h-[400px] xl:min-h-[500px] px-4 py-4 relative border border-gray-300"
+              [ngStyle]="{
+                'background-image': 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + ImageHelper.getImage(hottestInformations.main_information.file?.url) + ')',
+                'background-repeat': 'no-repeat',
+                'background-position': 'center',
+                'background-size': 'cover'
+              }"
+            >
 
-                        <div class="absolute mb-4 bottom-2">
-                            <a routerLink="/lifehack-show/how_to_prepare_to_unt" class="text-white font-bold text-lg lg:text-2xl xl:text-4xl group-hover:underline">
-                                {{hottestInformations.main_information.title_ru.length <= 60 ? (hottestInformations.main_information | globalTranslate:"title":translate.currentLang) : hottestInformations.main_information | globalTranslate:"title":translate.currentLang | truncate:60}}
-                            </a>
-                            <div class="mt-3 flex">
-                                <p class="text-sm lg:text-lg text-white font-semibold">
-                                    {{moment(hottestInformations.main_information.published_at).format("HH:mm DD/MM/YYYY")}}
-                                </p>
-                            </div>
-                        </div>
+              <div class="absolute mb-4 bottom-2">
+                <a routerLink="/lifehack-show/how_to_prepare_to_unt" class="text-white font-bold text-lg lg:text-2xl xl:text-4xl group-hover:underline">
+                  {{translate.currentLang == 'ru' ? hottestInformations.main_information.title_ru : hottestInformations.main_information.title_kk}}
+                </a>
+                <div class="my-3" *ngIf="hottestInformations.main_information.information_author">
+                  <div class="flex items-center gap-4">
+                    <img class="w-10 h-10 rounded-full border border-white" src="{{ImageHelper.getImage(hottestInformations.main_information.information_author.file?.url)}}" alt="">
+                    <div class="font-medium dark:text-white">
+                      <div>
+                        {{hottestInformations.main_information.information_author.name}}
+                      </div>
                     </div>
+                  </div>
                 </div>
+                <div class="mt-3 flex">
+                  <p class="text-sm lg:text-lg text-white font-semibold">
+                    {{moment(hottestInformations.main_information.published_at).format("HH:mm DD/MM/YYYY")}}
+                    <span class="px-3 main-orange-second-bg text-white rounded-full cursor-pointer" *ngIf="hottestInformations.main_information.information_category">
+                         {{translate.currentLang == 'ru' ? hottestInformations.main_information.information_category.title_ru : hottestInformations.main_information.information_category.title_kk}}
+                    </span>
+                  </p>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+    <div class="grid grid-cols-12 gap-4 py-4" *ngIf="hottestInformations.other_information">
+      <div class="col-span-12 pl-2" *ngIf="hottestInformations.other_information.length > 0">
+        <h1 class="text-lg lg:text-xl xl:text-4xl font-bold text-[#ff914d]">
+          {{"HOTTEST_NEWS"|translate}}
+        </h1>
+      </div>
+      <div class="col-span-12 md:col-span-6 lg:col-span-4 min-h-[325px] lg:min-h-[380px] xl:min-h-[420px]" *ngFor="let hotInfo of hottestInformations.other_information">
+        <app-news-card
+          [mainLink]="'/' + RoutesName.infoShow + hotInfo.alias"
+          [title]="translate.currentLang == 'ru' ? hotInfo.title_ru : hotInfo.title_kk"
+          [backgroundImage]="hotInfo.file?.url??null"
+          [publishedAt]="moment(hotInfo.published_at).format('HH:mm DD/MM/YYYY')"
+          [categoryTitle]="translate.currentLang == 'ru' ? hotInfo.information_category?.title_ru : hotInfo.information_category?.title_kk"
+          [authorName]="hotInfo.information_author?.name"
+          [authorImage]="hotInfo.information_author?.file?.url"
+        >
+        </app-news-card>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 gap-4 py-4" *ngIf="informations">
+      <div class="col-span-12 pl-2">
+        <h1 class="text-lg lg:text-xl xl:text-4xl font-bold text-[#ff914d]">
+          {{"MAIN_NEWS"|translate}}
+        </h1>
+      </div>
+      <div class="col-span-12 md:col-span-6 lg:col-span-4 min-h-[325px] lg:min-h-[380px] xl:min-h-[420px]" *ngFor="let hotInfo of informations.data | paginate: { itemsPerPage: informations.per_page, currentPage: informations.current_page,totalItems:informations.total }">
+        <app-news-card
+          [mainLink]="'/' + RoutesName.infoShow + hotInfo.alias"
+          [title]="translate.currentLang == 'ru' ? hotInfo.title_ru : hotInfo.title_kk"
+          [backgroundImage]="hotInfo.file?.url??null"
+          [publishedAt]="moment(hotInfo.published_at).format('HH:mm DD/MM/YYYY')"
+          [categoryTitle]="translate.currentLang == 'ru' ? hotInfo.information_category?.title_ru : hotInfo.information_category?.title_kk"
+          [authorName]="hotInfo.information_author?.name"
+          [authorImage]="hotInfo.information_author?.file?.url"
+        >
+        </app-news-card>
+      </div>
+      <div class="col-span-12 my-3 flex justify-center items-center " *ngIf="informations.last_page > 1">
+        <pagination-controls [previousLabel]="'PREVIOUS_PAGINATION' | translate"
+                             [nextLabel]="'NEXT_PAGINATION' | translate"
+                             [responsive]="true" class="rounded-full" (pageChange)="changePage($event)"></pagination-controls>
+      </div>
+    </div>
+  </div>
+
 </div>

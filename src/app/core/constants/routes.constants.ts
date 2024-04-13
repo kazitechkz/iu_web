@@ -78,6 +78,8 @@ export enum RoutesName {
     iuTubeVideos="dashboard/iutube-videos",
     iuTubeVideoSingle="dashboard/iutube-single-video",
     iuTubeAuthor="dashboard/iutube-author",
-    lifeHack = "lifehacks"
+    lifeHack = "lifehacks",
+    infoShow="information/",
+    infoCategoryShow="informations-category/",
 
 }

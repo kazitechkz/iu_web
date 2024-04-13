@@ -32,6 +32,7 @@ import { ModalTournamentBannerComponent } from './components/modal-tournament-ba
 import { LifehackCardComponent } from './components/lifehack-card/lifehack-card.component';
 import { StaticLifeHackComponent } from './components/static-life-hack/static-life-hack.component';
 import {YouTubePlayerModule} from "@angular/youtube-player";
+import { NewsCardComponent } from './components/news-card/news-card.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import {YouTubePlayerModule} from "@angular/youtube-player";
     ModalTournamentBannerComponent,
     LifehackCardComponent,
     StaticLifeHackComponent,
+    NewsCardComponent,
   ],
     imports: [
         CommonModule,
@@ -95,6 +97,7 @@ import {YouTubePlayerModule} from "@angular/youtube-player";
         ModalTournamentBannerComponent,
         LifehackCardComponent,
         StaticLifeHackComponent,
+        NewsCardComponent,
     ],
   providers:[TranslateStore ],
 })

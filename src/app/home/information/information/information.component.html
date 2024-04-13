@@ -1,1 +1,46 @@
-<p>information works!</p>
+<div class="min-h-full w-full bg-white py-5">
+  <div class="container mx-auto" *ngIf="information">
+    <div class="grid grid-cols-12">
+      <div class="col-md-2 hidden md:block"></div>
+      <div class="col-span-12 col-md-8">
+        <div class="min-h-full py-3">
+          <div class="lifehack-header">
+            <p class="font-bold text-lg lg:text-xl xl:text-2xl 2xl:text-4xl main-orange-second-color">
+              {{translate.currentLang == 'ru' ? information.title_ru : information.title_kk}}
+            </p>
+          </div>
+          <div class="image-header mt-4 mb-4">
+            <img src="{{ImageHelper.getImage(information.file?.url)}}" class="min-h-[325px] w-full rounded-md" alt="{{information.title_ru}}"/>
+          </div>
+          <div class="life-hack-info my-3">
+            <div class="my-3" *ngIf="information.information_author">
+              <div class="flex items-center gap-4">
+                <img class="w-10 h-10 rounded-full border border-white" src="{{ImageHelper.getImage(information.information_author.file?.url)}}" alt="">
+                <div class="font-medium dark:text-white">
+                  <div class="text-black">
+                    {{information.information_author.name}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 flex">
+              <p class="text-sm lg:text-lg font-semibold">
+                {{moment(information.published_at).format('HH:mm DD/MM/YYYY')}}
+              </p>
+              <a class="text-sm lg:text-lg font-semibold ml-3">
+               <span class="px-3 main-orange-second-bg text-white rounded-full cursor-pointer" *ngIf="information.information_category">
+                         {{translate.currentLang == 'ru' ? information.information_category.title_ru : information.information_category.title_kk}}
+                    </span>
+              </a>
+            </div>
+          </div>
+          <div class="life-hack-body">
+            <p class="text-md font-normal" [innerHTML]="translate.currentLang == 'ru' ? information.description_ru : information.description_kk"></p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-2 hidden md:block"></div>
+    </div>
+  </div>
+</div>
