@@ -16,6 +16,7 @@ import { TeacherRegisterComponent } from './teacher-register/teacher-register.co
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { KundelikComponent } from './kundelik/kundelik.component';
 import {NgxSpinnerModule} from "ngx-spinner";
+import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
         InputMaskModule,
         FontAwesomeModule,
         NgxSpinnerModule,
+        GoogleSigninButtonModule,
     ],
   providers: [TwNotification]
 })

@@ -198,6 +198,8 @@ import {getBattleHistoryReducer} from "../../shared/store/battle/getBattleHistor
 import {
   getListOfTournamentsReducer
 } from "../../shared/store/tournament/getListOfTournaments/getListOfTournaments.reducer";
+import {googleReducer} from "../../shared/store/auth/google/google.reducer";
+import {logoutReducer} from "../../shared/store/auth/logout/logout.reducer";
 import {allInformationsReducer} from "../../shared/store/information/allInformations/allInformations.reducer";
 import {getInformationReducer} from "../../shared/store/information/getInformation/getInformation.reducer";
 import {
@@ -207,9 +209,11 @@ import {hottestInformationReducer} from "../../shared/store/information/hottestI
 
 export const ReducersConstants = {
   login: loginReducer,
+  Logout: logoutReducer,
   register: registerReducer,
   verifyEmail: verifyEmailReducer,
   kundelik: kundelikReducer,
+  Google: googleReducer,
   sendResetToken: sendResetTokenReducer,
   resetPassword: resetPasswordReducer,
   me: accountReducer,

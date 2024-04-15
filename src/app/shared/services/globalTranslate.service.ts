@@ -5,7 +5,7 @@ import {TranslateService} from "@ngx-translate/core";
   providedIn: 'root'
 })
 export class GlobalTranslateService {
-  currentLang: string | null = 'ru'
+  currentLang: string | null = 'kk'
   private translateService = inject(TranslateService)
 
   onLangChange(event: string) {

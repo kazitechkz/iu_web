@@ -10,4 +10,5 @@ export class RoundedSocialButtonComponent {
   @Input() bg_color: string|null = "bg-blue";
   @Input() bg_color_hover: string|null = "bg-blue";
   @Input() icon: IconProp|null = null;
+  @Input() text: string|null = null;
 }

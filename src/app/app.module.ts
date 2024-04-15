@@ -36,6 +36,7 @@ import {CarouselModule} from "ngx-owl-carousel-o";
 import {InputMaskModule} from "@ngneat/input-mask";
 import {GoogleTagManagerModule} from "angular-google-tag-manager";
 import {NgxSeoModule} from "@avivharuzi/ngx-seo";
+import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "@abacritt/angularx-social-login";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -88,13 +89,26 @@ export function HttpLoaderFactory(http: HttpClient) {
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    SocialLoginModule,
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()})
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: 'googleTagManagerId',  useValue: "AW-16504382945"}
+    {provide: 'googleTagManagerId',  useValue: "AW-16504382945"},
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('63949755595-pn4o1uvsq1cpai9f267g3snoar2t272q.apps.googleusercontent.com'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
   ],
   bootstrap: [AppComponent]
 })

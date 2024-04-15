@@ -1,8 +1,10 @@
 export enum APIRoutesName {
     loginRoute = "auth/login",
+    logoutRoute = "auth/logout",
     registerRoute = "auth/register",
     verifyRoute = "auth/verify-email",
     kundelikRoute = "auth/kundelik",
+    googleRoute = "auth/google",
     resetRoute = "auth/reset",
     userCheck = "auth/user-check",
     sendResetTokenRoute = "auth/send-reset-token",

@@ -189,12 +189,16 @@ import {
     GetInformationsByCategoryEffect
 } from "../../shared/store/information/getInformationsByCategory/getInformationsByCategory.effect";
 import {HottestInformationEffect} from "../../shared/store/information/hottestInformation/hottestInformation.effect";
+import {GoogleEffect} from "../../shared/store/auth/google/google.effect";
+import {LogoutEffect} from "../../shared/store/auth/logout/logout.effect";
 
 export const EffectsConstants = [
     LoginEffect,
+    LogoutEffect,
     RegisterEffect,
     VerifyEmailEffect,
     KundelikEffect,
+    GoogleEffect,
     ResetEffect,
     AccountEffect,
     SubjectEffect,

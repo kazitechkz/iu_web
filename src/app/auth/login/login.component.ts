@@ -11,14 +11,39 @@ import {StrHelper} from "../../core/helpers/str.helper";
 import {GlobalTranslateService} from "../../shared/services/globalTranslate.service";
 import {faEnvelope, faKey} from "@fortawesome/free-solid-svg-icons";
 import {environment} from "../../../environments/environment";
+import {SocialAuthService} from "@abacritt/angularx-social-login";
+import {googleAction} from "../../shared/store/auth/google/google.action";
+import {getGoogleState} from "../../shared/store/auth/google/google.selector";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  constructor() {
+    if (this.translate.currentLang) {
+      this.localeID = this.translate.currentLang
+    }
+  }
+    ngOnInit(): void {
+        this.socialAuthService.authState.subscribe((user) => {
+          if (user) {
+            this._store.dispatch(googleAction({requestData: user}))
+            this._store.select(getGoogleState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+              if(item.errors){
+                this.errors = item.errors;
+                this._route.navigateByUrl(RoutesName.loginRoute).then(() => null)
+              }
+            })
+          }
+        });
+    }
+    private socialAuthService = inject(SocialAuthService)
+    public localeID: string = 'kk';
     private _store = inject(Store);
+    private _route = inject(Router);
     destroyRef = inject(DestroyRef);
     public translate = inject(GlobalTranslateService)
     errors:Record<string, string[]> | null = null;

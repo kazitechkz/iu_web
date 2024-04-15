@@ -1,6 +1,7 @@
 {
   "LOGIN": "Кіру",
   "LOGIN_WITH_KUNDELIK": "Kundelik арқылы кіру",
+  "LOGIN_WITH_GOOGLE": "Google арқылы кіру",
   "LOGOUT": "Шығу",
   "REGISTER": "Тіркелу",
   "OR": "Немесе",

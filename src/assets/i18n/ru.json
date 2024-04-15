@@ -1,6 +1,7 @@
 {
   "LOGIN": "Войти",
   "LOGIN_WITH_KUNDELIK": "Войти c Kundelik",
+  "LOGIN_WITH_GOOGLE": "Войти c Google",
   "LOGOUT": "Выход",
   "REGISTER": "Зарегистрироваться",
   "OR": "ИЛИ",

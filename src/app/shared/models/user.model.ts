@@ -29,6 +29,7 @@ export interface Me {
   gender: Gender | null
   birth_date: Date | null
   isKundelik: boolean
+  isGoogle: boolean
   parent_phone: string | null
   parent_name: string | null
 }

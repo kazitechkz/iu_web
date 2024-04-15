@@ -12,13 +12,14 @@ import {marked} from "marked";
 import {HttpClient, HttpHeaders, HttpRequest} from "@angular/common/http";
 import Swal from "sweetalert2";
 import {Observable} from "rxjs";
+import {SocialAuthService} from "@abacritt/angularx-social-login";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   baseUrl = environment.baseUrl;
-  private http = inject(HttpClient)
+  private socialService = inject(SocialAuthService)
   private _session = inject(SessionService)
   private _router = inject(Router)
   private store = inject(Store)
@@ -30,6 +31,9 @@ export class AuthService {
     let user = this._localStorage.getDataFromLocalStorage(LocalKeysConstants.user)
     if (user.isKundelik) {
       this.backgroundAction()
+    }
+    if (user.isGoogle) {
+      this.socialService.signOut()
     }
     this._session.removeDataFromLocalStorage(LocalKeysConstants.token)
     this._session.removeDataFromLocalStorage(LocalKeysConstants.user)
