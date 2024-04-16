@@ -60,7 +60,8 @@ export class PlanModeComponent implements OnInit {
     time: new FormControl(1),
     subject_first: new FormControl(0, [Validators.required]),
     subject_second: new FormControl(0, [Validators.required]),
-    promo: new FormControl(null)
+    promo: new FormControl(null),
+    type: new FormControl(1)
   }, {validators: this.subjectsNotEqualValidator()});
   plans: {
     title: string,
@@ -181,7 +182,7 @@ export class PlanModeComponent implements OnInit {
   checkPromo() {
     // console.log(this.subjects_form.value['promo'])
     if (this.subjects_form.value['promo']) {
-      let req = {code: this.subjects_form.value['promo']} as PromoRequest
+      let req = {code: this.subjects_form.value['promo'], type: 1} as PromoRequest
       this._store.dispatch(promoGetAction({req: req}))
       this._store.select(getPromoStateSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
         if (item) {

@@ -124,7 +124,7 @@ export class CareerQuizDetailComponent implements OnInit{
   checkPromo() {
     // console.log(this.subjects_form.value['promo'])
     if (this.promo_form.value['promo']) {
-      let req = {code: this.promo_form.value['promo']} as PromoRequest
+      let req = {code: this.promo_form.value['promo'], type: 2} as PromoRequest
       this._store.dispatch(promoGetClearAction())
       this._store.dispatch(promoGetAction({req: req}))
       if (this.careerQuiz) {

@@ -655,3 +655,12 @@ body{
     padding: 8px;
   }
 }
+asl-google-signin-button {
+  width: 100%!important;
+  display: flex!important;
+  justify-content: center!important;
+  align-items: center!important;
+}
+asl-google-signin-button > div {
+  width: 100%!important;
+}

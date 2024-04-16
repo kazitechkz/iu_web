@@ -1,3 +1,4 @@
 export interface PromoRequest {
-  code: string
+  code: string,
+  type: number
 }

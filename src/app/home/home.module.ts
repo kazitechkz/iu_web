@@ -31,6 +31,8 @@ import { InformationAllComponent } from './information/information-all/informati
 import { InformationComponent } from './information/information/information.component';
 import { InformationCategoryComponent } from './information/information-category/information-category.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import {MathjaxModule} from "mathjax-angular";
+import {MathJaxPipe} from "../core/pipes/mathJax.pipe";
 @NgModule({
     declarations: [
         HomeLayoutComponent,
@@ -66,7 +68,9 @@ import {NgxPaginationModule} from "ngx-pagination";
         SlickCarouselModule,
         NgxSmartModalModule,
         NgxPaginationModule,
-    ]
+        MathjaxModule
+    ],
+   providers: [MathJaxPipe]
 })
 export class HomeModule {
 }
