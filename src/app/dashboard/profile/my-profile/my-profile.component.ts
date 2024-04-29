@@ -1,8 +1,5 @@
 import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {
-  getTournamentDetailSelector
-} from "../../../shared/store/tournament/getTournamentDetail/getTournamentDetail.selector";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {getAccountState, getChangeAccountState} from "../../../shared/store/user/account/account.selector";
 import {Me} from "../../../shared/models/user.model";
@@ -36,7 +33,6 @@ import {myOrderAction} from "../../../shared/store/paybox/my_orders/myOrder.acti
 import {myOrderSelector} from "../../../shared/store/paybox/my_orders/myOrder.selector";
 import {Pagination} from "../../../shared/store/pagination";
 import {createMask} from "@ngneat/input-mask";
-import {HttpClient} from "@angular/common/http";
 import {AccountService} from "../../../shared/store/user/account/account.service";
 
 @Component({
@@ -90,7 +86,6 @@ export class MyProfileComponent implements OnInit {
     this.getSubjects()
     this.getMyOrders()
   }
-
   checkURL() {
     this._activateRoute.queryParams.subscribe(params => {
       if (params['success'] == 1) {
@@ -114,7 +109,6 @@ export class MyProfileComponent implements OnInit {
       }
     })
   }
-
   getUserInfo() {
     this._store.dispatch(accountAction())
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
@@ -123,14 +117,12 @@ export class MyProfileComponent implements OnInit {
       }
     });
   }
-
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
       this.uploadFile(file)
     }
   }
-
   uploadFile(file: File) {
     const formData = new FormData();
     formData.append('file', file);
@@ -140,7 +132,6 @@ export class MyProfileComponent implements OnInit {
       }
     })
   }
-
   getSubscriptions() {
     this._store.dispatch(accountAction())
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
@@ -152,7 +143,6 @@ export class MyProfileComponent implements OnInit {
       }
     })
   }
-
   getSubjects() {
     this._store.dispatch(subjectGetAction());
     this._store.select(getSubjectsState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
@@ -163,7 +153,6 @@ export class MyProfileComponent implements OnInit {
       }
     })
   }
-
   openDialog(name: string) {
     this.dialog.getModal(name).open()
     this.profile_form.patchValue({
@@ -175,7 +164,6 @@ export class MyProfileComponent implements OnInit {
       'gender': this.me.gender ? this.me.gender.id : 1
     })
   }
-
   update() {
     if (this.profile_form.valid) {
       let req = this.profile_form.getRawValue() as ChangeProfileRequest
@@ -188,7 +176,6 @@ export class MyProfileComponent implements OnInit {
       })
     }
   }
-
   getSubjectName(id: any, locale: string | null) {
     let subject = this.listSubjects.find(x => x.id === parseInt(id))
     if (locale) {
@@ -201,12 +188,10 @@ export class MyProfileComponent implements OnInit {
       return subject?.title_ru
     }
   }
-
   getSubjectIDFromTag(tag: any) {
     let split = tag.split('.')
     return split[0];
   }
-
   getMyOrders() {
     let request = Object.assign({}, this.requestData);
     this._store.dispatch(myOrderAction({req: request}))

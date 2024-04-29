@@ -52,6 +52,40 @@
   </div>
 
   <app-information-bear [pageName]="'student_index_page_'" />
+
+  <ngx-smart-modal identifier="survey" [customClass]="'buySubscriptionModal'">
+    <div class="max-w-md mx-auto rounded p-8">
+      <h1 class="text-2xl font-bold mb-4 text-white">Опрос</h1>
+      <form *ngIf="surveyQuestions" (ngSubmit)="answerSurvey()" [formGroup]="surveyForm">
+        <div formArrayName="questions">
+          <div class="mb-4" *ngFor="let question of questions.controls; let i = index">
+            <div [formGroupName]="i">
+              <input type="hidden" formControlName="survey_question_id" value="{{surveyQuestions[i].id}}">
+              <label class="block text-white text-sm font-bold mb-2" for="question{{surveyQuestions[i].id}}">{{surveyQuestions[i].text}}</label>
+              <select *ngIf="!checkIsWish(surveyQuestions[i])" id="question{{surveyQuestions[i].id}}" formControlName="answer" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <option selected value="answer_a" *ngIf="surveyQuestions[i].answer_a">{{surveyQuestions[i].answer_a}}</option>
+                <option value="answer_b" *ngIf="surveyQuestions[i].answer_b">{{surveyQuestions[i].answer_b}}</option>
+                <option value="answer_c" *ngIf="surveyQuestions[i].answer_c">{{surveyQuestions[i].answer_c}}</option>
+                <option value="answer_d" *ngIf="surveyQuestions[i].answer_d">{{surveyQuestions[i].answer_d}}</option>
+                <option value="answer_e" *ngIf="surveyQuestions[i].answer_e">{{surveyQuestions[i].answer_e}}</option>
+                <option value="answer_f" *ngIf="surveyQuestions[i].answer_f">{{surveyQuestions[i].answer_f}}</option>
+              </select>
+              <textarea formControlName="wishes" *ngIf="checkIsWish(surveyQuestions[i])" class="w-full"></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <button
+          [ngClass]=""
+          type="button" (click)="answerSurvey()" class="transition-all duration-200 border-transparent
+                      focus:outline-none focus:ring-2 focus:ring-offset-2 text-white
+                      rounded-full bg-violet-first main-violet-first-rounded
+                      capitalize inline-flex border items-center justify-center w-full text-sm font-bold
+                      text-center py-3">{{"SEND"|translate}}</button>
+      </form>
+    </div>
+  </ngx-smart-modal>
 </div>
 
 

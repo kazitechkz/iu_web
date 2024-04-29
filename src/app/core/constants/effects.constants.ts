@@ -191,6 +191,7 @@ import {
 import {HottestInformationEffect} from "../../shared/store/information/hottestInformation/hottestInformation.effect";
 import {GoogleEffect} from "../../shared/store/auth/google/google.effect";
 import {LogoutEffect} from "../../shared/store/auth/logout/logout.effect";
+import {SurveyEffect} from "../../shared/store/survey/survey.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -337,4 +338,5 @@ export const EffectsConstants = [
     GetInformationEffect,
     GetInformationsByCategoryEffect,
     HottestInformationEffect,
+    SurveyEffect,
 ]
