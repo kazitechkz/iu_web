@@ -55,7 +55,7 @@
 
   <ngx-smart-modal identifier="survey" [customClass]="'buySubscriptionModal'">
     <div class="max-w-md mx-auto rounded p-8">
-      <h1 class="text-2xl font-bold mb-4 text-white">Опрос</h1>
+      <h1 class="text-2xl font-bold mb-4 text-white">{{'SURVEY_TITLE' | translate}}</h1>
       <form *ngIf="surveyQuestions" (ngSubmit)="answerSurvey()" [formGroup]="surveyForm">
         <div formArrayName="questions">
           <div class="mb-4" *ngFor="let question of questions.controls; let i = index">

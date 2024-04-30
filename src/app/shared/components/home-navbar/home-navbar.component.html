@@ -53,7 +53,7 @@
           </li>
           <li class="text-xs  uppercase hover:text-violet-700 ">
             <div *ngIf="me; else guest">
-              <a *ngIf="me.role == 'student'" routerLink="dashboard/my-profile" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"HELLO"|translate}}, {{me.name}}</a>
+              <a *ngIf="me.role == 'student'" routerLink="dashboard/index" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"HELLO"|translate}}, {{me.name}}</a>
               <a *ngIf="me.role == 'teacher'" routerLink="teacher/index" class="block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent text-white hover:text-violet-700">{{"HELLO"|translate}}, {{me.name}}</a>
             </div>
             <ng-template #guest>
