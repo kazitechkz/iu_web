@@ -90,6 +90,7 @@ export enum APIRoutesName {
     getMySubjects="get-my-subjects",
     walletIndex="wallet",
     walletRating="wallet-rating",
+    refs="my-refs",
     myBalance="my-balance",
     myWallet="my-wallet",
     walletTransfer="wallet-transfer",

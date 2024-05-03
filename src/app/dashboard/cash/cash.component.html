@@ -1,0 +1,148 @@
+<div class="">
+  <div class="grid grid-cols-12 py-5 my-3 gap-4" id="walletInfo">
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6 2xl:col-span-6">
+      <div class="lg:flex items-center bg-black-violet-orange-180-05 main-violet-first-rounded rounded-2xl shadow-2xl py-2">
+        <div class="lg:w-6/12 flex justify-center">
+          <div class="w-full max-w-[300px] bg-black rounded-2xl shadow-2xl">
+            <div class="flex justify-between m-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="34"
+                height="34"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffffff"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <rect x="3" y="5" width="18" height="14" rx="3" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+                <line x1="7" y1="15" x2="7.01" y2="15" />
+                <line x1="11" y1="15" x2="13" y2="15" />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="34"
+                height="34"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffffff"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <circle cx="9.5" cy="9.5" r="5.5" fill="#fff" />
+                <circle cx="14.5" cy="14.5" r="5.5" />
+              </svg>
+            </div>
+            <div class="flex justify-center mt-4">
+              <h1 class="text-gray-400 font-thin font-os">
+                XXXX XXXX XXXX 1234
+              </h1>
+            </div>
+            <div
+              class="flex flex-col justfiy-end mt-4 p-4 text-gray-400 font-quick"
+            >
+              <p class="font-bold text-xs">12 / 17</p>
+              <h4 class="uppercase tracking-wider font-semibold text-xs">
+                Our customer
+              </h4>
+            </div>
+          </div>
+        </div>
+        <div class="lg:w-6/12 px-2 text-center lg:text-left">
+          <div class="my-2">
+            <p class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-white">
+              {{"BALANCE"|translate}}
+            </p>
+          </div>
+          <div class="my-2">
+            <p class="text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl font-bold text-white">
+              1233 <i class="fa fa-tenge-sign"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6 2xl:col-span-6">
+      <div class="w-full">
+        <span
+          (click)="dialog.getModal('instruction').open()"
+          class="w-full my-3 font-bold rounded-full
+          text-md lg:text-lg xl:text-xl
+          cursor-pointer bg-black-violet-orange-180-05 main-violet-first-rounded p-4 transition duration-500
+           hover:text-white flex items-center justify-between">
+          <div class="flex text-white">
+            <fa-icon [icon]="faQuestionCircle" class="mr-2"></fa-icon> <p>{{'HOW_TO_EARN' | translate}}</p>
+          </div>
+          <fa-icon [icon]="faChevronRight" class="mr-2 text-white"></fa-icon>
+        </span>
+        <span
+          *ngFor="let route of walletRoutes"
+          [routerLink]="route.route"
+          class="w-full my-3 font-bold rounded-full
+          text-md lg:text-lg xl:text-xl
+          cursor-pointer bg-black-violet-orange-180-05 main-violet-first-rounded p-4 transition duration-500
+           hover:text-white flex items-center justify-between">
+          <div class="flex text-white">
+            <fa-icon [icon]="route.icon" class="mr-2"></fa-icon> <p>{{route.title | translate}}</p>
+          </div>
+          <fa-icon [icon]="faChevronRight" class="mr-2 text-white"></fa-icon>
+        </span>
+      </div>
+    </div>
+  </div>
+<div class="bg-violet-orange-first mx-3 p-4 rounded-2xl shadow-2xl" *ngIf="refs">
+  <div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-white">
+      <tr>
+        <th scope="col" class="px-6 py-3">№</th>
+        <th scope="col" class="px-6 py-3">
+          {{"NAME"|translate}}
+        </th>
+        <th scope="col" class="px-6 py-3">
+          {{"DATE_ADDED"|translate}}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="rounded-2xl my-2 " *ngFor="let ref of refs.referrals">
+        <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap flex">
+          <div class="w-12 h-12 rounded-full  bg-cover bg-no-repeat my-2" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(ref.referral?.file?.url) +')'}"></div>
+        </th>
+        <td class="px-6 py-4">
+          <ul class="text-white">
+            <p class="text-white font-bold">{{ref.referral?.name}}</p>
+          </ul>
+        </td>
+        <td class="px-6 py-4">
+          <div class="text-white">
+            <div class="text-white font-bold">
+              {{moment(ref.created_at)}}
+            </div>
+          </div>
+        </td>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+<ngx-smart-modal identifier="instruction" [customClass]="'buySubscriptionModal'">
+  <div class="rounded overflow-hidden text-white">
+    <div class="py-4">
+      <div class="font-bold text-xl mb-2">Приведи друга</div>
+      <p class="text-base">{{'EARN_WAY_1' | translate}}</p>
+      <p class="text-base">{{'EARN_WAY_2' | translate}}</p>
+      <p class="text-base">{{'EARN_WAY_3' | translate}}</p>
+      <p class="text-base">{{'EARN_WAY_4' | translate}}</p>
+    </div>
+    <div *ngIf="refs" class="px-6 pt-4 pb-2 text-center" (click)="copyRefCode(refs.code)">
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 cursor-pointer">YGHTFR</span>
+    </div>
+  </div>
+</ngx-smart-modal>

@@ -207,6 +207,7 @@ import {
 } from "../../shared/store/information/getInformationsByCategory/getInformationsByCategory.reducer";
 import {hottestInformationReducer} from "../../shared/store/information/hottestInformation/hottestInformation.reducer";
 import {surveyAnswerReducer, surveyReducer} from "../../shared/store/survey/survey.reducer";
+import {refsReducer} from "../../shared/store/cash/refs/refs.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -365,5 +366,6 @@ export const ReducersConstants = {
   hottestInformation:hottestInformationReducer,
   surveys: surveyReducer,
   answerSurveys: surveyAnswerReducer,
+  refs: refsReducer,
 }
 

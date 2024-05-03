@@ -1,12 +1,9 @@
 import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {AuthService} from "../../../auth/auth.service";
-import {SessionService} from "../../services/session.service";
-import {LocalKeysConstants} from "../../../core/constants/local-keys.constants";
 import {select, Store} from "@ngrx/store";
 import {accountAction} from "../../store/user/account/account.action";
 import {getAccountState} from "../../store/user/account/account.selector";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
-import {Router} from "@angular/router";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {Me} from "../../models/user.model";
 import {GlobalTranslateService} from "../../services/globalTranslate.service";
@@ -20,8 +17,6 @@ import {
   getUnreadMessageCountSelector
 } from "../../store/notification/getUnreadMessageCount/getUnreadMessageCount.selector";
 import {ImageHelper} from "../../../core/helpers/image.helper";
-import {getBattleByPromoAction} from "../../store/battle/getBattleByPromo/getBattleByPromo.action";
-import {getBattleByPromoSelector} from "../../store/battle/getBattleByPromo/getBattleByPromo.selector";
 import {PusherService} from "../../services/pusher.service";
 
 @Component({
@@ -40,7 +35,7 @@ export class NavbarComponent implements OnInit {
   private _store = inject(Store)
   destroyRef = inject(DestroyRef);
   public user: Me | null = null;
-  countMessage: number | null = null;
+  countMessage: number = 0;
   //@ts-ignore
   private pusherChannel: Channel;
   public pusher = inject(PusherService);
@@ -79,7 +74,9 @@ export class NavbarComponent implements OnInit {
   getUnreadMessage(){
     this._store.dispatch(getUnreadMessageCountAction())
     this._store.select(getUnreadMessageCountSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-      this.countMessage = item.data
+      if (item.data) {
+        this.countMessage = item.data
+      }
     })
   }
 

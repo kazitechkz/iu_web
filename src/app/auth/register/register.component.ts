@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {RegisterRequest} from "../../shared/store/auth/register/RegisterRequest";
@@ -8,18 +8,25 @@ import {GlobalTranslateService} from "../../shared/services/globalTranslate.serv
 import {createMask} from "@ngneat/input-mask";
 import {faEnvelope, faKey, faPhone, faUser} from "@fortawesome/free-solid-svg-icons";
 import {AuthService} from "../auth.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {registerAction} from "../../shared/store/auth/register/Register.action";
 import {getRegisterState} from "../../shared/store/auth/register/Register.selector";
 import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
-import {RegisterState} from "../../shared/store/auth/register/Register.state";
-import {environment} from "../../../environments/environment";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
+  ngOnInit(): void {
+      this.activateRoute.queryParams.subscribe(params => {
+        if (params['refcode'] != '') {
+           this.register_form.patchValue({
+             refcode: params['refcode']
+           })
+        }
+      })
+  }
   isSend: boolean = false
   errors:Record<string, string[]> | null = null;
   destroyRef = inject(DestroyRef);
@@ -27,11 +34,10 @@ export class RegisterComponent {
   private store = inject(Store)
   public translate = inject(GlobalTranslateService)
   public route = inject(Router)
+  public activateRoute = inject(ActivatedRoute)
   phone_mask = createMask('+7 999 999 9999');
   register_form : FormGroup = new FormGroup({
-    // cb: new FormControl("", [
-    //   Validators.requiredTrue
-    // ]),
+    refcode: new FormControl(null),
     role: new FormControl("student", [
       Validators.required,
     ]),
@@ -48,7 +54,6 @@ export class RegisterComponent {
     //   Validators.required,
     //   Validators.max(255),
     // ]),
-
     phone: new FormControl("", [
       Validators.required,
       // Validators.pattern('[- +()0-9]{11,12}')
@@ -65,10 +70,7 @@ export class RegisterComponent {
       Validators.max(255),
     ]),
   });
-  getKundelikAuth()
-  {
-    window.location.href = 'https://login.kundelik.kz/oauth2?response_type=token&client_id=4111dfa786614bc29f01d27017a31a13&scope=CommonInfo,ContactInfo,EducationalInfo,FriendsAndRelatives&redirect_uri='+environment.kundelikUrl
-  }
+
   onSubmit() {
     let requestData = this.register_form.getRawValue() as RegisterRequest;
     if (this.register_form.valid) {

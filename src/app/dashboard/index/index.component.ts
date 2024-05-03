@@ -15,7 +15,7 @@ import {answerSurveysStateSelector, getSurveysState} from "../../shared/store/su
 import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {SurveyModel, SurveyQuestionModel} from "../../shared/models/survey.model";
 import {NgxSmartModalService} from "ngx-smart-modal";
-import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {SurveyRequest} from "../../shared/store/survey/survey.request";
 import Swal from "sweetalert2";
 
@@ -83,7 +83,7 @@ export class IndexComponent implements OnInit {
       this.surveyQuestions.forEach((question: SurveyQuestionModel) => {
         questionsArray.push(this.formBuilder.group({
           survey_question_id: [question.id],
-          answer: !this.checkIsWish(question) ? 'answer_a' : null, // Создаем обязательное поле для ответа
+          answer: [null, !this.checkIsWish(question) ? Validators.required : null], // Создаем обязательное поле для ответа
           wishes: null
         }));
       });
@@ -93,18 +93,20 @@ export class IndexComponent implements OnInit {
     this.surveyForm.patchValue({
       survey_id: this.surveyID
     })
-    let req = this.surveyForm.getRawValue() as SurveyRequest
-    this._store.dispatch(surveyAnswerAction({req: req}))
-    this._store.select(answerSurveysStateSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-      if (item.data) {
-        Swal.fire({
-          title: "Ура!",
-          text: "За ваш отзыв! Вам было начислено подарочных 1000 iU-coins!",
-          icon: "success"
-        })
-        this.dialog.closeLatestModal()
-      }
-    })
+    if (this.surveyForm.valid) {
+      let req = this.surveyForm.getRawValue() as SurveyRequest
+      this._store.dispatch(surveyAnswerAction({req: req}))
+      this._store.select(answerSurveysStateSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+        if (item.data) {
+          Swal.fire({
+            title: "Ура!",
+            text: "За ваш отзыв! Вам было начислено подарочных 1000 iU-coins!",
+            icon: "success"
+          })
+          this.dialog.closeLatestModal()
+        }
+      })
+    }
   }
   public menuLists = [
     {

@@ -88,6 +88,7 @@ import { BattleQuestionsComponent } from './battle/battle-questions/battle-quest
 import { BattleStatsComponent } from './battle/battle-stats/battle-stats.component';
 import { GamesComponent } from './games/games.component';
 import { TournamentAllComponent } from './tournament/tournament-all/tournament-all.component';
+import { CashComponent } from './cash/cash.component';
 
 
 @NgModule({
@@ -157,6 +158,7 @@ import { TournamentAllComponent } from './tournament/tournament-all/tournament-a
         BattleStatsComponent,
         TournamentAllComponent,
         GamesComponent,
+        CashComponent,
     ],
     imports: [
         CommonModule,

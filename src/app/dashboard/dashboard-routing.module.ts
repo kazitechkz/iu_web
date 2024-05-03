@@ -67,6 +67,7 @@ import {GamesComponent} from "./games/games.component";
 import {TournamentAllComponent} from "./tournament/tournament-all/tournament-all.component";
 import {NgxSeo} from "@avivharuzi/ngx-seo";
 import {SeoConstants} from "../core/constants/seo.constants";
+import {CashComponent} from "./cash/cash.component";
 
 
 
@@ -379,6 +380,10 @@ const routes: Routes = [
       {
         path: 'games',
         component: GamesComponent
+      },
+      {
+        path: 'cash',
+        component: CashComponent
       },
       {
         path:"no-page-ready",

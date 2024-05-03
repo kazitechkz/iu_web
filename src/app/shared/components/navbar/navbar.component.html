@@ -10,15 +10,20 @@
         <i class="fa fa-bars cursor-pointer text-white" aria-hidden="true" (click)="openSideNav()"></i>
       </div>
       <div class="flex items-center text-white">
-        <div class="px-1 cursor-pointer" [routerLink]="'/'+RoutesName.notification"  *ngIf="user?.role == 'student'">
-          <div class="flex justify-center">
+        <div class="px-1 cursor-pointer" [routerLink]="'/'+RoutesName.notification" *ngIf="user?.role == 'student'">
+          <div class="flex justify-center" *ngIf="countMessage != 0">
             <fa-icon class="text-white text-xl" [icon]="faBell"> </fa-icon>
-            <div class="mx-1 h-4 w-4 bg-white rounded-full text-center text-xs main-violet-second-color">{{countMessage ?? 0}}</div>
+            <div class="mx-1 h-4 w-4 bg-white rounded-full text-center text-xs main-violet-second-color">{{countMessage}}</div>
           </div>
         </div>
         <div class="px-1 cursor-pointer" *ngIf="user?.role == 'student'">
-          <div class="flex justify-center" [routerLink]="'/'+RoutesName.walletRating">
-            {{user?.balance}} IU
+          <div class="flex justify-center items-center" [routerLink]="'/'+RoutesName.walletRating">
+            {{user?.balance}} <span class="w-[20px] h-[20px] bg-no-repeat bg-contain bg-center" style="background-image: url('assets/images/iucoin.png')"></span>
+          </div>
+        </div>
+        <div class="px-1 cursor-pointer" *ngIf="user?.role == 'student'">
+          <div class="flex justify-center items-center" [routerLink]="'/'+RoutesName.walletRating">
+            200 <i class="fa fa-tenge-sign mx-2" aria-hidden="true"></i>
           </div>
         </div>
         <div class="px-1 cursor-pointer">

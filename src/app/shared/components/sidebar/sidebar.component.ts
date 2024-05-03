@@ -115,9 +115,14 @@ export class SidebarComponent implements OnInit {
     },
     {
       title: 'WALLET',
-      path: RoutesName.walletIndex,
+      path: RoutesName.cashIndex,
       icon: faWallet as IconProp
     },
+    // {
+    //   title: 'WALLET',
+    //   path: RoutesName.walletIndex,
+    //   icon: faWallet as IconProp
+    // },
     {
       title: 'STATISTICS',
       path: RoutesName.untStats,
