@@ -1,4 +1,4 @@
-<div class="" *ngIf="refs">
+<div class="" >
   <div class="grid grid-cols-12 py-5 my-3 gap-4" id="walletInfo">
     <div class="col-span-12 md:col-span-12 lg:col-span-6 xl:col-span-6 2xl:col-span-6">
       <div class="lg:flex items-center bg-black-violet-orange-180-05 main-violet-first-rounded rounded-2xl shadow-2xl py-2">
@@ -81,51 +81,93 @@
           <fa-icon [icon]="faChevronRight" class="mr-2 text-white"></fa-icon>
         </span>
         <span
-          [routerLink]="'/' + RoutesName.cashHistory"
+          [routerLink]="'/'+RoutesName.cashIndex"
           class="w-full my-3 font-bold rounded-full
           text-md lg:text-lg xl:text-xl
           cursor-pointer bg-black-violet-orange-180-05 main-violet-first-rounded p-4 transition duration-500
            hover:text-white flex items-center justify-between">
           <div class="flex text-white">
-            <fa-icon [icon]="faHandHoldingDollar" class="mr-2"></fa-icon> <p>{{'REQUEST_WITHDRAW' | translate}}</p>
+            <fa-icon [icon]="faDollarSign" class="mr-2"></fa-icon> <p>{{'MY_CASHES' | translate}}</p>
           </div>
           <fa-icon [icon]="faChevronRight" class="mr-2 text-white"></fa-icon>
         </span>
       </div>
     </div>
   </div>
-  <div *ngIf="refs.referrals">
+
+  <div>
+    <div class="w-[200px] mb-3">
+      <button
+        (click)="checkPhone()"
+        type="button" class="cursor-pointer transition-all duration-200 border-transparent
+                      focus:outline-none focus:ring-2 focus:ring-offset-2 text-white
+                      rounded-full bg-violet-first main-violet-first-rounded
+                      inline-flex border items-center justify-center w-full text-sm font-bold
+                      text-center py-3">{{"REQUEST_WITHDRAW"|translate}}</button>
+    </div>
     <div
+      *ngIf="histories.length"
       class="w-full my-3 font-bold rounded-full
           text-md lg:text-lg xl:text-xl
           bg-black-violet-orange-180-05 main-violet-first-rounded p-4 transition duration-500
           hover:text-white flex items-center justify-between">
-          <div class="flex text-white">
-            <fa-icon [icon]="faDollarSign" class="mr-2"></fa-icon> <p>{{'MY_CASHES' | translate}}</p>
-          </div>
-        </div>
-    <div class="mb-6 lg:mb-0" *ngIf="refs.referrals">
-      <div *ngFor="let ref of refs.referrals" class="my-2 relative block rounded-lg p-6 bg-black-violet-orange-180-05 main-violet-first-rounded shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
-        <div class="flex-row items-start lg:flex">
-          <div class="w-full shrink-0 grow-0 basis-auto lg:w-2/12 lg:pr-6">
-            <div class="w-[100px] h-[100px] bg-center bg-no-repeat bg-contain rounded-full" [ngStyle]="{'background-image':'url('+ ImageHelper.getImage(ref.referral?.file?.url) +')'}"></div>
-          </div>
-          <div class="w-full shrink-0 grow-0 basis-auto lg:w-10/12">
-            <h5 class="mb-2 text-lg font-bold text-white">{{ref.referral?.name}}</h5>
-            <ul class="mx-auto" *ngIf="ref.orders?.length">
-              <li class="flex justify-between items-center text-white" *ngFor="let order of ref.orders | keys">
-                <span>{{parseInt(order.key) + 1}}</span>
-                <span>{{order.value.price}} <i class="fa fa-tenge-sign"></i></span>
-                <span>20%</span>
-                <span class="text-green-400">+ {{getPrice(order.value.price)}} <i class="fa fa-tenge-sign"></i></span>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <div class="flex text-white">
+        <fa-icon [icon]="faClockRotateLeft" class="mr-2"></fa-icon> <p>{{'HISTORY_WITHDRAWALS' | translate}}</p>
+      </div>
+    </div>
+    <div class="bg-violet-orange-first p-4 rounded-2xl shadow-2xl" *ngIf="histories.length">
+      <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left text-white">
+          <thead class="text-xs text-white capitalize">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              {{'ORDER_NUMBER' | translate}}
+            </th>
+            <th scope="col" class="px-6 py-3">
+              {{'ORDER_AMOUNT' | translate}}
+            </th>
+            <th scope="col" class="px-6 py-3">
+              {{'DATE_ADDED' | translate}}
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Статус
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="rounded-2xl my-2 border-b border-gray-300" *ngFor="let history of histories">
+            <td class="px-6 py-4">
+              <div class="text-white">
+                <div class="text-white font-bold">
+                  {{history.id}}
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <div class="text-white">
+                <div class="text-white font-bold">
+                  {{history.cash.balance}}
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <div class="text-white">
+                <div class="text-white font-bold">
+                  {{moment(history.created_at).format('DD.MM.y')}}
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4">
+              <div class="text-white">
+                <div class="text-white font-bold" [innerHTML]="history.status ? (getStatusText(('SUCCESS_STATUS'|translate), true) | safeHtml) : (getStatusText(('WAITING_STATUS'|translate), false) | safeHtml)"></div>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
-
 </div>
 
 <ngx-smart-modal identifier="instruction" [customClass]="'buySubscriptionModal'">
@@ -137,11 +179,41 @@
       <p class="text-base">{{'EARN_WAY_3' | translate}}</p>
       <p class="text-base">{{'EARN_WAY_4' | translate}}</p>
     </div>
-    <div *ngIf="refs" class="px-6 pt-4 pb-2 text-center" (click)="copyRefCode(refs.code)">
+    <div *ngIf="userMe" class="px-6 pt-4 pb-2 text-center" (click)="copyRefCode(userMe.refCode)">
       <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 cursor-pointer">
-        {{refs.code}}
+        {{userMe.refCode}}
       </span>
     </div>
   </div>
 </ngx-smart-modal>
 
+<ngx-smart-modal identifier="getPhone" [customClass]="'buySubscriptionModal'">
+  <div class="max-w-md mx-auto rounded py-8">
+    <h1 class="text-md font-bold mb-4 text-white">{{'WITHDRAW_CONTACT' | translate}}</h1>
+    <form (ngSubmit)="requestWithdraw()" [formGroup]="requestWithdrawForm">
+      <div class="mb-4">
+        <core-input>
+          <div class="mt-2.5 mr-0 mb-2.5 ml-0">
+            <label class="block text-sm font-medium text-white">{{'PHONE' | translate}}</label>
+            <div class="mt-1 mr-0 mb-0 ml-0 rounded-md shadow-sm relative">
+                    <span class="flex absolute inset-y-0 left-0 pl-3 items-center pointer-events-none text-gray-400">
+                      <fa-icon [icon]="faPhone"></fa-icon>
+                    </span>
+              <input showError name="phone" [controlName]="'PHONE' | translate" [formControlName]="'phone'" [inputMask]="phone_mask" type="text" placeholder="+7 777 777 7777" class="focus:ring-indigo-500 focus:border-indigo-500
+                  sm:text-sm w-full h-10 block border-gray-300 border shadow-sm pt-0 pr-0 pb-0 pl-10 rounded-md"/>
+            </div>
+          </div>
+        </core-input>
+      </div>
+
+      <button
+        [ngClass]="requestWithdrawForm.valid ? 'cursor-pointer' : 'cursor-not-allowed'"
+        [disabled]="!requestWithdrawForm.valid"
+        type="button" (click)="requestWithdraw()" class="transition-all duration-200 border-transparent
+                      focus:outline-none focus:ring-2 focus:ring-offset-2 text-white
+                      rounded-full bg-violet-first main-violet-first-rounded
+                      capitalize inline-flex border items-center justify-center w-full text-sm font-bold
+                      text-center py-3">{{"SEND"|translate}}</button>
+    </form>
+  </div>
+</ngx-smart-modal>

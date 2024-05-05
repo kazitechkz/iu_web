@@ -32,7 +32,10 @@
               "inputmask",
               "@fortawesome/free-solid-svg-icons/faGlobe",
               "@fortawesome/free-solid-svg-icons/faFileCircleCheck",
-              "@fortawesome/free-solid-svg-icons/faStairs"
+              "@fortawesome/free-solid-svg-icons/faStairs",
+              "@fortawesome/free-solid-svg-icons/faHandHoldingDollar",
+              "@fortawesome/free-solid-svg-icons/faClockRotateLeft",
+              "@fortawesome/free-solid-svg-icons/faDollarSign"
             ],
             "outputPath": "dist/iu_web/browser",
             "index": "src/index.html",

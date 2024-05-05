@@ -1,10 +1,9 @@
-import {Pagination} from "../../pagination";
-import {Wallet} from "../../../models/wallet.model";
-import {OrdinaryUser, UserModel} from "../../../models/user.model";
+import {OrdinaryUser} from "../../../models/user.model";
 
 export interface RefsModel {
   code: string
   referrals: ReferralModel[] | null
+  balance: number
 }
 
 export interface ReferralModel {
@@ -13,4 +12,12 @@ export interface ReferralModel {
   referee_id: number
   created_at: string
   referral: OrdinaryUser | null
+  orders: OrderModel[] | null
+}
+
+export interface OrderModel {
+  id: number
+  user_id: number
+  order_id: number
+  price: string
 }

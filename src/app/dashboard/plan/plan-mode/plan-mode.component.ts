@@ -144,16 +144,16 @@ export class PlanModeComponent implements OnInit {
         price: number
     switch (time) {
       case 1:
-        oldPrice = 1990
+        oldPrice = 1590
         break;
       case 3:
-        oldPrice = 4990
+        oldPrice = 3990
         break;
       case 6:
-        oldPrice = 8990
+        oldPrice = 6990
         break;
       default:
-        oldPrice = 1990
+        oldPrice = 1590
         break;
     }
     switch (time) {

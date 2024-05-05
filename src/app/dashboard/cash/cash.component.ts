@@ -1,8 +1,5 @@
 import {Component, DestroyRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Store} from "@ngrx/store";
-import {WalletIndexModel} from "../../shared/store/wallet/walletIndex/walletIndex.model";
-import {StrHelper} from "../../core/helpers/str.helper";
-import {RoutesName} from "../../core/constants/routes.constants";
 import * as moment from "moment";
 import {
   faArrowRight,
@@ -23,6 +20,11 @@ import {refsAction} from "../../shared/store/cash/refs/refs.action";
 import {refsSelector} from "../../shared/store/cash/refs/refs.selector";
 import {autoUnsubscribe} from "../../core/helpers/autoUnsubscribe";
 import {RefsModel} from "../../shared/store/cash/refs/refs.model";
+import {Me} from "../../shared/models/user.model";
+import {faHandHoldingDollar} from "@fortawesome/free-solid-svg-icons/faHandHoldingDollar";
+import {RoutesName} from "../../core/constants/routes.constants";
+import {accountAction} from "../../shared/store/user/account/account.action";
+import {getAccountState} from "../../shared/store/user/account/account.selector";
 @Component({
   selector: 'app-cash',
   templateUrl: './cash.component.html',
@@ -38,12 +40,11 @@ export class CashComponent implements OnInit {
   //Injection
   //Data
   refs:RefsModel|null = null;
-  walletRoutes = [
-    {title:"MY_CASHES", icon:faDollarSign, route:StrHelper.getRouteName(RoutesName.walletTransfer)}
-  ]
+  userMe: Me | null = null;
   //Data
   ngOnInit(): void {
     this.getMyRefs()
+    this.getMe()
   }
 
   getMyRefs() {
@@ -53,6 +54,18 @@ export class CashComponent implements OnInit {
         this.refs = item.data
       }
     })
+  }
+  getMe() {
+    this._store.dispatch(accountAction())
+    this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+      if (item.data) {
+        this.userMe = item.data
+      }
+    })
+  }
+
+  getPrice(price: string) {
+    return Math.round(parseInt(price)*0.2);
   }
   copyRefCode(code: string) {
     this.clipboard.copy(code)
@@ -81,4 +94,7 @@ export class CashComponent implements OnInit {
   protected readonly ImageHelper = ImageHelper;
   protected readonly parseInt = parseInt;
   protected readonly faArrowRight = faArrowRight;
+  protected readonly faDollarSign = faDollarSign;
+  protected readonly faHandHoldingDollar = faHandHoldingDollar;
+  protected readonly RoutesName = RoutesName;
 }

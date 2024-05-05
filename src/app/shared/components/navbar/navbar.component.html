@@ -22,8 +22,8 @@
           </div>
         </div>
         <div class="px-1 cursor-pointer" *ngIf="user?.role == 'student'">
-          <div class="flex justify-center items-center" [routerLink]="'/'+RoutesName.walletRating">
-            200 <i class="fa fa-tenge-sign mx-2" aria-hidden="true"></i>
+          <div class="flex justify-center items-center" [routerLink]="'/'+RoutesName.cashIndex">
+            {{user?.cash}} <i class="fa fa-tenge-sign mx-2" aria-hidden="true"></i>
           </div>
         </div>
         <div class="px-1 cursor-pointer">

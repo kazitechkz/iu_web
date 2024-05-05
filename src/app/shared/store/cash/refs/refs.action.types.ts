@@ -1,5 +1,5 @@
 export enum RefsActionTypes {
-  Refs = "[On Get Refs Rating Detail Action] On Get Refs Rating Detail Action",
-  RefsSuccess = "[On Get Refs Rating Detail Action] On Get Refs Rating Detail Action Success",
-  RefsFailure = "[On Get Refs Rating Detail Action] On Get Refs Rating Detail Action Failure",
+  Refs = "[On Get Refs Action] On Get Refs Action",
+  RefsSuccess = "[On Get Refs Action] On Get Refs Action Success",
+  RefsFailure = "[On Get Refs Action] On Get Refs Action Failure",
 }

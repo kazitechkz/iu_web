@@ -65,12 +65,9 @@ import {BattleQuestionsComponent} from "./battle/battle-questions/battle-questio
 import {BattleStatsComponent} from "./battle/battle-stats/battle-stats.component";
 import {GamesComponent} from "./games/games.component";
 import {TournamentAllComponent} from "./tournament/tournament-all/tournament-all.component";
-import {NgxSeo} from "@avivharuzi/ngx-seo";
 import {SeoConstants} from "../core/constants/seo.constants";
 import {CashComponent} from "./cash/cash.component";
-
-
-
+import {CashHistoryComponent} from "./cash/cash-history/cash-history.component";
 
 const routes: Routes = [
   {
@@ -384,6 +381,10 @@ const routes: Routes = [
       {
         path: 'cash',
         component: CashComponent
+      },
+      {
+        path: 'cash-history',
+        component: CashHistoryComponent
       },
       {
         path:"no-page-ready",

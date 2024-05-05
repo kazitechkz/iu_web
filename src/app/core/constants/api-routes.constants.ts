@@ -91,6 +91,8 @@ export enum APIRoutesName {
     walletIndex="wallet",
     walletRating="wallet-rating",
     refs="my-refs",
+    cashHistories="cash-histories",
+    requestWithdraw="request-withdraw",
     myBalance="my-balance",
     myWallet="my-wallet",
     walletTransfer="wallet-transfer",

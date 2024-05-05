@@ -32,6 +32,8 @@ export interface Me {
   isGoogle: boolean
   parent_phone: string | null
   parent_name: string | null
+  cash: number
+  refCode: string
 }
 
 export interface OrdinaryUser {
