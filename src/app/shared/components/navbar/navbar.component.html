@@ -18,7 +18,8 @@
         </div>
         <div class="px-1 cursor-pointer" *ngIf="user?.role == 'student'">
           <div class="flex justify-center items-center" [routerLink]="'/'+RoutesName.walletRating">
-            {{user?.balance}} <span class="w-[20px] h-[20px] bg-no-repeat bg-contain bg-center" style="background-image: url('assets/images/iucoin.png')"></span>
+<!--            {{user?.balance}} <span class="w-[20px] h-[20px] bg-no-repeat bg-contain bg-center" style="background-image: url('assets/images/iucoin.png')"></span>-->
+            {{user?.balance}} iU
           </div>
         </div>
         <div class="px-1 cursor-pointer" *ngIf="user?.role == 'student'">
