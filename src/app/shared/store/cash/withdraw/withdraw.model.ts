@@ -3,6 +3,7 @@ export interface WithdrawModel {
   user_id: number
   cash_id: number
   status: boolean
+  balance: number
   created_at: string
   updated_at: string
   cash: CashModel

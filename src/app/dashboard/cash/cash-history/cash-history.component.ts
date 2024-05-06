@@ -49,6 +49,7 @@ export class CashHistoryComponent implements OnInit {
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       if (item.data) {
         this.userMe = item.data
+        console.log(this.userMe)
         this.requestWithdrawForm.patchValue({
           phone: this.userMe.phone
         })
@@ -105,6 +106,14 @@ export class CashHistoryComponent implements OnInit {
   getStatusText(text: string, status: boolean) {
     if (status) {
       return '<span class="text-green-400">' + text +'</span>';
+    } else {
+      return '<span class="text-yellow-400">' + text +'</span>';
+    }
+  }
+
+  getBalanceText(text: number, status: boolean) {
+    if (status) {
+      return '<span class="text-red-400">' + '-' + text +'</span>';
     } else {
       return '<span class="text-yellow-400">' + text +'</span>';
     }

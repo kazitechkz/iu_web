@@ -33,7 +33,7 @@ export interface Me {
   parent_phone: string | null
   parent_name: string | null
   cash: number
-  refCode: string
+  refcode: string
 }
 
 export interface OrdinaryUser {

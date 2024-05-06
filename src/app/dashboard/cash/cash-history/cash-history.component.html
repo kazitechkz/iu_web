@@ -145,8 +145,8 @@
             </td>
             <td class="px-6 py-4">
               <div class="text-white">
-                <div class="text-white font-bold">
-                  {{history.cash.balance}}
+                <div class="text-white font-bold"
+                     [innerHTML]="history.status ? getBalanceText(history.balance, true) : getBalanceText(history.balance, false)">
                 </div>
               </div>
             </td>
@@ -179,9 +179,9 @@
       <p class="text-base">{{'EARN_WAY_3' | translate}}</p>
       <p class="text-base">{{'EARN_WAY_4' | translate}}</p>
     </div>
-    <div *ngIf="userMe" class="px-6 pt-4 pb-2 text-center" (click)="copyRefCode(userMe.refCode)">
+    <div *ngIf="userMe" class="px-6 pt-4 pb-2 text-center" (click)="copyRefCode(userMe.refcode)">
       <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 cursor-pointer">
-        {{userMe.refCode}}
+        {{userMe.refcode}}
       </span>
     </div>
   </div>
