@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit {
     this.translate.getCurrentLang()
     this.getUnreadMessage();
     this.me()
-    this.listenBalance()
+    // this.listenBalance()
   }
 
   openSideNav() {
