@@ -3,6 +3,7 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {SubStepService} from "./subStep.service";
 import {catchError, distinct, exhaustMap, map, of, switchMap} from "rxjs";
 import {
+  contentAppealAction, contentAppealFailure, contentAppealSuccess,
   subStepAction,
   subStepActionFailure,
   subStepActionSuccess,
@@ -75,6 +76,27 @@ export class SubStepResultEffect {
             return of(subStepResultActionSuccess({responseData: data}))
           }),
           catchError((_error) => of(subStepResultActionFailure({errors: _error})))
+        )
+      })
+    )
+  );
+}
+
+@Injectable()
+export class ContentAppealEffect {
+
+  private _service = inject(SubStepService);
+  private action$ = inject(Actions);
+
+  _onContentAppeal = createEffect((): any =>
+    this.action$.pipe(
+      ofType(contentAppealAction),
+      switchMap((action) => {
+        return this._service.createContentAppeal(action.requestData).pipe(
+          switchMap(data => {
+            return of(contentAppealSuccess({responseData: data}))
+          }),
+          catchError((_error) => of(contentAppealFailure({errors: _error})))
         )
       })
     )

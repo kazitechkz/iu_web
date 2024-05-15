@@ -24,6 +24,7 @@ export enum APIRoutesName {
     getSubSteps = "sub-steps",
     getSubStep = "sub-step",
     getSubStepResult = "check-sub-step-result",
+    createContentAppeal = "content-appeal",
     getAttemptById = "attempt_by",
     userAttempts = "user-attempts",
     allAttemptTypes = "attempt-types",

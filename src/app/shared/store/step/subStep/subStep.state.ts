@@ -10,3 +10,5 @@ export const subStepDetailState: EntityState<SubStepModel> = subStepDetailAdapte
 
 export const subStepResultAdapter = createEntityAdapter<boolean>();
 export const subStepResultState: EntityState<boolean> = subStepResultAdapter.getInitialState();
+export const contentAppealAdapter = createEntityAdapter<boolean>();
+export const contentAppealState: EntityState<boolean> = contentAppealAdapter.getInitialState();

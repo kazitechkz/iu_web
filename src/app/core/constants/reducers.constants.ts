@@ -7,6 +7,7 @@ import {getAttemptReducer} from "../../shared/store/attempt/getAttempt/getAttemp
 import {stepReducer} from "../../shared/store/step/step.reducer";
 import {stepDetailReducer} from "../../shared/store/step/detail/stepDetail.reducer";
 import {
+  contentAppealReducer,
   subStepDetailReducer,
   subStepReducer,
   subStepResultReducer
@@ -370,5 +371,6 @@ export const ReducersConstants = {
   refs: refsReducer,
   withdraw: withdrawReducer,
   requestWithdraw: requestWithdrawReducer,
+  contentAppeal: contentAppealReducer
 }
 

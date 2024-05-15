@@ -11,4 +11,9 @@ export enum SubStepActionTypes {
     OnSubStepResult = "[SubStepResult Action] On SubStepResult",
     OnSubStepResultSuccess = "[SubStepResult Action] On SubStepResult Success",
     OnSubStepResultFailure = "[SubStepResult Action] On SubStepResult Failure",
+
+    OnContentAppeal = "[ContentAppeal Action] On ContentAppeal",
+    OnContentAppealClear = "[ContentAppealClear Action] On ContentAppealClear",
+    OnContentAppealSuccess = "[ContentAppeal Action] On ContentAppeal Success",
+    OnContentAppealFailure = "[ContentAppeal Action] On ContentAppeal Failure",
 }

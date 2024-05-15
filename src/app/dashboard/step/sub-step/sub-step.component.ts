@@ -1,36 +1,36 @@
 import {
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
-  DestroyRef, DoCheck,
+  DestroyRef,
   ElementRef,
-  inject, OnChanges,
+  inject,
   OnInit,
-  SimpleChanges,
   ViewChild
 } from '@angular/core';
 import {select, Store} from "@ngrx/store";
 import {ActivatedRoute} from "@angular/router";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {
+  contentAppealAction, contentAppealClear,
   subStepDetailAction,
-  subStepDetailClearAction,
   subStepResultAction
 } from "../../../shared/store/step/subStep/subStep.action";
-import {SubResult, SubStepModel} from "../../../shared/models/subStep.model";
-import {getSubStepDetailState, getSubStepResultState} from "../../../shared/store/step/subStep/subStep.selector";
+import {SubStepModel} from "../../../shared/models/subStep.model";
+import {
+  contentAppealSelector,
+  getSubStepDetailState,
+  getSubStepResultState
+} from "../../../shared/store/step/subStep/subStep.selector";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {RoutesName} from "../../../core/constants/routes.constants";
 import {StrHelper} from "../../../core/helpers/str.helper";
-import {Actions} from "@ngrx/effects";
-import {distinctUntilChanged, Observable} from "rxjs";
+import {last, Observable, skip, take} from "rxjs";
 import {ResponseData} from "../../../shared/store/response_data";
-import {calculate} from "@rxweb/reactive-form-validators/algorithm/luhn-algorithm";
-import {GlobalTranslatePipe} from "../../../core/pipes/globalTranslate.pipe";
-import {MathJaxPipe} from "../../../core/pipes/mathJax.pipe";
 import {SubStepContentModel} from "../../../shared/models/subStepContent.model";
 import {Subject} from "../../../shared/models/subject.model";
 import {SubjectHelper} from "../../../core/helpers/subject.helper";
+import {ContentAppealRequest} from "../../../shared/store/step/subStep/subStep.request";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-sub-step',
@@ -69,7 +69,9 @@ export class SubStepComponent implements OnInit {
   videoId: string = ''
   shortVideoId: string = ''
   public localeID: number = 1
-
+  public contentAppealRequest: ContentAppealRequest = {
+    content_id: 0
+  }
   ngOnInit(): void {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this.localeID = params['locale_id']
@@ -79,6 +81,41 @@ export class SubStepComponent implements OnInit {
     // this.onYoutubePlayer()
     this.videoId = 'UZxEkiwEQT0'
     this.shortVideoId = '6xsHB6qbjwM'
+  }
+
+  createContentAppeal() {
+    if (this.contentAppealRequest.content_id != 0) {
+      this._store.dispatch(contentAppealClear())
+      this._store.dispatch(contentAppealAction({requestData: this.contentAppealRequest}));
+      this._store.select(contentAppealSelector).pipe(
+          autoUnsubscribe(this.destroyRef),
+          skip(1), // Пропускаем первые n значений
+          take(1)
+        )
+        .subscribe(item => {
+        console.log('Selector output:', item);
+        if (item && item.data) {
+          console.log('have')
+          Swal.fire({
+            title: "Спасибо за отклик!",
+            text: "Мы обязательно проверим данный конспект!",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1500
+          })
+        } else {
+          console.log('not have')
+          Swal.fire({
+            title: "Вы уже оставили заявку!",
+            text: "Мы обязательно проверим данный конспект!",
+            icon: "info",
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+      })
+    }
+
   }
 
   getWidth(width: number) {
@@ -94,6 +131,9 @@ export class SubStepComponent implements OnInit {
         this.content = item.data?.sub_step_content;
         if(item.data?.step.subject_id){
          this.activeSubject = SubjectHelper.staticSubject.find(subj => subj.id == item.data?.step.subject_id) ?? null;
+        }
+        if (this.content) {
+          this.contentAppealRequest.content_id = this.content.id
         }
       })
     })

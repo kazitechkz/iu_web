@@ -103,6 +103,11 @@
     </section>
 
     <div class="flex justify-end" id="sub_step_action">
+      <a
+          (click)="createContentAppeal()"
+         class="inline-block cursor-pointer rounded-full mx-2 bg-violet-first main-violet-first-rounded main-violet-first-bg px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white  transition duration-150 ease-in-out ">
+        {{'FIND_ERROR' | translate}}
+      </a>
       <div class="flex">
         <a *ngIf="(result$ | async)?.data"
            [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepExam + '/' + (subStep$ | async)?.data?.id + '/' + localeID)"

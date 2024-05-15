@@ -2,7 +2,7 @@ import {Action, createAction, props} from "@ngrx/store";
 import {ResponseData} from "../../response_data";
 import {SubStepModel} from "../../../models/subStep.model";
 import {SubStepActionTypes} from "./subStep.action.types";
-import {SubStepRequest, SubStepResultRequest} from "./subStep.request";
+import {ContentAppealRequest, SubStepRequest, SubStepResultRequest} from "./subStep.request";
 
 export const subStepAction = createAction(SubStepActionTypes.OnSubStep, props<{ requestData: number }>());
 export const subStepActionSuccess = createAction(SubStepActionTypes.OnSubStepSuccess, props<{
@@ -23,3 +23,10 @@ export const subStepResultActionSuccess = createAction(SubStepActionTypes.OnSubS
   responseData: ResponseData<boolean>
 }>());
 export const subStepResultActionFailure = createAction(SubStepActionTypes.OnSubStepResultFailure, props<{ errors: any }>());
+
+export const contentAppealAction = createAction(SubStepActionTypes.OnContentAppeal, props<{ requestData: ContentAppealRequest}>());
+export const contentAppealClear = createAction(SubStepActionTypes.OnContentAppealClear);
+export const contentAppealSuccess = createAction(SubStepActionTypes.OnContentAppealSuccess, props<{
+  responseData: ResponseData<boolean>
+}>());
+export const contentAppealFailure = createAction(SubStepActionTypes.OnContentAppealFailure, props<{ errors: any }>());
