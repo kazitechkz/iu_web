@@ -174,7 +174,7 @@ export class BattleListComponent implements OnInit,OnDestroy{
   }
 
   createBattle:FormGroup = this.fb.group({
-    price:new FormControl(10,[
+    price:new FormControl(500,[
       Validators.required,
       Validators.min(10)
     ]),

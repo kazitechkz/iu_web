@@ -74,23 +74,34 @@ export class CashHistoryComponent implements OnInit {
         showConfirmButton: false,
         timer: 2000
       });
-    } else {
-      if (this.requestWithdrawForm.valid) {
-        let phone = this.requestWithdrawForm.getRawValue() as WithdrawRequest
-        this._store.dispatch(requestWithdrawAction({req: phone}))
-        this._store.select(requestWithdrawSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
-          if (item.data == true && item.data != null) {
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Скоро с вами свяжутся наш менеджер",
-              showConfirmButton: false,
-              timer: 2000
-            });
-            this.getHistories()
-          }
-        })
-        this.dialog.closeLatestModal()
+    }
+    if (this.userMe) {
+      if (this.userMe.cash < 5000) {
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: "Минимальная сумма вывода 5000 тг",
+          showConfirmButton: false,
+          timer: 2000
+        });
+      } else {
+        if (this.requestWithdrawForm.valid) {
+          let phone = this.requestWithdrawForm.getRawValue() as WithdrawRequest
+          this._store.dispatch(requestWithdrawAction({req: phone}))
+          this._store.select(requestWithdrawSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
+            if (item.data == true && item.data != null) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Скоро с вами свяжутся наш менеджер",
+                showConfirmButton: false,
+                timer: 2000
+              });
+              this.getHistories()
+            }
+          })
+          this.dialog.closeLatestModal()
+        }
       }
     }
   }
