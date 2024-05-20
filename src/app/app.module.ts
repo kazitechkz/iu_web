@@ -37,9 +37,22 @@ import {InputMaskModule} from "@ngneat/input-mask";
 import {GoogleTagManagerModule} from "angular-google-tag-manager";
 import {NgxSeoModule} from "@avivharuzi/ngx-seo";
 import {GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule} from "@abacritt/angularx-social-login";
+import {MetrikaModule} from "ng-yandex-metrika";
+import {CounterConfig} from "ng-yandex-metrika/lib/ng-yandex-metrika.config";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
+const yandexConfigs: CounterConfig[] = [
+  {
+    id: 95960278, // Замените на ваш ID Яндекс.Метрики
+    webvisor: true,
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true,
+  }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,6 +103,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       useFactory: adapterFactory,
     }),
     SocialLoginModule,
+    MetrikaModule.forRoot(yandexConfigs, {
+      defaultCounter: 95960278,
+      alternativeUrl: 'https://cdn.jsdelivr.net/npm/yandex-metrica-watch/tag.js'
+    }),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: !isDevMode()})
   ],
   providers: [

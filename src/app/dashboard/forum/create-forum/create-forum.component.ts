@@ -1,21 +1,16 @@
 import {Component, DestroyRef, inject, OnDestroy, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+// @ts-ignore
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {subjectGetAction} from "../../../shared/store/subject/subject.action";
 import {getSubjectsState} from "../../../shared/store/subject/subject.selector";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {Subject} from "../../../shared/models/subject.model";
 import {UploadAdapterService} from "../../../shared/services/uploadAdapter.service";
-import {Image, ImageResize, ImageResizeEditing, ImageResizeHandles} from '@ckeditor/ckeditor5-image';
 import {HttpClient} from "@angular/common/http";
-import {RegisterRequest} from "../../../shared/store/auth/register/RegisterRequest";
-import {registerAction} from "../../../shared/store/auth/register/Register.action";
-import {getRegisterState} from "../../../shared/store/auth/register/Register.selector";
-import {RegisterState} from "../../../shared/store/auth/register/Register.state";
 import {CreateForumRequest} from "../../../shared/store/forum/createForum/createForum.request";
 import {createForumAction} from "../../../shared/store/forum/createForum/createForum.action";
-import {createForumState} from "../../../shared/store/forum/createForum/createForum.state";
 import {createForumSelector} from "../../../shared/store/forum/createForum/createForum.selector";
 import {faCheck} from "@fortawesome/free-solid-svg-icons";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
