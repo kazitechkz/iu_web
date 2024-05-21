@@ -199,6 +199,7 @@ import {LogoutEffect} from "../../shared/store/auth/logout/logout.effect";
 import {SurveyEffect} from "../../shared/store/survey/survey.effect";
 import {RefsEffect} from "../../shared/store/cash/refs/refs.effect";
 import {WithdrawEffect} from "../../shared/store/cash/withdraw/withdraw.effect";
+import {UtmEffect} from "../../shared/store/utm/utm.effect";
 
 export const EffectsConstants = [
     LoginEffect,
@@ -349,4 +350,5 @@ export const EffectsConstants = [
     RefsEffect,
     WithdrawEffect,
     ContentAppealEffect,
+    UtmEffect,
 ]

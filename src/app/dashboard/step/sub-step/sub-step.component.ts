@@ -31,6 +31,9 @@ import {Subject} from "../../../shared/models/subject.model";
 import {SubjectHelper} from "../../../core/helpers/subject.helper";
 import {ContentAppealRequest} from "../../../shared/store/step/subStep/subStep.request";
 import Swal from "sweetalert2";
+import {UtmRequest} from "../../../shared/store/utm/utm.request";
+import {UtmAction} from "../../../shared/store/utm/utm.action";
+import {NgxSmartModalService} from "ngx-smart-modal";
 
 @Component({
   selector: 'app-sub-step',
@@ -72,6 +75,7 @@ export class SubStepComponent implements OnInit {
   public contentAppealRequest: ContentAppealRequest = {
     content_id: 0
   }
+  private dialog = inject(NgxSmartModalService)
   ngOnInit(): void {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {
       this.localeID = params['locale_id']
@@ -117,7 +121,11 @@ export class SubStepComponent implements OnInit {
     }
 
   }
-
+  getHomeWork() {
+    let requestUtm: UtmRequest = {url: 'https://iutest.kz/dashboard/home-work'}
+    this._store.dispatch(UtmAction({req: requestUtm}))
+    this.dialog.getModal('homeWork').open()
+  }
   getWidth(width: number) {
     return width * 0.85;
   }

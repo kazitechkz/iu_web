@@ -95,6 +95,7 @@ export enum APIRoutesName {
     cashHistories="cash-histories",
     requestWithdraw="request-withdraw",
     myBalance="my-balance",
+    utm="utm",
     myWallet="my-wallet",
     walletTransfer="wallet-transfer",
     walletStatistics="my-wallet-transaction",

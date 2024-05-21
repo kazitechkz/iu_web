@@ -4,6 +4,9 @@ import {GoogleTagManagerService} from "angular-google-tag-manager";
 import {NavigationEnd, Router} from "@angular/router";
 import {Metrika} from "ng-yandex-metrika";
 import {Location} from "@angular/common";
+import {Store} from "@ngrx/store";
+import {UtmAction} from "./shared/store/utm/utm.action";
+import {UtmRequest} from "./shared/store/utm/utm.request";
 
 @Component({
   selector: 'app-root',
@@ -16,6 +19,7 @@ export class AppComponent implements OnInit {
   private _router = inject(Router);
   private _metrika = inject(Metrika)
   private _location = inject(Location)
+  private _store = inject(Store)
   constructor(private gtmService: GoogleTagManagerService) {
     let prevPath = this._location.path();
     //Google Tag and Yandex Metrika
@@ -26,6 +30,9 @@ export class AppComponent implements OnInit {
         };
         this.gtmService.pushTag(gtmTag);
         const newPath = this._location.path();
+        const cleanUrl = this.removeNumbersFromURL(newPath);
+        let requestUtm: UtmRequest = {url: cleanUrl}
+        this._store.dispatch(UtmAction({req: requestUtm}));
         this._metrika.hit(newPath, {
           referer: prevPath,
           callback: () => {
@@ -35,6 +42,11 @@ export class AppComponent implements OnInit {
         prevPath = newPath;
       }
     });
+  }
+
+  removeNumbersFromURL(url: string): string {
+    // Используем регулярное выражение для замены чисел
+    return 'https://iutest.kz'+url.replace(/\/\d+/g, '');
   }
 
 

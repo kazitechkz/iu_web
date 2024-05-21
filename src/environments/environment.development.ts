@@ -1,4 +1,5 @@
 export const environment = {
+    // baseUrl: "http://192.168.0.123:80/api/",
     baseUrl: "http://localhost:8000/api/",
     kundelikUrl: 'http://localhost:4200/auth/kundelik',
     // baseUrl: "https://back.аю.kz/api/",

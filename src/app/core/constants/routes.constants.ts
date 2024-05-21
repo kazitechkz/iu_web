@@ -83,5 +83,6 @@ export enum RoutesName {
     lifeHack = "lifehacks",
     infoShow="information/",
     infoCategoryShow="informations-category/",
+    test2024="dashboard/test-2024",
 
 }

@@ -49,7 +49,6 @@ export class CashHistoryComponent implements OnInit {
     this._store.select(getAccountState).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item => {
       if (item.data) {
         this.userMe = item.data
-        console.log(this.userMe)
         this.requestWithdrawForm.patchValue({
           phone: this.userMe.phone
         })

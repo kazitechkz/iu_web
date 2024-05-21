@@ -32,6 +32,7 @@ import {Observable, Subscription} from "rxjs";
 import {selectSidenavIsOpen} from "../../store/core/sidebar/sidebar.selector";
 import {closeSidebarAction} from "../../store/core/sidebar/sidebar.action";
 import {StrHelper} from "../../../core/helpers/str.helper";
+import {faTumblr} from "@fortawesome/free-brands-svg-icons";
 
 @Component({
   selector: 'app-sidebar',
@@ -172,6 +173,11 @@ export class SidebarComponent implements OnInit {
       title: 'GAMES',
       path: RoutesName.games,
       icon: faChess as IconProp
+    },
+    {
+      title: 'TEST_2024',
+      path: RoutesName.test2024,
+      icon: faTumblr as IconProp
     },
 
   ]

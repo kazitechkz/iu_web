@@ -18,6 +18,8 @@ import {subStepDetailClearAction} from "../../../shared/store/step/subStep/subSt
 import {NgxSmartModalService} from "ngx-smart-modal";
 import {SubStepModel} from "../../../shared/models/subStep.model";
 import {ModalContentOfferComponent} from "../../../shared/components/modal-content-offer/modal-content-offer.component";
+import {UtmRequest} from "../../../shared/store/utm/utm.request";
+import {UtmAction} from "../../../shared/store/utm/utm.action";
 
 @Component({
   selector: 'app-stat-by-attempt-id',
@@ -74,7 +76,6 @@ export class StatByAttemptIdComponent implements OnInit, OnDestroy {
       })
     }
   }
-
   getStatByAttemptId(id: number) {
     this._store.dispatch(statByAttemptIdAction({requestData: id}));
     this._store.select(statByAttemptIdSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(
@@ -85,17 +86,19 @@ export class StatByAttemptIdComponent implements OnInit, OnDestroy {
       }
     )
   }
-
   getSubjectResult(subject_id: number) {
     return this.statByAttempt.stat_by_attempt.filter(item => item.subject_id == subject_id);
   }
-
   ngOnDestroy(): void {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
-
+  goTutor() {
+    let reqUtm: UtmRequest = {url: 'https://iutest.kz/dashboard/tutor'}
+    this._store.dispatch(UtmAction({req: reqUtm}))
+    this.dialog.getModal('tutor').open()
+  }
   protected readonly ImageHelper = ImageHelper;
   protected readonly faChartBar = faChartBar;
   protected readonly faCoins = faCoins;

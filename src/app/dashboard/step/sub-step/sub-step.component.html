@@ -102,28 +102,41 @@
       </div>
     </section>
 
-    <div class="flex justify-end" id="sub_step_action">
-      <a
+    <div class="lg:flex lg:justify-end md:grid md:grid-cols-1 sm:grid sm:grid-cols-1 mobile:grid mobile:grid-cols-1 my-2" id="sub_step_action">
+      <div></div>
+      <div></div>
+      <div class="flex justify-end my-2">
+        <a
+          (click)="getHomeWork()"
+          class="inline-block cursor-pointer rounded-full lg:mx-2 bg-violet-first main-violet-first-rounded main-violet-first-bg px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white  transition duration-150 ease-in-out ">
+          {{'GET_HOME_WORK' | translate}}
+        </a>
+      </div>
+      <div class="flex justify-end my-2">
+        <a
           (click)="createContentAppeal()"
-         class="inline-block cursor-pointer rounded-full mx-2 bg-violet-first main-violet-first-rounded main-violet-first-bg px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white  transition duration-150 ease-in-out ">
-        {{'FIND_ERROR' | translate}}
-      </a>
-      <div class="flex">
-        <a *ngIf="(result$ | async)?.data"
+          class="inline-block cursor-pointer rounded-full lg:mx-2 bg-violet-first main-violet-first-rounded main-violet-first-bg px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white  transition duration-150 ease-in-out ">
+          {{'FIND_ERROR' | translate}}
+        </a>
+      </div>
+      <div class="flex justify-end my-2" *ngIf="(result$ | async)?.data">
+        <a
            [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepExam + '/' + (subStep$ | async)?.data?.id + '/' + localeID)"
            class="inline-block rounded-full bg-violet-first main-violet-first-rounded main-violet-first-bg px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white  transition duration-150 ease-in-out ">
           {{'RESTART_BUTTON' | translate}}
         </a>
-        <a *ngIf="(result$ | async)?.data" [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepResultExam + '/' + (subStep$ | async)?.data?.id + '/' + localeID)"
+        <a [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepResultExam + '/' + (subStep$ | async)?.data?.id + '/' + localeID)"
            class="ml-3 inline-block rounded-full bg-violet-first main-violet-first-rounded main-violet-first-bg px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out">
           {{'SHOW_RESULT_BUTTON' | translate}}
         </a>
       </div>
-      <a *ngIf="!((result$ | async)?.data)"
-         [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepExam + '/' + (subStep$ | async)?.data?.id + '/' + localeID)"
-         class="inline-block rounded-full bg-violet-first main-violet-first-rounded main-violet-first-bg px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out ">
-        {{'START_TEST_BUTTON' | translate}}
-      </a>
+      <div class="flex justify-end my-2" *ngIf="!((result$ | async)?.data)">
+        <a
+           [routerLink]="StrHelper.getDashboardRouteName(RoutesName.subStepExam + '/' + (subStep$ | async)?.data?.id + '/' + localeID)"
+           class="inline-block rounded-full bg-violet-first main-violet-first-rounded main-violet-first-bg px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out ">
+          {{'START_TEST_BUTTON' | translate}}
+        </a>
+      </div>
     </div>
 
     <!-- Section: Design Block -->
@@ -132,3 +145,14 @@
 </div>
 <ng-template #elseBlock>{{'FORBIDDEN_MESSAGE' | translate}}</ng-template>
 <!-- Container for demo purpose -->
+
+<ngx-smart-modal identifier="homeWork" [customClass]="'buySubscriptionModal'">
+  <div class="flex flex-col items-center justify-center mobile:text-center">
+    <h1 class="text-5xl text-white font-bold mb-8 animate-pulse mobile:text-2xl">
+      {{'COMING_SOON_TITLE'|translate}}
+    </h1>
+    <p class="text-white text-lg mb-8">
+      {{'COMING_SOON_DESCRIPTION'|translate}}
+    </p>
+  </div>
+</ngx-smart-modal>

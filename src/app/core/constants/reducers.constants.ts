@@ -210,6 +210,7 @@ import {hottestInformationReducer} from "../../shared/store/information/hottestI
 import {surveyAnswerReducer, surveyReducer} from "../../shared/store/survey/survey.reducer";
 import {refsReducer} from "../../shared/store/cash/refs/refs.reducer";
 import {requestWithdrawReducer, withdrawReducer} from "../../shared/store/cash/withdraw/withdraw.reducer";
+import {utmReducer} from "../../shared/store/utm/utm.reducer";
 
 export const ReducersConstants = {
   login: loginReducer,
@@ -371,6 +372,7 @@ export const ReducersConstants = {
   refs: refsReducer,
   withdraw: withdrawReducer,
   requestWithdraw: requestWithdrawReducer,
-  contentAppeal: contentAppealReducer
+  contentAppeal: contentAppealReducer,
+  utm: utmReducer
 }
 

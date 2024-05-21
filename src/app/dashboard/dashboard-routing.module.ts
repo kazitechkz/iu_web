@@ -68,6 +68,7 @@ import {TournamentAllComponent} from "./tournament/tournament-all/tournament-all
 import {SeoConstants} from "../core/constants/seo.constants";
 import {CashComponent} from "./cash/cash.component";
 import {CashHistoryComponent} from "./cash/cash-history/cash-history.component";
+import {Test2024Component} from "./test2024/test2024.component";
 
 const routes: Routes = [
   {
@@ -385,6 +386,10 @@ const routes: Routes = [
       {
         path: 'cash-history',
         component: CashHistoryComponent
+      },
+      {
+        path: 'test-2024',
+        component: Test2024Component
       },
       {
         path:"no-page-ready",

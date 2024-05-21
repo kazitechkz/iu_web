@@ -33,6 +33,7 @@ import { LifehackCardComponent } from './components/lifehack-card/lifehack-card.
 import { StaticLifeHackComponent } from './components/static-life-hack/static-life-hack.component';
 import {YouTubePlayerModule} from "@angular/youtube-player";
 import { NewsCardComponent } from './components/news-card/news-card.component';
+import { ComingSoonComponent } from './components/coming-soon/coming-soon.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { NewsCardComponent } from './components/news-card/news-card.component';
     LifehackCardComponent,
     StaticLifeHackComponent,
     NewsCardComponent,
+    ComingSoonComponent,
   ],
     imports: [
         CommonModule,
@@ -74,31 +76,32 @@ import { NewsCardComponent } from './components/news-card/news-card.component';
         UiSwitchModule,
         YouTubePlayerModule,
     ],
-    exports: [
-        InputFieldComponent,
-        RoundedSocialButtonComponent,
-        TranslateModule,
-        InputFieldComponent,
-        SidebarComponent,
-        NavbarComponent,
-        HomeNavbarComponent,
-        TeacherSidebarComponent,
-        AnnouncementListComponent,
-        ModalUntTrainerComponent,
-        ModalContentOfferComponent,
-        HomeFooterComponent,
-        ErrorFormFieldComponent,
-        IutubeCardVerticalComponent,
-        IutubeCardHorizontalComponent,
-        IutubeSearchComponent,
-        InformationBearComponent,
-        BreadcrumbsComponent,
-        BreadcrumbItemComponent,
-        ModalTournamentBannerComponent,
-        LifehackCardComponent,
-        StaticLifeHackComponent,
-        NewsCardComponent,
-    ],
+  exports: [
+    InputFieldComponent,
+    RoundedSocialButtonComponent,
+    TranslateModule,
+    InputFieldComponent,
+    SidebarComponent,
+    NavbarComponent,
+    HomeNavbarComponent,
+    TeacherSidebarComponent,
+    AnnouncementListComponent,
+    ModalUntTrainerComponent,
+    ModalContentOfferComponent,
+    HomeFooterComponent,
+    ErrorFormFieldComponent,
+    IutubeCardVerticalComponent,
+    IutubeCardHorizontalComponent,
+    IutubeSearchComponent,
+    InformationBearComponent,
+    BreadcrumbsComponent,
+    BreadcrumbItemComponent,
+    ModalTournamentBannerComponent,
+    LifehackCardComponent,
+    StaticLifeHackComponent,
+    NewsCardComponent,
+    ComingSoonComponent,
+  ],
   providers:[TranslateStore ],
 })
 export class SharedModule { }

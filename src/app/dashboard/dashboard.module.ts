@@ -90,6 +90,7 @@ import { GamesComponent } from './games/games.component';
 import { TournamentAllComponent } from './tournament/tournament-all/tournament-all.component';
 import { CashComponent } from './cash/cash.component';
 import {CashHistoryComponent} from "./cash/cash-history/cash-history.component";
+import { Test2024Component } from './test2024/test2024.component';
 
 
 @NgModule({
@@ -161,6 +162,7 @@ import {CashHistoryComponent} from "./cash/cash-history/cash-history.component";
         GamesComponent,
         CashComponent,
         CashHistoryComponent,
+        Test2024Component,
     ],
     imports: [
         CommonModule,

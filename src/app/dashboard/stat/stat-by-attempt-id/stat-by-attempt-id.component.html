@@ -18,19 +18,19 @@
         <table class="w-full text-sm text-left text-black border-2 border-[#8e6a5e]">
           <thead class="text-xs text-black capitalize">
           <tr>
-            <th scope="col" class="px-6 py-3 border-2 border-[#8e6a5e]">
+            <th scope="col" class="px-6 py-3 border-2 border-[#8e6a5e] w-[50%]">
               {{"CATEGORY"|translate}}
             </th>
-            <th scope="col" class="px-6 py-3 border-2 border-[#8e6a5e]">
+            <th scope="col" class="px-2 py-3 border-2 border-[#8e6a5e]">
               {{"TOTAL_QUESTION"|translate}}
             </th>
-            <th scope="col" class="px-6 py-3 border-2 border-[#8e6a5e]">
+            <th scope="col" class="px-2 py-3 border-2 border-[#8e6a5e]">
               {{"RIGHT_TOTAL"|translate}}
             </th>
-            <th scope="col" class="px-6 py-3 border-2 border-[#8e6a5e]">
+            <th scope="col" class="px-2 py-3 border-2 border-[#8e6a5e]">
               {{"WRONG_TOTAL"|translate}}
             </th>
-            <th scope="col" class="px-6 py-3 border-2 border-[#8e6a5e]">
+            <th colspan="2" scope="col" class="px-6 py-3 border-2 border-[#8e6a5e]">
               {{"ACTION"|translate}}
             </th>
           </tr>
@@ -38,7 +38,7 @@
           <tbody>
           <tr class="bg-white rounded-2xl my-2 border-2 border-[#8e6a5e]" *ngFor="let result of getSubjectResult(subject.id)">
             <td class="p-4 border-2 border-[#8e6a5e]">
-              <p class="text-black ml-2 font-bold" *ngIf="result.sub_category;else no_category">
+              <p class="text-black ml-2 text-sm font-bold" *ngIf="result.sub_category;else no_category">
                 {{result.sub_category  | globalTranslate:"title": translate.currentLang}}
                 ({{result.sub_category.category  | globalTranslate:"title": translate.currentLang
                 }})
@@ -65,7 +65,9 @@
               </p>
             </td>
             <td class="p-4 border-2 border-[#8e6a5e]">
-              <a (click)="goToSubStep(result.sub_category.id)" class="rounded-full p-2 text-white my-3 main-violet-first-rounded bg-violet-first font-bold cursor-pointer" *ngIf="result.sub_category;else no_category2">
+              <a (click)="goToSubStep(result.sub_category.id)"
+                 class="rounded-full p-2 text-white my-3 main-violet-first-rounded bg-violet-first font-bold cursor-pointer"
+                 *ngIf="result.sub_category;else no_category2">
                 {{'PASS_STEP'|translate}}
               </a>
               <ng-template #no_category2>
@@ -73,6 +75,13 @@
                   -
                 </p>
               </ng-template>
+            </td>
+            <td class="p-4 border-2 border-[#8e6a5e]">
+              <div class="flex justify-center w-[140px]">
+                <a (click)="goTutor()" class="rounded-full p-2 text-white my-3 main-violet-first-rounded bg-violet-first font-bold cursor-pointer">
+                  {{'GO_TUTOR'|translate}}
+                </a>
+              </div>
             </td>
           </tr>
           </tbody>
@@ -109,3 +118,13 @@
 
 </ngx-smart-modal>
 <app-modal-content-offer #modalBuyContent/>
+<ngx-smart-modal identifier="tutor" [customClass]="'buySubscriptionModal'">
+  <div class="flex flex-col items-center justify-center mobile:text-center">
+    <h1 class="text-5xl text-white font-bold mb-8 animate-pulse mobile:text-2xl">
+      {{'COMING_SOON_TITLE'|translate}}
+    </h1>
+    <p class="text-white text-lg mb-8">
+      {{'COMING_SOON_DESCRIPTION'|translate}}
+    </p>
+  </div>
+</ngx-smart-modal>
