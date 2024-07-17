@@ -1,7 +1,7 @@
 <div class="relative">
   <h2 class="text-white">{{'WALLET_RATING'|translate}}</h2>
-  <h2 class="text-white" id="ratingTime">{{"BEFORE_TIME"|translate}}: {{countdown}}</h2>
-  <p class="text-white text-center">( <span class="text-red-500">!</span> {{'SUB_TEXT_WALLET_RATING'|translate}})</p>
+<!--  <h2 class="text-white" id="ratingTime">{{"BEFORE_TIME"|translate}}: {{countdown}}</h2>-->
+<!--  <p class="text-white text-center">( <span class="text-red-500">!</span> {{'SUB_TEXT_WALLET_RATING'|translate}})</p>-->
   <ul id="ratingUserTable" class="responsive-table my-[50px]" *ngIf="userMe">
     <li [ngClass]="getBgColor(userMe.id) ? 'bg-green-violet' : 'bg-black-violet-orange-180-05'" class="table-row main-violet-first-rounded text-white font-bold mobile:text-[14px] sm:text-[14px] md:text-[14px] ld:text-[14px] xl:text-[16px] mobile:rounded-[20px] sm:rounded-[20px] md:rounded-[20px] lg:rounded-full py-5">
       <div class="col col-1 flex items-center" data-label="№">
