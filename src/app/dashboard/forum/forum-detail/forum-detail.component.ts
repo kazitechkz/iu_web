@@ -26,6 +26,7 @@ import {getForumDiscussSelector} from "../../../shared/store/forum/getForumDiscu
 import {Collapse, initTE} from "tw-elements";
 import {RatingForumRequest} from "../../../shared/store/forum/ratingForum/ratingForum.request";
 import {clearRatingForumAction, ratingForumAction} from "../../../shared/store/forum/ratingForum/ratingForum.action";
+// @ts-ignore
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {createDiscussAction} from "../../../shared/store/forum/createDiscuss/createDiscuss.action";
@@ -56,7 +57,7 @@ export class ForumDetailComponent implements OnInit,OnDestroy{
     createDiscuss:FormGroup = new FormGroup({
       text:new FormControl("",[
         Validators.required,
-        Validators.max(255),
+        Validators.maxLength(255),
       ]),
     })
   //Data

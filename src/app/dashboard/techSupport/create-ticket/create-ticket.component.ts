@@ -17,6 +17,7 @@ import {
 } from "../../../shared/store/techSupport/getTechSupportCategories/getTechSupportCategories.selector";
 import {TechSupportType} from "../../../shared/models/techSupportType.model";
 import {TechSupportCategory} from "../../../shared/models/techSupportCategory.model";
+// @ts-ignore
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {faCheck} from "@fortawesome/free-solid-svg-icons";
 import {
@@ -58,11 +59,11 @@ export class CreateTicketComponent implements OnInit{
     ]),
     title: new FormControl("", [
       Validators.required,
-      Validators.max(255),
+      Validators.maxLength(255),
     ]),
     message: new FormControl("", [
       Validators.required,
-      Validators.max(255),
+      Validators.maxLength(255),
     ]),
   });
   //FormData

@@ -130,8 +130,8 @@
                                 </div>
                               </section>
                             </section>
-                            <section  class="text-[9px] md:text-sm lg:text-md text-center p-4 {{ratingTitle[(question.answers.length - i)] != null ? ratingTitle[(question.answers.length - i)].className : ''}}"
-                                     *ngIf="!dropzoneIsClosed(question.question.id,question.answers.length - i)">{{ratingTitle[(question.answers.length - i)] | globalTranslate:'title':translate.currentLang}}
+                            <section  class="text-[9px] md:text-sm lg:text-md text-center p-4 {{get_rating_title(question.answers.length)[(question.answers.length - i)] != null ? get_rating_title(question.answers.length)[(question.answers.length - i)].className : ''}}"
+                                     *ngIf="!dropzoneIsClosed(question.question.id,question.answers.length - i)">{{get_rating_title(question.answers.length)[(question.answers.length - i)] | globalTranslate:'title':translate.currentLang}}
                             </section>
                           <div
                             class="border-2 border-violet-200 min-h-[50px] rounded-xl flex justify-center items-center p-2"

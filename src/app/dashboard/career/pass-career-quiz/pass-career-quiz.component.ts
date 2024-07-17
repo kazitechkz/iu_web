@@ -1,9 +1,12 @@
-import {Component, DestroyRef, inject, OnInit, ViewChild} from '@angular/core';
+import {Component, DestroyRef, inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {GlobalTranslateService} from "../../../shared/services/globalTranslate.service";
 import {ActivatedRoute} from "@angular/router";
 import {CareerQuiz} from "../../../shared/models/careerQuiz.model";
-import {passCareerQuizAction} from "../../../shared/store/career/passCareerQuiz/passCareerQuiz.action";
+import {
+  passCareerQuizAction,
+  passCareerQuizActionClear
+} from "../../../shared/store/career/passCareerQuiz/passCareerQuiz.action";
 import {autoUnsubscribe} from "../../../core/helpers/autoUnsubscribe";
 import {passCareerQuizSelector} from "../../../shared/store/career/passCareerQuiz/passCareerQuiz.selector";
 import {OwlOptions, SlidesOutputData} from "ngx-owl-carousel-o";
@@ -14,13 +17,16 @@ import {finishCareerQuizAction} from "../../../shared/store/career/finishCareerQ
 import {CareerQuizQuestionWithAnswerModel} from "../../../shared/models/careerQuizQuestionWithAnswer.model";
 import {CareerQuizAnswer} from "../../../shared/models/careerQuizAnswer.model";
 import {DndDropEvent} from "ngx-drag-drop";
+import { polyfill } from 'mobile-drag-drop';
+// optional import of scroll behaviour
+import { scrollBehaviourDragImageTranslateOverride } from "mobile-drag-drop/scroll-behaviour";
 
 @Component({
   selector: 'app-pass-career-quiz',
   templateUrl: './pass-career-quiz.component.html',
   styleUrls: ['./pass-career-quiz.component.scss']
 })
-export class PassCareerQuizComponent implements OnInit{
+export class PassCareerQuizComponent implements OnInit, OnDestroy{
   //Injection
   private _store = inject(Store);
   private destroyRef:DestroyRef = inject(DestroyRef);
@@ -50,9 +56,50 @@ export class PassCareerQuizComponent implements OnInit{
     2:{title_ru:'Скорее не согласен',title_kk:'Керісінше келіспеймін',className:'text-rose-500 font-bold'},
     1:{title_ru:'Не согласен',title_kk:'Келіспеймін',className:'text-rose-600 font-bold'},
   }
+
+  public ratingTitle_7:{[key: number]: { title_ru: string,title_kk:string,className:string}} = {
+    7: { title_ru: 'Совершенно согласен', title_kk: 'Мүлдем келісемін', className: 'text-green-700 font-bold' },
+    6: { title_ru: 'Согласен', title_kk: 'Келісемін', className: 'text-green-600 font-bold' },
+    5: { title_ru: 'Скорее согласен', title_kk: 'Керісінше келісемін', className: 'text-green-500 font-bold' },
+    4: { title_ru: 'Нейтрально', title_kk: 'Бейтарап', className: 'text-yellow-300 font-bold' },
+    3: { title_ru: 'Скорее не согласен', title_kk: 'Керісінше келіспеймін', className: 'text-rose-500 font-bold' },
+    2: { title_ru: 'Не согласен', title_kk: 'Келіспеймін', className: 'text-rose-600 font-bold' },
+    1: { title_ru: 'Совершенно не согласен', title_kk: 'Мүлдем келіспеймін', className: 'text-rose-700 font-bold' }
+  }
+  public ratingTitle_6:{[key: number]: { title_ru: string,title_kk:string,className:string}} = {
+    6: { title_ru: 'Совершенно согласен', title_kk: 'Мүлдем келісемін', className: 'text-green-700 font-bold' },
+    5: { title_ru: 'Согласен', title_kk: 'Келісемін', className: 'text-green-600 font-bold' },
+    4: { title_ru: 'Нейтрально', title_kk: 'Бейтарап', className: 'text-yellow-300 font-bold' },
+    3: { title_ru: 'Скорее не согласен', title_kk: 'Керісінше келіспеймін', className: 'text-rose-500 font-bold' },
+    2: { title_ru: 'Не согласен', title_kk: 'Келіспеймін', className: 'text-rose-600 font-bold' },
+    1: { title_ru: 'Совершенно не согласен', title_kk: 'Мүлдем келіспеймін', className: 'text-rose-700 font-bold' }
+  }
+  public ratingTitle_5:{[key: number]: { title_ru: string,title_kk:string,className:string}} = {
+    5: { title_ru: 'Совершенно согласен', title_kk: 'Мүлдем келісемін', className: 'text-green-700 font-bold' },
+    4: { title_ru: 'Согласен', title_kk: 'Келісемін', className: 'text-green-600 font-bold' },
+    3: { title_ru: 'Нейтрально', title_kk: 'Бейтарап', className: 'text-yellow-300 font-bold' },
+    2: { title_ru: 'Не согласен', title_kk: 'Келіспеймін', className: 'text-rose-600 font-bold' },
+    1: { title_ru: 'Совершенно не согласен', title_kk: 'Мүлдем келіспеймін', className: 'text-rose-700 font-bold' }
+  }
+  public ratingTitle_4:{[key: number]: { title_ru: string,title_kk:string,className:string}} = {
+    4: { title_ru: 'Совершенно согласен', title_kk: 'Мүлдем келісемін', className: 'text-green-700 font-bold' },
+    3: { title_ru: 'Нейтрально', title_kk: 'Бейтарап', className: 'text-yellow-300 font-bold' },
+    2: { title_ru: 'Не согласен', title_kk: 'Келіспеймін', className: 'text-rose-600 font-bold' },
+    1: { title_ru: 'Совершенно не согласен', title_kk: 'Мүлдем келіспеймін', className: 'text-rose-700 font-bold' }
+  }
+  public ratingTitle_3:{[key: number]: { title_ru: string,title_kk:string,className:string}} = {
+    3: { title_ru: 'Совершенно согласен', title_kk: 'Мүлдем келісемін', className: 'text-green-700 font-bold' },
+    2: { title_ru: 'Нейтрально', title_kk: 'Бейтарап', className: 'text-yellow-300 font-bold' },
+    1: { title_ru: 'Совершенно не согласен', title_kk: 'Мүлдем келіспеймін', className: 'text-rose-700 font-bold' }
+  }
+  public ratingTitle_2:{[key: number]: { title_ru: string,title_kk:string,className:string}} = {
+    2: { title_ru: 'Согласен', title_kk: 'Келісемін', className: 'text-green-600 font-bold' },
+    1: { title_ru: 'Не согласен', title_kk: 'Келіспеймін', className: 'text-rose-600 font-bold' }
+  }
   //Data
   @ViewChild('owlCar') owlCar: any;
   constructor() {
+    this._store.dispatch(passCareerQuizActionClear());
     this._store.select(passCareerQuizSelector).pipe(autoUnsubscribe(this.destroyRef)).subscribe(item=>{
       if(item.data){
         this.careerQuiz = item.data;
@@ -62,7 +109,42 @@ export class PassCareerQuizComponent implements OnInit{
           })
         }
       }
-    })
+    });
+    polyfill( {
+      // use this to make use of the scroll behaviour
+      dragImageTranslateOverride: scrollBehaviourDragImageTranslateOverride
+    } );
+    try {
+      window.addEventListener( "touchmove", function() { }, { passive: false } );
+    }
+    catch(e){}
+  }
+
+
+
+  get_rating_title(answer_length:number):{[key: number]: { title_ru: string,title_kk:string,className:string}}{
+    if (answer_length === 8) {
+      return this.ratingTitle;
+    } else if (answer_length === 7) {
+      return this.ratingTitle_7;
+    } else if (answer_length === 6) {
+      return this.ratingTitle_6;
+    } else if (answer_length === 5) {
+      return this.ratingTitle_5;
+    } else if (answer_length === 4) {
+      return this.ratingTitle_4;
+    } else if (answer_length === 3) {
+      return this.ratingTitle_3;
+    } else if (answer_length === 2) {
+      return this.ratingTitle_2;
+    } else {
+      return this.ratingTitle;
+    }
+  }
+
+  ngOnDestroy(): void {
+    this._store.dispatch(passCareerQuizActionClear());
+
   }
   ngOnInit(): void {
     this._route.params.pipe(autoUnsubscribe(this.destroyRef)).subscribe(params => {

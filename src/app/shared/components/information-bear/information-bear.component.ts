@@ -1,7 +1,6 @@
 import {Component, inject, Input} from '@angular/core';
 import {driver} from "driver.js";
 import {GlobalTranslateService} from "../../services/globalTranslate.service";
-
 @Component({
   selector: 'app-information-bear',
   templateUrl: './information-bear.component.html',

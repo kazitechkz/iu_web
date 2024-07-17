@@ -36,11 +36,11 @@ export class CreateForumComponent implements OnInit,OnDestroy{
   createForum:FormGroup = this.fb.group({
     text:new FormControl("",[
       Validators.required,
-      Validators.max(255),
+      Validators.maxLength(255),
     ]),
     attachment:new FormControl("",[
       Validators.required,
-      Validators.max(5000),
+      Validators.maxLength(5000),
     ]),
     subject_id:new FormControl("",[
       Validators.required,

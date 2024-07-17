@@ -2,12 +2,18 @@ import {createReducer, on} from "@ngrx/store";
 import {
   passCareerQuizAction,
   passCareerQuizActionSuccess,
-  passCareerQuizActionFailure
+  passCareerQuizActionFailure, passCareerQuizActionClear
 } from "./passCareerQuiz.action";
 import {passCareerQuizState} from "./passCareerQuiz.state";
 
 const _passCareerQuizReducer = createReducer(
   passCareerQuizState,
+  on(passCareerQuizActionClear, (state, action) => {
+    return {
+      ...state,
+      data:null,
+    }
+  }),
   on(passCareerQuizAction, (state, action) => {
     return {
       ...state,

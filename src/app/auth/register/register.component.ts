@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
     ]),
     name: new FormControl("", [
       Validators.required,
-      Validators.max(255),
+      Validators.maxLength(255),
       Validators.minLength(3)
     ]),
     // parent_name: new FormControl("", [
@@ -66,8 +66,8 @@ export class RegisterComponent implements OnInit {
     // ]),
     password: new FormControl("", [
       Validators.required,
-      Validators.min(4),
-      Validators.max(255),
+      Validators.minLength(4),
+      Validators.maxLength(255),
     ]),
   });
 
